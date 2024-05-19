@@ -1,0 +1,83 @@
+{
+  "-- Switcher": {
+    "type": "separator",
+    "title": "Switcher"
+  },
+  "index": "Overview",
+  "demo": "Interactive Demo",
+  "get-started": "Quickstart",
+  "concepts": "Concepts",
+  "-- Projects": {
+    "type": "separator",
+    "title": "Projects"
+  },
+  "Home": "Home",
+  "workflows": "Workflows",
+  "nodes": "Nodes",
+  "-- Models": {
+    "type": "separator",
+    "title": "Models"
+  },
+  "Benchmark": "Benchmark",
+  "Model-Credentials": "Credentials",
+  "Usage&Cost": "Usage & Cost",
+  "-- Data & Apps": {
+    "type": "separator",
+    "title": "Data & Apps"
+  },
+  "Data Sources": "Data Sources",
+  "Apps": "Apps",
+  "Credentials": "Credentials",
+  "-- Deploy": {
+    "type": "separator",
+    "title": "Deploy"
+  },
+  "GraphQL": "GraphQL API",
+  "Edge": "Edge Deployment",
+  "Keys": "API Keys",
+  "Components": "Components",
+  "Cache": "Cache",
+  "-- Monitor": {
+    "type": "separator",
+    "title": "Monitor"
+  },
+  "analytics": "Analytics",
+  "Logs": "Logs",
+  "experimentation": "Experimentation",
+  "-- integrations": {
+    "type": "separator",
+    "title": "Integrations"
+  },
+
+
+
+  "-- References": {
+    "type": "separator",
+    "title": "References"
+  },
+  "api-ref": {
+    "title": "GraphQL API ↗",
+    "href": "",
+    "newWindow": true
+  },
+  "-- More": {
+    "type": "separator",
+    "title": "More"
+  },
+  "rbac": "Project Sharing (RBAC)",
+  "data-security-privacy": "Data Security & Privacy",
+  "roadmap": "Roadmap",
+  "support": {
+    "title": "Support ↗",
+    "href": "/support",
+    "newWindow": true
+  },
+  "video": {
+    "title": "Video (2 min)",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article"
+    }
+  }
+}

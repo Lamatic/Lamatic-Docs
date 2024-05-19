@@ -1,15 +1,85 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
-  "contact": {
-    "title": "Contact ↗",
+  "index": {
     "type": "page",
-    "href": "https://twitter.com/shuding_",
-    "newWindow": true
+    "title": "Lamatic.ai",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "docs": {
+    "type": "page",
+    "title": "Docs"
+  },
+  "guides": {
+    "type": "page",
+    "title": "Guides",
+    "display": "hidden"
+  },
+  "changelog": {
+    "type": "page",
+    "title": "Changelog",
+    "theme": {
+      "layout": "full"
+    }
+  },
+  "blog": {
+    "title": "Blog",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "href": "https://blog.lamatic.ai",
+    "target": "_blank"
+  },
+  "careers": {
+    "title": "Careers",
+    "type": "page",
+    "display": "hidden"
+  },
+  "support": {
+    "title": "Support",
+    "type": "page",
+    "display": "hidden"
+  },
+  "why": {
+    "title": "Why Lamatic.ai",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article",
+      "timestamp": false
+    }
+  },
+  "terms": {
+    "title": "Terms and Conditions",
+    "type": "page",
+    "display": "hidden"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "type": "page",
+    "display": "hidden"
+  },
+  "cookie-policy": {
+    "title": "Cookie Policy",
+    "type": "page",
+    "display": "hidden"
+  },
+  "about": {
+    "title": "About us",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article",
+      "timestamp": false
+    }
+  },
+  "404": {
+    "type": "page",
+    "theme": {
+      "typesetting": "article",
+      "timestamp": false
+    }
   }
 }

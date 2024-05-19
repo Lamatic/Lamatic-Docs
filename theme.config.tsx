@@ -137,15 +137,15 @@ const config: DocsThemeConfig = {
       : "";
 
     const image = frontMatter.ogImage
-      ? "https://lamaticai.com" + frontMatter.ogImage
-      : `https://lamaticai.com/api/og?title=${encodeURIComponent(
+      ? "https://lamatic.ai" + frontMatter.ogImage
+      : `https://docs.lamatic.ai/api/og?title=${encodeURIComponent(
           title
         )}&description=${encodeURIComponent(
           description
         )}&section=${encodeURIComponent(section)}`;
 
     const video = frontMatter.ogVideo
-      ? "https://lamaticai.com" + frontMatter.ogVideo
+      ? "https://lamatic.ai" + frontMatter.ogVideo
       : null;
 
     return (

@@ -9,7 +9,6 @@ import {
   ThumbsUp,
 } from "lucide-react";
 import { Textarea } from "./ui/textarea";
-import { openChat } from "./supportChat";
 import { Background } from "./Background";
 import { NotebookBanner } from "./NotebookBanner";
 import { ProductUpdateSignup } from "./productUpdateSignup";

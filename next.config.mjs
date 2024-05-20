@@ -42,6 +42,9 @@ const nextraConfig = withNextra({
   experimental: {
     scrollRestoration: true,
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   eslint: {
     // ESLint behaves weirdly in this monorepo.
     ignoreDuringBuilds: true

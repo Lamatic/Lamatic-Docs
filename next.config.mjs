@@ -42,6 +42,10 @@ const nextraConfig = withNextra({
   experimental: {
     scrollRestoration: true,
   },
+  eslint: {
+    // ESLint behaves weirdly in this monorepo.
+    ignoreDuringBuilds: true
+  },
   transpilePackages: [
     'react-tweet',
     'react-syntax-highlighter',

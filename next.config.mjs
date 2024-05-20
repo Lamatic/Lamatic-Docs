@@ -145,6 +145,7 @@ const nonPermanentRedirects = [
   ].map((path) => [path, path + "/overview"]),
 
   // Redirects to bridge all kinds of old links to new links
+    ["/", "/docs"],
   ["/docs/reference", "https://api.reference.lamaticai.com/"],
   ["/docs/integrations/api", "https://api.reference.lamaticai.com/"],
   ["/docs/integrations/sdk/typescript", "/docs/sdk/typescript"],

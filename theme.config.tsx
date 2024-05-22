@@ -92,7 +92,7 @@ const config: DocsThemeConfig = {
       return <AvailabilitySidebar frontMatter={frontMatter} />;
     },
   },
-  docsRepositoryBase: "https://github.com/lamaticai/lamaticai-docs/tree/main",
+  docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",
   footer: {
     text: <FooterMenu />,
   },
@@ -108,7 +108,7 @@ const config: DocsThemeConfig = {
     return {
       titleTemplate:
         asPath === "/"
-          ? "lamaticai"
+          ? "lamatic.ai"
           : asPath.startsWith("/blog/")
           ? "%s - lamaticai Blog"
           : asPath.startsWith("/docs/guides/")

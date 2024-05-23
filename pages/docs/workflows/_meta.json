@@ -1,6 +1,7 @@
 {
   "data-nodes": "Data Nodes",
-  "Agent": "Agents",
-  "Flow": "Flow",
-  "Custom-nodes": "Custom Nodes"
+  "custom-nodes": "Custom Nodes",
+  "execution-flow": "Execution Flow",
+  "triggers": "Triggers"
+  
 }

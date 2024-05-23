@@ -6,7 +6,13 @@
   "index": "Overview",
   "demo": "Interactive Demo",
   "get-started": "Quickstart",
-  "concepts": "Concepts",
+  "-- concepts": {
+    "type": "separator",
+    "title": "Core Concepts"
+  },
+  "vectorization": "Vectorization",
+  "rag": "RAG",
+  "chunking": "Chunking",
   "-- Projects": {
     "type": "separator",
     "title": "Projects"
@@ -14,6 +20,8 @@
   "Home": "Home",
   "workflows": "Workflows",
   "nodes": "Nodes",
+
+
   "-- Models": {
     "type": "separator",
     "title": "Models"
@@ -21,13 +29,16 @@
   "Benchmark": "Benchmark",
   "Model-Credentials": "Credentials",
   "Usage&Cost": "Usage & Cost",
-  "-- Data & Apps": {
+
+
+  "-- integrations": {
     "type": "separator",
-    "title": "Data & Apps"
+    "title": "Integrations"
   },
   "Data Sources": "Data Sources",
   "Apps": "Apps",
-  "Credentials": "Credentials",
+
+
   "-- Deploy": {
     "type": "separator",
     "title": "Deploy"
@@ -44,10 +55,7 @@
   "analytics": "Analytics",
   "Logs": "Logs",
   "experimentation": "Experimentation",
-  "-- integrations": {
-    "type": "separator",
-    "title": "Integrations"
-  },
+  
 
 
 
@@ -60,6 +68,14 @@
     "href": "",
     "newWindow": true
   },
+
+  "-- Appendices": {
+    "type": "separator",
+    "title": "Appendices"
+  },
+  "channel-log": "Channel Log",
+  "legal": "Legal",
+
   "-- More": {
     "type": "separator",
     "title": "More"

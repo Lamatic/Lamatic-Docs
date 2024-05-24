@@ -24,6 +24,12 @@
   "workflows": "Workflows",
   "nodes": "Nodes",
 
+  "-- Vector-Stores": {
+    "type": "separator",
+    "title": "Vector Stores"
+  },
+  "Vector": "Vector Stores",
+  "Mapping": "Mapping",
 
   "-- models": {
     "type": "separator",

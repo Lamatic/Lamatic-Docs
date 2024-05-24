@@ -113,8 +113,8 @@ const nextraConfig = withNextra({
 });
 
 const nonPermanentRedirects = [
-  ["/analytics", ""],
-  ["/slack", ""],
+  ["/analytics", "/"],
+  ["/slack", "/"],
   ["/demo", "/docs/demo"],
   ["/video", "/guides/videos/introducing-lamaticai-2.0"],
   ["/docs/video", "/guides/videos/introducing-lamaticai-2.0"],

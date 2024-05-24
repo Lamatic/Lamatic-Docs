@@ -7,15 +7,7 @@
   "why-lamatic": "Why Lamatic?",
   "demo": "Interactive Demo",
   "get-started": "Quickstart",
-  "-- concepts": {
-    "type": "separator",
-    "title": "Core Concepts"
-  },
-  "llm": "LLM",
-  "vectorization": "Vectorization",
-  "vectorDB": "Vector Database",
-  "chunking": "Chunking",
-  "rag": "RAG",
+  "concepts": "Concepts",
   "-- Projects": {
     "type": "separator",
     "title": "Projects"
@@ -28,8 +20,8 @@
     "type": "separator",
     "title": "Vector Stores"
   },
-  "Vector": "Vector Stores",
-  "Mapping": "Mapping",
+  "vector": "Vector Stores",
+  "mapping": "Mapping",
 
   "-- models": {
     "type": "separator",
@@ -40,12 +32,13 @@
   "usage-cost": "Usage & Cost",
 
 
-  "-- integrations": {
+  "-- data-apps": {
     "type": "separator",
-    "title": "Integrations"
+    "title": "Data & Apps"
   },
   "data-sources": "Data Sources",
   "apps": "Apps",
+  "credentials": "Credentials",
 
 
   "-- deploy": {
@@ -57,6 +50,7 @@
   "keys": "API Keys",
   "components": "Components",
   "cache": "Cache",
+
   "-- monitor": {
     "type": "separator",
     "title": "Monitor"
@@ -65,8 +59,10 @@
   "logs": "Logs",
   "experimentation": "Experimentation",
   
-
-
+  "-- integrations": {
+    "type": "separator",
+    "title": "Integrations"
+  },
 
   "-- references": {
     "type": "separator",
@@ -78,12 +74,6 @@
     "newWindow": true
   },
 
-  "-- appendices": {
-    "type": "separator",
-    "title": "Appendices"
-  },
-  "channel-log": "Channel Log",
-  "legal": "Legal",
 
   "-- more": {
     "type": "separator",
@@ -92,6 +82,9 @@
   "rbac": "Project Sharing (RBAC)",
   "data-security-privacy": "Data Security & Privacy",
   "roadmap": "Roadmap",
+  "marketplace": "Marketplace",
+  "prompts": "Prompts",
+  "legal": "Legal",
   "support": {
     "title": "Support ↗",
     "href": "/support",

@@ -14,7 +14,6 @@
   },
   "home": "Home",
   "workflows": "Workflows",
-  "nodes": "Nodes",
 
   "-- Vector-Stores": {
     "type": "separator",

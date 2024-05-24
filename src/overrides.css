@@ -18,6 +18,10 @@
     width: 10rem;
 }
 
+.nx-sticky {
+    background: linear-gradient(45deg, var(--ring) 25%, transparent 25%, transparent 75%, var(--ring) 75%, var(--ring) 100%), linear-gradient(45deg, var(--ring) 25%, transparent 25%, transparent 75%, var(--ring) 75%, var(--ring) 100%);
+}
+
 .nextra-search input {
     border-radius: 0.25rem;
 }

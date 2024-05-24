@@ -1,0 +1,15 @@
+---
+description: Different Chunking Methods
+---
+
+# Different chunking strategies
+
+
+Some of the most commonly used Chunking strategies are:<br/><br/>
+
+<ul>
+<li>**1. Character Text Splitter:** This is the simplest strategy among the others. This strategy splits based on characters and measures chunk length by number of characters.</li><br/>
+<li>**2. Recursive Character Text Splitter:** This text splitter is the recommended one for generic text. It is parameterized by a list of characters. It tries to split on them in order until the chunks are small enough. The default list of separators is `["\n\n", "\n", " ", ""]`. This has the effect of trying to keep all paragraphs (and then sentences, and then words) together as long as possible, as those would generically seem to be the strongest semantically related pieces of text.</li><br/>
+<li>**3. Contextual chunk headers:** Consider a scenario where you want to store a large, arbitrary collection of documents in a vector store and perform Q&A tasks on them. Simply splitting documents with overlapping text may not provide sufficient context for LLMs to determine if multiple chunks are referencing the same information, or how to resolve information from contradictory sources. Tagging each document with metadata is a solution if you know what to filter against, but you may not know ahead of time exactly what kind of queries your vector store will be expected to handle. Including additional contextual information directly in each chunk in the form of headers can help deal with arbitrary queries.</li><br/>
+<li>**4. Semantic Chunking:** This splits a text into sentences, then groups into groups of 3 sentences, and then merges one that are similar in the embedding space.</li><br/>
+</ul>

@@ -1,0 +1,48 @@
+# Weaviate Vector Store on Lamatic.ai
+
+At the core of many generative AI applications is the ability to store, search, and retrieve semantic vector representations of data. Lamatic.ai provides seamless integration with Weaviate, an open-source vector database, allowing you to easily build and scale vector storage for your use cases.
+
+## What is Weaviate?
+
+[Weaviate](https://weaviate.io/developers/weaviate) is a cloud-native, vectorized data storage solution. It allows you to store objects (documents, images, videos, etc.) and their properties in a data schema you define. 
+
+The real power comes from Weaviate's ability to store high-dimensional vector embeddings generated from embbedding models. These embeddings capture semantic representations, enabling complex filtering, searching, and nearest neighbor queries based on conceptual similarity.
+
+## Setting Up Weaviate
+
+On Lamatic.ai, you can provision a fully managed Weaviate instance with just a few clicks from the "Vector Stores" dashboard. Simply provide a name, select your desired configuration, and Lamatic.ai will handle the provisioning and scaling for you.
+
+
+![Vector Store](/assets/vector_store.png)
+
+## Data Vectorization
+
+A key capability is the ability to automatically vectorize your data as it gets loaded into Weaviate. Lamatic.ai supports connecting to and orchestrating different embedding models to generate high-quality vector representations.
+
+You can leverage pre-trained embeddings for common data types like text, images, and audio. Or connect your own custom embedding model for specialized vectorization needs.
+
+## Queries and Retrieval 
+
+With your data vectorized, you can then use Weaviate's GraphQL interface to run powerful queries combining filters, where clauses, semantic searching, and more. Results are returned ranked by relevance using nearest neighbor search over the vector embeddings.
+
+Some example use cases:
+
+- Semantic text search over documents or knowledge bases
+- Similarity matching for recommendation engines  
+- Clustering and classification of multimedia data
+- Query understanding and intent matching for conversational AI
+
+Lamatic.ai provides a visual query builder and templates to construct these queries easily without dealing with raw GraphQL.
+
+## Analytics and Monitoring
+
+Through the management console, you can monitor resource usage, indexing performance, and query latencies for your Weaviate instances. This visibility allows you to optimize configs and control costs as your vector database needs grow.
+
+## Scaling Vector Storage
+
+Weaviate itself is a distributed, cloud-native database that can horizontally scale out by adding more nodes or machines. Lamatic.ai takes care of this scaling for you automatically based on usage and performance needs.
+
+You can also take advantage of Weaviate's modular storage backend, allowing you to start with localized storage and seamlessly migrate to remote object stores as your vector data grows to petabyte scales.
+
+## Conclusion
+With Weaviate integrated on Lamatic.ai, you get a fully managed, scalable vector database solution - removing another complex piece of infrastructure from your generative AI stack. Let Lamatic.ai handle the heavy lifting while you build powerful AI-powered search, recommendations, and data understanding experiences.

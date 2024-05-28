@@ -145,7 +145,7 @@ const nonPermanentRedirects = [
   ].map((path) => [path, path + "/overview"]),
 
   // Redirects to bridge all kinds of old links to new links
-    ["/", "/docs"],
+    /*["/", "/docs"],
   ["/docs/reference", "https://api.reference.lamaticai.com/"],
   ["/docs/integrations/api", "https://api.reference.lamaticai.com/"],
   ["/docs/integrations/sdk/typescript", "/docs/sdk/typescript"],
@@ -216,7 +216,7 @@ const nonPermanentRedirects = [
 
   // User-reported broken links
   ["/superagent", "/docs/integrations/superagent"],
-  ["/guides/cookbook/lamaticai_prompt_with_langchain", "/guides/cookbook/prompt_management_langchain"]
+  ["/guides/cookbook/lamaticai_prompt_with_langchain", "/guides/cookbook/prompt_management_langchain"]*/
 ];
 
 const permanentRedirects = []

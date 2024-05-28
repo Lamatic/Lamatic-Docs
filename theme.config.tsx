@@ -128,10 +128,6 @@ const config: DocsThemeConfig = {
     const description = frontMatter.description ?? "";
 
     const title = frontMatter.title ?? pageTitle;
-      let domain;
-      if (typeof window !== 'undefined') {
-          domain = window.location.hostname;
-      }
 
 
     const section = asPath.startsWith("/docs")
@@ -141,6 +137,12 @@ const config: DocsThemeConfig = {
       : asPath.startsWith("/cookbook/")
       ? "Cookbook"
       : "";
+
+    if (process.env.VERCEL_URL) {
+        var domain = process.env.VERCEL_URL
+        console.log(domain)
+    }
+
 
     const image = frontMatter.ogImage
       ? frontMatter.ogImage

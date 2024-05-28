@@ -98,7 +98,8 @@ const nextraConfig = withNextra({
       },
     ]
   },
-  redirects: async () => [
+
+   redirects: async () => [
     ...nonPermanentRedirects.map(([source, destination]) => ({
       source,
       destination,

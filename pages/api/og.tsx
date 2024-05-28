@@ -70,7 +70,7 @@ export default async function handler(request: NextRequest) {
             <span style={{ fontWeight: 800 }}>
               lamaticai
               <span style={{ marginLeft: 10, fontWeight: 400 }}>
-                – Open Source LLM Engineering Platform
+                – The Collaborative GenOps Platform
               </span>
             </span>
           </div>

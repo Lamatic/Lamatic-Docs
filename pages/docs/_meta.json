@@ -7,68 +7,60 @@
   "why-lamatic": "Why Lamatic?",
   "demo": "Interactive Demo",
   "get-started": "Quickstart",
-  "concepts": "Concepts",
-  "-- Projects": {
+  "-- Collaborate": {
     "type": "separator",
-    "title": "Projects"
+    "title": "Collaborate"
   },
-  "home": "Home",
+  "organisation": "Organisation",
+  "home": "Projects",
   "workflows": "Workflows",
+  "vector stores": "Vector Stores",
 
-  "-- Vector-Stores": {
+  "-- connect": {
     "type": "separator",
-    "title": "Vector Stores"
-  },
-  "vector": "Vector Stores",
-  "mapping": "Mapping",
-
-  "-- models": {
-    "type": "separator",
-    "title": "Models"
-  },
-  "benchmark": "Benchmark",
-  "model-credentials": "Credentials",
-  "usage-cost": "Usage & Cost",
-
-
-  "-- data-apps": {
-    "type": "separator",
-    "title": "Data & Apps"
+    "title": "Connect"
   },
   "data-sources": "Data Sources",
   "apps": "Apps",
-  "credentials": "Credentials",
+  "models": "Models",
+  "Agents": "Agents",
+
 
 
   "-- deploy": {
     "type": "separator",
     "title": "Deploy"
   },
-  "graphQL": "GraphQL API",
   "edge": "Edge Deployment",
+  "cache": "Caching",
+  "graphQL": "GraphQL API",
   "keys": "API Keys",
-  "components": "Components",
-  "cache": "Cache",
+
 
   "-- monitor": {
     "type": "separator",
     "title": "Monitor"
   },
-  "analytics": "Analytics",
   "logs": "Logs",
-  "experimentation": "Experimentation",
-  
-  "-- integrations": {
-    "type": "separator",
-    "title": "Integrations"
-  },
-
+  "Langfuse": "Langfuse Integration",
+  "Posthog" : "Posthog Integration",
   "-- references": {
     "type": "separator",
     "title": "References"
   },
+
   "api-ref": {
     "title": "GraphQL API ↗",
+    "href": "",
+    "newWindow": true
+  },
+  "weaviate-ref": {
+    "title": "Weaviate Reference ↗",
+    "href": "",
+    "newWindow": true
+  },
+  "roadmap-ref": {
+    "title": "Roadmap ↗",
     "href": "",
     "newWindow": true
   },
@@ -78,23 +70,10 @@
     "type": "separator",
     "title": "More"
   },
-  "rbac": "Project Sharing (RBAC)",
-  "data-security-privacy": "Data Security & Privacy",
-  "roadmap": "Roadmap",
-  "marketplace": "Marketplace",
-  "prompts": "Prompts",
   "legal": "Legal",
   "support": {
     "title": "Support ↗",
     "href": "/support",
     "newWindow": true
-  },
-  "video": {
-    "title": "Video (2 min)",
-    "type": "page",
-    "display": "hidden",
-    "theme": {
-      "typesetting": "article"
-    }
   }
 }

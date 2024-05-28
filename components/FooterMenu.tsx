@@ -33,7 +33,7 @@ const FooterMenu = () => {
         <div />
       </div>*/}
       <div className="my-8 font-mono text-sm">
-        © 2023-{new Date().getFullYear()} Dinner Technologies Inc ( DBA Lamatic )
+        © 2023-{new Date().getFullYear()} Lamatic AI. All rights reserved.
       </div>
     </div>
   );

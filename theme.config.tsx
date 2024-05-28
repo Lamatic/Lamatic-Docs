@@ -25,6 +25,7 @@ import {
 import { CloudflareVideo, Video } from "./components/Video";
 import {Button} from "@/components/ui/button";
 
+
 const config: DocsThemeConfig = {
   logo: <Logo />,
   main: MainContentWrapper,
@@ -127,6 +128,11 @@ const config: DocsThemeConfig = {
     const description = frontMatter.description ?? "";
 
     const title = frontMatter.title ?? pageTitle;
+      let domain;
+      if (typeof window !== 'undefined') {
+          domain = window.location.hostname;
+      }
+
 
     const section = asPath.startsWith("/docs")
       ? "Docs"
@@ -137,15 +143,15 @@ const config: DocsThemeConfig = {
       : "";
 
     const image = frontMatter.ogImage
-      ? "https://lamatic.ai" + frontMatter.ogImage
-      : `https://docs.lamatic.ai/api/og?title=${encodeURIComponent(
+      ? frontMatter.ogImage
+      : `${domain}/api/og?title=${encodeURIComponent(
           title
         )}&description=${encodeURIComponent(
           description
         )}&section=${encodeURIComponent(section)}`;
 
     const video = frontMatter.ogVideo
-      ? "https://lamatic.ai" + frontMatter.ogVideo
+      ? + frontMatter.ogVideo
       : null;
 
     return (

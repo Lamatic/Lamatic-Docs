@@ -7,7 +7,7 @@ export const config = {
 
 export default async function handler(request: NextRequest) {
   const imageData = (await fetch(
-    new URL("../../public/icon256.png", import.meta.url)
+    new URL("../../public/public/icon256.png", import.meta.url)
   ).then((res) => res.arrayBuffer())) as string;
   const fontGeistMono = await fetch(
     new URL("../../lib/fonts/GeistMono-Medium.ttf", import.meta.url)

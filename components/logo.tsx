@@ -18,14 +18,14 @@ export function Logo() {
         }}
       >
         <Image
-          src="/lamatic-logo-dark.png"
+          src="/public/lamatic-logo-dark.png"
           alt="lamaticai Logo"
           width={120}
           height={20}
           className="hidden dark:block"
         />
         <Image
-          src="/lamatic-logo-light.svg"
+          src="/public/lamatic-logo-light.svg"
           alt="lamaticai Logo"
           width={120}
           height={20}

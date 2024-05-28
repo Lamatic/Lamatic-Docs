@@ -7,7 +7,7 @@ node_modules
 .env*.local
 
 # next sitemap
-public/robots.txt
+public/public/robots.txt
 public/sitemap*.xml
 
 # we use pnpm

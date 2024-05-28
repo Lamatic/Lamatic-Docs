@@ -172,7 +172,7 @@ const nonPermanentRedirects = [
 
 const permanentRedirects = []
 const rewrites = [
-    ["/:path((?!docs|guides|_next).*)", "https://get.lamatic.ai/:path*"],
+    ["/:path((?!docs|guides|_next|public|assets|images).*)", "https://get.lamatic.ai/:path*"],
 ]
 
 export default withBundleAnalyzer(nextraConfig);

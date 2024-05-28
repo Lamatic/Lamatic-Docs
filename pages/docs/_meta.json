@@ -12,47 +12,58 @@
     "type": "separator",
     "title": "Projects"
   },
-  "Home": "Home",
+  "home": "Home",
   "workflows": "Workflows",
-  "nodes": "Nodes",
-  "-- Models": {
+
+  "-- Vector-Stores": {
+    "type": "separator",
+    "title": "Vector Stores"
+  },
+  "vector": "Vector Stores",
+  "mapping": "Mapping",
+
+  "-- models": {
     "type": "separator",
     "title": "Models"
   },
-  "Benchmark": "Benchmark",
-  "Model-Credentials": "Credentials",
-  "Usage&Cost": "Usage & Cost",
-  "-- Data & Apps": {
+  "benchmark": "Benchmark",
+  "model-credentials": "Credentials",
+  "usage-cost": "Usage & Cost",
+
+
+  "-- data-apps": {
     "type": "separator",
     "title": "Data & Apps"
   },
-  "Data Sources": "Data Sources",
-  "Apps": "Apps",
-  "Credentials": "Credentials",
-  "-- Deploy": {
+  "data-sources": "Data Sources",
+  "apps": "Apps",
+  "credentials": "Credentials",
+
+
+  "-- deploy": {
     "type": "separator",
     "title": "Deploy"
   },
-  "GraphQL": "GraphQL API",
-  "Edge": "Edge Deployment",
-  "Keys": "API Keys",
-  "Components": "Components",
-  "Cache": "Cache",
-  "-- Monitor": {
+  "graphQL": "GraphQL API",
+  "edge": "Edge Deployment",
+  "keys": "API Keys",
+  "components": "Components",
+  "cache": "Cache",
+
+  "-- monitor": {
     "type": "separator",
     "title": "Monitor"
   },
   "analytics": "Analytics",
-  "Logs": "Logs",
+  "logs": "Logs",
   "experimentation": "Experimentation",
+  
   "-- integrations": {
     "type": "separator",
     "title": "Integrations"
   },
 
-
-
-  "-- References": {
+  "-- references": {
     "type": "separator",
     "title": "References"
   },
@@ -61,13 +72,18 @@
     "href": "",
     "newWindow": true
   },
-  "-- More": {
+
+
+  "-- more": {
     "type": "separator",
     "title": "More"
   },
   "rbac": "Project Sharing (RBAC)",
   "data-security-privacy": "Data Security & Privacy",
   "roadmap": "Roadmap",
+  "marketplace": "Marketplace",
+  "prompts": "Prompts",
+  "legal": "Legal",
   "support": {
     "title": "Support ↗",
     "href": "/support",

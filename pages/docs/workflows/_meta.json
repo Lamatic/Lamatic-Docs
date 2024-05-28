@@ -1,6 +1,9 @@
 {
-  "data-nodes": "Data Nodes",
-  "Agent": "Agents",
-  "Flow": "Flow",
-  "Custom-nodes": "Custom Nodes"
+  "triggers": "Triggers",
+  "response": "Response",
+  "nodes": "Nodes",
+  "execution-logs": "Execution Logs",
+  "testing": "Testing",
+  "deploy": "Deploy",
+  "branching": "Branching"
 }

@@ -112,9 +112,9 @@ const nextraConfig = withNextra({
   ]
 });
 
-const nonPermanentRedirects = [/*
+const nonPermanentRedirects = [
   ["/analytics", "/"],
-  ["/slack", ""],
+  ["/slack", "/"],
   ["/demo", "/docs/demo"],
   ["/video", "/guides/videos/introducing-lamaticai-2.0"],
   ["/docs/video", "/guides/videos/introducing-lamaticai-2.0"],
@@ -145,78 +145,21 @@ const nonPermanentRedirects = [/*
   ].map((path) => [path, path + "/overview"]),
 
   // Redirects to bridge all kinds of old links to new links
-  //   ["/", "/docs"],
-  ["/docs/reference", "https://api.reference.lamaticai.com/"],
-  ["/docs/integrations/api", "https://api.reference.lamaticai.com/"],
-  ["/docs/integrations/sdk/typescript", "/docs/sdk/typescript"],
-  ["/docs/integrations/sdk/python", "/docs/sdk/python"],
-  ["/docs/langchain", "/docs/integrations/langchain/tracing"],
-  ["/docs/langchain/python", "/docs/integrations/langchain/tracing"],
-  ["/docs/langchain/typescript", "/docs/integrations/langchain/tracing"],
-  ["/docs/integrations/langchain", "/docs/integrations/langchain/tracing"],
-  ["/docs/integrations/langchain/python", "/docs/integrations/langchain/tracing"],
-  ["/docs/integrations/langchain/typescript", "/docs/integrations/langchain/tracing"],
-  ["/docs/integrations/langchain/overview", "/docs/integrations/langchain/tracing"],
-  ["/docs/integrations/langchain/get-started ", "/docs/integrations/langchain/tracing"],
-  ["/docs/integrations/llama-index", "/docs/integrations/llama-index/get-started"],
-  ["/docs/integrations/llama-index/overview", "/docs/integrations/llama-index/get-started"],
-  ["/docs/integrations/llama-index/cookbook", "/docs/integrations/llama-index/example-python"],
-  ["/docs/integrations/haystack", "/docs/integrations/haystack/get-started"],
-  ["/docs/integrations/openai/get-started", "/docs/integrations/openai/python/get-started"],
-  ["/docs/integrations/openai/examples", "/docs/integrations/openai/python/examples"],
-  ["/docs/integrations/openai/track-errors", "/docs/integrations/openai/python/track-errors"],
-  ["/docs/integrations/openai/python", "/docs/integrations/openai/python/get-started"],
-  ["/docs/integrations/openai/js", "/docs/integrations/openai/js/get-started"],
-  ["/docs/flowise", "/docs/integrations/flowise"],
-  ["/docs/litellm", "/docs/integrations/litellm/tracing"],
-  ["/docs/integrations/litellm", "/docs/integrations/litellm/tracing"],
-  ["/docs/langflow", "/docs/integrations/langflow"],
-  ["/integrations", "/docs/integrations"],
-  ["/docs/local", "/docs/deployment/local"],
-  ["/docs/self-host", "/docs/deployment/self-host"],
-  ["/docs/cloud", "/docs/deployment/cloud"],
-  ["/docs/guides/sdk-integration", "/docs/sdk/overview"],
-  ["/docs/sdk", "/docs/sdk/overview"],
-  ["/docs/sdk/python", "/docs/sdk/python/decorators"],
-  ["/cookbook", "/guides"],
-  ["/cookbook/:path*", "/guides/cookbook/:path*"],
-  ["/docs/sdk/typescript", "/docs/sdk/typescript/guide"],
-  ["/docs/sdk/typescript-web", "/docs/sdk/typescript/guide-web"],
-  ["/docs/scores/evals", "/docs/scores/model-based-evals"],
-  ["/docs/scores/model-based-evals/overview", "/docs/scores/model-based-evals"],
-  ["/docs/scores/model-based-evals/ragas", "/cookbook/evaluation_of_rag_with_ragas"],
-  ["/docs/scores/model-based-evals/langchain", "/cookbook/evaluation_with_langchain"],
-  ["/experimentation", "/docs/experimentation"],
-  ["/docs/token-usage", "/docs/model-usage-and-cost"],
-  ["/docs/debugging-ui", "/docs/tracing"],
-  ["/observability", "/docs/tracing"],
-  ["/docs/openai", "/docs/integrations/openai/get-started"],
-  ["/docs/integrations/openai", "/docs/integrations/openai/get-started"],
-  ["/docs/api", "https://api.reference.lamaticai.com/"],
-  ["/docs/qa-chatbot", "/docs/demo"],
-  ["/docs/user-explorer", "/docs/tracing-features/users"],
-  ["/docs/sessions", "/docs/tracing-features/sessions"],
-  ["/docs/deployment/cloud", "/security"],
-  ["/docs/schedule-demo", "/schedule-demo"],
-  ["/docs/project-sharing", "/docs/rbac"],
-  ["/docs/prompts", "/docs/prompts/get-started"],
-  ["/changelog/2024-03-03-posthog-integration", "/docs/analytics/posthog"],
-  ["/guides/videos/2-min", "/guides/videos/introducing-lamaticai-2.0"],
-  ["/tos", "/terms"],
+
+
 
   // Reorder Tracing section
-  ["/docs/tracing/overview", "/docs/tracing"],
+ /* ["/docs/tracing/overview", "/docs/tracing"],
   ["/docs/tracing-features", "/docs/tracing"],
   ...[
     "sessions",
     "users",
     "tags",
     "url",
-  ].map((path) => [`/docs/tracing/${path}`, `/docs/tracing-features/${path}`]),
+  ].map((path) => [`/docs/tracing/${path}`, `/docs/tracing-features/${path}`]),*/
 
   // User-reported broken links
-  ["/superagent", "/docs/integrations/superagent"],
-  ["/guides/cookbook/lamaticai_prompt_with_langchain", "/guides/cookbook/prompt_management_langchain"]*/
+
 ];
 
 const permanentRedirects = []

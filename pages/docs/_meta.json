@@ -30,9 +30,9 @@
     "type": "separator",
     "title": "Deploy"
   },
+  "graphQL": "GraphQL API",
   "edge": "Edge Deployment",
   "cache": "Caching",
-  "graphQL": "GraphQL API",
   "keys": "API Keys",
 
 

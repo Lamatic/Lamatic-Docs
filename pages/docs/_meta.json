@@ -74,5 +74,10 @@
     "title": "Support ↗",
     "href": "/support",
     "newWindow": true
+  },
+  "roadmap": {
+    "title": "Roadmap ↗",
+    "href": "https://lamatic.canny.io/",
+    "newWindow": true
   }
 }

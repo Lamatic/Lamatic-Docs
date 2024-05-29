@@ -16,12 +16,14 @@
     "title": "Guides",
     "display": "hidden"
   },
-  "changelog": {
+  "Changelog": {
+    "title": "Change Log",
     "type": "page",
-    "title": "Changelog",
     "theme": {
       "layout": "full"
-    }
+    },
+    "href": "https://lamatic.canny.io/changelog",
+    "target": "_blank"
   },
   "blog": {
     "title": "Blog",

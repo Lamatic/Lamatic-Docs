@@ -11,7 +11,7 @@
     "type": "separator",
     "title": "Collaborate"
   },
-  "organisation": "Organisation",
+  "Organization": "Organization",
   "home": "Projects",
   "workflows": "Workflows",
   "vector stores": "Vector Stores",

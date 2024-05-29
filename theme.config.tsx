@@ -146,7 +146,7 @@ const config: DocsThemeConfig = {
 
     const image = frontMatter.ogImage
       ? frontMatter.ogImage
-      : `${domain}/api/og?title=${encodeURIComponent(
+      : `https://lamatic.ai/api/og?title=${encodeURIComponent(
           title
         )}&description=${encodeURIComponent(
           description

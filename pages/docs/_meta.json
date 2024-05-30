@@ -14,7 +14,7 @@
   "organization": "Organization",
   "home": "Projects",
   "workflows": "Workflows",
-  "vector stores": "Vector Stores",
+  "vector_stores": "Vector Stores",
 
   "-- connect": {
     "type": "separator",
@@ -22,7 +22,7 @@
   },
   "apps": "Apps",
   "models": "Models",
-  "Agents": "Agents",
+  "agents": "Agents",
 
 
 
@@ -30,9 +30,9 @@
     "type": "separator",
     "title": "Deploy"
   },
+  "graphQL": "GraphQL API",
   "edge": "Edge Deployment",
   "cache": "Caching",
-  "graphQL": "GraphQL API",
   "keys": "API Keys",
 
 
@@ -41,8 +41,8 @@
     "title": "Monitor"
   },
   "logs": "Logs",
-  "Langfuse": "Langfuse Integration",
-  "Posthog" : "Posthog Integration",
+  "langfuse": "Langfuse Integration",
+  "posthog" : "Posthog Integration",
   "-- references": {
     "type": "separator",
     "title": "References"
@@ -50,17 +50,32 @@
 
   "api-ref": {
     "title": "GraphQL API ↗",
-    "href": "",
+    "href": "https://graphql.org/learn/",
+    "newWindow": true
+  },
+  "Langfuse": {
+    "title": "Langfuse ↗",
+    "href": "https://langfuse.com/docs",
+    "newWindow": true
+  },
+  "cloudflare": {
+    "title": "Cloudflare Workers↗",
+    "href": "https://workers.cloudflare.com/",
+    "newWindow": true
+  },
+  "Posthog": {
+    "title": "PostHog ↗",
+    "href": "https://posthog.com/docs",
     "newWindow": true
   },
   "weaviate-ref": {
     "title": "Weaviate Reference ↗",
-    "href": "",
+    "href": "https://weaviate.io/developers/weaviate/introduction",
     "newWindow": true
   },
   "roadmap-ref": {
     "title": "Roadmap ↗",
-    "href": "",
+    "href": "https://lamatic.canny.io/",
     "newWindow": true
   },
 

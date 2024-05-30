@@ -1,0 +1,47 @@
+---
+description: Cache Management in Lamatic.ai
+---
+
+# Caching
+
+At Lamatic.ai, we understand the importance of delivering high-performance and efficient GenAI applications. To achieve this, we've implemented a robust caching mechanism that leverages the power of distributed caching to optimize response times and reduce computational overhead.
+
+## Caching GraphQL Requests and Triggers
+
+Our caching strategy focuses on GraphQL requests and workflow triggers, which are essential components of our GenAI platform. By caching these requests and triggers, we can significantly reduce the latency associated with processing and executing GenAI workflows, ensuring a seamless and responsive user experience.
+
+## User-Controlled Caching
+
+At Lamatic.ai, we believe in empowering our users with control over their caching preferences. That's why we've introduced the ability to enable or disable caching on a per-request basis. By default, caching is enabled for all requests, but users have the flexibility to bypass caching when needed.
+
+### Bypassing Cache
+
+To bypass caching for a specific request, you can include the `X-Bypass-Cache` header with a value of `True` in your GraphQL request. This will instruct our platform to skip the cache and process the request directly, ensuring the most up-to-date response.
+
+```
+X-Bypass-Cache: True
+```
+
+### Disabling Cache
+
+If you prefer to disable caching globally for your application, you can set the default caching behavior to `False`. This can be achieved by modifying the appropriate configuration settings in your Lamatic.ai account.
+
+```
+X-Bypass-Cache: False
+```
+
+## Cache Time-to-Live (TTL)
+
+To ensure optimal performance and data freshness, Lamatic.ai employs a cache time-to-live (TTL) of 24 hours. This means that cached responses will be automatically invalidated and refreshed after 24 hours, ensuring that your GenAI applications always have access to the most up-to-date data and computations.
+
+## Benefits of Caching
+
+Implementing caching in Lamatic.ai offers several benefits for our users:
+
+1. **Improved Performance**: By caching frequently accessed data and computations, we can significantly reduce response times, leading to faster and more responsive GenAI applications.
+
+2. **Reduced Computational Overhead**: Caching helps minimize the computational resources required to process and execute GenAI workflows, allowing our platform to scale more efficiently and handle higher loads.
+
+3. **Cost Optimization**: By reducing the computational overhead, caching can help optimize the overall cost of running GenAI applications, making our platform more cost-effective for users.
+
+4. **User Control**: Our user-controlled caching approach ensures that you have the flexibility to tailor caching behavior to your specific application requirements, balancing performance and data freshness as needed.

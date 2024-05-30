@@ -6,5 +6,6 @@
   "testing": "Testing",
   "deploy": "Deploy",
   "branching": "Branching",
+  "workflow_config": "Workflow Config",
   "prompts": "Prompts"
 }

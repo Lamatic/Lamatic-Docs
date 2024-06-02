@@ -1,0 +1,154 @@
+---
+Description: Prompts
+---
+
+# Prompts
+
+## What are Prompts ?
+
+Prompts are the textual instructions or context provided to LLMs, guiding them in generating relevant and desired outputs. These prompts serve as the starting point for LLMs, setting the tone, context, and direction for the generated content, whether it's natural language text, code, or any other form of structured data.
+
+## The Importance of writing a good prompt
+
+The quality and effectiveness of an LLM's output are largely dependent on the quality of the prompt provided. Well-crafted prompts can yield highly relevant, coherent, and useful outputs, while poorly constructed prompts may result in irrelevant, incoherent, or biased outputs. This underscores the critical role that prompt engineering plays in ensuring the successful application of GenAI technologies.
+
+## Prompt Engineering
+
+Prompt Engineering is the practice of designing and refining prompts to optimize the performance and outputs of LLMs. It involves understanding the capabilities and limitations of LLMs, as well as employing various prompting strategies and techniques to elicit the desired responses. Prompt engineering is a multidisciplinary endeavor that combines knowledge from fields such as natural language processing, human-computer interaction, and domain expertise.
+
+## Prompt Template
+
+At Lamatic.ai, we provide our users with powerful prompt templates that allow for the seamless integration of variables and outputs from previous nodes in their workflows. This capability enables dynamic and context-aware prompting, where LLMs can leverage the outputs of upstream processes to generate more relevant and tailored responses.
+
+## Prompting Techniques
+
+Here are some of the most commonly used prompting techniques that can help optimize the performance of LLMs and enhance the quality of their outputs:
+
+### Zero-Shot Learning
+
+**Zero-Shot Learning** involves prompting a model to perform a task without providing any prior examples or specific training for that task. The model relies solely on its pre-trained knowledge to generate a response.
+
+**Example:**
+- **Prompt:** 
+```
+Translate the following English sentence to French: 'The weather is nice today.'
+```
+- **Response:** 
+```
+Le temps est agréable aujourd'hui.
+```
+
+### Few-Shot Learning
+
+**Few-Shot Learning** provides the model with a few examples of the task before asking it to generate a similar response. This technique helps the model understand the pattern or format expected.
+
+**Example:**
+- **Prompt:** 
+  ```
+  Translate the following English sentences to French:
+  1. 'The weather is nice today.' -> 'Le temps est agréable aujourd'hui.'
+  2. 'I love reading books.' -> 'J'aime lire des livres.'
+  3. 'She is a great singer.' -> 
+  ```
+- **Response:** 
+```
+Elle est une grande chanteuse.
+```
+
+### Chain of Thought
+
+**Chain of Thought** prompting involves guiding the model through a series of logical steps to arrive at the final response. This technique is useful for complex tasks requiring multi-step reasoning.
+
+**Example:**
+- **Prompt:** 
+```
+Solve the following math problem step-by-step: If a train travels at 60 miles per hour for 3 hours, how far does it travel?
+```
+- **Response:** 
+```
+  1. "First, we need to determine the speed of the train, which is 60 miles per hour."
+  2. "Next, we calculate the time the train travels, which is 3 hours."
+  3. "To find the distance, we multiply the speed by the time: 60 miles/hour * 3 hours."
+  4. "Therefore, the train travels 180 miles."
+```
+### Tree of Thought
+
+**Tree of Thought** prompting involves breaking down a problem into a branching structure of possible solutions or approaches. This method allows the model to explore multiple paths and evaluate the best one.
+
+**Example:**
+- **Prompt:** 
+```
+Consider different ways to reduce carbon emissions. What are the potential methods, and what are their pros and cons?
+```
+- **Response:**
+```
+  - **Branch 1:** "Implementing renewable energy sources."
+    - **Pros:** Reduces reliance on fossil fuels, decreases greenhouse gas emissions.
+    - **Cons:** High initial cost, requires infrastructure changes.
+  - **Branch 2:** "Promoting electric vehicles."
+    - **Pros:** Reduces emissions from transportation, encourages technological innovation.
+    - **Cons:** Limited charging infrastructure, higher cost for consumers.
+```
+### Prompt Chaining
+
+**Prompt Chaining** involves using the output of one prompt as the input for the next, creating a sequence of interdependent prompts. This technique helps build complex outputs step-by-step.
+
+**Example:**
+- **Prompt 1:** 
+```
+Generate an outline for a research paper on climate change.
+```
+- **Response 1:** 
+```
+  1. Introduction
+  2. Causes of Climate Change
+  3. Effects on the Environment
+  4. Mitigation Strategies
+  5. Conclusion
+```
+- **Prompt 2:** 
+```
+Expand on the 'Causes of Climate Change' section from the outline.
+```
+- **Response 2:** 
+```
+The primary causes of climate change include greenhouse gas emissions from human activities, deforestation, and industrial processes. Greenhouse gases, such as carbon dioxide and methane, trap heat in the atmosphere, leading to global warming. Deforestation reduces the number of trees that can absorb CO2, exacerbating the problem. Industrial activities contribute significantly to greenhouse gas emissions through the burning of fossil fuels.
+```
+
+### ReAct (Reasoning and Acting)
+
+**ReAct** prompting combines reasoning with action by asking the model to think through a problem and then perform an action based on its reasoning. This technique is useful for tasks requiring both analytical thinking and practical implementation.
+
+**Example:**
+- **Prompt:** 
+```
+You are planning a community event. First, list the steps required to organize the event. Then, draft an email invitation for the attendees
+```
+- **Response:** 
+  - **Reasoning (Steps):**
+    1. Choose a date and venue.
+    2. Determine the event's purpose and theme.
+    3. Create a guest list.
+    4. Plan the event schedule and activities.
+    5. Arrange catering and logistics.
+    6. Send out invitations.
+  - **Action (Email Invitation):**
+    ```
+    Subject: You're Invited to Our Community Event!
+
+    Dear [Name],
+
+    We are excited to invite you to our upcoming community event on [Date] at [Venue]. Join us for a day of fun activities, great food, and an opportunity to connect with fellow community members.
+
+    Please RSVP by [RSVP Date] to confirm your attendance.
+
+    Looking forward to seeing you there!
+
+    Best regards,
+    [Your Name]
+    [Your Contact Information]
+    ```
+
+> For more information on how to write better prompts. Checkout: [Prompt Engineering Guide](https://www.promptingguide.ai/)
+
+By applying these various prompting techniques, you can effectively guide LLMs in Lamatic.ai to generate precise, relevant, and high-quality responses tailored to your specific needs.

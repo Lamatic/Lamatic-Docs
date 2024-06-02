@@ -5,5 +5,7 @@
   "execution-logs": "Execution Logs",
   "testing": "Testing",
   "deploy": "Deploy",
-  "branching": "Branching"
+  "branching": "Branching",
+  "workflow_config": "Workflow Config",
+  "prompts": "Prompts"
 }

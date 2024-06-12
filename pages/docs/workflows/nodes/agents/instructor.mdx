@@ -1,0 +1,28 @@
+# Instructor
+
+Supplies the input prompt to an LLM and structures the response to match the output schema
+
+### Input Parameters
+
+- Prompt Template: An effective prompt designed to use JavaScript variables from the workflow to achieve the best JSON output.
+    - Learn more about writing good text prompts on [Medium](https://medium.com/the-modern-scientist/best-prompt-techniques-for-best-llm-responses-24d2ff4f6bca)
+- Generative Model Name: Choose LLM from your activated models to use for the query
+- Output Schema (Zod JSON): Structure the desired output using Zod JSON
+
+### Expected Output
+
+A JavaScript variable defined by the output schema
+
+<details>
+<summary>**Example Use Case**</summary>
+
+In this recipe generation workflow, the input parameters 
+are given to an instructor node named “CookingDetails” which 
+tells the model, in this case GPT-4o, to generate the details 
+for a recipe and structure the output as the JSON output schema 
+requires.
+
+![Workflow View](/public/instructor-workflow.png)
+
+![Sample Prompt](/public/instructor-prompt.png)
+</details>

@@ -10,14 +10,23 @@ efficient retrievals and contextualization.
 
 ### Input Parameters
 
-- Input Chunk Field: 
-- Chunking Type:
-- Number of Characters:
-- Overlapping Characters:
-- List of Separators:
+- Input Chunk Field: Specifies the text data to be divided into smaller parts
+- Chunking Type: Defines the method used to segment the text, such as fixed-size or semantic-based chunking
+- Number of Characters: Determines the maximum length of each chunk created during the process
+- Overlapping Characters:  Indicates the number of characters that overlap between consecutive chunks to maintain context
+- List of Separators: Identifies the characters or strings used to delineate the boundaries between chunks
 
 ### Expected Output
 
+Accurately chunked data ready to be embedded into a vector database.
+
 <details>
 <summary>**Example Use Case**</summary>
+
+In this example workflow of vectorizing text data, text is fed into the chunking node 
+which perfoms fixed-size chunking at 500 characters with the amount of character overlap between 
+chunks at 5 and the requisites for separating chunks being common sentence-ending punctuation.
+
+![Example Workflow](/assets/chunking-workflow.png)
+
 </details>

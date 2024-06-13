@@ -9,15 +9,23 @@ Store vectors and metadata into a vector database for retrieval.
 ### Input Parameters
 
 - Vector DB: Choose vector database to be indexed 
-- Vectors:
-- Metadata:
-- Primary Keys (JSON):
-- Duplication Records:
+- Vectors: Represents the actual vector data to be indexed in the database
+- Metadata: Additional information associated with each vector to enhance search and retrieval
+- Primary Keys (JSON): Unique identifiers for each vector, formatted in JSON
+- Duplication Records: Manages and records any duplicate vectors to ensure data integrity
 - Embedding Model Name: Choose model to embed data as vectors
-- Callback Webhook URL:
+- Callback Webhook URL: URL to be called back with the status or result of the indexing process
 
 ### Expected Output
 
+Vector database populated with these vectors
+
 <details>
 <summary>Example Use Case</summary>
+
+In this example workflow, vectorized recipe data is indexed and the vectordatabase 
+titled "Recipes" is populated.
+
+![Index Workflow](/assets/index-workflow.png)
+
 </details>

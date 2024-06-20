@@ -4,6 +4,46 @@ Implement intelligent control flows, branching your
 pipelines based on dynamic conditions, data filters, 
 and rules.
 
-<Callout emoji="🚧">
-    This node is currently under construction.
-</Callout>
+``` mermaid
+sequenceDiagram
+    participant User
+    participant System
+    participant ConditionEvaluator
+    participant Pipeline
+
+    User->>System: Initiate Process
+    loop Check Dynamic Conditions
+        System->>ConditionEvaluator: Evaluate Dynamic Conditions
+        ConditionEvaluator->>System: Conditions Met?
+    end
+
+    alt Conditions Met
+        System->>Pipeline: Execute Pipeline
+    else Conditions Not Met
+        System->>User: Provide Feedback or Error
+    end
+
+    opt Apply Data Filters
+        System->>Pipeline: Apply Data Filters
+    end
+
+    loop Evaluate Rules
+        System->>Pipeline: Evaluate Rules
+    end
+
+    System-->>User: Process Complete
+```
+## Example Usage
+
+To use the `Condition` node in your workflow, follow these steps:
+
+1. Define your dynamic conditions, data filters, and rules.
+2. Initialize the `Condition` node in your workflow.
+3. Loop through the dynamic conditions and evaluate them using the `ConditionEvaluator`.
+4. If the conditions are met, execute the pipeline.
+5. If the conditions are not met, provide feedback or an error message to the user.
+6. Apply data filters to the pipeline if necessary.
+7. Evaluate the rules within the pipeline.
+8. Once the process is complete, notify the user.
+
+Here's an example of how the code would look like:

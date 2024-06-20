@@ -1,9 +1,9 @@
 {
-    "decision-branch": "Decision Branch 🚧[WIP]",
+    "decision-branch": "Decision Branch",
     "generate-image": "Generate Image",
     "instructor": "Instructor",
     "LLM": "LLM",
-    "quality-check": "Quality Check 🚧[WIP]",
+    "quality-check": "Quality Check",
     "RAG": "RAG",
-    "summarize": "Summarize 🚧[WIP]"
+    "summarize": "Summarize"
 }

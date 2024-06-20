@@ -1,7 +1,35 @@
 # LLM
 
 Query a chosen LLM with a structured prompt and retrieve its response
+``` mermaid
+flowchart TD
+    subgraph User
+        A[Provide Prompt Template]
+        B[Choose Generative Model]
+    end
 
+    subgraph Instructor
+        C[Provide Prompt Writing Info]
+        D[Provide Model Choices]
+        E[Query LLM with Prompt]
+        F[Retrieve Response]
+    end
+
+    subgraph LLM
+        G[Generate Response]
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    E --> G
+    G --> F
+    F --> H[End: Generated Text Available]
+
+
+```
 ### Input Parameters
 
 - Prompt Template: An effective prompt designed to use text and variables from the workflow to achieve the best output

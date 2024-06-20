@@ -122,19 +122,15 @@ const nextraConfig = withNextra({
 });
 
 const nonPermanentRedirects = [
-    ["/analytics", "/"],
-    ["/slack", "/"],
+    ["/get-demo", "/docs/demo"],
     ["/demo", "/docs/demo"],
     ["/video", "/guides/videos/introducing-lamaticai-2.0"],
     ["/docs/video", "/guides/videos/introducing-lamaticai-2.0"],
     ["/roadmap", "/docs/roadmap"],
     ["/ph", "https://www.producthunt.com/posts/lamatic"],
-    ["/loom-gpt4-PR", "https://www.loom.com/share/5c044ca77be44ff7821967834dd70cba"],
     ["/issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/new-issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/issues", "https://github.com/Lamatic/docs/issues"],
-    ["/stickers", "https://forms.gle/Af5BHpWUMZSCT4kg8?_imcp=1"],
-    ["/sticker", "/stickers"],
 
     ["/security", "/docs/data-security-privacy"],
     ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],

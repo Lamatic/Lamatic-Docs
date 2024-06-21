@@ -8,29 +8,221 @@ At Lamatic.ai, we understand that every GenAI application has unique requirement
 
 ![Workflow Config](/assets/workflow_config.png)
 
-## Workflow Config Editor
+## Workflow Config Editor (Code View)
 
-Lamatic.ai's Workflow Config Editor is a game-changer for developers and power users alike. This intuitive code editor allows you to define and customize your entire workflow configuration using a simple yet expressive syntax.
+Lamatic.ai's Workflow Config Editor( Code View ) is a game-changer for developers and power users alike. This intuitive code editor allows you to define and customize your entire workflow configuration using a simple yet expressive syntax.
+It is a combination of `nodes` and `edges`. 
 
-With the Workflow Configuration Code Editor, you can:
+The nodes represent the different components of the workflow, while the edges define the connections between these components.
+To enter into the code view of the workflow, click on the `Code View` toggle on the top of the workflow editor. 
 
-1. **Define Workflow Nodes**: Specify the different nodes that make up your workflow, including their types, configurations, and interconnections.
+With a simple click, you can switch between the visual, no-code interface and the Workflow Config Code Editor, allowing you to choose the development approach that best suits your needs.
 
-2. **Manage Data Flow**: Control the flow of data between nodes, ensuring that the right inputs are passed to the appropriate nodes at the right time.
+Let's understand the workflow config with an example:
 
-3. **Implement Custom Logic**: Leverage the power of code to implement custom logic, decision-making, and conditional branching within your workflows.
+**Example Workflow**
+![Example Workflow](/assets/workflow_config_example.png)
 
-4. **Integrate External Services**: Seamlessly integrate external services, APIs, and data sources into your workflows, enabling you to build truly comprehensive GenAI solutions.
+**Code view for the workflow:**
+```json
+{
+  "nodes": [
+        {
+            "id": "1",
+            "data": {
+                "name": "TriggerNode"
+            },
+            "type": "TriggerNode",
+            "width": 240,
+            "height": 107,
+            "position": {
+                "x": 0,
+                "y": 0
+            },
+            "sourcePosition": "bottom",
+            "targetPosition": "top"
+        },
+        {
+            "id": "3",
+            "data": {
+                "label": "something"
+            },
+            "type": "OutputNode",
+            "width": 240,
+            "height": 107,
+            "dragging": false,
+            "position": {
+                "x": 0,
+                "y": 1200
+            },
+            "selected": false,
+            "sourcePosition": "bottom",
+            "targetPosition": "top",
+            "positionAbsolute": {
+                "x": 460.9596029374933,
+                "y": 1211.7389417936542
+            }
+        },
+        {
+            "id": "dndnode_0",
+            "data": {
+                "label": "dynamicNode node",
+                "nodeId": "LLMNode",
+                "values": {
+                    "nodeName": "LLM",
+                    "promptTemplate": "You are an expert Technical Blog Writer. Write a blog on the topic ${workflow['start']['input']}.",
+                    "generativeModelName": "gpt-4o"
+                }
+            },
+            "type": "dynamicNode",
+            "width": 240,
+            "height": 69,
+            "dragging": false,
+            "position": {
+                "x": 676.8417187504645,
+                "y": 242.5268006375551
+            },
+            "selected": false
+        }
+  ],
+  "edges": [
+    {
+            "id": "reactflow__edge-1-dndnode_0",
+            "type": "CustomAddEdge",
+            "source": "1",
+            "target": "dndnode_0",
+            "sourceHandle": null,
+            "targetHandle": null
+        },
+        {
+            "id": "reactflow__edge-dndnode_0-3",
+            "type": "CustomAddEdge",
+            "source": "dndnode_0",
+            "target": "3",
+            "sourceHandle": null,
+            "targetHandle": null
+        }
+  ]
+}
+```
 
-5. **Optimize Performance**: Fine-tune performance parameters, such as caching, parallelization, and resource allocation, to ensure your workflows run efficiently and cost-effectively.
+Now, let's break down the example and explain each part.
 
-## Code View
+### Nodes
+Nodes represent individual steps or components in a workflow. Each node has several key properties:
 
-To cater to users with varying coding preferences and expertise, Lamatic.ai provides a convenient `Code View Toggle`. With a simple click, you can switch between the visual, no-code interface and the Workflow Config Code Editor, allowing you to choose the development approach that best suits your needs.
+- **id**: A unique identifier for the node.
+- **data**: Contains additional information specific to the node.
+  - `name`: Name of the node.
+  - `label`: Label for the node.
+  - `nodeId`: Identifier for dynamic nodes.
+  - `values`: Custom values for the node.
+- **type**: Specifies the type of the node (e.g., `TriggerNode`, `OutputNode`, `dynamicNode`).
+- **position**: The x and y coordinates of the node in the UI.
+- **width** and **height**: The dimensions of the node.
+
+Here are some examples of different types of nodes:
+
+1. **TriggerNode**
+    ```json
+    {
+      "id": "1",
+      "data": {
+        "name": "TriggerNode"
+      },
+      "type": "TriggerNode",
+      "width": 240,
+      "height": 107,
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "sourcePosition": "bottom",
+      "targetPosition": "top"
+    }
+    ```
+   
+2. **OutputNode**
+    ```json
+    {
+      "id": "3",
+      "data": {
+        "label": "something"
+      },
+      "type": "OutputNode",
+      "width": 240,
+      "height": 107,
+      "position": {
+        "x": 0,
+        "y": 1200
+      },
+      "sourcePosition": "bottom",
+      "targetPosition": "top"
+    }
+    ```
+
+3. **DynamicNode**
+    ```json
+    {
+      "id": "dndnode_0",
+      "data": {
+        "label": "dynamicNode node",
+        "nodeId": "LLMNode",
+        "values": {
+          "nodeName": "LLM",
+          "promptTemplate": "You are an expert Technical Blog Writer. Write a blog on the topic ${workflow['start']['input']}.",
+          "generativeModelName": "gpt-4o"
+        }
+      },
+      "type": "dynamicNode",
+      "width": 240,
+      "height": 69,
+      "position": {
+        "x": 676.8417187504645,
+        "y": 242.5268006375551
+      }
+    }
+    ```
+
+### Edges
+Edges define the connections between nodes, indicating the flow of data or control. Key properties include:
+
+- **id**: A unique identifier for the edge.
+- **type**: Specifies the type of the edge (e.g., `CustomAddEdge`).
+- **source**: The id of the source node.
+- **target**: The id of the target node.
+
+Here are the examples of edges in the workflow:
+
+1. **Edge from TriggerNode to dynamicNode**
+    ```json
+    {
+      "id": "reactflow__edge-1-dndnode_0",
+      "type": "CustomAddEdge",
+      "source": "1",
+      "target": "dndnode_0"
+    }
+    ```
+   
+2. **Edge from dynamicNode to OutputNode**
+    ```json
+    {
+      "id": "reactflow__edge-dndnode_0-3",
+      "type": "CustomAddEdge",
+      "source": "dndnode_0",
+      "target": "3"
+    }
+    ```
+
+
+### Common Issues
+1. **Node Overlapping**: Ensure nodes have unique positions to avoid overlapping.
+2. **Missing Connections**: Verify that all nodes are correctly connected with edges.
+
 
 ## Low Code, No Code, and Everything in Between
 
-The Workflow Configuration feature solidifies Lamatic.ai's position as a true Low Code, No Code platform. Whether you're a seasoned developer looking to harness the full power of code, or a non-technical user seeking a user-friendly, visual interface, Lamatic.ai has you covered.
+The Workflow Configuration feature solidifies Lamatic.ai's position as a true Low-Code/No-Code platform. Whether you're a seasoned developer looking to harness the full power of code, or a non-technical user seeking a user-friendly, visual interface, Lamatic.ai has you covered.
 
 For those preferring a no-code approach, our intuitive visual interface allows you to design and orchestrate your GenAI workflows without writing a single line of code. Conversely, developers can leverage the Workflow Configuration Code Editor to craft intricate and sophisticated workflows, tailored to their specific requirements.
 

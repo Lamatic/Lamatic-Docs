@@ -83,6 +83,8 @@ const config: DocsThemeConfig = {
       return title;
     },
   },
+
+    feedback:{useLink: () => "https://feedback.lamatic.ai/"},
   editLink: {
     text: "Edit this page on GitHub",
   },

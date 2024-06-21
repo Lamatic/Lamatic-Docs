@@ -16,13 +16,13 @@
   "workflows": "Workflows",
   "vector_stores": "Vector Stores",
 
-  "-- connect": {
+  "-- build": {
     "type": "separator",
-    "title": "Connect"
+    "title": "Build"
   },
   "apps": "Apps",
   "models": "Models",
-  "agents": "Agents",
+  "nodes": "Nodes",
 
 
 

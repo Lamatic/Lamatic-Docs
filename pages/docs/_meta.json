@@ -75,7 +75,7 @@
   },
   "roadmap-ref": {
     "title": "Roadmap ↗",
-    "href": "https://lamatic.canny.io/",
+    "href": "https://release.lamatic.ai/",
     "newWindow": true
   },
 
@@ -88,11 +88,6 @@
   "support": {
     "title": "Support ↗",
     "href": "/support",
-    "newWindow": true
-  },
-  "roadmap": {
-    "title": "Roadmap ↗",
-    "href": "https://lamatic.canny.io/",
     "newWindow": true
   }
 }

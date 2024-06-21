@@ -1,7 +1,7 @@
 {
   "name": "lamaticai-docs",
   "version": "0.0.1",
-  "description": "lamaticai docs",
+  "description": "lamatic docs",
   "scripts": {
     "dev": "next dev -p 3333",
     "build": "next build",

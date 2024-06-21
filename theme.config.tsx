@@ -105,7 +105,7 @@ const config: DocsThemeConfig = {
       (cookbook) => cookbook.path === asPath
     );
     const canonical: string | undefined = cookbook?.canonicalPath
-      ? "https://lamaticai.com" + cookbook.canonicalPath
+      ? "https://lamatic.ai" + cookbook.canonicalPath
       : undefined;
 
     return {
@@ -113,10 +113,10 @@ const config: DocsThemeConfig = {
         asPath === "/"
           ? "lamatic.ai"
           : asPath.startsWith("/blog/")
-          ? "%s - lamaticai Blog"
+          ? "%s - lamatic.ai Blog"
           : asPath.startsWith("/docs/guides/")
-          ? "%s - lamaticai Guides"
-          : "%s - lamaticai",
+          ? "%s - Lamatic.ai Guides"
+          : "%s - Lamatic.ai Docs",
       canonical,
     };
   },

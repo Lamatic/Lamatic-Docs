@@ -16,13 +16,13 @@
   "workflows": "Workflows",
   "vector_stores": "Vector Stores",
 
-  "-- connect": {
+  "-- build": {
     "type": "separator",
-    "title": "Connect"
+    "title": "Build"
   },
   "apps": "Apps",
   "models": "Models",
-  "agents": "Agents",
+  "nodes": "Nodes",
 
 
 
@@ -75,7 +75,7 @@
   },
   "roadmap-ref": {
     "title": "Roadmap ↗",
-    "href": "https://lamatic.canny.io/",
+    "href": "https://feedback.lamatic.ai/roadmap",
     "newWindow": true
   },
 
@@ -88,11 +88,6 @@
   "support": {
     "title": "Support ↗",
     "href": "/support",
-    "newWindow": true
-  },
-  "roadmap": {
-    "title": "Roadmap ↗",
-    "href": "https://lamatic.canny.io/",
     "newWindow": true
   }
 }

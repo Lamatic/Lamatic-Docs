@@ -1,7 +1,6 @@
 {
   "triggers": "Triggers",
   "response": "Response",
-  "nodes": "Nodes",
   "execution-logs": "Execution Logs",
   "testing": "Testing",
   "deploy": "Deploy",

@@ -168,6 +168,7 @@ const nonPermanentRedirects = [
 
 const permanentRedirects = []
 const rewrites = [
+    ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
     ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 

@@ -168,6 +168,8 @@ const nonPermanentRedirects = [
 
 const permanentRedirects = []
 const rewrites = [
+    ["/integration/_next/:path*", "https://lamatic-integration.vercel.app/integration/_next/:path*"],
+    ["/integration/:path*", "https://lamatic-integration.vercel.app/integration/:path*"],
     ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
     ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],

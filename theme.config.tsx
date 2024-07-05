@@ -97,7 +97,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",
   footer: {
-    text: <FooterMenu />,
+    component: <FooterMenu />,
   },
   useNextSeoProps() {
     const { asPath } = useRouter();

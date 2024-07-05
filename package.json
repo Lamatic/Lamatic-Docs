@@ -25,6 +25,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@supabase/supabase-js": "^2.43.1",
     "@tanstack/react-table": "^8.16.0",
+    "@theguild/remark-mermaid": "^0.0.6",
     "@vercel/og": "^0.6.2",
     "@vidstack/react": "^0.6.15",
     "ai": "^3.1.12",

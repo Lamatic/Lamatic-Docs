@@ -2,7 +2,34 @@
 
 Tap into your database repositories to enhance AI outputs with 
 enterprise data context and signals.
+``` mermaid
+sequenceDiagram
+    participant User
+    participant System
+    participant Database
+    participant AIOutputs
 
-<Callout emoji="🚧">
-    This node is currently under construction.
-</Callout>
+    User->>System: Initiate Query
+    System->>Database: Connect to Database
+    System->>Database: Execute Query
+    Database-->>System: Return Query Results
+    System->>AIOutputs: Enhance AI Outputs
+    AIOutputs-->>System: Enhanced Outputs
+    System-->>User: Provide Enhanced AI Outputs
+```
+## Query Database Flow
+
+To query a database in your workflow, you can follow these steps:
+
+1. **Initiate Query**: The user initiates the query process by triggering the `Initiate Query` action.
+
+2. **Connect to Database**: The system connects to the database repository to access the required data.
+
+3. **Execute Query**: The system executes the query to retrieve the relevant data from the database.
+
+4. **Enhance AI Outputs**: The system enhances the AI outputs by incorporating the database context and signals into the analysis.
+
+5. **Provide Enhanced AI Outputs**: The system provides the enhanced AI outputs to the user for further processing or analysis.
+
+By tapping into your database repositories, you can enrich your AI models with real-world data and improve the accuracy and relevance of your AI-powered applications.
+

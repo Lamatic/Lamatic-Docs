@@ -7,7 +7,38 @@ similarity calculations and semantic search capabilities.
 <Callout emoji="💡">
     **Learn More about Vectorizing on [Weaviate](https://weaviate.io/developers/academy/py/standalone/chunking/introduction#-chunk-size-selection)**
 </Callout>
+```mermaid
+classDiagram
+    class User {
+        + initiateVectorization()
+    }
 
+    class TextData {
+        - textsToVectorize: List<String>
+    }
+
+    class EmbeddingModel {
+        - modelName: String
+        + activate()
+    }
+
+    class Vectorizer {
+        - embeddingModel: EmbeddingModel
+        - vectorize(texts: List<String>): List<Vector>
+    }
+
+    class Vector {
+        - vectorData: Array<Float>
+    }
+
+    User --> TextData : uses
+    User --> EmbeddingModel : selects
+    EmbeddingModel --> Vectorizer : uses
+    TextData --> Vectorizer : contains
+    Vectorizer --> Vector : returns
+
+
+```
 ### Input Parameters
 
 - Input Texts: Define which texts to be vectorized

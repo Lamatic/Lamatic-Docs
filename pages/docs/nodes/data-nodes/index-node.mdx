@@ -2,6 +2,24 @@
 
 Store vectors and metadata into a vector database for retrieval.
 
+    ```mermaid
+sequenceDiagram
+    participant User
+    participant System
+
+    User ->> System: Start Indexing Process
+    System ->> System: Choose Vector Database
+    System ->> System: Load Vectors
+    System ->> System: Load Metadata
+    System ->> System: Load Primary Keys (JSON)
+    System ->> System: Manage Duplication Records
+    System ->> System: Choose Embedding Model
+    System ->> System: Specify Callback Webhook URL
+    System ->> System: Index Vectors and Metadata
+    System ->> User: Return Indexing Status/Result via Webhook
+    User ->> System: End Indexing Process
+
+```
 <Callout emoji="💡">
     **Learn More about Indexing on [Weaviate](https://weaviate.io/developers/weaviate/concepts/indexing)**
 </Callout>
@@ -21,6 +39,7 @@ Store vectors and metadata into a vector database for retrieval.
 Vector database populated with these vectors
 
 <details>
+
 <summary>Example Use Case</summary>
 
 In this example workflow, vectorized recipe data is indexed and the vectordatabase 

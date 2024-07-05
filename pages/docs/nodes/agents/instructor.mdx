@@ -1,7 +1,50 @@
 # Instructor
 
 Supplies the input prompt to an LLM and structures the response to match the output schema
+``` mermaid
+classDiagram
+    class User {
+        +providePromptTemplate()
+        +definePromptTemplate()
+        +chooseGenerativeModel()
+    }
 
+    class Instructor {
+        +providePromptWritingInfo()
+        +provideModelChoices()
+        +queryLLM(promptTemplate, generativeModel)
+        +structureResponse(response)
+        +outputJavaScriptVariable()
+    }
+
+    class LLM {
+        +generateResponse(promptTemplate)
+    }
+
+    class OutputSchema {
+        +structureResponseUsingZodJSON(response)
+    }
+
+    class ExpectedOutput {
+        - javascriptVariable: JavaScript variable
+    }
+
+    class ExampleUseCase
+
+    class InputParameters {
+        - promptTemplate: String
+        - generativeModelName: String
+        - outputSchemaZodJSON: String
+    }
+
+    User --> Instructor: interacts with
+    Instructor --> LLM: uses
+    Instructor --> OutputSchema: uses
+    LLM --> ExpectedOutput: generates
+    ExampleUseCase --> InputParameters: involves
+
+
+```
 ### Input Parameters
 
 - Prompt Template: An effective prompt designed to use JavaScript variables from the workflow to achieve the best JSON output.

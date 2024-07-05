@@ -7,7 +7,22 @@ efficient retrievals and contextualization.
 <Callout emoji="💡">
     **Learn More about Chunking on [Weaviate](https://weaviate.io/developers/academy/py/standalone/chunking/introduction#-chunk-size-selection)**
 </Callout>
-
+```mermaid
+    graph LR;
+    A[Start] --> B{Input Parameters}
+    B --> C[Input Chunk Field]
+    B --> D[Chunking Type]
+    B --> E[Number of Characters]
+    B --> F[Overlapping Characters]
+    B --> G[List of Separators]
+    C --> H[Chunk Data]
+    D --> H
+    E --> H
+    F --> H
+    G --> H
+    H --> I[Expected Output]
+    I --> J[End]
+```
 ### Input Parameters
 
 - Input Chunk Field: Specifies the text data to be divided into smaller parts

@@ -5,7 +5,19 @@ Query a chosen LLM with a structured prompt and vectorized data and retrieve its
 <Callout emoji="💡">
     **Learn More about Retrieval Augmented Generation (RAG) on [Weaviate](https://weaviate.io/developers/weaviate/starter-guides/generative)**
 </Callout>
+``` mermaid
+sequenceDiagram
+    participant User
+    participant Instructor
+    participant LLM
 
+    User->>Instructor: Provide System Prompt, User Template, Select Generative Model
+    Instructor->>User: Provide Prompt Writing Info, Model Choices
+    Instructor->>LLM: Query LLM with System Prompt and Vectorized Data
+    LLM-->>Instructor: Generated Response
+    Instructor-->>User: Retrieve Response
+
+```
 ### Input Parameters
 
 - Input Field for Query:

@@ -1,7 +1,16 @@
 # Generate Image
 
 Use image generation model to create an image given a text prompt
-
+```mermaid
+    graph LR;
+    A[Start] --> B{Input Parameters}
+    B --> C[Prompt Template]
+    B --> D[Image Model Name]
+    C --> E[Generate Image]
+    D --> E
+    E --> F[Expected Output]
+    F --> G[End]
+```
 ### Input Parameters
 
 - Prompt Template: An effective prompt using text and variables from the workflow to achieve the best AI-generated image for its use

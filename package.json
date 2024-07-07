@@ -9,7 +9,7 @@
     "start": "next start -p 3333",
     "analyze": "cross-env ANALYZE=true next build"
   },
-  "homepage": "https://docs.lamaticai.com",
+  "homepage": "https://lamatic.ai/docs",
   "dependencies": {
     "@calcom/embed-react": "^1.4.0",
     "@headlessui/react": "^2.0.3",

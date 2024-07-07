@@ -9,13 +9,13 @@ import {
 } from "./ui/dropdown-menu";
 
 const continentHostMapping = {
-  AF: "https://lamatic.ai", // Africa
-  AN: "https://lamatic.ai", // Antarctica
-  AS: "https://lamatic.ai", // Asia
-  EU: "https://cloud.lamaticai.com", // Europe
-  NA: "https://us.cloud.lamaticai.com", // North America
-  OC: "https://cloud.lamaticai.com", // Oceania
-  SA: "https://us.cloud.lamaticai.com", // South America
+  AF: "https://studio.lamatic.ai", // Africa
+  AN: "https://studio.lamatic.ai", // Antarctica
+  AS: "https://studio.lamatic.ai", // Asia
+  EU: "https://studio.lamatic.ai", // Europe
+  NA: "https://studio.lamatic.ai", // North America
+  OC: "https://studio.lamatic.ai", // Oceania
+  SA: "https://studio.lamatic.ai", // South America
 };
 
 export const ToAppButton = () => {
@@ -25,7 +25,7 @@ export const ToAppButton = () => {
 
   useEffect(() => {
     if (process.env.NODE_ENV === "production") {
-      fetch("https://us.cloud.lamaticai.com/api/auth/session", {
+      fetch("https://studio.lamatic.ai/api/auth/session", {
         credentials: "include",
         mode: "cors",
       })
@@ -37,7 +37,7 @@ export const ToAppButton = () => {
           setSignedInUS(false);
         });
 
-      fetch("https://cloud.lamaticai.com/api/auth/session", {
+      fetch("https://cloud.lamatic.ai/api/auth/session", {
         credentials: "include",
         mode: "cors",
       })
@@ -72,10 +72,10 @@ export const ToAppButton = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem asChild key="us">
-            <Link href="https://us.cloud.lamaticai.com">US region</Link>
+            <Link href="https://us.cloud.lamatic.ai">US region</Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild key="eu">
-            <Link href="https://cloud.lamaticai.com">EU region</Link>
+            <Link href="https://cloud.lamatic.ai">EU region</Link>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -86,8 +86,8 @@ export const ToAppButton = () => {
         <Link
           href={
             signedInUS
-              ? "https://us.cloud.lamaticai.com"
-              : "https://cloud.lamaticai.com"
+              ? "https://us.cloud.lamatic.ai"
+              : "https://cloud.lamatic.ai"
           }
         >
           To App

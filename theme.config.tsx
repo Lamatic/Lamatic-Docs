@@ -124,7 +124,7 @@ const config: DocsThemeConfig = {
     const { asPath, defaultLocale, locale } = useRouter();
     const { frontMatter, title: pageTitle } = useConfig();
     const url =
-      "https://lamaticai.com" +
+      "https://lamatic.ai" +
       (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
 
     const description = frontMatter.description ?? "";
@@ -173,8 +173,8 @@ const config: DocsThemeConfig = {
         <meta property="twitter:image" content={image} />
 
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site:domain" content="lamaticai.com" />
-        <meta name="twitter:url" content="https://lamaticai.com" />
+        <meta name="twitter:site:domain" content="lamatic.ai" />
+        <meta name="twitter:url" content="https://lamatic.ai" />
 
         <style
           dangerouslySetInnerHTML={{

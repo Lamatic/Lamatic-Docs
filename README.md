@@ -2,7 +2,7 @@
 
 # lamaticai Docs
 
-Repo for [lamaticai.com](https://lamaticai.com), based on [Nextra](https://nextra.site/)
+Repo for [lamatic.ai](https://lamatic.ai), based on [Nextra](https://nextra.site/)
 
 ## Local Development
 
@@ -35,7 +35,7 @@ API reference is automatically generated based on the OpenAPI spec of the curren
 - [shadcn/ui](https://ui.shadcn.com)
 - [Tailwind CSS](https://tailwindcss.com/)
 
-Interested in stack of Q&A docs chatbot? Checkout the [blog post](https://lamaticai.com/blog/qa-chatbot-for-lamaticai-docs) for implementation details (all open source)
+Interested in stack of Q&A docs chatbot? Checkout the [blog post](https://lamatic.ai/blog/qa-chatbot-for-lamaticai-docs) for implementation details (all open source)
 
 ## Bundle analysis
 

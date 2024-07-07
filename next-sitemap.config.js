@@ -2,7 +2,7 @@ const cookbookRoutes = require("./cookbook/_routes.json");
 
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: 'https://lamaticai.com',
+    siteUrl: 'https://lamatic.ai',
     generateRobotsTxt: true,
     changefreq: 'daily',
     additionalPaths: async (config) => [{

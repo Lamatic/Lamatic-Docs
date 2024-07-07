@@ -19,7 +19,7 @@ export function Logo() {
       >
         <Image
           src="/public/lamatic-logo-dark.png"
-          alt="lamaticai Logo"
+          alt="lamatic.ai Logo"
           width={120}
           height={20}
           className="hidden dark:block"

@@ -41,7 +41,7 @@
     "title": "Monitor"
   },
   "logs": "Logs",
-  "langfuse": "Langfuse Integration",
+  "langfuse-integration": "Langfuse Integration",
   "posthog" : "Posthog Integration",
   "-- references": {
     "type": "separator",

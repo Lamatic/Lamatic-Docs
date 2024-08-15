@@ -9,19 +9,19 @@ efficient retrievals and contextualization.
 </Callout>
 ```mermaid
     graph LR;
-    A[Start] --> B{Input Parameters}
+    A[input] --> B{Input Parameters}
     B --> C[Input Chunk Field]
     B --> D[Chunking Type]
     B --> E[Number of Characters]
     B --> F[Overlapping Characters]
     B --> G[List of Separators]
-    C --> H[Chunk Data]
+    C --> H[Chunked Data [Array]]
     D --> H
     E --> H
     F --> H
     G --> H
-    H --> I[Expected Output]
-    I --> J[End]
+    H --> I[pageContent]
+    I --> J[output]
 ```
 ### Input Parameters
 
@@ -33,7 +33,16 @@ efficient retrievals and contextualization.
 
 ### Expected Output
 
-Accurately chunked data ready to be embedded into a vector database.
+Accurately chunked data ready to be embedded into a vector database. To get each the data of each Chunk, you will nead to extract `pageContent` object from the list. To do that you can use code node after the chunk node. 
+
+#### Here is a sample JS code for that
+```
+let docs =  {{chunk_node_id.output.chunks}}
+
+let outputDocs = docs.map(doc => doc.pageContent);
+
+output = outputDocs;
+```
 
 <details>
 <summary>**Example Use Case**</summary>

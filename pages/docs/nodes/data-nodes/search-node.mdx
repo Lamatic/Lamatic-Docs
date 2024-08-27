@@ -1,0 +1,128 @@
+# Search Widget
+
+Integrate our powerful vector search widget into your website using the search nodes. This widget leverages vector search technology to provide more accurate and relevant search results by understanding the context and meaning of the queries rather than just matching keywords. Now, you can offer this advanced search functionality directly on your site.
+
+<img src="/assets/search-node-sample.png" alt="Search Widget Example" />
+
+## How Vector Search Works
+
+Vector search works by converting both search queries and content into vectors—multi-dimensional representations that capture the meaning and context of the text. By comparing these vectors, the search engine can identify and retrieve content that is semantically similar to the query, offering more accurate and contextually relevant results.
+
+## Steps to Integrate the Search Widget
+
+Follow these steps to integrate the search widget into your site using the provided CDN script:
+
+### 1. Whitelist Your Domains
+
+To use the Search Widget, you need to whitelist the domains where you will deploy the widget. This ensures that the widget is only used on approved domains.
+
+- **Update your `searchTrigger` settings** to include the domains you plan to use.
+- This configuration is typically done through your admin panel or server settings.
+
+### 2. Include the CDN Script and Configure the Widget
+
+Add the CDN script to your HTML file and configure the widget using the provided options.
+
+Here’s how to include the CDN script and configure the widget:
+
+```html
+<script src="https://widget.lamatic.ai/search.js"></script>
+<script>
+  (function () {
+    var SEARCH_DIALOG_CONFIG = {
+      apiUrl: 'https://example-api.com', // Replace with your API URL
+      workflowId: '12345-abcde-67890-fghij', // Replace with your workflow ID
+      customButtonId: 'myCustomButton',  // Custom button id
+      primaryColor: '#FF6347', // Tomato color for the search
+      titleTextColor: '#2E8B57', // Sea green color for the title of the results
+      subTitleTextColor: '#8B4513', // Saddle brown color for the subtitle of the results
+      width: '50vw', // 50% viewport width for the dialog
+      showNavHelperText: true, // Show the navigation helper text
+      showEscapeHelperText: false, // Hide the escape helper text
+      searchPlaceholderText: 'What are you looking for?', // Custom placeholder text
+      searchDebounce: 300, // 300ms debounce time for API calls
+      linkTarget: "_self", // Open links in the same tab
+      breakpoint: 640, // Smaller-screen view at 640px
+      fontFamily: "Verdana" // Custom font family
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+      new SearchDialog(SEARCH_DIALOG_CONFIG);
+    });
+  })();
+</script>
+```
+
+### Props
+
+Below is the documentation for the props used in the vector search widget configuration:
+
+##### `apiUrl` (required)
+
+- **Type:** `string`
+- **Description:** The base URL of your project endpoint.
+
+##### `workflowId` (required)
+
+- **Type:** `string`
+- **Description:** The workflow ID where you have set up your search configuration.
+
+##### `customButtonId`
+
+- **Type:** `string`
+- **Description:** The ID of a custom button that triggers the search dialog. This prop is optional, and if not provided, the default button will be used.
+
+##### `primaryColor`
+
+- **Type:** `string`
+- **Description:** The primary color for the search widget, used for the main elements like the search button. Accepts **ONLY HEX VALUES**.
+
+##### `titleTextColor`
+
+- **Type:** `string`
+- **Description:** The color of the title text in the search results. Accepts any valid CSS color value.
+
+##### `subTitleTextColor`
+
+- **Type:** `string`
+- **Description:** The color of the subtitle text in the search results. Accepts any valid CSS color value.
+
+##### `width`
+
+- **Type:** `string`
+- **Description:** The width of the search dialog box. This can be set using any valid CSS width value (e.g., `50vw`, `600px`).
+
+##### `showNavHelperText`
+
+- **Type:** `boolean`
+- **Description:** Determines whether to show helper text for navigation within the search results. Set to `true` to display the text, or `false` to hide it.
+
+##### `showEscapeHelperText`
+
+- **Type:** `boolean`
+- **Description:** Controls the visibility of the escape helper text, which instructs users how to close the search dialog. Set to `true` to show, or `false` to hide.
+
+##### `searchPlaceholderText`
+
+- **Type:** `string`
+- **Description:** Custom text displayed as a placeholder in the search input field, guiding users on what to type.
+
+##### `searchDebounce`
+
+- **Type:** `number`
+- **Description:** The debounce time in milliseconds for API calls. This helps in reducing the number of API requests by waiting for the user to stop typing for the specified duration before sending a request.
+
+##### `linkTarget`
+
+- **Type:** `string`
+- **Description:** Determines how the search result links will open. Use `_self` to open links in the same tab, `_blank` to open in a new tab, etc.
+
+##### `breakpoint`
+
+- **Type:** `number`
+- **Description:** The pixel width at which the widget adjusts its layout for smaller screens. This value defines the breakpoint for responsive design.
+
+##### `fontFamily`
+
+- **Type:** `string`
+- **Description:** The font family to be used in the search widget. Provide any valid CSS font family name (e.g., `Verdana`, `Arial`, `Helvetica`).

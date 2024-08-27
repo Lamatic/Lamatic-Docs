@@ -4,42 +4,158 @@ description: Quickly get your first project off the ground with Lamatic.
 
 # Quickstart Guide
 
-> This walkthrough will get you to liftoff with Lamatic and allow you to create as many GenAI applications as you can think of.
+> This Guide will help you get started with Lamatic.ai and quickly build and deploy your first project.
 
 <Steps>
 
-### Setup
+### Create Organization and Project
 
-Follow the simple steps to create your Lamatic account and start utilizing the platform's features.
-
+Setup  your first organisation and invite your team members to collaborate on projects.
 ![Signup](/public/signup-page.png)
 
-Easily drag and drop models, apps, and data sources to build and customize workflows tailored to your needs.
-
+Create your first project and start building your first workflow.
 ![Proejct](/public/project-creation-page.png)
 
-### Project
+### Project Setup
 
-Easily drag and drop models, apps, and data sources to build and customize workflows tailored to your needs.
+Add Data Sources, Models, and Apps to your project to that  you will need for  your first workflow.
 
-![Home](/public/home-page.png)
+![Home](/public/quickstart/project-home.png)
 
-Review and select from a variety of AI models to find the best fit for your application.
+**Add model** - Review and select from a variety of AI models to find the best fit for your application.
 
 ![Models](/public/model-page.png)
 
-Customize and deploy workflows that run independently and align with your specific application requirements.
-
-![Workfows](/public/workflow-page.png)
-
-Connect your workflows with a wide range of data sources to enhance data integration and accessibility.
-
+Add Apps and Data Sources to your project to connect with your workflows.
 ![Apps](/public/apps-page.png)
 
-### Monitor & Experiment
+### Create Workflows
+    ![Workfows](/public/quickstart/workflow.png)
+#### Workflow Steps
+    1. Drag Trigger node that will initiate the workflow and connect it to the rest of the nodes.
+    2. Drag other nodes to the canvas and connect them to create your first workflow.
+    3. Drag a response nodes that will send the output of the workflow to the user.
+#### Alternative template
+<details>
+    <summary>Paste the below code in your workflow config.</summary>
+    This is a basic workflow of an AI idea generator.
+    ```
+    {
+        "nodes": [
+    {
+        "id": "1",
+        "data": {
+        "trigger": "graphqlNode_0gnka1xu15"
+    },
+        "type": "groupTriggerNode",
+        "width": 240,
+        "height": 120,
+        "position": {
+        "x": 0,
+        "y": 0
+    }
+    },
+    {
+        "id": "graphqlNode_0gnka1xu15",
+        "data": {
+        "modes": {},
+        "nodeId": "graphqlNode",
+        "values": {
+        "nodeName": "Graphql",
+        "responeType": "realtime",
+        "advance_schema": "{\n    \"Campany\": \"string\"\n}"
+    }
+    },
+        "type": "newTriggerNode",
+        "width": 200,
+        "extent": "parent",
+        "height": 64,
+        "parentId": "1",
+        "position": {
+        "x": 20,
+        "y": 45
+    },
+        "selected": false,
+        "draggable": false
+    },
+    {
+        "id": "LLMNode_gh2ewaejny",
+        "data": {
+        "label": "dynamicNode node",
+        "modes": {},
+        "nodeId": "LLMNode",
+        "values": {
+        "nodeName": "Text Generate",
+        "promptTemplate": "Generate an AI business idea for this given business in 1 one sentence and dont use markdown:\n{{graphqlNode_0gnka1xu15.output.Campany}}",
+        "generativeModelName": "Gpt-4o Lamatic"
+    }
+    },
+        "type": "dynamicNode",
+        "width": 240,
+        "height": 66,
+        "dragging": false,
+        "position": {
+        "x": -1.4285714285714448,
+        "y": 237.1428571428572
+    },
+        "selected": false,
+        "positionAbsolute": {
+        "x": -1.4285714285714448,
+        "y": 237.1428571428572
+    }
+    },
+    {
+        "id": "graphqlResponseNode_l24otakt05",
+        "data": {
+        "label": "dynamicNode node",
+        "modes": {},
+        "nodeId": "graphqlResponseNode",
+        "values": {
+        "outputMapping": "{\n    \"Idea\": \"{{LLMNode_gh2ewaejny.output}}\",\n    \"Logo\": \"{{ImageGenNode_lljetcy5c.output}}\"\n}"
+    }
+    },
+        "type": "dynamicNode",
+        "width": 240,
+        "height": 66,
+        "dragging": false,
+        "position": {
+        "x": 0.7142857142857224,
+        "y": 417.1428571428572
+    },
+        "selected": true,
+        "positionAbsolute": {
+        "x": 0.7142857142857224,
+        "y": 417.1428571428572
+    }
+    }
+        ],
+        "edges": [
+    {
+        "id": "reactflow__edge-1-LLMNode_gh2ewaejny",
+        "type": "CustomAddEdge",
+        "source": "1",
+        "target": "LLMNode_gh2ewaejny",
+        "sourceHandle": null,
+        "targetHandle": null
+    },
+    {
+        "id": "reactflow__edge-LLMNode_gh2ewaejny-graphqlResponseNode_l24otakt05",
+        "type": "CustomAddEdge",
+        "source": "LLMNode_gh2ewaejny",
+        "target": "graphqlResponseNode_l24otakt05",
+        "sourceHandle": null,
+        "targetHandle": null
+    }
+        ]
+    }
+    ```
+</details>
+### Test and Deploy
+    Test your workflow by adding a custom payload based on your schema.
+    ![Test](/public/quickstart/test.png)
+    When ready hit the deploy button. This will compile the workflow and deploy it on the edge.
 
-Regularly check the performance of your workflows and try out new configurations to optimize results.
-
-![Reports](/public/reports-page.png)
+### Integrate
+    See the API Docs to integrate your workflow with your application.
 
 </Steps>

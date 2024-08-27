@@ -17,7 +17,7 @@ import { COOKBOOK_ROUTE_MAPPING } from "./lib/cookbook_route_mapping";
 import { GeistSans } from "geist/font/sans";
 import FooterMenu from "./components/FooterMenu";
 import Link from "next/link";
-import { FileCode, LibraryBig } from "lucide-react";
+import { SquareGanttChart , LibraryBig, Phone , Slack  } from "lucide-react";
 import {
   AvailabilityBanner,
   AvailabilitySidebar,
@@ -56,7 +56,9 @@ const config: DocsThemeConfig = {
           <div className="-mx-2 hidden md:block">
             {[
               { title: "Docs", path: "/docs", Icon: LibraryBig },
-              { title: "Guides", path: "/guides", Icon: FileCode },
+              { title: "Book a demo", path: "/docs/demo", Icon: Phone },
+                { title: "Roadmap", path: "https://product.lamatic.ai/", Icon: SquareGanttChart },
+                { title: "Community and Support", path: "/docs/slack", Icon: Slack },
             ].map((item) =>
               asPath.startsWith(item.path) ? (
                 <div

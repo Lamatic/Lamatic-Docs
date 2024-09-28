@@ -12,39 +12,30 @@
     "type": "separator",
     "title": "Collaborate"
   },
-  "organization": "Organization",
-  "home": "Projects",
+  "studio": "Studio",
   "workflows": "Workflows",
-  "vector_stores": "Vector Stores",
+  "experiments": "Experiments",
+  "playground": "Playground",
+  "IAM": "IAM",
 
-  "-- build": {
+
+  "-- connect": {
     "type": "separator",
-    "title": "Build"
+    "title": "Connect"
   },
-  "apps": "Apps",
-  "models": "Models",
-  "nodes": "Nodes",
-
-
-
+  "Models": "Models",
+  "context": "Context",
+  "integrations": "Integrations",
+  "widgets": "Widgets",
   "-- deploy": {
     "type": "separator",
     "title": "Deploy"
   },
   "graphQL": "GraphQL API",
-  "edge": "Edge Deployment",
-  "cache": "Caching",
-  "keys": "API Keys",
-  "search-widget": "Search Widget",
-
-
-  "-- monitor": {
-    "type": "separator",
-    "title": "Monitor"
-  },
+  "deployments": "Deployments",
   "logs": "Logs",
-  "langfuse-integration": "Langfuse Integration",
-  "posthog" : "Posthog Integration",
+  "jobs": "Jobs",
+  "reports": "Reports",
   "-- references": {
     "type": "separator",
     "title": "References"
@@ -80,8 +71,6 @@
     "href": "https://product.lamatic.ai/roadmap",
     "newWindow": true
   },
-
-
   "-- more": {
     "type": "separator",
     "title": "More"

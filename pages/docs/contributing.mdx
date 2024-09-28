@@ -4,7 +4,20 @@ description: Contributing to Lamatic.ai Documentation
 
 # Contributing to Lamatic.ai Documentation
 
-We welcome contributions to the Lamatic.ai documentation! This guide will walk you through the process of contributing by forking the repository and creating a new branch.
+We're thrilled that you're interested in contributing to the Lamatic.ai documentation! Your efforts help improve the experience for all users of our platform. This guide will walk you through the process of contributing.
+
+## Getting Started
+
+1. **Understand Our Docs Structure**
+
+   - Our documentation is built using Nextra, a Next.js and MDX-powered static site generator. To get a better understanding of how our docs work, visit our repository at https://github.com/lamatic/lamatic-docs and learn more about Nextra at https://nextra.site/docs.
+
+2. **Join Our Community**
+
+   - Have questions or need help? Join our Slack community at https://lamatic.ai/docs/slack. We're always happy to assist contributors!
+
+3. **Get Beta Access**
+   - As a token of our appreciation, we'd like to offer all contributors beta access to our platform. Use this link to sign up: https://studio.lamatic.ai/signup?code=earlybetauser
 
 ## Steps to Contribute
 
@@ -29,14 +42,27 @@ We welcome contributions to the Lamatic.ai documentation! This guide will walk y
      ```
    - Use a descriptive name for your branch, e.g., `add-new-feature-doc` or `fix-typo-in-quickstart`.
 
-4. **Make Your Changes**
+4. **Install Dependencies and Run the Development Server**
+
+   - Install the necessary dependencies:
+     ```
+     npm install
+     ```
+   - Start the development server:
+     ```
+     npm run dev
+     ```
+   - Open your browser and go to `http://localhost:3333/docs` to see your changes in real-time.
+
+5. **Make Your Changes**
 
    - Edit or add the necessary files in your local repository.
    - Ensure your changes adhere to the existing style and formatting of the documentation.
    - If you're adding new documentation, update the `_meta.json` file to include the new page.
    - If you're modifying existing documentation, update the corresponding `.mdx` file.
+   - Refresh your browser to see your changes reflected immediately.
 
-5. **Commit Your Changes**
+6. **Commit Your Changes**
 
    - Stage and commit your changes:
      ```
@@ -44,14 +70,14 @@ We welcome contributions to the Lamatic.ai documentation! This guide will walk y
      git commit -m "Brief description of your changes"
      ```
 
-6. **Push Your Changes**
+7. **Push Your Changes**
 
    - Push your changes to your forked repository:
      ```
      git push origin your-branch-name
      ```
 
-7. **Create a Pull Request**
+8. **Create a Pull Request**
 
    - Go to the [original Lamatic Docs repository](https://github.com/lamatic/lamatic-docs).
    - Click on "Pull requests" and then the "New pull request" button.
@@ -59,9 +85,9 @@ We welcome contributions to the Lamatic.ai documentation! This guide will walk y
    - Review your changes and click "Create pull request".
    - Provide a clear title and description for your pull request.
 
-8. **Wait for Review**
+9. **Wait for Review**
    - The Lamatic.ai team will review your contribution.
    - They may request changes or provide feedback.
    - Once approved, your changes will be merged into the main documentation.
 
-Thank you for contributing to Lamatic.ai documentation! Your efforts help improve the experience for all users of our platform.
+Thank you for contributing to Lamatic.ai documentation! Your efforts are greatly appreciated and help make our platform better for everyone. If you have any questions during the process, don't hesitate to reach out on our Slack channel.

@@ -1,42 +1,93 @@
-![GitHub Banner](https://github.com/lamaticai/lamaticai-docs/assets/2834609/e403ad73-73fa-43f0-9925-292b05ce58de)
+<div id="top"></div>
 
-# lamaticai Docs
+<p align="center">
+<a href="https://lamatic.ai">
+<img width="120" alt="lamatic.ai Logo" src="https://path-to-your-logo.png">
+</a>
+<h3 align="center">lamatic.ai</h3>
+<p align="center">
+GenAI Apps in minutes
+<br />
+<a href="https://lamatic.ai/">Website</a> | <a href="https://lamatic.ai/docs/slack">Join Slack community</a>
+</p>
+</p>
 
-Repo for [lamatic.ai](https://lamatic.ai), based on [Nextra](https://nextra.site/)
+<p align="center">
+<a href="https://lamatic.ai/docs/slack"><img src="https://img.shields.io/badge/Slack-Join%20Us-4A154B?logo=slack&logoColor=white" alt="Join lamatic.ai Slack"></a>
+<a href="https://github.com/lamatic/lamatic-docs/stargazers"><img src="https://img.shields.io/github/stars/lamatic/lamatic-docs?logo=github" alt="Github Stars"></a>
+</p>
 
-## Local Development
+<br/>
 
-Pre-requisites: Node.js 18+, pnpm
+## ✨ About lamatic.ai
 
-1. Optional: Create env based on [.env.template](./.env.template)
-2. Run `pnpm i` to install the dependencies.
-3. Run `pnpm dev` to start the development server on localhost:3333
+Managed platform with Visual Workflow builder, VectorDB, Integrations to Apps, Data Sources and Models to deploy GraphQL API on Edge.
 
-## Python cookbooks
+**Try it out in the cloud at [lamatic.ai](https://lamatic.ai)**
 
-All Jupyter notebooks are in the `cookbook/` directory. For JS/TS notebooks we use Deno, see Readme in cookbook folder for more details.
+## 🌟 Mission: Empower everyone to create intelligent agents
 
-To render them within the documentation site, we convert them to markdown using `jupyter nbconvert`, move them to right path in the pages/ directory where they are rendered by Nextra (remark).
+lamatic.ai is on a mission to democratize AI agent creation for everyone, regardless of their technical background. Our user-friendly platform provides intuitive tools and comprehensive resources that make it easy for individuals, businesses, and organizations to build, deploy, and manage their own intelligent agents. From simple chatbots to complex AI assistants, lamatic.ai empowers users to bring their ideas to life, fostering innovation and problem-solving across various domains. With our accessible approach, we're breaking down barriers and enabling a future where AI agent creation is within reach for all.
 
-Steps after updating notebooks:
+### Table of Contents
 
-1. Load python shell/env which has jupyter installed, e.g. `poetry install && poetry shell`
-2. Run `bash scripts/update_cookbook_docs.sh`
-3. Commit the changed markdown files
+- [Getting Started](#getting-started)
+- [Cloud Version](#cloud-version)
+- [Development](#development)
+- [Contribution](#contribution)
+- [Contact](#contact-us)
 
-## API Reference (Swagger)
+<a id="getting-started"></a>
 
-API reference is automatically generated based on the OpenAPI spec of the current production deployment of lamaticai Cloud.
+## 🚀 Getting started
 
-## Stack
+To get started with lamatic.ai, visit our [documentation](https://lamatic.ai/docs) for detailed guides and tutorials.
 
-- [Nextra](https://nextra.site/)
-- [Next.js](https://nextjs.org/)
-- [shadcn/ui](https://ui.shadcn.com)
-- [Tailwind CSS](https://tailwindcss.com/)
+<a id="cloud-version"></a>
 
-Interested in stack of Q&A docs chatbot? Checkout the [blog post](https://lamatic.ai/blog/qa-chatbot-for-lamaticai-docs) for implementation details (all open source)
+### ☁️ Cloud Version
 
-## Bundle analysis
+Sign up for a free account at [lamatic.ai](https://lamatic.ai) to start using our cloud-hosted solution immediately.
 
-Run `pnpm run analyze` to analyze the bundle size of the production build using `@next/bundle-analyzer`.
+<a id="self-hosted-version"></a>
+
+<a id="development"></a>
+
+## 👨‍💻 Development
+
+### Prerequisites
+
+To run the lamatic.ai documentation locally, you need:
+
+- Node.js 18+
+- npm
+
+### Local Setup
+
+1. Clone the repository
+2. Run `npm i` to install dependencies
+3. Run `npm dev` to start the development server on localhost:3333
+
+For more detailed instructions, see our [contributing guide](https://lamatic.ai/docs/contributing).
+
+<a id="contribution"></a>
+
+## ✍️ Contribution
+
+We welcome contributions to lamatic.ai! Here's how you can help:
+
+- Star this repo
+- Create issues for bugs or feature requests
+- Submit pull requests for improvements
+
+Please check out our [contribution guide](https://lamatic.ai/docs/contributing) for more information. For a list of current tasks and issues, see our [open issues](https://github.com/lamatic/lamatic-docs/issues).
+
+<a id="contact-us"></a>
+
+## 📆 Contact us
+
+For support or inquiries, please join our [Slack community](https://lamatic.ai/docs/slack).
+
+<a id="license"></a>
+
+<p align="right"><a href="#top">🔼 Back to top</a></p>

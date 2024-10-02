@@ -1,0 +1,134 @@
+---
+description: Contributing to Lamatic.ai Documentation
+---
+
+# Contributing to Lamatic.ai Documentation
+
+We're thrilled that you're interested in contributing to the Lamatic.ai documentation! Your efforts help improve the experience for all users of our platform. This guide will walk you through the process of contributing.
+
+## Getting Started
+
+1. **Understand Our Docs Structure**
+
+   - Our documentation is built using Nextra, a Next.js and MDX-powered static site generator. To get a better understanding of how our docs work, visit our repository at https://github.com/lamatic/lamatic-docs and learn more about Nextra at https://nextra.site/docs.
+
+2. **Join Our Community**
+
+   - Have questions or need help? Join our Slack community. We're always happy to assist contributors!
+
+   <div style={{ display: "flex", justifyContent: "center" }}>
+     <a href="https://lamatic.ai/docs/slack" target="_blank">
+       <button
+         style={{
+           padding: "10px 20px",
+           backgroundColor: "red",
+           color: "white",
+           border: "none",
+           borderRadius: "5px",
+           cursor: "pointer",
+           display: "flex",
+           justifyContent: "center",
+           alignItems: "center",
+         }}
+       >
+         <span style={{ color: "white" }}>Join our Slack</span>
+       </button>
+     </a>
+   </div>
+
+3. **Get Beta Access**
+   - As a token of our appreciation, we'd like to offer all contributors beta access to our platform. Use this link to sign up: https://studio.lamatic.ai/signup?code=earlybetauser
+
+## Steps to Contribute
+
+1. **Fork the Repository**
+
+   - Visit the [Lamatic Docs GitHub repository](https://github.com/lamatic/lamatic-docs).
+   - Click the "Fork" button in the top-right corner to create a copy of the repository in your GitHub account.
+
+2. **Clone Your Fork**
+
+   - Clone your forked repository to your local machine:
+     ```
+     git clone https://github.com/your-username/lamatic-docs.git
+     cd lamatic-docs
+     ```
+
+3. **Create a New Branch**
+
+   - Create a new branch for your changes:
+     ```
+     git checkout -b your-branch-name
+     ```
+   - Use a descriptive name for your branch, e.g., `add-new-feature-doc` or `fix-typo-in-quickstart`.
+
+4. **Install Dependencies and Run the Development Server**
+
+   - Install the necessary dependencies:
+     ```
+     npm install
+     ```
+   - Start the development server:
+     ```
+     npm run dev
+     ```
+   - Open your browser and go to `http://localhost:3333/docs` to see your changes in real-time.
+
+5. **Make Your Changes**
+
+   - Edit or add the necessary files in your local repository.
+   - Ensure your changes adhere to the existing style and formatting of the documentation.
+   - If you're adding new documentation, update the `_meta.json` file to include the new page.
+   - If you're modifying existing documentation, update the corresponding `.mdx` file.
+   - Refresh your browser to see your changes reflected immediately.
+
+6. **Commit Your Changes**
+
+   - Stage and commit your changes:
+     ```
+     git add .
+     git commit -m "Brief description of your changes"
+     ```
+
+7. **Push Your Changes**
+
+   - Push your changes to your forked repository:
+     ```
+     git push origin your-branch-name
+     ```
+
+8. **Create a Pull Request**
+
+   - Go to the [original Lamatic Docs repository](https://github.com/lamatic/lamatic-docs).
+   - Click on "Pull requests" and then the "New pull request" button.
+   - Click "compare across forks" and select your fork and branch.
+   - Review your changes and click "Create pull request".
+   - Provide a clear title and description for your pull request.
+
+9. **Wait for Review**
+   - The Lamatic.ai team will review your contribution.
+   - They may request changes or provide feedback.
+   - Once approved, your changes will be merged into the main documentation.
+
+## Issue Types
+
+When contributing or reporting issues, it's helpful to categorize them. Here are the main types of issues you might encounter or want to report:
+
+1. **🐛 Bug**: An error, flaw, or fault in the documentation that produces an incorrect or unexpected result. This could include broken links, incorrect information, or formatting issues.
+
+2. **🚀 Feature Request**: A suggestion for a new addition to the documentation. This could be a request for documentation on a new feature of Lamatic.ai or a proposal for a new section in the existing docs.
+
+3. **📈 Improvement**: A suggestion to enhance existing documentation. This could involve clarifying explanations, adding more examples, or restructuring content for better readability.
+
+4. **✏️ Typo**: A small error in the text, such as a misspelling or grammatical mistake.
+
+When creating an issue or pull request, please prefix your title with the appropriate issue type in square brackets or assign appropriate labels. For example:
+
+- [Bug] Broken link in Quick Start guide
+- [Feature Request] Add documentation for new API endpoint
+- [Improvement] Clarify explanation in Authentication section
+- [Typo] Fix misspelling in Contributing guide
+
+This categorization helps the maintainers prioritize and address issues more efficiently.
+
+Thank you for contributing to Lamatic.ai documentation! Your efforts are greatly appreciated and help make our platform better for everyone. If you have any questions during the process, don't hesitate to reach out on our Slack channel.

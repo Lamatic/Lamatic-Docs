@@ -24,38 +24,39 @@ Here's an example GraphQL query that demonstrates how you can trigger a workflow
   <Tabs.Tab>
     ```javascript
    const axios = require('axios');
-
+ 
 const query = `
-  query ExecuteWorkflow {
+query ExecuteWorkflow(
+    $workflowId: String!
+    $prompt: String    
+) {
     executeWorkflow(
-      workflowId: "your_workflow_id",
-      payload: {
-        prompt: "What is python?",
-        key1: "value1",
-        // ... additional key-value pairs as needed
-      }
-    ) {
-      status
-      result
+    workflowId: $workflowId
+    payload: {
+      prompt: $prompt
     }
-  }
-`;
+    ) {
+        status
+        result
+    }
+}`;
+ 
+
+const variables = {"workflowId":"your_workflow_id","prompt":"The excited car draws."};
 
 const options = {
-  method: 'POST',
-  url: 'https://api.lamatic.ai/graphql',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Bearer your_api_key'
-  },
-  data: {
-     query: query
-  }
+method: 'POST',
+url: 'your_project_endpoint',
+headers: {
+  "Authorization": "Bearer your_api_key",
+  "Content-Type": "application/json"
+},
+data: { query, variables }
 };
-
+ 
 axios(options)
-  .then(response => console.log(response.data))
-  .catch(error => console.error(error));
+.then(response => console.log(response.data))
+.catch(error => console.error(error));
 
     ```
   </Tabs.Tab>
@@ -63,37 +64,50 @@ axios(options)
     ```python
     import requests
 
-    url = 'https://api.lamatic.ai/graphql'
-    headers = {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer your_api_key'
+query = """
+query ExecuteWorkflow(
+    $workflowId: String!
+    $prompt: String        
+) {
+    executeWorkflow(
+    workflowId: $workflowId
+    payload: {
+      prompt: $prompt
     }
-    query = '''
-    query ExecuteWorkflow {
-      executeWorkflow(
-        workflowId: "your_workflow_id",
-        payload: {
-          prompt: "What is python?",
-          key1: "value1",
-          # ... additional key-value pairs as needed
-        }
-      ) {
+    ) {
         status
         result
-      }
     }
-    '''
+}
+"""
 
-    response = requests.post(url, json={'query': query}, headers=headers)
+variables = {"workflowId":"your_workflow_id","prompt":"The excited car draws."};
+
+data = {"query": query, "variables": variables}
+
+headers = {
+  "Authorization": "Bearer your_api_key",
+  "Content-Type": "application/json"
+}
+
+url = "your_project_endpoint"
+
+response = requests.post(url, headers=headers, json=data)
+
+if response.status_code == 200:
     print(response.json())
+else:
+    print(f"Error: {response.status_code}")
+    print(response.text)
+
     ```
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    curl -X POST https://api.lamatic.ai/graphql \
-      -H "Content-Type: application/json" \
-      -H "Authorization: Bearer your_api_key" \
-      -d '{"query": "query ExecuteWorkflow { executeWorkflow(workflowId: \"your_workflow_id\", payload: { prompt: \"What is python?\", key1: \"value1\" }) { status result } }"}'
+    curl -X POST your_project_endpoint \  
+      -H 'Authorization: Bearer your_api_key' \
+      -H 'Content-Type: application/json' \ 
+      -d '{"query": " query ExecuteWorkflow(     $workflowId: String!  $prompt: String ) { executeWorkflow( workflowId: $workflowId  payload: { prompt: $prompt }  ) { status  result } }", "variables": {"workflowId":"your_workflow_id","prompt":"The excited car draws."}}'
     ```
   </Tabs.Tab>
 </Tabs>

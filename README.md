@@ -65,8 +65,9 @@ To run the lamatic.ai documentation locally, you need:
 ### Local Setup
 
 1. Clone the repository
-2. Run `npm i` to install dependencies
-3. Run `npm dev` to start the development server on localhost:3333
+2. Run `bun i` to install dependencies
+3. Run `bun run dev` to start the development server on localhost:3333
+4. Visit http://localhost:3333/docs to view the documentation
 
 For more detailed instructions, see our [contributing guide](https://lamatic.ai/docs/contributing).
 

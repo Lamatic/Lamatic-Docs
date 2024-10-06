@@ -2,9 +2,6 @@
   "triggers": "Triggers",
   "response": "Response",
   "execution-logs": "Execution Logs",
-  "testing": "Testing",
   "deploy": "Deploy",
-  "branching": "Branching",
-  "workflow_config": "Workflow Config",
-  "prompts": "Prompts"
+  "workflow_config": "Workflow Config"
 }

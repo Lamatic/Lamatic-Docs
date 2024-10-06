@@ -85,5 +85,10 @@
     "href": "https://status.lamatic.ai",
     "newWindow": true
   },
-  "contributing": "Contributing"
+  "contributing": "Contributing",
+  "Trash": {
+    "title": "Privacy Policy",
+    "type": "page",
+    "display": "hidden"
+  }
 }

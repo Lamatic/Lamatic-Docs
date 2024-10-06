@@ -9,7 +9,7 @@
   },
   "docs": {
     "type": "page",
-    "title": "📚 Docs"
+    "title": "Docs"
   },
   "guides": {
     "type": "page",
@@ -17,7 +17,7 @@
     "display": "hidden"
   },
   "Changelog": {
-    "title": "📋 Change Log",
+    "title": "Change Log",
     "type": "page",
     "theme": {
       "layout": "full"
@@ -37,7 +37,8 @@
   "careers": {
     "title": "Careers",
     "type": "page",
-    "display": "hidden"
+    "href": "/docs/career",
+    "display": "visible"
   },
   "support": {
     "title": "Support",

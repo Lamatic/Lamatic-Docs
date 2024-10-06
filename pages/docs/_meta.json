@@ -8,24 +8,23 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
-  "-- Collaborate": {
+  "-- Build": {
     "type": "separator",
-    "title": "Collaborate"
+    "title": "Build"
   },
   "studio": "Studio",
-  "workflows": "Workflows",
-  "experiments": "Experiments",
-  "playground": "Playground",
-  "IAM": "IAM",
-
+  "flows": "Flows",
+  "tests": "Tests",
+  "Context": "Context",
+  "IDE": "IDE",
 
   "-- connect": {
     "type": "separator",
     "title": "Connect"
   },
   "Models": "Models",
-  "context": "Context",
-  "integrations": "Integrations",
+
+  "Integrations": "Integrations",
   "widgets": "Widgets",
   "-- deploy": {
     "type": "separator",
@@ -78,7 +77,12 @@
   "legal": "Legal",
   "support": {
     "title": "Support ↗",
-    "href": "/support",
+    "href": "https://support.lamatic.ai",
+    "newWindow": true
+  },
+  "status": {
+    "title": "Platform Status ↗",
+    "href": "https://status.lamatic.ai",
     "newWindow": true
   },
   "contributing": "Contributing"

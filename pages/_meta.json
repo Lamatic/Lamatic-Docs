@@ -9,7 +9,7 @@
   },
   "docs": {
     "type": "page",
-    "title": "Docs"
+    "title": "📚 Docs"
   },
   "guides": {
     "type": "page",
@@ -17,7 +17,7 @@
     "display": "hidden"
   },
   "Changelog": {
-    "title": "Change Log",
+    "title": "📋 Change Log",
     "type": "page",
     "theme": {
       "layout": "full"
@@ -26,7 +26,7 @@
     "target": "_blank"
   },
   "blog": {
-    "title": "Blog",
+    "title": "🧬 Lamatic Labs",
     "type": "page",
     "theme": {
       "layout": "full"

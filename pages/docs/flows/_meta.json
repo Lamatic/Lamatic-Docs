@@ -1,7 +1,7 @@
-{
-  "triggers": "Triggers",
-  "response": "Response",
-  "execution-logs": "Execution Logs",
-  "deploy": "Deploy",
-  "workflow_config": "Workflow Config"
+{ "editor": "Flow editor",
+  "trigger": "Trigger",
+  "Nodes": "Nodes" ,
+  "Concepts": "Concepts",
+  "deploy": "Save and Deploy",
+  "Low-code_Config": "Low-Code Config"
 }

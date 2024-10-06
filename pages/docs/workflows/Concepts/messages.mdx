@@ -1,0 +1,49 @@
+---
+description: Messages (History)
+---
+
+# Messages (Conversation History)
+
+Messages represent the conversation history between a user and an AI assistant. They are structured as an ordered list of objects, each containing two key pieces of information: the role of the speaker and the content of their message.
+
+### Message Structure
+
+Each message object in the list has two primary fields:
+1. **role**: Identifies who is speaking. It can be one of three types:
+   - "system": Sets the behavior or context for the AI assistant.
+   - "user": Represents input from the human user.
+   - "assistant": Contains responses from the AI.
+2. **content**: The actual text of the message.
+
+<Callout emoji="💡">
+    **For a deeper dive into message structure and best practices, visit the [OpenAI Documentation](https://platform.openai.com/docs/guides/text-generation/building-prompts)**
+</Callout>
+
+### Example of a Message List
+
+```json
+[
+    {"role": "system", "content": "You are a helpful assistant specializing in technical support."},
+    {"role": "user", "content": "My computer won't turn on. What should I check first?"},
+    {"role": "assistant", "content": "Let's start with the basics. First, ensure that your computer is properly plugged into a working power outlet."},
+    {"role": "user", "content": "I've checked that, and it's securely plugged in. What's next?"},
+    {"role": "assistant", "content": "Alright, the next step would be to check if the power supply unit (PSU) is functioning. Can you hear any fans or see any lights when you try to turn it on?"},
+    {"role": "user", "content": "No, I don't hear or see anything when I press the power button."}
+]
+```
+
+In this example, we can see a system message setting the context, followed by an alternating sequence of user inquiries and assistant responses, forming a coherent conversation about troubleshooting a computer that won't start.
+
+### Importance in AI Processing
+
+This structured conversation history is crucial for maintaining context and enabling the AI to provide relevant, contextually appropriate responses. It allows the AI to reference previous parts of the conversation and build upon established information.
+
+### Implementation in AI Nodes
+
+The Messages structure is utilized in several AI-focused nodes within our system:
+
+1. [Multi-Modal](../Nodes/AI/MultiModal.mdx): Processes conversations that may include text, images, or other media types.
+2. [Text Generation](../Nodes/AI/LLM.mdx): Uses the conversation history to generate contextually relevant text responses.
+3. [RAG (Retrieval-Augmented Generation)](../Nodes/AI/RAG.mdx): Enhances responses by retrieving relevant information from external sources based on the conversation context.
+
+These nodes leverage the Messages structure to maintain conversation flow, understand context, and generate more accurate and relevant responses.

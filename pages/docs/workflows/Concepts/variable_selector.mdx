@@ -10,12 +10,14 @@ The Variable Selector in Lamatic.ai is a powerful tool designed to streamline th
 
 ## Using the Variable Selector in Lamatic.ai
 
-The Variable Selector is a powerful tool in Lamatic.ai that enables you to reuse data generated or modified by previous nodes within your workflows. This streamlined process enhances efficiency and reduces errors during workflow creation.
+The Variable Selector enables you to reuse data generated or modified by previous nodes within your workflows. This streamlined process enhances efficiency and reduces errors during workflow creation.
 
 ### Step-by-Step Guide
 
 1. **Select Data Source:** Choose the node from which you want to retrieve variables. For instance, if you intend to utilize variables from a GraphQL node, select `graphqlNode` from the available options.
+
 2. **Browse Available Variables:** Upon selecting a data source, the Variable Selector will display all accessible variables from that node. These variables are categorized by type (e.g., STRING, INT, OBJECT) for easy identification of the required variable.
+
 3. **Select the Desired Variable:** Click on the variable you wish to employ in your current node or component. The chosen variable will then be integrated into your workflow for immediate use.
 
 ### Benefits
@@ -23,3 +25,33 @@ The Variable Selector is a powerful tool in Lamatic.ai that enables you to reuse
 * **Efficiency:** The Variable Selector simplifies the process of reusing data across nodes, eliminating the need for manual data entry or intricate configurations.
 * **Consistency:** By employing predefined variables from preceding nodes, you ensure consistency throughout your workflow.
 * **User-Friendly Interface:** The clean and intuitive interface of the Variable Selector makes it accessible to both technical and non-technical users.
+
+## Handling Arrays
+
+Let's say we have a variable of type array and we want to perform operations on it.
+Variable: `graphqlNode_1234567890.output.data.books`
+
+- To pass all the values of the array:
+  ```
+  {{graphqlNode_1234567890.output.data.books}}
+  ```
+
+- To pass a specific value of the array:
+  ```
+  {{graphqlNode_1234567890.output.data.books[0]}}
+  ```
+
+- To pass the first element of the array:
+  ```
+  {{graphqlNode_1234567890.output.data.books[0]}}
+  ```
+
+- To pass a range of the array:
+  ```
+  {{graphqlNode_1234567890.output.data.books[0:5]}}
+  ```
+
+- To extract a specific object key value pair from the array `Note: your array should be of type object with key value pairs`:
+  ```
+  {{graphqlNode_1234567890.output.data.books[0].name}}
+  ```

@@ -23,30 +23,29 @@ Add the CDN script to your HTML file and configure the widget using the provided
 Here’s how to include the CDN script and configure the widget:
 
 ```html
-<script src="https://widget.lamatic.ai/search.js"></script>
-<script>
-  (function () {
-    var SEARCH_DIALOG_CONFIG = {
-      apiUrl: 'https://example-api.com', // Replace with your API URL
-      workflowId: '12345-abcde-67890-fghij', // Replace with your workflow ID
-      customButtonId: 'myCustomButton',  // Custom button id
-      primaryColor: '#FF6347', // Tomato color for the search
-      titleTextColor: '#2E8B57', // Sea green color for the title of the results
-      subTitleTextColor: '#8B4513', // Saddle brown color for the subtitle of the results
-      width: '50vw', // 50% viewport width for the dialog
-      showNavHelperText: true, // Show the navigation helper text
-      showEscapeHelperText: false, // Hide the escape helper text
-      searchPlaceholderText: 'What are you looking for?', // Custom placeholder text
-      searchDebounce: 300, // 300ms debounce time for API calls
-      linkTarget: "_self", // Open links in the same tab
-      breakpoint: 640, // Smaller-screen view at 640px
-      fontFamily: "Verdana" // Custom font family
-    };
+<script async src="https://widget.lamatic.ai/search/index.js" onload="loadSearchDialog()"></script>
 
-    document.addEventListener('DOMContentLoaded', function () {
-      new SearchDialog(SEARCH_DIALOG_CONFIG);
-    });
-  })();
+<script>
+  // Set Lamatic config
+  var SEARCH_DIALOG_CONFIG = {
+    apiUrl: 'https://example.lamatic.workers.dev', // The base URL of your project endpoint (REQUIRED)
+    workflowId: 'demo-workflow-id', // The workflow ID where you have set up your search configuration (REQUIRED)
+    customButtonId: 'searchButton', // The ID of a custom button that triggers the search dialog
+    primaryColor: '#007bff', // The primary color for the search widget (HEX value only)
+    titleTextColor: '#007bff', // The color of the title text in the search results
+    subTitleTextColor: '#666', // The color of the subtitle text in the search results
+    width: '60vw', // The width of the search dialog box
+    showNavHelperText: true, // Whether to show helper text for navigation within the search results
+    showEscapeHelperText: true, // Whether to show helper text for escaping the search dialog
+    searchPlaceholderText: 'Search our knowledge base...', // The placeholder text for the search input
+    searchDebounce: 200, // The debounce time (in milliseconds) for search input
+    linkTarget: "_blank", // The target attribute for links in search results
+    breakpoint: 768, // The breakpoint (in pixels) for responsive design
+    fontFamily: "Arial" // The font family to be used in the search widget
+  };
+
+  // Load Lamatic dialog
+  function loadSearchDialog() { new SearchDialog(SEARCH_DIALOG_CONFIG) };
 </script>
 ```
 

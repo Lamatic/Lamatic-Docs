@@ -177,6 +177,7 @@ const nonPermanentRedirects = [
 
 const permanentRedirects = []
 const rewrites = [
+    ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
     ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
     ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],

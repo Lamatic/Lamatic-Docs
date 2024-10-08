@@ -59,7 +59,7 @@ const nextraConfig = withNextra({
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'static.lamatic.ai',
+                hostname: 'lamatic.ai',
                 port: '',
                 pathname: '/**',
             },

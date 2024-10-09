@@ -39,6 +39,7 @@ const withNextra = nextra({
 
 // next config
 const nextraConfig = withNextra({
+    // assetPrefix:'/docs/',
     experimental: {
         scrollRestoration: true,
     },
@@ -58,7 +59,7 @@ const nextraConfig = withNextra({
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'static.lamatic.ai',
+                hostname: 'lamatic.ai',
                 port: '',
                 pathname: '/**',
             },
@@ -116,7 +117,11 @@ const nextraConfig = withNextra({
             beforeFiles: rewrites.map(([source, destination]) => ({
                 source,
                 destination,
-            }))
+            })),
+            fallback: [
+                // These rewrites are checked after both pages/public files
+                // and dynamic routes are checked
+            ],
         }
     }
 });
@@ -166,11 +171,13 @@ const nonPermanentRedirects = [
 
 ];
 
-const permanentRedirects = []
+const permanentRedirects = [
+    ["/marketplace/:path*", "https://marketplace.lamatic.ai/:path*"]
+]
 const rewrites = [
-    ["/integration/_next/:path*", "https://lamatic-integration.vercel.app/integration/_next/:path*"],
-    ["/integration/:path*", "https://lamatic-integration.vercel.app/integration/:path*"],
-    ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
+    // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
+    // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
+    // ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
     ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 

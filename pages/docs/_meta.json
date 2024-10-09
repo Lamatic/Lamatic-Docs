@@ -10,7 +10,7 @@
   "architecture": "Architecture",
   "-- Build": {
     "type": "separator",
-    "title": "Build"
+    "title": "🛠️ Build"
   },
   "studio": "Studio",
   "flows": "Flows",
@@ -20,7 +20,12 @@
 
   "-- connect": {
     "type": "separator",
-    "title": "Connect"
+    "title": "🧩 Connect"
+  },
+  "marketpplace": {
+    "title": "Marketplace ↗",
+    "href": "https://marketplace.lamatic.ai",
+    "newWindow": true
   },
   "Models": "Models",
 
@@ -28,7 +33,7 @@
   "widgets": "Widgets",
   "-- deploy": {
     "type": "separator",
-    "title": "Deploy"
+    "title": "🚀 Deploy"
   },
   "graphQL": "GraphQL API",
   "deployments": "Deployments",

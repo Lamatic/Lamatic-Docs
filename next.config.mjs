@@ -121,10 +121,6 @@ const nextraConfig = withNextra({
             fallback: [
                 // These rewrites are checked after both pages/public files
                 // and dynamic routes are checked
-                {
-                    source: '/_next/:path*',
-                    destination: `https://marketplace.lamatic.ai/_next/:path*`,
-                },
             ],
         }
     }
@@ -175,11 +171,13 @@ const nonPermanentRedirects = [
 
 ];
 
-const permanentRedirects = []
+const permanentRedirects = [
+    ["/marketplace/:path*", "https://marketplace.lamatic.ai/:path*"]
+]
 const rewrites = [
-    ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
-    ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
-    ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
+    // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
+    // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
+    // ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
     ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 

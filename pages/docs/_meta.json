@@ -22,15 +22,15 @@
     "type": "separator",
     "title": "🧩 Connect"
   },
-  "marketpplace": {
-    "title": "Marketplace ↗",
-    "href": "https://marketplace.lamatic.ai",
-    "newWindow": true
-  },
-  "Models": "Models",
 
   "Integrations": "Integrations",
-  "widgets": "Widgets",
+  "Models": "Models",
+  "Interface": "Interface",
+  "marketpplace": {
+    "title": "Hub ↗",
+    "href": "https://hub.lamatic.ai",
+    "newWindow": true
+  },
   "-- deploy": {
     "type": "separator",
     "title": "🚀 Deploy"

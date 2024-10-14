@@ -149,9 +149,9 @@ const nonPermanentRedirects = [
 
     // Redirect to overview pages
     ...[
-        "/docs/integrations",
-        "/docs/scores",
-        "/docs/datasets",
+        // "/docs/integrations",
+        // "/docs/scores",
+        // "/docs/datasets",
     ].map((path) => [path, path + "/overview"]),
 
     // Redirects to bridge all kinds of old links to new links

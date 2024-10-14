@@ -1,9 +1,51 @@
 ---
-description: Lamatic Studio
+description: Achieve your goals faster by connecting your favorite tools and services to Lamatic Studio.
 ---
 
-Todo -
-1. high level overview of integrations
-2. Integration Types
-3. available integrations
-4. integration marketplace
+# Integrations
+
+You can connect various apps, data sources and other nodes inside workflows to achieve your desired workflow.
+
+## Lamatic.ai Hub
+
+Lamatic.ai Hub is a marketplace for Lamatic Studio users to discover, install, and use apps and integrations.
+<Card href="https://hub.lamatic.ai/apps" title="Checkout All Integrations" image arrow style={{ width: '200px' }}>
+    ![Quickstart icon](/images/cards/hub.png)
+</Card>
+## Integrations Types
+### Apps
+### Data Sources
+### Interface
+### Developer Tools
+
+## Available Functions
+Each apps functionality is broken down into 3 different functions. These various ways you can connect those apps and perform a desired action.
+### Sync Trigger
+Fetch Data from the app at regular intervals or based on an event and use it in your workflow. Workflow runs each record item by item. For example, fetch new records from a Google Sheet every 5 minutes and run a workflow on each record.
+### Event Trigger
+Triggers a workflow based on a particular event in the app. For example, when a new record is added to a Google Sheet, trigger a workflow.
+### Action
+Perform an action in the app. For example, add a new record to a Google Sheet.
+
+## Configuring Integrations
+- nodeType:
+
+
+## Current available Integrations
+<div className="relative w-full h-[700px] overflow-hidden">
+    <iframe
+        className="absolute top-0 left-0 w-full h-full overflow-x-hidden"
+        src="https://hub.lamatic.ai/embeds/available-integrations"
+        frameBorder="0"
+        allowFullScreen
+    ></iframe>
+</div>
+
+## Adding a new integrations
+
+1. Drag node to the workflow.
+2. Click on Add new Credentials.
+3. Follow the Install Steps.
+4. Once added choose the new credentials.
+
+## Using an App / Node within a workflow

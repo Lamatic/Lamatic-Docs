@@ -26,7 +26,7 @@
     "target": "_blank"
   },
   "blog": {
-    "title": "Blog",
+    "title": "🧬 Lamatic Labs",
     "type": "page",
     "theme": {
       "layout": "full"
@@ -37,7 +37,8 @@
   "careers": {
     "title": "Careers",
     "type": "page",
-    "display": "hidden"
+    "href": "/docs/career",
+    "display": "visible"
   },
   "support": {
     "title": "Support",

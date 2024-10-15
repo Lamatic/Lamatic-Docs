@@ -4,6 +4,10 @@ description: Deployment using GraphQL
 
 import { Tabs } from "nextra/components"
 
+TODO:
+1. Add Automatic API Docs generation with Screenshot
+2. In query add different Field  and Parameters with Expected Output
+
 # Executing Workflows with GraphQL API
 
 ## What is GraphQL?
@@ -13,6 +17,21 @@ GraphQL is an open-source data query and manipulation language developed by Face
 ## GraphQL over REST
 
 While REST APIs have been the industry standard for many years, they often suffer from over-fetching or under-fetching data, leading to inefficient data transfers and increased latency. GraphQL addresses these limitations by empowering clients to request only the data they need, reducing network overhead and improving performance.
+
+## Authentication with API Keys
+
+To ensure secure access to our platform, Lamatic.ai employs API keys for authentication. When triggering workflows via GraphQL, you'll need to include your API key in the request headers. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
+
+Here's an example of how you can include the API key in your GraphQL request headers:
+
+```
+Authorization: Bearer your_api_key
+```
+
+By including the API key in the `Authorization` header, our platform can verify your identity and grant you access to trigger the desired workflow.
+
+
+> Click Here to know how to get your own [API Key](/docs/studio/Project/Settings/keys)
 
 ## Triggering Workflows with GraphQL
 
@@ -114,16 +133,3 @@ else:
 
 In this example, the `ExecuteWorkflow` query is used to initiate a workflow execution. You'll need to provide the `workflowId` of the desired workflow and any required `payload`(Input Data) as part of the query variables.
 
-## Authentication with API Keys
-
-To ensure secure access to our platform, Lamatic.ai employs API keys for authentication. When triggering workflows via GraphQL, you'll need to include your API key in the request headers. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
-
-Here's an example of how you can include the API key in your GraphQL request headers:
-
-```
-Authorization: Bearer your_api_key
-```
-
-By including the API key in the `Authorization` header, our platform can verify your identity and grant you access to trigger the desired workflow.
-
-> Click Here to know how to get your own [API Key](/docs/keys)

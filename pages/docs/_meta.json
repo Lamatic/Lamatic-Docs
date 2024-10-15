@@ -8,28 +8,32 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
-  "-- Collaborate": {
+  "-- Build": {
     "type": "separator",
-    "title": "Collaborate"
+    "title": "🛠️ Build"
   },
   "studio": "Studio",
-  "workflows": "Workflows",
-  "experiments": "Experiments",
-  "playground": "Playground",
-  "IAM": "IAM",
-
+  "flows": "Flows",
+  "tests": "Tests",
+  "Context": "Context",
+  "IDE": "IDE",
 
   "-- connect": {
     "type": "separator",
-    "title": "Connect"
+    "title": "🧩 Connect"
   },
+
+  "Integrations": "Integrations",
   "Models": "Models",
-  "context": "Context",
-  "integrations": "Integrations",
-  "widgets": "Widgets",
+  "Interface": "Interface",
+  "marketpplace": {
+    "title": "Hub ↗",
+    "href": "https://hub.lamatic.ai",
+    "newWindow": true
+  },
   "-- deploy": {
     "type": "separator",
-    "title": "Deploy"
+    "title": "🚀 Deploy"
   },
   "graphQL": "GraphQL API",
   "deployments": "Deployments",
@@ -78,8 +82,18 @@
   "legal": "Legal",
   "support": {
     "title": "Support ↗",
-    "href": "/support",
+    "href": "https://support.lamatic.ai",
     "newWindow": true
   },
-  "contributing": "Contributing"
+  "status": {
+    "title": "Platform Status ↗",
+    "href": "https://status.lamatic.ai",
+    "newWindow": true
+  },
+  "contributing": "Contributing",
+  "Trash": {
+    "title": "Privacy Policy",
+    "type": "page",
+    "display": "hidden"
+  }
 }

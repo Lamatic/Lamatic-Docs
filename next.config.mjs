@@ -172,7 +172,12 @@ const nonPermanentRedirects = [
 ];
 
 const permanentRedirects = [
-    ["/marketplace/:path*", "https://marketplace.lamatic.ai/:path*"]
+    ["/hub/:path*", "https://hub.lamatic.ai/:path*"],
+    ["/support", "https://support.lamatic.ai/"],
+    ["/changelog", "https://product.lamatic.ai/changelog"],
+    ["/slack", "https://lamatic.ai/docs/slack"],
+    ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
+    
 ]
 const rewrites = [
     // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],

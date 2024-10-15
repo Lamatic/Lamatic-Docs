@@ -8,25 +8,29 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
+   "-- WIP": {
+    "type": "separator",
+    "title": "🚧 → WIP"
+  },
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"
   },
-  "Studio": "Studio (🚧 WIP)",
-  "flows": "Flows",
-  "tests": "Tests",
-  "Context": "Context",
-  "IDE": "IDE",
+  "Studio": "🚧 Studio",
+  "flows": "🚧 Flows",
+  "tests": "🚧 Tests",
+  "Context": "🚧 Context",
+  "IDE": "🚧 IDE",
 
   "-- connect": {
     "type": "separator",
     "title": "🧩 Connect"
   },
 
-  "Integrations": "Integrations",
-  "Models": "Models",
-  "Interface": "Interface",
-  "marketpplace": {
+  "integrations": "Integrations",
+  "Models": "🚧 Models",
+  "Interface": "🚧  Interface",
+  "hub": {
     "title": "Hub ↗",
     "href": "https://hub.lamatic.ai",
     "newWindow": true
@@ -38,8 +42,8 @@
   "graphQL": "GraphQL API",
   "deployments": "Deployments",
   "logs": "Logs",
-  "jobs": "Jobs",
-  "reports": "Reports",
+  "jobs": "🚧 Jobs",
+  "reports": "🚧 Reports",
   "-- references": {
     "type": "separator",
     "title": "References"

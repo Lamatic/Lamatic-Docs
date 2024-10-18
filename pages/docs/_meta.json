@@ -18,8 +18,8 @@
   },
   "studio": "Studio",
   "flows": "🚧 Flows",
-  "tests": "🚧 Tests",
-  "Context": "🚧 Context",
+  "tests": "Tests",
+  "context": "Context",
   "IDE": "🚧 IDE",
 
   "-- connect": {

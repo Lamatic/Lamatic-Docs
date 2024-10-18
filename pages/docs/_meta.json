@@ -16,7 +16,7 @@
     "type": "separator",
     "title": "🛠️ Build"
   },
-  "Studio": "🚧 Studio",
+  "studio": "Studio",
   "flows": "🚧 Flows",
   "tests": "🚧 Tests",
   "Context": "🚧 Context",

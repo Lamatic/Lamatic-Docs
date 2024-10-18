@@ -66,7 +66,10 @@ const nextraConfig = withNextra({
         ],
     },
     headers() {
-        return [
+        return [{
+            source: "/blog/:path*",
+            headers: [{ key: "x-forwarded-host", value: "blog.lamatic.ai" }],
+        },
             {
                 source: "/:path*",
                 headers: [
@@ -183,6 +186,12 @@ const rewrites = [
     // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
     // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
     // ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
+    // ["/labs/:path*", "https://labs.lamatic.ai/:path*/"],
+    ["/blogs", "https://blog.lamatic.ai/blog"],
+    ["/blog/:path*/", "https://blog.lamatic.ai/blog/:path*/"],
+    ["/blogs/:path*", "https://blog.lamatic.ai/blog/:path*"],
+    ["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
+    ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
     ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 

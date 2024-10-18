@@ -20,7 +20,7 @@
   "flows": "🚧 Flows",
   "tests": "Tests",
   "context": "Context",
-  "IDE": "🚧 IDE",
+  "IDE": "IDE",
 
   "-- connect": {
     "type": "separator",

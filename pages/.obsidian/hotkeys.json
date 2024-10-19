@@ -1,0 +1,18 @@
+{
+  "obsidian-git:commit-push-specified-message": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "S"
+    }
+  ],
+  "obsidian-git:fetch": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "T"
+    }
+  ]
+}

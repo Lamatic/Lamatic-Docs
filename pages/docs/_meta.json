@@ -16,11 +16,12 @@
     "type": "separator",
     "title": "🛠️ Build"
   },
-  "Studio": "🚧 Studio",
+  "studio": "Studio",
   "flows": "🚧 Flows",
-  "tests": "🚧 Tests",
-  "Context": "🚧 Context",
-  "IDE": "🚧 IDE",
+  "templates": "🚧 Templates",
+  "tests": "Tests",
+  "context": "Context",
+  "IDE": "IDE",
 
   "-- connect": {
     "type": "separator",

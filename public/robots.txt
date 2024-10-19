@@ -1,0 +1,41 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lamatic.ai
+
+# Sitemaps
+Sitemap: https://lamatic.ai/sitemap.xml
+
+# Robots.txt file for lamatic.ai and its subdomains
+
+User-agent: *
+# Allow crawling of the main landing page at lamatic.ai, but prevent indexing of get.lamatic.ai
+Disallow: https://get.lamatic.ai/
+Allow: /
+
+# Allow crawling of the product documentation
+Allow: /docs/
+Sitemap: http://lamatic.ai/public/sitemap.xml
+
+# Allow crawling of the product board
+Allow: https://product.lamatic.ai
+
+# Allow crawling of the Support forum
+Allow: https://support.lamatic.ai
+
+# Allow crawling of the status page
+Allow: https://status.lamatic.ai
+
+# Allow crawling of the Integration and Template Marketplace
+Allow: https://hub.lamatic.ai
+Sitemap: https://hub.lamatic.ai/sitemap.xml
+
+# Allow crawling of labs (newsletter, blogs, reports)
+Allow: https://labs.lamatic.ai
+
+# Disallow the entire studio.lamatic.ai except for the signup and login pages
+Disallow: https://get.lamatic.ai/
+Allow: https://studio.lamatic.ai/signup
+Allow: https://studio.lamatic.ai/login

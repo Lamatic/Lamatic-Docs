@@ -33,7 +33,7 @@
   },
   "integrations": "Integrations",
   "models": "Models",
-  "interface": "\uD83D\uDEA7 Interface",
+  "interface": "Interface",
 
   "-- deploy": {
     "type": "separator",

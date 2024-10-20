@@ -8,9 +8,9 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
-   "-- WIP": {
+   "-- legend": {
     "type": "separator",
-    "title": "🚧 → WIP"
+    "title": "🚧 → WIP \n \uD83E\uDDEA → Beta"
   },
   "-- Build": {
     "type": "separator",
@@ -33,7 +33,7 @@
   },
   "integrations": "Integrations",
   "models": "Models",
-  "interface": "Interface",
+  "interface": "\uD83D\uDEA7 Interface",
 
   "-- deploy": {
     "type": "separator",
@@ -42,7 +42,7 @@
   "deployments": "Edge Deployments",
   "logs": "Logs",
   "jobs": "Jobs",
-  "reports": "🚧 Reports",
+  "reports": "\uD83E\uDDEA Reports",
   "-- references": {
     "type": "separator",
     "title": "References"

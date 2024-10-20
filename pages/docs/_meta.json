@@ -41,7 +41,7 @@
   },
   "deployments": "Edge Deployments",
   "logs": "Logs",
-  "jobs": "🚧 Jobs",
+  "jobs": "Jobs",
   "reports": "🚧 Reports",
   "-- references": {
     "type": "separator",

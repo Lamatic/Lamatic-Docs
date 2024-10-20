@@ -24,3 +24,5 @@ litellm_config.yaml
 *.ipynb_checkpoints
 poetry.lock
 .venv
+/.obsidian/
+/.vscode/

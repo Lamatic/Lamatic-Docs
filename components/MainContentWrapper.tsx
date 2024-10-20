@@ -13,7 +13,7 @@ import { Background } from "./Background";
 import { NotebookBanner } from "./NotebookBanner";
 import { ProductUpdateSignup } from "./productUpdateSignup";
 import { COOKBOOK_ROUTE_MAPPING } from "@/lib/cookbook_route_mapping";
-import IconGithub from "./icons/github";
+import IconGithub from "./icons/openai";
 
 const pathsWithoutFooterWidgets = ["/imprint", "/blog"];
 
@@ -63,8 +63,8 @@ export const DocsSupport = () => {
       </h3>
       <div className="flex gap-3 flex-wrap">
         <Button variant="outline" size="sm" asChild>
-          <a href="/gh-support" target="_blank">
-            <span>GitHub Q&A</span>
+          <a href="https://product.lamatic.ai/" target="_blank">
+            <span>Feedback</span>
             <IconGithub className="h-4 w-4 ml-3" />
           </a>
         </Button>
@@ -75,7 +75,7 @@ export const DocsSupport = () => {
           </a>
         </Button>
         <Button variant="outline" size="sm" asChild>
-          <a href="" target="_blank">
+          <a href="/docs/demo">
             <span>Talk to sales</span>
             <Calendar className="h-4 w-4 ml-3" />
           </a>

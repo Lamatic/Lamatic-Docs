@@ -8,42 +8,41 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
-   "-- WIP": {
+   "-- legend": {
     "type": "separator",
-    "title": "🚧 → WIP"
+    "title": "🚧 → WIP \n \uD83E\uDDEA → Beta"
   },
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"
   },
-  "Studio": "🚧 Studio",
+  "studio": "Studio",
   "flows": "🚧 Flows",
-  "tests": "🚧 Tests",
-  "Context": "🚧 Context",
-  "IDE": "🚧 IDE",
+  "tests": "Tests",
+  "context": "Context",
+  "IDE": "IDE",
 
   "-- connect": {
     "type": "separator",
     "title": "🧩 Connect"
   },
-
-  "integrations": "Integrations",
-  "Models": "🚧 Models",
-  "Interface": "🚧  Interface",
   "hub": {
-    "title": "Hub ↗",
+    "title": "📦 Hub ↗",
     "href": "https://hub.lamatic.ai",
     "newWindow": true
   },
+  "integrations": "Integrations",
+  "models": "Models",
+  "interface": "Interface",
+
   "-- deploy": {
     "type": "separator",
     "title": "🚀 Deploy"
   },
-  "graphQL": "GraphQL API",
-  "deployments": "Deployments",
+  "deployments": "Edge Deployments",
   "logs": "Logs",
-  "jobs": "🚧 Jobs",
-  "reports": "🚧 Reports",
+  "jobs": "Jobs",
+  "reports": "\uD83E\uDDEA Reports",
   "-- references": {
     "type": "separator",
     "title": "References"

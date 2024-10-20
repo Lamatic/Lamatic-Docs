@@ -4,21 +4,22 @@ description: Deployment using GraphQL
 
 import { Tabs } from "nextra/components"
 
-TODO:
-1. Add Automatic API Docs generation with Screenshot
-2. In query add different Field  and Parameters with Expected Output
-
 # Executing Workflows with GraphQL API
 
 ## What is GraphQL?
 
 GraphQL is an open-source data query and manipulation language developed by Facebook. It provides a more efficient, powerful, and flexible alternative to traditional REST APIs. GraphQL allows clients to define the structure of the data they need, enabling them to retrieve precisely the information they require with a single request.
 
-## GraphQL over REST
+### GraphQL over REST
 
 While REST APIs have been the industry standard for many years, they often suffer from over-fetching or under-fetching data, leading to inefficient data transfers and increased latency. GraphQL addresses these limitations by empowering clients to request only the data they need, reducing network overhead and improving performance.
 
-## Authentication with API Keys
+
+## Setting up
+### Automatic Docs
+The easies way to setup GraphQL Connection is to click the Connect bar and get the automated code for your project.
+Lamatic.ai also generate automatic API documentation for your project. You can access it by visiting the API Docs section.
+### Authentication with API Keys
 
 To ensure secure access to our platform, Lamatic.ai employs API keys for authentication. When triggering workflows via GraphQL, you'll need to include your API key in the request headers. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
 
@@ -33,7 +34,7 @@ By including the API key in the `Authorization` header, our platform can verify 
 
 > Click Here to know how to get your own [API Key](/docs/studio/Project/Settings/keys)
 
-## Triggering Workflows with GraphQL
+### Triggering Workflows with GraphQL
 
 Lamatic.ai's GraphQL integration allows you to trigger your GenAI workflows seamlessly using GraphQL queries. This approach provides a standardized and efficient way to interact with our platform, enabling you to execute your GenAI workflows on-demand or as part of larger application workflows.
 
@@ -130,6 +131,14 @@ else:
     ```
   </Tabs.Tab>
 </Tabs>
+
+#### Output
+The Structure output can be configured in the Schema of the Graphql Response node. The expected output will be as follows:
+```
+{
+  // Expected Output as setuped in the Schema
+}
+```
 
 In this example, the `ExecuteWorkflow` query is used to initiate a workflow execution. You'll need to provide the `workflowId` of the desired workflow and any required `payload`(Input Data) as part of the query variables.
 

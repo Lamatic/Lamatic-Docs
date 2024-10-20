@@ -33,14 +33,13 @@
   },
   "integrations": "Integrations",
   "models": "Models",
-  "Interface": "🚧  Interface",
+  "interface": "Interface",
 
   "-- deploy": {
     "type": "separator",
     "title": "🚀 Deploy"
   },
-  "graphQL": "GraphQL API",
-  "deployments": "Deployments",
+  "deployments": "Edge Deployments",
   "logs": "Logs",
   "jobs": "🚧 Jobs",
   "reports": "🚧 Reports",

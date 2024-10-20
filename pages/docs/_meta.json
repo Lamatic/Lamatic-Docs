@@ -26,15 +26,15 @@
     "type": "separator",
     "title": "🧩 Connect"
   },
-
-  "integrations": "Integrations",
-  "Models": "🚧 Models",
-  "Interface": "🚧  Interface",
   "hub": {
-    "title": "Hub ↗",
+    "title": "📦 Hub ↗",
     "href": "https://hub.lamatic.ai",
     "newWindow": true
   },
+  "integrations": "Integrations",
+  "models": "Models",
+  "Interface": "🚧  Interface",
+
   "-- deploy": {
     "type": "separator",
     "title": "🚀 Deploy"

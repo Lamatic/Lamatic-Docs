@@ -33,45 +33,30 @@ Context refers to additional information provided to a Language Learning Model (
 ### **Direct Prompt Inclusion**
 The simplest method involves incorporating relevant information directly into the prompt. However, this approach has limitations due to LLMs' context limits.
 
----
 
-### **Vector Database Retrieval**
-A popular technique known as **Retrieval-Augmented Generation (RAG)** utilizes vector databases for efficient information retrieval and context provision.
 
-> 🚀 **Pro Tip**: Use vector databases to enhance LLM responses by retrieving semantically relevant data.
-
----
-
-### **Memory Systems**
-Particularly useful for personalized chat interactions and user preferences, memory systems can store and recall important facts and context over time.
-
-> 🔁 **Remember**: Memory systems help maintain continuity in conversations and improve personalized interactions.
-
----
-
-## **Retrieval using Vector Databases**
+### **Retrieval using Vector Databases**
 
 Vector databases are a powerful solution for context-related challenges in AI. They store and retrieve information based on semantic meaning, allowing for more nuanced and relevant context retrieval.
 
----
+![img_4.png](./img_4.png)
 
-### **Understanding Vectors and Vector Databases**
+#### **Understanding Vectors and Vector Databases**
 
 Vectors in this context are mathematical representations of words, phrases, or entire documents. They capture semantic meaning, allowing for comparison and retrieval based on similarity rather than exact matching. Vector databases efficiently store and query these high-dimensional vectors, enabling rapid retrieval of relevant context.
 
 > 📊 **Quick Fact**: Vectors enable semantic searches, making them highly effective for contextual queries.
 
----
 
-### **When to Use Vector Databases**
+#### **When to Use Vector Databases**
 
 Vector databases are particularly useful when dealing with large amounts of unstructured data, such as documents, articles, or product descriptions. They excel in scenarios where semantic similarity is more important than exact keyword matching, making them ideal for providing relevant context to LLMs.
 
 > 📝 **Best Practice**: Use vector databases for unstructured data retrieval when accuracy based on meaning is essential.
 
----
 
-### **Lamatic's Built-in Vector Database Powered by Weaviate**
+
+#### **Lamatic's Built-in Vector Database Powered by Weaviate**
 
 Lamatic integrates **Weaviate**, a powerful vector database, to provide efficient and accurate context retrieval. This integration allows users to leverage the benefits of vector-based search and retrieval without the need for complex setup or management.
 
@@ -79,19 +64,18 @@ Lamatic integrates **Weaviate**, a powerful vector database, to provide efficien
 
 ---
 
-## **Memories (Beta)**
+### **Memories (Beta)**
 
 Memory systems offer another approach to providing context, particularly useful for maintaining continuity in conversations and personalizing interactions over time.
 
-### **When to Use Memories**
+#### **When to Use Memories**
 
 Memories are particularly valuable in scenarios requiring long-term context retention, such as ongoing customer support interactions, personalized tutoring, or any application where user preferences and history play a crucial role in generating appropriate responses.
 
 > 🔄 **Pro Tip**: Use memories for long-term user preferences and ongoing conversations.
 
----
 
-### **Lamatic's Built-in Memories Powered by mem0**
+#### **Lamatic's Built-in Memories Powered by mem0 ( Beta )**
 
 Lamatic incorporates **mem0**, a cutting-edge memory system, to enhance its context-awareness capabilities. This feature allows the platform to remember and utilize important information across multiple interactions, leading to more personalized and contextually relevant outputs.
 

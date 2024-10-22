@@ -2,22 +2,57 @@
 description: Logs in Lamatic.ai
 ---
 
-TODO:
-1. Update Screenshots to Recent
-2. Log Search
-3. Tracking
-4. Troubleshooting
 
-# Logs in Lamatic.ai: Streamlined Visibility and Analysis
 
-At Lamatic.ai, we understand the critical importance of comprehensive logging for the successful development, deployment, and monitoring of GenAI applications. To provide you with a robust and efficient logging solution, we've integrated two powerful technologies: Log Flare and Google BigQuery.
+# **Logs: Monitoring and Analyzing Requests in Real Time**
 
-![Logs](/assets/logs.png)
+![img_6.png](./img_6.png)
 
-## What is Logflare ?
+Logs provide an invaluable way to monitor and analyze requests to your project in real-time, offering deep insights into your application's performance and behavior. This powerful feature allows you to track and troubleshoot issues efficiently, ensuring optimal functionality of your system.
 
-Logflare is a powerful logging service that streamlines the process of pushing logs from your GenAI applications to a centralized location. With Log Flare, you can effortlessly capture and transmit log data in real-time, ensuring that you have a comprehensive record of your application's activities, errors, and events.
+---
 
-## The role of Google Big Query
+- **Request TimeStamp**: Precise timestamp of the request, conveniently displayed in your local timezone for easy reference and analysis.
+- **Status**: The final status of the request, indicating the outcome of the operation:
+  - `200 - Success`: Indicates that the request was processed successfully without any errors.
+  - `500 - Flow Error`: Signifies that an error occurred during the request processing, requiring further investigation.
+- **Flow**: Unique FlowID associated with the request, enabling you to trace the entire lifecycle of a specific operation through your system.
+- **Execution Time**: Total turnaround time of the requests, providing valuable insights into performance metrics and potential bottlenecks in your application.
 
-While Logflare excels at pushing logs, Google BigQuery is the perfect complement for pulling and analyzing log data. As a highly scalable and cost-effective data warehouse solution, BigQuery allows you to retrieve logs pushed by Log Flare, providing you with a centralized repository for all your log data.
+> 🟢 **Tip**: For real-time monitoring, you can activate the live logging feature by clicking the `▶️ Live` button. This functionality automatically updates the log screen as new entries appear, allowing you to observe your system's behavior in real-time and respond promptly to any issues that may arise.
+
+---
+
+## **Node Level Traces**
+
+![img_7.png](./img_7.png)
+
+To gain a more granular understanding of your system's operations, you can examine the logs of individual nodes within a request.
+
+1. Select any request of interest to open the complete request trace.
+2. Navigate to the **Node Level Debugging** section.
+3. Click on the specific node you wish to investigate.
+
+This detailed view allows you to pinpoint exactly where issues occur in your processing pipeline, facilitating more efficient debugging and optimization.
+
+---
+
+## **Search and Filtering Logs**
+
+To efficiently manage and analyze your log data, the system provides powerful search and filtering capabilities. These features enable you to quickly locate specific information and identify patterns or issues within your logs.
+
+- **Search**: Offers deep, query-level results, allowing you to find any keyword in request inputs, outputs, or within individual node inputs and outputs.
+
+> 🔍 **Note**: The comprehensive search capability ensures that you can locate even the most specific details within your log data.
+
+- **Filter**: Provides options to narrow down logs based on specific criteria:
+  - **Date**: Select a specific start and end date range to focus on logs from a particular time period, useful for investigating issues that occurred during a known timeframe.
+  - **Status**: Filter logs based on the request status (e.g., `200` for successful requests or `500` for flow errors), helping you quickly identify and address problematic requests.
+  - **FlowID**: Narrow down logs to a specific flow, enabling you to trace the entire lifecycle of a particular operation through your system.
+  - **NodeId**: Filter requests that involve specific nodes, allowing for detailed analysis of particular components within your application.
+
+---
+
+## **Exporting Logs**
+
+While there is currently no automated method for exporting logs, our support team is ready to assist you with this process. If you require a log export, please don't hesitate to reach out to our dedicated support staff via chat or Slack. They will guide you through the process and ensure you receive the log

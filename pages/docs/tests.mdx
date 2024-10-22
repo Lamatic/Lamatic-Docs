@@ -1,10 +1,34 @@
 ---
-description: Lamatic Studio
+description: Test Cases in Lamatic Studio
 ---
 
-TODO
-1. Add high level goals of Tests
-2. Different Types of Tests
-    1. Flow Tests
-    2. Deployment Tests
-3. Managing Tests Cases
+You can create a wide variety of test cases within your project, which can be utilized across different flows and scenarios. This approach significantly simplifies the process of managing JSON structures for diverse use cases, ultimately saving time and reducing potential errors. By creating reusable test cases, you can ensure consistency and efficiency in your testing process.
+
+## **Test Cases**
+![img_3.png](./img_3.png)
+
+There are multiple ways to create and manage test cases in our system:
+
+- **From Flow Builder**: You can generate new test cases directly from the flow builder while conducting a test run. This allows you to capture real-world scenarios and save them for future use.
+- **Dedicated Test Sections**: Manage all your test cases in a centralized location for easier organization and maintenance.
+
+> ⚙️ **Pro Tip**: Simply add the Input JSON and specify the flows that will utilize them. This flexibility lets you tailor your testing approach to your project’s needs.
+
+---
+
+### **Expected Test Results: (Beta)**
+
+Enhance your testing capabilities by including **Expected Test Results** alongside your test cases. This feature leverages **Language Learning Models (LLMs)** to compare the delta between actual test run results and expected outcomes.
+
+> 🔍 **Beta Feature**: Rapidly verify the structure and quality of your outputs with automated comparisons that help identify discrepancies quickly. This allows for faster iteration and improvement of your flows.
+
+---
+
+## **Deployment Tests**
+
+During deployments, you can select specific test cases to run automatically:
+
+- **Automatic Testing**: Our system will execute the flows using the pre-selected test cases during deployment.
+- **Rollbacks for Safety**: If any test fails during the deployment process, the system will automatically roll back to the previous stable release.
+
+> 🔒 **Safeguard**: This extra layer of quality assurance helps maintain the integrity of your production environment, ensuring that only thoroughly tested changes are implemented.

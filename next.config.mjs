@@ -68,7 +68,8 @@ const nextraConfig = withNextra({
     headers() {
         return [{
             source: "/blog/:path*",
-            headers: [{ key: "x-forwarded-host", value: "blog.lamatic.ai" }],
+            headers: [{ key: "x-forwarded-proto", value: "https" },{ key: "x-forwarded-host", value: "blog.lamatic.ai" },
+                ],
         },
             {
                 source: "/:path*",
@@ -187,13 +188,13 @@ const rewrites = [
     // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
     // ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
     // ["/labs/:path*", "https://labs.lamatic.ai/:path*/"],
-    ["/blog", "https://blog.lamatic.ai/blog"],
+    // ["/blog/", "https://blog.lamatic.ai/"],
     ["/blog/:path*/", "https://blog.lamatic.ai/blog/:path*/"],
     ["/blog/:path*", "https://blog.lamatic.ai/blog/:path*"],
     ["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
     ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
-    ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
+    ["/:path((?!docs|blog|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 
 ]
 

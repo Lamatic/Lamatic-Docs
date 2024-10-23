@@ -66,12 +66,7 @@ const nextraConfig = withNextra({
         ],
     },
     headers() {
-        return [{
-            source: "/blog/:path*",
-            headers: [{ key: "x-forwarded-proto", value: "https" },
-                { key: "x-forwarded-host", value: "blog.lamatic.ai" },
-                ],
-        },
+        return [
             {
                 source: "/:path*",
                 headers: [
@@ -92,6 +87,12 @@ const nextraConfig = withNextra({
                         key: "Permissions-Policy",
                         value: "autoplay=*, fullscreen=*, microphone=*",
                     },
+                ],
+            },
+            {
+                source: "/blog/:path*",
+                headers: [{ key: "x-forwarded-proto", value: "https" },
+                    { key: "x-forwarded-host", value: "blog.lamatic.ai" },
                 ],
             },
             {

@@ -192,6 +192,7 @@ const rewrites = [
     // ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
     // ["/labs/:path*", "https://labs.lamatic.ai/:path*/"],
     // ["/blog/", "https://blog.lamatic.ai/"],
+    ["/compare/:path*/", "https://blog.lamatic.ai/compare/:path*/"],
     ["/blog/:path*/", "https://blog.lamatic.ai/:path*/"],
     ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
     ["/public/:path*", "https://blog.lamatic.ai/public/:path*"],

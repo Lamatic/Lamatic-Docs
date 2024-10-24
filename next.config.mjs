@@ -70,6 +70,7 @@ const nextraConfig = withNextra({
             {
                 source: "/:path*",
                 headers: [
+                    { key: "x-forwarded-proto", value: "https" },
                     {
                         key: "x-frame-options",
                         value: "SAMEORIGIN",
@@ -86,6 +87,12 @@ const nextraConfig = withNextra({
                         key: "Permissions-Policy",
                         value: "autoplay=*, fullscreen=*, microphone=*",
                     },
+                ],
+            },
+            {
+                source: "/blog/:path*",
+                headers: [{ key: "x-forwarded-proto", value: "https" },
+                    { key: "x-forwarded-host", value: "blog.lamatic.ai" },
                 ],
             },
             {
@@ -183,8 +190,16 @@ const rewrites = [
     // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
     // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
     // ["/marketplace/:path*", "https://marketplace.lamatic.ai/marketplace/:path*"],
+    // ["/labs/:path*", "https://labs.lamatic.ai/:path*/"],
+    // ["/blog/", "https://blog.lamatic.ai/"],
+    ["/compare/:path*/", "https://blog.lamatic.ai/compare/:path*/"],
+    ["/blog/:path*/", "https://blog.lamatic.ai/:path*/"],
+    ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
+    ["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
+    ["/content/:path*", "https://blog.lamatic.ai/content/:path*"],
+    ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
-    ["/:path((?!docs|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
+    ["/:path((?!docs|blog|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 
 ]
 

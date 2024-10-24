@@ -30,7 +30,7 @@ jobs:
           NOTION_SECRET: ${{ secrets.NOTION_SECRET }}
           NOTION_DATABASE: https://www.notion.so/lamatic/fda4ae4bcba14c2a9ac3f7001c1de577
           FILTER_PROP: Status
-          FILTER_VALUES: Available
+          FILTER_VALUES: nx%7CZ
           CONVERT_PROP_CASE: snake
           ARTICLE_PATH: pages/docs/integrations/Apps/{title}.mdx
           ASSETS_PATH: public/assets

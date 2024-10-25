@@ -1,0 +1,24 @@
+name: Send JSON File Changes
+
+on:
+  push:
+    branches:
+      - github-index-lamatic  # Adjust to your branch as necessary
+    paths: 
+      - '**.mdx'  # This ensures the workflow only runs when .json files are changed
+
+jobs:
+  send-changes:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 2  # Fetch the last 2 commits to compare changes
+
+    - name: Send JSON changes to webhook
+      run: bash .github/scripts/send_changes.sh ${{ secrets.WEBHOOK_URL }} ${{ secrets.WEBHOOK_KEY }}
+      env:
+        GITHUB_REF: ${{ github.ref }}
+        WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}

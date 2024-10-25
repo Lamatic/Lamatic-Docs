@@ -10,7 +10,7 @@ echo $WEBHOOK_URL
 git fetch --depth=2 origin $GITHUB_REF:refs/remotes/origin/$GITHUB_REF
 
 # Get a list of changed .json files
-changed_files=$(git diff --name-only HEAD^ HEAD | grep '\.json$') || {
+changed_files=$(git diff --name-only HEAD^ HEAD | grep '\.mdx$') || {
   echo "No JSON files changed or grep command failed."
   exit 0
 }

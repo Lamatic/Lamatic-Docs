@@ -25,7 +25,7 @@ export function Logo() {
           className="hidden dark:block"
         />
         <Image
-          src="/public/lamatic-logo-light.svg"
+          src="public/assets/lamatic-logo-light.svg"
           alt="lamaticai Logo"
           width={120}
           height={20}

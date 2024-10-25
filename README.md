@@ -2,7 +2,7 @@
 
 <p align="center">
 <a href="https://lamatic.ai">
-<img width="120" alt="lamatic.ai Logo" src="https://path-to-your-logo.png">
+<img width="120" alt="lamatic.ai Logo" src="public/assets/lamatic-logo-light.svg">
 </a>
 <h3 align="center">lamatic.ai</h3>
 <p align="center">

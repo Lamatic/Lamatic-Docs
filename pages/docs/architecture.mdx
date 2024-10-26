@@ -12,16 +12,16 @@ Its designed such that even if our main system fails, it wont still affect your 
 ## Execution Steps
 These following steps highlight the typical execution of steps involved in building and deploying project on Lamatic.ai
 <Steps>
-    ### User Creates a workflow
-    Create workflow by connecting required nodes to achieve the desired output.
+    ### User Creates a flow
+    Create flow by connecting required nodes to achieve the desired output.
     ### Connecting custom data and apps
-    Integrate your data sources for custom data and apps within your workflow.
+    Integrate your data sources for custom data and apps within your flow.
     ### Connect models
-    Add model credentials to your workflow.
-    ### Deploy the workflow on Edge
+    Add model credentials to your flow.
+    ### Deploy the flow on Edge
     Triggering deployment compiles the  whole  worlfow and deploys it on the edge. This is a locked in state of your project which is isolated from lamatic studio and platform.
-    ### Trigger the Workflow with GrapgQL  API, widgets or webhooks
-    Integrate with method of your choice to trigger the workflow.
+    ### Trigger the flow with GrapgQL  API, widgets or webhooks
+    Integrate with method of your choice to trigger the flow.
 </Steps>
 ### Privacy and on premise hosting
 
@@ -39,14 +39,14 @@ Different parts of lamatic could be easily understood through the following diff
 
 This layer integrates third-party applications with Lamatic.ai, which is accessible in the following ways:
 
-- **Apps** - Connect 3rd party apps to trigger workflows and receive the response directly within the application.
+- **Apps** - Connect 3rd party apps to trigger flows and receive the response directly within the application.
 - **Widgets** - Customizable pre-built components that you can drop into your applications (e.g., chat widget).
 - **GraphQL API** - User-specific Schema API that performs different operations. This includes GraphQL object caching on the edge for faster response to repeated requests.
-- **Webhooks** - Trigger workflows using webhooks and receive an asynchronous response in your application.
+- **Webhooks** - Trigger flows using webhooks and receive an asynchronous response in your application.
 
 ### Studio
 
-This is the Visual layer on top of Core. Lamatic Studio allows non-technical users to configure, monitor, and maintain system operation and workflows.
+This is the Visual layer on top of Core. Lamatic Studio allows non-technical users to configure, monitor, and maintain system operation and flows.
 
 - **IAM** - Manage external API keys for your development team.
 - **Dashboard** - Complete overview of operating metrics for your active projects.
@@ -55,7 +55,7 @@ This is the Visual layer on top of Core. Lamatic Studio allows non-technical use
 - **Logs** - Log all incoming requests and query them for analysis.
 - **Quality** - Manage the quality of the return output.
 - **Agents** - Use our library of agents for specific tasks or create your own agents using custom prompts.
-- **Workflow Management** - Manage complex workflows (i.e., series of Agents) collaborating to complete tasks. You can also integrate apps to perform actions or fetch information.
+- **Flow Management** - Manage complex Flows (i.e., series of Agents) collaborating to complete tasks. You can also integrate apps to perform actions or fetch information.
 - **Experiments** - Set up A/B tests and experiments that help you evaluate the best model, prompts, and agents.
 - **Fallback** - Set up failover models.
 - **Predictions** - Cost predictions based on consumption.
@@ -77,7 +77,7 @@ This holds all the code logic that enables the reliable execution of our GraphQL
 - **Cache** - Semantic caching modules based on query vectors.
 - **Query Controls** - Maps the right data along with Object Retrieval for downstream queries. Includes checking JSON format for response validation and quality control. Optionally could be used for privacy data filtering and redaction.
 - **Agents** - Setup prompts and conditions to pass to models.
-- **Workflows** - Organize Agents into a workflow chain to perform specific tasks.
+- **Flows** - Organize Agents into a Flow chain to perform specific tasks.
 - **Memory** - Memory for Chatbots and context-related queries.
 - **A/B Module** - Perform optimization across Agents, Rules, and Models.
 - **Model Relay** - Managed connections across multiple models.

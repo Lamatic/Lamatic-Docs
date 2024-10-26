@@ -18,8 +18,8 @@
   },
   "studio": "Studio",
   "flows": "🚧 Flows",
+  "templates": "\uD83D\uDEA7 Templates",
   "tests": "Tests",
-  "context": "Context",
   "IDE": "IDE",
 
   "-- connect": {
@@ -27,11 +27,12 @@
     "title": "🧩 Connect"
   },
   "hub": {
-    "title": "📦 Hub ↗",
+    "title": "📦 Lamatic.ai Hub ↗",
     "href": "https://hub.lamatic.ai",
     "newWindow": true
   },
   "integrations": "Integrations",
+  "context": "Context",
   "models": "Models",
   "interface": "Interface",
 

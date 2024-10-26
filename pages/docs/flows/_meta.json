@@ -1,7 +1,7 @@
-{ "editor": "Flow editor",
-  "trigger": "Trigger",
-  "Nodes": "Nodes" ,
-  "Concepts": "Concepts",
-  "deploy": "Save and Deploy",
-  "Low-code_Config": "Low-Code Config"
+{ "editor": "Builder",
+  "building-flow": "Building a flow",
+  "nodes": "Nodes",
+  "variables": "Variables",
+  "debugging": "Debugging",
+  "Flow_Config": "Flow Config"
 }

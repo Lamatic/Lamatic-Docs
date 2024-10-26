@@ -70,7 +70,6 @@ const nextraConfig = withNextra({
             {
                 source: "/:path*",
                 headers: [
-                    { key: "x-forwarded-proto", value: "https" },
                     {
                         key: "x-frame-options",
                         value: "SAMEORIGIN",
@@ -186,6 +185,8 @@ const permanentRedirects = [
     ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
     
 ]
+
+// Caution : Overriding /public messes with the assets
 const rewrites = [
     // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
     // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
@@ -195,7 +196,7 @@ const rewrites = [
     ["/compare/:path*/", "https://blog.lamatic.ai/compare/:path*/"],
     ["/blog/:path*/", "https://blog.lamatic.ai/:path*/"],
     ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
-    ["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
+    //["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
     ["/content/:path*", "https://blog.lamatic.ai/content/:path*"],
     ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],

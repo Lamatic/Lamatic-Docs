@@ -177,6 +177,7 @@ const permanentRedirects = [
     ["/changelog", "https://product.lamatic.ai/changelog"],
     ["/slack", "https://lamatic.ai/docs/slack"],
     ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
+    ["/about", "https://lamatic.ai/about-us"],
     
 ]
 const rewrites = [

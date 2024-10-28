@@ -189,7 +189,7 @@ const permanentRedirects = [
     ['/docs/Test','https://lamatic.ai/docs/tests'],
     ['/docs/studio/Project/Settings/keys','https://lamatic.ai/docs/studio/project#api-keys'],
     ['/docs/organization/overview','https://lamatic.ai/docs/studio'],
-    ['/docs/Models','https://lamatic.ai/docs/models'],
+    // ['/docs/Models','https://lamatic.ai/docs/models'],
     // ['/docs/Logs','https://lamatic.ai/docs/logs'],
     // ['/docs/Jobs','https://lamatic.ai/docs/jobs'],
     // ['/docs/Integrations','https://lamatic.ai/docs/integrations'],

@@ -194,13 +194,12 @@ const permanentRedirects = [
     // ['/docs/Jobs','https://lamatic.ai/docs/jobs'],
     // ['/docs/Integrations','https://lamatic.ai/docs/integrations'],
     // ['/docs/Ide','https://lamatic.ai/docs/IDE'],
-    // ['/docs/graphql','https://lamatic.ai/docs/interface/graphQL'],
+    ['/docs/graphql','https://lamatic.ai/docs/interface/graphql'],
     // ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
     // ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
     ['/docs/flows/Low-code','https://lamatic.ai/docs/flows/Low-code_Config'],
     // ['/docs/Flows','https://lamatic.ai/docs/flows'],
     ['/docs/Edge-Deployments','https://lamatic.ai/docs/deployments'],
-    ['/docs/Context','https://lamatic.ai/docs/context'],
     ['/docs/apps/data-sources','https://lamatic.ai/docs/integrations#data-sources'],
     ['/careers','https://lamatic.ai/docs/career'],
     ['/marketplace/templates','https://hub.lamatic.ai/templates'],
@@ -208,6 +207,7 @@ const permanentRedirects = [
     ['/docs/widgets','https://lamatic.ai/docs/interface/'],
     // ['/docs/Reports','https://lamatic.ai/docs/reports'],
     ['/workflow','https://lamatic.ai/docs/flows'],
+    ['/aboutus','https://lamatic.ai/about-us'],
 
 
 

@@ -142,7 +142,7 @@ const nonPermanentRedirects = [
     ["/issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/new-issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/issues", "https://github.com/Lamatic/docs/issues"],
-
+    ["/get-a-demo", "/docs/demo"],
     ["/security", "/docs/data-security-privacy"],
     ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
     ["/new-idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
@@ -150,8 +150,9 @@ const nonPermanentRedirects = [
     ["/gh-support", "https://github.com/Lamatic/docs/discussions/categories/support"],
     ["/gh-discussions", "https://github.com/Lamatic/docs/discussions"],
     ["/docs/analytics", "/docs/analytics/overview"],
+    ['/docs/nodes/data-nodes/search-node','https://lamatic.ai/docs/interface/Widgets/search'],
+    ["/launch", "https://blog.lamatic.ai/announcements/lamatic-launch-week/"],
 
-    ["/launch", "/blog/launch-week-1"],
 
     // Redirect to overview pages
     ...[
@@ -183,7 +184,37 @@ const permanentRedirects = [
     ["/changelog", "https://product.lamatic.ai/changelog"],
     ["/slack", "https://lamatic.ai/docs/slack"],
     ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
-    
+    ["/about", "https://lamatic.ai/about-us"],
+    ['/docs/widgets','https://lamatic.ai/docs/interface/Widgets/search'],
+    ['/docs/Test','https://lamatic.ai/docs/tests'],
+    ['/docs/studio/Project/Settings/keys','https://lamatic.ai/docs/studio/project#api-keys'],
+    ['/docs/organization/overview','https://lamatic.ai/docs/studio'],
+    ['/docs/Models','https://lamatic.ai/docs/models'],
+    ['/docs/Logs','https://lamatic.ai/docs/logs'],
+    ['/docs/Jobs','https://lamatic.ai/docs/jobs'],
+    ['/docs/Integrations','https://lamatic.ai/docs/integrations'],
+    ['/docs/Ide','https://lamatic.ai/docs/IDE'],
+    ['/docs/graphql','https://lamatic.ai/docs/interface/graphQL'],
+    ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
+    ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
+    ['/docs/flows/Low-code','https://lamatic.ai/docs/flows/Low-code_Config'],
+    ['/docs/Flows','https://lamatic.ai/docs/flows'],
+    ['/docs/Edge-Deployments','https://lamatic.ai/docs/deployments'],
+    ['/docs/Context','https://lamatic.ai/docs/context'],
+    ['/docs/apps/data-sources','https://lamatic.ai/docs/integrations#data-sources'],
+    ['/careers','https://lamatic.ai/docs/career'],
+    ['/marketplace/templates','https://hub.lamatic.ai/templates'],
+    ['/marketplace/apps','https://hub.lamatic.ai/apps'],
+    ['/docs/widgets','https://lamatic.ai/docs/interface/'],
+    ['/docs/Reports','https://lamatic.ai/docs/reports'],
+    ['/workflow','https://lamatic.ai/docs/flows'],
+
+
+
+
+
+
+
 ]
 
 // Caution : Overriding /public messes with the assets

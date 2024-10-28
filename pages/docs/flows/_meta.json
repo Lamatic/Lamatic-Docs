@@ -1,7 +1,4 @@
 { "editor": "Flow editor",
-  "trigger": "Trigger",
-  "Nodes": "Nodes" ,
-  "Concepts": "Concepts",
-  "deploy": "Save and Deploy",
-  "Low-code_Config": "Low-Code Config"
+  "nodes": "Nodes" ,
+  "low-code_config": "Low-Code Config"
 }

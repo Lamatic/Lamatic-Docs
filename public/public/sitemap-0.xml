@@ -1,68 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-    <url><loc>https://lamatic.ai</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
-    <url><loc>https://lamatic.ai/docs</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/apps/apps</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/apps/credentials</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/apps/data-sources</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/cache</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/career</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/demo</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/edge</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/get-started</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/graphQL</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/home</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/keys</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/langfuse</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/legal/privacy-policy</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/legal/terms-of-service</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/logs</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/models/benchmark</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/models/model-credentials</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/models/usage-cost</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/LLM</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/RAG</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/decision-branch</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/generate-image</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/instructor</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/quality-check</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/agents/summarize</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/apps</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/data-nodes</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/data-nodes/chunking</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/data-nodes/index-node</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/data-nodes/read-file</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/data-nodes/vectorize</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/api</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/code</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/condition</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/experiment</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/followup</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/query-database</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/read-website</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/search-web</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/webhook</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/nodes/flow/workflow</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/organization/overview</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/organization/roles</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/posthog</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/slack</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/vector_stores/mapping</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/vector_stores/vector_stores</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/why-lamatic</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/branching</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/deploy</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/execution-logs</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/prompts</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/response</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/testing</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/triggers</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/docs/workflows/workflow_config</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/guides</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/privacy</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/support</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-    <url><loc>https://lamatic.ai/terms</loc><lastmod>2024-07-07T20:13:19.890Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>1</priority></url>
+<url><loc>https://lamatic.ai/docs</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/architecture</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/career</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/context</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/context/vectordb</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/context/vectordb/adding-data</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/contributing</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/demo</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/deployments</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/deployments/cache</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/flows</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/flows/editor</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/flows/low-code_config</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/flows/nodes</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/flows/trigger</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/get-started</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/ide</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/ide/code_ide</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/ide/graphql_ide</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/ide/prompt_ide</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/integrations</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/integrations/apps</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/integrations/credentials</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/interface</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/interface/graphQL</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/interface/webhooks</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/interface/widgets/chat</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/interface/widgets/search</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/jobs</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/legal/privacy-policy</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/legal/terms-of-service</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/logs</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/models</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/models/api-key-guide</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/models/benchmark</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/reports</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/reports/langfuse-integration</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/slack</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/studio</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/studio/project</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/tests</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/docs/why-lamatic</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/guides</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/privacy</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/support</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://lamatic.ai/terms</loc><lastmod>2024-10-29T14:25:24.669Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

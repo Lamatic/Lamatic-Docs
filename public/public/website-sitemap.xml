@@ -22,37 +22,42 @@
     </url>
     <url>
         <loc>
-            https://lamatic.ai/integrations
+            https://lamatic.ai/features/flow-builder
         </loc>
     </url>
     <url>
         <loc>
-            https://lamatic.ai/just-footer
+            https://lamatic.ai/features/interface-and-integration
         </loc>
     </url>
     <url>
         <loc>
-            https://lamatic.ai/integrations/github
+            https://lamatic.ai/features/edge-deployment-and-monitoring
         </loc>
     </url>
     <url>
         <loc>
-            https://lamatic.ai/integrations/google-sheets
+            https://lamatic.ai/case-studies
         </loc>
     </url>
     <url>
         <loc>
-            https://lamatic.ai/integrations/lorem-dolor-dolore
+            https://lamatic.ai/case-studies/84000
         </loc>
     </url>
     <url>
         <loc>
-            https://lamatic.ai/integrations/monday
+            https://lamatic.ai/case-studies/mwr-life
         </loc>
     </url>
     <url>
         <loc>
-            https://lamatic.ai/integrations/slack
+            https://lamatic.ai/case-studies/reveal
+        </loc>
+    </url>
+    <url>
+        <loc>
+            https://lamatic.ai/case-studies/traq-ai
         </loc>
     </url>
 </urlset>

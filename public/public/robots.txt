@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://lamatic.ai/docs
+
+# Sitemaps
+Sitemap: https://lamatic.ai/sitemap.xml

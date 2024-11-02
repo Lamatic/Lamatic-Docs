@@ -5,7 +5,8 @@ description: Test Cases in Lamatic Studio
 You can create a wide variety of test cases within your project, which can be utilized across different flows and scenarios. This approach significantly simplifies the process of managing JSON structures for diverse use cases, ultimately saving time and reducing potential errors. By creating reusable test cases, you can ensure consistency and efficiency in your testing process.
 
 ## **Test Cases**
-![img_3.png](./img_3.png)
+
+![img_17.png](./img_17.png)
 
 There are multiple ways to create and manage test cases in our system:
 
@@ -13,6 +14,7 @@ There are multiple ways to create and manage test cases in our system:
 - **Dedicated Test Sections**: Manage all your test cases in a centralized location for easier organization and maintenance.
 
 > ⚙️ **Pro Tip**: Simply add the Input JSON and specify the flows that will utilize them. This flexibility lets you tailor your testing approach to your project’s needs.
+
 
 ---
 
@@ -24,11 +26,13 @@ Enhance your testing capabilities by including **Expected Test Results** alongsi
 
 ---
 
-## **Deployment Tests**
+## Deployment Testing
+// TODO: Add Screenshot
 
-During deployments, you can select specific test cases to run automatically:
+Ensure smooth production transitions:
 
-- **Automatic Testing**: Our system will execute the flows using the pre-selected test cases during deployment.
-- **Rollbacks for Safety**: If any test fails during the deployment process, the system will automatically roll back to the previous stable release.
+- **Predefined Test Cases:** Set up automatic test cases to run before deployment.
+- **Deployment Condition:** The system deploys the project only if all tests pass.
+- **Failure Protocol:** In case of test failures, the system reverts to the last stable version.
 
 > 🔒 **Safeguard**: This extra layer of quality assurance helps maintain the integrity of your production environment, ensuring that only thoroughly tested changes are implemented.

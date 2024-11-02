@@ -1,4 +1,5 @@
 { "editor": "Flow editor",
   "nodes": "Nodes" ,
-  "low-code_config": "Low-Code Config"
+  "variables": "Variables",
+  "flow_config": "🚧 Flow Config"
 }

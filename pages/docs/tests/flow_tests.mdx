@@ -1,0 +1,82 @@
+---
+description: Flow builder in Lamatic.ai Studio
+---
+
+# Testing and Debugging
+
+[Lamatic.ai](http://Lamatic.ai) provides a comprehensive suite of tools to test and debug your flow effectively. This documentation covers essential testing methods to optimize your flow's performance in production.
+
+## Testing Methods
+
+
+
+### Method 1: Node-Level Testing
+// TODO: Add Screenshot
+
+Test individual nodes iteratively:
+
+- **Execution:** Click the `▶️` button on any node to execute it along with its connected preceding nodes.
+- **Output View:** Click on the node bar to access the debugging section and view the output after execution.
+
+### Method 2: Code and Prompt Testing
+// TODO: Add Screenshot
+
+Test specific components independently:
+
+- **Code & Prompts:** Test code in a code node or prompts in any AI generator node.
+- **Testing Button:** Click "Test" in the IDE to run the component. The system will prompt you to run prior nodes if needed to generate the output.
+
+### Method 3: Complete Flow Testing
+// TODO: Add Screenshot
+
+Run a full flow test for end-to-end execution:
+
+- **Execution:** Click the "Test" button to execute all nodes in sequence.
+- **Progress Tracking:** Observe node-level progress during execution.
+- **Output Review:** View the final output generated at the end of the flow.
+
+### Method 4: Save Test Case
+
+Ensure repeatable and consistent testing:
+
+- **Define Test Cases:** Create test cases for automated testing, reducing manual input for each test run.
+
+## Debugging and Preview Features
+
+### Debugging Tool
+// TODO: Add Screenshot
+
+After testing, use the debugging tool to:
+
+- **Detailed Output:** Review a node-by-node breakdown of the latest test execution.
+- **Issue Identification:** Diagnose and troubleshoot issues within your flow.
+
+### Preview Function
+// TODO: Add Screenshot
+
+For widget-triggered flows:
+
+- **UI Preview:** Use the preview feature to visualize widget appearance and functionality.
+- **Configuration Check:** Ensure interface elements are correctly set before deployment.
+
+## Trigger-Specific Testing Approaches
+
+Different triggers require unique testing methods:
+
+| **Trigger Type** | **Input Method**               | **Testing Procedure**                                       |
+|------------------|--------------------------------|-------------------------------------------------------------|
+| **API**          | Sample API request payload     | 1. Enter or choose the payload 2. Run the test              |
+| **Widget**       | Sample payload or interaction  | 1. Interact with the widget or enter/choose payload 2. Run the test |
+| **Webhook**      | Sample or actual webhook data  | 1. Send data to the specified webhook or enter/choose payload 2. Run the test |
+| **App**          | Sample payload or event sim    | 1. Perform the desired trigger event or enter/choose payload 2. Run the test |
+
+## Deployment Testing
+// TODO: Add Screenshot
+
+Ensure smooth production transitions:
+
+- **Predefined Test Cases:** Set up automatic test cases to run before deployment.
+- **Deployment Condition:** The system deploys the project only if all tests pass.
+- **Failure Protocol:** In case of test failures, the system reverts to the last stable version.
+
+By following these methods and utilizing [Lamatic.ai](http://Lamatic.ai)'s testing tools, you can ensure your flow is robust, efficient, and ready for production deployment.

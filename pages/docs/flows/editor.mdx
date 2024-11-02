@@ -1,3 +1,145 @@
 ---
-description: Lamatic Studio
+description: Flow Editor in Lamatic Studio
 ---
+# Editor Documentation for Nextra
+
+The Editor provides a comprehensive interface for building and editing GenAI workflows with an intuitive flowchart approach. This guide walks through key features and methods to help you utilize the Editor effectively.
+// TODO: Add Screenshot
+
+## Node Actions
+
+Nodes are essential components of any flow. Each node carries out a unique function using defined inputs and configurations. Here’s how to work with nodes:
+
+### Adding Nodes
+// TODO: Add Screenshot
+
+**Method**:
+1. Locate the ➕ icon in empty spaces or when hovering over connecting lines.
+2. Click the ➕ icon to open the node selection menu.
+3. Select the desired node type from the menu.
+4. The chosen node will be added to your flow at the selected location.
+
+### Configuring Nodes
+
+**Method**:
+1. Click on a node in your flow to select it.
+2. The configuration panel will appear on the right side of the screen.
+3. Modify settings (e.g., input parameters, output options) as needed.
+4. Changes apply automatically in real-time.
+
+### Reordering Nodes
+// TODO: Add Screenshot
+
+**Method**:
+1. Click and hold the node you want to move.
+2. Drag the node to its new position within the flow.
+3. Release the mouse to place the node; the flow will adjust automatically.
+4. Reordering nodes enables access to upstream variables, improving data flow between nodes.
+
+## Config
+
+The Config tab provides a low-code method to define flows using a YAML-like syntax, offering flexibility similar to GitHub Actions.
+
+**Method**:
+1. Go to the Config tab in the Editor.
+2. Edit YAML directly in the text area to specify nodes, properties, and connections.
+3. Follow YAML syntax to maintain proper structure.
+4. Changes automatically sync with the visual representation of your flow.
+5. Switch between visual and Config views to see updates in real-time.
+
+## Debugging
+// TODO: Add Screenshot
+
+The Editor includes robust debugging tools to ensure your flows work as expected.
+
+### Individual Node Debugging
+
+**Method**:
+1. Select the node you wish to debug.
+2. Find the debug option in the node’s configuration panel.
+3. Click the debug button to execute the node independently.
+4. Review outputs and any error messages in the debug console.
+5. Adjust node configurations based on the results.
+
+### Full Flow Testing
+// TODO: Add Screenshot
+
+**Method**:
+1. Click "Test" in the main toolbar to execute the entire flow.
+2. Observe each node’s progress in the debug console.
+3. Review the final output and any intermediate results.
+4. Adjust nodes as needed to optimize performance.
+
+### Deployment Testing
+// TODO: Add Screenshot
+
+**Method**:
+1. Open deployment settings for your project.
+2. Configure automated tests that run before each deployment.
+3. Set success criteria (e.g., expected outputs, performance).
+4. Deploy your flow; if tests fail, deployment will roll back.
+5. Review test results, make changes, and redeploy as needed.
+
+## Saving and Sharing
+
+Save and share flows to maintain work continuity and foster collaboration.
+
+### Saving Flows
+
+**Method**:
+1. Click the "Save" button in the main toolbar.
+2. Optionally, add a commit message to document your changes.
+3. Save regularly, as autosave is not supported.
+
+### Sharing Flows
+
+**Method**:
+1. Click "Share" in the Editor to generate a unique URL.
+2. Copy and distribute this URL within your organization.
+3. Recipients can access and edit shared flows, enhancing collaborative efforts.
+
+### Creating Templates
+// TODO: Add Screenshot
+
+**Method**:
+1. Open the flow you wish to template.
+2. Choose "Create Template" from the Editor menu.
+3. Select sharing scope:
+    - **Organization**: Share within your team.
+    - **Public**: Publish to the hub for broad access.
+4. Add a title and description to guide other users.
+5. Click "Create" to finalize and publish.
+
+## Deployment
+
+Deploy your completed flow to make it operational.
+
+### Deploying Flows
+// TODO: Add Screenshot
+
+**Method**:
+1. Ensure all changes are saved and tested.
+2. Click "Deploy" in the main toolbar.
+3. Confirm deployment in the summary view, which lists flows and changes.
+4. Monitor progress and resolve any errors or warnings.
+
+### Flow Activation
+// TODO: Add Screenshot
+
+**Method**:
+1. Go to the project dashboard or flow management section.
+2. Find the list of deployed flows.
+3. Toggle the activation switch to enable or disable specific flows.
+
+### Integration Setup
+// TODO: Add Screenshot
+
+**Method**:
+1. After deployment, open the "Integration" or "API" section in your dashboard.
+2. Follow the provided instructions for integration, including:
+    - API endpoint details
+    - Authentication methods
+    - Sample code snippets in various languages
+3. Use these resources to integrate your GenAI flow with external applications.
+
+By following these step-by-step methods, you can effectively utilize the Editor to create, configure, debug, and deploy GenAI flows, maximizing the potential of your AI-driven projects.

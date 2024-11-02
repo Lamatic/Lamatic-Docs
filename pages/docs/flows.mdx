@@ -1,13 +1,57 @@
 ---
-description: Lamatic Studio
+description: Flow builder in Lamatic.ai Studio
 ---
 
-TODO
-1. High Level Explanation of Flows
-2. Different Types of Flows
-    1. Agents
-    2. Automations
-    3. Processes
-3. Managing Different Flows
-4. templates
-5. Sharing and Deployments
+# Lamatic Flows
+
+Flows are the core building blocks of Lamatic, enabling you to connect various modules (nodes) in a meaningful sequence to achieve your desired outcomes. This guide provides a comprehensive overview of understanding and creating flows in Lamatic.
+
+## What are Flows?
+
+Flows are sequences of interconnected nodes that process and transform data. They allow you to build complex automation and data-processing pipelines with ease.
+
+## Creating a Flow
+
+// TODO: Add Screenshot
+
+To create a flow:
+
+1. **Select a Trigger Node:** Begin by choosing a trigger node to initiate your flow.
+2. **Add Processing Nodes:** Add subsequent nodes that will handle and process your data.
+3. **Arrange Nodes:** Drag and place nodes in the desired order to shape your flow.
+4. **Connect Nodes:** Define the data flow and execution path by connecting nodes.
+
+## Key Components of a Flow
+
+// TODO: Add Screenshot
+
+### Trigger Node
+
+A trigger initiates the flow. It can be a built-in tool or an integration with an external application. There are two main trigger types:
+
+- **Event Trigger:** Triggered by a single event, resulting in one-time execution (e.g., a Slack message).
+   - **Example:** A new message in a Slack channel starts the flow.
+
+- **Batch Trigger:** Triggered by batch processing, executing the flow multiple times based on the number of items in the batch (e.g., a PostgreSQL sync for new records).
+   - **Example:** A database sync that processes 100 new records will run the flow 100 times.
+
+### Action Nodes
+
+Action nodes perform the main operations in your flow, processing data step-by-step based on your configuration.
+
+- **Built-in Tools & Integrations:** Choose from built-in tools like AI nodes or connect with external applications that support similar functionality.
+- **Logical Arrangement:** Arrange nodes sequentially to ensure a smooth data-processing pipeline.
+- **Parallel Processing (Branch Node):** Use branch nodes to execute nodes in parallel for faster, more efficient workflows when applicable.
+
+### Final Node (Response)
+
+The final step of your flow can send output to an external system, which is particularly useful for flows initiated by triggers like Chat or GraphQL API integrations.
+
+## Best Practices
+
+- **Clear Goal:** Design each flow with a specific objective.
+- **Thorough Testing:** Test flows with various input scenarios to validate reliability.
+- **Descriptive Naming:** Use descriptive node names to enhance readability.
+- **Regular Optimization:** Periodically review and optimize flows to ensure they run efficiently.
+
+By mastering these elements, you’ll be equipped to build robust, efficient flows that streamline and automate complex workflows in Lamatic.

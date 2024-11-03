@@ -17,8 +17,9 @@
     "title": "🛠️ Build"
   },
   "studio": "Studio",
-  "flows": "🚧 Flows",
+  "flows": "Flows",
   "tests": "Tests",
+  "templates": "Templates",
   "context": "Context",
   "ide": "IDE",
 

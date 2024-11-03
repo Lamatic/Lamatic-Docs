@@ -185,7 +185,6 @@ const permanentRedirects = [
     ["/slack", "https://lamatic.ai/docs/slack"],
     ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
     ["/about", "https://lamatic.ai/about-us"],
-    ['/docs/widgets','https://lamatic.ai/docs/interface/Widgets/search'],
     ['/docs/Test','https://lamatic.ai/docs/tests'],
     ['/docs/studio/Project/Settings/keys','https://lamatic.ai/docs/studio/project#api-keys'],
     ['/docs/organization/overview','https://lamatic.ai/docs/studio'],
@@ -197,7 +196,7 @@ const permanentRedirects = [
     ['/docs/graphql','https://lamatic.ai/docs/interface/graphql'],
     // ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
     // ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
-    ['/docs/flows/Low-code','https://lamatic.ai/docs/flows/Low-code_Config'],
+    ['/docs/flows/Low-code','https://lamatic.ai/docs/flows/flow_config'],
     // ['/docs/Flows','https://lamatic.ai/docs/flows'],
     ['/docs/Edge-Deployments','https://lamatic.ai/docs/deployments'],
     ['/docs/apps/data-sources','https://lamatic.ai/docs/integrations#data-sources'],
@@ -206,9 +205,11 @@ const permanentRedirects = [
     ['/marketplace/apps','https://hub.lamatic.ai/apps'],
     ['/docs/widgets','https://lamatic.ai/docs/interface/'],
     // ['/docs/Reports','https://lamatic.ai/docs/reports'],
-    ['/workflow','https://lamatic.ai/docs/flows'],
+    ['/docs/workflow','https://lamatic.ai/docs/flows'],
     ['/aboutus','https://lamatic.ai/about-us'],
     ['/docs/langfuse-integration','https://www.lamatic.ai/docs/reports/langfuse-integration'],
+    ['/docs/flows/trigger','https://www.lamatic.ai/docs/flows'],
+    ['/docs/flows/low-code_config','/docs/flow_config'],
 
 
 

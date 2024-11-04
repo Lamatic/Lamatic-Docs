@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - github-index-lamatic  # Adjust to your branch as necessary
+      - github-index
     paths: 
       - '**.mdx'  # This ensures the workflow only runs when .json files are changed
 

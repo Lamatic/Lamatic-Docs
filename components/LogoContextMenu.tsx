@@ -28,7 +28,7 @@ const LogoContextMenu: React.FC<{
         <DropdownMenuItem
           onClick={(e) => {
             e.preventDefault();
-            window.open("/lamatic-logo-light.png", "_blank");
+            window.open("/public/lamatic-logo-light.png", "_blank");
           }}
         >
           <Download size={14} className="mr-2" />
@@ -37,7 +37,7 @@ const LogoContextMenu: React.FC<{
         <DropdownMenuItem
           onClick={(e) => {
             e.preventDefault();
-            window.open("/lamatic-logo-light.svg", "_blank");
+            window.open("/public/lamatic-logo-light.svg", "_blank");
           }}
         >
           <Download size={14} className="mr-2" />

@@ -70,7 +70,6 @@ const nextraConfig = withNextra({
             {
                 source: "/:path*",
                 headers: [
-                    { key: "x-forwarded-proto", value: "https" },
                     {
                         key: "x-frame-options",
                         value: "SAMEORIGIN",
@@ -143,7 +142,7 @@ const nonPermanentRedirects = [
     ["/issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/new-issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/issues", "https://github.com/Lamatic/docs/issues"],
-
+    ["/get-a-demo", "/docs/demo"],
     ["/security", "/docs/data-security-privacy"],
     ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
     ["/new-idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
@@ -151,8 +150,9 @@ const nonPermanentRedirects = [
     ["/gh-support", "https://github.com/Lamatic/docs/discussions/categories/support"],
     ["/gh-discussions", "https://github.com/Lamatic/docs/discussions"],
     ["/docs/analytics", "/docs/analytics/overview"],
+    ['/docs/nodes/data-nodes/search-node','https://lamatic.ai/docs/interface/Widgets/search'],
+    ["/launch", "https://blog.lamatic.ai/announcements/lamatic-launch-week/"],
 
-    ["/launch", "/blog/launch-week-1"],
 
     // Redirect to overview pages
     ...[
@@ -184,8 +184,42 @@ const permanentRedirects = [
     ["/changelog", "https://product.lamatic.ai/changelog"],
     ["/slack", "https://lamatic.ai/docs/slack"],
     ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
-    
+    ["/about", "https://lamatic.ai/about-us"],
+    ['/docs/Test','https://lamatic.ai/docs/tests'],
+    ['/docs/studio/Project/Settings/keys','https://lamatic.ai/docs/studio/project#api-keys'],
+    ['/docs/organization/overview','https://lamatic.ai/docs/studio'],
+    // ['/docs/Models','https://lamatic.ai/docs/models'],
+    // ['/docs/Logs','https://lamatic.ai/docs/logs'],
+    // ['/docs/Jobs','https://lamatic.ai/docs/jobs'],
+    // ['/docs/Integrations','https://lamatic.ai/docs/integrations'],
+    // ['/docs/Ide','https://lamatic.ai/docs/IDE'],
+    ['/docs/graphql','https://lamatic.ai/docs/interface/graphql'],
+    // ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
+    // ['/docs/graphQL','https://lamatic.ai/docs/interface/graphQL'],
+    ['/docs/flows/Low-code','https://lamatic.ai/docs/flows/flow_config'],
+    // ['/docs/Flows','https://lamatic.ai/docs/flows'],
+    ['/docs/Edge-Deployments','https://lamatic.ai/docs/deployments'],
+    ['/docs/apps/data-sources','https://lamatic.ai/docs/integrations#data-sources'],
+    ['/careers','https://lamatic.ai/docs/career'],
+    ['/marketplace/templates','https://hub.lamatic.ai/templates'],
+    ['/marketplace/apps','https://hub.lamatic.ai/apps'],
+    ['/docs/widgets','https://lamatic.ai/docs/interface/'],
+    // ['/docs/Reports','https://lamatic.ai/docs/reports'],
+    ['/docs/workflow','https://lamatic.ai/docs/flows'],
+    ['/aboutus','https://lamatic.ai/about-us'],
+    ['/docs/langfuse-integration','https://www.lamatic.ai/docs/reports/langfuse-integration'],
+    ['/docs/flows/trigger','https://www.lamatic.ai/docs/flows'],
+    ['/docs/flows/low-code_config','/docs/flow_config'],
+
+
+
+
+
+
+
 ]
+
+// Caution : Overriding /public messes with the assets
 const rewrites = [
     // ["/marketplace", "https://marketplace.lamatic.ai/marketplace"],
     // ["/marketplace/sitemap.xml", "https://marketplace.lamatic.ai/sitemap.xml"],
@@ -195,11 +229,13 @@ const rewrites = [
     ["/compare/:path*/", "https://blog.lamatic.ai/compare/:path*/"],
     ["/blog/:path*/", "https://blog.lamatic.ai/:path*/"],
     ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
-    ["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
+    //["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
     ["/content/:path*", "https://blog.lamatic.ai/content/:path*"],
     ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
-    ["/:path((?!docs|blog|guides|_next|public|assets|images|api|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
+    ["/sitemap.xml", "/public/website-sitemap.xml"],
+    ["/robots.txt", "/public/robots.txt"],
+    ["/:path((?!docs|blog|guides|_next|public|assets|images|api|robots.txt|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 
 ]
 

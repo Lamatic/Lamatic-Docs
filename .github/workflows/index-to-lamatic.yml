@@ -13,7 +13,7 @@ jobs:
     
     steps:
     - name: Send File Changes to Webhook
-      uses: Lamatic/Index-to-lamatic@latest
+      uses: Lamatic/Index-to-lamatic@v1.2
       with:
         webhook_url: ${{ secrets.WEBHOOK_URL }}
         webhook_key: ${{ secrets.WEBHOOK_KEY }}

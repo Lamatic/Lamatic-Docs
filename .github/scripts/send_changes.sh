@@ -6,23 +6,46 @@ set -x
 
 echo $WEBHOOK_URL
 
-# Fetch all the history for the branch
+# Ensure FILE_TYPE is set
+if [ -z "$FILE_TYPE" ]; then
+  echo "FILE_TYPE variable is not set. Please provide a file extension (e.g., 'mdx', 'json')."
+  exit 1
+fi
+
+# Fetch all history for the branch
 git fetch --depth=2 origin $GITHUB_REF:refs/remotes/origin/$GITHUB_REF
 
-# Get a list of changed .json files
-changed_files=$(git diff --name-only HEAD^ HEAD | grep '\.mdx$') || {
-  echo "No JSON files changed or grep command failed."
-  exit 0
-}
+# Create or update cache index file
+cache_file=".file_cache_$FILE_TYPE.txt"
+if [ ! -f "$cache_file" ]; then
+  # First run: index all files with the specified extension and send all of them
+  find . -type f -name "*.$FILE_TYPE" > "$cache_file"
+  all_files=$(cat "$cache_file")
+else
+  # Not the first run: identify new or modified files
+  all_files=$(find . -type f -name "*.$FILE_TYPE")
+  changed_files=$(git diff --name-only HEAD^ HEAD | grep "\.$FILE_TYPE$" || true)
+fi
 
-# Check if changed_files is empty
-if [ -z "$changed_files" ]; then
-  echo "No JSON files have been changed."
+# Check if there are any new or modified files to send
+if [ -z "$changed_files" ] && [ -z "$all_files" ]; then
+  echo "No new or modified .$FILE_TYPE files to send."
   exit 0
 fi
 
+# Update cache to include any newly added files
+if [ -n "$changed_files" ]; then
+  # Merge new/modified files with the cache
+  printf "%s\n" "$changed_files" >> "$cache_file"
+  # Remove duplicates in cache file
+  sort -u -o "$cache_file" "$cache_file"
+fi
+
+# Choose files to send: first run sends all, subsequent runs send only changed files
+files_to_send=${changed_files:-$all_files}
+
 # Iterate over each file and send its content to the webhook
-for file in $changed_files; do
+for file in $files_to_send; do
   if [ ! -f "$file" ]; then
     echo "The file $file does not exist or has been deleted."
     continue

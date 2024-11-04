@@ -1,12 +1,11 @@
-name: Send JSON File Changes
+name: Send File Changes
 
 on:
   push:
     branches:
       - github-index-lamatic  # Adjust to your branch as necessary
-      - github-index
     paths: 
-      - '**.mdx'  # This ensures the workflow only runs when .certain files are changed
+      - '**.mdx'  # Set File Types here
 
 jobs:
   send-changes:
@@ -16,10 +15,15 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
       with:
-        fetch-depth: 2  # Fetch the last 2 commits to compare changes
+        fetch-depth: 2 
 
-    - name: Send JSON changes to webhook
-      run: bash .github/scripts/send_changes.sh ${{ secrets.WEBHOOK_URL }} ${{ secrets.WEBHOOK_KEY }}
+    - name: Set File Type Variable
+      run: echo "FILE_TYPE=mdx" >> $GITHUB_ENV # Set File Types to Index
+
+    - name: Send File Changes to Webhook
+      run: bash .github/scripts/send_changes.sh
       env:
         GITHUB_REF: ${{ github.ref }}
         WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+        WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
+        FILE_TYPE: ${{ env.FILE_TYPE }}

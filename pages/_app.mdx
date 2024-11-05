@@ -9,6 +9,7 @@ import { PostHogProvider } from "posthog-js/react";
 import { Hubspot, hsPageView } from "@/components/analytics/hubspot";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import ChatbotScript from "@/components/ChatbotScript";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
@@ -38,6 +39,7 @@ export default function App({ Component, pageProps }) {
     <div className={`${GeistSans.variable} font-sans ${GeistMono.variable}`}>
       <PostHogProvider client={posthog}>
         <Component {...pageProps} />
+        <ChatbotScript />
       </PostHogProvider>
     </div>
   );

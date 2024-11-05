@@ -17,7 +17,7 @@ const ChatbotScript = () => {
       policyUrl: 'https://lamatic.ai/docs/legal/privacy-policy',
       apiUrl: 'https://production-sandbox566-googledrivedocumentation671.lamatic.workers.dev',
       workflowId: '4dd10838-3c37-4720-b446-4d57b3476372',
-      chatHeaderBgColor: 'white',
+      chatHeaderBgColor: 'black',
       imageUrl: 'https://owcowialbyyyniqocppr.supabase.co/storage/v1/object/public/icons/Lamatic.svg',
       userMessageBgColor: '#E0F7FA',
       userMessageTextColor: 'blue',

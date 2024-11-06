@@ -27,7 +27,7 @@ Models are the fundamental building blocks of any Generative AI project. They se
 Models are typically offered by providers, which are companies or organizations responsible for the development, training, and hosting of these AI models. These providers invest significant resources in creating and maintaining state-of-the-art models that can be leveraged by developers and businesses. For open-source models, the provider may be the organization or company that hosts and maintains the model infrastructure, even if they didn't originally develop the model.
 ### Available Providers
 
-<div className="relative w-full h-[700px] overflow-hidden">
+<div className="relative w-full h-[1100px] overflow-hidden">
     <iframe
         className="absolute top-0 left-0 w-full h-full overflow-x-hidden"
         src="https://airtable.com/embed/app3p6bgbAipAiEOX/shrpj5NrkMJARowJU"
@@ -42,7 +42,7 @@ Models are typically offered by providers, which are companies or organizations 
 
 ## **Adding a New Provider → Model**
 
-To incorporate a model into your workflow, the first step is to add the necessary API credentials for that specific model. Lamatic employs robust encryption methods to securely store these API keys, ensuring that they are only accessed when a request is made. As a security measure, you have the flexibility to delete these credentials at any time. Additionally, it's considered a best practice to regularly rotate these credentials to maintain optimal security. Lamatic allows you to add and manage different sets of credentials for various providers, giving you granular control over your model access.
+To incorporate a model into your flow, the first step is to add the necessary API credentials for that specific model. Lamatic employs robust encryption methods to securely store these API keys, ensuring that they are only accessed when a request is made. As a security measure, you have the flexibility to delete these credentials at any time. Additionally, it's considered a best practice to regularly rotate these credentials to maintain optimal security. Lamatic allows you to add and manage different sets of credentials for various providers, giving you granular control over your model access.
 
 > 💡 **Tip**: Enhance your usage monitoring by setting up separate API credentials for Development and Production environments within Lamatic. This practice allows for more effective tracking and management of resource utilization across different stages of your project.
 
@@ -56,12 +56,12 @@ To incorporate a model into your workflow, the first step is to add the necessar
 
 ## **Using Models in a Flow**
 
-Lamatic's flexible architecture allows you to incorporate multiple models, either of the same type or different types, within a single flow. To integrate a model into your workflow, begin by dragging a compatible node (such as a Text Generator node) into the flow builder interface. Once placed, you can select the desired model from the list of available options, which are populated based on the credentials you've added for various providers.
+Lamatic's flexible architecture allows you to incorporate multiple models, either of the same type or different types, within a single flow. To integrate a model into your flow, begin by dragging a compatible node (such as a Text Generator node) into the flow builder interface. Once placed, you can select the desired model from the list of available options, which are populated based on the credentials you've added for various providers.
 
 ---
 
 ## **Model Defaults**
 
-Lamatic offers a convenient feature that allows you to establish default models for your entire project. When you drag a compatible node into the flow, these default models are automatically selected, streamlining your workflow. If you decide to modify the default model settings, the changes will be reflected across all instances where the default option is selected. This functionality provides a quick and efficient method to switch between models on a project-wide scale, eliminating the need to manually update individual model selections throughout your flow.
+Lamatic offers a convenient feature that allows you to establish default models for your entire project. When you drag a compatible node into the flow, these default models are automatically selected, streamlining your flow. If you decide to modify the default model settings, the changes will be reflected across all instances where the default option is selected. This functionality provides a quick and efficient method to switch between models on a project-wide scale, eliminating the need to manually update individual model selections throughout your flow.
 
 > ⚡ **Quick Tip**: Setting up default models allows you to quickly switch models project-wide without having to change them individually in each flow node.

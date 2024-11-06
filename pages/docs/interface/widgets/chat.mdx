@@ -2,9 +2,7 @@
 
 Integrate our powerful chat widget into your website using the chat nodes. This widget leverages AI-driven conversation technology to provide interactive and context-aware responses to user queries. Now, you can offer this advanced chat functionality directly on your site.
 
-<br />
-
-<img src="/assets/chat.png" alt="Chat Widget Example" />
+![img_1.png](./img_1.png)
 
 ## Steps to Integrate the Chat Widget
 
@@ -56,65 +54,20 @@ Here's how to include the CDN script and configure the widget:
 
 Below is the detailed documentation for the props used in the chat widget configuration:
 
-##### `apiUrl` (required)
-
-- **Type:** `string`
-- **Description:** The base URL of your project endpoint. This is mandatory for the widget to function correctly.
-
-##### `workflowId` (required)
-
-- **Type:** `string`
-- **Description:** The workflow ID where you have set up your chat configuration. This is also mandatory.
-
-##### `floatingButtonId`
-
-- **Type:** `string`
-- **Description:** The ID of a custom button that triggers the chat dialog. This prop is optional, and if not provided, the default floating button will be used.
-
-##### `chatHeaderBgColor`
-
-- **Type:** `string`
-- **Description:** The background color for the chat header. Accepts any valid CSS color value. If not specified, a default color will be used.
-
-##### `imageUrl` (required)
-
-- **Type:** `string`
-- **Description:** The URL of the image to be displayed in the chat widget. This is mandatory and typically represents the bot or company logo.
-
-##### `userMessageBgColor`
-
-- **Type:** `string`
-- **Description:** The background color for user messages in the chat. Accepts any valid CSS color value.
-
-##### `userMessageTextColor`
-
-- **Type:** `string`
-- **Description:** The text color for user messages in the chat. Accepts any valid CSS color value.
-
-##### `agentMessageBgColor`
-
-- **Type:** `string`
-- **Description:** The background color for agent (bot) messages in the chat. Accepts any valid CSS color value.
-
-##### `agentMessageTextColor`
-
-- **Type:** `string`
-- **Description:** The text color for agent (bot) messages in the chat. Accepts any valid CSS color value.
-
-##### `position`
-
-- **Type:** `string`
-- **Description:** Determines the position of the chat widget on the screen. Accepts either "left" or "right". This prop is only applicable if no `floatingButtonId` is provided.
-
-##### `floatingButtonIcon`
-
-- **Type:** `string`
-- **Description:** The icon to be displayed on the floating button. Can be an emoji (e.g., "💬") or a URL to an image. This prop is only used if no `floatingButtonId` is provided.
-
-##### `userId`
-
-- **Type:** `string`
-- **Description:** An optional identifier for the user. This can be used to maintain user context across sessions or for analytics purposes.
+| Parameter              | Type     | Description                                                                                                                                                        |
+|------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `apiUrl` (required)    | `string` | The base URL of your project endpoint. This is mandatory for the widget to function correctly.                                                                    |
+| `workflowId` (required)| `string` | The workflow ID where you have set up your chat configuration. This is also mandatory.                                                                            |
+| `floatingButtonId`     | `string` | The ID of a custom button that triggers the chat dialog. This prop is optional, and if not provided, the default floating button will be used.                   |
+| `chatHeaderBgColor`    | `string` | The background color for the chat header. Accepts any valid CSS color value. If not specified, a default color will be used.                                     |
+| `imageUrl` (required)  | `string` | The URL of the image to be displayed in the chat widget. This is mandatory and typically represents the bot or company logo.                                     |
+| `userMessageBgColor`   | `string` | The background color for user messages in the chat. Accepts any valid CSS color value.                                                                           |
+| `userMessageTextColor` | `string` | The text color for user messages in the chat. Accepts any valid CSS color value.                                                                                 |
+| `agentMessageBgColor`  | `string` | The background color for agent (bot) messages in the chat. Accepts any valid CSS color value.                                                                    |
+| `agentMessageTextColor`| `string` | The text color for agent (bot) messages in the chat. Accepts any valid CSS color value.                                                                          |
+| `position`             | `string` | Determines the position of the chat widget on the screen. Accepts either "left" or "right". This prop is only applicable if no `floatingButtonId` is provided.   |
+| `floatingButtonIcon`   | `string` | The icon to be displayed on the floating button. Can be an emoji (e.g., "💬") or a URL to an image. This prop is only used if no `floatingButtonId` is provided. |
+| `userId`               | `string` | An optional identifier for the user. This can be used to maintain user context across sessions or for analytics purposes.                                        |
 
 ### 3. Troubleshooting
 

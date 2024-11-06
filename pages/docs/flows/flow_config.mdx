@@ -2,234 +2,130 @@
 description: Flow Config
 ---
 
-# Flow Config
+# Flow Config (YAML Format)
 
-<Callout type="warning" emoji="⚠️">
-    **We are improving Flow Config** <br/>
-    We are currently working on improving Config and its docs, information here might be outdated.
-</Callout>
 
-At Lamatic.ai, we understand that every GenAI application has unique requirements and complexities. To empower our users with the flexibility and control they need, we've introduced the Flow Configuration feature, transforming our platform into a powerful Low Code, No Code solution.
+![img_6.png](./img_6.png)
 
-![Flow Config](/assets/workflow_config.png)
+At Lamatic.ai, we’ve enhanced our Flow Configuration to use YAML syntax, enabling a clear and organized way to define GenAI workflows. This new structure supports both Low Code and No Code flexibility, allowing users to design and implement flows that meet specific needs efficiently. The YAML configuration is composed of `triggerNode`, `nodes`, and `responseNode`, each playing a distinct role in the workflow setup.
 
-## Flow Config Editor (Code View)
+## What is Flow Config?
 
-Lamatic.ai's Flow Config Editor( Code View ) is a game-changer for developers and power users alike. This intuitive code editor allows you to define and customize your entire Flow configuration using a simple yet expressive syntax.
-It is a combination of `nodes` and `edges`. 
+Flow Config is a way to define, structure, and control GenAI workflows in Lamatic.ai’s platform. It represents each workflow as a series of interconnected components (or nodes) that perform specific tasks, with connections indicating the flow of data or control between these tasks. Using YAML, users can clearly configure these workflows, benefiting both developers seeking fine-tuned control and non-technical users leveraging a simplified, visual interface.
 
-The nodes represent the different components of the Flow, while the edges define the connections between these components.
-To enter into the code view of the Flow, click on the `Code View` toggle on the top of the Flow editor. 
+## Key Definitions
 
-With a simple click, you can switch between the visual, no-code interface and the Flow Config Code Editor, allowing you to choose the development approach that best suits your needs.
+| **Parameter**    | **Type**               | **Definition**                                                                                          | **Example**                                                                                                                     |
+|------------------|------------------------|---------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
+| **nodeId**       | `string`               | A unique identifier for each node in the workflow. It is used to connect nodes and establish dependencies. | `LLMNode_6dek86wu8w`                                                                                                          |
+| **nodeType**     | `string`               | The type of node, indicating the functionality or purpose of the node (e.g., `graphqlNode`, `LLMNode`, `branchNode`). | `LLMNode`                                                                                                                     |
+| **nodeName**     | `string`               | A human-readable name for the node, helping users understand the node’s role in the workflow.            | `Demo Script Generator`                                                                                                       |
+| **values**       | `object`               | A dictionary of key-value pairs that contain specific settings and configurations for the node. Common values include prompts, model details, and mappings. | ```promptTemplate: "{{triggerNode_1.output.input}}", systemPrompt: "AI Assistant", messages: "[]", generativeModel: { provider: "openai", cred: "Gpt-4o", type: "text", id: "afd7b91d", model: "gpt-4o-mini" }``` |
+| **needs**        | `array`                | Specifies dependencies, indicating the preceding nodes required for the current node’s operation.        | `[ plus-node-branch-graphqlNode_0gnka1xu15804 ]`                                                                              |
 
-Let's understand the Flow config with an example:
+## Different Parts of the Config
 
-**Example Flow**
-![Example Flow](/assets/workflow_config_example.png)
+### a. `triggerNode`
+**What is it?**  
+The `triggerNode` is the starting point of the Flow. It initiates the workflow and is generally configured to retrieve or generate initial data. For example, a `graphqlNode` can be used as a triggerNode to pull data from a GraphQL source.
 
-**Code view for the Flow:**
-```json
-{
-  "nodes": [
-        {
-            "id": "1",
-            "data": {
-                "name": "TriggerNode"
-            },
-            "type": "TriggerNode",
-            "width": 240,
-            "height": 107,
-            "position": {
-                "x": 0,
-                "y": 0
-            },
-            "sourcePosition": "bottom",
-            "targetPosition": "top"
-        },
-        {
-            "id": "3",
-            "data": {
-                "label": "something"
-            },
-            "type": "OutputNode",
-            "width": 240,
-            "height": 107,
-            "dragging": false,
-            "position": {
-                "x": 0,
-                "y": 1200
-            },
-            "selected": false,
-            "sourcePosition": "bottom",
-            "targetPosition": "top",
-            "positionAbsolute": {
-                "x": 460.9596029374933,
-                "y": 1211.7389417936542
-            }
-        },
-        {
-            "id": "dndnode_0",
-            "data": {
-                "label": "dynamicNode node",
-                "nodeId": "LLMNode",
-                "values": {
-                    "nodeName": "LLM",
-                    "promptTemplate": "You are an expert Technical Blog Writer. Write a blog on the topic ${Flow['start']['input']}.",
-                    "generativeModelName": "gpt-4o"
-                }
-            },
-            "type": "dynamicNode",
-            "width": 240,
-            "height": 69,
-            "dragging": false,
-            "position": {
-                "x": 676.8417187504645,
-                "y": 242.5268006375551
-            },
-            "selected": false
-        }
-  ],
-  "edges": [
-    {
-            "id": "reactflow__edge-1-dndnode_0",
-            "type": "CustomAddEdge",
-            "source": "1",
-            "target": "dndnode_0",
-            "sourceHandle": null,
-            "targetHandle": null
-        },
-        {
-            "id": "reactflow__edge-dndnode_0-3",
-            "type": "CustomAddEdge",
-            "source": "dndnode_0",
-            "target": "3",
-            "sourceHandle": null,
-            "targetHandle": null
-        }
-  ]
-}
+**Syntax and Values:**
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: graphqlNode
+  nodeName: API Request
+  values:
+    advance_schema: |-
+      {
+        "input": "string"
+      }
+    responeType: realtime
+```
+- **nodeId**: Unique identifier for the trigger node.
+- **nodeType**: Typically `graphqlNode`, identifying it as a data retrieval point.
+- **nodeName**: Descriptive name (e.g., `Graphql`).
+- **values**: Settings specific to the trigger node, such as `responseType` and `advance_schema`.
+
+### b. `nodes`
+**What is it?**  
+The `nodes` section defines each step in the workflow. These nodes perform specific tasks, such as generating content or making decisions. Nodes can be dynamic (e.g., `LLMNode` for language models) or static (e.g., `branchNode` for logic branches).
+
+**Syntax and Values:**
+```yaml
+nodes:
+  - nodeId: LLMNode_187
+    nodeType: LLMNode
+    nodeName: Text Generate
+    values:
+      promptTemplate: Prompt Goes here {{triggerNode_1.output.input}}
+      systemPrompt: You are an AI Assistant
+      messages: '[]'
+      generativeModelName:
+        provider_name: openai
+        credential_name: Gpt-4o Lamatic
+        type: generator/text
+        credentialId: afd7b91d-1c69-40cd-a9d6-cdca1ac5927a
+        model_name: gpt-4o-mini
+    needs:
+      - triggerNode_1
+```
+> Note: The `nodes` are indented under the `nodes` key in the YAML configuration one level below the Nodes and there adjacent nodes are listed on same level with `-` prefix.
+
+- **nodeId**: Unique identifier for each node in the nodes list.
+- **nodeType**: Indicates the node’s function, like `LLMNode` or `branchNode`.
+- **nodeName**: Human-readable name to help identify the node.
+- **values**: Contains settings like `promptTemplate` for content generation and `generativeModelName` for AI model selection.
+- **needs**: Dependencies specifying prior nodes required for this node’s execution.
+
+**Example of Branching Node:**
+```yaml
+ - nodeId: branchNode_423
+    nodeType: branchNode
+    nodeName: Branching
+    values:
+      branches:
+        - label: Branch 1
+          value: branchNode_423-addNode_754
+        - label: Branch 2
+          value: branchNode_423-addNode_151
+    needs:
+      - LLMNode_187
+    branches:
+      - label: Branch 1
+        value: plus-node-addNode_754941
+      - label: Branch 2
+        value: plus-node-addNode_151825
+```
+- **branches**: Lists branching options, each with a label and value that defines the connection to subsequent nodes.
+
+### c. `responseNode`
+**What is it?**  
+The `responseNode` is the endpoint of the Flow, aggregating and outputting the results from the previous nodes. It often combines results from multiple nodes into a single response format.
+
+**Syntax and Values:**
+
+```yaml
+responseNode:
+  nodeId: responseNode_triggerNode_1
+  nodeType: graphqlResponseNode
+  nodeName: API Response
+  values:
+    outputMapping: |-
+      {
+        "output": "{{LLMNode_187.output.generatedResponse}}"
+      }
+  needs:
+    - plus-node-addNode_161562
 ```
 
-Now, let's break down the example and explain each part.
+- **nodeId**: Unique identifier for the response node.
+- **nodeType**: Identifies the node type, commonly `graphqlResponseNode`.
+- **values**: Contains `outputMapping`, which organizes outputs from previous nodes.
+- **needs**: Lists dependencies, generally the final node or merge nodes that lead into the response node.
 
-### Nodes
-Nodes represent individual steps or components in a Flow. Each node has several key properties:
+Each part of the YAML configuration plays a crucial role in defining, structuring, and executing workflows in a clear and flexible format, enabling both developers and non-technical users to create robust GenAI applications on Lamatic.ai’s platform.
 
-- **id**: A unique identifier for the node.
-- **data**: Contains additional information specific to the node.
-  - `name`: Name of the node.
-  - `label`: Label for the node.
-  - `nodeId`: Identifier for dynamic nodes.
-  - `values`: Custom values for the node.
-- **type**: Specifies the type of the node (e.g., `TriggerNode`, `OutputNode`, `dynamicNode`).
-- **position**: The x and y coordinates of the node in the UI.
-- **width** and **height**: The dimensions of the node.
-
-Here are some examples of different types of nodes:
-
-1. **TriggerNode**
-    ```json
-    {
-      "id": "1",
-      "data": {
-        "name": "TriggerNode"
-      },
-      "type": "TriggerNode",
-      "width": 240,
-      "height": 107,
-      "position": {
-        "x": 0,
-        "y": 0
-      },
-      "sourcePosition": "bottom",
-      "targetPosition": "top"
-    }
-    ```
-   
-2. **OutputNode**
-    ```json
-    {
-      "id": "3",
-      "data": {
-        "label": "something"
-      },
-      "type": "OutputNode",
-      "width": 240,
-      "height": 107,
-      "position": {
-        "x": 0,
-        "y": 1200
-      },
-      "sourcePosition": "bottom",
-      "targetPosition": "top"
-    }
-    ```
-
-3. **DynamicNode**
-    ```json
-    {
-      "id": "dndnode_0",
-      "data": {
-        "label": "dynamicNode node",
-        "nodeId": "LLMNode",
-        "values": {
-          "nodeName": "LLM",
-          "promptTemplate": "You are an expert Technical Blog Writer. Write a blog on the topic ${Flow['start']['input']}.",
-          "generativeModelName": "gpt-4o"
-        }
-      },
-      "type": "dynamicNode",
-      "width": 240,
-      "height": 69,
-      "position": {
-        "x": 676.8417187504645,
-        "y": 242.5268006375551
-      }
-    }
-    ```
-
-### Edges
-Edges define the connections between nodes, indicating the flow of data or control. Key properties include:
-
-- **id**: A unique identifier for the edge.
-- **type**: Specifies the type of the edge (e.g., `CustomAddEdge`).
-- **source**: The id of the source node.
-- **target**: The id of the target node.
-
-Here are the examples of edges in the Flow:
-
-1. **Edge from TriggerNode to dynamicNode**
-    ```json
-    {
-      "id": "reactflow__edge-1-dndnode_0",
-      "type": "CustomAddEdge",
-      "source": "1",
-      "target": "dndnode_0"
-    }
-    ```
-   
-2. **Edge from dynamicNode to OutputNode**
-    ```json
-    {
-      "id": "reactflow__edge-dndnode_0-3",
-      "type": "CustomAddEdge",
-      "source": "dndnode_0",
-      "target": "3"
-    }
-    ```
-
-
-### Common Issues
-1. **Node Overlapping**: Ensure nodes have unique positions to avoid overlapping.
-2. **Missing Connections**: Verify that all nodes are correctly connected with edges.
-
-
-## Low Code, No Code, and Everything in Between
-
-The Flow Configuration feature solidifies Lamatic.ai's position as a true Low-Code/No-Code platform. Whether you're a seasoned developer looking to harness the full power of code, or a non-technical user seeking a user-friendly, visual interface, Lamatic.ai has you covered.
-
-For those preferring a no-code approach, our intuitive visual interface allows you to design and orchestrate your GenAI Flows without writing a single line of code. Conversely, developers can leverage the Flow Configuration Code Editor to craft intricate and sophisticated Flows, tailored to their specific requirements.
-
-Moreover, Lamatic.ai supports a seamless blend of both approaches, enabling you to combine the convenience of the visual interface with the power and flexibility of code, creating a truly hybrid development experience.
-approach that best suits your needs, ensuring that your GenAI applications are tailored to perfection, without compromising on flexibility or control.
+## Common Issues
+1. **Missing Fields**: See what nodes are missing required fields and retry after adding them.
+2. **Flow Breaking**: Ensure that the flow is logically structured and all dependencies are correctly defined.

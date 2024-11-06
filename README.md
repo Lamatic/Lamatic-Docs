@@ -21,7 +21,7 @@ GenAI Apps in minutes
 
 ## ✨ About lamatic.ai
 
-Managed platform with Visual Workflow builder, VectorDB, Integrations to Apps, Data Sources and Models to deploy GraphQL API on Edge.
+Managed platform with Visual Flow builder, VectorDB, Integrations to Apps, Data Sources and Models to deploy GraphQL API on Edge.
 
 **Try it out in the cloud at [lamatic.ai](https://lamatic.ai)**
 

@@ -24,7 +24,7 @@ const ChatbotScript = () => {
       agentMessageBgColor: '#F1F8E9',
       agentMessageTextColor: '#1B5E20',
       position: 'right',
-      floatingButtonIcon: '💬',
+      floatingButtonIcon: 'https://owcowialbyyyniqocppr.supabase.co/storage/v1/object/public/icons/Lamatic.svg',
       userId: '',
       errorMessage: 'Some error has taken place',
       context: 'your-context'

@@ -8,10 +8,6 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
-   "-- legend": {
-    "type": "separator",
-    "title": "🚧 → WIP \n \uD83E\uDDEA → Beta"
-  },
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"

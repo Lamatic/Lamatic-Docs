@@ -210,6 +210,8 @@ const permanentRedirects = [
     ['/docs/langfuse-integration','https://www.lamatic.ai/docs/reports/langfuse-integration'],
     ['/docs/flows/trigger','https://www.lamatic.ai/docs/flows'],
     ['/docs/flows/low-code_config','/docs/flow_config'],
+    ['/labs','https://labs.lamatic.ai'],
+    
 
 
 

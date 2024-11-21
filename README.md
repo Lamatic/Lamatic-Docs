@@ -15,6 +15,19 @@ GenAI Apps in minutes
 <p align="center">
 <a href="https://lamatic.ai/docs/slack"><img src="https://img.shields.io/badge/Slack-Join%20Us-4A154B?logo=slack&logoColor=white" alt="Join lamatic.ai Slack"></a>
 <a href="https://github.com/lamatic/lamatic-docs/stargazers"><img src="https://img.shields.io/github/stars/lamatic/lamatic-docs?logo=github" alt="Github Stars"></a>
+<br/>
+<a href="https://www.producthunt.com/posts/lamatic-ai?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-lamatic-ai" target="_blank">
+  <img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=574320&theme=light&period=daily" alt="Lamatic.ai - Build AI agents in low-code & deploy on edge | Product Hunt" width="200" height="54" />
+</a>
+<a href="https://www.producthunt.com/posts/lamatic-ai?embed=true&utm_source=badge-top-post-topic-badge&utm_medium=badge&utm_souce=badge-lamatic-ai" target="_blank">
+  <img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-topic-badge.svg?post_id=574320&theme=light&period=weekly&topic_id=237" alt="Lamatic.ai - Build AI agents in low-code & deploy on edge | Product Hunt" width="200" height="54" />
+</a>
+<a href="https://aitools.inc/tools/lamatic-ai?utm_source=embed-badge-lamatic-ai&utm_medium=embed&utm_campaign=embed-badge-featured" target="_blank">
+  <img src="https://aitools.inc/tools/lamatic-ai/embeds/v1/featured-badge.svg?theme=light" alt="Lamatic.ai | AI Tools" width="175" height="54" />
+</a>
+<a href="https://aitoptools.com/tool/lamatic-ai/" target="_blank" title="Lamatic.ai">
+  <img src="https://aitoptools.com/wp-content/uploads/2024/01/promote-embed.png" alt="Lamatic.ai" width="200" height="54" />
+</a>
 </p>
 
 <br/>

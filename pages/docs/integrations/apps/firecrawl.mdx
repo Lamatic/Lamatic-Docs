@@ -1,5 +1,14 @@
 # Firecrawl Documentation
 
+## Prerequisites
+
+Before using Firecrawl, ensure you have the following:
+
+- A valid Firecrawl API Key.
+- Access to the Firecrawl service host URL.
+- Credentials set up for Firecrawl.
+- A webhook endpoint for receiving notifications (required for crawler).
+
 ## Understanding Crawler vs Scraper
 
 ### Web Crawler
@@ -43,3 +52,11 @@ A web scraper extracts specific data from web pages according to defined rules. 
 | Exclude Tags          | HTML tags to exclude from extraction                                            | `nav, footer, aside`       |
 | Emulate Mobile Device | Simulate mobile browser access                                                  | `true`                     |
 | Wait for Page Load    | Time to wait for dynamic content (ms)                                           | `123`                      |
+
+## Troubleshooting Guidelines
+
+- **API Key Issues**: Ensure your API key is correct and has not expired. Check your Firecrawl account for key status.
+- **Connection Problems**: Verify the host URL is correct.
+- **Credential Errors**: Double-check that the credentials are correctly set up and selected in the configuration.
+- **Webhook Failures**: Ensure the webhook endpoint is active and correctly configured to receive notifications.
+- **Crawl/ Scrape Errors**: Review the URL patterns and ensure they are correctly specified in the include/exclude lists.

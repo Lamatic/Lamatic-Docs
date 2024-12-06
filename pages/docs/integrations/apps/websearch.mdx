@@ -1,0 +1,34 @@
+# Web Search Documentation
+
+## Prerequisites
+
+Before using Web Search Node, ensure you have the following:
+
+- A valid Serper API Key (get one from https://serper.dev/api-key).
+- Credentials set up for Web Search.
+
+## Web Search Credentials
+
+| Key Name        | Description                                                                                                 | Sample Value          |
+| --------------- | ----------------------------------------------------------------------------------------------------------- | --------------------- |
+| Credential Name | Name to identify this set of credentials                                                                    | `my-web-search-creds` |
+| API Key         | Authentication key for accessing Web Search services using serper (get one from https://serper.dev/api-key) | `....`                |
+
+## Web Search Configuration
+
+| Key Name        | Required | Description                                                             | Sample Value                                                             |
+| --------------- | -------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Credential Name | ✅       | Select Credentials for Web Search which you have saved or add a new one | `my-web-search-creds`                                                    |
+| Query           | ✅       | Search query to find web results. For WebPage type, enter URL instead   | `best restaurants in new york` or `https://example.com` for WebPage type |
+| Type            | ✅       | Type of search to perform (select from dropdown)                        | `Search`                                                                 |
+| Date Range      | ❌       | Time period to filter search results (select from dropdown)             | `Last 24 Hours`                                                          |
+| Results         | ❌       | Maximum number of results to retrieve per page                          | `2`                                                                      |
+| Page            | ❌       | Page number to extract results from                                     | `1`                                                                      |
+| Country         | ❌       | Country to focus search results on (select from dropdown)               | `US`                                                                     |
+| Language        | ❌       | Language of search results (select from dropdown)                       | `en`                                                                     |
+| Location        | ❌       | Specific location to target search results (select from dropdown)       | `New York, NY`                                                           |
+
+## Troubleshooting Guidelines
+
+- **API Key Issues**: Ensure your API key is correct and has not expired. Check your Serper account for key status.
+- **Credential Errors**: Double-check that the credentials are correctly set up and selected in the configuration.

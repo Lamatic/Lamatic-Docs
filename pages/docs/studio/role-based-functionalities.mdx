@@ -21,7 +21,7 @@ This guideline defines access levels and responsibilities for various roles, ens
 
 ### Project-Level Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can create new projects? | ✅ | ❌ | ❌ | ❌ |
 | Can update project name? | ✅ | ❌ | ❌ | ❌ |
@@ -30,10 +30,11 @@ This guideline defines access levels and responsibilities for various roles, ens
 | Can create/delete API keys? | ✅ | ✅ | ❌ | ❌ |
 | Can configure job settings? | ✅ | ✅ | ❌ | ❌ |
 | Can handle all billing? | ✅ | ✅ | ❌ | ❌ |
+| Can deploy project? | ✅ | ✅ | ❌ | ❌ |
 
 ### Flows-Level Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can create new flow? | ✅ | ✅ | ✅ | ❌ |
 | Can update flow? | ✅ | ✅ | ✅ | ❌ |
@@ -44,7 +45,7 @@ This guideline defines access levels and responsibilities for various roles, ens
 
 ### Context Level Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can create new db? | ✅ | ✅ | ❌ | ❌ |
 | Can update db name? | ✅ | ✅ | ❌ | ❌ |
@@ -52,36 +53,33 @@ This guideline defines access levels and responsibilities for various roles, ens
 
 ### Models Level Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can create new credential? | ✅ | ✅ | ❌ | ❌ |
 | Can update credential? | ✅ | ✅ | ❌ | ❌ |
 | Can delete credential? | ✅ | ✅ | ❌ | ❌ |
+| Can update default models? | ✅ | ✅ | ✅ | ❌ |
+
 
 ### Integrations Level Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can create integration? | ✅ | ✅ | ❌ | ❌ |
 | Can update integration name? | ✅ | ✅ | ❌ | ❌ |
 | Can delete integration? | ✅ | ✅ | ❌ | ❌ |
+| Can update default integrations? | ✅ | ✅ | ❌ | ❌ |
 
 ### Test Suites Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can create test suite? | ✅ | ✅ | ✅ | ❌ |
 | Can update test suite? | ✅ | ✅ | ✅ | ❌ |
 | Can delete test suite? | ✅ | ✅ | ✅ | ❌ |
 
-### Logs Permissions
-
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
-| --- | --- | --- | --- | --- |
-| Can retry failed jobs? | ✅ | ✅ | ✅ | ❌ |
-
 ### Jobs Permissions
 
-| **Function** | **Admin** | **Editor** | **Developer** | **Viewer** |
+| **Function** | **Admin/Owner** | **Editor** | **Developer** | **Viewer** |
 | --- | --- | --- | --- | --- |
 | Can sync/pause a job? | ✅ | ✅ | ✅ | ❌ |

@@ -1,0 +1,105 @@
+# GitHub
+
+This GitHub Action detects changes to specified file types in your repository and sends the file content to a webhook. 
+
+## What can you make? 
+- Monitor specific file types (like .mdx or .json)
+- Automatically detect when files are added or modified
+- Send file contents to external services
+- Integrate with Lamatic Flow for further processing
+
+
+## Available Functionality
+
+### Actions
+#### ✅  File Monitoring
+- Secure webhook communication
+- Authorization key support
+- Custom webhook URL configuration
+
+#### ✅  Security Features
+- Support for GitHub Secrets
+- Secure storage of webhook URLs
+- Secure storage of webhook keys
+
+#### ✅  Configuration Options
+- Customizable file type filtering
+- Flexible webhook endpoint setup
+
+## Install
+### Create a Flow in Lamatic
+To set up a flow in Lamatic with a webhook trigger, follow these steps to obtain the necessary webhook configurations.
+#### Implementation Options:
+1. Create a Custom Flow
+    1. Follow our comprehensive [webhook integration guide](https://lamatic.ai/docs/interface/webhooks).
+    1. Learn how to configure webhooks as trigger events.
+    1. Set up custom actions based on incoming webhook data.
+1. Use a Pre-built Template
+    1. Start with our ready-to-use [webhook template](https://hub.lamatic.ai/templates/index-from-github).
+    1. Quickly implement common webhook scenarios.
+    1. Customize the template to suit your specific needs.
+  
+##### Important Note:
+Always test the webhook endpoint before deploying it in a production environment. For detailed instructions, refer to our [documentation](https://lamatic.ai/docs/interface/webhooks) or explore our [template library](https://hub.lamatic.ai/templates/index-from-github).
+
+### Github Action
+1. Setup GitHub Secrets: Store sensitive data such as `WEBHOOK_URL` and `WEBHOOK_KEY` in your repository secrets.
+1. Create a github action: Add the following YAML to a GitHub Actions workflow file, such as `.github/workflows/lamatic-index-flow.yml`
+
+## Configuration
+| Input | Description | Required | Example |
+|---|---|---|---|
+| webhook_url | The URL of the webhook to send data to | ✅  | https://example.com/webhook | webhook_key | 
+| webhook_key | The authorization key for the webhook, if there is any | ✅  | your_webhook_key  |
+| github_ref | The GitHub reference (branch) to work with | ✅  | refs/heads/main  |
+| file_type | The file extension to detect and send (e.g., mdx) | ✅  | mdx  |
+| mode | The mode to operate in: full-refresh to send all files, or incremental to send only new/modified from the last commit. | ✅  | `incremental` or `full-refresh`  |
+| verbose | Enable verbose output (true or false). Default - False | ❌ | True  |
+
+### LowCode Config 
+```
+- name: Send File Changes to Webhook
+  uses: Lamatic/Index-to-lamatic@v1.6  # Uses action
+  with:
+    webhook_url: ${{ secrets.WEBHOOK_URL }}  # Replace with your secret
+    webhook_key: ${{ secrets.WEBHOOK_KEY }}   # Replace with your secret
+    github_ref: ${{ github.ref }}
+    file_type: "mdx"  # Adjust the file type as needed
+    mode: "incremental"  # or "full-refresh"
+    verbose: "true"  # or "false"
+```
+
+#### Example Workflow Setup
+```
+name: Lamatic Index Flow
+
+on:
+  push:
+    branches:
+      - main  # Replace with your branch if necessary
+    paths: 
+      - '**.mdx'  # Adjust to only trigger for changes to specific file types
+
+jobs:
+  send-changes:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send File Changes to Webhook
+      uses: Lamatic/Index-to-lamatic@v1.6  # Uses action
+      with:
+        webhook_url: ${{ secrets.WEBHOOK_URL }}  # Replace with your secret
+        webhook_key: ${{ secrets.WEBHOOK_KEY }}   # Replace with your secret
+        github_ref: ${{ github.ref }}
+        file_type: "mdx"  # Adjust the file type as needed
+        mode: "incremental"  # or "full-refresh"
+        verbose: "true"  # or "false"
+```
+
+## Troubleshooting Common Issues
+
+#### Indexing Issues
+Confirm GitHub Action secrets are set and GitHub Action is running.
+
+#### Webhook Data Issues
+Check if GitHub Action is triggering and sending payloads. Modify a file to retrigger if needed.

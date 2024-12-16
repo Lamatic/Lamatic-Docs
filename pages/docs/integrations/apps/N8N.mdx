@@ -1,0 +1,72 @@
+# N8N
+These nodes allows seamless integration between Lamatic and N8N. Whether it is triggering N8N from Lamatic or Lamatic from N8N, every use case if possible with these nodes.
+
+## What can I build? 
+- Highly Configurable to and fro flows using Lamatic and N8N.
+- Bring Gen AI  automation functionality to N8N.
+- Keep using existing N8N flows while harnessing the power of Gen AI.
+
+## Available Functionality
+### Triggering Lamatic Flow from N8N
+✅ One Click Configuration to Link N8N Node and Lamatic Trigger
+
+### Actions- Triggering N8N from Lamatic
+✅ Easy Dropdown based selection to select from all the possible workflows where Lamatic Node is active
+
+## Install
+
+### Create a Flow in Lamatic
+1. Drag node to the workflow.
+1. Click on Add new Credentials.
+1. Follow the Install Steps.
+1. Once added choose the new credentials.
+
+## Configuration
+### Batch Trigger: scheduled
+1. Setup for Triggering Lamatic from N8N
+    1. Add the n8nTriggerNode to your lamatic flow
+    1. Configure the input schema which you will send from n8n
+    1. Add your credentials - Credential Name, Host URL and API Key
+    1. Select your credentials
+    1. Now in the workflow dropdown you will see all the workflows where you have added the Lamatic Node in N8N.
+    1. Select the workflow which you want to configure
+    1. Now you will see all the available Lamatic Nodes in that workflow, click the Connect  Workflow button and you are good to go.
+    1. Additionally if you want to send a specific response to N8N, in the n8nResponseNode configure it as you wish.
+1. Setup for Triggering N8N from Lamatic
+    1. Add the n8nNode to your lamatic flow
+    1. Select or Add your N8N Credentials i.e Credential Name, Host URL and API Key
+    1. Once you have selected the credentials you will see a dropdown from where you can select the N8N flow which has Lamatic Webhook as trigger.
+    1. In N8N make sure you have a workflow with Lamatic Webhook node and if the response mode if Respond to Lamatic Webhook add that node likewisely.
+
+#### LowCode Config 
+```js 
+// Trigger Lamatic from N8N 
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: n8nTriggerNode
+  nodeName: N8N Trigger
+  values:
+    advance_schema: '{}'
+    credentials: your credential name
+    workflowId: your n8n workflow id which is linked to this node
+
+// Trigger N8N from Lamatic
+nodes:
+  - nodeId: n8nNode_716
+    nodeType: n8nNode
+    nodeName: N8N
+    values:
+      credentials: your credential name
+      workflowId:  your n8n workflow id which is linked to this node
+      webhookPath: Auto Fetched Non Configurable Webhook Path
+    needs:
+      - triggerNode_1
+        
+```
+
+## Troubleshooting Common Issues
+#### Indexing Issues
+Confirm GitHub Action secrets are set and GitHub Action is running.
+
+#### Webhook Data Issues
+Check if GitHub Action is triggering and sending payloads. Modify a file to retrigger if needed.

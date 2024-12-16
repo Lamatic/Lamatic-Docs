@@ -1,0 +1,66 @@
+# Google Sheets
+This node integrates Google Sheets with Lamatic.ai by fetching rows from a specified Google Sheet at scheduled intervals. It supports row vectorization and RAG (Retrieval-Augmented Generation) by vectorizing and indexing contextual data found within each row.
+
+## What can I build? 
+- Automate the regular fetching and synchronization of rows from specified Google Sheets.
+- Support the vectorization and indexing of Google Sheet rows to provide context for RAG flows.
+
+## Available Functionality
+### Batch Trigger
+✅ Fetch a Google Sheet on a scheduled interval. This is the first step in flows that vectorize and store contextual data found in each row of a Google Sheet to support subsequent RAG requests.
+
+### Event Trigger
+❌ When a row is added / updated / deleted from a linked Google Sheet\
+❌ When a Google Sheet is created / updated / deleted
+
+### Actions
+❌ Add / update / delete a row in a linked Google Sheet\
+❌ Create / update / delete a Google Sheet
+
+
+
+## Install
+1. Drag node to the workflow.
+1. Click on Add new Credentials.
+1. Follow the Install Steps.
+1. Once added choose the new credentials.
+
+## Configuration
+### Batch Trigger: scheduled
+1. Name - Display name for the node. [nodeName]
+1. Credentials - Select existing or click +Add Credentials to provide the Google authentication details required to connect to the desired Google Sheet. [credentials]
+1. Spreadsheet Link - Copy and paste the Share link from the Google Sheet here. [spreadSheetLink]
+1. Sheet Name - Select the name of the spreadsheet tab that contains the data to be processed. [sheetName]
+1. Row Batch Size - Google Sheets API parameter that determines batch size. Use default value (200) unless your sheet is very large (>100K rows) and you are experiencing time out errors (increase batch size in this case). [batchSize]
+1. Additional Properties:
+    1. Sync Mode - Save tokens and only process data that has been updated since last run by selecting Incremental* or select Full Refresh to clear your vector database of old records and reprocess all data with the current flow (e.g., embedding model, chunking approach, etc.). [syncMode] * Incremental Sync Mode is not currently available.
+    1. Sync Schedule - Specify the frequency with which the flow will run using a Cron scheduler. [cronExpression]
+1. Sample Data - Click Fetch to see the data returned from the first row in the configured Google Sheet. [n/a]
+
+#### LowCode Config 
+```js 
+// Trigger Config Illustration
+{
+  "triggerNode": {
+    "nodeId": "triggerNode_1",
+    "nodeType": "googleSheetsNode",
+    "nodeName": "Google Sheets",
+    "values": {
+      "syncMode": "full_refresh_append",
+      "batchSize": "200",
+      "sheetName": "Test Data",
+      "credentials": "{your-credentials}",
+      "cronExpression": "0 0 00 1/1 * ? * UTC",
+      "namesConversion": "false",
+      "spreadSheetLink": "https://docs.google.com/spreadsheets/d/{your-spreadsheet-id}/edit"
+    }
+  }
+}
+```
+
+## Troubleshooting Common Issues
+#### Indexing Issues
+Confirm GitHub Action secrets are set and GitHub Action is running.
+
+#### Webhook Data Issues
+Check if GitHub Action is triggering and sending payloads. Modify a file to retrigger if needed.

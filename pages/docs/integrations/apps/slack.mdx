@@ -1,0 +1,99 @@
+# Slack
+
+The Slack node in Lamatic.ai allows users to seamlessly integrate Slack functionality into workflows. This node can trigger events based on specific Slack commands, such as the `/ask` command, and send messages to Slack channels. It supports the configuration of event triggers and actions with specified credentials and channels, making it a versatile tool for automating communication and data exchange within Slack.
+
+## What can I build?
+
+- Respond to questions posed by users in a Slack channel (using RAG approach).
+- Automate the posting of updates to specific Slack channels.
+- Integrate with other apps to streamline internal communication processes.
+
+## Available Functionality
+
+### Event Trigger
+
+✅ When a /ask command is used\
+❌ When a user messages to the bot\
+❌ When user replies to a thread created by bot
+
+### Actions
+
+✅ Send message in a channel\
+❌ Send message to a person\
+❌ Send message in a thread
+
+## Install
+
+1. Drag node to the workflow.
+1. Click on Add new Credentials.
+1. Follow the Install Steps.
+1. Once added choose the new credentials.
+
+## Configuration
+
+### Event Trigger: `/ask` command
+
+1. Name - Display name for the node. [nodeName]
+1. Slash Command - Slack command that triggers this flow. [command]
+1. Credentials - Select existing or click +Add Credentials to provide Slack authentication details required to connect to the desired Slack workspace (Credential Display Name, Workspace). [credentials]
+1. Channel - Select the Slack channel to link this trigger action to (From List, By ID, By Name). [channelName]
+1. Immediate Response Data - Configure the response displayed to the user while the flow is running (e.g., Fetching your answer about `slackNode.output.text`). [immediateResponseData]
+1. If you haven’t already done so, after deploying this flow, follow Slack instructions to add the Lamatic application to your Slack Workspace.
+
+#### LowCode Config
+```js
+// Trigger Config Illustration
+{
+  "triggerNode": {
+    "nodeId": "slackNode_2",
+    "nodeType": "slackNode",
+    "nodeName": "Slack",
+    "values": {
+      "command": "ask",
+      "channelName": "{
+        your-slack-channel",
+        "credentials": "{your-slack-credentials}",
+        "immediateResponseData": "Fetching your answer about {{slackNode_2.output.text}}"
+      }
+    }
+  }
+}
+```
+
+### Action: Send Message to Slack
+
+1. Name - Display name for the node. [nodeName]
+1. Credentials - Select existing or click +Add Credentials to provide Slack authentication details required to connect to the desired Slack workspace (Credential Display Name, Workspace). [credentials]
+1. Action - Select the Slack Action this flow will execute. [action]
+1. Channel - Select the Slack channel to link this action to (From List, By ID, By Name). [channelName]
+1. Text - Configure the message displayed to the user (e.g., Your update completed with the following message: `IndexNode_b30vktaxjz.output.message`). [text]
+1. If you haven’t already done so, after deploying this flow follow [Slack instructions](https://slack.com/help/articles/202035138-Add-apps-to-your-Slack-workspace) to add the Lamatic application to your Slack Workspace.
+
+```js
+// Action Config Illustration
+{
+  "nodeId": "slackNode_p4j9hxlq88",
+  "nodeType": "slackNode",
+  "nodeName": "Slack Confirmation",
+  "values": {
+    "text": "{your-slack-message}",
+    "action": "postMessage",
+    "channelName": "{ your-slack-channel }",
+    "credentials": "{ your-slack-credentials }"
+  },
+  "needs": [
+    "IndexNode_b30vktaxjz"
+  ]
+}
+```
+
+
+## Troubleshooting Common Issues
+
+#### Indexing Issues
+
+Confirm GitHub Action secrets are set and GitHub Action is running.
+
+#### Webhook Data Issues
+
+Check if GitHub Action is triggering and sending payloads. Modify a file to retrigger if needed.

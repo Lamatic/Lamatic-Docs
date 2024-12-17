@@ -1,0 +1,42 @@
+# Flow Node Documentation
+
+The Flow Node allows you to call and execute other flows from within your current flow, enabling modular and reusable flow designs.
+
+## Overview
+
+The Flow Node provides the ability to:
+
+- Execute other flows as sub-flows
+- Use current flow's data as input for the flow to be called
+- Reuse existing flows as building blocks for more complex workflows
+
+## Flow Node Configuration
+
+| Key Name      | Required | Description                                                                                                        | Sample Value                               |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| Flow ID       | ✅       | Select an active flow with API Request, Chat, or Search trigger from the dropdown                                  | `4be6dea6-d13c-44d8-87cf-5ad46361c890`     |
+| Request Input | ✅       | Input parameters key will be auto-populated based on the selected flow, just make sure you fill value for each key | `{  "prompt": "{{triggerNode_1.output}}"}` |
+
+## Usage Guidelines
+
+### Calling Other Flows
+
+1. Add a Flow Node to your current workflow
+2. Select the target flow you want to execute from the dropdown
+3. Configure any input parameters needed by the target flow
+4. The output of the called flow will be received
+
+### Best Practices
+
+- **Modular Design**: Break down complex flows into smaller, reusable flows
+- **Data Passing**: Carefully plan what data needs to be passed between flows
+
+## Troubleshooting Guidelines
+
+- **Flow Not Found**: Ensure the Flow ID is correct and the target flow exists and is active and you have deployed the project for latest changes.
+- **Parameter Mismatch**: Verify that input parameters match the expected format of the target flow, we autofill the key for you but make sure you fill in value for each key accordingly.
+- **Permissions**: Check that you have the necessary permissions to execute the flow
+
+## Example Use Cases
+
+**Multi-step Processing**: Break down complex processes into manageable sub-flows

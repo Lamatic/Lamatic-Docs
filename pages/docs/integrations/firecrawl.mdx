@@ -1,0 +1,96 @@
+# Firecrawl Documentation
+
+Firecrawl is a robust tool designed to transform websites into LLM-ready data by leveraging its **Crawler** and **Scraper** functionalities. Whether you need to map website structures or extract specific data, Firecrawl provides a seamless and customizable solution.
+
+---
+
+## Features
+
+### ✅ Key Functionalities
+- **Web Crawling**: Systematically browse and index websites, discovering and mapping their structure.
+- **Web Scraping**: Extract targeted content from specific web pages using customizable rules.
+- **Integration with Webhooks**: Receive real-time updates about crawling and scraping activities.
+- **Dynamic Content Handling**: Support for waiting on dynamic page loads and simulating mobile devices.
+
+### ✅ Benefits
+- Generate structured data for language models.
+- Customize inclusion and exclusion of website sections.
+- Handle both static and dynamic web content.
+
+---
+
+## Prerequisites
+
+Before using Firecrawl, ensure the following:
+
+- A valid [Firecrawl API Key](https://www.firecrawl.dev/).
+- Access to the Firecrawl service host URL.
+- Properly configured credentials for Firecrawl.
+- A webhook endpoint for receiving notifications (required for the crawler).
+
+---
+
+## Installation
+
+### Step 1: Obtain API Credentials
+1. Register on [Firecrawl](https://www.firecrawl.dev/).
+2. Generate an API key from your account dashboard.
+3. Note the **Host URL** and **Webhook Endpoint**.
+
+### Step 2: Configure Firecrawl Credentials
+Use the following format to set up your credentials:
+
+| **Key Name**         | **Description**                                         | **Example Value**                |
+|-----------------------|---------------------------------------------------------|-----------------------------------|
+| **Credential Name**   | Name to identify this set of credentials                | `my-firecrawl-creds`             |
+| **Firecrawl API Key** | Authentication key for accessing Firecrawl services     | `fc_api_xxxxxxxxxxxxx`           |
+| **Host**              | Base URL where Firecrawl service is hosted             | `https://api.firecrawl.dev`      |
+
+---
+
+## Configuration Reference
+
+### Crawler Configuration
+
+| **Parameter**          | **Description**                                                                 | **Example Value**                     |
+|-------------------------|---------------------------------------------------------------------------------|---------------------------------------|
+| **Credential Name**     | Select previously saved credentials                                            | `my-firecrawl-creds`                  |
+| **URL**                 | Starting point URL for the crawler                                             | `https://example.com`                 |
+| **Notification Webhook**| Endpoint to receive crawl updates and results                                  | `https://your-webhook.com/callback`   |
+| **Exclude Path**        | URL patterns to exclude from the crawl                                          | `"admin/*", "private/*"`              |
+| **Include Path**        | URL patterns to include in the crawl                                            | `"blog/*", "products/*"`              |
+| **Crawl Depth**         | Maximum depth to crawl relative to the entered URL                              | `3`                                   |
+| **Crawl Limit**         | Maximum number of pages to crawl                                                | `1000`                                |
+| **Crawl Sub Pages**     | Toggle to enable or disable crawling sub pages                                  | `true`                                |
+
+### Scraper Configuration
+
+| **Parameter**           | **Description**                                                                     | **Example Value**             |
+|--------------------------|-------------------------------------------------------------------------------------|--------------------------------|
+| **Credential Name**      | Select previously saved credentials                                                | `my-firecrawl-creds`           |
+| **URL**                  | Target URL to scrape                                                               | `https://example.com/page`     |
+| **Main Content**         | Extract only the main content of the page, excluding headers, navs, footers, etc.  | `true`                         |
+| **Skip TLS Verification**| Bypass SSL certificate validation                                                  | `false`                        |
+| **Include Tags**         | HTML tags to include in extraction                                                 | `p, h1, h2, article`           |
+| **Exclude Tags**         | HTML tags to exclude from extraction                                               | `nav, footer, aside`           |
+| **Emulate Mobile Device**| Simulate mobile browser access                                                     | `true`                         |
+| **Wait for Page Load**   | Time to wait for dynamic content (ms)                                              | `123`                          |
+
+---
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                   | **Solution**                                                             |
+|-------------------------------|---------------------------------------------------------------------------|
+| **Invalid API Key**            | Ensure the API key is correct and has not expired.                      |
+| **Connection Issues**          | Verify that the host URL is correct and reachable.                     |
+| **Webhook Errors**             | Check if the webhook endpoint is active and correctly configured.      |
+| **Crawling Errors**            | Review the inclusion/exclusion paths for accuracy.                     |
+| **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration.            |
+
+### Debugging
+
+- Check Firecrawl logs for detailed error information.
+- Test the webhook endpoint to confirm it is receiving updates.

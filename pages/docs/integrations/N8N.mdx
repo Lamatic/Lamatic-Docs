@@ -1,0 +1,116 @@
+# N8N Node Documentation
+
+The N8N node in Lamatic enables bidirectional integration between Lamatic and N8N platforms. This node supports both triggering N8N workflows from Lamatic and executing Lamatic flows from N8N, providing flexible automation capabilities.
+
+---
+
+## Features
+
+### ✅ Key Functionalities
+- **Bidirectional Integration**: Supports both N8N to Lamatic and Lamatic to N8N workflows.
+- **Easy Configuration**: Simple dropdown-based workflow selection.
+- **Webhook Support**: Built-in webhook handling for seamless communication.
+
+### ✅ Benefits
+- Combines N8N's workflow automation with Lamatic's Gen AI capabilities.
+- Maintains existing N8N workflows while adding AI functionality.
+- Enables highly configurable cross-platform automation.
+
+---
+
+## Prerequisites
+
+Before setting up the N8N node, ensure you have the following:
+- Access to both N8N and Lamatic platforms.
+- N8N Host URL and API credentials.
+- Understanding of webhook configurations.
+
+---
+
+## Installation
+
+### Step 1: Create Flow in Lamatic
+1. Drag the N8N node to your workflow.
+2. Click on "Add new Credentials".
+3. Follow the installation steps provided.
+4. Select the newly added credentials.
+
+### Step 2: Configure Integration Type
+Choose between:
+- Triggering Lamatic from N8N
+- Triggering N8N from Lamatic
+
+---
+
+## Configuration Reference
+
+### Triggering Lamatic from N8N
+
+1. **Setup N8N Trigger Node**:
+   - Add `n8nTriggerNode` to your Lamatic flow.
+   - Configure input schema for N8N data.
+   - Add credentials (Name, Host URL, API Key).
+   - Select configured credentials.
+
+2. **Workflow Configuration**:
+   - Select N8N workflow from dropdown.
+   - Choose available Lamatic Nodes.
+   - Click "Connect Workflow".
+   - Optionally configure `n8nResponseNode` for specific responses.
+
+### Triggering N8N from Lamatic
+
+1. **Setup N8N Action Node**:
+   - Add `n8nNode` to your Lamatic flow.
+   - Select/Add N8N credentials.
+   - Choose N8N flow with Lamatic Webhook trigger.
+
+2. **N8N Configuration**:
+   - Ensure workflow has Lamatic Webhook node.
+   - Configure response mode if needed.
+
+---
+
+### Low-Code Example
+
+```js
+// Trigger Lamatic from N8N 
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: n8nTriggerNode
+  nodeName: N8N Trigger
+  values:
+    advance_schema: '{}'
+    credentials: your credential name
+    workflowId: your n8n workflow id which is linked to this node
+
+// Trigger N8N from Lamatic
+nodes:
+  - nodeId: n8nNode_716
+    nodeType: n8nNode
+    nodeName: N8N
+    values:
+      credentials: your credential name
+      workflowId:  your n8n workflow id which is linked to this node
+      webhookPath: Auto Fetched Non Configurable Webhook Path
+    needs:
+      - triggerNode_1
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                                |
+|---------------------------|--------------------------------------------------------------------------------------------|
+| **Connection Failure**     | Verify N8N Host URL and API credentials are correct.                                       |
+| **Webhook Issues**         | Check if webhooks are properly configured and accessible.                                  |
+| **Workflow Not Found**     | Ensure workflow IDs are correct and workflows are active.                                  |
+| **Response Timeout**       | Verify network connectivity and increase timeout settings if needed.                       |
+
+### Debugging
+
+- Check Lamatic Flow logs for error details.
+- Verify N8N workflow status and triggers.
+- Test webhook endpoints for accessibility.
+- Confirm credential permissions and API access.

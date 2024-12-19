@@ -1,0 +1,138 @@
+# Flow Node Documentation
+
+The Flow Node in Lamatic enables execution of other flows within your current workflow, facilitating modular and reusable flow designs. This node serves as a powerful tool for creating complex, interconnected workflows by allowing flows to be used as building blocks.
+
+---
+
+## Features
+
+### ✅ Key Functionalities
+- **Sub-flow Execution**: Call and execute other flows
+- **Data Passing**: Transfer current flow data as input
+- **Modular Design**: Create reusable workflow components
+
+### ✅ Benefits
+- Enables workflow modularity
+- Promotes code reuse
+- Simplifies complex processes
+
+---
+
+## Prerequisites
+
+Before using the Flow Node, ensure you have:
+- Active flows with compatible triggers (API Request, Chat, or Search)
+- Necessary permissions to execute target flows
+- Understanding of data flow and parameter passing
+
+---
+
+## Configuration Reference
+
+### Flow Node Parameters
+
+| **Parameter**    | **Description**                                             | **Required** | **Example**                               |
+|-----------------|-----------------------------------------------------------|--------------|------------------------------------------|
+| **Flow ID**      | Target flow selection from active flows                    | ✅           | `4be6dea6-d13c-44d8-87cf-5ad46361c890`   |
+| **Request Input**| Input parameters for target flow                           | ✅           | `{ "prompt": "{{triggerNode_1.output}}"}` |
+
+---
+
+## Usage Guidelines
+
+### Setting Up Flow Node
+
+1. **Add Flow Node**:
+   - Drag Flow Node to your workflow
+   - Select target flow from dropdown
+
+2. **Configure Parameters**:
+   - Set Flow ID for target flow
+   - Configure input parameters
+   - Map data from current flow
+
+3. **Validate Configuration**:
+   - Ensure all required parameters are set
+   - Verify data mapping is correct
+
+### Best Practices
+
+1. **Modular Design**
+   - Break complex workflows into smaller flows
+   - Create reusable components
+   - Maintain clear flow boundaries
+
+2. **Data Management**
+   - Plan data flow between workflows
+   - Document parameter requirements
+   - Handle data transformations appropriately
+
+3. **Error Handling**
+   - Implement proper error checking
+   - Provide fallback options
+   - Monitor flow execution
+
+---
+
+## Low-Code Example
+```js
+{
+  "nodeId": "flowNode_1",
+  "nodeType": "flowNode",
+  "nodeName": "Process Data",
+  "values": {
+    "flowId": "4be6dea6-d13c-44d8-87cf-5ad46361c890",
+    "requestInput": {
+      "prompt": "{{triggerNode_1.output}}",
+      "parameters": {
+        "format": "json",
+        "maxLength": 500
+      }
+    }
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**              | **Solution**                                                            |
+|-------------------------|------------------------------------------------------------------------|
+| **Flow Not Found**       | Verify Flow ID and deployment status                                   |
+| **Parameter Mismatch**   | Check input parameter format and requirements                          |
+| **Permission Denied**    | Confirm execution permissions                                          |
+| **Execution Timeout**    | Review flow complexity and timeout settings                            |
+
+### Debugging Tips
+
+- Check Lamatic Flow logs for error details
+- Verify flow deployment status
+- Test input parameters independently
+- Monitor flow execution time
+- Review permission settings
+
+---
+
+## Example Use Cases
+
+### Multi-step Processing
+1. **Data Preparation Flow**:
+   - Clean and validate input data
+   - Transform data format
+   - Apply business rules
+
+2. **Analysis Flow**:
+   - Process prepared data
+   - Generate insights
+   - Create reports
+
+3. **Notification Flow**:
+   - Send results to stakeholders
+   - Update systems
+   - Log completion status
+
+### Chain Processing
+- Execute series of specialized flows
+- Pass results between flows
+- Maintain process isolation

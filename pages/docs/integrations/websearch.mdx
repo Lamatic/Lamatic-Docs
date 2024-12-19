@@ -1,0 +1,117 @@
+# Web Search Node Documentation
+
+The Web Search Node in Lamatic integrates with [serper.dev](https://serper.dev) to provide powerful web scraping and search capabilities. This node enables users to perform customized web searches with various filtering options and retrieve structured results.
+
+---
+
+## Features
+
+### ✅ Key Functionalities
+- **Search Types**: Supports multiple search types including web, news, and webpage scraping
+- **Customizable Filters**: Options for date range, location, language, and country
+- **Pagination Support**: Retrieve results from specific pages with customizable result counts
+
+### ✅ Benefits
+- Access to comprehensive web search results
+- Granular control over search parameters
+- Integration with serper.dev's robust API
+
+---
+
+## Prerequisites
+
+Before using the Web Search Node, ensure you have:
+- Valid Serper API Key from [serper.dev](https://serper.dev/api-key)
+- Web Search credentials configured in Lamatic
+- Understanding of search parameters and filters
+
+---
+
+## Credential Configuration
+
+### Setup Web Search Credentials
+
+| **Parameter**      | **Description**                                    | **Example**           |
+|-------------------|--------------------------------------------------|---------------------|
+| **Credential Name** | Identifier for the credential set                 | `my-web-search-creds` |
+| **API Key**        | Serper authentication key (from serper.dev/api-key)| `your-api-key`        |
+
+---
+
+## Configuration Reference
+
+### Search Parameters
+
+| **Parameter**      | **Description**                                    | **Required** | **Example**                |
+|-------------------|--------------------------------------------------|--------------|--------------------------|
+| **Credential Name** | Selected Web Search credentials                   | ✅           | `my-web-search-creds`    |
+| **Query**          | Search terms or webpage URL                        | ✅           | `best restaurants in new york` |
+| **Type**           | Search type selection                             | ✅           | `Search`                 |
+| **Date Range**     | Time period filter                                | ❌           | `Last 24 Hours`          |
+| **Results**        | Maximum results per page                          | ❌           | `2`                      |
+| **Page**           | Result page number                                | ❌           | `1`                      |
+| **Country**        | Target country for results                        | ❌           | `US`                     |
+| **Language**       | Result language preference                        | ❌           | `en`                     |
+| **Location**       | Specific geographic target                        | ❌           | `New York, NY`           |
+
+---
+
+### Search Types
+- **Web Search**: General web results
+- **News Search**: Recent news articles
+- **WebPage**: Direct URL scraping
+
+### Date Range Options
+- Last 24 Hours
+- Past Week
+- Past Month
+- Past Year
+- Custom Range
+
+### Language Options
+- English (en)
+- Spanish (es)
+- French (fr)
+- German (de)
+- And more...
+
+---
+
+## Low-Code Example
+```js
+{
+  "nodeId": "webSearchNode_1",
+  "nodeType": "webSearchNode",
+  "nodeName": "Web Search",
+  "values": {
+    "credentials": "my-web-search-creds",
+    "query": "best restaurants in new york",
+    "type": "Search",
+    "dateRange": "Last 24 Hours",
+    "results": 2,
+    "page": 1,
+    "country": "US",
+    "language": "en",
+    "location": "New York, NY"
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**             | **Solution**                                                               |
+|------------------------|---------------------------------------------------------------------------|
+| **API Key Invalid**     | Verify API key in serper.dev dashboard                                    |
+| **No Results**          | Check search parameters and broaden search criteria                        |
+| **Credential Errors**   | Confirm credentials are properly configured                                |
+| **Rate Limiting**       | Check API usage limits in serper.dev account                              |
+
+### Debugging Tips
+
+- Review Lamatic Flow logs for error messages
+- Verify API key status in serper.dev dashboard
+- Test search parameters individually
+- Check network connectivity
+- Monitor API usage and limits

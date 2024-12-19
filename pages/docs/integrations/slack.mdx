@@ -1,0 +1,128 @@
+# Slack Node Documentation
+
+The Slack node in Lamatic.ai enables seamless integration with Slack workspaces. It supports event triggering based on Slack commands and message sending capabilities, making it ideal for automating communication workflows and implementing AI-powered responses within Slack channels.
+
+---
+
+## Features
+
+### ✅ Key Functionalities
+- **Command Triggers**: Responds to specific Slack commands (e.g., `/ask`)
+- **Message Actions**: Sends messages to Slack channels
+- **RAG Integration**: Supports question-answering using RAG approach
+
+### ✅ Benefits
+- Automates Slack communications
+- Enables AI-powered responses
+- Streamlines internal processes
+
+---
+
+## Available Functionality
+
+### Event Trigger
+✅ When a `/ask` command is used
+❌ When a user messages to the bot
+❌ When user replies to a thread created by bot
+
+### Actions
+✅ Send message in a channel
+❌ Send message to a person
+❌ Send message in a thread
+
+---
+
+## Prerequisites
+
+Before setting up the Slack node, ensure you have:
+- Access to Slack workspace administration
+- Necessary permissions to install apps
+- Lamatic application added to your Slack workspace
+
+---
+
+## Installation
+
+1. Drag node to the workflow
+2. Click on Add new Credentials
+3. Follow the Install Steps
+4. Once added choose the new credentials
+
+---
+
+## Configuration Reference
+
+### Event Trigger: `/ask` Command
+
+| **Parameter**             | **Description**                                                         | **Required** | **Config Key**            |
+|--------------------------|------------------------------------------------------------------------|--------------|--------------------------|
+| **Name**                 | Display name for the node                                              | ✅           | `nodeName`               |
+| **Slash Command**        | Slack command that triggers this flow                                 | ✅           | `command`                |
+| **Credentials**          | Slack authentication details                                           | ✅           | `credentials`            |
+| **Channel**              | Target Slack channel (List/ID/Name)                                   | ✅           | `channelName`            |
+| **Immediate Response**   | Response shown while flow runs                                        | ✅           | `immediateResponseData`  |
+
+### Action: Send Message
+
+| **Parameter**      | **Description**                                                         | **Required** | **Config Key**            |
+|-------------------|------------------------------------------------------------------------|--------------|--------------------------|
+| **Name**          | Display name for the node                                              | ✅           | `nodeName`               |
+| **Credentials**   | Slack authentication details                                           | ✅           | `credentials`            |
+| **Action**        | Slack action to execute                                               | ✅           | `action`                 |
+| **Channel**       | Target Slack channel                                                  | ✅           | `channelName`            |
+| **Text**          | Message content                                                       | ✅           | `text`                   |
+
+---
+
+### Low-Code Examples
+
+```js
+// Event Trigger Configuration
+{
+  "triggerNode": {
+    "nodeId": "slackNode_2",
+    "nodeType": "slackNode",
+    "nodeName": "Slack",
+    "values": {
+      "command": "ask",
+      "channelName": "{your-slack-channel}",
+      "credentials": "{your-slack-credentials}",
+      "immediateResponseData": "Fetching your answer about {{slackNode_2.output.text}}"
+    }
+  }
+}
+
+// Action Configuration
+{
+  "nodeId": "slackNode_p4j9hxlq88",
+  "nodeType": "slackNode",
+  "nodeName": "Slack Confirmation",
+  "values": {
+    "text": "{your-slack-message}",
+    "action": "postMessage",
+    "channelName": "{ your-slack-channel }",
+    "credentials": "{ your-slack-credentials }"
+  },
+  "needs": [
+    "IndexNode_b30vktaxjz"
+  ]
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                                  |
+|---------------------------|----------------------------------------------------------------------------------------------|
+| **Connection Failed**      | Verify Slack credentials and workspace access                                                |
+| **Command Not Working**    | Check slash command configuration and permissions                                            |
+| **Message Not Sending**    | Confirm channel access and bot permissions                                                   |
+| **App Installation**       | Ensure Lamatic app is properly installed in workspace                                        |
+
+### Debugging Tips
+
+- Check Lamatic Flow logs for error details
+- Verify Slack workspace permissions
+- Test channel accessibility
+- Confirm command configurations

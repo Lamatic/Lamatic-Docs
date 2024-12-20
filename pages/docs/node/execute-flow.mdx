@@ -1,6 +1,6 @@
-# Execute Node Documentation
+# Execute Flow Documentation
 
-The Execute Node in Lamatic enables execution of other flows within your current workflow, facilitating modular and reusable flow designs. This node serves as a powerful tool for creating complex, interconnected workflows by allowing flows to be used as building blocks.
+The Execute Flow in Lamatic enables execution of other flows within your current workflow, facilitating modular and reusable flow designs. This node serves as a powerful tool for creating complex, interconnected workflows by allowing flows to be used as building blocks.
 
 ---
 ![execute.png](./img/execute-node.png)
@@ -22,7 +22,7 @@ The Execute Node in Lamatic enables execution of other flows within your current
 
 ## Prerequisites
 
-Before using the Execute Node, ensure you have:
+Before using the Execute Flow, ensure you have:
 - Active flows with compatible triggers (API Request, Chat, or Search)
 - Necessary permissions to execute target flows
 - Understanding of data flow and parameter passing
@@ -31,7 +31,7 @@ Before using the Execute Node, ensure you have:
 
 ## Configuration Reference
 
-### Execute Node Parameters
+### Execute Flow Parameters
 
 | **Parameter**    | **Description**                                             | **Required** | **Example**                               |
 |-----------------|-----------------------------------------------------------|--------------|------------------------------------------|
@@ -79,8 +79,8 @@ Before using the Execute Node, ensure you have:
 ## Low-Code Example
 ```js
 {
-  "nodeId": "flowNode_1",
-  "nodeType": "flowNode",
+  "nodeId": "executeFlow_1",
+  "nodeType": "executeFlow",
   "nodeName": "Process Data",
   "values": {
     "flowId": "4be6dea6-d13c-44d8-87cf-5ad46361c890",

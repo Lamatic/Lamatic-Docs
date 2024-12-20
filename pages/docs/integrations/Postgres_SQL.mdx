@@ -1,0 +1,117 @@
+# PostgreSQL Node Documentation
+
+The PostgreSQL node in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
+
+---
+
+## Features
+
+### ✅ Key Functionalities
+- **Batch Trigger**: Automates data extraction and synchronization on a schedule.
+- **Table Support**: Compatible with Tables and Materialized Views.
+- **RAG Integration**: Supports vectorization and indexing of PostgreSQL rows.
+
+### ✅ Benefits
+- Streamlines database synchronization processes.
+- Enables RAG capabilities with PostgreSQL data.
+- Supports incremental and full refresh sync modes.
+
+---
+
+## Available Functionality
+
+### Batch Trigger
+✅ Fetch PostgreSQL table data on scheduled intervals
+✅ Support for Tables and Materialized Views
+✅ Vectorization and indexing for RAG workflows
+
+### Event Trigger
+❌ Record insert/update/delete events
+❌ Table create/update/delete events
+
+### Actions
+❌ Row manipulation (add/update/delete)
+❌ Table manipulation (create/update/delete)
+
+---
+
+## Prerequisites
+
+Before setting up the PostgreSQL node, ensure you have:
+- PostgreSQL database credentials
+- Access to target database and tables
+- Understanding of Cron expressions for scheduling
+
+---
+
+## Installation
+
+### Create a Flow in Lamatic
+
+#### Option 1: Create a Custom Flow
+1. **Follow Webhook Integration Guide**:
+   - Configure webhooks as triggers
+   - Set up custom actions
+   - Test webhook endpoints
+
+#### Option 2: Use Pre-built Template
+1. **Start with Template**:
+   - Use ready-made webhook template
+   - Customize as needed
+   - Implement common scenarios
+
+### Important Note
+Always test webhook endpoints before production deployment.
+
+---
+
+## Configuration Reference
+
+### Batch Trigger Parameters
+
+| **Parameter**       | **Description**                                                                                             | **Required** | **Config Key**        |
+|---------------------|-------------------------------------------------------------------------------------------------------------|--------------|----------------------|
+| **Name**           | Display name for the node                                                                                    | ✅           | `nodeName`           |
+| **Credentials**    | PostgreSQL authentication details (Host, Port, Database, Username, Password)                                 | ✅           | `credentials`        |
+| **Schema**         | Database schema to be processed                                                                              | ✅           | `schemas`            |
+| **Table/View**     | Source table for data processing                                                                            | ✅           | `tables`             |
+| **Sync Mode**      | `incremental` or `full-refresh`                                                                             | ✅           | `syncMode`           |
+| **Sync Schedule**  | Cron expression for scheduling                                                                              | ✅           | `cronExpression`     |
+
+---
+
+### Low-Code Example
+```js
+{
+  "triggerNode": {
+    "nodeId": "triggerNode_1",
+    "nodeType": "postgresNode",
+    "nodeName": "Postgres",
+    "values": {
+      "tables": "Behavior",
+      "schemas": "public",
+      "syncMode": "incremental_append",
+      "credentials": "{your-postgres-credentials}",
+      "cronExpression": "0 0 0/1 1/1 * ? * UTC"
+    }
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                                  |
+|---------------------------|----------------------------------------------------------------------------------------------|
+| **Connection Failed**      | Verify PostgreSQL credentials and network connectivity                                        |
+| **Table Not Found**        | Confirm schema and table names                                                               |
+| **Sync Issues**           | Check Cron expression and sync mode settings                                                  |
+| **Permission Denied**      | Verify database user permissions                                                             |
+
+### Debugging Tips
+
+- Check Lamatic Flow logs for error details
+- Verify PostgreSQL connection parameters
+- Test database access permissions
+- Validate table structure and compatibility

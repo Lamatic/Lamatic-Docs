@@ -32,7 +32,7 @@
   "integrations": "Integrations",
   "models": "Models",
   "interface": "Interface",
-
+  "guides":"Guides",
   "-- deploy": {
     "type": "separator",
     "title": "🚀 Deploy"

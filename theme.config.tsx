@@ -17,14 +17,13 @@ import { COOKBOOK_ROUTE_MAPPING } from "./lib/cookbook_route_mapping";
 import { GeistSans } from "geist/font/sans";
 import FooterMenu from "./components/FooterMenu";
 import Link from "next/link";
-import { SquareGanttChart , LibraryBig, Phone , Slack  } from "lucide-react";
+import { SquareGanttChart, LibraryBig, Phone, Slack, GraduationCap } from "lucide-react";
 import {
   AvailabilityBanner,
   AvailabilitySidebar,
 } from "./components/availability";
 import { CloudflareVideo, Video } from "./components/Video";
-import {Button} from "@/components/ui/button";
-
+import { Button } from "@/components/ui/button";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
@@ -35,14 +34,9 @@ const config: DocsThemeConfig = {
   navbar: {
     extraContent: (
       <>
-
-          <Button size="xs" asChild className="whitespace-nowrap w-[70px]">
-              <Link
-                  href={"https://lamatic.ai"}
-              >
-                 Sign Up
-              </Link>
-          </Button>
+        <Button size="xs" asChild className="whitespace-nowrap w-[70px]">
+          <Link href={"https://lamatic.ai"}>Sign Up</Link>
+        </Button>
       </>
     ),
   },
@@ -56,9 +50,18 @@ const config: DocsThemeConfig = {
           <div className="-mx-2 hidden md:block">
             {[
               { title: "Docs", path: "/docs", Icon: LibraryBig },
+              { title: "Guides", path: "/guides", Icon: GraduationCap },
               { title: "Book a demo", path: "/docs/demo", Icon: Phone },
-                { title: "Roadmap", path: "https://product.lamatic.ai/", Icon: SquareGanttChart },
-                { title: "Community and Support", path: "/docs/slack", Icon: Slack },
+              {
+                title: "Roadmap",
+                path: "https://product.lamatic.ai/",
+                Icon: SquareGanttChart,
+              },
+              {
+                title: "Community and Support",
+                path: "/docs/slack",
+                Icon: Slack,
+              },
             ].map((item) =>
               asPath.startsWith(item.path) ? (
                 <div
@@ -86,7 +89,7 @@ const config: DocsThemeConfig = {
     },
   },
 
-    feedback:{useLink: () => "https://product.lamatic.ai/"},
+  feedback: { useLink: () => "https://product.lamatic.ai/" },
   editLink: {
     text: "Edit this page on GitHub",
   },
@@ -133,7 +136,6 @@ const config: DocsThemeConfig = {
 
     const title = frontMatter.title ?? pageTitle;
 
-
     const section = asPath.startsWith("/docs")
       ? "Docs"
       : asPath.startsWith("/changelog/")
@@ -143,10 +145,9 @@ const config: DocsThemeConfig = {
       : "";
 
     if (process.env.VERCEL_URL) {
-        var domain = process.env.VERCEL_URL
-        console.log(domain)
+      var domain = process.env.VERCEL_URL;
+      console.log(domain);
     }
-
 
     const image = frontMatter.ogImage
       ? frontMatter.ogImage
@@ -156,9 +157,7 @@ const config: DocsThemeConfig = {
           description
         )}&section=${encodeURIComponent(section)}`;
 
-    const video = frontMatter.ogVideo
-      ? + frontMatter.ogVideo
-      : null;
+    const video = frontMatter.ogVideo ? +frontMatter.ogVideo : null;
 
     return (
       <>

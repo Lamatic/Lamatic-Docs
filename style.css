@@ -118,15 +118,17 @@
   ol {
     font-size: medium;
     margin-top: 0 !important;
-    padding-left: 10px !important; /* Base indentation for all lists */
+    padding-left: 18px !important; /* Base indentation for all lists */
   }
+
+
 
   /* Nested lists */
   ul ul,
   ul ol,
   ol ul,
   ol ol {
-    margin-left: 10px !important; /* Additional indentation for nested lists */
+    margin-left: 18px !important; /* Additional indentation for nested lists */
   }
 
   /* List items */

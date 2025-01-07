@@ -53,5 +53,56 @@ This flow manages:
 ![flow.png](./img/get-started/flow.png)
 4. You'll see different sections like Flows, Data, and Models
 
+### 2. Setting Up the Firecrawl Flow
+1. From the Studio, click “Create New Flow”
+1. Name your flow “Website Crawler”
+1. Select “API Request” as the trigger type and define the schema such as
+    ```json
+        { "trigger": "bool" }
+    ```
+1. Add a Crawler node to your flow and Add Credentials (API key from Firecrawl)
+    ![flow.png](./img/chatbot-firecrawl/firecrawl.png)
+1. Add Website URL to crawl the website
+1. In the Notification Webhook, Here we’ll select the Webhook which we’ll create in the next section
+1. Save the Node and Test the node.
+
+### 3. Creating the Webhook Processing Flow
+1. Create a new flow named “Crawler Data Processor”
+1. Select “Webhook” as the trigger type and Click on Fetch to collect the data from Crawler Flow.
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-2.png)
+1. Add a Conditional Node to check the page data
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-3.png)
+1. Parse the data before Vectorize the data by adding Logic Node
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-4.png)
+1. Add Vectorize Node, here you can pass the data to vectorized by selecting Embedding Model Name
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-5.png)
+1. Add New Node for Indexing vectorized data, here we’ll select the vector database, vectors, metadata, and primary key JSON.
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-6.png)
+1. Save the flow and Publish
+1. Select the Webhook in the Firecrawl Flow and Save
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-7.png)
+
+### 4. Building the Chatbot Flow
+1. Create a new flow named “RAG Chatbot” or Select the Flow Template of RAG Chatbot
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-8.png)
+1. Add a “Chat Interface” node
+1. Add RAG Node and Select the Database, Pass query, Select Respective LLM
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-9.png)
+
+### 5. Testing Chatbot
+1. Run the Firecrawl Flow, in which we’ll crawl the data from the given website
+1. Check with Chatbot Flow for testing
+
+### 6. Deployment and Integration
+Once you’ve tested the chat widget, click the Deploy button to make it live. Here you pass the deployment message.
+![Flow Deploy](./img/get-started/deploy.png)
+
+### 7. Integration
+To integrate the chat widget into your website, simply click the Setup button to access the code, then paste it into your website.
+
+Ensure that the allowed domains are specified before integrating this chat widget.
+![building-chatbot-integration.png](./img/building-chatbot/chatbot-integration.png)
 
 </Steps>
+
+Congratulations! You've completed the code lab and created your custom knowledge chatbot using Lamatic.ai!

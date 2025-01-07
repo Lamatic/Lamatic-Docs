@@ -34,7 +34,7 @@
 /* Fix nested lists */
 li>ol,
 li>ul {
-    margin-top: 0 !important;
+    /* margin-top: 0 !important; */
 }
 
 /* No dark background of videos */
@@ -56,3 +56,8 @@ svg .edgeLabel {
 .nextra-callout ul {
     margin-top: 0;
 }
+
+/* .nx-list-decimal:first, .nx-list-disc:first{
+    margin: 0 !important;
+    margin-left: 0 !important;
+} */

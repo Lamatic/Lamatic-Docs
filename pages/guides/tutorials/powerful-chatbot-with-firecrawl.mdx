@@ -1,0 +1,57 @@
+---
+description: Powerful Knowledge Chatbot with Firecrawl and RAG
+title: 3. Powerful Knowledge Chatbot with Firecrawl and RAG
+category: Beginner
+---
+
+# Powerful Knowledge Chatbot with Firecrawl and RAG
+
+In this tutorial, you'll learn how to build a custom knowledge chatbot using Lamatic.ai, Firecrawl, and RAG (Retrieval-Augmented Generation).
+
+## What you'll Build
+- You'll utilize Lamatic.ai Studio.
+- Build Chat Widget using LLM
+- Implement RAG & Firecrawl
+
+## Understanding the Components
+Before we dive in, let’s understand the key technologies we’ll be working with:
+
+- **[Firecrawl](https://www.firecrawl.dev/)** A web crawling service that systematically browses and collects website data. It can extract structured content, follow links, and handle various content types.
+- **RAG (Retrieval-Augmented Generation)**: A technique that enhances Large Language Models (LLMs) by providing relevant context retrieved from a knowledge base. This allows the model to generate more accurate and contextual responses.
+
+## Architecture Overview
+Our implementation follows a three-flow architecture, each handling a specific aspect of the system:
+
+### 1. Firecrawl Flow
+This flow is responsible for:
+1. Accepting website URLs through an API endpoint
+1. Configuring crawling parameters and depth
+1. Extracting relevant content from web pages
+1. Forwarding collected data to the webhook flow
+
+### 2. Webhook Processing Flow
+This flow handles:
+1. Receiving crawled data from Firecrawl
+1. Cleaning and processing the text content
+1. Creating vector embeddings for efficient retrieval
+1. Storing processed data in a vector database
+
+### 3. Chatbot Flow
+This flow manages:
+1. User interaction through a chat interface
+1. Context retrieval using RAG
+1. Response generation using the LLM
+1. Handling edge cases and errors
+
+## Getting Started
+
+<Steps>
+### 1. Project Setup
+1. Visit [Lamatic.ai](https://lamatic.ai/) and sign in
+2. Create a new organization
+3. Create a project within your organization
+![flow.png](./img/get-started/flow.png)
+4. You'll see different sections like Flows, Data, and Models
+
+
+</Steps>

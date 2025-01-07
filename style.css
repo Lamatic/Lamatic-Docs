@@ -84,13 +84,12 @@
 
   h1 {
     /* @apply tracking-tight font-mono leading-none; */
+    @apply font-mono;
     margin-top: 0.67em;
     margin-bottom: 0.67em;
     margin-left: 0;
     margin-right: 0;
-    @apply font-mono;
-    font-size: 2em;
-    /* font-family: 'font-mono'; */
+    font-size: 2.5em !important;
   }
 
   p {
@@ -100,17 +99,17 @@
 
   h2 {
     /* @apply tracking-tight leading-none; */
-    font-size: 1.2em;
-    margin-top: 0.83em;
+    font-size: 1.8em !important;
+    margin-top: 1.5em !important;
     margin-bottom: 0.83em;
     margin-left: 0;
     margin-right: 0;
   }
 
   h3 {
-    font-size: 1.17em;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    font-size: 1.5em !important;
+    margin-top: 1.2em !important;
+    margin-bottom: 0em !important;
     margin-left: 0;
     margin-right: 0;
   }
@@ -118,7 +117,7 @@
   ul,
   ol {
     font-size: medium;
-    margin: 0;
+    margin-top: 0 !important;
     padding-left: 10px !important; /* Base indentation for all lists */
   }
 

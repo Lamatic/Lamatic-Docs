@@ -68,7 +68,6 @@
   }
 }
 
-
 @layer base {
   * {
     @apply border-border;
@@ -84,10 +83,65 @@
   /*}*/
 
   h1 {
-    @apply tracking-tight font-mono leading-tight;
+    /* @apply tracking-tight font-mono leading-none; */
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    @apply font-mono;
+    font-size: 2em;
+    /* font-family: 'font-mono'; */
+  }
+
+  p {
+    margin: 0 !important;
+    font-size: medium;
   }
 
   h2 {
-    @apply tracking-tight;
+    /* @apply tracking-tight leading-none; */
+    font-size: 1.2em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  h3 {
+    font-size: 1.17em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  ul,
+  ol {
+    font-size: medium;
+    margin: 0;
+    padding-left: 10px !important; /* Base indentation for all lists */
+  }
+
+  /* Nested lists */
+  ul ul,
+  ul ol,
+  ol ul,
+  ol ol {
+    margin-left: 10px !important; /* Additional indentation for nested lists */
+  }
+
+  /* List items */
+  li {
+    margin: 0; /* Vertical spacing between list items */
+  }
+
+  code {
+    font-size: larger !important;
+  }
+
+  img{
+    margin-top: 1%;
+    margin-bottom: 1%;
+    border-radius: 5px;
   }
 }

@@ -118,7 +118,7 @@
   ol {
     font-size: medium;
     margin-top: 0 !important;
-    padding-left: 0px !important; /* Base indentation for all lists */
+    padding-left: 7px !important; /* Base indentation for all lists */
   }
 
 

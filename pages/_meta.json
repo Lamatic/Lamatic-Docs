@@ -14,7 +14,7 @@
   "guides": {
     "type": "page",
     "title": "Guides",
-    "display": "hidden"
+    "display":"hidden"
   },
   "Changelog": {
     "title": "Change Log",

@@ -3,7 +3,11 @@
     "type": "separator",
     "title": "Switcher"
   },
-  "index": "Overview",
-  "cookbook": "Cookbooks",
-  "videos": "Videos"
+  "index": {
+    "title":"Overview"
+  },
+  "tutorials": {
+    "title": "Tutorials",
+    "display": "hidden"
+  }
 }

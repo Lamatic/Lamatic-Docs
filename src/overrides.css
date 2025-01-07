@@ -1,58 +1,85 @@
 /* make nav more blurry */
 .nextra-nav-container-blur {
-    background: transparent !important;
+  background: transparent !important;
 }
 
-:is(html[class~=dark] .nextra-nav-container-blur, html[class~=dark] .nextra-nav-container-blur) {
-    background: transparent !important;
+:is(
+    html[class~="dark"] .nextra-nav-container-blur,
+    html[class~="dark"] .nextra-nav-container-blur
+  ) {
+  background: transparent !important;
 }
 
-.nextra-toc>div> :last-child {
-    fill-opacity: 50;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+.nextra-toc > div > :last-child {
+  fill-opacity: 50;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* smaller search bar */
 .nextra-search {
-    width: 10rem;
+  width: 10rem;
 }
 
 .nx-sticky {
-    background: linear-gradient(45deg, var(--ring) 25%, transparent 25%, transparent 75%, var(--ring) 75%, var(--ring) 100%), linear-gradient(45deg, var(--ring) 25%, transparent 25%, transparent 75%, var(--ring) 75%, var(--ring) 100%);
+  background: linear-gradient(
+      45deg,
+      var(--ring) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--ring) 75%,
+      var(--ring) 100%
+    ),
+    linear-gradient(
+      45deg,
+      var(--ring) 25%,
+      transparent 25%,
+      transparent 75%,
+      var(--ring) 75%,
+      var(--ring) 100%
+    );
 }
 
 .nextra-search input {
-    border-radius: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 /* Fix logo overflowing */
-.nextra-nav-container>nav>a:first-child {
-    flex-shrink: 0;
+.nextra-nav-container > nav > a:first-child {
+  flex-shrink: 0;
 }
 
 /* Fix nested lists */
-li>ol,
-li>ul {
-    margin-top: 0 !important;
+li > ol,
+li > ul {
+  /* margin-top: 0 !important; */
 }
 
 /* No dark background of videos */
 media-outlet {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 /* More gap between h2 in articles */
 article.nextra-body-typesetting-article h2 {
-    margin-top: 6rem;
+  margin-top: 6rem;
 }
 
 svg .nodeLabel,
 svg .edgeLabel {
-    font-family: monospace;
+  font-family: monospace;
 }
 
 /* Fix callout list */
 .nextra-callout ul {
-    margin-top: 0;
+  margin-top: 0;
+}
+
+/* .nx-list-decimal:first, .nx-list-disc:first{
+    margin: 0 !important;
+    margin-left: 0 !important;
+} */
+
+.nextra-toc> .nextra-scrollbar> ul{
+    font-size: small;
 }

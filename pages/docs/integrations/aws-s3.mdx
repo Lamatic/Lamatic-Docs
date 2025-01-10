@@ -170,20 +170,21 @@ Before setting up the AWS S3 node, ensure you have the following:
 
 ### Low-Code Example
 ```yaml
-{
-  "triggerNode": {
-    "nodeId": "triggerNode_1",
-    "nodeType": "s3Node",
-    "nodeName": "AWS S3",
-    "values": {
-      "syncMode": "incremental",
-      "bucket": "new-testing-12345",
-      "credentials": "{your-aws-credentials}",
-      "syncSchedule": "Every 24 hours",
-      "pathPatterns": "**/*.csv"
-    }
-  }
-}
+    triggerNode:
+    nodeId: triggerNode_1
+    nodeType: s3Node
+    nodeName: S3
+    values:
+        credentials: 'AWS'
+        bucket: 'TEST'
+        strategy: auto
+        globs:
+        - '**'
+        days_to_sync_if_history_is_full: '3'
+        start_date: '2025-01-03T00:00:00.000000Z'
+        syncMode: incremental_append
+        cronExpression: 0 0 00 1/1 * ? * UTC
+
 ```
 
 ## Troubleshooting

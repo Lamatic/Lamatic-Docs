@@ -1,0 +1,202 @@
+---
+title: AWS S3
+description: The AWS S3 node in Lamatic automates fetching and synchronizing files from Amazon S3 buckets. It supports various file types, including text files, PDFs, Word Documents, and others stored in the bucket. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+---
+# AWS S3 Node Documentation
+
+The AWS S3 node in Lamatic automates fetching and synchronizing files from Amazon S3 buckets. It supports various file types, including text files, PDFs, Word Documents, and others stored in the bucket. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+
+
+## Features
+
+### ✅ Key Functionalities
+- **Batch Trigger**: Automates file fetching and synchronization on a schedule or in real-time using S3 event notifications.
+- **File Type Support**: Handles text files, PDFs, Word Documents, and other compatible formats.
+
+### ✅ Benefits
+- Streamlines file collection from Amazon S3 buckets.
+- Prepares files for vectorization and indexing to enhance RAG flows.
+- Scales efficiently with growing data volumes.
+
+---
+
+## Prerequisites
+
+Before setting up the AWS S3 node, ensure you have the following:
+- An AWS account with appropriate bucket access permissions.
+- The target S3 bucket name and configuration.
+- An understanding of IAM policies and credentials.
+
+---
+
+## Installation
+
+### Step 1: Set Up AWS Credentials
+1. **Create IAM Policy**:
+   - Navigate to the [IAM console](https://console.aws.amazon.com/iam/home#home).
+   - Create a new policy with required S3 permissions.
+   - Use the provided JSON policy template.
+
+        ```JSON
+            {
+                "Version": "2012-10-17",
+                "Statement": [
+                    {
+                        "Effect": "Allow",
+                        "Action": [
+                            "s3:GetObject",
+                            "s3:ListBucket",
+                            "s3:ListAllMyBuckets"
+                        ],
+                        "Resource": "*"
+                    }
+                ]
+            }
+        ```
+
+        <Callout type="info" emoji="ℹ️">
+            Note: If you want to given permission only to specific buckets then add them to resource key, refer the below example
+        </Callout>
+
+        ```JSON
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                "Effect": "Allow",
+                "Action": [
+                    "s3:GetObject",
+                    "s3:ListBucket"
+                ],
+                "Resource": [
+                        "arn:aws:s3:::{your-bucket-name-1}/*",
+                        "arn:aws:s3:::{your-bucket-name-1}",
+                        "arn:aws:s3:::{your-bucket-name-2}/*",
+                        "arn:aws:s3:::{your-bucket-name-2}"
+                    ]
+                }
+            ]
+        }
+        ```
+
+        <Callout>
+        Note: At this time, object-level permissions alone are not sufficient to successfully authenticate the connection. Please ensure you include the bucket-level permissions as provided in the example above.
+        </Callout>
+2. **Configure IAM User**:
+   - Create or select an IAM user.
+   - Attach the created policy.
+   - Generate and securely store access credentials.
+
+        <Callout type="error" emoji="️⚠️">
+        Caution: Your Secret Access Key will only be visible once upon creation. Be sure to copy and store it securely.
+        </Callout>
+
+        For more information on managing your access keys, please refer to the official [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
+
+### Step 2: Configure Node in Lamatic
+1. Add the S3 node to your flow.
+2. Provide necessary credentials and bucket details.
+3. Configure sync settings and schedule.
+
+---
+
+## Configuration Reference
+
+![s3](./img/s3.png)
+
+    | **Field**                    |**Description**                                                                                                                                          | **Options/Examples**                                    | **Requirement/Default**               |
+    |------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------|
+    | **Credentials**              | Specifies the credentials required to access the S3 bucket. Ensure you have appropriate IAM credentials configured for the node.                      | Pre-configured S3 credentials (e.g., "S3").           | Mandatory                              |
+    | **Bucket**                   | Specifies the name of the Amazon S3 bucket that the node will interact with.                                                                             | Example: `new-testing-12345`.                          | Mandatory                              |
+    | **Parsing Strategy**         | Defines how files in the S3 bucket will be parsed.                                                                                                      | `Auto` (automatic detection), other custom strategies. | Default: `Auto`                        |
+    | **Globs (Path Patterns)**    | Allows specifying file path patterns to include or exclude files during processing.                                                                      | Example: `*.csv` (include all CSV files).              | Default: None (all files included).    |
+    | **Days to Sync If History Is Full** | Defines how many days' worth of historical data to sync when the history is full.                                                                 | Example: `3`.                                           | Default: `3`.                          |
+    | **Start Date**               | Specifies the date from which the node should begin syncing files.                                                                                       | Format: `YYYY-MM-DD`.                                  | Default: Empty (process all files).    |
+    | **Sync Mode**                | Determines how the synchronization is performed.                                                                                                        | `Incremental` (new/updated files), other modes.        | Default: `Incremental`.                |
+    | **Sync Schedule**            | Defines the frequency at which the synchronization process occurs.                                                                                      | `Every 24 hours`, custom intervals (e.g., hourly).     | Default: `Every 24 hours`.             |
+
+
+    ##### Credentials
+    These are the authentication details used to connect to the S3 bucket. You must configure IAM credentials with appropriate permissions (e.g., read access to the bucket).
+
+    ##### Bucket 
+    The S3 bucket acts as the data source for this trigger. Enter the name of the bucket where your files are stored.
+
+    ##### Parsing Strategy
+    This option determines how the files will be interpreted. 
+
+    - `Auto` lets the system decide the best way to parse files, while other strategies might require manual setup for specific file types.
+    - `fast` extracts text directly from the document which doesn't work for all files. 
+    - `ocr_only` is more reliable, but slower. 
+    - `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode.
+    
+
+    ##### Globs (Path Patterns)
+    Use glob patterns to filter which files should be processed. 
+
+    - `**`: match everything.
+    - `**/*.csv`: match all files with a specific extension.
+    - `myFolder/**/*.csv`: match all `.csv` files anywhere under `myFolder`.
+    - `*/**`: match everything at least one folder deep.
+    - `*/*/*/**`: match everything at least three folders deep.
+    - `**/file.*|**/file`: match every file called "file" with any extension (or no extension).
+    - `x/*/y/*`: match all files that sit in folder `x -> any folder -> folder y`.
+    - `**/prefix*.csv`: match all `.csv` files with a specific prefix.
+    - `**/prefix*.parquet`: match all `.parquet` files with a specific prefix.
+
+    This is helpful for excluding unnecessary files.
+
+    ##### Days to Sync If History Is Full
+    If the system encounters a large backlog of files, this setting limits the synchronization to a defined number of recent days. It helps manage processing time and storage efficiently.
+
+    ##### Start Date
+    Define a specific date from which the system should start processing files. This is particularly useful for incremental syncs where you only want to process data from a certain point in time.
+
+    ##### Sync Mode
+    The S3 source connector supports the following:
+
+    1. In `Incremental` mode, the system only processes files that have been added or updated since the last sync. This reduces redundancy and improves performance.
+
+    1. `Full Refresh` sync mode is a data replication method that copies all data from a source to a destination
+
+    ##### Sync Schedule
+    This setting allows you to specify how often the synchronization process should run, such as every hour or every 24 hours. Regular intervals ensure that your data stays updated. 
+    You can Schedule the Sync on Every 3, 6, 8, 12 and 24 hours                                                       
+
+---
+
+### Low-Code Example
+```js
+{
+  "triggerNode": {
+    "nodeId": "triggerNode_1",
+    "nodeType": "s3Node",
+    "nodeName": "AWS S3",
+    "values": {
+      "syncMode": "incremental",
+      "bucket": "new-testing-12345",
+      "credentials": "{your-aws-credentials}",
+      "syncSchedule": "Every 24 hours",
+      "pathPatterns": "**/*.csv"
+    }
+  }
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**               | **Solution**                                                                          |
+|---------------------------|--------------------------------------------------------------------------------------|
+| **Invalid Credentials**   | Verify IAM user credentials and policy permissions.                                  |
+| **Bucket Not Found**      | Confirm bucket name and region configuration.                                       |
+| **Sync Not Working**      | Check sync schedule settings and IAM permissions.                                   |
+| **File Types Unsupported**| Verify file formats are among supported types.                                      |
+
+### Debugging
+
+- Review AWS CloudWatch logs for access issues.
+- Verify IAM policy permissions are correctly configured.
+- Test bucket accessibility using AWS CLI or console.
+- Check Lamatic Flow logs for detailed error information.

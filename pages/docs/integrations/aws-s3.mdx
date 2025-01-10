@@ -125,10 +125,9 @@ Before setting up the AWS S3 node, ensure you have the following:
     ##### Parsing Strategy
     This option determines how the files will be interpreted. 
 
-    - `Auto` lets the system decide the best way to parse files, while other strategies might require manual setup for specific file types.
+    - `auto` lets the system decide the best way to parse files, while other strategies might require manual setup for specific file types.
     - `fast` extracts text directly from the document which doesn't work for all files. 
     - `ocr_only` is more reliable, but slower. 
-    - `hi_res` is the most reliable, but requires an API key and a hosted instance of unstructured and can't be used with local mode.
     
 
     ##### Globs (Path Patterns)
@@ -151,6 +150,10 @@ Before setting up the AWS S3 node, ensure you have the following:
 
     ##### Start Date
     Define a specific date from which the system should start processing files. This is particularly useful for incremental syncs where you only want to process data from a certain point in time.
+    <br/>
+    Format: `YYYY-MM-DDTHH:mm:ss.SSSSSSZ`
+    <br/>
+    Example: `2025-01-03T00:00:00.000000Z`
 
     ##### Sync Mode
     The S3 source connector supports the following:
@@ -166,7 +169,7 @@ Before setting up the AWS S3 node, ensure you have the following:
 ---
 
 ### Low-Code Example
-```js
+```yaml
 {
   "triggerNode": {
     "nodeId": "triggerNode_1",

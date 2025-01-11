@@ -82,35 +82,28 @@ Before setting up the Slack node, ensure you have:
 
 ```js
 // Event Trigger Configuration
-{
-  "triggerNode": {
-    "nodeId": "slackNode_2",
-    "nodeType": "slackNode",
-    "nodeName": "Slack",
-    "values": {
-      "command": "ask",
-      "channelName": "{your-slack-channel}",
-      "credentials": "{your-slack-credentials}",
-      "immediateResponseData": "Fetching your answer about {{slackNode_2.output.text}}"
-    }
-  }
-}
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: slackNode
+  nodeName: Slack Trigger
+  values:
+    command: ask
+    credentials: New Slack Test
+    channelName: C07SZ5BR1E1
+    immediateResponseData: 'Fetch your answer about: {{triggerNode_1.output.user_name}}'
 
 // Action Configuration
-{
-  "nodeId": "slackNode_p4j9hxlq88",
-  "nodeType": "slackNode",
-  "nodeName": "Slack Confirmation",
-  "values": {
-    "text": "{your-slack-message}",
-    "action": "postMessage",
-    "channelName": "{ your-slack-channel }",
-    "credentials": "{ your-slack-credentials }"
-  },
-  "needs": [
-    "IndexNode_b30vktaxjz"
-  ]
-}
+nodes:
+  - nodeId: slackNode_122
+    nodeType: slackNode
+    nodeName: Slack
+    values:
+      credentials: 'cred'
+      action: 'postMessage'
+      channelName: '{ your-slack-channel }'
+      text: '{your-slack-message}'
+    needs:
+      - triggerNode_1
 ```
 
 ## Troubleshooting

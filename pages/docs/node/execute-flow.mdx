@@ -77,22 +77,18 @@ Before using the Execute Flow, ensure you have:
 ---
 
 ## Low-Code Example
-```js
-{
-  "nodeId": "executeFlow_1",
-  "nodeType": "executeFlow",
-  "nodeName": "Process Data",
-  "values": {
-    "flowId": "4be6dea6-d13c-44d8-87cf-5ad46361c890",
-    "requestInput": {
-      "prompt": "{{triggerNode_1.output}}",
-      "parameters": {
-        "format": "json",
-        "maxLength": 500
-      }
-    }
-  }
-}
+```yaml
+  - nodeId: flowNode_919
+    nodeType: flowNode
+    nodeName: Execute Flow
+    values:
+      flowId: flow_id
+      requestInput: |-
+        {
+          "test": "{{triggerNode_1.output.user_name}}"
+        }
+    needs:
+      - node_id
 ```
 
 ## Troubleshooting

@@ -1,8 +1,8 @@
 ---
 title: Google Drive
 description: The Google Drive node in Lamatic automates fetching and synchronizing files from Google Drive. It supports various file types, including Google Docs, Slides, Word Documents, PDFs, and text files. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
-
 ---
+
 # Google Drive Node Documentation
 
 The Google Drive node in Lamatic automates fetching and synchronizing files from Google Drive. It supports various file types, including Google Docs, Slides, Word Documents, PDFs, and text files. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
@@ -12,10 +12,12 @@ The Google Drive node in Lamatic automates fetching and synchronizing files from
 ## Features
 
 ### ✅ Key Functionalities
+
 - **Batch Trigger**: Automates file fetching and synchronization on a schedule.
 - **File Type Support**: Handles Google Docs, Slides, Word Documents, PDFs, and text files.
 
 ### ✅ Benefits
+
 - Streamlines file collection from Google Drive.
 - Prepares files for vectorization and indexing to enhance RAG flows.
 
@@ -24,6 +26,7 @@ The Google Drive node in Lamatic automates fetching and synchronizing files from
 ## Prerequisites
 
 Before setting up the Google Drive node, ensure you have the following:
+
 - Google Drive credentials for accessing the desired folder.
 - The target folder URL from Google Drive.
 - An understanding of Cron expressions for scheduling flows.
@@ -33,6 +36,7 @@ Before setting up the Google Drive node, ensure you have the following:
 ## Installation
 
 ### Step 1: Set Up Lamatic Flow
+
 1. **Create a Custom Flow**:
    - Follow the [webhook integration guide](https://lamatic.ai/docs/interface/webhooks).
    - Configure webhooks as trigger events.
@@ -42,6 +46,7 @@ Before setting up the Google Drive node, ensure you have the following:
    - Customize the template as needed.
 
 ### Step 2: Configure Node in Lamatic
+
 1. Add the Google Drive node to your flow.
 2. Provide necessary credentials and folder details.
 3. Schedule the flow using a Cron expression for regular execution.
@@ -52,43 +57,41 @@ Before setting up the Google Drive node, ensure you have the following:
 
 ### Batch Trigger: Scheduled
 
-| **Parameter**       | **Description**                                                                                             | **Required** | **Example**                                                                                   |
-|---------------------|-----------------------------------------------------------------------------------------------------------|--------------|-----------------------------------------------------------------------------------------------|
-| **Name**            | Display name for the node.                                                                                | ✅            | `Google Drive`                                                                                |
-| **Credentials**     | Google authentication details required to connect to the Drive folder.                                    | ✅            | `my-google-drive-credentials`                                                                |
-| **Folder**          | The folder from which files will be fetched.                                                              | ✅            | `https://drive.google.com/drive/folders/{folder-id}`                                          |
-| **Sync Mode**       | Specify either `incremental` (process new/updated files only) or `full-refresh` (reprocess all files).     | ✅            | `incremental`                                                                                |
-| **Sync Schedule**   | Frequency for running the flow, specified using a Cron expression.                                        | ✅            | `0 0 05 1/1 * ? * UTC`                                                                       |
+| **Parameter**     | **Description**                                                                                        | **Required** | **Example**                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------ | ------------ | ---------------------------------------------------- |
+| **Name**          | Display name for the node.                                                                             | ✅           | `Google Drive`                                       |
+| **Credentials**   | Google authentication details required to connect to the Drive folder.                                 | ✅           | `my-google-drive-credentials`                        |
+| **Folder**        | The folder from which files will be fetched.                                                           | ✅           | `https://drive.google.com/drive/folders/{folder-id}` |
+| **Sync Mode**     | Specify either `incremental` (process new/updated files only) or `full-refresh` (reprocess all files). | ✅           | `incremental`                                        |
+| **Sync Schedule** | Frequency for running the flow, specified using a Cron expression.                                     | ✅           | `0 0 05 1/1 * ? * UTC`                               |
 
 ---
 
 ### Low-Code Example
-```js
-{
-  "triggerNode": {
-    "nodeId": "triggerNode_1",
-    "nodeType": "googleDriveNode",
-    "nodeName": "Google Drive",
-    "values": {
-      "syncMode": "incremental_append",
-      "folderUrl": "https://drive.google.com/drive/folders/{your-folder-id}",
-      "credentials": "{your-google-drive-credentials}",
-      "cronExpression": "0 0 05 1/1 * ? * UTC"
-    }
-  }
-}
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: googleDriveNode
+  nodeName: Google Drive
+  values:
+    process: batch
+    syncMode: incremental_append
+    credentials: Google Drive OAuth
+    cronExpression: 0 0 */12 ? * * UTC
+    folderUrl: https://drive.google.com/drive/folders/YOUR_ID
 ```
 
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**               | **Solution**                                                                                  |
-|---------------------------|----------------------------------------------------------------------------------------------|
-| **Invalid Credentials**   | Verify that the correct Google Drive credentials are provided.                               |
-| **Folder Not Found**      | Ensure the folder URL is accurate and accessible.                                           |
-| **Sync Not Working**      | Check the Cron expression for correctness.                                                  |
-| **File Types Unsupported**| Confirm that the files in the folder are of supported types (Google Docs, PDFs, etc.).      |
+| **Problem**                | **Solution**                                                                           |
+| -------------------------- | -------------------------------------------------------------------------------------- |
+| **Invalid Credentials**    | Verify that the correct Google Drive credentials are provided.                         |
+| **Folder Not Found**       | Ensure the folder URL is accurate and accessible.                                      |
+| **Sync Not Working**       | Check the Cron expression for correctness.                                             |
+| **File Types Unsupported** | Confirm that the files in the folder are of supported types (Google Docs, PDFs, etc.). |
 
 ### Debugging
 

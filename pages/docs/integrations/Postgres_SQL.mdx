@@ -86,21 +86,17 @@ Always test webhook endpoints before production deployment.
 ---
 
 ### Low-Code Example
-```js
-{
-  "triggerNode": {
-    "nodeId": "triggerNode_1",
-    "nodeType": "postgresNode",
-    "nodeName": "Postgres",
-    "values": {
-      "tables": "Behavior",
-      "schemas": "public",
-      "syncMode": "incremental_append",
-      "credentials": "{your-postgres-credentials}",
-      "cronExpression": "0 0 0/1 1/1 * ? * UTC"
-    }
-  }
-}
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: postgresNode
+  nodeName: Postgres
+  values:
+    credentials: Test_212
+    syncMode: incremental_append
+    cronExpression: 0 0 00 1/1 * ? * UTC
+    schemas: ''
+    tables: 'test'
 ```
 
 ## Troubleshooting

@@ -28,7 +28,7 @@
     "href": "https://hub.lamatic.ai",
     "newWindow": true
   },
-  "node": "Nodes",
+  "nodes": "Nodes",
   "integrations": "Integrations",
   "models": "Models",
   "interface": "Interface",

@@ -1,0 +1,18 @@
+import { NodesIndex } from "@/components/NodesIndex";
+
+# Nodes
+
+Nodes are the fundamental building blocks of a flow in Lamatic. Each node serves a specific purpose, acting as a self-contained unit that processes input and produces output. This modular approach allows users to create complex flows by interconnecting various nodes.
+
+## Node Categories
+
+Lamatic organizes nodes into four main categories, each with a unique function in building flows:
+| **Category** | **Purpose**                                     | **Examples**                                    | **Method**                                                                                                                                       |
+|--------------|-------------------------------------------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Apps**     | Integrate third-party applications into workflow | Slack, PostgreSQL, Google Sheets               | These nodes act as bridges, enabling data exchange and action execution between Lamatic and external services.                                   |
+| **AI**       | Perform artificial intelligence operations       | Vector operations, text generation, natural language understanding | AI nodes use machine learning models to process and analyze data, allowing for tasks such as sentiment analysis, text classification, or content generation. |
+| **Data**     | Manipulate and transform data                   | Indexing, chunking, filtering                  | Data nodes provide tools for structuring, organizing, and processing information, ensuring data is in the right format for subsequent nodes.     |
+| **Logic**    | Control the flow of execution                   | Conditional statements, loops, custom code execution | Logic nodes allow for decision-making and branching, enabling dynamic, responsive workflows based on specific conditions or criteria.           |
+
+
+<NodesIndex/>

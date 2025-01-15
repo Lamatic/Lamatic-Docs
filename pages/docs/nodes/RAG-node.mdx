@@ -1,0 +1,129 @@
+---
+title: RAG Node
+
+description: The RAG Node generates more relevant responses from a Language Learning Model (LLM) by using Retrieval Augmented Generation (RAG).
+type: AI
+order: 1
+---
+
+# RAG Node Documentation
+
+The RAG Node generates more relevant responses from a Language Learning Model (LLM) by using Retrieval Augmented Generation (RAG). This approach incorporates additional context retrieved from a vector database to improve the accuracy and relevance of the generated text.
+
+The node allows users to configure parameters such as the embedding model, generative model, and query specifics to tailor the response generation process to their needs. By leveraging RAG, users can efficiently create context-aware, concise, and helpful responses, making it a valuable tool for projects requiring advanced AI-driven text generation.
+
+![rag.png](./img/rag/rag.png)
+
+## Features
+
+<details> 
+  <summary>**Key Functionalities**</summary>
+  1. **Database Integration**: Allows integration with a specified database (e.g., `IndexCrawler`) to fetch relevant data for downstream processes. 
+  
+  1. **Dynamic Query Handling**: Supports dynamic query generation using variables (e.g., `{{triggerNode_1.output.topic}}`) for flexible search and data retrieval. 
+  
+  1. **Embedding and Generative Models**: Enables the use of embedding models (e.g., `mistral-embed`) and generative models (e.g., `mistral-large-2402`) for advanced AI-powered search and content generation tasks. 
+  
+  1. **API Modular Configuration**: Offers seamless customization with additional properties for tailored AI and search workflows. 
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+  
+  1. **Flexibility**: Supports a variety of databases and AI models, making it adaptable for diverse use cases.
+
+  1. **Efficiency**: Utilizes embedding and generative models to provide relevant, high-quality outputs.
+
+  1. **Scalability**: Ensures the capability to handle large datasets and complex queries without performance issues.
+
+  1. **User-Friendly Design**: Simplifies workflow creation and configuration through an intuitive interface.
+</details>
+
+## What can I build?
+
+1. Develop AI-driven chatbots that provide context-aware responses using RAG for improved user interactions.
+1. Create automated customer support systems that deliver precise answers based on user queries and contextual data retrieval.
+1. Build educational tools that generate tailored learning content and explanations by leveraging context from a vector database.
+1. Design content creation platforms that use RAG to produce more relevant and concise articles or reports based on user input.
+
+## Setup
+
+### Select the RAG Node
+
+1. Fill in the required parameters.
+1. Build the desired flow
+1. Deploy the Project
+1. Click Setup on the workflow editor to get the automatically generated instruction and add it in your application.
+
+## Configuration Reference
+
+| **Parameter**             | **Description**                                                                                                                                                                                                                                                                                          | **Example Value**            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **Database**              | Select the vector database to be queried.                                                                                                                                                                                                                                                                | Database                     |
+| **Search Query**          | Input the query to search the vector database.                                                                                                                                                                                                                                                           | Tell me something about Bali |
+| **Embedding Model Name**  | This field allows the user to select the embedding model used to embed the query into vector space. It loads available embedding models through the listModels method.                                                                                                                                   | Embedding Model Name         |
+| **Generative Model Name** | Select the model to generate responses from the query results.                                                                                                                                                                                                                                           | LLM Model                    |
+| **System Prompt**         | System prompt to guide the LLM                                                                                                                                                                                                                                                                           | You are Travel Planner       |
+| **No. of References**     | Number of results to return                                                                                                                                                                                                                                                                              | 3                            |
+| **Certainty**             | Its the distance score into a value between `0 <= certainty <= 1`, where 1 would represent identical vectors and 0 would represent opposite vectors.Its the distance score into a value between `0 <= certainty <= 1`, where 1 would represent identical vectors and 0 would represent opposite vectors. | 0.7                          |
+| **Filters**               | Apply JSON-based filters to refine search results.Apply JSON-based filters to refine search results.                                                                                                                                                                                                     |                              |
+| **Messages (History)**    | Pass your messages history here                                                                                                                                                                                                                                                                          | []                           |
+
+## Low-Code Example
+
+```yaml
+nodes:
+  - nodeId: RAGNode_666
+    nodeType: RAGNode
+    nodeName: RAG
+    values:
+      systemPrompt: >-
+        You are a helpful AI assistant that answers user queries based on the
+        context provided to you.
+      vectorDB: IndexCrawler
+      queryField: "{{triggerNode_1.output.topic}}"
+      limit: "3"
+      certainty: "0.7"
+      filters: |-
+        {
+          "operator": "And",
+          "operands": [
+            {
+              "path": [
+                "title"
+              ],
+              "operator": "Equal",
+              "valueText": "Test"
+            }
+          ]
+        }
+      messages: "[]"
+      embeddingModelName:
+        provider_name: mistral
+        type: embedder/text
+        credential_name: Mistral API
+        credentialId: 32bf5e3b-a8fc-4697-b95a-b1af3dcf7498
+        model_name: mistral/mistral-embed
+      generativeModelName:
+        provider_name: mistral
+        type: generator/text
+        credential_name: Mistral API
+        credentialId: 32bf5e3b-a8fc-4697-b95a-b1af3dcf7498
+        model_name: mistral/mistral-large-2402
+    needs:
+      - triggerNode_1
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                    | **Solution**                                                 |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Invalid API Key**            | Ensure the API key is correct and has not expired.           |
+| **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration. |
+
+### Debugging
+
+1. Check Lamatic Flow logs for error details.
+1. Verify API Key.

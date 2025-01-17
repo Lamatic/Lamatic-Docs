@@ -40,6 +40,7 @@
   "deployments": "Edge Deployments",
   "logs": "Logs",
   "jobs": "Jobs",
+  "keys": "API Keys",
   "reports": "\uD83E\uDDEA Reports",
   "-- references": {
     "type": "separator",

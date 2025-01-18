@@ -24,6 +24,8 @@ The Extract from File node is designed to parse and extract data from multiple f
 
 4. **Data Transformation**: Provides options to clean and transform data during extraction (trimming, filtering, etc.).
 
+5. **Base64 Encoding**: Supports encoding the extracted data as base64.
+
 </details>
 
 <details>
@@ -45,6 +47,7 @@ The Extract from File node is designed to parse and extract data from multiple f
 2. Automated document parsing systems
 3. Data extraction workflows for business intelligence
 4. Content aggregation systems from various file sources
+5. Extract data from files as base64 and use it in AI nodes
 
 ## Setup
 
@@ -62,8 +65,9 @@ The Extract from File node is designed to parse and extract data from multiple f
 | Parameter | Description                  | Required | Default             |
 | --------- | ---------------------------- | -------- | ------------------- |
 | nodeName  | Name of the node instance    | Yes      | "Extract from File" |
-| operation | Type of file to extract from | Yes      | "extractFromCSV"    |
 | fileUrl   | URL or path to the file      | Yes      | ""                  |
+| format | file format | Yes      | "auto"    |
+| encodeAsBase64 | encode the extracted data as base64 of structure: data:content-type;base64,encodedString. Eg: data:text/plain;base64,SW52YWxpZCBwYXJhbWV0ZXJzCg== | No      | false    |
 
 ### Format-Specific Parameters
 

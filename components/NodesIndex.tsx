@@ -1,58 +1,70 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
-import { Cards } from "nextra/components";
-import { BetweenHorizonalEnd } from "lucide-react";
+import Link from 'next/link';
 
-export const NodesIndex = () => (
-  <>
-    {Object.entries(
-      (
-        getPagesUnderRoute("/docs/nodes") as Array<
-          Page & { frontMatter: any }
-        >
-      )
-        .filter((page) => page.route !== "/nodes")
-        .reduce((acc, page) => {
-          const type = page.frontMatter?.type || "Other";
-          if (!acc[type]) acc[type] = [];
-          acc[type].push(page);
-          return acc;
-        }, {} as Record<string, Array<Page & { frontMatter: any }>>)
-    )
-      // Sort categories alphabetically
-      .sort(([typeA], [typeB]) => typeA.localeCompare(typeB))
-      .map(([type, pages]) => (
-        <div key={type}>
-          <h3 className="_font-semibold _tracking-tight _text-slate-900 dark:_text-slate-100 _mt-8 _text-2xl">
-            {type}
-          </h3>
-          <Cards num={2}>
-            {pages
-              // Sort pages within each category based on the order property
-              .sort((a, b) => {
-                const orderA = a.frontMatter?.order ?? Infinity;
-                const orderB = b.frontMatter?.order ?? Infinity;
-                return orderA - orderB;
-              })
-              .map((page) => (
-                <Cards.Card
-                  href={page.route}
-                  key={page.route}
-                  title={
-                    page.frontMatter?.title ||
-                    page.name
-                      .split("_")
-                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                      .join(" ")
-                  }
-                  icon={<BetweenHorizonalEnd />}
-                  arrow
-                >
-                  {""}
-                </Cards.Card>
-              ))}
-          </Cards>
-        </div>
-      ))}
-  </>
-);
+export const NodesIndex = () => {
+  // Get and process pages
+  const pages = (getPagesUnderRoute("/docs/nodes") as Array<Page & { frontMatter: any }>)
+    .filter((page) => page.route !== "/nodes");
+
+  // Sort all pages by type first, then by order within each type
+  const sortedPages = pages.sort((a, b) => {
+    const typeA = a.frontMatter?.type || "Other";
+    const typeB = b.frontMatter?.type || "Other";
+    if (typeA !== typeB) return typeA.localeCompare(typeB);
+    
+    const orderA = a.frontMatter?.order ?? Infinity;
+    const orderB = b.frontMatter?.order ?? Infinity;
+    return orderA - orderB;
+  });
+
+  return (
+    <div className="w-full overflow-x-auto">
+      <table className="min-w-full border-collapse">
+        <thead>
+          <tr className="bg-gray-100 dark:bg-gray-800">
+            <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Category</th>
+            <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Name</th>
+            <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Description</th>
+            <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sortedPages.map((page) => {
+            const title = page.frontMatter?.title || 
+              page.name
+                .split("_")
+                .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                .join(" ");
+
+            return (
+              <tr key={page.route} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+                <td className="p-4 border border-gray-200 dark:border-gray-700">
+                  {page.frontMatter?.type || "Other"}
+                </td>
+                <td className="p-4 border border-gray-200 dark:border-gray-700">
+                  {title}
+                </td>
+                
+                
+                <td className="p-4 border border-gray-200 dark:border-gray-700">
+                  {page.frontMatter?.description || "No description available"}
+                </td>
+                <td className="p-4 border border-gray-200 dark:border-gray-700">
+                  <Link 
+                    href={page.route}
+                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                  >
+                    View Documentation
+                  </Link>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+export default NodesIndex;

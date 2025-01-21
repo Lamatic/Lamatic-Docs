@@ -23,7 +23,7 @@ export const NodesIndex = () => {
       <table className="min-w-full border-collapse">
         <thead>
           <tr className="bg-gray-100 dark:bg-gray-800">
-            <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Type</th>
+            <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Category</th>
             <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Name</th>
             <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Description</th>
             <th className="p-4 text-left border border-gray-200 dark:border-gray-700">Link</th>

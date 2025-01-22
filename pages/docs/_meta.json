@@ -12,13 +12,34 @@
     "type": "separator",
     "title": "🛠️ Build"
   },
+  "Changelog": {
+    "title": "Changelog",
+    "type": "page"
+  },
+  "blog": {
+    "title": "Blog",
+    "type": "page"
+  },
+  "careers": {
+    "title": "Careers",
+    "type": "menu",
+    "items": {
+      "jobs": {
+        "title": "Open Positions",
+        "href": "/careers/jobs"
+      },
+      "culture": {
+        "title": "Our Culture",
+        "href": "/careers/culture"
+      }
+    }
+  },
   "studio": "Studio",
   "flows": "Flows",
   "tests": "Tests",
   "templates": "Templates",
   "context": "Context",
   "ide": "IDE",
-
   "-- connect": {
     "type": "separator",
     "title": "🧩 Connect"

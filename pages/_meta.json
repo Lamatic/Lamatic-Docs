@@ -22,8 +22,8 @@
     "theme": {
       "layout": "full"
     },
-    "href": "https://product.lamatic.ai/changelog",
-    "target": "_blank"
+    "newWindow": true,
+    "href": "https://product.lamatic.ai/changelog"
   },
   "blog": {
     "title": "\uD83E\uDDEALamatic Labs",
@@ -31,14 +31,8 @@
     "theme": {
       "layout": "full"
     },
-    "href": "https://labs.lamatic.ai",
-    "target": "_blank"
-  },
-  "careers": {
-    "title": "Careers",
-    "type": "page",
-    "href": "/docs/career",
-    "display": "visible"
+    "newWindow": true,
+    "href": "https://labs.lamatic.ai"
   },
   "support": {
     "title": "Support",

@@ -1,5 +1,5 @@
 ---
-description: RAG with AWS S3
+description: Build a Chatbot with Retrieval-Augmented Generation (RAG) Using AWS S3
 title: RAG with AWS S3
 category: Beginner
 order: 5
@@ -7,80 +7,126 @@ order: 5
 
 # RAG with AWS S3
 
-In this tutorial, you'll learn how to build an intelligent chatbot that can understand and respond to questions based on your Amazon S3 bucket documents using Lamatic.ai and RAG technology.
+Learn how to create an intelligent chatbot that can understand and respond to questions using documents from your Amazon S3 bucket. This tutorial leverages **Lamatic.ai** and **Retrieval-Augmented Generation (RAG)** technology.
 
-## What you'll Build
+![Overview](./img/aws-s3/overview.png)
 
-- You'll utilize Lamatic.ai Studio.
-- Build Chat Widget using LLM
-- Implement RAG with Google Drive
+---
+
+## What You'll Build
+
+- Utilize **Lamatic.ai Studio** for building workflows.
+- Create a **Chat Widget** powered by LLMs.
+- Implement **RAG** with AWS S3 for document-based knowledge retrieval.
+
+---
+
+## Workflow Overview
+
+We'll implement the following steps:
+
+1. **S3 Node**: Collect files from an S3 bucket.
+2. **Extract from File Node**: Parse and extract content from files.
+3. **Logic Node**: Transform the extracted data.
+4. **Vectorize Node**: Convert data into vectors for AI processing.
+5. **Index Node**: Manage and store vectorized data.
+
+---
 
 ## Getting Started
 
-<Steps>
-### 1. Account Creation and Create a New Flow
-1. Visit [Lamatic.ai](https://lamatic.ai/) and sign in
-1. Navigate to the dashboard and click **Create New Flow**
-1. Choose **S3 Node** as the Trigger.
-    1. Refer to the instructions for setting up the S3 Node [here](https://lamatic.ai/docs/integrations/aws-s3).
+### 1. Create an Account and New Workflow
 
-### 2. Data Chunking
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+2. Navigate to the dashboard and click **Create New Flow**.
+3. Choose **S3 Node** as the trigger.  
+   Refer to [S3 Node setup instructions](https://lamatic.ai/docs/integrations/aws-s3).
 
-Data chunking is a critical process that determines how effectively your chatbot can understand and retrieve information. Think of chunking as breaking down a book into logical chapters and paragraphs — it needs to be done thoughtfully to maintain context and meaning.
+---
 
-The chunking process involves sophisticated algorithms that analyze your documents and break them down into smaller, meaningful pieces. These chunks need to be large enough to maintain context but small enough to be specific and relevant when retrieved. Getting this balance right is crucial for your chatbot’s performance.
+### 2. Extract Data from Files
 
-1. Add “Chunking” node.
-1. Click the plus icon to select the data and provide the text you want to chunk.
-   ![flow.png](./img/aws-s3/chunk.png)
-1. Set your chunking parameters and adjust other default options under Additional Properties.
-1. Add a new Logic Node to Extract Chunked Text and Click on the “Extract Chunked Text” node, where we will extract data from the Chunks by applying the specified logic.
-   ![flow.png](./img/rag-with-google-drive/chunk-config.png)
+The **Extract from File Node** processes and extracts content from various file formats.
 
-### 3. Vector the Data
+1. Add the **Extract from File Node** to your flow.
+2. Configure the node:
+   - Click the **+** icon to add data.
+   - Provide the `document_url` as the File URL(s).
 
-Vectorization is where we transform text into a format that AI can understand and process efficiently. This step is like creating a detailed map of your knowledge base that the AI can navigate quickly and accurately.
+---
 
-1. Add Vector Node and Click on the Get Vectors node.
-   ![flow.png](./img/rag-with-google-drive/vactor.png)
-1. Click the plus (+) icon to choose the data and input the text you want to vectorize.
-1. Select the embedding model. For this example, we’ll use OpenAI’s text-embedding-3-large.
+### 3. Chunk Data for Processing
 
-### 4. Store Vector Data in the Vector Database
+Chunking splits documents into smaller, meaningful pieces. This step ensures a balance between context and relevance for the chatbot.
 
-The database storage step is where your vectorized knowledge becomes organized and readily accessible. This is similar to creating a highly efficient library catalog system, but instead of organizing books by author or subject, we’re organizing information by semantic meaning and relevance.
+1. Add a **Chunking Node**.
+2. Configure chunking parameters:
+   - Click the **+** icon to select the data to chunk.
+   - Adjust settings under **Additional Properties**.
+3. Use a **Logic Node** to extract chunked text:
+   - Add the **Extract Chunked Text Node** and define transformation logic.
 
-Vector databases are specifically designed to handle high-dimensional data and perform similarity searches quickly. This is essential for your chatbot to provide fast, accurate responses to queries.
+![Chunk Configuration](./img/rag-with-google-drive/chunk-config.png)
 
-1. Add Vector Node and Click on the node
-1. Select the desired Vector Database
-1. Add Vectors, Metadata, and a Primary Key by clicking the “+” icon
+---
 
-### 5. Test & Deployment Google Drive Node
+### 4. Vectorize the Data
 
-Click the “Test” button to test the Node, then deploy your flow to make it accessible for chatbot integration. You can check the logs in the logs section.
+Transform textual data into vectors for AI processing.
 
-### 6. Create a New Chatbot Flow to Implement RAG
+1. Add a **Vector Node** and configure it:
+   - Click the **+** icon to input text for vectorization.
+   - Choose an embedding model, e.g., OpenAI’s `text-embedding-3-large`.
 
-Now it’s time to create the chatbot that will utilize your knowledge base through RAG technology.
+![Vectorization](./img/rag-with-google-drive/vactor.png)
 
-This step is where we bring together all the previous components to create an intelligent chatbot that can understand and respond to queries using your knowledge base. RAG (Retrieval-Augmented Generation) is the key technology that allows your chatbot to combine its understanding of language with your specific knowledge base.
+---
 
-RAG works by first retrieving relevant information from your vectorized knowledge base, then using this information to generate accurate, contextual responses. This is similar to how a human expert might consult reference materials before providing a detailed answer.
+### 5. Store Vector Data in a Database
 
-1. Create a new flow named “RAG Chatbot” or Select the Flow Template of Document Chatbot ([Template](https://hub.lamatic.ai/templates/document-chatbot-widget))
-1. Add a “Chat Interface” node
-1. Add RAG Node and Select the Database, Pass query, Select Respective LLM
-   ![flow.png](./img/rag-with-google-drive/rag.png)
+Organize and store vectorized data for efficient retrieval.
 
-### 7. Test and Deploy Chatbot
+1. Add a **Vector Node** for database storage.
+2. Configure the node:
+   - Select the desired vector database.
+   - Add vectors, metadata, and a primary key.
 
-Thorough testing ensures your chatbot provides accurate and helpful responses.
+---
 
-Once you’ve tested the chat widget, click the Deploy button to make it live. Here you pass the deployment message. To integrate the chat widget into your website, simply click the Setup button to access the code, then paste it into your website.
+### 6. Test and Deploy Workflow
 
-![building-chatbot-integration.png](./img/building-chatbot/chatbot-integration.png)
+1. Test the flow using the **Test** button.
+2. Deploy the flow to make it accessible for chatbot integration.  
+   Logs can be monitored in the **Logs** section.
 
-</Steps>
+---
 
-You've successfully built your own intelligent document chatbot!
+### 7. Build the Chatbot Using RAG
+
+RAG (Retrieval-Augmented Generation) combines a knowledge base with language understanding to provide accurate, context-aware responses.
+
+1. Create a new flow named **RAG Chatbot**, or use the [Document Chatbot Template](https://hub.lamatic.ai/templates/document-chatbot-widget).
+2. Add a **Chat Interface Node**.
+3. Add a **RAG Node**:
+   - Select the vector database.
+   - Pass the query and choose the respective LLM.
+
+![RAG Configuration](./img/rag-with-google-drive/rag.png)
+
+---
+
+### 8. Test and Deploy Chatbot
+
+1. Test the chatbot to ensure accurate responses.
+2. Deploy the chatbot by clicking the **Deploy** button.
+3. Integrate the chat widget into your website:
+   - Click **Setup** to access the integration code.
+   - Paste the code into your website.
+
+![Chatbot Integration](./img/building-chatbot/chatbot-integration.png)
+
+---
+
+## Congratulations!
+
+You’ve successfully built an intelligent document-based chatbot using **AWS S3** and **RAG technology** with **Lamatic.ai**. 🎉

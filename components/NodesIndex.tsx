@@ -55,7 +55,7 @@ export const NodesIndex = () => {
                     href={page.route}
                     className="text-blue-600 dark:text-blue-400 hover:underline"
                   >
-                    View Documentation
+                    View
                   </Link>
                 </td>
               </tr>

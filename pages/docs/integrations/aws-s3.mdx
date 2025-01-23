@@ -7,6 +7,11 @@ description: The AWS S3 node in Lamatic automates fetching and synchronizing fil
 
 The AWS S3 node in Lamatic automates fetching and synchronizing files from Amazon S3 buckets. It supports various file types, including text files, PDFs, Word Documents, and others stored in the bucket. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
 
+<Callout type="warning" >
+To use the AWS S3 node, you need to create a separate flow to Implement RAG. You can integrate it into this distinct flow.
+</Callout>
+
+
 ## Features
 
 ### ✅ Key Functionalities
@@ -36,79 +41,111 @@ Before setting up the AWS S3 node, ensure you have the following:
 
 ### Step 1: Set Up AWS Credentials
 
-1. **Create IAM Policy**:
+1.  **Create IAM Policy**:
 
-   - Navigate to the [IAM console](https://console.aws.amazon.com/iam/home#home).
-   - Create a new policy with required S3 permissions.
-   - Use the provided JSON policy template.
+    - Navigate to the [IAM console](https://console.aws.amazon.com/iam/home#home).
+    - Create a new policy with required S3 permissions.
+    - Use the provided JSON policy template.
 
-     ```JSON
-         {
-             "Version": "2012-10-17",
-             "Statement": [
-                 {
-                     "Effect": "Allow",
-                     "Action": [
-                         "s3:GetObject",
-                         "s3:ListBucket",
-                         "s3:ListAllMyBuckets"
-                     ],
-                     "Resource": "*"
-                 }
-             ]
-         }
-     ```
+      ```json
+          {
+              "Version": "2012-10-17",
+              "Statement": [
+                  {
+                      "Effect": "Allow",
+                      "Action": [
+                          "s3:GetObject",
+                          "s3:ListBucket",
+                          "s3:ListAllMyBuckets"
+                      ],
+                      "Resource": "*"
+                  }
+              ]
+          }
+      ```
 
-     {" "}
 
-     <Callout type="info" emoji="ℹ️">
-       Note: If you want to given permission only to specific buckets then add
-       them to resource key, refer the below example
-     </Callout>
 
-     ```JSON
-     {
-         "Version": "2012-10-17",
-         "Statement": [
-             {
-             "Effect": "Allow",
-             "Action": [
-                 "s3:GetObject",
-                 "s3:ListBucket"
-             ],
-             "Resource": [
-                     "arn:aws:s3:::{your-bucket-name-1}/*",
-                     "arn:aws:s3:::{your-bucket-name-1}",
-                     "arn:aws:s3:::{your-bucket-name-2}/*",
-                     "arn:aws:s3:::{your-bucket-name-2}"
-                 ]
-             }
-         ]
-     }
-     ```
+      <Callout type="info" emoji="ℹ️">
+        Note: If you want to given permission only to specific buckets then add
+        them to resource key, refer the below example
+      </Callout>
 
-     {" "}
+      ```json
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+              "Effect": "Allow",
+              "Action": [
+                  "s3:GetObject",
+                  "s3:ListBucket"
+              ],
+              "Resource": [
+                      "arn:aws:s3:::{your-bucket-name-1}/*",
+                      "arn:aws:s3:::{your-bucket-name-1}",
+                      "arn:aws:s3:::{your-bucket-name-2}/*",
+                      "arn:aws:s3:::{your-bucket-name-2}"
+                  ]
+              }
+          ]
+      }
+      ```
 
-     <Callout>
-       Note: At this time, object-level permissions alone are not sufficient to
-       successfully authenticate the connection. Please ensure you include the
-       bucket-level permissions as provided in the example above.
-     </Callout>
 
-2. **Configure IAM User**:
+      <Callout>
+        Note: At this time, object-level permissions alone are not sufficient to
+        successfully authenticate the connection. Please ensure you include the
+        bucket-level permissions as provided in the example above.
+      </Callout>
 
-   - Create or select an IAM user.
-   - Attach the created policy.
-   - Generate and securely store access credentials.
+      <br />
+      If you want to restrict the usage to specific bucket then you can create the
+      policy as follows:
 
-     {" "}
 
-     <Callout type="error" emoji="️⚠️">
-       Caution: Your Secret Access Key will only be visible once upon creation.
-       Be sure to copy and store it securely.
-     </Callout>
+        ```json
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "VisualEditor0",
+                    "Effect": "Allow",
+                    "Action": [
+                        "s3:GetObject",
+                        "s3:ListBucket"
+                    ],
+                    "Resource": [
+                        "arn:aws:s3:::bucket-name",
+                        "arn:aws:s3:::bucket-name/*"
+                    ]
+                },
+                {
+                    "Sid": "VisualEditor1",
+                    "Effect": "Allow",
+                    "Action": "s3:ListAllMyBuckets",
+                    "Resource": "*"
+                }
+            ]
 
-     For more information on managing your access keys, please refer to the official [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
+        }
+        ```
+        <Callout>
+        Note: You need to make sure that you are giving `ListAllMyBuckets` permission with resource as `*` else you will not be able to see the available buckets in the node config.
+      </Callout>
+
+2.  **Configure IAM User**:
+
+    - Create or select an IAM user.
+    - Attach the created policy.
+    - Generate and securely store access credentials.
+
+      <Callout type="error" emoji="️⚠️">
+        Caution: Your Secret Access Key will only be visible once upon creation.
+        Be sure to copy and store it securely.
+      </Callout>
+      <br/>
+      For more information on managing your access keys, please refer to the official [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
 
 ### Step 2: Configure Node in Lamatic
 
@@ -186,15 +223,15 @@ Before setting up the AWS S3 node, ensure you have the following:
 
 ---
 
-### Output
+## Output
 
-| **Field**          | **Type** | **Additional Info**                                                                                          |
-| ------------------ | ------------- | ------------------------------------------------------------------------------------------------ |
-| **`document_key`** | `String`      | Document Key                                                                                     |
-| **`content`**      | `String`      | Content                                                                                          |
-| **`document_url`** | `String`      | Use the `document_url` to extract data from the file node if your file contains unstructured data. |
+| **Field**          | **Type** | **Additional Info**                                                                                |
+| ------------------ | -------- | -------------------------------------------------------------------------------------------------- |
+| **`document_key`** | `String` | Document Key                                                                                       |
+| **`content`**      | `String` | Content                                                                                            |
+| **`document_url`** | `String` | Use the `document_url` to extract data from the file node if your file contains unstructured data. |
 
-### Low-Code Example
+## Low-Code Example
 
 ```yaml
 triggerNode:

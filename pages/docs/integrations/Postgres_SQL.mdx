@@ -7,7 +7,6 @@ description: The PostgreSQL node in Lamatic automates data synchronization from 
 
 The PostgreSQL node in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
 
----
 
 ## Features
 
@@ -21,7 +20,6 @@ The PostgreSQL node in Lamatic automates data synchronization from PostgreSQL da
 - Enables RAG capabilities with PostgreSQL data.
 - Supports incremental and full refresh sync modes.
 
----
 
 ## Available Functionality
 
@@ -38,7 +36,6 @@ The PostgreSQL node in Lamatic automates data synchronization from PostgreSQL da
 ❌ Row manipulation (add/update/delete)
 ❌ Table manipulation (create/update/delete)
 
----
 
 ## Prerequisites
 
@@ -47,7 +44,6 @@ Before setting up the PostgreSQL node, ensure you have:
 - Access to target database and tables
 - Understanding of Cron expressions for scheduling
 
----
 
 ## Installation
 
@@ -68,7 +64,6 @@ Before setting up the PostgreSQL node, ensure you have:
 ### Important Note
 Always test webhook endpoints before production deployment.
 
----
 
 ## Configuration Reference
 
@@ -83,9 +78,9 @@ Always test webhook endpoints before production deployment.
 | **Sync Mode**      | `incremental` or `full-refresh`                                                                             | ✅           | `syncMode`           |
 | **Sync Schedule**  | Cron expression for scheduling                                                                              | ✅           | `cronExpression`     |
 
----
 
-### Low-Code Example
+
+## Low-Code Example
 ```yaml
 triggerNode:
   nodeId: triggerNode_1

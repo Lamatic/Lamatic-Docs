@@ -12,7 +12,7 @@ interface TutorialCardProps {
 
 const TutorialCard = ({ href, title, thumbnail, description, tags }: TutorialCardProps) => (
   <Link href={href} className="group h-full">
-    <div className="flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 hover:border-red-500 transition-colors">
+    <div className="flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 hover:border-red-500 transition-colors">
       <div className="h-36 flex-shrink-0">
         {thumbnail ? (
           <img

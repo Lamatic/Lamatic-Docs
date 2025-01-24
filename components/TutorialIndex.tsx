@@ -1,6 +1,5 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
-import { FileCode } from "lucide-react";
 import Link from 'next/link';
 
 interface TutorialCardProps {
@@ -8,36 +7,48 @@ interface TutorialCardProps {
   title: string;
   thumbnail?: string;
   description?: string;
+  tags?: string[];
 }
 
-const TutorialCard = ({ href, title, thumbnail, description }: TutorialCardProps) => (
-  <Link href={href} className="group">
-    <div className="flex flex-col overflow-hidden rounded-lg border border-gray-200 hover:border-red-500 transition-colors">
-      <div className="h-36 overflow-hidden">
+const TutorialCard = ({ href, title, thumbnail, description, tags }: TutorialCardProps) => (
+  <Link href={href} className="group h-full">
+    <div className="flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 hover:border-red-500 transition-colors">
+      <div className="h-36 flex-shrink-0">
         {thumbnail ? (
           <img
             src={thumbnail}
             alt={`${title} thumbnail`}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
           />
         ) : (
-          <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-            {/* <FileCode className="w-12 h-12 text-gray-400" /> */}
+          <div className="w-full h-full">
             <img
-            src="/images/tutorials/default.png"
-            alt={`thumbnail`}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+              src="/images/tutorials/default.png"
+              alt="thumbnail"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            />
           </div>
         )}
       </div>
-      <div className="p-4">
-        <h4 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-red-600 transition-colors">
+      <div className="flex flex-col flex-grow p-4 ">
+        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-red-600 transition-colors">
           {title}
         </h4>
         {description && (
-          <p className="text-sm text-gray-600 line-clamp-2">{description}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4">{description}</p>
         )}
+        {/* {tags && tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-auto pt-4">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )} */}
       </div>
     </div>
   </Link>
@@ -48,15 +59,12 @@ export const TutorialIndex = () => {
     Page & { frontMatter: any }
   >;
 
-  // Filter out the tutorials page itself
   const filteredPages = pages.filter((page) => page.route !== "/tutorials");
 
-  // Separate beginner tutorials and other categories
-  const beginnerPages = filteredPages.filter(
-    (page) => page.frontMatter?.category === "Beginner"
-  ).sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity));
+  const beginnerPages = filteredPages
+    .filter((page) => page.frontMatter?.category === "Beginner")
+    .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity));
 
-  // Group other tutorials by category
   const otherCategories = filteredPages
     .filter((page) => page.frontMatter?.category !== "Beginner")
     .reduce((acc, page) => {
@@ -68,7 +76,6 @@ export const TutorialIndex = () => {
 
   return (
     <div className="space-y-12">
-      {/* Beginner Tutorials */}
       {beginnerPages.length > 0 && (
         <div>
           <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
@@ -88,13 +95,13 @@ export const TutorialIndex = () => {
                 }
                 thumbnail={page.frontMatter?.thumbnail}
                 description={page.frontMatter?.description}
+                tags={page.frontMatter?.tags || []}
               />
             ))}
           </div>
         </div>
       )}
 
-      {/* Other Categories */}
       {Object.entries(otherCategories)
         .sort(([categoryA], [categoryB]) => categoryA.localeCompare(categoryB))
         .map(([category, categoryPages]) => (
@@ -118,6 +125,7 @@ export const TutorialIndex = () => {
                     }
                     thumbnail={page.frontMatter?.thumbnail}
                     description={page.frontMatter?.description}
+                    tags={page.frontMatter?.tags || []}
                   />
                 ))}
             </div>

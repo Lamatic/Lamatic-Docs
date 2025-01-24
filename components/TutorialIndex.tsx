@@ -1,58 +1,136 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
-import { Cards } from "nextra/components";
-import { FileCode } from "lucide-react";
+import Link from 'next/link';
 
-export const TutorialIndex = () => (
-  <>
-    {Object.entries(
-      (
-        getPagesUnderRoute("/guides/tutorials") as Array<
-          Page & { frontMatter: any }
-        >
-      )
-        .filter((page) => page.route !== "/tutorials")
-        .reduce((acc, page) => {
-          const category = page.frontMatter?.category || "Other";
-          if (!acc[category]) acc[category] = [];
-          acc[category].push(page);
-          return acc;
-        }, {} as Record<string, Array<Page & { frontMatter: any }>>)
-    )
-      // Sort categories alphabetically
-      .sort(([categoryA], [categoryB]) => categoryA.localeCompare(categoryB))
-      .map(([category, pages]) => (
-        <div key={category}>
-          <h3 className="_font-semibold _tracking-tight _text-slate-900 dark:_text-slate-100 _mt-8 _text-2xl">
-            {category}
-          </h3>
-          <Cards num={2}>
-            {pages
-              // Sort pages within each category based on the order property
-              .sort((a, b) => {
-                const orderA = a.frontMatter?.order ?? Infinity;
-                const orderB = b.frontMatter?.order ?? Infinity;
-                return orderA - orderB;
-              })
-              .map((page) => (
-                <Cards.Card
-                  href={page.route}
-                  key={page.route}
-                  title={
-                    page.frontMatter?.title ||
-                    page.name
-                      .split("_")
-                      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                      .join(" ")
-                  }
-                  icon={<FileCode />}
-                  arrow
-                >
-                  {""}
-                </Cards.Card>
-              ))}
-          </Cards>
-        </div>
-      ))}
-  </>
+interface TutorialCardProps {
+  href: string;
+  title: string;
+  thumbnail?: string;
+  description?: string;
+  tags?: string[];
+}
+
+const TutorialCard = ({ href, title, thumbnail, description, tags }: TutorialCardProps) => (
+  <Link href={href} className="group h-full">
+    <div className="flex flex-col h-full overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800 hover:border-red-500 transition-colors">
+      <div className="h-36 flex-shrink-0">
+        {thumbnail ? (
+          <img
+            src={thumbnail}
+            alt={`${title} thumbnail`}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          />
+        ) : (
+          <div className="w-full h-full">
+            <img
+              src="/images/tutorials/default.png"
+              alt="thumbnail"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+            />
+          </div>
+        )}
+      </div>
+      <div className="flex flex-col flex-grow p-4 ">
+        <h4 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2 group-hover:text-red-600 transition-colors">
+          {title}
+        </h4>
+        {description && (
+          <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-4">{description}</p>
+        )}
+        {/* {tags && tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-auto pt-4">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )} */}
+      </div>
+    </div>
+  </Link>
 );
+
+export const TutorialIndex = () => {
+  const pages = getPagesUnderRoute("/guides/tutorials") as Array<
+    Page & { frontMatter: any }
+  >;
+
+  const filteredPages = pages.filter((page) => page.route !== "/tutorials");
+
+  const beginnerPages = filteredPages
+    .filter((page) => page.frontMatter?.category === "Beginner")
+    .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity));
+
+  const otherCategories = filteredPages
+    .filter((page) => page.frontMatter?.category !== "Beginner")
+    .reduce((acc, page) => {
+      const category = page.frontMatter?.category || "Other";
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(page);
+      return acc;
+    }, {} as Record<string, Array<Page & { frontMatter: any }>>);
+
+  return (
+    <div className="space-y-12">
+      {beginnerPages.length > 0 && (
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+            Beginner
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {beginnerPages.map((page) => (
+              <TutorialCard
+                key={page.route}
+                href={page.route}
+                title={
+                  page.frontMatter?.title ||
+                  page.name
+                    .split("_")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")
+                }
+                thumbnail={page.frontMatter?.thumbnail}
+                description={page.frontMatter?.description}
+                tags={page.frontMatter?.tags || []}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {Object.entries(otherCategories)
+        .sort(([categoryA], [categoryB]) => categoryA.localeCompare(categoryB))
+        .map(([category, categoryPages]) => (
+          <div key={category}>
+            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+              {category}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {categoryPages
+                .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity))
+                .map((page) => (
+                  <TutorialCard
+                    key={page.route}
+                    href={page.route}
+                    title={
+                      page.frontMatter?.title ||
+                      page.name
+                        .split("_")
+                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                        .join(" ")
+                    }
+                    thumbnail={page.frontMatter?.thumbnail}
+                    description={page.frontMatter?.description}
+                    tags={page.frontMatter?.tags || []}
+                  />
+                ))}
+            </div>
+          </div>
+        ))}
+    </div>
+  );
+};

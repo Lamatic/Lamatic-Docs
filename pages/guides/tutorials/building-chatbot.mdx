@@ -23,13 +23,27 @@ In this Guide, We’ll walk you through creating a chatbot using Lamatic.ai, lev
 1. You'll see different sections like Flows, Data, and Models
 
 ### 2. Creating Your Flow
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-1. Next, click Choose a Trigger, where you can select an API Request, App, or Widget Interface as your trigger. We’ll use the Chat Widget under the interface option.
-1. Click on Chat Widget and provide Allowed Domains, where you want to access the Chat Widget
-1. In the next Node, select Text Generator, then choose Gemini. Under Additional Properties, click on the plus icon in the Messages (History) section to pass the message history.
-   ![building-chatbot.png](./img/building-chatbot/chatbot.png)
-1. In the Prompt Template, you can include both a message and a chat message.
-1. In the Chat Response node, add the generated response from the Text Generator node by clicking the 
+1. **Start a New Flow**  
+   Navigate to the **Flows** section, select **New Flow**, and choose **Create from Scratch** as your starting point.
+
+2. **Set a Trigger**  
+   Click **Choose a Trigger** and select from **API Request**, **App**, or **Widget Interface**. For this example, choose the **Chat Widget** under the **Interface** option.
+
+3. **Configure Chat Widget**  
+   Select **Chat Widget** and specify the **Allowed Domains** where the Chat Widget will be accessible.
+
+4. **Add a Text Generator Node**  
+   In the next node, select **Text Generator** and choose **Gemini**.  
+   - Under **Additional Properties**, click the **plus icon** in the **Messages (History)** section to include the message history.
+
+   ![Building Chatbot](./img/building-chatbot/chatbot.png)
+
+5. **Define a Prompt Template**  
+   Add a **Prompt Template** that includes both the user message and the chat message context.
+
+6. **Generate Chat Response**  
+   In the **Chat Response** node, add the generated response from the **Text Generator** node by clicking the appropriate option.
+
 
 ### 3. Test the Chat Widget
 To test the chat widget, click the “Configure Test” button. A floating button will appear at the bottom right corner. Click it to start testing the chat
@@ -37,14 +51,14 @@ To test the chat widget, click the “Configure Test” button. A floating butto
 
 ### 4. Deployment
 Once you’ve tested the chat widget, click the Deploy button to make it live. Here you pass the deployment message.
-![Flow Deploy](./img/get-started/deploy.png)
+![building-chatbot.png](./img/building-chatbot/deploy.png)
 
 ### 5. Integration
 To integrate the chat widget into your website, simply click the Setup button to access the code, then paste it into your website.
 
 
 Ensure that the allowed domains are specified before integrating this chat widget.
-![building-chatbot-integration.png](./img/building-chatbot/chatbot-integration.png)
+![building-chatbot.png](./img/building-chatbot/chatbot-share.png)
 
 Source Code 
 
@@ -80,9 +94,9 @@ function loadChatDialog() { new ChatDialog(CHAT_DIALOG_CONFIG) };</script>
 ```
 
 You can customize the chat widget by providing suggestions, botName, color properties.
-
+<br/>
 You can also check the logs in the Logs sections in the Lamatic.ai Studio.
 
-
+<br/>
 
 By completing this tutorial, you’ve learned how to implement a Chat Widget using Lamatic.ai and seamlessly integrate it into your website. This unlocks powerful AI capabilities for your applications. As you explore further, you’ll discover how Lamatic.ai streamlines AI development, enabling you to focus on building innovative and impactful solutions.

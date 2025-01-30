@@ -1,18 +1,18 @@
 ---
-description: This guide will help you build an AI-powered plant identification system that provides detailed care instructions.
-title: Plant Care With AI
+description: This guide will help you build an AI-powered system that scrapes data from a website, processes it with AI, and enables users to ask questions based on the extracted information.
+title: Web Scraping and Q&A System With AI
 category: Beginner
-order: 8
-thumbnail: /images/tutorials/plant-care-AI.png
+order: 10
+thumbnail: /images/tutorials/Web-Scraping-and-Q&A-System-With-AI.png
 ---
 
-# Plant Care With AI
+# Web Scraping and Q&A System With AI
 
-This guide will help you build an AI-powered plant identification system. The system processes image links provided by users, identifies plants in the images, and generates a structured output. Each identified plant includes its name, care instructions, and key details, providing a seamless way to analyze and extract meaningful data from images.
+This guide will help you build an AI-powered system that scrapes data from a website, processes it with AI, and allows users to ask questions based on the extracted information
 
 ## What You'll Build
 
-A simple API that processes image links provided by users, identifies plants in the images, and generates a structured output. Each identified plant includes its name, care instructions, and essential details. This API enables seamless extraction of meaningful data from images, ensuring efficient and accurate plant identification for a wide range of applications.
+A simple API that scrapes data from a website, processes it with AI, and enables users to ask questions based on the extracted information. When users input a query, the system retrieves relevant data from the scraped content and generates accurate, AI-driven responses, ensuring efficient and insightful information retrieval.
 
 ## Getting Started
 
@@ -38,39 +38,39 @@ A simple API that processes image links provided by users, identifies plants in 
    ![Flow API](./img/ai-review-responder/flow-step2.png)
 3. Configure your API:
    - Add your Input Schema
-   - Set url as parameter in input schema
+   - Set url and question as parameter in input schema
    - Set response type to "Real-time"
-     ![Flow API Schema](./img/ai-image-reviewer/api-schema.png)
+     ![Flow API Schema](./img/webpage-data-extractor/flow-api-schema.png)
 
-### 4. Adding AI Text Generation
+### 4. Scraping the data using Firecrawl
+
+1. Click the Scraper node
+   ![Flow Deploy](./img/webpage-data-extractor/scraper-node.png)
+2. Select the credentials
+3. Add url as parameter
+
+### 5. Adding AI Text Generation
 
 1. Click the + icon to add a new node
 2. Choose "Text Generator"
-   ![Node Text Gen](./img/plant-image-reviewer/text-gen-node1.png)
+   ![Node Text Gen](./img/webpage-data-extractor/node-text-gen.png)
 3. Configure the AI model:
    - Select your "Gemini" credentials
    - Choose "gemini-1.5-pro-latest" as your Model
 4. Set up your prompt:
 
    ```
-   Analyze the plant image provided at the URL:{{triggerNode_1.output.url}} and generate a strictly formatted JSON response for its care guide.
-
-   Instructions:
-   Precision: Use exact keys from the structure above. Replace placeholder strings (e.g., "symptom1") with actual data.
-   Completeness: Include all sections even if some fields are "N/A".
-   Validation: Ensure valid JSON syntax (escape quotes, avoid trailing commas).
-   Clarity: Prioritize concise, actionable advice for beginners.
-   Ambiguity Handling: If species is unclear, populate the "error" field with a request for more details (e.g., leaf shape, flower color).
+   Using the markdown content from {{scraperNode_211.output.markdown}}, answer the following question: {{triggerNode_1.output.question}}.
 
    ```
 
 - You can add variables using the "Add Variable" button
-  ![Node Text Gen Config](./img/plant-image-reviewer/text-gen-node2.png)
+  ![Node Text Gen Config](./img/webpage-data-extractor/text-gen-node2.png)
 
-### 5. Configuring the reponse
+### 6. Configuring the reponse
 
 1. Click the API response node
-   ![Flow Deploy](./img/ai-image-reviewer/response-node.png)
+   ![Flow Deploy](./img/webpage-data-extractor/response-node.png)
 2. Add Output Variables by clicking the + icon
 3. Select variable from your Text Generator Node
 
@@ -78,8 +78,8 @@ A simple API that processes image links provided by users, identifies plants in 
 
 1. Click on 'API Request' trigger node
 2. Click on Configure test
-   ![Flow Deploy](./img/ai-image-reviewer/testing.png)
-3. Fill sample value in 'url' and click on test
+   ![Flow Deploy](./img/webpage-data-extractor/testing.png)
+3. Fill sample value in 'url' and 'question' and click on test
 
 ### 8. Deployment
 

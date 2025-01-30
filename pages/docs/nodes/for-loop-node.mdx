@@ -1,0 +1,159 @@
+---
+title: For Loop Node
+description: The For Loop Node enables iteration over a range of values or a list, allowing repeated execution of processes within a workflow
+type: Data
+order: 3
+---
+
+# For Loop Node Documentation
+
+The For Loop Node allows users to execute loops in a workflow by iterating over a specified range or a list of objects. This node is particularly useful for automating repetitive tasks, handling batch processing, and managing multiple data points within a single workflow execution.
+
+![forloop.png](./img/forloop/forloop.png)
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+  1. **Range-based Iteration:** Define a start and end value to create a numerical
+  loop. 
+  
+  1. **List-based Iteration:** Iterate over an array of objects for flexible
+  batch processing. 
+  
+  1. **Dynamic Variable Support:** Use dynamic variables for adaptable
+  looping. 
+  
+  1. **Parallel Processing:** Execute iterations sequentially or in parallel,
+  optimizing workflow efficiency.
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+  1. **Automation:** Reduces manual effort by handling repetitive operations.
+
+  1. **Scalability:** Supports batch processing for handling multiple inputs efficiently.
+
+  1. **Flexibility:** Works with both numerical ranges and structured data arrays.
+
+  1. **Performance Optimization:** Allows parallel execution for faster processing.
+
+</details>
+
+## What can I build?
+
+1. Automate repetitive tasks, such as sending emails to multiple recipients.
+
+1. Process large datasets by iterating over records for transformation or analysis.
+
+1. Run batch API calls to fetch or update data in external systems.
+
+1. Generate reports by looping over a list of entities and aggregating results.
+
+## Setup
+
+### Select the RAG Node
+
+1. Choose the Loop Node in your workflow.
+1. Define the iteration type (Range or List).
+1. Configure the required parameters.
+1. Deploy the project.
+1. Click Setup on the workflow editor to generate instructions for integration.
+
+## Configuration Reference
+
+| **Parameter**     | **Description**                                         | **Example Value**               |
+| ----------------- | ------------------------------------------------------- | ------------------------------- |
+| **Iterate Over**  | Defines whether the loop runs over a List or a Range.   | `List` or `Range`               |
+| **Value**         | (For List) Specifies the array or list to iterate over. | `{{triggerNode_1.output.urls}}` |
+| **Initial Value** | (For Range) Starting value of the loop.                 | `0`                             |
+| **End Value**     | (For Range) Specifies the ending value (exclusive).     | `10`                            |
+| **Increment**     | (For Range) Defines the step size for each iteration.   | `1000`                          |
+
+## Low-Code Example
+
+```yaml
+nodes:
+  nodes:
+    - nodeId: forLoopNode_250
+      nodeType: forLoopNode
+      nodeName: For Loop
+      values:
+        endValue: "10"
+        increment: "1000"
+        connectedTo: forLoopEndNode_984
+        iterateOver: list
+        initialValue: "0"
+        iteratorValue: "{{triggerNode_1.output.urls}}"
+      needs:
+        - triggerNode_1
+        - forLoopEndNode_984
+      connections:
+        - condition: Loop Start
+          value: plus-node-addNode_226284
+          type: conditionEdge
+        - condition: Loop
+          value: forLoopEndNode_984
+          type: loopEdge
+    - nodeId: forLoopEndNode_984
+      nodeType: forLoopEndNode
+      nodeName: For Loop End
+      values:
+        connectedTo: forLoopNode_250
+      needs:
+        - scraperNode_351
+        - forLoopNode_250
+      connections:
+        - condition: Loop End
+          value: plus-node-addNode_257360
+          type: conditionEdge
+        - condition: Loop
+          value: forLoopNode_250
+          type: loopEdge
+          invisible: true
+    - nodeId: plus-node-addNode_226284
+      nodeType: addNode
+      nodeName: ""
+      values: {}
+      needs:
+        - forLoopNode_250
+    - nodeId: plus-node-addNode_257360
+      nodeType: addNode
+      nodeName: ""
+      values: {}
+      needs:
+        - forLoopEndNode_984
+    - nodeId: scraperNode_351
+      nodeType: scraperNode
+      condition: Loop Start
+      nodeName: Scraper
+      values:
+        url: "{{forLoopNode_250.output.currentValue}}"
+        mobile: false
+        waitFor: 123
+        credentials: ....
+        excludeTags: []
+        includeTags: []
+        onlyMainContent: false
+        skipTLsVerification: false
+      needs:
+        - plus-node-addNode_226284
+```
+
+## Output
+
+The output from the loop will be an array of objects.
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**            | **Solution**                                  |
+| ---------------------- | --------------------------------------------- |
+| **Loop Not Executing** | Ensure valid range or list input is provided. |
+| **Performance Issues** | Enable concurrency or optimize list size.     |
+
+### Debugging
+
+1. Check Lamatic Flow logs for error details.
+1. Verify input parameters to ensure correct configuration.

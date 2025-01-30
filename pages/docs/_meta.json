@@ -53,6 +53,7 @@
   "integrations": "Integrations",
   "models": "Models",
   "interface": "Interface",
+  "tools": "Tools",
 
   "-- deploy": {
     "type": "separator",

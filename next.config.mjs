@@ -419,9 +419,9 @@ const permanentRedirects = [
     ['/docs/workflows/nodes/flow/query-database', '/docs/flows/nodes'],
     ['/docs/workflows/nodes/agents/generate-image', '/docs/flows/nodes'],
     // Models
-    ['/docs/models/Amazon', '/docs/models/providers/amazon'],
-    ['/docs/models/Anthropic', '/docs/models/providers/amazon'],
-    ['/docs/models/Azure', '/docs/models/providers/azure'],
+    // ['/docs/models/Amazon', '/docs/models/providers/amazon'],
+    // ['/docs/models/Anthropic', '/docs/models/providers/amazon'],
+    // ['/docs/models/Azure', '/docs/models/providers/azure'],
 ]
 
 // Caution : Overriding /public messes with the assets

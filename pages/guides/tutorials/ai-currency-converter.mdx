@@ -1,0 +1,152 @@
+---
+description: This guide will help you build AI-powere real-time currency converter that fetches INR to USD exchange rates . You'll learn how to create and implement custom tools that enable AI models to interact with external functions and APIs.
+title: AI Currency Converter
+category: Beginner
+order: 11
+thumbnail: /images/tutorials/ai-currency-converter.png
+---
+
+# AI Currency Converter
+
+This guide will help you build an AI Currency Converter that fetches real-time INR to USD exchange rates. The system processes user input, retrieves live exchange rate data, and provides an accurate conversion. By implementing this tool in Lamatic, you'll learn how to integrate AI with external APIs for seamless and up-to-date currency conversion.
+
+## What You'll Build
+
+A simple API that processes user input, fetches real-time INR to USD exchange rates, and provides accurate currency conversion. This API ensures seamless and up-to-date exchange rate retrieval, enabling efficient and precise currency conversion for various financial applications.
+
+## Getting Started
+
+### 1. Tool Creation
+
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+2. Navigate to Models > Tools section.
+3. Click on Create a New Tool.
+
+#### Define Tool Details
+
+1. Add Tool name: convertINRtoUSD
+   ![flow.png](./img/ai-currency-converter/update-tool.png)
+2. Add Description: Convert amount from Indian Rupees (INR) to US Dollars (USD)
+
+#### Configure Parameters
+
+1. Add Parameter name 'amount' and define the datatype as a string
+
+###### This is a JSON Schema object that describes the parameters that the tool accepts and are the ones that will be passed to the model.
+
+```
+{
+"amount": {
+"type": "number",
+"required": true,
+"description": "Amount in INR to convert"}
+}
+```
+
+2. In the Code section
+
+```
+const response = await fetch('https://api.exchangerate-api.com/v4/latest/INR');
+const data = await response.json();
+
+const usdRate = data.rates.USD;
+const result = input.amount * usdRate;
+
+console.log('result', result)
+
+output = result
+```
+
+- 'input' and 'output' are reserved variables. Avoid overwriting them.
+
+- To access variables defined in the schema, use 'input.variableName'.
+
+- Assign the return value to 'output' pass data from the function.
+
+3. You can test the JavaScript Code by providing parameters and clicking on the Test button.
+   ![flow.png](./img/ai-currency-converter/edit-tool.png)
+4. Finally, Click on the Create Button.
+
+### 2. Project Setup
+
+1. Navigate to the dashboard and click **Create New Flow**.
+1. You'll see different sections like Flows, Data, and Models.
+   ![flow.png](./img/ai-review-responder/flow.png)
+
+### 3. Creating a New Flow
+
+1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
+2. Click "New Flow".
+   ![Flow selection](./img/ai-review-responder/flow-select.png)
+3. Select "Create from Scratch".
+   ![Flow Start](./img/ai-review-responder/flow-start.png)
+
+### 4. Setting Up Your API
+
+1. Click "Choose a Trigger".
+2. Select "API Request" under the interface options.
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set amount as parameter in input schema
+   - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-currency-converter/api-schema.png)
+
+### 5. Adding AI Text Generation
+
+1. Click the + icon to add a new node.
+2. Choose "Text Generator".
+   ![Node Text Gen](./img/ai-currency-converter/text-gen-node1.png)
+3. Configure the AI model:
+   - Select your "OpenAI" credentials
+   - Choose "gpt-4o-mini" as your Model
+4. Set up your prompt:
+
+```
+
+Convert {{triggerNode_1.output.Amount}} INR to USD.
+Give the output in decimals.
+
+```
+
+- You can add variables using the "Add Variable" button
+  ![Node Text Gen Config](./img/ai-currency-converter/text-gen-node2.png)
+
+5. Navigate to Additional Properties.
+6. Select the desired tools. You can add multiple tools as needed.
+
+### 6. Configuring the reponse
+
+1. Click the API response node.
+   ![Flow Deploy](./img/ai-currency-converter/flow-api-schema.png)
+2. Add Output Variables by clicking the + icon.
+3. Select variable from your Code Node.
+
+### 7. Test the flow
+
+1. Click on 'API Request' trigger node.
+2. Click on Configure test.
+   ![Flow Deploy](./img/ai-currency-converter/testing.png)
+3. Fill sample value in 'Amount' and click on test.
+
+### 8. Deployment
+
+1. Click the Deploy button.
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
+2. Your API is now ready to be integrated into Node.js or Python applications.
+3. Your flow will run on Lamatic's global edge network for fast, scalable performance.
+
+### 9. What's Next?
+
+- Experiment with different prompts
+- Try other AI models
+- Add more processing steps to your flow
+- Integrate the API into your applications
+
+### 10. Tips
+
+- Save your tests for reuse across different scenarios
+- Use consistent JSON structures for better maintainability
+- Test thoroughly before deployment
+
+Now you have a working AI-powered API! You can expand on this foundation to build more complex applications using Lamatic.ai's features.

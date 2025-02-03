@@ -7,7 +7,7 @@ order: 3
 
 # Loop Node Documentation
 
-The Loop Node allows users to execute loops in a workflow by iterating over a specified range or a list of objects. This node is particularly useful for automating repetitive tasks, handling batch processing, and managing multiple data points within a single workflow execution.
+The Loop Node allows users to execute loops in a workflow by iterating over a specified range or a list of objects. This node is particularly useful for automating repetitive tasks, handling iterative processing, and managing multiple data points within a single workflow execution.
 
 ![forloop.png](./img/loop-node/forloop.png)
 
@@ -15,25 +15,19 @@ The Loop Node allows users to execute loops in a workflow by iterating over a sp
 
 <details>
   <summary>**Key Functionalities**</summary>
-  1. **Range-based Iteration:** Define a start and end value to create a numerical
-  loop. 
-  
-  1. **List-based Iteration:** Iterate over an array of objects for flexible
-  iterative processing. 
-  
-  1. **Dynamic Variable Support:** Use dynamic variables for adaptable
-  looping. 
-  
+  1. **Range-based Iteration:** Define a start and end value to create a
+  numerical loop. 1. **List-based Iteration:** Iterate over an array of objects
+  for flexible iterative processing. 1. **Dynamic Variable Support:** Use
+  dynamic variables for adaptable looping.
 </details>
 
 <details>
   <summary>**Benefits**</summary>
   1. **Automation:** Reduces manual effort by handling repetitive operations.
 
-  1. **Scalability:** Supports iterative processing for handling multiple inputs efficiently.
+1. **Scalability:** Supports iterative processing for handling multiple inputs efficiently.
 
-  1. **Flexibility:** Works with both numerical ranges and structured data arrays.
-
+1. **Flexibility:** Works with both numerical ranges and structured data arrays.
 
 </details>
 
@@ -63,7 +57,7 @@ The Loop Node allows users to execute loops in a workflow by iterating over a sp
 | **Value**         | (For List) Specifies the array or list to iterate over. | `{{triggerNode_1.output.urls}}` |
 | **Initial Value** | (For Range) Starting value of the loop.                 | `0`                             |
 | **End Value**     | (For Range) Specifies the ending value (exclusive).     | `10`                            |
-| **Increment**     | (For Range) Defines the step size for each iteration.   | `10`                          |
+| **Increment**     | (For Range) Defines the step size for each iteration.   | `10`                            |
 
 ## Low-Code Example
 
@@ -139,33 +133,46 @@ nodes:
 
 The output from the loop will be an array of objects.
 
+#### Accessing Output of Looped Nodes
+
+![forloop.png](./img/loop-node/loop-select.png)
+
+You can select the looped node's output from the variable selector as shown above. After which you can modify the index by modifying the index key to a specific index or a looping variable as per your requirement as show below.
+
 #### Iterating Over Outcomes by Replacing Index
+
 This feature allows for iterating over results dynamically by replacing the index placeholder with a specific value. It enables access to individual results from the loop output.
 
 ```js
 //Replace index with whatever index you want
-{{forLoopEndNode_271.output.loopOutput[index].hybridSearchNode_299.output.searchResults}} 
+{{forLoopEndNode_271.output.loopOutput[index].hybridSearchNode_299.output.searchResults}}
+
+//For Example to access output for iteration 0
+
+{{forLoopEndNode_271.output.loopOutput[0].hybridSearchNode_299.output.searchResults}}
 
 
 for (let i = 0; i < recipeIngredientsFinal.length; i++) {
-  recipeIngredientsFinal[i].ingredientId={{forLoopEndNode_271.output.loopOutput[i].hybridSearchNode_299.output.searchResults[0].ingredientId}} 
+  recipeIngredientsFinal[i].ingredientId={{forLoopEndNode_271.output.loopOutput[i].hybridSearchNode_299.output.searchResults[0].ingredientId}}
   //Replace index with whatever index you want
 }
 ```
 
 #### Use Case
+
 - Extracting individual results from a looped query
 - Processing results dynamically in a template
 - Enhancing automation workflows by iterating over multiple outcomes
 
 ## Testing
+
 You can also check the individual outcome from each iteration using the dropdown in Testing.
 ![forloop.png](./img/loop-node/loop-test.png)
 
 ## Flow Execution Logs
+
 The flow execution logs provide detailed insights into the execution process in the logs sections
 ![forloop.png](./img/loop-node/loop-log.png)
-
 
 ## Troubleshooting
 

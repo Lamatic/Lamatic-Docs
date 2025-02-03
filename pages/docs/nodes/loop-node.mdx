@@ -19,7 +19,7 @@ The Loop Node allows users to execute loops in a workflow by iterating over a sp
   loop. 
   
   1. **List-based Iteration:** Iterate over an array of objects for flexible
-  batch processing. 
+  iterative processing. 
   
   1. **Dynamic Variable Support:** Use dynamic variables for adaptable
   looping. 
@@ -30,7 +30,7 @@ The Loop Node allows users to execute loops in a workflow by iterating over a sp
   <summary>**Benefits**</summary>
   1. **Automation:** Reduces manual effort by handling repetitive operations.
 
-  1. **Scalability:** Supports batch processing for handling multiple inputs efficiently.
+  1. **Scalability:** Supports iterative processing for handling multiple inputs efficiently.
 
   1. **Flexibility:** Works with both numerical ranges and structured data arrays.
 
@@ -138,6 +138,25 @@ nodes:
 ## Output
 
 The output from the loop will be an array of objects.
+
+#### Iterating Over Outcomes by Replacing Index
+This feature allows for iterating over results dynamically by replacing the index placeholder with a specific value. It enables access to individual results from the loop output.
+
+```js
+//Replace index with whatever index you want
+{{forLoopEndNode_271.output.loopOutput[index].hybridSearchNode_299.output.searchResults}} 
+
+
+for (let i = 0; i < recipeIngredientsFinal.length; i++) {
+  recipeIngredientsFinal[i].ingredientId={{forLoopEndNode_271.output.loopOutput[i].hybridSearchNode_299.output.searchResults[0].ingredientId}} 
+  //Replace index with whatever index you want
+}
+```
+
+#### Use Case
+- Extracting individual search results from a looped query
+- Processing search results dynamically in a template
+- Enhancing automation workflows by iterating over multiple outcomes
 
 ## Testing
 You can also check the individual outcome from each iteration using the dropdown in Testing.

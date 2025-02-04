@@ -51,13 +51,16 @@ The Loop Node allows users to execute loops in a workflow by iterating over a sp
 
 ## Configuration Reference
 
-| **Parameter**     | **Description**                                         | **Example Value**               |
-| ----------------- | ------------------------------------------------------- | ------------------------------- |
-| **Iterate Over**  | Defines whether the loop runs over a List or a Range.   | `List` or `Range`               |
-| **Value**         | (For List) Specifies the array or list to iterate over. | `{{triggerNode_1.output.urls}}` |
-| **Initial Value** | (For Range) Starting value of the loop.                 | `0`                             |
-| **End Value**     | (For Range) Specifies the ending value (exclusive).     | `10`                            |
-| **Increment**     | (For Range) Defines the step size for each iteration.   | `10`                            |
+| **Parameter**                  | **Description**                                                    | **Example Value**               |
+| ------------------------------ | ------------------------------------------------------------------ | ------------------------------- |
+| **Iterate Over**               | Defines whether the loop runs over a List or a Range.              | `List` or `Range`               |
+| **Value**                      | (For List) Specifies the array or list to iterate over.            | `{{triggerNode_1.output.urls}}` |
+| **Initial Value**              | (For Range) Starting value of the loop.                            | `0`                             |
+| **End Value**                  | (For Range) Specifies the ending value (exclusive).                | `10`                            |
+| **Increment**                  | (For Range) Defines the step size for each iteration.              | `10`                            |
+| **Wait Before Next Iteration** | The number of seconds to wait before each iteration. Min:0, Max:30 | `10`                            |
+
+> **Note:** The studio testing API has a timeout limit of 300 seconds. When using the Wait Before Next Iteration parameter with many iterations, be mindful that the total execution time (number of iterations × wait time) should not exceed 300 seconds to avoid API timeouts.
 
 ## Low-Code Example
 

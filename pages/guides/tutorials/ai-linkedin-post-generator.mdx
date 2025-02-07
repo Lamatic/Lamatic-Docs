@@ -38,7 +38,48 @@ This guide will help you build an AI-powered LinkedIn post automation system usi
    1. Enter the Endpoint URL(Email text extracted using n8n).
    1. Select GET Method.
 
-### 5. AddAI Text Generation Node
+#### Email Text Extraction Using n8n
+
+##### 1. Workflow Setup
+
+1. Sign up at [n8n.io](https://n8n.io/) and log in.
+2. Navigate to the **overview** and click **Workflows**.
+3. Click **Create Workflow**.
+   ![Create Flow](./img/ai-Linkedin-post-generator/initial.png)
+
+##### 2. Webhook Node Addition
+
+1. Click on **+**.
+2. Search **Webhook** in the search box and click on **Webhook**.
+3. Select the HTTP Method as **Get**.
+   ![Webhook Node](./img/ai-Linkedin-post-generator/webhook-node.png)
+
+##### 3. Gmail Node addition
+
+1. Click on **+**.
+2. Search **Gmail** in the search box, click on **Gmail** and select **Get many messages**.
+   ![Gmail Node](./img/ai-Linkedin-post-generator/gmail-selection.png)
+
+3. In parameters set the credentials and set other parameters according to your needs.
+4. Turn off **Simplify**.
+5. In options add **Download Attachments** option and turn it on.
+   ![Gmail Node](./img/ai-Linkedin-post-generator/gmail-params.png)
+
+##### 4. Respond to Webhook
+
+1. Click on **+**.
+2. Search **Respond to Webhook** in the search box, click on **Respond to Webhook**.
+3. Select the parameters according to your needs.
+   ![Respond webhook Node](./img/ai-Linkedin-post-generator/respond-webhook.png)
+
+##### 5. Testing the workflow
+
+1. Click on **Webhook** node and copy **Test URL**.
+2. Go back and click **Test workflow**.
+3. Call the Test URL to get the response.
+   ![Testing workflow](./img/ai-Linkedin-post-generator/test2.png)
+
+### 4. AddAI Text Generation Node
 
 1. Click the + icon to add a new node.
 2. Choose "Text Generator".

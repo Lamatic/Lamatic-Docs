@@ -1,0 +1,107 @@
+---
+description: This guide will help you build an AI-powered invoice summarization system that processes invoices, extracts key details, and generates structured JSON output.
+title: AI Invoice Summarizer
+category: Beginner
+order: 15
+thumbnail: /images/tutorials/ai-email-summarizer.png
+---
+
+# AI Invoice Summarizer
+
+This guide will walk you through building an AI-powered invoice summarization tool. The system processes invoices, extracts key details such as total amounts, due dates, and vendor information, and generates structured JSON output.
+
+## What You'll Build
+
+A simple API that processes invoice documents, extracts key details such as total amounts, due dates, and vendor information, and generates structured JSON summaries. This API enhances financial management by providing quick and accurate insights, enabling seamless integration with accounting and automation workflows.
+
+## Getting Started
+
+### 1. Creating a New Flow
+
+1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
+2. Click "New Flow".
+   ![Flow selection](./img/ai-review-responder/flow-select.png)
+3. Select "Create from Scratch".
+   ![Flow Start](./img/ai-review-responder/flow-start.png)
+
+### 2. Setting Up Your API
+
+1. Click "Choose a Trigger".
+2. Select "API Request" under the interface options.
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set url as parameter in input schema
+   - Set response type to "Real-time"
+
+### 3. File Extraxt Node Addition
+
+![building-chatbot.png](./img/ai-invoice-summarizer/file-extract-node.png)
+
+1. In the Next Node, select **Extract From File Node**
+   1. Enter the File URL.
+   1. Select Format as **PDF**.
+
+### 4. Adding AI Text Generation
+
+1. Click the + icon to add a new node.
+2. Choose **Text Generate**.
+   ![Node Text Gen](./img/ai-invoice-summarizer/text-gen-node1.png)
+3. Configure the AI model:
+   - Select your "Open AI" credentials
+   - Choose "gpt-4" as your Model
+4. Set up your prompt:
+
+```
+
+Task:
+Extract structured JSON data from this invoice data from a pdf.
+
+Instructions:
+
+Convert the provided invoice PDF into a structured JSON format.
+Ensure the JSON output captures all relevant details, including company, customer, metadata, services, totals, payment, and transaction details.
+Include validation warnings if there are missing or inconsistent details.
+Do not return any output except the JSON.
+
+Input:
+{{extractFromFileNode_128.output.files}}
+
+```
+
+- You can add variables using the "Add Variable" button
+
+### 5. Configuring the reponse
+
+1. Click the API response node.
+2. Add Output Variables by clicking the + icon.
+3. Select variable from your Text Generate Node.
+
+### 6. Test the flow
+
+1. Click on 'API Request' trigger node.
+2. Click on Configure test.
+   ![building-chatbot.png](./img/ai-invoice-summarizer/test.png)
+3. Fill sample value in 'url' and click on test.
+
+### 7. Deployment
+
+1. Click the Deploy button.
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
+2. Your API is now ready to be integrated into Node.js or Python applications.
+3. Your flow will run on Lamatic's global edge network for fast, scalable performance.
+
+### 8. What's Next?
+
+- Experiment with different prompts
+- Try other AI models
+- Add more processing steps to your flow
+- Integrate the API into your applications
+
+### 9. Tips
+
+- Save your tests for reuse across different scenarios
+- Use consistent JSON structures for better maintainability
+- Test thoroughly before deployment
+
+Now you have a working AI-powered API! You can expand on this foundation to build more complex applications using Lamatic.ai's features.

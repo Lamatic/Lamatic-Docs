@@ -1,6 +1,6 @@
 # Cookies Policy
 
-Last updated: February 05, 2025
+Last updated: February 5, 2025
 
 This Cookies Policy explains what Cookies are and how We use them. You should read this policy so You can understand what type of cookies We use, or the information We collect using Cookies and how that information is used.
 

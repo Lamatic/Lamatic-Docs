@@ -1,13 +1,15 @@
 ---
-title: Memory Node
-description: The Memory Node enables storing and managing contextual information for users and sessions, allowing for persistent data storage within workflows
+title: Memory Add Node
+description: The Memory Add Node enables storing and managing contextual information for users and sessions, allowing for persistent data storage within workflows
 type: Data
-order: 4
+order: 9
 ---
 
-# Memory Node Documentation
+# Memory Add Node Documentation
 
-The Memory Node allows users to store and manage contextual information by creating persistent memory collections tied to unique users and sessions. This node is particularly useful for maintaining conversation history, user preferences, and other stateful data across workflow executions.
+The Memory Node Add allows users to store and manage contextual information by creating persistent memory collections tied to unique users and sessions. This node is particularly useful for maintaining conversation history, user preferences, and other stateful data across workflow executions.
+
+![memory-add.png](./img/mem-add/memory-add.png)
 
 ## Features
 
@@ -54,15 +56,15 @@ The Memory Node allows users to store and manage contextual information by creat
 
 ## Configuration Reference
 
-| **Parameter**             | **Description**                                                        | **Example Value**        |
-| ------------------------- | ---------------------------------------------------------------------- | ------------------------ |
-| **Unique Id**             | Identifier for the user whose memory is being stored                   | `1ab2`                   |
-| **Session Id**            | Optional identifier for specific user sessions                         | `2 (Defaults to Global)` |
-| **Memory Collection**     | The collection where memories will be stored                           | `MemoryStore`            |
-| **Memory Value**          | The actual data from which facts to be retrieved and updated in memory | `I like cats`            |
-| **Embedding Model Name**  | Model used for converting text to vectors                              | `text-embedding-ada-002` |
-| **Generative Model Name** | Model used for processing stored information                           | `gpt-3.5-turbo`          |
-| **Metadata**              | Additional JSON data to store with the memory                          | `{"source": "chat"}`     |
+| **Parameter**             | **Description**                                                        | **Example Value**                      |
+| ------------------------- | ---------------------------------------------------------------------- | -------------------------------------- |
+| **Unique Id**             | Identifier for the user whose memory is being stored                   | `29fcd52e-0813-4fa2-821c-1428a05636ba` |
+| **Session Id**            | Optional identifier for specific user sessions                         | `2 (Defaults to Global)`               |
+| **Memory Collection**     | The collection where memories will be stored                           | `MemoryStore`                          |
+| **Memory Value**          | The actual data from which facts to be retrieved and updated in memory | `I like cats`                          |
+| **Embedding Model Name**  | Model used for converting text to vectors                              | `text-embedding-ada-002`               |
+| **Generative Model Name** | Model used for processing stored information                           | `gpt-3.5-turbo`                        |
+| **Metadata**              | Additional JSON data to store with the memory                          | `{"source": "chat"}`                   |
 
 ## Low-Code Example
 

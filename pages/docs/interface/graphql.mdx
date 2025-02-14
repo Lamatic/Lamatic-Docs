@@ -2,7 +2,7 @@
 description: Deployment using GraphQL
 ---
 
-import { Tabs } from "nextra/components"
+import { Tabs } from "nextra/components";
 
 # Executing Flows with GraphQL API
 
@@ -16,13 +16,14 @@ GraphQL is an open-source data query and manipulation language developed by Face
 
 While REST APIs have been the industry standard for many years, they often suffer from over-fetching or under-fetching data, leading to inefficient data transfers and increased latency. GraphQL addresses these limitations by empowering clients to request only the data they need, reducing network overhead and improving performance.
 
-
 ## Setting up
+
 ### Automatic Docs
 
 ![img_3.png](./img_3.png)
 The easies way to setup GraphQL Connection is to click the Connect bar and get the automated code for your project.
 Lamatic.ai also generate automatic API documentation for your project. You can access it by visiting the API Docs section.
+
 ### Authentication with API Keys
 
 To ensure secure access to our platform, Lamatic.ai employs API keys for authentication. When triggering flows via GraphQL, you'll need to include your API key in the request headers. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
@@ -35,109 +36,206 @@ Authorization: Bearer your_api_key
 
 By including the API key in the `Authorization` header, our platform can verify your identity and grant you access to trigger the desired flow.
 
-
 > Click Here to know how to get your own [API Key](/docs/studio/Project/Settings/keys)
 
 ### Triggering Flows with GraphQL
 
-Lamatic.ai's GraphQL integration allows you to trigger your GenAI flows seamlessly using GraphQL queries. This approach provides a standardized and efficient way to interact with our platform, enabling you to execute your GenAI flows on-demand or as part of larger application flows.
+![img_2.png](./img/gql-call.png)
+
+Lamatic.ai's GraphQL integration allows you to trigger your GenAI flows seamlessly using GraphQL queries. This approach provides a standardized and efficient way to interact with our platform, enabling you to execute your GenAI flows on-demand or as part of larger application flows. You need to provide `YOUR_PROJECT_ID` and `LAMATIC_API_KEY`.
 
 Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
-<Tabs items={['JavaScript', 'Python', 'cURL']}>
+#### Realtime Response Type
+<Tabs items={['Node', 'Python', 'cURL']}>
   <Tabs.Tab>
-    ```javascript
-   const axios = require('axios');
- 
-const query = `
-query ExecuteWorkflow(
-    $workflowId: String!
-    $prompt: String    
-) {
-    executeWorkflow(
-    workflowId: $workflowId
-    payload: {
-      prompt: $prompt
-    }
-    ) {
-        status
-        result
-    }
-}`;
- 
+    ```js
+      const axios = require('axios');
+     
+      // Export your Lamatic API key as an environment variable
+      const lamatic_api_key = process.env.LAMATIC_API_KEY;
 
-const variables = {"workflowId":"your_workflow_id","prompt":"The excited car draws."};
+      const query = `
+      query ExecuteWorkflow(
+        $workflowId: String!
+          $topic: String        
+      ) {
+        executeWorkflow(
+        workflowId: $workflowId
+        payload: {
+          topic: $topic
 
-const options = {
-method: 'POST',
-url: 'your_project_endpoint',
-headers: {
-  "Authorization": "Bearer your_api_key",
-  "Content-Type": "application/json"
-},
-data: { query, variables }
-};
- 
-axios(options)
-.then(response => console.log(response.data))
-.catch(error => console.error(error));
+        }
+        ) {
+            status
+            result
+        }
+      }`;
+            
+      const variables = {
+        "workflowId": "YOUR_WORKFLOW_ID",
+        "topic": "topic"
+      };
 
+
+      const options = {
+        method: 'POST',
+        url: 'YOUR_PROJECT_ENDPOINT',
+        headers: {
+          Authorization: `Bearer ${lamatic_api_key}`,
+          'Content-Type': 'application/json',
+          'x-project-id': 'YOUR_PROJECT_ID',
+        },
+        data: { query, variables }
+      };
+        
+      axios(options)
+        .then(response => console.log(response.data))
+        .catch(error => console.error(error));
+          
     ```
+
   </Tabs.Tab>
   <Tabs.Tab>
     ```python
-    import requests
+      import os
+      import requests
+            
+      gqlQuery = """
+      query ExecuteWorkflow(
+        $workflowId: String!
+          $topic: String        
+      ) {
+        executeWorkflow(
+        workflowId: $workflowId
+        payload: {
+          topic: $topic
 
-query = """
-query ExecuteWorkflow(
-    $workflowId: String!
-    $prompt: String        
-) {
-    executeWorkflow(
-    workflowId: $workflowId
-    payload: {
-      prompt: $prompt
-    }
-    ) {
-        status
-        result
-    }
-}
-"""
+        }
+        ) {
+            status
+            result
+        }
+      }"""
+            
+      variables = {"workflowId":"YOUR_WORKFLOW_ID","topic":"topic"}
 
-variables = {"workflowId":"your_workflow_id","prompt":"The excited car draws."};
+      data = {"query": gqlQuery, "variables": variables}
 
-data = {"query": query, "variables": variables}
+      # Export your Lamatic API key as an environment variable
+      lamatic_api_key = os.getenv('LAMATIC_API_KEY')
 
-headers = {
-  "Authorization": "Bearer your_api_key",
-  "Content-Type": "application/json"
-}
+      headers = {
+        "Authorization": f"Bearer {lamatic_api_key}",
+        "Content-Type": "application/json",
+        "x-project-id": "YOUR_PROJECT_ID"
+      }
 
-url = "your_project_endpoint"
+      url = "YOUR_PROJECT_ENDPOINT"
 
-response = requests.post(url, headers=headers, json=data)
+      response = requests.post(url, headers=headers, json=data)
 
-if response.status_code == 200:
-    print(response.json())
-else:
-    print(f"Error: {response.status_code}")
-    print(response.text)
-
+      if response.status_code == 200:
+          print(response.json())
+      else:
+          print(f"Error: {response.status_code}")
+          print(response.text)
     ```
+
   </Tabs.Tab>
   <Tabs.Tab>
     ```bash
-    curl -X POST your_project_endpoint \  
-      -H 'Authorization: Bearer your_api_key' \
-      -H 'Content-Type: application/json' \ 
-      -d '{"query": " query ExecuteWorkflow(     $workflowId: String!  $prompt: String ) { executeWorkflow( workflowId: $workflowId  payload: { prompt: $prompt }  ) { status  result } }", "variables": {"workflowId":"your_workflow_id","prompt":"The excited car draws."}}'
+      curl -X POST \
+      https://testingnewflow-lamatic.stellate.sh \
+      -H "Authorization: Bearer ${LAMATIC_API_KEY}" \
+      -H 'Content-Type: application/json' \
+      -H 'x-project-id: YOUR_PROJECT_ID' \
+      -d '{ "query": " query ExecuteWorkflow(   $workflowId: String!     $prompt: String         ) {   executeWorkflow(   workflowId: $workflowId   payload: {     prompt: $prompt   }   ) {       status       result   } }", "variables": {"workflowId": "YOUR_WORKFLOW_ID", "prompt": "The excited car draws." } }'
+    ```
+  </Tabs.Tab>
+</Tabs>
+
+#### Async Response Type
+<Tabs items={['Node', 'Python', 'cURL']}>
+  <Tabs.Tab>
+    ```js
+      const axios = require('axios');
+          
+      // Export your Lamatic API key as an environment variable
+      const lamatic_api_key = process.env.LAMATIC_API_KEY;
+
+      const query = `query CheckStatus {
+          checkStatus(requestId: your_request_id)
+      }`;
+
+      const variables = {};
+
+      const options = {
+        method: 'POST',
+        url: 'YOUR_PROJECT_ENDPOINT',
+        headers: {
+          Authorization: `Bearer ${lamatic_api_key}`,
+          'Content-Type': 'application/json',
+          'x-project-id': 'YOUR_PROJECT_ID',
+        },
+      };
+
+      const response = await axios(options);
+
+      console.log(response.data);
+          
+    ```
+
+  </Tabs.Tab>
+  <Tabs.Tab>
+    ```python
+      import os
+      import requests
+
+      url = "YOUR_PROJECT_ENDPOINT"
+      gqlQuery = """query CheckStatus {
+          checkStatus(requestId: your_request_id)
+      }"""
+
+      variables = {}
+
+      headers = {
+        "Authorization": f"Bearer {lamatic_api_key}",
+        "Content-Type": "application/json",
+        "x-project-id": "YOUR_PROJECT_ENDPOINT"
+      }
+
+      data = {"query": gqlQuery, "variables": variables}
+
+      response = requests.post(url, headers=headers, json=data)
+
+      if response.status_code == 200:
+          print(response.json())
+      else:
+          print(f"Error: {response.status_code}")
+          print(response.text)
+    ```
+
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    ```bash
+      curl -X POST \
+    https://testingnewflow-lamatic.stellate.sh \
+    -H "Authorization: Bearer ${LAMATIC_API_KEY}" \
+    -H 'Content-Type: application/json' \
+    -H 'x-project-id: YOUR_PROJECT_ID' \
+    -d '{ "query": " query CheckStatus(   $requestId: String!     ) {   checkStatus(   requestId: $requestId   ) {       status       result   } }", "variables": {
+  "requestId": "your_request_id"
+} }'
     ```
   </Tabs.Tab>
 </Tabs>
 
 #### Output
+
 The Structure output can be configured in the Schema of the Graphql Response node. The expected output will be as follows:
+
 ```
 {
   // Expected Output as setuped in the Schema
@@ -145,4 +243,3 @@ The Structure output can be configured in the Schema of the Graphql Response nod
 ```
 
 In this example, the `ExecuteWorkflow` query is used to initiate a workflow execution. You'll need to provide the `workflowId` of the desired workflow and any required `payload`(Input Data) as part of the query variables.
-

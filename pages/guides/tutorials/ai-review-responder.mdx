@@ -45,7 +45,7 @@ A simple API that that classifies customer reviews as either service or product-
 ### 4. Adding AI Text Generation
 
 1. Click the + icon to add a new node
-2. Choose "Text Generator"
+2. Choose "Text LLM"
    ![Node Text Gen](./img/ai-review-responder/text-gen-node1.png)
 3. Configure the AI model:
    - Select your "Open AI" credentials
@@ -85,7 +85,7 @@ To generate an email based on the output of the text generation node, we will us
 ##### If the condition is true the condition 1 flow will be executed
 
 1. Click the + icon to add a new node
-2. Choose "Text Generator"
+2. Choose "Text LLM"
    ![Node Text Gen](./img/ai-review-responder/if-flow.png)
 3. Configure the AI model:
    - Select your "Open AI" credentials
@@ -106,7 +106,7 @@ To generate an email based on the output of the text generation node, we will us
 ##### If the condition is false the else flow will be executed
 
 5. Click the + icon to add a new node
-6. Choose "Text Generator"
+6. Choose "Text LLM"
    ![Node Text Gen](./img/ai-review-responder/else-flow.png)
 7. Configure the AI model:
    - Select your "Open AI" credentials
@@ -145,7 +145,7 @@ else {
 1. Click the API response node
    ![Flow Deploy](./img/ai-review-responder/response-node.png)
 2. Add Output Variables by clicking the + icon
-3. Select variables from your Text Generator Node
+3. Select variables from your Text LLM Node
 
 ### 9. Test the flow
 

@@ -8,6 +8,7 @@
   "demo": "Demo",
   "get-started": "Quickstart",
   "architecture": "Architecture",
+  "concepts": "Concepts",
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"

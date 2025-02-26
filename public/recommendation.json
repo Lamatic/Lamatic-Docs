@@ -1,0 +1,20 @@
+[
+    {
+        "type": "Begineer",
+        "title": "Get Started",
+        "link": "https://lamatic.ai/guides/tutorials/get-started",
+        "nodes": ["API", "Text LLM"]
+    },
+    {
+        "type": "Begineer",
+        "title": "Building a Chatbot",
+        "link": "https://lamatic.ai/guides/tutorials/building-chatbot",
+        "nodes": ["Chatbot", "Text LLM"]
+    },
+    {
+        "type": "Begineer",
+        "title": "Getting Started with the Search Widget",
+        "link": "https://lamatic.ai/guides/tutorials/getting-started-with-search-widget",
+        "nodes": ["Search Widget", "Text LLM", "RAG"]
+    }
+]

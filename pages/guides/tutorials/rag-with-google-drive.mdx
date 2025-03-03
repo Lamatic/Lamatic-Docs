@@ -65,7 +65,17 @@ The database storage step is where your vectorized knowledge becomes organized a
 1. Add Vectors, Metadata, and a Primary Key by clicking the “+” icon
 
 ### 5. Test & Deployment Google Drive Node
-Click the “Test” button to test the Node, then deploy your flow to make it accessible for chatbot integration. You can check the logs in the logs section.
+Click the “Test” button to test the Node, 
+<br/>
+
+Pass `content` and `document_key` for the testing
+1. `content`: Represents the data or text that will be stored in the document.
+1. `document_key`: Serves as the unique identifier for the document, used to locate or update the specific file Or Filename.
+
+For testing, you need to manually provide `content` and `document_key` as dummy data. Once deployed, these values will be automatically fetched from your configured Google Drive folder.
+<br/>
+
+Then deploy your flow to make it accessible for chatbot integration. You can check the logs in the logs section.
 
 ### 6. Create a New Chatbot Flow to Implement RAG
 Now it’s time to create the chatbot that will utilize your knowledge base through RAG technology.

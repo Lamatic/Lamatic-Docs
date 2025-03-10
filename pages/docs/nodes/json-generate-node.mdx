@@ -8,37 +8,36 @@ order: 2
 
 # JSON Generate Node Documentation
 
-The JSON Generate node is used to produce structured JSON outputs from language model (LLM) prompts. It allows users to define a specific output schema, ensuring consistency and precision in data formatting for various applications. 
-
-
-The node is part of a larger workflow system, enabling seamless integration with other processes and providing a streamlined setup experience for developers. This functionality is particularly useful in contexts where structured data is needed from natural language inputs, such as generating recipes or other content where specific data fields are required.
+The JSON Generate node is used to produce structured JSON outputs from language model (LLM) prompts. It allows users to define a specific output schema, ensuring consistency and precision in data formatting for various applications.The node is part of a larger workflow system, enabling seamless integration with other processes and providing a streamlined setup experience for developers. This functionality is particularly useful in contexts where structured data is needed from natural language inputs, such as generating recipes or other content where specific data fields are required.
 
 ![json.png](./img/json/json.png)
 
 ## Features
 
 <details>
-  <summary>**Key Functionalities**</summary>
+  <summary>Key Functionalities</summary>
 
-  1. **Generative Model Selection**: Allows users to select credentials for their preferred generative model, ensuring flexibility and compatibility with various LLMs.
+1. **Generative Model Selection**: Allows users to select credentials for their preferred generative model, ensuring flexibility and compatibility with various LLMs.
 
-  1. **Customizable Prompts**: Features a field for creating prompt templates, enabling tailored input for specific use cases.
+2. **Customizable Prompts**: Features a field for creating prompt templates, enabling tailored input for specific use cases.
 
-  1. **System Prompt Definition**: Includes an option to define a system-level prompt to guide the AI’s behavior, ensuring context-aware and role-specific responses.
+3. **System Prompt Definition**: Includes an option to define a system-level prompt to guide the AI’s behavior, ensuring context-aware and role-specific responses.
 
-  1. **Additional Properties Management**: Offers expandable sections for configuring advanced properties to fine-tune AI-generated outputs.
-</details> 
-   
+4. **Additional Properties Management**: Offers expandable sections for configuring advanced properties to fine-tune AI-generated outputs.
+
+</details>
+
 <details>
-  <summary>**Benefits**</summary>
+  <summary>Benefits</summary>
 
 1. **Flexibility**: Supports integration with multiple LLMs, allowing users to utilize different models based on their specific needs and use cases.
 
-1. **User-Centric Design**: Provides intuitive interfaces for prompt customization and system prompt definition, making it accessible to both beginners and advanced users. 
+2. **User-Centric Design**: Provides intuitive interfaces for prompt customization and system prompt definition, making it accessible to both beginners and advanced users.
 
-1. **Enhanced Control**: Enables precise control over the AI’s behavior and output quality through customizable prompts and system configurations.
+3. **Enhanced Control**: Enables precise control over the AI’s behavior and output quality through customizable prompts and system configurations.
 
-1. **Scalability**: Facilitates the creation of reusable prompt templates for diverse workflows, ensuring consistency across projects.
+4. **Scalability**: Facilitates the creation of reusable prompt templates for diverse workflows, ensuring consistency across projects.
+
 </details>
 
 ## What can I build?
@@ -83,8 +82,8 @@ nodes:
           }
         }
       promptTemplate: tell me something about ${{triggerNode_1.output.topic}}
-      attachments: '[]'
-      messages: '[]'
+      attachments: "[]"
+      messages: "[]"
       generativeModelName:
         provider_name: mistral
         type: generator/text
@@ -93,6 +92,31 @@ nodes:
         model_name: mistral/mistral-large-2402
     needs:
       - triggerNode_1
+```
+
+## Sample Output
+
+```json
+{
+    "name": "Adelaide",
+    "_meta": {
+      "prompt_tokens": 56,
+      "completion_tokens": 7,
+      "total_tokens": 63,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "model_name": "gpt-4-turbo",
+      "model_provider": "openai"
+    }
+  }
 ```
 
 ## Troubleshooting

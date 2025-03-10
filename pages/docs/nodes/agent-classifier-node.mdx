@@ -15,28 +15,23 @@ The Agent Classifier Node processes input data and classifies it into predefined
 
 <details>
   <summary>**Key Functionalities**</summary>
-  1. **Multi-Input Classification:** Supports both text and structured data inputs for classification. 
-  
-  1. **Customizable Categories:** Allows defining specific categories for classification based on application needs. 
-  
-  1. **Intent Recognition:** Identifies user intent from textual input and maps it to predefined intents. 
-  
-  1. **Automated Routing:** Routes data or user queries to the appropriate workflow based on classification results. 
-  
-  1. **LLM Integration:** Uses large language models to enhance classification accuracy and contextual understanding.
+  1. **Multi-Input Classification:** Supports both text and structured data inputs
+  for classification. 1. **Customizable Categories:** Allows defining specific categories
+  for classification based on application needs. 1. **Intent Recognition:** Identifies
+  user intent from textual input and maps it to predefined intents. 1. **Automated
+  Routing:** Routes data or user queries to the appropriate workflow based on classification
+  results. 1. **LLM Integration:** Uses large language models to enhance classification
+  accuracy and contextual understanding.
 </details>
 
 <details>
   <summary>**Benefits**</summary>
-  1. **Improved Automation:** Reduces manual intervention by automatically categorizing input data. 
-  
-  1. **Enhanced User Experience:** Directs queries or data to the appropriate processing module efficiently. 
-  
-  1. **Scalability:** Supports multiple classification tasks across different domains. 
-  
-  1. **Efficiency:** Streamlines workflows by integrating classification and routing into a single node. 
-  
-  1. **AI-Powered Accuracy:** Leverages advanced AI models for context-aware classification.
+  1. **Improved Automation:** Reduces manual intervention by automatically categorizing
+  input data. 1. **Enhanced User Experience:** Directs queries or data to the appropriate
+  processing module efficiently. 1. **Scalability:** Supports multiple classification
+  tasks across different domains. 1. **Efficiency:** Streamlines workflows by integrating
+  classification and routing into a single node. 1. **AI-Powered Accuracy:** Leverages
+  advanced AI models for context-aware classification.
 </details>
 
 ## What can I build?
@@ -75,8 +70,8 @@ nodes:
     nodeType: agentClassifierNode
     nodeName: Agent Classifier
     values:
-      promptTemplate: ''
-      systemPrompt: ''
+      promptTemplate: ""
+      systemPrompt: ""
       classifier:
         - label: Classifier 1
           value: agentClassifierNode_885-addNode_248
@@ -91,28 +86,44 @@ nodes:
         value: plus-node-addNode_671526
   - nodeId: plus-node-addNode_248884
     nodeType: addNode
-    nodeName: ''
+    nodeName: ""
     values: {}
     needs:
       - agentClassifierNode_885
   - nodeId: plus-node-addNode_671526
     nodeType: addNode
-    nodeName: ''
+    nodeName: ""
     values: {}
     needs:
       - agentClassifierNode_885
   - nodeId: plus-node-addNode_605143
 ```
 
+## Sample Output
+
+```json
+    {
+      "_meta": {
+      "prompt_tokens": 56,
+      "completion_tokens": 4,
+      "total_tokens": 60,
+      "model_name": "gemini-1.5-pro-latest",
+      "model_provider": "google"
+    },
+    "class": "Classifier 1",
+    "condition": "Classifier 1"
+    }
+```
+
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**                    | **Solution**                                                 |
-| ------------------------------ | ------------------------------------------------------------ |
-| **Invalid API Key**            | Adjust the confidence threshold or refine system prompts.          |
-| **Low Classification Accuracy** | Increase the `Wait for Page Load` time in the configuration. |
-| **Incorrect Routing** |Review and update routing rules based on classification output. |
+| **Problem**                     | **Solution**                                                    |
+| ------------------------------- | --------------------------------------------------------------- |
+| **Invalid API Key**             | Adjust the confidence threshold or refine system prompts.       |
+| **Low Classification Accuracy** | Increase the `Wait for Page Load` time in the configuration.    |
+| **Incorrect Routing**           | Review and update routing rules based on classification output. |
 
 ### Debugging
 

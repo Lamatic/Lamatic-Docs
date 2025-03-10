@@ -104,7 +104,30 @@ nodes:
     needs:
       - multiModalLLMNode_924
 ```
+## Sample Output
 
+```json
+{
+    "_meta": {
+      "prompt_tokens": 276,
+      "completion_tokens": 130,
+      "total_tokens": 406,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "model_name": "gpt-4-turbo",
+      "model_provider": "openai"
+    },
+    "generatedResponse": "An LLM, or Large Language Model, is a type of artificial intelligence technology designed to understand and generate human-like text based on the input it receives. LLMs are trained on vast amounts of written text to learn the structure, context, and nuances of language. They are capable of a wide range of tasks, such as answering questions, generating coherent prose, translating languages, summarizing lengthy documents, and more. LLMs like OpenAI's GPT (Generative Pre-trained Transformer) series are examples of this technology, driven by deep learning models that process and generate text based on patterns and knowledge gleaned from their training data."
+  }
+```
 ## Troubleshooting
 
 ### Common Issues

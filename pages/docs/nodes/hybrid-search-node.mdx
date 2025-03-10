@@ -80,33 +80,49 @@ The Hybrid Search node provides the ability to embed a vector search of a connec
 ```yaml
 nodes:
   nodes:
-  - nodeId: hybridSearchNode_217
-    nodeType: hybridSearchNode
-    nodeName: Hybrid Search
-    values:
-      searchQuery: Tell me something about ${{triggerNode_1.output.topic}}
-      vectorDB: ''
-      alpha: '0.25'
-      certainty: '0.85'
-      limit: '3'
-      autocut: '0'
-      fusionType: relativeScoreFusion
-      boostProperties: false
-      filters: '[]'
-      embeddingModelName:
-        provider_name: mistral
-        type: embedder/text
-        credential_name: Mistral API
-        credentialId: 32bf5e3b-a8fc-4697-b95a-b1af3dcf7498
-        model_name: mistral/mistral-embed
-    needs:
-      - triggerNode_1
-  - nodeId: plus-node-addNode_378459
-    nodeType: addNode
-    nodeName: ''
-    values: {}
-    needs:
-      - hybridSearchNode_217
+    - nodeId: hybridSearchNode_217
+      nodeType: hybridSearchNode
+      nodeName: Hybrid Search
+      values:
+        searchQuery: Tell me something about ${{triggerNode_1.output.topic}}
+        vectorDB: ""
+        alpha: "0.25"
+        certainty: "0.85"
+        limit: "3"
+        autocut: "0"
+        fusionType: relativeScoreFusion
+        boostProperties: false
+        filters: "[]"
+        embeddingModelName:
+          provider_name: mistral
+          type: embedder/text
+          credential_name: Mistral API
+          credentialId: 32bf5e3b-a8fc-4697-b95a-b1af3dcf7498
+          model_name: mistral/mistral-embed
+      needs:
+        - triggerNode_1
+    - nodeId: plus-node-addNode_378459
+      nodeType: addNode
+      nodeName: ""
+      values: {}
+      needs:
+        - hybridSearchNode_217
+```
+
+## Sample Output
+
+```json
+{
+    "searchResults": [
+      {
+        "_additional": {
+          "score": "0.25"
+        },
+        "data": "info",
+        "score": "0.25"
+      }
+    ]
+}
 ```
 
 ## Troubleshooting

@@ -113,7 +113,47 @@ nodes:
     needs:
       - triggerNode
 ```
-
+## Sample Output
+```json
+{
+    "modelResponse": "The information extracted from the reference documents provided indicates:\n\n1. The first document has a certainty score of about 0.873 but does not contain any specific data (it is null).\n2. The second document, with a certainty score of around 0.861, contains some sort of information labeled as \"info,\" but does not provide further details or context about the nature of this information.\n\nBased on these documents, it's not possible to provide detailed content as the first document is empty and the second only indicates the presence of some unspecified information.",
+    "references": [
+      {
+        "_additional": {
+          "certainty": 0.8730262517929077
+        },
+        "data": null,
+        "rr": "wr",
+        "certainty": 0.8730262517929077
+      },
+      {
+        "_additional": {
+          "certainty": 0.8614917993545532
+        },
+        "data": "info",
+        "rr": null,
+        "certainty": 0.8614917993545532
+      }
+    ],
+    "_meta": {
+      "prompt_tokens": 112,
+      "completion_tokens": 111,
+      "total_tokens": 223,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      },
+      "model_name": "gpt-4-turbo",
+      "model_provider": "openai"
+    }
+  }
+```
 ## Troubleshooting
 
 ### Common Issues

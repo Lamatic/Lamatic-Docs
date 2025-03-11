@@ -82,13 +82,30 @@ The vectorize node transforms data chunks into numeric vector representations us
       provider_name: openai
 ```
 
+## Example Output
+
+```json
+{
+    "vectors": [
+      [
+        -0.010908611,
+        -0.013849079,
+        -0.0080731595,
+        -0.03575819,
+        -0.004489464,
+
+      ]
+    ]
+}
+```
+
 ## Troubleshooting
 
 ### Common Issues
 
 | **Problem**                    | **Solution**                                                 |
 | ------------------------------ | ------------------------------------------------------------ |
-| **Invalid API Key**            | Ensure the API key is correct and has not expired.                |
+| **Invalid API Key**            | Ensure the API key is correct and has not expired.           |
 | **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration. |
 
 ### Debugging

@@ -16,21 +16,18 @@ You can use Firecrawl with the Crawl node to systematically browse and index web
 <details>
   <summary>**Key Functionalities**</summary>
 
-  
-  1. **Comprehensive Crawling**: It recursively traverses websites, identifying and accessing all subpages to ensure thorough data collection. It begins with a specified URL, analyzes the sitemap (if available), and follows links to uncover all accessible subpages.
-  
-  1. **Dynamic Content Handling**: It effectively manages dynamic content rendered with JavaScript, ensuring comprehensive data extraction from all accessible subpages. 
-  
-  1. **Modular Design**: Create reusable workflow components
+1. **Comprehensive Crawling**: It recursively traverses websites, identifying and accessing all subpages to ensure thorough data collection. It begins with a specified URL, analyzes the sitemap (if available), and follows links to uncover all accessible subpages.
+2. **Dynamic Content Handling**: It effectively manages dynamic content rendered with JavaScript, ensuring comprehensive data extraction from all accessible subpages.
+3. **Modular Design**: Create reusable workflow components.
+
 </details>
 
 <details>
   <summary>**Benefits**</summary>
 
-  
-  1. **Reliability:** It handles common web scraping challenges, including proxies, rate limits, and anti-scraping measures, ensuring consistent and dependable data extraction. Ease of Use -
-  
-  1. **Efficiency:** It intelligently manages requests to minimize bandwidth usage and avoid detection, optimizing the data extraction process.
+1. **Reliability:** It handles common web scraping challenges, including proxies, rate limits, and anti-scraping measures, ensuring consistent and dependable data extraction.
+2. **Efficiency:** It intelligently manages requests to minimize bandwidth usage and avoid detection, optimizing the data extraction process.
+
 </details>
 
 ## Prerequisites
@@ -62,7 +59,7 @@ Use the following format to set up your credentials:
 
 ### Setup 3: Connect with Notification Webhook
 
-1. Create a Webhook flow to receive crawl updates and results
+1. Create a Webhook flow to receive crawl updates and results.
 
 ## Configuration Reference
 
@@ -95,6 +92,16 @@ nodes:
       includePath: []
     needs:
       - triggerNode_1
+```
+
+## Sample Output
+
+```json
+{
+"success": true,
+"id": "467437f1-e4eb-4e4d-bfdb-e8fea919f48c",
+"url": "https://api.firecrawl.dev/v1/crawl/467437f1-e4eb-4e4d-bfdb-e8fea919f48c"
+}
 ```
 
 ## Troubleshooting

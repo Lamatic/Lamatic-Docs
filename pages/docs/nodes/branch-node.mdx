@@ -14,35 +14,34 @@ The branch node enables the execution of multiple nodes in parallel, allowing ac
 ## Features
 
 <details>  
-  <summary>**Key Functionalities**</summary>  
+  <summary>**Key Functionalities**</summary>
 
-  1. **Parallel Execution:** Execute multiple tasks simultaneously, improving efficiency and reducing processing time.  
+1. **Parallel Execution:** Execute multiple tasks simultaneously, improving efficiency and reducing processing time.
 
-  2. **Flexible Workflow Design:** Easily create complex workflows by adding, editing, or removing branches as needed.  
+2. **Flexible Workflow Design:** Easily create complex workflows by adding, editing, or removing branches as needed.
 
-  3. **Conditional Logic Support:** Implement advanced logic to determine which branches to activate based on specific criteria.  
+3. **Conditional Logic Support:** Implement advanced logic to determine which branches to activate based on specific criteria.
 
-  4. **Error Handling:** Ensure robust workflows with dedicated error-handling branches for different scenarios.  
+4. **Error Handling:** Ensure robust workflows with dedicated error-handling branches for different scenarios.
 
-  5. **Real-time Monitoring:** Track the execution of each branch in real time, providing visibility into the workflow's progress.  
+5. **Real-time Monitoring:** Track the execution of each branch in real time, providing visibility into the workflow's progress.
 
-</details>  
+</details>
 
 <details>  
-  <summary>**Benefits**</summary>  
+  <summary>**Benefits**</summary>
 
-  1. **Increased Productivity:** Automate and parallelize tasks to reduce completion times and maximize output.  
+1. **Increased Productivity:** Automate and parallelize tasks to reduce completion times and maximize output.
 
-  2. **Enhanced Flexibility:** Adapt workflows to meet dynamic requirements with easy-to-configure branching structures.  
+2. **Enhanced Flexibility:** Adapt workflows to meet dynamic requirements with easy-to-configure branching structures.
 
-  3. **Simplified Complexity:** Manage intricate processes in a streamlined and visual manner.  
+3. **Simplified Complexity:** Manage intricate processes in a streamlined and visual manner.
 
-  4. **Error Mitigation:** Minimize risks by isolating and handling errors within specific branches.  
+4. **Error Mitigation:** Minimize risks by isolating and handling errors within specific branches.
 
-  5. **Scalability:** Build workflows that grow with your needs, supporting additional branches or tasks as required.  
+5. **Scalability:** Build workflows that grow with your needs, supporting additional branches or tasks as required.
 
-</details>  
-
+</details>
 
 ## What Can You Build?
 
@@ -79,39 +78,47 @@ nodes:
         value: plus-node-addNode_801189
   - nodeId: plus-node-addNode_484899
     nodeType: addNode
-    nodeName: ''
+    nodeName: ""
     values: {}
     needs:
       - branchNode_663
   - nodeId: plus-node-addNode_801189
     nodeType: addNode
-    nodeName: ''
+    nodeName: ""
     values: {}
     needs:
       - branchNode_663
   - nodeId: plus-node-addNode_227323
     nodeType: addNode
-    nodeName: ''
+    nodeName: ""
     values: {}
     needs:
       - plus-node-addNode_484899
       - plus-node-addNode_801189
 ```
 
-## Troubleshooting  
+## Sample Output
 
-### Common Issues  
+```json
+  {
+    "skip": true
+  }
+```
 
-| **Problem**            | **Solution**                                                                       |  
-| ---------------------- | ---------------------------------------------------------------------------------- |  
-| **Parallel Execution Errors** | Verify that all branches are correctly configured and ensure no conflicts in dependencies. |  
-| **Branch Activation Issues**  | Check conditional logic to ensure criteria are correctly defined.             |  
-| **Data Sync Delays**         | Ensure proper data mapping and synchronization across branches.              |  
-| **Error Handling Failures**  | Review error-handling logic and confirm fallback branches are set up correctly. |  
+## Troubleshooting
 
-### Debugging Tips  
+### Common Issues
 
-- Verify branch and ensure all connections are correctly established.  
-- Inspect logs for branch-specific error details to identify the root cause of failures.  
-- Test individual branches independently before running the entire workflow.  
-- Confirm input data consistency across all branches to avoid unexpected outcomes.  
+| **Problem**                   | **Solution**                                                                               |
+| ----------------------------- | ------------------------------------------------------------------------------------------ |
+| **Parallel Execution Errors** | Verify that all branches are correctly configured and ensure no conflicts in dependencies. |
+| **Branch Activation Issues**  | Check conditional logic to ensure criteria are correctly defined.                          |
+| **Data Sync Delays**          | Ensure proper data mapping and synchronization across branches.                            |
+| **Error Handling Failures**   | Review error-handling logic and confirm fallback branches are set up correctly.            |
+
+### Debugging Tips
+
+- Verify branch and ensure all connections are correctly established.
+- Inspect logs for branch-specific error details to identify the root cause of failures.
+- Test individual branches independently before running the entire workflow.
+- Confirm input data consistency across all branches to avoid unexpected outcomes.

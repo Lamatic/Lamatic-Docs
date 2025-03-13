@@ -94,7 +94,17 @@ nodes:
       - triggerNode_1
 ```
 
-## Sample Output
+
+```
+## Output Schema
+
+- `success`: A boolean indicating whether the crawl operation was successfully initiated. 
+                                    
+- `id`: A unique identifier assigned to the crawl job.
+ 
+- `url`: The API endpoint URL associated with the crawl job, used for tracking or retrieving results.
+
+### Example Output
 
 ```json
 {
@@ -102,14 +112,6 @@ nodes:
 "id": "467437f1-e4eb-4e4d-bfdb-e8fea919f48c",
 "url": "https://api.firecrawl.dev/v1/crawl/467437f1-e4eb-4e4d-bfdb-e8fea919f48c"
 }
-```
-## Output Schema
-
-- success: A boolean indicating whether the crawl operation was successfully initiated. 
-                                    
-- id: A unique identifier assigned to the crawl job.
- 
-- url: The API endpoint URL associated with the crawl job, used for tracking or retrieving results.
 
 ## Troubleshooting
 

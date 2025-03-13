@@ -101,7 +101,20 @@ nodes:
     needs:
       - triggerNode_1
 ```
-## Sample output
+
+## Output
+
+- `markdown`: A string containing the scraped content formatted as Markdown, if available.
+- `language`: A string indicating the detected language of the scraped content.
+- `referrer`: A string representing the referrer URL or source that led to the scraped page, if applicable.
+- `title`: A string containing the title of the scraped page or resource.
+- `scrapeId`: A string serving as a unique identifier for the scrape operation.
+- `sourceURL`: A string specifying the original URL from which the content was scraped.
+- `url`: A string indicating the URL of the scraped resource, potentially processed or resolved.
+- `statusCode`: An integer reflecting the HTTP status code returned during the scrape operation.
+
+
+### Example output
 
 ```json
 {
@@ -115,6 +128,7 @@ nodes:
 "statusCode":
 }
 ```
+
 ## Troubleshooting
 
 ### Common Issues

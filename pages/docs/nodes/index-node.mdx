@@ -92,17 +92,35 @@ The Index node inserts records into a vector database, enabling fast semantic re
       - codeNode_540
 ```
 
+
+## Output
+
+- `recordsIndexed`: An integer indicating the number of records successfully indexed.
+
+- `duplicateRecordsDeleted`: An integer representing the number of duplicate records removed during the indexing process.
+
+- `message`: A string providing a status or summary of the indexing operation.
+
+### Example Output
+
+```json
+ {
+    "recordsIndexed": 1,
+    "duplicateRecordsDeleted": 0,
+    "message": "Data indexed successfully"
+  }
+```
+
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**                    | **Solution**                                                 |
-| ------------------------------ | ------------------------------------------------------------ |
-| **Invalid Database**           | Ensure the database is correct.                              |
-| **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration. |
-| **ID Column Usage**            | Avoid using a column named "id" as IDs are reserved in the vector store. Using it will cause issues when building a vector. |
+| **Problem**                    | **Solution**                                                                                                                                                                                  |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Invalid Database**           | Ensure the database is correct.                                                                                                                                                               |
+| **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration.                                                                                                                                  |
+| **ID Column Usage**            | Avoid using a column named "id" as IDs are reserved in the vector store. Using it will cause issues when building a vector.                                                                   |
 | **Data Type Changes**          | Do not change the data type of indexed data. For example, if the "index size" metadata is indexed as a Number, changing it to a String in subsequent indexing attempts will result in errors. |
-
 
 ### Debugging
 

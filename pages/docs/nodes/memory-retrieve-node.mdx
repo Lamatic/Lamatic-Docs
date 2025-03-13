@@ -64,16 +64,18 @@ The Memory Retrieve Node allows users to search and retrieve stored memories fro
 | **Filters**              | JSON-based filters to refine search results       | 'Set them up using UI condition builder' |
 
 ## Filter Memory Retrieval
+
 ![memory-retrieve.png](./img/memory-retrieve/memory-filter.png)
 
 To Apply the Filter in Memory Retrieve Node, Click on the Filters
-1. Here you can apply condition on 
-  1. Session Id
-  1. Meta Data
-  1. Timestamp
-  1. Memory
-  1. Unique Id
-  ![memory-retrieve.png](./img/memory-retrieve/memory-filter-options.png)
+
+1. Here you can apply condition on
+1. Session Id
+1. Meta Data
+1. Timestamp
+1. Memory
+1. Unique Id
+   ![memory-retrieve.png](./img/memory-retrieve/memory-filter-options.png)
 
 ## Outputs
 
@@ -116,7 +118,23 @@ The node provides two output formats:
       - memoryNode_858
 ```
 
+## Output
+
+-`rawMemories`: An array of objects representing unprocessed or original memory data retrieved from storage.
+
+-`memories`: An array of objects containing processed or formatted memory data retrieved based on the node’s query or criteria.
+
+### Example Output
+
+```json
+{
+    "rawMemories": [],
+    "memories": []
+}
+```
+
 ## Using Retrieved Memory in AI Nodes
+
 In the respective AI Node, add memories under Memories inside Additional Properties by clicking the Plus icon.
 ![memory-retrieve.png](./img/memory-retrieve/access.png)
 

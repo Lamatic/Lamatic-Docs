@@ -80,33 +80,62 @@ The Hybrid Search node provides the ability to embed a vector search of a connec
 ```yaml
 nodes:
   nodes:
-  - nodeId: hybridSearchNode_217
-    nodeType: hybridSearchNode
-    nodeName: Hybrid Search
-    values:
-      searchQuery: Tell me something about ${{triggerNode_1.output.topic}}
-      vectorDB: ''
-      alpha: '0.25'
-      certainty: '0.85'
-      limit: '3'
-      autocut: '0'
-      fusionType: relativeScoreFusion
-      boostProperties: false
-      filters: '[]'
-      embeddingModelName:
-        provider_name: mistral
-        type: embedder/text
-        credential_name: Mistral API
-        credentialId: 32bf5e3b-a8fc-4697-b95a-b1af3dcf7498
-        model_name: mistral/mistral-embed
-    needs:
-      - triggerNode_1
-  - nodeId: plus-node-addNode_378459
-    nodeType: addNode
-    nodeName: ''
-    values: {}
-    needs:
-      - hybridSearchNode_217
+    - nodeId: hybridSearchNode_217
+      nodeType: hybridSearchNode
+      nodeName: Hybrid Search
+      values:
+        searchQuery: Tell me something about ${{triggerNode_1.output.topic}}
+        vectorDB: ""
+        alpha: "0.25"
+        certainty: "0.85"
+        limit: "3"
+        autocut: "0"
+        fusionType: relativeScoreFusion
+        boostProperties: false
+        filters: "[]"
+        embeddingModelName:
+          provider_name: mistral
+          type: embedder/text
+          credential_name: Mistral API
+          credentialId: 32bf5e3b-a8fc-4697-b95a-b1af3dcf7498
+          model_name: mistral/mistral-embed
+      needs:
+        - triggerNode_1
+    - nodeId: plus-node-addNode_378459
+      nodeType: addNode
+      nodeName: ""
+      values: {}
+      needs:
+        - hybridSearchNode_217
+```
+
+## Output
+
+- `searchResults`: An array of objects, each representing a search result with its associated data and scoring information.
+
+- `_additional`: A nested object containing supplementary metadata about the search result.
+
+- `score`: A string indicating the relevance or confidence score of the result, as provided in the additional metadata.
+
+- `data`: A string containing the content or information retrieved for the search result.
+
+- `score`: `A string representing the relevance or confidence score of the result, mirrored at the top level.
+
+
+### Example Output
+
+```json
+{
+    "searchResults": [
+      {
+        "_additional": {
+          "score": "0.25"
+        },
+        "data": "info",
+        "score": "0.25"
+      }
+    ]
+}
 ```
 
 ## Troubleshooting

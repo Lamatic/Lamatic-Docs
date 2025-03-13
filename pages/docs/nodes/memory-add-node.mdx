@@ -93,6 +93,23 @@ The Memory Node Add allows users to store and manage contextual information by c
         credential_name: Testing OpenAI
 ```
 
+## Output 
+
+-`memoryActions`: An array of objects representing actions or operations performed on the memory, which may be empty if no actions are recorded.
+
+-`extractedFacts`: An array of strings containing facts or insights derived from the input data and added to the memory.
+
+### Example Output
+
+```json
+{
+    "memoryActions": [],
+    "extractedFacts": [
+      "User expressed a positive opinion about lamatic."
+    ]
+  }
+```
+
 ## Common Issues and Debugging
 
 1. **Memory Not Being Stored**

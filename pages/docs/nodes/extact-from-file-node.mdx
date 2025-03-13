@@ -328,6 +328,79 @@ nodes:
       - triggerNode_1
 ```
 
+## Output Schema
+
+- files: An array of objects, each representing a file and its extracted content along with associated metadata.
+
+- metadata: A nested object containing descriptive attributes of the file.
+
+- mime_type: A string specifying the file’s MIME type, indicating its format and encoding.
+
+- type: A string categorizing the file’s general type.
+
+- filename: A string representing the name of the file.
+
+- extension: A string indicating the file’s extension.
+
+- url: A string providing the source URL of the file.
+
+- size: An integer representing the file size in bytes, or null if not available.
+
+- file_id: An integer uniquely identifying the file within the processing context.
+
+- data: An array of strings containing the extracted content from the file.
+
+- additional_fields: A nested object containing supplementary data or metadata about the file processing.
+
+- raw: An array of objects providing unprocessed or detailed extraction data.
+
+- metadata: A nested object within raw detailing file format and creation metadata.
+
+- format: A string specifying the file’s format version.
+
+- title: A string representing the file’s title.
+
+- author: A string identifying the file’s author.
+
+- subject: A string describing the file’s subject.
+
+- keywords: A string listing keywords associated with the file.
+
+- creator: A string indicating the software or tool that created the file.
+
+- producer: A string identifying the software or library that produced the file.
+
+- creationDate: A string representing the file’s creation date.
+
+- modDate: A string indicating the file’s last modification date.
+
+- trapped: A string related to PDF trapping status.
+
+- encryption: A value indicating the file’s encryption status, or null if not encrypted.
+
+- file_path: A string specifying the temporary or local file path used during processing.
+
+- page_count: An integer indicating the total number of pages in the file.
+
+- page: An integer specifying the page number of the extracted content.
+
+- toc_items: An array of table of contents items.
+
+- tables: An array of objects describing tables extracted from the file.
+
+- bbox: An array of coordinates defining the bounding box of a table.
+
+- rows: An integer indicating the number of rows in a table.
+
+- columns: An integer indicating the number of columns in a table.
+
+- images: An array of image data extracted from the file.
+
+- graphics: An array of graphic elements extracted from the file.
+
+- text: A string containing the raw text content extracted from a specific page or section.
+
+- words: An array of individual words extracted from the text.
 
 ## Troubleshooting
 

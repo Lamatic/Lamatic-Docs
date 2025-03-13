@@ -3,7 +3,7 @@ description: Learn how to build an intelligent bot that can answer questions bas
 
 title: Slack Internal Support Bot with Scraper
 category: Intermediate
-thumbnail: /images/tutorials/Slack-Internal-Support-Bot-with-Scraper.png
+thumbnail: /images/tutorials/slack-internal-support-bot-with-scraper.png
 order: 23
 ---
 
@@ -26,7 +26,7 @@ In this tutorial, you'll learn how to build a bot connected with your slack chan
 1. You'll see different sections like Flows, Data, and Models
 1. Select the "Create from Scratch" under the All Templates Category 
 1. You will have to create 8 nodes, which are to be built and configured: API (Trigger Node), Scraper Node, Chunking Node, Extract Chunks (Code Node), Vectorise Node, Transform Metadata (Code Node), Index Node and API Response.
-    ![Flow Deploy](./img/slack-bot-with-Scraper/Scraper-to-Vector-DB-Flow.png) 
+    ![Flow Deploy](./img/slack-bot-with-scraper/scraper-to-vector-db-flow.png) 
 
 ### 2. API Trigger Node
 1. Modify the API schema to take the required input parameters, "url" and "filename".
@@ -35,7 +35,7 @@ In this tutorial, you'll learn how to build a bot connected with your slack chan
 ### 3. Scraper Node
 1. Authorize Lamatic AI with your FireCrawl API at the "Scraper" Node by providing the required credentials.
 1. Add the "url" passed from the API Trigger Node to the "URL to Scrape" setting and toggle the "Only Main Content" option on.
-    ![Flow Deploy](./img/slack-bot-with-Scraper/Scraper-API-Flow-Node.png) 
+    ![Flow Deploy](./img/slack-bot-with-scraper/scraper-api-flow-node.png) 
     
 
 ### 4. Data Chunking
@@ -46,10 +46,10 @@ The chunking process involves sophisticated algorithms that analyze your documen
 
 1. Navigate to the “Chunking” node.
 1. Click the plus icon to select the data and provide the text you want to chunk.
-    ![flow.png](./img/slack-bot-with-Scraper/Chunk-Scraper-Flow-Node.png)
+    ![flow.png](./img/slack-bot-with-scraper/chunk-scraper-flow-node.png)
 1. Set your chunking parameters and adjust other default options under Additional Properties.
 1. Click on the “Extract Chunks" node, where we will extract data from the Chunks by applying the specified logic.
-    ![flow.png](./img/slack-bot-with-Scraper/Extract-Chunk-Flow-Node.png)
+    ![flow.png](./img/slack-bot-with-scraper/extract-chunk-flow-node.png)
 
 ### 5. Vector the Data
 Vectorization is where we transform text into a format that AI can understand and process efficiently. This step is like creating a detailed map of your knowledge base that the AI can navigate quickly and accurately.
@@ -57,7 +57,7 @@ Vectorization is where we transform text into a format that AI can understand an
 <br/>
 
 1. Click on the "Vectorize" node.
-    ![flow.png](./img/slack-bot-with-Scraper/Vectorise-API-Flow-Node.png)
+    ![flow.png](./img/slack-bot-with-scraper/vectorise-api-flow-node.png)
 1. Click the plus (+) icon to choose the data and input the text you want to vectorize.
 1. Select the embedding model. For this example, we’ll use OpenAI’s text-embedding-3-small.
 
@@ -67,7 +67,7 @@ Transforming metadata is like creating a detailed index for your knowledge base.
 <br/>
 
 1. Click on the "Transform MetaData" node to transform the metadata of the extracted data, so as to make it more readable and understandable.
-    ![flow.png](./img/slack-bot-with-Scraper/Transform-MetaData-API-Flow-Node.png)
+    ![flow.png](./img/slack-bot-with-Scraper/transform-metadata-api-flow-node.png)
     
 
 ### 7. Store Vector Data in the Vector Database
@@ -75,7 +75,7 @@ The database storage step is where your vectorized knowledge becomes organized a
 <br/>
 
 1. Click on the "Index" node
-    ![flow.png](./img/slack-bot-with-Scraper/Index-API-Flow-Node.png)
+    ![flow.png](./img/slack-bot-with-scraper/index-api-flow-node.png)
 1. Select the desired Vector Database
 1. Add Vectors, Metadata, and a Primary Key by clicking the “+” icon
 
@@ -88,7 +88,7 @@ Pass `url` and `filename` for the testing purpose.
 1. `filename`: Serves as the name of the document you want to extract data from, this should be unique for each document/link.
 
 For testing, you need to manually provide `url` and `filename` as dummy data. Once deployed, these values must be passed to your API trigger node from the external application.
-    ![flow.png](./img/slack-bot-with-Scraper/Testing-API-Flow-Node.png)
+    ![flow.png](./img/slack-bot-with-scraper/testing-api-flow-node.png)
 <br/>
 
 ### 9. Deployment
@@ -109,7 +109,7 @@ This step is where we bring together all the previous components to create an in
 1. Create a new flow named “Slack Support Bot” or Select the Flow Template of Slack Ask Bot ([Template](https://hub.lamatic.ai/templates/slack-ask-bot))
 1. Add a “Slack” node
 1. Add RAG Node and Select the Database, Pass query, Select Respective LLM
-    ![flow.png](./img/slack-bot-with-Scraper/Slack-RAG-Flow.png)
+    ![flow.png](./img/slack-bot-with-scraper/slack-rag-flow.png)
 1. Add a response "Slack" node to send the response back to the slack channel
 
 ### 11. Test and Deploy Flow

@@ -94,7 +94,37 @@ nodes:
       - triggerNode_1
 ```
 
-## Sample Output
+## Output Schema
+
+- `_meta`: A nested object containing metadata about the processing of the generation request.
+
+- `prompt_tokens`: An integer indicating the number of tokens in the input prompt provided to the model.
+
+- `completion_tokens`: An integer representing the number of tokens in the generated output.
+
+- `total_tokens`: An integer reflecting the sum of `prompt_tokens` and `completion_tokens`.
+
+- `prompt_tokens_details`: A nested object providing a breakdown of token usage in the prompt.
+
+- `cached_tokens`: An integer indicating the number of tokens reused from a cache.
+
+- `audio_tokens`: An integer representing the number of tokens associated with audio input, if applicable.
+
+- `completion_tokens_details`: A nested object detailing token usage in the generated output.
+
+- `reasoning_tokens`: An integer indicating the number of tokens used for reasoning processes, if applicable.
+
+- `audio_tokens`: An integer representing the number of tokens associated with audio output, if applicable.
+
+- `accepted_prediction_tokens`: An integer indicating the number of tokens from accepted predictions, if applicable.
+
+- `rejected_prediction_tokens`: An integer representing the number of tokens from rejected predictions, if applicable.
+
+- `model_name`: A string specifying the name of the AI model used for generation.
+
+- `model_provider`: A string identifying the provider or organization supplying the model.
+
+### Example Output
 
 ```json
 {

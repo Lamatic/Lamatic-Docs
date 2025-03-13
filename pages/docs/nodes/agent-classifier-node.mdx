@@ -101,21 +101,20 @@ nodes:
 
 ## Output 
 
-- `_meta`: A nested object containing metadata about the request processing.
- 
-- `prompt_tokens`: The number of tokens in the input prompt provided to the model.
- 
-- `completion_tokens`: The number of tokens generated in the model’s output.
+#### `_meta`
+- A nested object containing metadata about the request processing.
 
-- `total_tokens`: The total sum of prompt_tokens and completion_tokens.
- 
-- `model_name`: The identifier of the AI model utilized for processing the request.
- 
-- `model_provider`: The organization or entity supplying the AI model.
- 
-- `class`: The classification label or result determined by the classifier.
- 
-- `condition`: A secondary attribute indicating the condition or context of the classification.
+  - **`prompt_tokens`**: The number of tokens in the input prompt provided to the model.
+  - **`completion_tokens`**: The number of tokens generated in the model’s output.
+  - **`total_tokens`**: The total sum of `prompt_tokens` and `completion_tokens`.
+  - **`model_name`**: The identifier of the AI model utilized for processing the request.
+  - **`model_provider`**: The organization or entity supplying the AI model.
+
+#### `class`
+- The classification label or result determined by the classifier.
+
+#### `condition`
+- A secondary attribute indicating the condition or context of the classification.
 
 ### Example Output
 

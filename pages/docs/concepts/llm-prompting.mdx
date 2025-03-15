@@ -1,135 +1,180 @@
 ---
 title: LLM Prompting Techniques
-description: Learn the methods for effectively communicating with LLMs. It covers ten different prompting approaches with practical examples, explains Lamatic Studio's dynamic variables, and provides actionable tips for getting better results from AI interactions.
+description: 
 ---
 
 # LLM Prompting Techniques
 
-## What are LLMs?
-Large Language Models (like Claude) are AI systems that understand and generate text. How you ask questions matters a lot for getting good answers!
+Large Language Models (LLMs) have transformed how we interact with AI. However, the quality of results you get depends significantly on how you structure your prompts. This concept covers various prompting techniques with practical examples to help you get the most out of LLMs.
 
-## Effective Ways to Talk to AI
+### 1. Zero-Shot Prompting
+Zero-shot prompting involves asking the LLM to perform a task without any examples.
 
-### 1. Direct Questions (Zero-Shot)
-Just ask plainly what you want.
+<br/>
+Example
+```text
+Summarize the following paragraph:
 
-**Example:**
-```
-Summarize this paragraph about climate change: [your text here]
-```
-
-### 2. Show Examples First (Few-Shot)
-Give examples of what you want before asking.
-
-**Example:**
-```
-Change these to past tense:
-
-"I walk" → "I walked"
-"She runs" → "She ran"
-
-Now change: "They build sandcastles"
+Climate change is accelerating at an unprecedented rate. Global temperatures have increased by approximately 1.1°C since pre-industrial times, primarily due to human activities. This warming is causing more frequent and severe weather events, rising sea levels, and disruptions to ecosystems worldwide. Immediate and coordinated action is essential to mitigate these effects and prevent catastrophic outcomes for future generations.
 ```
 
-### 3. Step-by-Step Thinking (Chain-of-Thought)
-Ask the AI to solve problems one step at a time.
+### 2. Few-Shot Prompting
 
-**Example:**
-```
-If a $50 shirt is 30% off, then has another 15% discount, what's the final price? Think step by step.
-```
+Few-shot prompting provides the LLM with a few examples before asking it to complete a similar task.
 
-### 4. Multiple Solutions Approach
-Ask for several answers to pick the best one.
+<br/>
+Example
 
-**Example:**
-```
-Solve this math problem three different ways, then tell me which is right: [problem]
-```
+```text
+Convert these sentences to past tense:
 
-### 5. Role-Playing
-Ask the AI to pretend to be someone specific.
+Original: I walk to the store.
+Past Tense: I walked to the store.
 
-**Example:**
-```
-As an experienced data scientist, explain how to handle imbalanced datasets to a beginner.
+Original: She runs every morning.
+Past Tense: She ran every morning.
+
+Original: They build sandcastles at the beach.
+Past Tense:
 ```
 
-### 6. Using Templates
-Create a fill-in-the-blank structure.
+### 3. Chain-of-Thought (CoT) Prompt
+Chain-of-thought prompting encourages the LLM to break down complex problems into logical steps.
 
-**Example:**
-```
-Article Title: [topic]
-Audience: [who]
-Tone: [style]
-Word Count: [length]
+<br/>
+Example
 
-Write a blog post following this plan.
-```
+```text
+Problem: If a shirt originally costs $50 and is on sale for 30% off, then there's an additional 15% discount at checkout, what is the final price?
 
-### 7. Clear Instructions
-Give numbered or step-by-step directions.
-
-**Example:**
-```
-Write a product description for headphones. Please:
-1. Start with a catchy headline
-2. List 3-5 key features
-3. End with a call-to-action
-4. Keep it under 200 words
+Let's think through this step by step:
 ```
 
-### 8. Define Who's Talking to Who
-Set up both the AI's role and the audience.
+### 4. Self-Consistency Prompting
+This technique involves generating multiple independent responses and then selecting the most consistent answer.
 
-**Example:**
-```
-You're a financial advisor talking to a 28-year-old who just got promoted. Give them financial advice.
+<br/>
+Example
+```text
+Generate three different solutions to this math problem, then determine which answer is correct:
+
+If a rectangle has a length that is twice its width, and its perimeter is 36 cm, what is the area of the rectangle?
 ```
 
-### 9. Set Clear Boundaries
-Define what you do and don't want.
+### 5. Role-Based Prompting
+In role-based prompting, you ask the LLM to assume a specific role or perspective.
 
-**Example:**
+<br/>
+Example
+```text
+You are an experienced data scientist with expertise in machine learning. Explain how to handle imbalanced datasets to a junior programmer who has basic knowledge of classification algorithms.
 ```
-Write a short story about friendship with these rules:
-- Max 250 words
-- Post-apocalyptic setting
+
+### 6. Template-Based Prompting
+Template-based prompting uses a consistent structure for similar tasks.
+
+<br/>
+Example
+```text
+Article Title: {The Rise of Sustainable Fashion}
+Audience: {Environmentally conscious young adults}
+Tone: {Informative and inspiring}
+Word Count: {800}
+
+Write a blog post following the above parameters.
+```
+
+### 7. Instruction-Based Prompting
+This approach provides clear, explicit instructions for the LLM to follow.
+
+<br/>
+Example
+```text
+Create a product description for a wireless noise-canceling headphone. Follow these instructions:
+1. Begin with an attention-grabbing headline
+2. Include 3-5 key features and benefits
+3. Mention battery life and connectivity options
+4. End with a clear call-to-action
+5. Keep the description under 200 words
+6. Use a professional but enthusiastic tone
+```
+
+### 8. Persona-Based Prompting
+Persona-based prompting defines both who the LLM is and who it's talking to.
+
+<br/>
+Example
+```text
+You are a financial advisor with 15 years of experience talking to a 28-year-old who has just received their first promotion and salary increase. Provide advice on how they should adjust their financial planning.
+```
+
+### 9. Constraint-Based Prompting
+This technique clearly defines limitations or requirements for the response.
+
+<br/>
+Example
+```text
+Write a short story about an unexpected friendship with the following constraints:
+- Maximum 250 words
+- Set in a post-apocalyptic world
 - No human characters
-- End on a positive note
+- Must include the themes of trust and sacrifice
+- Should end on a hopeful note
 ```
 
-### 10. Request Specific Formats
-Ask for information organized in a particular way.
+### 10. Output Format Specification
+This approach explicitly defines how you want the output structured.
 
-**Example:**
-```
-Analyze renewable energy and present it like this:
+<br/>
+Example
+```text
+Analyze the strengths and weaknesses of using renewable energy sources. Present your analysis in this format:
 
 Introduction: (brief overview)
 
 Strengths:
-- [point 1]
-- [point 2]
+- [Strength 1]
+- [Strength 2]
+- [Strength 3]
 
 Weaknesses:
-- [point 1]
-- [point 2]
+- [Weakness 1]
+- [Weakness 2]
+- [Weakness 3]
 
-Conclusion: (summary)
+Conclusion: (summary and future outlook)
 ```
 
+### 11. System Prompting
+System prompts set the overall behavior and capabilities of the LLM for the entire interaction.
+
+<br/>
+Example
+```text
+You are a patient, encouraging math tutor who specializes in making algebra accessible to students with math anxiety. You break down complex problems into simple steps, use encouraging language, and provide multiple approaches to solving problems.
+```
+
+### 12. Recursive Prompting
+This technique involves using the output of one prompt as input for another.
+
+<br/>
+Example
+```text
+Step 1: Generate five potential titles for an article about sustainable urban gardening.
+
+Step 2: For each title, write a compelling opening paragraph that would grab a reader's attention.
+
+Step 3: Select the best title and opening paragraph combination, then outline the main sections for the complete article.
+```
 ## Lamatic Prompt Editor
 ![Prompt](./img/prompt.png)
 In Lamatic Studio, you can implement different types of prompts with Dynamic variables.
 
-## Tips for Better Results
-
-1. Be specific about what you want
-2. Give helpful background information
-3. Organize your request clearly
-4. Try again with changes if needed
-5. Say how long or short you want the answer
-6. Mention what writing style you prefer
-7. Use markers like quotes or brackets to separate parts of your request
+## Best Practices for Effective Prompting
+1. Be specific: The more precise your instructions, the better the results.
+1. Provide context: Give the LLM relevant background information.
+1. Use clear structure: Organize your prompt logically.
+1. Iterate and refine: If the first attempt doesn't give desired results, refine your prompt.
+1. Control the length: Specify how detailed you want the response to be.
+1. Set the tone: Indicate the desired writing style or tone.
+1. Use delimiters: Separate different parts of your prompt with markers like triple quotes or brackets.

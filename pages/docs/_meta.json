@@ -55,6 +55,7 @@
   "models": "Models",
   "interface": "Interface",
   "tools": "Tools",
+  "sdk": "Lamatic SDK",
 
   "-- deploy": {
     "type": "separator",

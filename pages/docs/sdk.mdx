@@ -1,9 +1,9 @@
 ---
-title: Lamatic SDK
+title: Lamatic SDK TypeScript
 description: A tool is a powerful feature in the Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
 ---
 
-# Lamatic SDK
+# Lamatic SDK TypeScript
 
 The Lamatic SDK provides a simple way to interact with the Lamatic AI platform, allowing you to execute workflows and integrate AI capabilities into your applications.
 
@@ -12,12 +12,13 @@ The Lamatic SDK provides a simple way to interact with the Lamatic AI platform, 
 Install the Lamatic SDK using npm:
 
 ```bash
-npm install lamatic-ai
+npm install lamatic-ts
 ```
 
 ## Getting Started
 
 To use the Lamatic SDK, you'll need:
+
 - An API key or access token
 - Your project ID
 - The Lamatic API endpoint
@@ -25,12 +26,10 @@ To use the Lamatic SDK, you'll need:
 Initialize the SDK like this:
 
 ```typescript
-import { Lamatic } from "lamatic-ai";
+import { Lamatic } from "lamatic-ts";
 
 const lamatic = new Lamatic({
-  apiKey: "your-api-key",
-  projectId: "your-project-id",
-  endpoint: "your-endpoint",
+  // Config
 });
 ```
 
@@ -41,12 +40,14 @@ The SDK supports two authentication methods:
 <Tabs items={['API Key', 'Access Token']}>
   <Tab>
     ```typescript
+
     const lamatic = new Lamatic({
       apiKey: "your-api-key",
       projectId: "your-project-id",
       endpoint: "your-endpoint",
     });
     ```
+
   </Tab>
   <Tab>
     ```typescript
@@ -65,66 +66,70 @@ You must provide either an API key or an access token, but not both.
 
 The main functionality of the SDK is to execute workflows (flows) that you've created on the Lamatic platform.
 
-### Basic Example
+<Tabs items={['With API Key', 'With Access Token']}>
+  <Tab>
+    ```typescript
+    import { Lamatic } from "lamatic-ts";
 
-```typescript
-import { Lamatic } from "lamatic-ai";
+    const lamatic = new Lamatic({
+      apiKey: "your-api-key",
+      projectId: "your-project-id",
+      endpoint: "your-endpoint",
+    });
 
-const lamatic = new Lamatic({
-  apiKey: "your-api-key",
-  projectId: "your-project-id",
-  endpoint: "your-endpoint",
-});
+    async function main() {
+      const flowId = "your-flow-id";
+      // sample payload
+      const payload = {
+        prompt: "hey, how are you?"
+      }
+      try {
+        const response = await lamatic.executeFlow(flowId, payload);
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
-async function main() {
-  const flowId = "your-flow-id";
-  // sample payload
-  const payload = {
-    prompt: "hey, how are you?"
-  }
-  try {
-    const response = await lamatic.executeFlow(flowId, payload);
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-}
+    main();
 
-main();
-```
+    ````
 
-### Using Access Token
+  </Tab>
+  <Tab>
+   ```typescript
+    import { Lamatic } from "lamatic-ts";
 
-```typescript
-import { Lamatic } from "lamatic-ai";
+    const lamatic = new Lamatic({
+      accessToken: "your-access-token",
+      projectId: "your-project-id",
+      endpoint: "your-endpoint",
+    });
 
-const lamatic = new Lamatic({
-  accessToken: "your-access-token",
-  projectId: "your-project-id",
-  endpoint: "your-endpoint",
-});
+    async function main() {
+      const flowId = "your-flow-id";
+      // sample payload
+      const payload = {
+        prompt: "hey, how are you?",
+      };
+      const response = await lamatic.executeFlow(flowId, payload);
+      console.log(response);
+    }
 
-async function main() {
-  const flowId = "your-flow-id";
-  // sample payload
-  const payload = {
-    prompt: "hey, how are you?"
-  }
-  const response = await lamatic.executeFlow(flowId, payload);
-  console.log(response);
-}
-
-main();
-```
+    main();
+    ```
+  </Tab>
+</Tabs>
 
 ### Handling Expired Access Tokens
 
 <Callout type="info">
-  This example shows how to handle an expired access token by fetching a new one and updating the SDK.
+  This example shows how to handle an expired access token by fetching a new one
+  and updating the SDK.
 </Callout>
 
 ```typescript
-import { Lamatic } from "lamatic-ai";
+import { Lamatic } from "lamatic-ts";
 
 const lamatic = new Lamatic({
   accessToken: "your-access-token",
@@ -144,12 +149,11 @@ async function main() {
   const flowId = "your-flow-id";
   // sample payload
   const payload = {
-    prompt: "hey, how are you?"
-  }
+    prompt: "hey, how are you?",
+  };
   const response = await lamatic.executeFlow(flowId, payload);
   console.log(response);
   if (response.statusCode === 403) {
-
     // Get the new access token
     const accessToken = await getAccessToken();
     // Update the access token for the Lamatic SDK
@@ -188,13 +192,13 @@ async function runWorkflow() {
     input: "Generate a creative story about robots",
     parameters: {
       temperature: 0.7,
-      maxTokens: 500
-    }
+      maxTokens: 500,
+    },
   };
-  
+
   try {
     const response = await lamatic.executeFlow(flowId, payload);
-    
+
     if (response.status === "success") {
       console.log("Workflow executed successfully!");
       console.log("Result:", response.result);
@@ -231,7 +235,9 @@ lamatic.updateAccessToken("new-access-token");
 ### Customizing Payloads
 
 <Callout>
-  The payload structure depends on the specific workflow you're executing. Make sure to check the documentation for your workflow to understand what parameters it expects.
+  The payload structure depends on the specific workflow you're executing. Make
+  sure to check the documentation for your workflow to understand what
+  parameters it expects.
 </Callout>
 
 <Tabs items={['Text Generation', 'Image Analysis']}>
@@ -265,15 +271,24 @@ Different workflows may return different result structures. Here's how you might
 
 ```typescript
 // Text generation workflow response
-const textResponse = await lamatic.executeFlow("text-gen-flow-id", textGenPayload);
+const textResponse = await lamatic.executeFlow(
+  "text-gen-flow-id",
+  textGenPayload
+);
 if (textResponse.status === "success" && textResponse.result) {
   const generatedText = textResponse.result.text;
   console.log("Generated text:", generatedText);
 }
 
 // Classification workflow response
-const classificationResponse = await lamatic.executeFlow("classify-flow-id", classifyPayload);
-if (classificationResponse.status === "success" && classificationResponse.result) {
+const classificationResponse = await lamatic.executeFlow(
+  "classify-flow-id",
+  classifyPayload
+);
+if (
+  classificationResponse.status === "success" &&
+  classificationResponse.result
+) {
   const category = classificationResponse.result.category;
   const confidence = classificationResponse.result.confidence;
   console.log(`Classification: ${category} (confidence: ${confidence})`);
@@ -285,7 +300,7 @@ if (classificationResponse.status === "success" && classificationResponse.result
 The SDK is written in TypeScript and provides type definitions for all its functionality:
 
 ```typescript
-import { Lamatic, LamaticResponse, LamaticConfig } from "lamatic-ai";
+import { Lamatic, LamaticResponse, LamaticConfig } from "lamatic-ts";
 
 // Custom payload type
 interface TextGenerationPayload {
@@ -300,19 +315,24 @@ interface TextGenerationResult {
   usedTokens: number;
 }
 
-async function generateText(prompt: string): Promise<TextGenerationResult | null> {
+async function generateText(
+  prompt: string
+): Promise<TextGenerationResult | null> {
   const payload: TextGenerationPayload = {
     prompt,
     maxTokens: 1000,
-    temperature: 0.7
+    temperature: 0.7,
   };
-  
-  const response = await lamatic.executeFlow<TextGenerationResult>("text-gen-flow", payload);
-  
+
+  const response = await lamatic.executeFlow<TextGenerationResult>(
+    "text-gen-flow",
+    payload
+  );
+
   if (response.status === "success" && response.result) {
     return response.result;
   }
-  
+
   return null;
 }
 ```
@@ -320,7 +340,8 @@ async function generateText(prompt: string): Promise<TextGenerationResult | null
 ## Error Handling
 
 <Callout type="warning">
-  The SDK throws errors in case of configuration issues or network problems. It's recommended to always wrap SDK calls in try-catch blocks.
+  The SDK throws errors in case of configuration issues or network problems.
+  It's recommended to always wrap SDK calls in try-catch blocks.
 </Callout>
 
 ```typescript
@@ -331,7 +352,7 @@ try {
   if (error instanceof Error) {
     // Log the error
     console.error("SDK Error:", error.message);
-    
+
     // Handle specific error scenarios
     if (error.message.includes("timeout")) {
       // Handle timeout

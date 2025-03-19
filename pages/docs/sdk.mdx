@@ -170,6 +170,30 @@ main();
 
 Here, you are supposed to have a server endpoint that returns a new access token when called. The server should handle the authentication and return the new access token from the same secret generated from Lamatic Studio.
 
+### Generating an Access Token Using JWT Sign
+Here's a method to create an access token using jsonwebtoken (JWT) with and without an expiration time:
+
+```js
+import jwt from 'jsonwebtoken';
+
+const secretKey = 'KEY'; // Secret key generated from Lamatic Studio
+
+// Generate token without expiry
+const accessToken = jwt.sign({ project_id: 'PROJECT_ID' }, secretKey, {
+  algorithm: 'HS256',
+});
+
+console.log('Access Token (without expiry):', accessToken);
+
+// Generate token with expiry (e.g., 1 hour)
+const accessTokenWithExpiry = jwt.sign({ project_id: 'PROJECT_ID' }, secretKey, {
+  algorithm: 'HS256',
+  expiresIn: '1h', // Change this to '1s' for testing or adjust as needed
+});
+
+console.log('Access Token (with expiry):', accessTokenWithExpiry);
+```
+
 ## Response Structure
 
 The `executeFlow` method returns a promise that resolves to a `LamaticResponse` object with the following structure:

@@ -1,4 +1,5 @@
 { "editor": "Flow editor",
+  "sticky-notes": "Sticky Notes",
   "nodes": "Nodes" ,
   "variables": "Variables",
   "flow_config": "Flow Config"

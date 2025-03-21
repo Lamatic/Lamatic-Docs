@@ -1,9 +1,9 @@
 ---
-title: Lamatic SDK TypeScript
+title: Lamatic SDK
 description: A tool is a powerful feature in the Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
 ---
 
-# Lamatic SDK TypeScript
+# Lamatic SDK
 
 The Lamatic SDK provides a simple way to interact with the Lamatic AI platform, allowing you to execute workflows and integrate AI capabilities into your applications.
 
@@ -12,7 +12,7 @@ The Lamatic SDK provides a simple way to interact with the Lamatic AI platform, 
 Install the Lamatic SDK using npm:
 
 ```bash
-npm install lamatic-ts
+npm install lamatic
 ```
 
 ## Getting Started
@@ -26,7 +26,7 @@ To use the Lamatic SDK, you'll need:
 Initialize the SDK like this:
 
 ```typescript
-import { Lamatic } from "lamatic-ts";
+import { Lamatic } from "lamatic";
 
 const lamatic = new Lamatic({
   // Config
@@ -69,7 +69,7 @@ The main functionality of the SDK is to execute workflows (flows) that you've cr
 <Tabs items={['With API Key', 'With Access Token']}>
   <Tab>
     ```typescript
-    import { Lamatic } from "lamatic-ts";
+    import { Lamatic } from "lamatic";
 
     const lamatic = new Lamatic({
       apiKey: "your-api-key",
@@ -98,7 +98,7 @@ The main functionality of the SDK is to execute workflows (flows) that you've cr
   </Tab>
   <Tab>
    ```typescript
-    import { Lamatic } from "lamatic-ts";
+    import { Lamatic } from "lamatic";
 
     const lamatic = new Lamatic({
       accessToken: "your-access-token",
@@ -129,7 +129,7 @@ The main functionality of the SDK is to execute workflows (flows) that you've cr
 </Callout>
 
 ```typescript
-import { Lamatic } from "lamatic-ts";
+import { Lamatic } from "lamatic";
 
 const lamatic = new Lamatic({
   accessToken: "your-access-token",
@@ -324,7 +324,7 @@ if (
 The SDK is written in TypeScript and provides type definitions for all its functionality:
 
 ```typescript
-import { Lamatic, LamaticResponse, LamaticConfig } from "lamatic-ts";
+import { Lamatic, LamaticResponse, LamaticConfig } from "lamatic";
 
 // Custom payload type
 interface TextGenerationPayload {

@@ -16,23 +16,21 @@ This guide will walk you through using the Search Widget in Lamatic. We'll use a
 - A [Lamatic.ai](https://lamatic.ai/) account
 - A Vector Database with vectored data in Lamatic Studio
 
-## 1. Setting Up Your Project
+### 1. Setting Up Your Project
 1. Sign up or log in to [Lamatic.ai](https://lamatic.ai/).
 2. Go to the **Dashboard** and click **Create New Flow**.
 3. You'll see sections like **Flows**, **Data**, and **Models**.
+   ![flow.png](./img/ai-review-responder/flow.png)
 
 ## 2. Creating a New Flow
-![Search](./img/search/search1.png)
 1. Click on **Flows** and create a new one.
 2. Select **Search Widget** as the **Trigger Node**.
 3. Click on the **Search Widget** node.
 4. Whitelist the domains where you’ll deploy the widget. This ensures that the widget works only on approved domains.
-   ```js
-   Press Enter ↩️ to add. You can use * as a wildcard (e.g., https://*.com or https://lamatic.*).
-   ```
+ 
 
 ## 3. Configuring the RAG Node
-![Search](./img/search/search2.png)
+![Search](./img/search/RAG.png)
 1. Add a **RAG Node**, which will connect to the Vector Database.
 2. Configure the following settings:
    - **Select Vector Database**.
@@ -46,7 +44,7 @@ This guide will walk you through using the Search Widget in Lamatic. We'll use a
    - **Filters:** Apply JSON-based filters for better search refinement.
 
 ## 4. Updating the Response Node
-![Search](./img/search/search3.png)
+![Search](./img/search/search-response.png)
 The RAG Node provides `modelResponse` along with an array of `references`. We'll use these references to display results in the search widget.
 
 1. Click on the **Search Response Node**.
@@ -62,22 +60,21 @@ The RAG Node provides `modelResponse` along with an array of `references`. We'll
 4. Optional: Add properties like **Link** and **Breadcrumbs** to enhance the response.
 
 ## 5. Testing Your Setup
-![Search](./img/search/search4.png)
 Before testing, ensure you have data in the Vector Database.
 
 1. Click **Configure Test**.
 2. Click on **Search Widget** and enter a query.
 3. View the results.
 4. Click the **Test** button to inspect each node's response.
-![Search](./img/search/search5.png)
+
 
 ## 6. Deployment & Integration
 
 1. Click **Deploy** and enter a commit message.
-    ![Search](./img/search/search7.png)
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
 2. Once deployed, click **Setup** to integrate the Search Widget into your website.
 3. Follow the setup instructions and ensure your domains are whitelisted.
-    ![Search](./img/search/search6.png)
+
 
 Now your AI-powered Search Widget is ready to enhance your website’s search experience!
 

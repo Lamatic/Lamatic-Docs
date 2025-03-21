@@ -39,8 +39,9 @@ We'll implement the following steps:
 ### 1. Create an Account and New Workflow
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-2. Navigate to the dashboard and click **Create New Flow**.
-3. Choose **S3 Node** as the trigger. Refer to [S3 Node setup instructions](https://lamatic.ai/docs/integrations/aws-s3).
+2. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
+3. Click on new flow.
+4. Choose **S3 Node** as the trigger. Refer to [S3 Node setup instructions](https://lamatic.ai/docs/integrations/aws-s3).
 
 ---
 
@@ -52,7 +53,7 @@ The **Extract from File Node** processes and extracts content from various file 
 2. Configure the node:
    - Click the **+** icon to add data.
    - Provide the `document_url` as the File URL(s).
-   ![Overview](./img/aws-s3/file-extract.png)
+   ![Overview](./img/aws-s3/s3-node.png)
 
 ---
 
@@ -61,7 +62,6 @@ The **Extract from File Node** processes and extracts content from various file 
 1. Use a **Logic Node** to extract chunked text:
    - Add the **Extract Chunked Text Node** and define transformation logic.
 
-   ![RAG Chunking](./img/aws-s3/rag-s3-2.png)
 ---
 
 ### 4. Vectorize the Data

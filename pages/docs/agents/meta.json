@@ -1,0 +1,6 @@
+{ "getting-started": "Getting Started",
+  "supervisor-agent": "Supervisor Agent",
+  "text-agent": "Text Agent" ,
+  "image-agent": "Image Agent",
+  "json-agent": "JSON Agent"
+}

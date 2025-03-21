@@ -19,17 +19,15 @@ A simple API that processes image links provided by users, identifies food in th
 ### 1. Project Setup
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-1. Navigate to the dashboard and click **Create New Flow**.
-1. You'll see different sections like Flows, Data, and Models
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
    ![flow.png](./img/ai-review-responder/flow.png)
 
 ### 2. Creating a New Flow
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-2. Click "New Flow"
-   ![Flow selection](./img/ai-review-responder/flow-select.png)
-3. Select "Create from Scratch"
-   ![Flow Start](./img/ai-review-responder/flow-start.png)
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
 
 ### 3. Setting Up Your API
 
@@ -40,17 +38,19 @@ A simple API that processes image links provided by users, identifies food in th
    - Add your Input Schema
    - Set url as parameter in input schema
    - Set response type to "Real-time"
-     ![Flow API Schema](./img/ai-image-reviewer/api-schema.png)
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
 
 ### 4. Adding AI Text Generation
 
 1. Click the + icon to add a new node
-2. Choose "Text LLM"
-   ![Node Text Gen](./img/ai-food-image-recognition/text-gen-node1.png)
+2. Choose "Generate Text"
+   ![Node Text Gen](./img/ai-currency-converter/text-gen-node1.png)
 3. Configure the AI model:
    - Select your "Gemini" credentials
    - Choose "gemini-1.5-pro-latest" as your Model
-4. Set up your prompt:
+4. Under prompts section click the + icon to add prompt
+5. Set up your prompt:
 
    ```
    Instructions:
@@ -73,13 +73,12 @@ A simple API that processes image links provided by users, identifies food in th
 
    ```
 
-- You can add variables using the "Add Variable" button
-  ![Node Text Gen Config](./img/ai-food-image-recognition/text-gen-node2.png)
+- You can add variables using the "insert Variable" button
 
 ### 5. Configuring the reponse
 
 1. Click the API response node
-   ![Flow Deploy](./img/ai-image-reviewer/response-node.png)
+   ![Flow Deploy](./img/image-description-generator/flow-api-schema.png)
 2. Add Output Variables by clicking the + icon
 3. Select variable from your Code Node
 

@@ -10,7 +10,7 @@ order: 5
 
 Learn how to create an intelligent chatbot that can understand and respond to questions using documents from your Amazon S3 bucket. This tutorial leverages **Lamatic.ai** and **Retrieval-Augmented Generation (RAG)** technology.
 
-![Overview](./img/aws-s3/overview.png)
+![Overview](./img/aws-s3/s3.png)
 
 ---
 
@@ -71,7 +71,7 @@ Transform textual data into vectors for AI processing.
    - Click the **+** icon to input text for vectorization.
    - Choose an embedding model, e.g., OpenAI’s `text-embedding-3-large`.
 
-   ![RAG Chunking](./img/aws-s3/rag-s3-3.png)
+   ![RAG Chunking](./img/aws-s3/s3-vectorize.png)
 
 ---
 
@@ -83,7 +83,7 @@ Organize and store vectorized data for efficient retrieval.
 2. Configure the node:
    - Select the desired vector database.
    - Add vectors, metadata, and a primary key.
-   ![RAG Chunking](./img/aws-s3/rag-s3-4.png)
+
 ---
 
 ### 6. Test and Deploy Workflow
@@ -103,7 +103,7 @@ RAG (Retrieval-Augmented Generation) combines a knowledge base with language und
 3. Add a **RAG Node**:
    - Select the vector database.
    - Pass the query and choose the respective LLM.
-   ![RAG Chunking](./img/aws-s3/rag-s3-5.png)
+    ![flow.png](./img/rag-with-google-drive/chatbot-template.png)
 
 ---
 

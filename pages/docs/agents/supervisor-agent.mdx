@@ -1,6 +1,7 @@
 ---
 title: Supervisor Agent
 description: The Supervisor Agent in Lamatic.ai orchestrates multi-agent workflows by collecting input, maintaining memory, and coordinating execution paths.
+order : 4
 ---
 
 # **Supervisor Agent**
@@ -65,9 +66,53 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 | **Models**          | Selects the AI model for text generation.                    | `GPT-4 Turbo` |
 | **Tools**           | Tools which can be added to the agent for additional processing of the generated text.  | `Sentiment Analysis` |        
 | **Agent Paths**     | Define execution paths for multiple sub-agents.              | `Research Agent, Writer Agent` |
-| **Memory Retention** | Enables context recall across iterations.                   | `Enabled` |
+| **Messages**        | System messages to guide the agent's behavior.               | `[{'user' : 'give me a write up for the topic : Claude vs GPT 4'}]` |
 | **Stop Words**      | Specifies trigger words to halt execution.                   | `"end"` |
 | **Max Iterations**  | Sets the maximum loops before termination.                    | `5` |
+
+## Agent Path Configuration
+
+The Supervisor Agent allows you to define different execution paths for specialized sub-agents. Each agent path represents a distinct functionality or responsibility within your workflow.
+
+### Configuring Agent Paths
+
+For each agent path, you'll need to define three key components:
+
+1. **Agent Name**: A descriptive identifier for the sub-agent's role (e.g., "Researcher", "Writer", "Editor")
+2. **Agent Description**: A clear explanation of the sub-agent's purpose and responsibilities
+3. **Agent Schema**: A structured JSON schema defining the expected output format from the agent
+
+### Defining Agent Schema
+
+The agent schema uses a JSON structure to specify the format and requirements for the agent's output. In the example shown:
+
+```json
+{
+  "research": {
+    "type": "string",
+    "required": true,
+    "description": "This implies the final research fetched by the research team, which is supposed to be passed to the writing team"
+  }
+}
+```
+
+This schema defines:
+
+- A field named `research` that will store the agent's output
+- The data type is specified as `string`
+- The field is marked as `required` (true)
+- A description that explains the purpose and usage of this data
+
+### Visual Schema Builder
+
+Lamatic.ai provides a visual schema builder to easily define your agent path configurations:
+
+1. **Field Name**: Enter the output field name (e.g., "research")
+2. **Data Type**: Select the appropriate type (string, number, boolean, etc.)
+3. **Required**: Toggle whether the field is mandatory
+4. **Description**: Add explanatory text to clarify the field's purpose
+
+By properly configuring your agent paths, you enable the Supervisor Agent to effectively route tasks, maintain context, and orchestrate complex workflows across multiple specialized agents.
 
 ## Save Agent Configuration
 

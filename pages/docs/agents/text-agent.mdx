@@ -1,6 +1,7 @@
 ---
 title: Text Agent
 description: The Text Agent in Lamatic.ai generates dynamic text outputs using customizable prompts and LLM models.
+order : 1
 ---
 
 # **Text Agent**
@@ -70,7 +71,9 @@ The **Text Agent** is a generative AI agent that enables users to programmatical
 |---------------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------|
 | **Prompts**               | Define the prompts for system, user and assistant to be used for the LLM                                        | `System Prompt, User Prompt` | 
 | **Models**                | Selects the AI model for text generation.                                                                       | `GPT-4 Turbo` |
-| **Tools**                 | Tools which can be added to the agent for additional processing of the generated text.                         | `Sentiment Analysis` |                                                          
+| **Tools**                 | Tools which can be added to the agent for additional processing of the generated text.                         | `Sentiment Analysis` |            
+| **Messages**              | System messages to guide the agent's behavior.                                                                 | `[{'user' : 'give me a write up for the topic : Claude vs GPT 4'}]` |
+| **Memory**                | Retains context across iterations.                                                                             | `[{'sessionID' : '1234','context' : 'Claude vs GPT 4'}]` |
 
 ## Save Agent Configuration
 

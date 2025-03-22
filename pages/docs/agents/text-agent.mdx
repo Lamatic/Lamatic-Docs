@@ -66,14 +66,18 @@ The **Text Agent** is a generative AI agent that enables users to programmatical
 
 ## **Configuration Options**
 
-| **Parameter**        | **Description**                                        | **Example Value** |
-|----------------------|--------------------------------------------------------|-------------------|
-| **LLM Model**       | Selects the AI model for text generation.               | `GPT-4 Turbo` |
-| **System Prompt**   | Guides AI behavior with a predefined instruction.       | `"Act as a marketing expert"` |
-| **User Prompt**     | Defines user-specific input for response customization. | `"Generate an engaging blog intro"` |
-| **Response Format** | Adjusts output style (structured, plain text, JSON).    | `JSON` |
-| **Stop Words**      | Specifies words to terminate response generation.       | `"end"` |
+| **Parameter**             | **Description**                                                                                                | **Example Value** |
+|---------------------------|----------------------------------------------------------------------------------------------------------------|-------------------------------|
+| **Prompts**               | Define the prompts for system, user and assistant to be used for the LLM                                        | `System Prompt, User Prompt` | 
+| **Models**                | Selects the AI model for text generation.                                                                       | `GPT-4 Turbo` |
+| **Tools**                 | Tools which can be added to the agent for additional processing of the generated text.                         | `Sentiment Analysis` |                                                          
 
+## Save Agent Configuration
+
+![Save Configuration](./img/save-text-agent-config.webp)
+
+You can save the configuration of any agent by clicking on the `Load Save Config` button and selecting `Save as New`. 
+This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
 
 ## Output
 

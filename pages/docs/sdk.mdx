@@ -1,6 +1,6 @@
 ---
 title: Lamatic SDK
-description: A tool is a powerful feature in the Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
+description: A powerful tool in Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
 ---
 
 # Lamatic SDK
@@ -37,30 +37,35 @@ const lamatic = new Lamatic({
 
 The SDK supports two authentication methods:
 
+import { Tabs, Tab } from 'nextra-theme-docs'
+
 <Tabs items={['API Key', 'Access Token']}>
   <Tab>
-    ```typescript
-
-    const lamatic = new Lamatic({
-      apiKey: "your-api-key",
-      projectId: "your-project-id",
-      endpoint: "your-endpoint",
-    });
-    ```
-
+```typescript
+const lamatic = new Lamatic({
+  apiKey: "your-api-key",
+  projectId: "your-project-id",
+  endpoint: "your-endpoint",
+});
+```
   </Tab>
   <Tab>
-    ```typescript
-    const lamatic = new Lamatic({
-      accessToken: "your-access-token",
-      projectId: "your-project-id",
-      endpoint: "your-endpoint",
-    });
-    ```
+```typescript
+const lamatic = new Lamatic({
+  accessToken: "your-access-token",
+  projectId: "your-project-id",
+  endpoint: "your-endpoint",
+});
+```
   </Tab>
 </Tabs>
 
 You must provide either an API key or an access token, but not both.
+
+### How to obtain your API Key/Secret
+![img_2.png](./img/api.webp)
+1. Navigate to Project Settings in your Lamatic dashboard
+2. Locate and copy your API Key/Secret from the credentials section
 
 ## Executing Workflows
 
@@ -68,60 +73,60 @@ The main functionality of the SDK is to execute workflows (flows) that you've cr
 
 <Tabs items={['With API Key', 'With Access Token']}>
   <Tab>
-    ```typescript
-    import { Lamatic } from "lamatic";
+```typescript
+import { Lamatic } from "lamatic";
 
-    const lamatic = new Lamatic({
-      apiKey: "your-api-key",
-      projectId: "your-project-id",
-      endpoint: "your-endpoint",
-    });
+const lamatic = new Lamatic({
+  apiKey: "your-api-key",
+  projectId: "your-project-id",
+  endpoint: "your-endpoint",
+});
 
-    async function main() {
-      const flowId = "your-flow-id";
-      // sample payload
-      const payload = {
-        prompt: "hey, how are you?"
-      }
-      try {
-        const response = await lamatic.executeFlow(flowId, payload);
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
-    }
+async function main() {
+  const flowId = "your-flow-id";
+  // sample payload
+  const payload = {
+    prompt: "hey, how are you?"
+  }
+  try {
+    const response = await lamatic.executeFlow(flowId, payload);
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-    main();
-
-    ````
-
+main();
+```
   </Tab>
   <Tab>
-   ```typescript
-    import { Lamatic } from "lamatic";
+```typescript
+import { Lamatic } from "lamatic";
 
-    const lamatic = new Lamatic({
-      accessToken: "your-access-token",
-      projectId: "your-project-id",
-      endpoint: "your-endpoint",
-    });
+const lamatic = new Lamatic({
+  accessToken: "your-access-token",
+  projectId: "your-project-id",
+  endpoint: "your-endpoint",
+});
 
-    async function main() {
-      const flowId = "your-flow-id";
-      // sample payload
-      const payload = {
-        prompt: "hey, how are you?",
-      };
-      const response = await lamatic.executeFlow(flowId, payload);
-      console.log(response);
-    }
+async function main() {
+  const flowId = "your-flow-id";
+  // sample payload
+  const payload = {
+    prompt: "hey, how are you?",
+  };
+  const response = await lamatic.executeFlow(flowId, payload);
+  console.log(response);
+}
 
-    main();
-    ```
+main();
+```
   </Tab>
 </Tabs>
 
 ### Handling Expired Access Tokens
+
+import { Callout } from 'nextra-theme-docs'
 
 <Callout type="info">
   This example shows how to handle an expired access token by fetching a new one
@@ -171,9 +176,10 @@ main();
 Here, you are supposed to have a server endpoint that returns a new access token when called. The server should handle the authentication and return the new access token from the same secret generated from Lamatic Studio.
 
 ### Generating an Access Token Using JWT Sign
+
 Here's a method to create an access token using jsonwebtoken (JWT) with and without an expiration time:
 
-```js
+```javascript
 import jwt from 'jsonwebtoken';
 
 const secretKey = 'KEY'; // Secret key generated from Lamatic Studio
@@ -266,26 +272,26 @@ lamatic.updateAccessToken("new-access-token");
 
 <Tabs items={['Text Generation', 'Image Analysis']}>
   <Tab>
-    ```typescript
-    // Example for a text generation workflow
-    const textGenPayload = {
-      prompt: "Write a poem about artificial intelligence",
-      options: {
-        temperature: 0.8,
-        topP: 0.95,
-        maxLength: 200
-      }
-    };
-    ```
+```typescript
+// Example for a text generation workflow
+const textGenPayload = {
+  prompt: "Write a poem about artificial intelligence",
+  options: {
+    temperature: 0.8,
+    topP: 0.95,
+    maxLength: 200
+  }
+};
+```
   </Tab>
   <Tab>
-    ```typescript
-    // Example for an image analysis workflow
-    const imageAnalysisPayload = {
-      imageUrl: "https://example.com/image.jpg",
-      analysisTypes: ["objects", "faces", "text"]
-    };
-    ```
+```typescript
+// Example for an image analysis workflow
+const imageAnalysisPayload = {
+  imageUrl: "https://example.com/image.jpg",
+  analysisTypes: ["objects", "faces", "text"]
+};
+```
   </Tab>
 </Tabs>
 

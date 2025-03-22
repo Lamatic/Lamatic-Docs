@@ -44,19 +44,19 @@ This guide will help you build an AI-powered system that fetches data from a Goo
 ### 3. Adding AI Text LLM
 
 1. Click the + icon to add a new node
-2. Choose "Text LLM"
- ![text-llm](./img/google-sheet-llm/text-llm-node.png)
+2. Choose "Generate Text"
 3. Configure the AI model:
    - Select your "Open AI" credentials
    - Choose "gpt-4-turbo" as your Model
-4. Set up your prompt:
+4. Under prompts section click the + icon to add prompt
+5. Set up your prompt:
 
    ```
      summarise this user data i got from the google sheet in form of a json
      {{triggerNode_1.output}}
 
    ```
-  ![text-llm](./img/google-sheet-llm/text-llm-2.png)
+  ![text-llm](./img/google-sheet-llm/text-llm2.png)
 
 
 ### 4. Testing Your Setup

@@ -19,13 +19,12 @@ A simple API that processes user input, fetches real-time INR to USD exchange ra
 ### 1. Tool Creation
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-2. Navigate to Models > Tools section.
-3. Click on Create a New Tool.
+2. Navigate to Flows > Tools.
+3. Click on Add Tool.
 
 #### Define Tool Details
 
 1. Add Tool name: convertINRtoUSD
-   ![flow.png](./img/ai-currency-converter/update-tool.png)
 2. Add Description: Convert amount from Indian Rupees (INR) to US Dollars (USD)
 
 #### Configure Parameters
@@ -64,22 +63,21 @@ output = result
 - Assign the return value to 'output' pass data from the function.
 
 3. You can test the JavaScript Code by providing parameters and clicking on the Test button.
-   ![flow.png](./img/ai-currency-converter/edit-tool.png)
+   ![flow.png](./img/ai-currency-converter/tools-code.png)
 4. Finally, Click on the Create Button.
 
-### 2. Project Setup
+### 1. Project Setup
 
-1. Navigate to the dashboard and click **Create New Flow**.
-1. You'll see different sections like Flows, Data, and Models.
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
    ![flow.png](./img/ai-review-responder/flow.png)
 
-### 3. Creating a New Flow
+### 2. Creating a New Flow
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-2. Click "New Flow".
-   ![Flow selection](./img/ai-review-responder/flow-select.png)
-3. Select "Create from Scratch".
-   ![Flow Start](./img/ai-review-responder/flow-start.png)
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
 
 ### 4. Setting Up Your API
 
@@ -95,12 +93,14 @@ output = result
 ### 5. Adding AI Text Generation
 
 1. Click the + icon to add a new node.
-2. Choose "Text LLM".
+2. Choose "Generate text".
    ![Node Text Gen](./img/ai-currency-converter/text-gen-node1.png)
 3. Configure the AI model:
-   - Select your "OpenAI" credentials
-   - Choose "gpt-4o-mini" as your Model
-4. Set up your prompt:
+   - Select your "Open AI" credentials
+   - Choose "gpt-4-turbo" as your Model
+4. Click on "+" under Prompts section.
+5. Set up your prompt:
+
 
 ```
 
@@ -112,15 +112,15 @@ Give the output in decimals.
 - You can add variables using the "Add Variable" button
   ![Node Text Gen Config](./img/ai-currency-converter/text-gen-node2.png)
 
-5. Navigate to Additional Properties.
+5. Add the tool you created under Tools section
 6. Select the desired tools. You can add multiple tools as needed.
 
 ### 6. Configuring the reponse
 
 1. Click the API response node.
-   ![Flow Deploy](./img/ai-currency-converter/flow-api-schema.png)
+   ![Flow Deploy](./img/ai-currency-converter/api-response-node.png)
 2. Add Output Variables by clicking the + icon.
-3. Select variable from your Code Node.
+3. Select variable from your Generate Text Node.
 
 ### 7. Test the flow
 

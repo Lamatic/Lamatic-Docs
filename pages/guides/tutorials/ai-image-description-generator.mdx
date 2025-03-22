@@ -19,23 +19,23 @@ A smart image processing API that takes an image URL as input, uses a multimodal
 ### 1. Project Setup
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-1. Navigate to the dashboard and click **Create New Flow**.
-1. You'll see different sections like Flows, Data, and Models
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
    ![flow.png](./img/ai-review-responder/flow.png)
 
-### 2. Creating Your Flow
+### 2. Creating a New Flow
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
+1. Navigate to Flows, select New Flow.
+1. Click **Create from scratch** as starting point.
 1. Next, click Choose a Trigger, where you can select an API Request, App, or Widget Interface as your trigger. We’ll use the API Request under the interface option.
    ![Flow API](./img/ai-review-responder/flow-step2.png)
 1. Set the url param in API Request Node
-   ![Flow API Schema](./img/ai-image-reviewer/api-schema.png)
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
 
 ### 4. Adding Multi Modal Node
 
 1. Click the + icon to add a new node.
 2. Choose "Multi Modal LLM".
-   ![Flow API Schema](./img/image-description-generator/multimodal-node.png)
 
 3. Configure the AI model:
    - Select your "Open AI" credentials
@@ -62,7 +62,7 @@ Focus on key details, emotions, and context to create a compelling description: 
 
 1. Click on 'API Request' trigger node
 2. Click on Configure test
-   ![Flow Deploy](./img/image-description-generator/testing.png)
+   ![Flow Deploy](./img/ai-image-reviewer/testing.png)
 3. Fill sample value in 'url' and click on test
 
 ### 7. Deployment

@@ -20,45 +20,51 @@ This guide will help you build an AI-powered GitHub profile screening system usi
 ### 1. Project Setup
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-2. Navigate to the dashboard and click **Create New Flow**.
-3. You'll see different sections like Flows, Data, and Models
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
 
-### 2. Creating Your Flow
+### 2. Creating a New Flow
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-1. Next, click Choose a Trigger, where you can select an API Request, App, or Widget Interface as your trigger. We’ll use the API Request under the interface option.
-   ![building-chatbot.png](./img/ai-candidate/1.png)
-1. Set the url param in API Request Node
-   ![building-chatbot.png](./img/ai-candidate/2.png)
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
 
-### 3. Scrapper Node Addition
+### 3. Setting Up Your API
 
-![building-chatbot.png](./img/ai-candidate/3.png)
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set url as parameter in input schema
+   - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
 
-1. In the Next Node, select **Scraper Node**
-   1. Select Credentials for the Scrapper Node
-   1. Add your firecrawl credentials (Get your API key from https://www.firecrawl.dev/app/api-keys)
-   1. From the variable selector select the url param which we defined in the API Request Node
+### 4. Scraping the data using Firecrawl
 
-### 4. Set the API Response Params
+1. Click the + icon to add a new node
+2. Select the Scraper node
+   ![Node Text Gen Config](./img/ai-article-summarizer/scraper-node.png)
+3. Select the credentials
+4. Add 'url' as parameter
+
+### 5. Set the API Response Params
 
 1. In the API Response Node, Update the api response
-   ![building-chatbot.png](./img/ai-candidate/4.png)
 1. Pass the scraped Markdown and HTML in the response by using the variable selector to set the response for the scraped node.
-   ![building-chatbot.png](./img/ai-candidate/5.png)
 1. Turn on the flow from the top switch and Deploy the project
 
-### 5. Create a new flow to use Scraper Node
+### 6. Create a new flow to use Scraper Node
 
 1. Create a new flow and select API Request Node as trigger node
 1. Set the input params in our case email, aboutYou and githubUrl.
-   ![building-chatbot.png](./img/ai-candidate/6.png)
 1. Search for Execute Flow Node and Add it
 1. Select the flow which we previously created
-   ![building-chatbot.png](./img/ai-candidate/7.png)
+  
 1. Pass the candidate's githubUrl as the url param for that flow
 1. Search for Agent Classifier Node and Add it and Add you AI Provider Credentials
-   ![building-chatbot.png](./img/ai-candidate/8.png)
 1. Set up the prompt with your JD and Candidate Info
    Write a prompt as per your needs by mentioning your JD and the candidate's GitHub info, which we obtained by using the execute flow node calling the scraper flow that we previously created.
 
@@ -78,7 +84,7 @@ This guide will help you build an AI-powered GitHub profile screening system usi
        Based on this details and job description classify whether the candidate is potential candidate or not at the moment
    ```
 
-   ![building-chatbot.png](./img/ai-candidate/9.png)
+
 
 1. Edit Classes for Agent Classifier and a Text Generate Node on both.
 1. Select Credential for Text Generate and write Prompt based on classification
@@ -95,7 +101,7 @@ This guide will help you build an AI-powered GitHub profile screening system usi
        Possesses problem-solving skills and a deep understanding of JavaScript and React framework.
    ```
 
-   ![building-chatbot.png](./img/ai-candidate/10.png)
+
 
    **Sample prompt for Not Potential Candidate:**
 
@@ -114,7 +120,7 @@ This guide will help you build an AI-powered GitHub profile screening system usi
 
 1. Add API Node on Both Classification Branches
 1. Fill the API endpoint where you have business logic for sending mail & Set the body as per your API Config
-   ![building-chatbot.png](./img/ai-candidate/11.png)
+
 
    ```JSON
     {
@@ -126,9 +132,9 @@ This guide will help you build an AI-powered GitHub profile screening system usi
 1. Finally in API Response Node set the Response Params
 1. Click on Test
 
-### 6. Test the Flow
+### 7. Test the Flow
 
 Fill in Sample Input & Click on Test Again and Wait For Flow To Run
-![building-chatbot.png](./img/ai-candidate/12.png)
+
 
 By completing this guide, you’ll gain hands-on experience in leveraging Lamatic.ai's flow builder to automate recruitment workflows, improve efficiency, and deliver tailored communication to candidates.

@@ -16,27 +16,34 @@ A simple API that processes invoice documents, extracts key details such as tota
 
 ## Getting Started
 
-### 1. Creating a New Flow
+### 1. Project Setup
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-2. Click "New Flow".
-   ![Flow selection](./img/ai-review-responder/flow-select.png)
-3. Select "Create from Scratch".
-   ![Flow Start](./img/ai-review-responder/flow-start.png)
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
 
-### 2. Setting Up Your API
+### 2. Creating a New Flow
 
-1. Click "Choose a Trigger".
-2. Select "API Request" under the interface options.
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
    ![Flow API](./img/ai-review-responder/flow-step2.png)
 3. Configure your API:
    - Add your Input Schema
    - Set url as parameter in input schema
    - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
 
 ### 3. File Extraxt Node Addition
 
-![building-chatbot.png](./img/ai-invoice-summarizer/file-extract-node.png)
+![building-chatbot.png](./img/ai-invoice-summarizer/extract-file.png)
 
 1. In the Next Node, select **Extract From File Node**
    1. Enter the File URL.
@@ -45,12 +52,13 @@ A simple API that processes invoice documents, extracts key details such as tota
 ### 4. Adding AI Text Generation
 
 1. Click the + icon to add a new node.
-2. Choose **Text Generate**.
-   ![Node Text Gen](./img/ai-invoice-summarizer/text-gen-node1.png)
+2. Choose **Generate Text**.
+   ![Node Text Gen](./img/ai-invoice-summarizer/text-gen.png)
 3. Configure the AI model:
    - Select your "Open AI" credentials
-   - Choose "gpt-4" as your Model
-4. Set up your prompt:
+   - Choose "gpt-4-turbo" as your Model
+4. Click on "+" under Prompts section.
+5. Set up your prompt:
 
 ```
 
@@ -69,7 +77,7 @@ Input:
 
 ```
 
-- You can add variables using the "Add Variable" button
+- You can add variables using the "insert Variable" button
 
 ### 5. Configuring the reponse
 

@@ -9,9 +9,12 @@ In the context of Studio, a project represents an individual **GenAI** applicati
 
 ### **Home View**
 
-![img_2.png](./img_2.png)
+<video controls loop width="100%" autoplay muted poster="/public/extra/project-home-page.webp" controlslist="nodownload">
+    <source src="/public/extra/onbording.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+</video>
 
-The Home View in Studio offers an intuitive and comprehensive overview of your project. This interactive project plan view provides a visual representation of all the features and integrations currently in use within your project.
+The Home View in Studio offers an intuitive and comprehensive overview of your project and along with Onboarding Guide. This interactive project plan view provides a visual representation of all the features and integrations currently in use within your project.
 
 > 📊 **Insight**: At a glance, you can assess the complexity, scope, and capabilities of your GenAI application, making it easier to manage and strategize your development efforts.
 
@@ -32,7 +35,14 @@ Studio provides a set of versatile resources that can be leveraged across variou
 
 ## Project Settings
 
-### **Developer Integration**
+![Project Home.png](./img/project-settings.webp)
+
+### General Settings
+In the General Settings, you can update project details such as the project name and view the Project ID. You also have the option to pause or delete the project from this section.
+
+---
+
+### **Integration**
 
 Studio recognizes the importance of a robust development ecosystem. To this end, it offers integration capabilities with various developer tools, allowing you to enhance and optimize your project's capabilities. These integrations can significantly streamline your flow and provide valuable insights into your application's performance.
 
@@ -42,6 +52,37 @@ As of now, the following developer integrations are available for implementation
 2. **Posthog (Beta)**: Integrate Posthog to gain valuable user behavior insights and product analytics, enabling data-driven decision-making in your development process.
 
 > 🛠️ **Developer Note**: These integrations can help you keep your GenAI project optimized and data-driven.
+
+---
+
+
+### **API Keys**
+
+Security and controlled access are paramount in GenAI projects. Studio provides robust API key management features, allowing you to generate, monitor, and revoke API keys as needed. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
+
+---
+
+### **Secret Keys**
+
+Allow external services to access the project on behalf of a user. Checkout the Lamatic SDK to understand how to use the secret keys.
+
+<Callout type="warning" >
+ Note: Any addition or removal of secret keys will be reflected only after the project has been deployed.
+</Callout>
+---
+
+### **Variables & Secrets**
+
+With Variables and Secrets you can Safeguard your API keys and credentials with our new Secrets Management system, ensuring your data stays protected while maintaining easy access for authorized use.
+
+<Callout type="warning" >
+ A new Deployment is required for your changes to take effect.
+</Callout>
+---
+
+### **Jobs Configuration**
+
+Optimize your job settings for smooth automation. Here, you can configure Batch Size, Batch Timeout, Max Retries, and Concurrency.
 
 ---
 
@@ -63,8 +104,5 @@ Studio offers the flexibility to enhance your project's capabilities through add
 
 ---
 
-### **API Keys**
-
-Security and controlled access are paramount in GenAI projects. Studio provides robust API key management features, allowing you to generate, monitor, and revoke API keys as needed.
 
 > 🔒 **Security Tip**: Maintain granular control over project access, ensuring security while facilitating authorized integration.

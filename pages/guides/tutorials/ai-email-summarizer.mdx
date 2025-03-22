@@ -16,31 +16,32 @@ A simple API that processes email content, extracts key information, and generat
 
 ## Getting Started
 
-### 1. Creating a New Flow
+### 1. Project Setup
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-2. Click "New Flow".
-   ![Flow selection](./img/ai-review-responder/flow-select.png)
-3. Select "Create from Scratch".
-   ![Flow Start](./img/ai-review-responder/flow-start.png)
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
 
-### 2. Setting Up Your API
+### 2. Creating a New Flow
 
-1. Click "Choose a Trigger".
-2. Select "API Request" under the interface options.
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
    ![Flow API](./img/ai-review-responder/flow-step2.png)
 3. Configure your API:
    - Add your Input Schema
    - Set url as parameter in input schema
    - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
 
-### 3. API Node Addition
 
-![building-chatbot.png](./img/ai-Linkedin-post-generator/api-node.png)
-
-1. In the Next Node, select **API Node**
-   1. Enter the Endpoint URL(Email text extracted using n8n).
-   1. Select GET Method.
 
 #### Email Text Extraction Using n8n
 
@@ -83,11 +84,18 @@ A simple API that processes email content, extracts key information, and generat
 3. Call the Test URL to get the response.
    ![Testing workflow](./img/ai-Linkedin-post-generator/test2.png)
 
+### 3. API Node Addition
+
+![building-chatbot.png](./img/ai-Linkedin-post-generator/api-node.png)
+
+1. In the Next Node, select **API Node**
+   1. Enter the Endpoint URL(Email text extracted using n8n).
+   1. Select GET Method.
+
 ### 4. Adding AI Text Generation
 
 1. Click the + icon to add a new node.
-2. Choose "Text LLM".
-   ![Node Text Gen](./img/ai-email-summarizer/text-gen-node1.png)
+2. Choose "Generate Text".
 3. Configure the AI model:
    - Select your "Gemini" credentials
    - Choose "gemini-1.5-flash-8b-exp-0934" as your Model
@@ -101,7 +109,7 @@ Input:
 
 ```
 
-- You can add variables using the "Add Variable" button
+- You can add variables using the " Insert Variable" button
   ![Node Text Gen Config](./img/ai-email-summarizer/text-gen-node2.png)
 
 5. Navigate to Additional Properties.

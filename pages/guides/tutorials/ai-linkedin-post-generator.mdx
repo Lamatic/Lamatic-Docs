@@ -20,24 +20,27 @@ This guide will help you build an AI-powered LinkedIn post automation system usi
 ### 1. Project Setup
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-2. Navigate to the dashboard and click **Create New Flow**.
-3. You'll see different sections like Flows, Data, and Models
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
 
-### 2. Creating Your Flow
+### 2. Creating a New Flow
 
-1. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
-1. Next, click Choose a Trigger, where you can select an API Request, App, or Widget Interface as your trigger. We’ll use the API Request under the interface option.
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
    ![Flow API](./img/ai-review-responder/flow-step2.png)
-1. Set the url param in API Request Node
-   ![Flow API Schema](./img/ai-image-reviewer/api-schema.png)
-
-### 3. API Node Addition
-
-![building-chatbot.png](./img/ai-Linkedin-post-generator/api-node.png)
-
-1. In the Next Node, select **API Node**
-   1. Enter the Endpoint URL(Email text extracted using n8n).
-   1. Select GET Method.
+3. Configure your API:
+   - Add your Input Schema
+   - Set url as parameter in input schema
+   - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
 
 #### Email Text Extraction Using n8n
 
@@ -80,11 +83,20 @@ This guide will help you build an AI-powered LinkedIn post automation system usi
 3. Call the Test URL to get the response.
    ![Testing workflow](./img/ai-Linkedin-post-generator/test2.png)
 
-### 4. AddAI Text Generation Node
+
+### 4. API Node Addition
+
+![building-chatbot.png](./img/ai-Linkedin-post-generator/api-node.png)
+
+1. In the Next Node, select **API Node**
+   1. Enter the Endpoint URL(Email text extracted using n8n).
+   1. Select GET Method.
+
+
+### 5. Add AI Text Generation Node
 
 1. Click the + icon to add a new node.
-2. Choose "Text LLM".
-   ![Node Text Gen](./img/ai-Linkedin-post-generator/text-generator.png)
+2. Choose "Generate Text".
 3. Configure the AI model:
    - Select your "Gemini" credentials
    - Choose "gemini-1.5-flash-8b-exp-0924" as your Model
@@ -128,7 +140,7 @@ input:
 ```
 
 - You can add variables using the "Add Variable" button
-  ![Node Text Gen Config](./img/ai-Linkedin-post-generator/text-gen-node1.png)
+  ![Node Text Gen Config](./img/ai-Linkedin-post-generator/text-gen-n.png)
 
 ### 6. Add Loop Node
 
@@ -136,12 +148,11 @@ input:
 2. Click on Loop Node.
 3. Select List as parameter in **Iterate Over**.
 4. Add the List in **Value**.
-   ![Node Text Gen Config](./img/ai-Linkedin-post-generator/loop-node.png)
 
 #### Inside The Loop Node
 
 1. Click the **+** icon to add a new node.
-2. Click on **Text LLM** Node.
+2. Click on **Generate Text** Node.
 3. Configure the AI model:
    - Select your "Open AI" credentials
    - Choose "gpt-4" as your Model
@@ -166,8 +177,8 @@ You will act as an experienced LinkedIn Social Media Expert and AI entrepreneur 
 
 ```
 
-- You can add variables using the "Add Variable" button
-  ![Node Text Gen Config](./img/ai-Linkedin-post-generator/text-gen-node2.png)
+- You can add variables using the "Insert Variable" button
+
 
 ### 7. Test the Flow
 

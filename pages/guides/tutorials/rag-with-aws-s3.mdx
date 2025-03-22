@@ -10,7 +10,7 @@ order: 5
 
 Learn how to create an intelligent chatbot that can understand and respond to questions using documents from your Amazon S3 bucket. This tutorial leverages **Lamatic.ai** and **Retrieval-Augmented Generation (RAG)** technology.
 
-![Overview](./img/aws-s3/overview.png)
+![Overview](./img/aws-s3/s3.png)
 
 ---
 
@@ -39,8 +39,9 @@ We'll implement the following steps:
 ### 1. Create an Account and New Workflow
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-2. Navigate to the dashboard and click **Create New Flow**.
-3. Choose **S3 Node** as the trigger. Refer to [S3 Node setup instructions](https://lamatic.ai/docs/integrations/aws-s3).
+2. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
+3. Click on new flow.
+4. Choose **S3 Node** as the trigger. Refer to [S3 Node setup instructions](https://lamatic.ai/docs/integrations/aws-s3).
 
 ---
 
@@ -52,7 +53,7 @@ The **Extract from File Node** processes and extracts content from various file 
 2. Configure the node:
    - Click the **+** icon to add data.
    - Provide the `document_url` as the File URL(s).
-   ![Overview](./img/aws-s3/file-extract.png)
+   ![Overview](./img/aws-s3/s3-node.png)
 
 ---
 
@@ -61,7 +62,6 @@ The **Extract from File Node** processes and extracts content from various file 
 1. Use a **Logic Node** to extract chunked text:
    - Add the **Extract Chunked Text Node** and define transformation logic.
 
-   ![RAG Chunking](./img/aws-s3/rag-s3-2.png)
 ---
 
 ### 4. Vectorize the Data
@@ -71,7 +71,7 @@ Transform textual data into vectors for AI processing.
    - Click the **+** icon to input text for vectorization.
    - Choose an embedding model, e.g., OpenAI’s `text-embedding-3-large`.
 
-   ![RAG Chunking](./img/aws-s3/rag-s3-3.png)
+   ![RAG Chunking](./img/aws-s3/s3-vectorize.png)
 
 ---
 
@@ -83,7 +83,7 @@ Organize and store vectorized data for efficient retrieval.
 2. Configure the node:
    - Select the desired vector database.
    - Add vectors, metadata, and a primary key.
-   ![RAG Chunking](./img/aws-s3/rag-s3-4.png)
+
 ---
 
 ### 6. Test and Deploy Workflow
@@ -103,7 +103,7 @@ RAG (Retrieval-Augmented Generation) combines a knowledge base with language und
 3. Add a **RAG Node**:
    - Select the vector database.
    - Pass the query and choose the respective LLM.
-   ![RAG Chunking](./img/aws-s3/rag-s3-5.png)
+    ![flow.png](./img/rag-with-google-drive/chatbot-template.png)
 
 ---
 
@@ -114,7 +114,7 @@ RAG (Retrieval-Augmented Generation) combines a knowledge base with language und
 3. Integrate the chat widget into your website:
    - Click **Setup** to access the integration code.
    - Paste the code into your website.
-   ![chatbot-share](./img/aws-s3/chatbot-share.png)
+
 
 ---
 

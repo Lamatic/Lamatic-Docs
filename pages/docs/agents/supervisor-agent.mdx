@@ -37,7 +37,6 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 
 </details>
 
----
 
 ## **How to Use the Supervisor Agent?**
 
@@ -57,20 +56,26 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 3. **Configure Agent Settings** - Adjust memory, iteration limits, and agent paths.  
 4. **Deploy the Agent** - Save and activate it in your workflow.  
 
----
 
 ## **Configuration Options**
 
 | **Parameter**        | **Description**                                             | **Example Value** |
 |----------------------|-------------------------------------------------------------|-------------------|
 | **Prompts**         | Set system, user, and assistant prompts.                     | `System Prompt, User Prompt` |
+| **Models**          | Selects the AI model for text generation.                    | `GPT-4 Turbo` |
+| **Tools**           | Tools which can be added to the agent for additional processing of the generated text.  | `Sentiment Analysis` |        
 | **Agent Paths**     | Define execution paths for multiple sub-agents.              | `Research Agent, Writer Agent` |
 | **Memory Retention** | Enables context recall across iterations.                   | `Enabled` |
-| **Max Iterations**  | Sets the maximum loops before termination.                    | `5` |
 | **Stop Words**      | Specifies trigger words to halt execution.                   | `"end"` |
-| **LLM Model**       | Selects the AI model for text generation.                    | `GPT-4 Turbo` |
+| **Max Iterations**  | Sets the maximum loops before termination.                    | `5` |
 
----
+## Save Agent Configuration
+
+![Save Configuration](./img/save-supervisor-agent-config.webp)
+
+You can save the configuration of any agent by clicking on the `Load Save Config` button and selecting `Save as New`. 
+This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
+
 
 ## **Low-Code Example**
 

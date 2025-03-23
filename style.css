@@ -149,4 +149,9 @@
     margin-bottom: 1%;
     border-radius: 5px;
   }
+
+  video{
+    border-radius: 10px;
+    border: 2px solid black
+  }
 }

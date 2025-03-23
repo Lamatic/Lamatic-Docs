@@ -37,6 +37,7 @@
   },
   "studio": "Studio",
   "flows": "Flows",
+  "agents": "Agents",
   "tests": "Tests",
   "templates": "Templates",
   "context": "Context",
@@ -55,6 +56,7 @@
   "models": "Models",
   "interface": "Interface",
   "tools": "Tools",
+  "sdk": "Lamatic SDK",
 
   "-- deploy": {
     "type": "separator",

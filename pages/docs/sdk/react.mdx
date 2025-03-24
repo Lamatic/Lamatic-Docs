@@ -1,0 +1,95 @@
+---
+title : React
+description: Integrate the Lamatic SDK with React applications to execute flows.
+---
+
+# Using Lamatic SDK with React
+
+This guide demonstrates how to integrate the Lamatic SDK with React applications to execute flows.
+
+## Setup
+
+First, install the Lamatic SDK in your React project:
+
+```bash
+npm install lamatic
+```
+
+## Environment Configuration
+
+Create a `.env.local` file in your project root with your Lamatic credentials:
+
+```
+LAMATIC_PROJECT_ENDPOINT=your-project-endpoint
+LAMATIC_FLOW_ID=your-flow-id
+LAMATIC_PROJECT_ID=your-project-id
+LAMATIC_PROJECT_API_KEY=your-project-api-key
+```
+
+## Basic Integration
+
+### Create a Lamatic Client
+
+Create a utility file to initialize the Lamatic client:
+
+```tsx
+// utils.ts
+import { Lamatic } from 'lamatic'
+
+export const lamaticClient = new Lamatic({
+    projectId: process.env.LAMATIC_PROJECT_ID,
+    apiKey: process.env.LAMATIC_API_KEY,
+  })
+```
+
+### Using the Client in a React Component
+Now, you can use the Lamatic client in your React components to execute flows or agents.
+
+<Tabs items={['Flow', 'Agent']}>
+<Tab>
+```tsx
+// App.tsx
+import { lamaticClient } from './utils'
+
+function Page() {
+const executeFlow = async () => {
+    const response = await lamaticClient.executeFlow(process.env.LAMATIC_FLOW_ID, {
+        prompt: 'hello',
+    })
+    console.log(response)
+}
+
+return (
+    <div>
+        <button onClick={executeFlow}>Execute Flow</button>
+    </div>
+)
+}
+export default Page
+```
+</Tab>
+<Tab>
+```tsx
+// App.tsx
+import { lamaticClient } from './utils'
+
+function Page() {
+const executeAgent = async () => {
+    const response = await lamaticClient.executeAgent(process.env.LAMATIC_AGENT_ID, {
+        topic: 'learning more about lamatic ai',
+    })
+    console.log(response)
+}
+
+return (
+    <div>
+        <button onClick={executeAgent}>Execute Agent</button>
+    </div>
+)
+}
+export default Page
+```
+</Tab>
+</Tabs>
+
+When the button is clicked, the component will execute the flow and log the response to the console.

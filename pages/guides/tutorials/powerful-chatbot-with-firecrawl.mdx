@@ -60,7 +60,8 @@ This flow enables user interaction and intelligent responses:
 ### 1. Project Setup
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
-1. Navigate to the dashboard and click **Create New Flow**.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
 
 ### 2. Setting Up the Firecrawl Flow
 
@@ -71,7 +72,7 @@ This flow enables user interaction and intelligent responses:
    { "trigger": "bool" }
    ```
 1. Add a Crawler Node, then enter your Firecrawl API key.
-   ![flow.png](./img/chatbot-firecrawl/firecrawl.png)
+   ![flow.png](./img/chatbot-firecrawl/rag-firecrawl1.png)
 1. Provide a website URL for crawling.
 1. Configure the Webhook Notification (this will be set up in the next step).
 1. Save the Node and Test the node.
@@ -80,11 +81,10 @@ This flow enables user interaction and intelligent responses:
 
 1.  Create a new flow named Crawler Data Processor.
 1.  Set Webhook as the trigger type and fetch data from Firecrawl.
-    ![flow.png](./img/chatbot-firecrawl/firecrawl-2.png)
+    ![flow.png](./img/chatbot-firecrawl/rag-firecrawl.png)
 1.  Add a Conditional Node to check page data.
-    ![flow.png](./img/chatbot-firecrawl/firecrawl-3.png)
 1.  Use a Logic Node to parse data before vectorization.
-    ![flow.png](./img/chatbot-firecrawl/firecrawl-4.png)
+    ![flow.png](./img/chatbot-firecrawl/code.png)
 
         Example
         ```js
@@ -102,21 +102,16 @@ This flow enables user interaction and intelligent responses:
     ```
 
 1.  Add a Vectorize Node, selecting an embedding model for conversion.
-    ![flow.png](./img/chatbot-firecrawl/firecrawl-5.png)
 1.  Add an Indexing Node to store vectorized data in a vector database.
-    ![flow.png](./img/chatbot-firecrawl/firecrawl-6.png)
 1.  Save and publish the flow.
 1.  Link the Webhook to the Firecrawl Flow. Save and publish the Firecrawl Flow.
-    ![flow.png](./img/chatbot-firecrawl/firecrawl-7.png)
 1.  Check the Webhook Processing Flow to verify the data received from the Firecrawl Node.
-
 ### 4. Building the Chatbot Flow
 
 1. Create a new flow named RAG Chatbot or use the RAG Chatbot Template.
-   ![flow.png](./img/chatbot-firecrawl/firecrawl-8.png)
+   ![flow.png](./img/building-chatbot/chatbot.png)
 1. Add a Chat Interface Node.
 1. Add a RAG Node, configure the database, and connect it to an LLM.
-   ![flow.png](./img/chatbot-firecrawl/firecrawl-9.png)
 
 ### 5. Testing Chatbot
 
@@ -131,9 +126,9 @@ This flow enables user interaction and intelligent responses:
    1. Paste the code into your website’s HTML.
    1. Ensure allowed domains are configured before deployment.
 
-![Flow Deploy](./img/get-started/deploy.png)
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
 
 Ensure that the allowed domains are specified before integrating this chat widget.
-![flow.png](./img/chatbot-firecrawl/chatbot-share.png)
+
 
 Congratulations! You've completed the tutorial and created your custom knowledge chatbot using Lamatic.ai!

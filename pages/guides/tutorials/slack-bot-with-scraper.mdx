@@ -6,8 +6,41 @@ category: Intermediate
 thumbnail: /images/tutorials/slack-support-bot-with-scraper.png
 order: 23
 ---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
 
 # Slack Internal Support Bot with Scraper
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Intermediate"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Scraper",
+         "Chunking",
+         "Vectorisation",
+         "Indexing",
+         "Slack",
+         "RAG LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Support",
+        "Operations"
+      ]} 
+    />
+  </div>
+</div>
 
 In this tutorial, you'll learn how to build a bot connected with your slack channel that can answer questions based on your documentation using Lamatic.ai and RAG technology.
 
@@ -21,6 +54,14 @@ In this tutorial, you'll learn how to build a bot connected with your slack chan
 
 
 ### 1. Account Creation and Create a New Flow
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=vectorise-link" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=vectorise-link" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
 1. Navigate to the Projects and click **New Project** or select your desired project.
 1. You'll see different sections like Flows, Context, and Connections
@@ -97,6 +138,15 @@ For testing, you need to manually provide `url` and `filename` as dummy data. On
 Then deploy your flow to make it accessible for API endpoint. You can check the logs in the logs section.
 
 ### 10. Create a New Chatbot Flow to Implement RAG
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=slack-ask-bot" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=slack-ask-bot" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
+
 Now it’s time to create the chatbot that will utilize your knowledge base through RAG technology.
 <br/>
 This step is where we bring together all the previous components to create an intelligent chatbot that can understand and respond to queries using your knowledge base. RAG (Retrieval-Augmented Generation) is the key technology that allows your chatbot to combine its understanding of language with your specific knowledge base.

@@ -5,8 +5,48 @@ category: Beginner
 order: 18
 thumbnail: /images/tutorials/ai-article-summarizer.png
 ---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
+
 
 # AI powered Article Summarizer
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+        "Scraper", 
+        "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Content",
+        "Support",
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=article-summariser" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=article-summariser" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
+
 
 This guide will help you build an AI-powered article summarization system. The workflow processes article URLs provided by users, extracts content using the Firecrawl scraper node, and generates a concise summary using an LLM node. This system enables efficient data extraction and quick information retrieval, making it easier to digest lengthy articles.
 

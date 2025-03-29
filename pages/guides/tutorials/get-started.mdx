@@ -1,4 +1,5 @@
 ---
+title : Getting Started
 description: Welcome to Lamatic.ai! This guide will show you how to create your first AI-powered API using the Gemini model.
 category: Beginner
 order: 1
@@ -6,8 +7,43 @@ tags: ["Gemini", "Text LLM", "API"]
 thumbnail: /images/tutorials/getting-started.png
 ---
 import Image from 'next/image'
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
 
 # Getting Started
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Content"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=topic-insights" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=topic-insights" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
 
 Welcome to Lamatic.ai! This guide will show you how to create your first AI-powered API using the Gemini model. We'll break it down into simple steps.
 
@@ -43,7 +79,6 @@ A simple API that generates text based on topics using Gemini's AI model. When y
 ### 4. Adding AI Text Generation
 1. Click the + icon to add a new node
 1. Choose "Generate Text"
-   ![Node Text Gen](./img/ai-invoice-summarizer/text-gen.png)
 1. Configure the AI model:
    - Select "Gemini" as your Generative Model
    - Choose "gemini-1.5-pro" as your Model

@@ -50,6 +50,7 @@ Lamatic.ai's GraphQL integration allows you to trigger your GenAI flows seamless
 Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
 #### Realtime Response Type
+
 <Tabs items={['Node', 'Python', 'cURL']}>
   <Tabs.Tab>
     ```js
@@ -61,7 +62,7 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
       const query = `
       query ExecuteWorkflow(
         $workflowId: String!
-          $topic: String        
+          $topic: String
       ) {
         executeWorkflow(
         workflowId: $workflowId
@@ -74,7 +75,7 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
             result
         }
       }`;
-            
+
       const variables = {
         "workflowId": "YOUR_WORKFLOW_ID",
         "topic": "topic"
@@ -91,11 +92,11 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
         },
         data: { query, variables }
       };
-        
+
       axios(options)
         .then(response => console.log(response.data))
         .catch(error => console.error(error));
-          
+
     ```
 
   </Tabs.Tab>
@@ -120,7 +121,7 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
             result
         }
       }"""
-            
+
       variables = {"workflowId":"YOUR_WORKFLOW_ID","topic":"topic"}
 
       data = {"query": gqlQuery, "variables": variables}
@@ -159,6 +160,7 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
 </Tabs>
 
 #### Async Response Type
+
 <Tabs items={['Node', 'Python', 'cURL']}>
   <Tabs.Tab>
     ```js
@@ -186,7 +188,7 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
       const response = await axios(options);
 
       console.log(response.data);
-          
+
     ```
 
   </Tabs.Tab>
@@ -239,10 +241,157 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
 The Structure output can be configured in the Schema of the Graphql Response node. The expected output will be as follows:
 
-```
+##### Success Status
+If the request is successful, the response will follow this structure:
+```json
 {
-  // Expected Output as setuped in the Schema
+    "data": {
+        "checkStatus": {
+            "status": "success",
+            "input": {
+                "question": "just say hi"
+            },
+            "output": {
+                "response": "Hi!",
+                "_meta": {
+                    "prompt_tokens": 24,
+                    "completion_tokens": 3,
+                    "total_tokens": 27,
+                    "prompt_tokens_details": {
+                        "cached_tokens": 0,
+                        "audio_tokens": 0
+                    },
+                    "completion_tokens_details": {
+                        "reasoning_tokens": 0,
+                        "audio_tokens": 0,
+                        "accepted_prediction_tokens": 0,
+                        "rejected_prediction_tokens": 0
+                    },
+                    "model_name": "gpt-4o-mini",
+                    "model_provider": "openai"
+                }
+            },
+            "nodes": [
+                {
+                    "input": {
+                        "nodeName": "API Request",
+                        "responeType": "async",
+                        "advance_schema": "{\n  \"question\": \"string\"\n}"
+                    },
+                    "output": {
+                        "question": "just say hi"
+                    },
+                    "timeTakenInSeconds": 0,
+                    "status": "success",
+                    "nodeId": "triggerNode_1",
+                    "nodeType": "graphqlNode",
+                    "nodeName": "API Request",
+                    "statusCode": 200
+                },
+                {
+                    "input": {
+                        "tools": [],
+                        "prompts": [
+                            {
+                                "id": "719ebf1b-17f1-41c9-8228-4de1837583f2",
+                                "role": "system",
+                                "content": "You are an AI Assistant"
+                            },
+                            {
+                                "id": "10005fb6-3566-41f2-bf7a-d865773e6c3a",
+                                "role": "user",
+                                "content": "Answer the given question: {{triggerNode_1.output.question}}"
+                            }
+                        ],
+                        "messages": "[]",
+                        "nodeName": "Text Generate",
+                        "generativeModelName": {
+                            "type": "generator/text",
+                            "model_name": "gpt-4o-mini",
+                            "credentialId": "a9ecd7b5-0a47-41e0-9754-550fe9fd685b",
+                            "provider_name": "openai",
+                            "credential_name": "OpenAI"
+                        }
+                    },
+                    "output": {
+                        "_meta": {
+                            "prompt_tokens": 24,
+                            "completion_tokens": 3,
+                            "total_tokens": 27,
+                            "prompt_tokens_details": {
+                                "cached_tokens": 0,
+                                "audio_tokens": 0
+                            },
+                            "completion_tokens_details": {
+                                "reasoning_tokens": 0,
+                                "audio_tokens": 0,
+                                "accepted_prediction_tokens": 0,
+                                "rejected_prediction_tokens": 0
+                            },
+                            "model_name": "gpt-4o-mini",
+                            "model_provider": "openai"
+                        },
+                        "generatedResponse": "Hi!"
+                    },
+                    "timeTakenInSeconds": 2.427,
+                    "status": "success",
+                    "nodeId": "LLMNode_746",
+                    "nodeType": "LLMNode",
+                    "nodeName": "Text Generate",
+                    "statusCode": 200
+                },
+                {
+                    "input": {
+                        "nodeName": "API Response",
+                        "outputMapping": "{\n  \"response\": \"{{LLMNode_746.output.generatedResponse}}\",\n  \"_meta\": \"{{LLMNode_746.output._meta}}\"\n}"
+                    },
+                    "output": {
+                        "response": "Hi!",
+                        "_meta": {
+                            "prompt_tokens": 24,
+                            "completion_tokens": 3,
+                            "total_tokens": 27,
+                            "prompt_tokens_details": {
+                                "cached_tokens": 0,
+                                "audio_tokens": 0
+                            },
+                            "completion_tokens_details": {
+                                "reasoning_tokens": 0,
+                                "audio_tokens": 0,
+                                "accepted_prediction_tokens": 0,
+                                "rejected_prediction_tokens": 0
+                            },
+                            "model_name": "gpt-4o-mini",
+                            "model_provider": "openai"
+                        }
+                    },
+                    "timeTakenInSeconds": 0,
+                    "status": "success",
+                    "nodeId": "responseNode_triggerNode_1",
+                    "nodeType": "graphqlResponseNode",
+                    "nodeName": "API Response",
+                    "statusCode": 200
+                }
+            ],
+            "statusCode": 200,
+            "timeTakenInSeconds": 2.7
+        }
+    }
 }
+```
+
+##### In-Progress Status
+If the request is still being processed, the response will be:
+
+
+```json
+  {
+    "data": {
+          "checkStatus": {
+              "status": "in-progress",
+          }
+    }
+  }
 ```
 
 In this example, the `ExecuteWorkflow` query is used to initiate a workflow execution. You'll need to provide the `workflowId` of the desired workflow and any required `payload`(Input Data) as part of the query variables.

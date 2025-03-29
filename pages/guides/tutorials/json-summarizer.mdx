@@ -1,0 +1,102 @@
+---
+description: This guide will help you build an AI-powered JSON summarization system. The workflow takes a URL of a JSON file as input, processes the data using a Generate Text node, and produces a concise summary of the key information. This automation enables efficient data analysis, making it easier to extract insights and understand complex JSON structures.
+title: AI powered Json Summarizer
+category: Beginner
+order: 24
+thumbnail: /images/tutorials/json-summarizer.png
+---
+
+# AI powered Json Summarizer
+
+This guide will help you build an AI-powered JSON summarization system. The workflow takes a URL of a JSON file as input, processes its data using a Generate Text node, and extracts key insights into a concise summary. This system automates JSON data analysis, enabling efficient information retrieval and seamless integration with various workflows.
+
+## What You'll Build
+
+A simple API that processes JSON data from a provided URL, extracts key information, and generates a concise summary. This API enables efficient data analysis, making it easier to understand and utilize structured information for various applications.
+
+## Getting Started
+
+### 1. Project Setup
+
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
+
+### 2. Creating a New Flow
+
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set url as parameter in input schema
+   - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-resume-parser/resume-json-str.png)
+   - Click on save
+
+### 3. Extract File Node
+1. Add the "Extract File" node to your flow.
+  ![Node Text Gen Config](./img/ai-resume-parser/extract-from-file.png)
+2. Configure the file extraction settings to take the url and type of file. If using a PDF, select 'Join Pages' to extract the text from all pages.
+3. The file contents and details will be extracted and are to be passed to extract textual content from the file.
+
+### 5. Adding AI Text Generation
+
+1. Click the "+" icon to add a new node
+2. Choose "Generate Text"
+ 
+3. Configure the AI model:
+   - Select your "Open AI" credentials
+   - Choose "gpt-4o-mini" as your Model
+4. Click on "+" under Prompts section.
+5. Set up your prompt:
+```
+Summarize the key information from this JSON data while preserving its essential details.
+Focus on extracting relevant insights, highlighting important values, and structuring the summary concisely for easy understanding.
+```
+
+- You can add variables using the "insert Variable" button
+  ![Node Text Gen Config](./img/json-summarizer/text-gen-node1.png)
+### 5. Configuring the reponse
+
+1. Click the API response node
+   ![Node Text Gen Config](./img/json-summarizer/api-response-node.png)
+2. Add Output Variables by clicking the + icon
+3. Select variable from your Generate Text Node
+
+### 7. Test the flow
+
+1. Click on 'API Request' trigger node
+2. Click on Configure test
+   ![Node Text Gen Config](./img/ai-resume-parser/testing.png)
+3. Fill sample value in 'url' and click on test
+
+### 8. Deployment
+
+1. Click the Deploy button
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
+2. Add the purpose and description of your project
+3. Your API is now ready to be integrated into Node.js or Python applications
+4. Your flow will run on Lamatic's global edge network for fast, scalable performance
+
+### 9. What's Next?
+
+- Experiment with different prompts
+- Try other AI models
+- Add more processing steps to your flow
+- Integrate the API into your applications
+
+### 10. Tips
+
+- Save your tests for reuse across different scenarios
+- Use consistent JSON structures for better maintainability
+- Test thoroughly before deployment
+
+Now you have a working AI-powered API! You can expand on this foundation to build more complex applications using Lamatic.ai's features.

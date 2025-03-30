@@ -5,8 +5,47 @@ category: Beginner
 thumbnail: /images/tutorials/started-with-google-sheet.png
 order: 16
 ---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
 
 # Getting started with google sheets
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Google Sheets",
+         "RAG LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Support",
+        "Analysis",
+        "Operations"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=get-started-with-google-sheet" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=get-started-with-google-sheet" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
 
 This guide will help you build an AI-powered system that fetches data from a Google Sheet using a Google Sheet node and passes it to an LLM node to answer user queries. By integrating structured data with AI, this system enables seamless retrieval of relevant information, making it easier to generate insightful responses based on the stored data.
 

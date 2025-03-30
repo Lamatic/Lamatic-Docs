@@ -61,55 +61,38 @@ export const TutorialIndex = () => {
 
   const filteredPages = pages.filter((page) => page.route !== "/tutorials");
 
-  const beginnerPages = filteredPages
-    .filter((page) => page.frontMatter?.category === "Beginner")
-    .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity));
+  // Define the order of categories
+  const categoryOrder = ["Beginner", "Intermediate", "Advanced", "Other"];
+  
+  // Group pages by category
+  const categorizedPages = filteredPages.reduce((acc, page) => {
+    const category = page.frontMatter?.category || "Other";
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(page);
+    return acc;
+  }, {} as Record<string, Array<Page & { frontMatter: any }>>);
 
-  const otherCategories = filteredPages
-    .filter((page) => page.frontMatter?.category !== "Beginner")
-    .reduce((acc, page) => {
-      const category = page.frontMatter?.category || "Other";
-      if (!acc[category]) acc[category] = [];
-      acc[category].push(page);
-      return acc;
-    }, {} as Record<string, Array<Page & { frontMatter: any }>>);
+  // Ensure all categories exist in the object
+  categoryOrder.forEach(category => {
+    if (!categorizedPages[category]) {
+      categorizedPages[category] = [];
+    }
+  });
 
   return (
     <div className="space-y-12">
-      {beginnerPages.length > 0 && (
-        <div>
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
-            Beginner
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {beginnerPages.map((page) => (
-              <TutorialCard
-                key={page.route}
-                href={page.route}
-                title={
-                  page.frontMatter?.title ||
-                  page.name
-                    .split("_")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")
-                }
-                thumbnail={page.frontMatter?.thumbnail}
-                description={page.frontMatter?.description}
-                tags={page.frontMatter?.tags || []}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {Object.entries(otherCategories)
-        .sort(([categoryA], [categoryB]) => categoryA.localeCompare(categoryB))
-        .map(([category, categoryPages]) => (
+      {categoryOrder.map((category) => {
+        const categoryPages = categorizedPages[category] || [];
+        
+        // Skip rendering empty categories
+        if (categoryPages.length === 0) return null;
+        
+        return (
           <div key={category}>
-            <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100 mb-6">
+            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
               {category}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-3">
               {categoryPages
                 .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity))
                 .map((page) => (
@@ -130,7 +113,8 @@ export const TutorialIndex = () => {
                 ))}
             </div>
           </div>
-        ))}
+        );
+      })}
     </div>
   );
 };

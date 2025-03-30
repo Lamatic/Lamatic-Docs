@@ -5,11 +5,11 @@ category: Advanced
 thumbnail: /images/tutorials/agentic-blog-writer.webp
 order: 1
 ---
-import { Accordion, AccordionItem } from "@nextui-org/react";
-import SectionRows  from '@/components/SectionRows'
-import { Callout } from 'nextra-theme-docs'
-import {buttonVariants, Button} from '@/components/ui/button'
 
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows from "@/components/SectionRows";
+import { Callout } from "nextra-theme-docs";
+import { buttonVariants, Button } from "@/components/ui/button";
 
 # Building a Supervisor Agent for Automated Blog Creation
 
@@ -39,11 +39,10 @@ import {buttonVariants, Button} from '@/components/ui/button'
 
 
 
-
 In this tutorial, you'll learn how to build a powerful supervisor agent that orchestrates a complete content creation workflow by managing specialized sub-agents for research, writing, and editing tasks. This system can automatically generate blog content on any topic with your preferred tone.
 
-
 ## What You'll Build
+
 - A supervisor agent that manages research, writing, and editing tasks
 - A web search integration for real-time research
 - An intelligent workflow that processes and refines content through multiple stages
@@ -54,12 +53,14 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 ## Getting Started
 
 ### 1. Account Creation and New Flow Setup
+
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
 2. Navigate to Projects and click **New Project** or select your desired project.
 3. Select "Create from Scratch" to build your own custom flow.
 4. You'll need to create 8 nodes for this workflow: API Trigger Node, Supervisor Agent Node, Agent Loop End Node, Web Search Node, Content Generator (LLM Node), Editor (LLM Node), Extract Link (Code Node), and Scraper Node.
 
 ### 2. API Trigger Node Setup
+
 1. Add an API Trigger Node to your canvas.
 2. Configure the advanced schema to accept two parameters:
    ```json
@@ -71,9 +72,11 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 3. Set the Response Type to "realtime" for synchronous processing.
 
 ### 3. Supervisor Agent Node Configuration
+
 1. Add a Supervisor Agent Node to your canvas.
 2. Connect it to the API Trigger Node.
 3. Configure the agent with three sub-agents:
+
    - **Researcher**: Responsible for gathering information on the specified topic
    - **Writer**: Creates a draft blog based on the research
    - **Editor**: Refines the content to match the requested tone
@@ -81,6 +84,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 4. Configure each agent's schema as follows:
 
    For the Researcher agent:
+
    ```json
    {
      "type": "object",
@@ -95,6 +99,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    ```
 
    For the Writer agent:
+
    ```json
    {
      "type": "object",
@@ -109,8 +114,10 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    ```
 
 5. Add system prompts to guide the supervisor:
+
    - First prompt should include `TOPIC: {{triggerNode_1.output.topic}}` and `TONE: {{triggerNode_1.output.tone}}`
    - Second prompt should describe the workflow:
+
      ```
      You are the supervisor of a research based blog writer, which customises their content based on the tone preferred by the users. The following is the ideal flow in which you have to get tasks done from your subordinates agent teams:
 
@@ -127,11 +134,13 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 7. Set maximum iterations to 5 to allow sufficient cycles for completion.
 
 ### 4. Agent Loop End Node Setup
+
 1. Add an Agent Loop End Node and connect it to the Supervisor Agent Node.
 2. Configure this node to connect back to the Supervisor Agent Node.
 3. This creates a feedback loop that allows the supervisor to delegate tasks sequentially.
 
 ### 5. Web Search Integration
+
 1. Add a Web Search Node to your canvas.
 2. Connect it to the Supervisor Node with a conditional connection from "Researcher."
 3. Configure the web search with:
@@ -140,9 +149,11 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    - Connect to your Serper API key in the credentials field
 
 ### 6. Extract Link Node
+
 1. Add a Code Node named "Extract Link."
 2. Connect it to the Web Search Node.
 3. Add the following JavaScript code to extract the first link from search results:
+
    ```javascript
    let content = {{webSearchNode_790.output.output.organic }}
    let links = []
@@ -159,6 +170,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    ```
 
 ### 7. Scraper Node Setup
+
 1. Add a Scraper Node and connect it to the Extract Link Node.
 2. Configure it with:
    - URL: `{{codeNode_231.output}}`
@@ -168,6 +180,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    - Connect to your FireCrawl API key
 
 ### 8. Extract Final Content
+
 1. Add a Code Node named "Extract Final Content."
 2. Connect it to the Scraper Node.
 3. Add the following JavaScript code to extract the content:
@@ -178,6 +191,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 4. Connect this node to the Agent Loop End Node to complete the research flow.
 
 ### 9. Writer LLM Node Configuration
+
 1. Add an LLM Node for content generation.
 2. Connect it to the Supervisor Node with a conditional connection from "Writer."
 3. Configure the prompts:
@@ -190,6 +204,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 5. Connect this node to the Agent Loop End Node.
 
 ### 10. Editor LLM Node Configuration
+
 1. Add an LLM Node for content editing.
 2. Connect it to the Supervisor Node with a conditional connection from "Editor."
 3. Configure the prompts:
@@ -206,6 +221,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 5. Connect this node to the Agent Loop End Node.
 
 ### 11. API Response Configuration
+
 1. Add an API Response Node.
 2. Connect it to your workflow.
 3. Configure the output mapping:
@@ -216,6 +232,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    ```
 
 ### 12. Testing Your Workflow
+
 1. Click the "Test" button to test your workflow.
 2. Provide sample values for "topic" and "tone" parameters:
    - Topic: "Artificial Intelligence in Healthcare"
@@ -224,6 +241,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 4. Verify that the final output contains a blog post on your topic with the appropriate tone.
 
 ### 13. Deployment
+
 1. Click the "Deploy" button to make your workflow available as an API endpoint.
 2. Your agent workflow will now be accessible through an API that accepts "topic" and "tone" parameters.
 3. The flow will run on Lamatic's global edge network for fast, scalable performance.
@@ -242,6 +260,7 @@ The agent loop mechanism ensures that tasks are executed in the correct sequence
 ## Use Cases
 
 This supervisor agent workflow is ideal for:
+
 - Generating company blog posts on various topics with consistent tone
 - Creating product descriptions with different emotional appeals
 - Producing educational content with adaptable reading levels
@@ -250,6 +269,7 @@ This supervisor agent workflow is ideal for:
 ## Advanced Customization
 
 You can enhance this workflow by:
+
 - Adding more specialized agents for SEO optimization or fact-checking
 - Implementing sentiment analysis to verify tone consistency
 - Integrating image generation for complementary visuals

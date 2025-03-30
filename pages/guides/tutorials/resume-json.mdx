@@ -1,12 +1,50 @@
 ---
-description:This guide will help you build an AI-powered resume parsing system. The workflow takes a resume as input, processes the document to extract key details such as name, experience, skills, and education, and converts the information into a structured JSON format. This automation enables efficient candidate profiling, making it easier to analyze and integrate resume data into hiring workflows.title: AI powered Article Summarizer
 title: AI powered Resume Parser
+description: This guide will help you build an AI-powered resume parsing system. The workflow takes a resume as input, processes the document to extract key details such as name, experience, skills, and education, and converts the information into a structured JSON format. This automation enables efficient candidate profiling, making it easier to analyze and integrate resume data into hiring workflows
 category: Beginner
 order: 23
 thumbnail: /images/tutorials/resume-parser.png
 ---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
 
 # AI powered Resume Parser
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Extract File",
+         "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Support",
+        "HR"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=resume-parser" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=resume-parser" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
 
 This guide will help you build an AI-powered resume parsing system. The workflow takes a resume as input, extracts key details such as name, contact information, skills, experience, and education, and converts the data into a structured JSON format. This system automates resume processing, enabling efficient candidate analysis and seamless integration with recruitment workflows.
 

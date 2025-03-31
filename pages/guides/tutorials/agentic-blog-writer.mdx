@@ -13,6 +13,31 @@ import { buttonVariants, Button } from "@/components/ui/button";
 
 # Building a Supervisor Agent for Automated Blog Creation
 
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Advanced"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+        "Supervisor Agent", 
+        "Web Search", 
+        "Scraper", 
+        "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={["Content"]} 
+    />
+  </div>
+</div>
+
+
 In this tutorial, you'll learn how to build a powerful supervisor agent that orchestrates a complete content creation workflow by managing specialized sub-agents for research, writing, and editing tasks. This system can automatically generate blog content on any topic with your preferred tone.
 
 ## What You'll Build

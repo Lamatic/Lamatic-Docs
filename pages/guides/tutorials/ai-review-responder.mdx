@@ -5,8 +5,43 @@ category: Beginner
 order: 6
 thumbnail: /images/tutorials/ai-review-guide.png
 ---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
 
 # AI Review Responder
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Support"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=review-responder" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=review-responder" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
 
 This guide will help you build an AI-powered review analysis and response system. The system automatically classifies customer reviews into service or product categories, analyzes the sentiment of each review, and generates personalized email responses. Positive reviews receive appreciative responses, while negative ones are addressed with constructive and empathetic messages, ensuring a thoughtful and professional customer experience.
 

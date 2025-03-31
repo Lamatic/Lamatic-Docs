@@ -6,8 +6,45 @@ order: 2
 thumbnail: /images/tutorials/chatbot-guide.png
 tags: ["Gemini", "Text LLM", "Chatbot"]
 ---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
 
 # Building a Chatbot
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Support",
+      ]} 
+    />
+  </div>
+</div>
+
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=rag-chatbot" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=rag-chatbot" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
 
 In this Guide, We’ll walk you through creating a chatbot using Lamatic.ai, leveraging Gemini as the large language model (LLM) for content generation. You’ll learn how to seamlessly integrate AI-driven features into your chatbot, unlocking the potential for intelligent, dynamic interactions.
 

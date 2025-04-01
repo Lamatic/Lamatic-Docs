@@ -22,11 +22,23 @@ The N8N node in Lamatic enables bidirectional integration between Lamatic and N8
 ## Prerequisites
 
 Before setting up the N8N node, ensure you have the following:
-- Access to both N8N and Lamatic platforms.
-- N8N Host URL and API credentials.
-- Understanding of webhook configurations.
 
+- **Setup N8N**: Choose your preferred option to get started.  
+  - **Cloud (Price)**: Use the hosted version with its associated pricing plan.  
+  - **Community Edition (Self Hosted)**: Install and run N8N on your own server for free.  
 
+- **Install N8N Lamatic Module**: Add the Lamatic integration to your N8N setup.  
+ ![N8N Community node](./img/n8n1.png)
+  - Navigate to **Settings > Community Nodes** in the N8N interface.  
+  - Click **Install** and enter `n8n-nodes-lamatic-ai` to add the module.  
+   ![N8N Community node](./img/n8n2.png)
+
+- **Trigger Node (Lamatic)**: Set up a Lamatic-specific trigger node in your workflow to initiate actions.  
+
+- **Webhook (Lamatic Webhook)**: Configure a Lamatic webhook to connect and receive data from external sources.  
+
+- **Get API Key from N8N**: Obtain your API key for authentication.  
+  - Go to **Settings > API** in N8N, and copy the generated key for use in your setup.
 
 ## Installation
 
@@ -44,32 +56,39 @@ Choose between:
 
 
 ## Configuration Reference
+### Trigger Node (N8N > LAMATIC)
+ ![N8N Community node](./img/n8n3.png)
 
-### Triggering Lamatic from N8N
+- **N8N Cloud**:  
+  - Create a **new Workflow** in the N8N cloud interface.  
+  - Add a **Lamatic Node** to your workflow.  
+  - Configure the node with the following:  
+    - **Lamatic Project URL**: Enter the URL of your Lamatic project.  
+    - **Lamatic Project API**: Provide the API key for your Lamatic project.  
+    - **Body**: Define the workflow input in JSON format.  
+    - **Workflow Lamatic ID**: Specify the ID of your Lamatic workflow.  
 
-1. **Setup N8N Trigger Node**:
-   - Add `n8nTriggerNode` to your Lamatic flow.
-   - Configure input schema for N8N data.
-   - Add credentials (Name, Host URL, API Key).
-   - Select configured credentials.
+- **Create a New Flow in Lamatic Studio**:  
+  - Use **N8N as the trigger node** to start the flow.  
+  - **Define Schema**: Set up the input schema for the data coming from N8N.  
+  - **Define Credentials**:  
+    - **Host URL**: Input the N8N host URL.  
+    - **API Key (N8N)**: Add the API key retrieved from N8N settings.  
 
-2. **Workflow Configuration**:
-   - Select N8N workflow from dropdown.
-   - Choose available Lamatic Nodes.
-   - Click "Connect Workflow".
-   - Optionally configure `n8nResponseNode` for specific responses.
+### Webhook (LAMATIC > N8N)
+ ![N8N Community node](./img/n8n4.png)
 
-### Triggering N8N from Lamatic
+- **N8N Cloud**:  
+  - Create a **new Workflow** in the N8N cloud interface.  
+  - Add a **Lamatic Webhook** node to your workflow.  
+  - Define the configuration:  
+    - **Path**: Specify the webhook path for Lamatic to send data to.  
 
-1. **Setup N8N Action Node**:
-   - Add `n8nNode` to your Lamatic flow.
-   - Select/Add N8N credentials.
-   - Choose N8N flow with Lamatic Webhook trigger.
-
-2. **N8N Configuration**:
-   - Ensure workflow has Lamatic Webhook node.
-   - Configure response mode if needed.
-
+- **Create a New Flow in Lamatic**:  
+  - Use an **API node as the trigger node** to initiate the flow.  
+  - Add an **N8N node** to the flow.  
+  - **Define Credentials**:  
+    - Select the **Webhook created in N8N** to link the two systems.
 ## Low-Code Example
 
 ```js

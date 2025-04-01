@@ -3,7 +3,7 @@ description: Powerful Knowledge Chatbot with Firecrawl and RAG
 title: Powerful Knowledge Chatbot with Firecrawl and RAG
 category: Intermediate
 thumbnail: /images/tutorials/firecrawl-guide.png
-order: 3
+order: 8
 ---
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import SectionRows  from '@/components/SectionRows'
@@ -36,6 +36,21 @@ import {buttonVariants, Button} from '@/components/ui/button'
       ]} 
     />
   </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out these flows yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=firecrawl-scrapping" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=firecrawl-scrapping" target="_blank">Add Flow 1 to Lamatic</a>
+  </Button>
+  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=firecrawl-webhook" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=firecrawl-webhook" target="_blank">Add Flow 2 to Lamatic</a>
+  </Button>
+  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=document-chatbot-widget" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=document-chatbot-widget" target="_blank">Add Flow 3 to Lamatic</a>
+  </Button>
+</Callout>
 </div>
 
 In this tutorial, you'll learn how to build a custom knowledge chatbot using Lamatic.ai, Firecrawl, and RAG (Retrieval-Augmented Generation).
@@ -94,14 +109,6 @@ This flow enables user interaction and intelligent responses:
 1. You'll see different sections like Flows, Context, and Connections
 
 ### 2. Setting Up the Firecrawl Flow
-<div className="mt-4 mb-4">
-  <Callout>
-  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
-  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=firecrawl-scrapping" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=firecrawl-scrapping" target="_blank">Add to Lamatic</a>
-  </Button>
-</Callout>
-</div>
 
 1. Click Create New Flow in Lamatic.ai Studio.
 1. Name your flow Website Crawler.
@@ -116,14 +123,7 @@ This flow enables user interaction and intelligent responses:
 1. Save the Node and Test the node.
 
 ### 3. Creating the Webhook Processing Flow
-<div className="mt-4 mb-4">
-  <Callout>
-  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
-  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=firecrawl-webhook" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=firecrawl-webhook" target="_blank">Add to Lamatic</a>
-  </Button>
-</Callout>
-</div>
+
 1.  Create a new flow named Crawler Data Processor.
 1.  Set Webhook as the trigger type and fetch data from Firecrawl.
     ![flow.png](./img/chatbot-firecrawl/rag-firecrawl.png)
@@ -152,14 +152,6 @@ This flow enables user interaction and intelligent responses:
 1.  Link the Webhook to the Firecrawl Flow. Save and publish the Firecrawl Flow.
 1.  Check the Webhook Processing Flow to verify the data received from the Firecrawl Node.
 ### 4. Building the Chatbot Flow
-<div className="mt-4 mb-4">
-  <Callout>
-  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
-  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=document-chatbot-widget" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=document-chatbot-widget" target="_blank">Add to Lamatic</a>
-  </Button>
-</Callout>
-</div>
 
 1. Create a new flow named RAG Chatbot or use the RAG Chatbot Template.
    ![flow.png](./img/building-chatbot/chatbot.png)

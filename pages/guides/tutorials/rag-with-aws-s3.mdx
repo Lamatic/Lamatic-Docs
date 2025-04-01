@@ -3,7 +3,7 @@ description: Build a Chatbot with Retrieval-Augmented Generation (RAG) Using AWS
 title: RAG with AWS S3
 category: Intermediate
 thumbnail: /images/tutorials/aws-guide.png
-order: 5
+order: 3
 ---
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import SectionRows  from '@/components/SectionRows'
@@ -39,6 +39,18 @@ import {buttonVariants, Button} from '@/components/ui/button'
   </div>
 </div>
 
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out these flows yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=vectorise-s3" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=vectorise-s3" target="_blank">Add Flow 1 to Lamatic</a>
+  </Button>
+  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=rag-chatbot" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=rag-chatbot" target="_blank">Add Flow 2 to Lamatic</a>
+  </Button>
+</Callout>
+</div>
+
 Learn how to create an intelligent chatbot that can understand and respond to questions using documents from your Amazon S3 bucket. This tutorial leverages **Lamatic.ai** and **Retrieval-Augmented Generation (RAG)** technology.
 
 ![Overview](./img/aws-s3/s3.png)
@@ -68,15 +80,6 @@ We'll implement the following steps:
 ## Getting Started
 
 ### 1. Create an Account and New Workflow
-
-<div className="mt-4 mb-4">
-  <Callout>
-  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
-  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=vectorise-s3" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=vectorise-s3" target="_blank">Add to Lamatic</a>
-  </Button>
-</Callout>
-</div>
 
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
 2. Navigate to Flows, select New Flow, and choose Create from Scratch as your starting point.
@@ -136,14 +139,6 @@ Organize and store vectorized data for efficient retrieval.
 
 ### 7. Build the Chatbot Using RAG
 
-<div className="mt-4 mb-4">
-  <Callout>
-  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
-  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=rag-chatbot" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=rag-chatbot" target="_blank">Add to Lamatic</a>
-  </Button>
-</Callout>
-</div>
 
 RAG (Retrieval-Augmented Generation) combines a knowledge base with language understanding to provide accurate, context-aware responses.
 

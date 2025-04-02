@@ -8,6 +8,6 @@
   },
   "tutorials": {
     "title": "Tutorials",
-    "display": "hidden"
+    "type": "doc"
   }
 }

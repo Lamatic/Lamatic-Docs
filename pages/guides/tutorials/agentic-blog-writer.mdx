@@ -37,6 +37,15 @@ import { buttonVariants, Button } from "@/components/ui/button";
   </div>
 </div>
 
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=blog-writer-agent" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=blog-writer-agent" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
+
 
 In this tutorial, you'll learn how to build a powerful supervisor agent that orchestrates a complete content creation workflow by managing specialized sub-agents for research, writing, and editing tasks. This system can automatically generate blog content on any topic with your preferred tone.
 
@@ -82,7 +91,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 
 4. Configure each agent's schema as follows:
 
-   For the Researcher agent:
+   For the Writer agent:
 
    ```json
    {
@@ -97,7 +106,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    }
    ```
 
-   For the Writer agent:
+   For the Editor agent:
 
    ```json
    {
@@ -118,27 +127,21 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
    - Second prompt should describe the workflow:
 
      ```
-     You are the supervisor of a research based blog writer, which customises their content based on the tone preferred by the users. The following is the ideal flow in which you have to get tasks done from your subordinates agent teams:
+      You are the supervisor of a research based blog writer, which customises their content based on the tone preferred by the users. The following is the ideal flow in which you have to get tasks done from your subordinates agent teams :
+        1. Once you are given the topic and tone, you first have to use the researcher team to fetch content based on topic.
+        2. Next, you are suppose to give the content from the research team to the writer team and they will give you the writer blog.
+        3. Finally, you are suppose to send the tone and content given by the writing team to fetch the final output from the editor team
 
-     1. Once you are given the topic and tone, you first have to use the researcher team to fetch content based on topic.
-     2. Next, you are suppose to give the content from the research team to the writer team and they will give you the writer blog.
-     3. Finally, you are suppose to send the tone and content given by the writing team to fetch the final output from the editor team
-
-     The ideal order is: Researcher -> Writer -> Editor
-
-     Make sure you do the research first, then write it and only then send it to the edit team, once you get an answer from the editor, you can stop the execution of the flow. Make sure the last node you use is always an Editor and try not to break this chain.
+      The ideal order is : Researcher -> Writer -> Editor
+      Make sure you do the research first, then write it and only then send it to the edit team, once you get an answer from the editor, you can stop the execution of the flow. Make sure the last node you use is always an Editor and try not to break this chain.
+      In the end, you just need to give blog in markdown text straight away, no need for any leading statements.
      ```
 
 6. Set the generative model to `gpt-4o` for optimal intelligence.
 7. Set maximum iterations to 5 to allow sufficient cycles for completion.
 
-### 4. Agent Loop End Node Setup
 
-1. Add an Agent Loop End Node and connect it to the Supervisor Agent Node.
-2. Configure this node to connect back to the Supervisor Agent Node.
-3. This creates a feedback loop that allows the supervisor to delegate tasks sequentially.
-
-### 5. Web Search Integration
+### 4. Web Search Integration
 
 1. Add a Web Search Node to your canvas.
 2. Connect it to the Supervisor Node with a conditional connection from "Researcher."
@@ -194,7 +197,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 1. Add an LLM Node for content generation.
 2. Connect it to the Supervisor Node with a conditional connection from "Writer."
 3. Configure the prompts:
-   - User prompt: `RESEARCH: {{agentNode_549.output}}`
+   - User prompt: `RESEARCH : {{agentNode_549.output.research}}`
    - System prompt:
      ```
      You are a writer, who is suppose to write a blog of roughly one paragraph which summarises all the information given to you by the supervisor. Make sure you write the blog only from the research as it is.
@@ -209,7 +212,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 3. Configure the prompts:
    - User prompt:
      ```
-     WRITEUP: {{agentNode_549.output}}
+     WRITEUP : {{agentNode_549.output.writeup}}
      TONE: {{triggerNode_1.output.tone}}
      ```
    - System prompt:
@@ -226,7 +229,7 @@ In this tutorial, you'll learn how to build a powerful supervisor agent that orc
 3. Configure the output mapping:
    ```json
    {
-     "blog": "{{agentLoopEndNode_600.output.agentOutput}}"
+     "blog": "{{agentLoopEndNode_600.output.finalResponse}}"
    }
    ```
 

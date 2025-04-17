@@ -5,6 +5,5 @@ addAssignees: true
 # The list of users to assign to new issues. 
 # If empty or not provided, the repository owner is assigned
 assignees:
-  - arun2728
-  - damndaniel2000
-  - KapadiaNaitik
+  - vrijraj
+  - d-pamneja

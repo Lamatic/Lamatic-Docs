@@ -36,10 +36,6 @@
     "title": "Blog",
     "type": "page"
   },
-  "careers": {
-    "title": "Careers",
-    "type": "doc"
-  },
   "studio": {
     "title": "Studio",
     "type": "doc"

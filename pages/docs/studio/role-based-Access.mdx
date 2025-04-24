@@ -16,6 +16,10 @@ This guide outlines the permissions and capabilities for different user roles wi
 | Delete organization | ✅ | ❌ | ❌ | ❌ | ❌ |
 | Create Admin | ✅ | ❌ | ❌ | ❌ | ❌ |
 
+<Callout type="info" >
+   Note that to handle billing and organization settings, you need to be an Owner or Admin.
+</Callout>
+
 ### 2. Project Level Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
@@ -28,10 +32,9 @@ This guide outlines the permissions and capabilities for different user roles wi
 | Secret | ✅ | ✅ | ❌ | ❌ |
 | Secret Keys | ✅ | ✅ | ❌ | ❌ |
 | Configure job settings | ✅ | ✅ | ❌ | ❌ |
-| Handle billing | ✅ | ✅ | ❌ | ❌ |
 | Deploy project | ✅ | ✅ | ❌ | ❌ |
 
-### 3. Flows Level Permissions
+### 3. Flows and Agents Level Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
 |------------|-------------|---------|------------|---------|
@@ -41,8 +44,27 @@ This guide outlines the permissions and capabilities for different user roles wi
 | Deploy flow | ✅ | ✅ | ❌ | ❌ |
 | Test flows | ✅ | ✅ | ✅ | ✅ |
 | View flows | ✅ | ✅ | ✅ | ✅ |
+| Create new agent | ✅ | ✅ | ✅ | ❌ |
+| Update agent | ✅ | ✅ | ✅ | ❌ |
+| Delete agent | ✅ | ✅ | ✅ | ❌ |
+| Deploy agent | ✅ | ✅ | ❌ | ❌ |
+| Test agent | ✅ | ✅ | ✅ | ✅ |
+| View agent | ✅ | ✅ | ✅ | ✅ |
 
-### 4. Context Level Permissions
+### 4. Prompts and Tools Level Permissions
+
+| Permission | Admin/Owner | Editor | Developer | Viewer |
+|------------|-------------|---------|------------|---------|
+| Create prompt | ✅ | ✅ | ❌ | ❌ |
+| Update prompt | ✅ | ✅ | ❌ | ❌ |
+| View prompt | ✅ | ✅ | ✅ | ✅ |
+| Delete prompt | ✅ | ✅ | ❌ | ❌ |
+| Create tool | ✅ | ✅ | ❌ | ❌ |
+| Update tool | ✅ | ✅ | ❌ | ❌ |
+| View tool | ✅ | ✅ | ✅ | ✅ |
+| Delete tool | ✅ | ✅ | ❌ | ❌ |
+
+### 5. Context Level Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
 |------------|-------------|---------|------------|---------|
@@ -50,16 +72,19 @@ This guide outlines the permissions and capabilities for different user roles wi
 | Update database name | ✅ | ✅ | ❌ | ❌ |
 | Delete database | ✅ | ✅ | ❌ | ❌ |
 
-### 5. Models Level Permissions
+### 6. Models and Configuration Level Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
 |------------|-------------|---------|------------|---------|
 | Create new credential | ✅ | ✅ | ❌ | ❌ |
 | Update credential | ✅ | ✅ | ❌ | ❌ |
 | Delete credential | ✅ | ✅ | ❌ | ❌ |
+| Create new configuration | ✅ | ✅ | ❌ | ❌ |
+| Update configuration | ✅ | ✅ | ❌ | ❌ |
+| Delete configuration | ✅ | ✅ | ❌ | ❌ |
 | Update default models | ✅ | ✅ | ✅ | ❌ |
 
-### 6. Integrations Level Permissions
+### 7. Integrations Level Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
 |------------|-------------|---------|------------|---------|
@@ -68,7 +93,7 @@ This guide outlines the permissions and capabilities for different user roles wi
 | Delete integration | ✅ | ✅ | ❌ | ❌ |
 | Update default integrations | ✅ | ✅ | ❌ | ❌ |
 
-### 7. Test Suites Permissions
+### 8. Test Suites Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
 |------------|-------------|---------|------------|---------|
@@ -76,7 +101,7 @@ This guide outlines the permissions and capabilities for different user roles wi
 | Update test suite | ✅ | ✅ | ✅ | ❌ |
 | Delete test suite | ✅ | ✅ | ✅ | ❌ |
 
-### 8. Jobs Permissions
+### 9. Jobs Permissions
 
 | Permission | Admin/Owner | Editor | Developer | Viewer |
 |------------|-------------|---------|------------|---------|

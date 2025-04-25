@@ -239,7 +239,7 @@ const permanentRedirects = [
     ['/docs/IDE/3._GraphQL_IDE', '/docs/ide/graphql_ide'],
     ['/docs/workflows/Nodes/Data/index-node', '/docs/flows/nodes'],
     ['/docs/workflows/Nodes/Flow/webhook', '/docs/interface/webhooks'],
-    ['/docs/studio/role-based-Access', '/docs/studio'],
+    // ['/docs/studio/role-based-Access', '/docs/studio'],
     ['/docs/workflows/nodes/data-nodes/vectorize', '/docs/context/vectordb'],
     ['/docs/Trash/widgets/search', '/docs/interface/widgets/search'],
     ['/docs/flows/Concepts/prompts', '/docs/ide/prompt_ide'],

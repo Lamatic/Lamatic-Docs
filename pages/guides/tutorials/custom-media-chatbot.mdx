@@ -57,22 +57,27 @@ In this tutorial, you'll learn how to build a document based chatbot that can an
 ### 1. Account Creation and Create a New Flow
 1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
 2. Navigate to the Projects and click **New Project** or select your desired project.
+   ![flow.png](./img/ai-review-responder/flow.png)
 3. You'll see different sections like Flows, Context, and Connections
 4. Select the "Create from Scratch"
 5. You will have to create 4 nodes - Chatbot Widget (Trigger Node), Extract File (Extract File Node), Extract Text (Code Node), Text LLM (AI Node), and Chat Response (Response Node).
 
 ### 2. Chatbot Widget
 1. Add the chatbot widget to your flow as a trigger node, and configure the input domains. 
+![Chat Widget](./img/custom-media-chatbot/chat-widget.png)
 2. You will be choosing the allowed domains for the chatbot widget to be embedded in or use wildcard (*) to allow all domains.
 3. Along with that, there would be steps to install the chatbot widget on your website.
+![Chat Widget](./img/custom-media-chatbot/chat-widget-download.png)
 
 ### 3. Extract File Node
 1. Add the "Extract File" node to your flow.
+![Chat Widget](./img/custom-media-chatbot/chat-extract-download.png)
 2. Configure the file extraction settings to take the url and type of file. If using a PDF, select 'Join Pages' to extract the text from all pages.
 3. The file contents and details will be extracted and are to be passed to extract textual content from the file.
 
 ### 4. Extract Text Node
 1. Add the "Code" node to your flow.
+![Chat Widget](./img/custom-media-chatbot/code-chat.png)
 2. Write the following script to extract the text from the file content:
 ```js
 output = {{ extractFromFileNode_959.output.files }}[0]["data"][0]
@@ -81,6 +86,7 @@ output = {{ extractFromFileNode_959.output.files }}[0]["data"][0]
 
 ### 5. Text LLM Node
 1. Finally, we can go ahead and add the Text LLM node to generate responses based on the extracted text.
+![Chat Widget](./img/custom-media-chatbot/code-chat-gen.png)
 2. Configure the Text LLM node with the extracted text and generate responses based on the user's queries and only answer based on the extracted text.
 3. Set your prompts and responses to generate the answers based on the extracted text.
 

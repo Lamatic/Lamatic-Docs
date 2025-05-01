@@ -83,3 +83,7 @@ svg .edgeLabel {
 .nextra-toc> .nextra-scrollbar> ul{
     font-size: small;
 }
+
+main a:not([href]) {
+  display: none;
+}

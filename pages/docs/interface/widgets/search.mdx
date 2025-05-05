@@ -25,27 +25,29 @@ Here’s how to include the CDN script and configure the widget:
 ```html
 <script async src="https://widget.lamatic.ai/search/index.js" onload="loadSearchDialog()"></script>
 
-<script>
-  // Set Lamatic config
-  var SEARCH_DIALOG_CONFIG = {
-    apiUrl: 'https://example.lamatic.workers.dev', // The base URL of your project endpoint (REQUIRED)
-    workflowId: 'demo-workflow-id', // The workflow ID where you have set up your search configuration (REQUIRED)
-    customButtonId: 'searchButton', // The ID of a custom button that triggers the search dialog
-    primaryColor: '#007bff', // The primary color for the search widget (HEX value only)
-    titleTextColor: '#007bff', // The color of the title text in the search results
-    subTitleTextColor: '#666', // The color of the subtitle text in the search results
-    width: '60vw', // The width of the search dialog box
-    showNavHelperText: true, // Whether to show helper text for navigation within the search results
-    showEscapeHelperText: true, // Whether to show helper text for escaping the search dialog
-    searchPlaceholderText: 'Search our knowledge base...', // The placeholder text for the search input
-    searchDebounce: 200, // The debounce time (in milliseconds) for search input
-    linkTarget: "_blank", // The target attribute for links in search results
-    breakpoint: 768, // The breakpoint (in pixels) for responsive design
-    fontFamily: "Arial" // The font family to be used in the search widget
-  };
+<script async>
+    (function () {
+        // Wait for DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            const PROJECT_ID = '42*********************************c';
+            const FLOW_ID = 'bf*********************************c';
+            const API_URL = 'https://***.lamatic.workers.dev';
+            
+            // Create the root element
+            const root = document.createElement("div");
+            root.id = "lamatic-search-root";
+            root.dataset.apiUrl = API_URL;
+            root.dataset.flowId = FLOW_ID;
+            root.dataset.projectId = PROJECT_ID;
+            document.body.appendChild(root);
 
-  // Load Lamatic dialog
-  function loadSearchDialog() { new SearchDialog(SEARCH_DIALOG_CONFIG) };
+            // Load the script
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = `https://lamatic-cf-widgets-dev.lamatic.workers.dev/search-v2?projectId=${PROJECT_ID}`;
+            document.body.appendChild(script);
+        });
+    })();
 </script>
 ```
 
@@ -55,17 +57,6 @@ Below is the documentation for the props used in the search widget configuration
 
 | Parameter               | Type     | Description                                                                                                                                                        |
 |-------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `apiUrl` (required)     | `string` | The base URL of your project endpoint.                                                                                                                             |
-| `workflowId` (required) | `string` | The workflow ID where you have set up your search configuration.                                                                                                   |
-| `customButtonId`        | `string` | The ID of a custom button that triggers the search dialog. This prop is optional, and if not provided, the default button will be used.                           |
-| `primaryColor`          | `string` | The primary color for the search widget, used for the main elements like the search button. Accepts **ONLY HEX VALUES**.                                          |
-| `titleTextColor`        | `string` | The color of the title text in the search results. Accepts any valid CSS color value.                                                                             |
-| `subTitleTextColor`     | `string` | The color of the subtitle text in the search results. Accepts any valid CSS color value.                                                                          |
-| `width`                 | `string` | The width of the search dialog box. This can be set using any valid CSS width value (e.g., `50vw`, `600px`).                                                      |
-| `showNavHelperText`     | `boolean`| Determines whether to show helper text for navigation within the search results. Set to `true` to display the text, or `false` to hide it.                       |
-| `showEscapeHelperText`  | `boolean`| Controls the visibility of the escape helper text, which instructs users how to close the search dialog. Set to `true` to show, or `false` to hide.              |
-| `searchPlaceholderText` | `string` | Custom text displayed as a placeholder in the search input field, guiding users on what to type.                                                                  |
-| `searchDebounce`        | `number` | The debounce time in milliseconds for API calls. This helps in reducing the number of API requests by waiting for the user to stop typing for the specified time. |
-| `linkTarget`            | `string` | Determines how the search result links will open. Use `_self` to open links in the same tab, `_blank` to open in a new tab, etc.                                 |
-| `breakpoint`            | `number` | The pixel width at which the widget adjusts its layout for smaller screens. This value defines the breakpoint for responsive design.                             |
-| `fontFamily`            | `string` | The font family to be used in the search widget. Provide any valid CSS font family name (e.g., `Verdana`, `Arial`, `Helvetica`).                                 |
+| `PROJECT_ID` (required) | `string` | The project ID where the chat widget is deployed. This is mandatory for the widget to function correctly.                                                          |
+| `FLOW_ID` (required)| `string` | The workflow ID where you have set up your chat configuration. This is also mandatory.                                                                            |
+| `API_URL` (required)    | `string` | The base URL of your project endpoint. This is mandatory for the widget to function correctly.                                                                    |

@@ -102,37 +102,31 @@ Ensure that the allowed domains are specified before integrating this chat widge
 Source Code 
 
 ```js
-<script async src="https://widget.lamatic.ai/chat/emojiPicker.js" onload="loadChatDialog()"></script>
-<script async src="https://widget.lamatic.ai/chat/index.js" onload="loadChatDialog()"></script>
-<script>
-// Set Lamatic config
- var CHAT_DIALOG_CONFIG = {
-      botName: 'Your bot name', // mandatory
-      suggestions: ['What is lamatic', 'What is AI', 'What is AI-powered chatbot'], // optional array of strings
-      policyUrl: 'https://lamatic.ai/docs/legal/privacy-policy', // optional chane with your policy url
-      apiUrl: 'https://xxxxxxxx.lamatic.workers.dev', // mandatory
-      workflowId: '7c7569d1-33b8-41bd-9a0b-xxxxxx', // mandatory
-      chatHeaderBgColor: 'white', // optional
-      imageUrl: 'https://your-new-image-url.com', // mandatory
-      userMessageBgColor: '#E0F7FA', // optional
-      userMessageTextColor: 'blue', // optional
-      agentMessageBgColor: '#F1F8E9', // optional
-      agentMessageTextColor: '#1B5E20', // optional
-      position: 'right', // left or right only if no floatingButtonId passed
-      // If you want to use your own custom button, provide its ID
-      // floatingButtonId: 'your-custom-button-id', // optional - use this when you have your own button element
-      // Only used when floatingButtonId is not provided
-      floatingButtonIcon: '💬', // can be an emoji or image URL for the default floating button
-      userId: 'your-new-user-id', // optional any userId which you use to identify the user
-      errorMessage: 'Some error has taken place', // optional Error message to be shown when an error occurs
-      context: 'your-context' // optional Context you want to pass convert it to string (JSON.stringify(contextObject))
+<script async>
+    (function () {
+        // Wait for DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            const PROJECT_ID = '42*********************************c';
+            const FLOW_ID = '73*********************************b';
+            const API_URL = 'https://***.lamatic.workers.dev';
+            
+            // Create the root element
+            const root = document.createElement("div");
+            root.id = "lamatic-chat-root";
+            root.dataset.apiUrl = API_URL;
+            root.dataset.flowId = FLOW_ID;
+            root.dataset.projectId = PROJECT_ID;
+            document.body.appendChild(root);
 
-};
-// Load Lamatic dialog
-function loadChatDialog() { new ChatDialog(CHAT_DIALOG_CONFIG) };</script> 
+            // Load the script
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = `https://lamatic-cf-widgets-dev.lamatic.workers.dev/chat-v2?projectId=${PROJECT_ID}`;
+            document.body.appendChild(script);
+        });
+    })();
+</script>
 ```
-
-You can customize the chat widget by providing suggestions, botName, color properties.
 <br/>
 You can also check the logs in the Logs sections in the Lamatic.ai Studio.
 

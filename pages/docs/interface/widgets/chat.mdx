@@ -22,32 +22,29 @@ Add the CDN script to your HTML file and configure the widget using the provided
 Here's how to include the CDN script and configure the widget:
 
 ```html
-<script
-  async
-  src="https://widget.lamatic.ai/chat/index.js"
-  onload="loadChatDialog()"
-></script>
-<script>
-  // Set Lamatic config
-  var CHAT_DIALOG_CONFIG = {
-    apiUrl: "${podURL()}", // mandatory
-    workflowId: "${workflowId}", // mandatory
-    projectId: '${projectId}', // mandatory
-    floatingButtonId: "your-custom-button-id", // optional
-    chatHeaderBgColor: "white", // optional
-    imageUrl: "https://your-new-image-url.com", // mandatory
-    userMessageBgColor: "#E0F7FA", // optional
-    userMessageTextColor: "blue", // optional
-    agentMessageBgColor: "#F1F8E9", // optional
-    agentMessageTextColor: "#1B5E20", // optional
-    position: "right", // left or right only if no floatingButtonId passed
-    floatingButtonIcon: "💬|| your-new-icon-url", // only if no floatingButtonId passed
-    userId: "your-new-user-id", // optional any userId which you use to identify the user
-  };
-  // Load Lamatic dialog
-  function loadChatDialog() {
-    new ChatDialog(CHAT_DIALOG_CONFIG);
-  }
+<script async>
+    (function () {
+        // Wait for DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            const PROJECT_ID = '42*********************************c';
+            const FLOW_ID = '73*********************************b';
+            const API_URL = 'https://***.lamatic.workers.dev';
+            
+            // Create the root element
+            const root = document.createElement("div");
+            root.id = "lamatic-chat-root";
+            root.dataset.apiUrl = API_URL;
+            root.dataset.flowId = FLOW_ID;
+            root.dataset.projectId = PROJECT_ID;
+            document.body.appendChild(root);
+
+            // Load the script
+            const script = document.createElement("script");
+            script.type = "module";
+            script.src = `https://lamatic-cf-widgets-dev.lamatic.workers.dev/chat-v2?projectId=${PROJECT_ID}`;
+            document.body.appendChild(script);
+        });
+    })();
 </script>
 ```
 
@@ -57,18 +54,9 @@ Below is the detailed documentation for the props used in the chat widget config
 
 | Parameter              | Type     | Description                                                                                                                                                        |
 |------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `apiUrl` (required)    | `string` | The base URL of your project endpoint. This is mandatory for the widget to function correctly.                                                                    |
-| `workflowId` (required)| `string` | The workflow ID where you have set up your chat configuration. This is also mandatory.                                                                            |
-| `floatingButtonId`     | `string` | The ID of a custom button that triggers the chat dialog. This prop is optional, and if not provided, the default floating button will be used.                   |
-| `chatHeaderBgColor`    | `string` | The background color for the chat header. Accepts any valid CSS color value. If not specified, a default color will be used.                                     |
-| `imageUrl` (required)  | `string` | The URL of the image to be displayed in the chat widget. This is mandatory and typically represents the bot or company logo.                                     |
-| `userMessageBgColor`   | `string` | The background color for user messages in the chat. Accepts any valid CSS color value.                                                                           |
-| `userMessageTextColor` | `string` | The text color for user messages in the chat. Accepts any valid CSS color value.                                                                                 |
-| `agentMessageBgColor`  | `string` | The background color for agent (bot) messages in the chat. Accepts any valid CSS color value.                                                                    |
-| `agentMessageTextColor`| `string` | The text color for agent (bot) messages in the chat. Accepts any valid CSS color value.                                                                          |
-| `position`             | `string` | Determines the position of the chat widget on the screen. Accepts either "left" or "right". This prop is only applicable if no `floatingButtonId` is provided.   |
-| `floatingButtonIcon`   | `string` | The icon to be displayed on the floating button. Can be an emoji (e.g., "💬") or a URL to an image. This prop is only used if no `floatingButtonId` is provided. |
-| `userId`               | `string` | An optional identifier for the user. This can be used to maintain user context across sessions or for analytics purposes.                                        |
+| `PROJECT_ID` (required) | `string` | The project ID where the chat widget is deployed. This is mandatory for the widget to function correctly.                                                          |
+| `FLOW_ID` (required)| `string` | The workflow ID where you have set up your chat configuration. This is also mandatory.                                                                            |
+| `API_URL` (required)    | `string` | The base URL of your project endpoint. This is mandatory for the widget to function correctly.                                                                    |
 
 ### 3. Testing
 

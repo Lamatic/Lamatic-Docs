@@ -87,7 +87,7 @@ Here's how to include the CDN script and configure the widget:
         document.addEventListener("DOMContentLoaded", function () {
             const PROJECT_ID = '42*********************************c';
             const FLOW_ID = '73*********************************b';
-            const API_URL = 'https://***.lamatic.workers.dev';
+            const API_URL = 'https://***.lamatic.ai';
             
             // Create the root element
             const root = document.createElement("div");
@@ -100,7 +100,7 @@ Here's how to include the CDN script and configure the widget:
             // Load the script
             const script = document.createElement("script");
             script.type = "module";
-            script.src = `https://lamatic-cf-widgets-dev.lamatic.workers.dev/chat-v2?projectId=${PROJECT_ID}`;
+            script.src = `https://widget.lamatic.ai/chat-v2?projectId=${PROJECT_ID}`;
             document.body.appendChild(script);
         });
     })();
@@ -119,9 +119,37 @@ Below is the detailed documentation for the props used in the chat widget config
 
 ### 4. Testing
 
-If you're using a payload, pass the `chatMessage` parameter.
+If you're using a payload, it would take the following input parameters : 
 
-Otherwise, click on the chat widget located at the
+```json
+{
+  "userId": string,
+  "sessionId": string,
+  "chatMessage": string,
+  "chatHistory": [
+    {
+      "content": string,
+      "role": string,
+      "timestamp": string,
+      "sessionId": string,
+    }
+  ]
+}
+```
+<br/>
+The output will be given as follows : 
+
+```json
+{
+  "output": {
+    "content": string,
+    "attachments": [],
+    "timestamp": string,
+    "type": string
+  }
+}
+```
+Otherwise, click on the chat widget located at the bottom right corner of your screen to start a conversation. The widget will open, allowing you to interact with it.
 
 ### 5. Troubleshooting
 

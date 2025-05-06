@@ -108,7 +108,7 @@ Source Code
         document.addEventListener("DOMContentLoaded", function () {
             const PROJECT_ID = '42*********************************c';
             const FLOW_ID = '73*********************************b';
-            const API_URL = 'https://***.lamatic.workers.dev';
+            const API_URL = 'https://***.lamatic.ai';
             
             // Create the root element
             const root = document.createElement("div");
@@ -121,15 +121,40 @@ Source Code
             // Load the script
             const script = document.createElement("script");
             script.type = "module";
-            script.src = `https://lamatic-cf-widgets-dev.lamatic.workers.dev/chat-v2?projectId=${PROJECT_ID}`;
+            script.src = `https://widget.lamatic.ai/chat-v2?projectId=${PROJECT_ID}`;
             document.body.appendChild(script);
         });
     })();
 </script>
 ```
 <br/>
-You can also check the logs in the Logs sections in the Lamatic.ai Studio.
+The chat widget exposes global functions that you can use to control it programmatically. These functions become available after the widget is fully loaded, which is indicated by the lamaticChatWidgetReady event:
+```html
+// Wait for the widget to be ready
+window.addEventListener('lamaticChatWidgetReady', function() {
+  // Now you can safely use the widget functions
+  
+  // Open the chat widget
+  window.LamaticChatWidget.open();
 
+  // Close the chat widget
+  window.LamaticChatWidget.close();
+
+  // Set a user ID for tracking conversations
+  window.LamaticChatWidget.setUserId('user123');
+
+  // Set context for the conversation
+  window.LamaticChatWidget.setContext('User is viewing product page XYZ');
+});
+
+// You can also check if the widget is ready in this way:
+if (window.LamaticChatWidget) {
+  // Widget is already loaded
+  window.LamaticChatWidget.open();
+}
+```
+<br/>
+You can also check the logs in the Logs sections in the Lamatic.ai Studio.
 <br/>
 
 By completing this tutorial, you’ve learned how to implement a Chat Widget using Lamatic.ai and seamlessly integrate it into your website. This unlocks powerful AI capabilities for your applications. As you explore further, you’ll discover how Lamatic.ai streamlines AI development, enabling you to focus on building innovative and impactful solutions.

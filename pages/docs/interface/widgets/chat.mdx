@@ -2,7 +2,7 @@
 
 Integrate our powerful chat widget into your website using the chat nodes. This widget leverages AI-driven conversation technology to provide interactive and context-aware responses to user queries. Now, you can offer this advanced chat functionality directly on your site.
 
-![img_1.png](./img_1.png)
+![chatwidget.webp](./img/chatwidgetuse.webp)
 
 ## Steps to Integrate the Chat Widget
 
@@ -15,7 +15,66 @@ To use the Chat Widget, you need to whitelist the domains where you will deploy 
 - **Update your `chatTrigger` settings** to include the domains you plan to use.
 - This configuration is typically done through your admin panel or server settings.
 
-### 2. Include the CDN Script and Configure the Widget
+### 2. Configure the Chat Widget
+![chatwidget.webp](./img/chatwidget.webp)
+
+Click the Configure button in the chat widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
+
+#### 1. General Settings
+
+| Field                | Description |
+|---------------------|-------------|
+| **Bot Name**         | Sets the name displayed on the chat header. <br/> _Example: `Google Drive Bot`_ |
+| **Position**         | Determines which side of the screen the widget appears. <br/> _Options: `Left`, `Right`_ |
+| **Bot Image**        | Upload a custom avatar for your bot. |
+| **Policy URL**       | Link to your privacy policy, shown in the footer. <br/> _Example: `https://lamatic.ai/docs/legal/privacy-policy`_ |
+| **Show Powered by Lamatic** | Toggle to display or hide the "Powered by Lamatic" branding. |
+
+---
+
+#### 2. Appearance Settings
+
+Customize the color scheme of your chat widget:
+
+| Element                  | Example Value | Description |
+|--------------------------|---------------|-------------|
+| **Primary Color**         | `#251d1d`      | Primary UI accents and theme color. |
+| **Header Background**     | `#14aadB`      | Background color of the chat header. |
+| **Header Text**           | `#FFFFFF`      | Text color for the bot name in the header. |
+| **User Message Background** | `#1f0ea0`   | Background for messages sent by the user. |
+| **User Message Text**     | `#FFFFFF`      | Text color inside user messages. |
+| **Agent Message Background** | `#f1f5f9`  | Background color of bot responses. |
+| **Agent Message Text**    | `#2c343f`      | Text color of bot messages. |
+| **Suggestion Background** | `#f1f5f9`      | Background color of quick reply suggestions. |
+| **Suggestion Text**       | `#334155`      | Text color for suggestion buttons. |
+
+---
+
+#### 3. Messages Configuration
+
+Configure default messages and placeholder texts:
+
+| Field                | Description |
+|---------------------|-------------|
+| **Greeting Message** | Message shown when the bot first appears. <br/> _Example: `Hi, I am Lamatic Bot. Ask me anything about Lamatic`_ |
+| **Error Message**    | Displayed when something goes wrong. <br/> _Example: `Oops! Something went wrong. Please try again.`_ |
+| **Input Placeholder**| Placeholder in the input text box. <br/> _Example: `Compose your message`_ |
+| **Suggested Questions** | Add up to 3 quick-start suggestions. <br/> _Examples: `What is lamatic?`, `How do I add data to my chatbot?`_ |
+
+---
+
+#### 4. Preview Panel
+
+A live preview panel is available on the right side to visualize real-time changes across all tabs.
+
+---
+
+#### ✅ Final Step
+
+After customizing, don’t forget to click **Save** to apply your changes.
+
+
+### 3. Include the CDN Script and Configure the Widget
 
 Add the CDN script to your HTML file and configure the widget using the provided options.
 
@@ -58,13 +117,13 @@ Below is the detailed documentation for the props used in the chat widget config
 | `FLOW_ID` (required)| `string` | The workflow ID where you have set up your chat configuration. This is also mandatory.                                                                            |
 | `API_URL` (required)    | `string` | The base URL of your project endpoint. This is mandatory for the widget to function correctly.                                                                    |
 
-### 3. Testing
+### 4. Testing
 
 If you're using a payload, pass the `chatMessage` parameter.
 
 Otherwise, click on the chat widget located at the
 
-### 4. Troubleshooting
+### 5. Troubleshooting
 
 - Ensure the `apiUrl` is correctly set to your pod URL.
 - Verify that the `workflowId` matches your workflow ID.

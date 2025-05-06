@@ -16,6 +16,58 @@ To use the Search Widget, you need to whitelist the domains where you will deplo
 - **Update your `searchTrigger` settings** to include the domains you plan to use.
 - This configuration is typically done through your admin panel or server settings.
 
+### 2. Configure the Search Widget
+![chatwidget.webp](./img/searchwidget.webp)
+Click the Configure button in the search widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
+
+## 🛠 General Configuration
+
+#### 1. **Search Placeholder**
+- **Field:** `Search Placeholder`
+- **Description:** The placeholder text that appears in the search bar before a user types.
+- **Example:** `Search our knowledge base…`
+
+#### 2. **Search Debounce (ms)**
+- **Field:** `Search Debounce (ms)`
+- **Description:** Controls the delay (in milliseconds) before triggering a search after typing stops.
+- **Recommended Value:** `200`
+
+#### 3. **Link Target**
+- **Field:** `Link Target`
+- **Options:**
+  - `Same Tab`
+  - `New Tab` (Recommended)
+- **Effect:** Determines how links from the search results open.
+
+#### 4. **Toggle Options**
+- `Show Navigation Helper Text` — Enables arrow key navigation tips.
+- `Show Escape Helper Text` — Displays `esc to close` text.
+- `Show Lamatic Banner` — Shows the "Powered by Lamatic.ai" badge.
+
+---
+
+#### 🎨 Appearance Configuration
+
+##### 1. **Primary Color**
+- **Field:** `Primary Color`
+- **Purpose:** Sets the highlight color used for active items, selected results, and other primary UI elements.
+- **Example Value:** `#007bff` (Blue)
+
+##### 2. **Secondary Color**
+- **Field:** `Secondary Color`
+- **Purpose:** Sets the text and icon color for secondary UI elements.
+- **Example Value:** `#666` (Dark Gray)
+
+##### Preview Panel
+- Displays a live preview of the search widget with applied settings.
+- Tabs include: `All`, `Documentation`, `API`, `Pricing`.
+
+---
+
+#### ✅ Saving Your Settings
+- After configuring your widget, click **Save** (top-right) to apply changes.
+
+
 ### 2. Include the CDN Script and Configure the Widget
 
 Add the CDN script to your HTML file and configure the widget using the provided options.

@@ -29,7 +29,7 @@ Here’s how to include the CDN script and configure the widget:
         document.addEventListener("DOMContentLoaded", function () {
             const PROJECT_ID = '42*********************************c';
             const FLOW_ID = 'bf*********************************c';
-            const API_URL = 'https://***.lamatic.workers.dev';
+            const API_URL = 'https://***.lamatic.ai';
             
             // Create the root element
             const root = document.createElement("div");
@@ -42,7 +42,7 @@ Here’s how to include the CDN script and configure the widget:
             // Load the script
             const script = document.createElement("script");
             script.type = "module";
-            script.src = `https://lamatic-cf-widgets-dev.lamatic.workers.dev/search-v2?projectId=${PROJECT_ID}`;
+            script.src = `https://widget.lamatic.ai/search-v2?projectId=${PROJECT_ID}`;
             document.body.appendChild(script);
         });
     })();
@@ -58,3 +58,31 @@ Below is the documentation for the props used in the search widget configuration
 | `PROJECT_ID` (required) | `string` | The project ID where the chat widget is deployed. This is mandatory for the widget to function correctly.                                                          |
 | `FLOW_ID` (required)| `string` | The workflow ID where you have set up your chat configuration. This is also mandatory.                                                                            |
 | `API_URL` (required)    | `string` | The base URL of your project endpoint. This is mandatory for the widget to function correctly.                                                                    |
+
+### Schema 
+The search widget/flows would take the input parameters as below:
+```json
+{
+  "searchQuery": string,
+}
+```
+
+The output schema of the search widget would be as below:
+```json
+{
+  "output": [
+    {
+      "content": string,
+    }
+  ],
+  "input": {
+    "link": string,
+    "title": string,,
+    "content": string,
+    "nodeName": string,
+    "breadcrumpsField": string
+  },
+  "logs": null,
+  "status": string
+}
+```

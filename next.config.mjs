@@ -70,10 +70,10 @@ const nextraConfig = withNextra({
             {
                 source: "/:path*",
                 headers: [
-                    {
-                        key: "x-frame-options",
-                        value: "SAMEORIGIN",
-                    },
+                    // {
+                    //     key: "x-frame-options",
+                    //     value: "SAMEORIGIN",
+                    // },
                     {
                         key: "X-Content-Type-Options",
                         value: "nosniff",

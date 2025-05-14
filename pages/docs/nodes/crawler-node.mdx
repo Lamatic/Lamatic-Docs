@@ -57,7 +57,29 @@ Use the following format to set up your credentials:
 | **Firecrawl API Key** | Authentication key for accessing Firecrawl services | `fc_api_xxxxxxxxxxxxx`      |
 | **Host**              | Base URL where Firecrawl service is hosted          | `https://api.firecrawl.dev` |
 
+
 ### Setup 3: Setup the Mode 
+
+
+#### Configuration Reference
+This is the base configuraion for the crawler node, regardless of the mode you choose.
+
+| **Parameter**          | **Description**                                                                 | **Example Value**                     |
+|-------------------------|---------------------------------------------------------------------------------|---------------------------------------|
+| **Credential Name**     | Select previously saved credentials                                            | `my-firecrawl-creds`                  |
+| **URL**                 | Starting point URL for the crawler                                             | `https://example.com`                 |
+| **Exclude Path**        | URL patterns to exclude from the crawl                                          | `"admin/*", "private/*"`              |
+| **Include Path**        | URL patterns to include in the crawl                                            | `"blog/*", "products/*"`              |
+| **Crawl Depth**         | Maximum depth to crawl relative to the entered URL                              | `3`                                   |
+| **Crawl Limit**         | Maximum number of pages to crawl                                                | `1000`                                |
+| **Crawl Sub Pages**     | Toggle to enable or disable crawling sub pages                                  | `true`                                |
+| **Max Discovery Depth** | Maximum depth for discovering new URLs during the crawl                         | `5`                                   |
+| **Ignore Sitemap**      | Ignore the sitemap.xml file for crawling                                        | `false`                               |
+| **Allow Backward Links**| Allow crawling backward links (e.g., from a blog post to the homepage)          | `true`                                |
+| **Allow External Links** | Allow crawling external links (e.g., links to other domains)                   | `false`                               |
+| **Ignore Query Parameters** |Don't re-scrape the same path with different (or none) query parameters     | `false`           |
+| **Delay**               | Delay between requests to avoid overloading the server                       | `2` (seconds)                 |
+
 You can choose between sync and async mode. If you choose async mode, you need to set up a webhook endpoint to receive the crawl results. For that, you would create a Webhook flow/url to receive crawl updates and results.
 
 In case of async mode, the user will have the option to choose the following configurations : 
@@ -193,26 +215,6 @@ Now, there are four events that can be triggered from the crawler node. The even
   "metadata": {}
 }
 ```
-
-## Configuration Reference
-This is the base configutaion for the crawler node, regardless of the mode you choose.
-
-| **Parameter**          | **Description**                                                                 | **Example Value**                     |
-|-------------------------|---------------------------------------------------------------------------------|---------------------------------------|
-| **Credential Name**     | Select previously saved credentials                                            | `my-firecrawl-creds`                  |
-| **URL**                 | Starting point URL for the crawler                                             | `https://example.com`                 |
-| **Exclude Path**        | URL patterns to exclude from the crawl                                          | `"admin/*", "private/*"`              |
-| **Include Path**        | URL patterns to include in the crawl                                            | `"blog/*", "products/*"`              |
-| **Crawl Depth**         | Maximum depth to crawl relative to the entered URL                              | `3`                                   |
-| **Crawl Limit**         | Maximum number of pages to crawl                                                | `1000`                                |
-| **Crawl Sub Pages**     | Toggle to enable or disable crawling sub pages                                  | `true`                                |
-| **Max Discovery Depth** | Maximum depth for discovering new URLs during the crawl                         | `5`                                   |
-| **Ignore Sitemap**      | Ignore the sitemap.xml file for crawling                                        | `false`                               |
-| **Allow Backward Links**| Allow crawling backward links (e.g., from a blog post to the homepage)          | `true`                                |
-| **Allow External Links** | Allow crawling external links (e.g., links to other domains)                   | `false`                               |
-| **Ignore Query Parameters** | Ignore specific query parameters in URLs                                    | `false`           |
-| **Delay**               | Delay between requests to avoid overloading the server                       | `2` (seconds)                 |
-
 ## Output Schema
 
 ### Async Mode

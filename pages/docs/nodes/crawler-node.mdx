@@ -194,22 +194,6 @@ Now, there are four events that can be triggered from the crawler node. The even
 }
 ```
 
-## Output Schema
-
-- `success`: A boolean indicating whether the crawl operation was successfully initiated.                              
-- `id`: A unique identifier assigned to the crawl job.
-- `url`: The API endpoint URL associated with the crawl job, used for tracking or retrieving results.
-
-### Example Output
-
-```json
-{
-    "success": true,
-    "id": "8***************************7",
-    "url": "https://api.firecrawl.dev/v1/crawl/8***************************7"
-}
-```
-
 ## Configuration Reference
 This is the base configutaion for the crawler node, regardless of the mode you choose.
 
@@ -228,6 +212,88 @@ This is the base configutaion for the crawler node, regardless of the mode you c
 | **Allow External Links** | Allow crawling external links (e.g., links to other domains)                   | `false`                               |
 | **Ignore Query Parameters** | Ignore specific query parameters in URLs                                    | `false`           |
 | **Delay**               | Delay between requests to avoid overloading the server                       | `2` (seconds)                 |
+
+## Output Schema
+
+### Async Mode
+
+- `success`: A boolean indicating whether the crawl operation was successfully initiated.                              
+- `id`: A unique identifier assigned to the crawl job.
+- `url`: The API endpoint URL associated with the crawl job, used for tracking or retrieving results.
+
+#### Example Output
+
+```json
+{
+    "success": true,
+    "id": "8***************************7",
+    "url": "https://api.firecrawl.dev/v1/crawl/8***************************7"
+}
+```
+### Sync Mode
+
+- `success`: A boolean indicating whether the crawl operation was successfully completed.
+- `status`: The status of the crawl operation (e.g., "completed").
+- `completed`: The number of pages successfully crawled.
+- `total`: The total number of pages that were attempted to be crawled.
+- `creditsUsed`: The number of credits consumed during the crawl operation.
+- `expiresAt`: The expiration date and time of the crawl job.
+- `data`: An array containing the crawled data, including metadata and extracted information.
+
+#### Example Output
+```json
+{
+    "success": true,
+    "status": "completed",
+    "completed": 1,
+    "total": 1,
+    "creditsUsed": 1,
+    "expiresAt": "2025-05-15T08:12:44.000Z",
+    "data": [
+        {
+        "markdown": "Docs\n\nContributing\n\n# Contributing to Lamatic.ai Documentation\n\nWe're thrilled that you're interested in contributing to the Lamatic.ai documentation! Your efforts help improve the experience for all users of our platform. This guide will walk you through the process of contributing.\n\n## Getting Started [Permalink for this section](https://lamatic.ai/docs/contributing\\#getting-started)\n\n1. **Understand Our Docs Structure**\n   - Our documentation is built using Nextra, a Next.js and MDX-powered static site generator. To get a better understanding of how our docs work, visit our repository at [https://github.com/lamatic/lamatic-docs (opens in a new tab)](https://github.com/lamatic/lamatic-docs) and learn more about Nextra at [https://nextra.site/docs (opens in a new tab)](https://nextra.site/docs).\n2. **Join Our Community**\n\n\n   - Have questions or need help? Join our Slack community. We're always happy to assist contributors!\n\n[Join our Slack](https://lamatic.ai/docs/slack)\n\n3. **Get Beta Access**\n   - As a token of our appreciation, we'd like to offer all contributors beta access to our platform. Use this link to sign up: [https://studio.lamatic.ai/signup?code=earlybetauser (opens in a new tab)](https://studio.lamatic.ai/signup?code=earlybetauser)\n\n## Steps to Contribute [Permalink for this section](https://lamatic.ai/docs/contributing\\#steps-to-contribute)\n\n1. **Fork the Repository**\n   - Visit the [Lamatic Docs GitHub repository (opens in a new tab)](https://github.com/lamatic/lamatic-docs).\n   - Click the \"Fork\" button in the top-right corner to create a copy of the repository in your GitHub account.\n2. **Clone Your Fork**\n   - Clone your forked repository to your local machine:\n\n\n\n     ```nx-border-black nx-border-opacity-[0.04] nx-bg-opacity-[0.03] nx-bg-black nx-break-words nx-rounded-md nx-border nx-py-0.5 nx-px-[.25em] nx-text-[.9em] dark:nx-border-white/10 dark:nx-bg-white/10\n     git clone https://github.com/your-username/lamatic-docs.git\n     cd lamatic-docs\n     ```\n3. **Create a New Branch**\n   - Create a new branch for your changes:\n\n\n\n     ```nx-border-black nx-border-opacity-[0.04] nx-bg-opacity-[0.03] nx-bg-black nx-break-words nx-rounded-md nx-border nx-py-0.5 nx-px-[.25em] nx-text-[.9em] dark:nx-border-white/10 dark:nx-bg-white/10\n     git checkout -b your-branch-name\n     ```\n\n   - Use a descriptive name for your branch, e.g., `add-new-feature-doc` or `fix-typo-in-quickstart`.\n4. **Install Dependencies and Run the Development Server**\n   - Install the necessary dependencies:\n\n\n\n     ```nx-border-black nx-border-opacity-[0.04] nx-bg-opacity-[0.03] nx-bg-black nx-break-words nx-rounded-md nx-border nx-py-0.5 nx-px-[.25em] nx-text-[.9em] dark:nx-border-white/10 dark:nx-bg-white/10\n     npm install\n     ```\n\n   - Start the development server:\n\n\n\n     ```nx-border-black nx-border-opacity-[0.04] nx-bg-opacity-[0.03] nx-bg-black nx-break-words nx-rounded-md nx-border nx-py-0.5 nx-px-[.25em] nx-text-[.9em] dark:nx-border-white/10 dark:nx-bg-white/10\n     npm run dev\n     ```\n\n   - Open your browser and go to `http://localhost:3333/docs` to see your changes in real-time.\n5. **Make Your Changes**\n   - Edit or add the necessary files in your local repository.\n   - Ensure your changes adhere to the existing style and formatting of the documentation.\n   - If you're adding new documentation, update the `_meta.json` file to include the new page.\n   - If you're modifying existing documentation, update the corresponding `.mdx` file.\n   - Refresh your browser to see your changes reflected immediately.\n6. **Commit Your Changes**\n   - Stage and commit your changes:\n\n\n\n     ```nx-border-black nx-border-opacity-[0.04] nx-bg-opacity-[0.03] nx-bg-black nx-break-words nx-rounded-md nx-border nx-py-0.5 nx-px-[.25em] nx-text-[.9em] dark:nx-border-white/10 dark:nx-bg-white/10\n     git add .\n     git commit -m \"Brief description of your changes\"\n     ```\n7. **Push Your Changes**\n   - Push your changes to your forked repository:\n\n\n\n     ```nx-border-black nx-border-opacity-[0.04] nx-bg-opacity-[0.03] nx-bg-black nx-break-words nx-rounded-md nx-border nx-py-0.5 nx-px-[.25em] nx-text-[.9em] dark:nx-border-white/10 dark:nx-bg-white/10\n     git push origin your-branch-name\n     ```\n8. **Create a Pull Request**\n   - Go to the [original Lamatic Docs repository (opens in a new tab)](https://github.com/lamatic/lamatic-docs).\n   - Click on \"Pull requests\" and then the \"New pull request\" button.\n   - Click \"compare across forks\" and select your fork and branch.\n   - Review your changes and click \"Create pull request\".\n   - Provide a clear title and description for your pull request.\n9. **Wait for Review**\n   - The Lamatic.ai team will review your contribution.\n   - They may request changes or provide feedback.\n   - Once approved, your changes will be merged into the main documentation.\n\n## Issue Types [Permalink for this section](https://lamatic.ai/docs/contributing\\#issue-types)\n\nWhen contributing or reporting issues, it's helpful to categorize them. Here are the main types of issues you might encounter or want to report:\n\n1. **🐛 Bug**: An error, flaw, or fault in the documentation that produces an incorrect or unexpected result. This could include broken links, incorrect information, or formatting issues.\n\n2. **🚀 Feature Request**: A suggestion for a new addition to the documentation. This could be a request for documentation on a new feature of Lamatic.ai or a proposal for a new section in the existing docs.\n\n3. **📈 Improvement**: A suggestion to enhance existing documentation. This could involve clarifying explanations, adding more examples, or restructuring content for better readability.\n\n4. **✏️ Typo**: A small error in the text, such as a misspelling or grammatical mistake.\n\n\nWhen creating an issue or pull request, please prefix your title with the appropriate issue type in square brackets or assign appropriate labels. For example:\n\n- \\[Bug\\] Broken link in Quick Start guide\n- \\[Feature Request\\] Add documentation for new API endpoint\n- \\[Improvement\\] Clarify explanation in Authentication section\n- \\[Typo\\] Fix misspelling in Contributing guide\n\nThis categorization helps the maintainers prioritize and address issues more efficiently.\n\nThank you for contributing to Lamatic.ai documentation! Your efforts are greatly appreciated and help make our platform better for everyone. If you have any questions during the process, don't hesitate to reach out on our Slack channel.\n\nLast updated on April 24, 2025\n\nPlatform Status ↗ [Bug Bounty Program](https://lamatic.ai/docs/bug-bounty-program \"Bug Bounty Program\")\n\n### Was this page useful?\n\nYesCould be better\n\n### Questions? We're here to help\n\n[FeedbackOpenAI](https://product.lamatic.ai/) [Email](mailto:hello@lamatic.ai) [Talk to sales](https://lamatic.ai/docs/demo)\n\n### Subscribe to updates\n\nGet updates\n\njust-footer",
+        "metadata": {
+            "twitter:url": "https://lamatic.ai",
+            "next-head-count": "22",
+            "twitter:site:domain": "lamatic.ai",
+            "ogImage": "https://lamatic.ai/api/og?title=Contributing%20to%20Lamatic.ai%20Documentation&description=Contributing%20to%20Lamatic.ai%20Documentation&section=Docs",
+            "ogTitle": "Contributing to Lamatic.ai Documentation - Lamatic.ai Docs",
+            "twitter:title": "just-footer",
+            "ogDescription": "Contributing to Lamatic.ai Documentation",
+            "description": [
+            "Contributing to Lamatic.ai Documentation",
+            "Contributing to Lamatic.ai Documentation"
+            ],
+            "og:url": "https://lamatic.ai/docs/contributing",
+            "ogUrl": "https://lamatic.ai/docs/contributing",
+            "og:description": [
+            "Contributing to Lamatic.ai Documentation",
+            "Contributing to Lamatic.ai Documentation"
+            ],
+            "viewport": [
+            "width=device-width, initial-scale=1.0, viewport-fit=cover",
+            "width=device-width, initial-scale=1"
+            ],
+            "favicon": "https://lamatic.ai/public/favicon-32x32.png",
+            "title": "Contributing to Lamatic.ai Documentation - Lamatic.ai Docs",
+            "robots": "index,follow",
+            "twitter:card": "summary_large_image",
+            "twitter:image": "https://lamatic.ai/api/og?title=Contributing%20to%20Lamatic.ai%20Documentation&description=Contributing%20to%20Lamatic.ai%20Documentation&section=Docs",
+            "og:title": [
+            "Contributing to Lamatic.ai Documentation - Lamatic.ai Docs",
+            "just-footer"
+            ],
+            "theme-color": "#000",
+            "og:image": "https://lamatic.ai/api/og?title=Contributing%20to%20Lamatic.ai%20Documentation&description=Contributing%20to%20Lamatic.ai%20Documentation&section=Docs",
+            "scrapeId": "332e0d70-915e-44df-bc34-7c888543add8",
+            "sourceURL": "https://lamatic.ai/docs/contributing",
+            "url": "https://lamatic.ai/docs/contributing",
+            "statusCode": 200
+        }
+        }
+    ]
+}
+```
 
 ## Troubleshooting
 

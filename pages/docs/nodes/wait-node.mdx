@@ -1,13 +1,13 @@
 ---
 title: Wait Node
-description: The Lamatic.ai Wait Node allows you to wait for a specified duration (0–90 seconds) during flow execution.
+description: The Lamatic.ai Wait Node allows you to wait for a specified duration (1–90 seconds) during flow execution.
 type: Logic
 order: 9
 ---
 
 # Wait Node Documentation
 
-The Lamatic.ai Wait Node allows you to introduce a controlled wait during your flow execution for a duration between 0 and 90 seconds. This is ideal for handling rate limits, sequencing actions, or waiting between dependent steps.
+The Lamatic.ai Wait Node allows you to introduce a controlled wait during your flow execution for a duration between 1 and 90 seconds. This is ideal for handling rate limits, sequencing actions, or waiting between dependent steps.
 
 ![wait.png](./img/wait/wait-node.webp)
 
@@ -44,7 +44,7 @@ The Lamatic.ai Wait Node allows you to introduce a controlled wait during your f
 ### Select the Wait Node
 
 1. Select the Wait Node into your Lamatic flow.
-2. Set the **Wait Time (in seconds)** between 0 and 90.
+2. Set the **Wait Time (in seconds)** between 1 and 90.
 3. Connect it before the next step that needs to wait.
 4. Deploy your flow and test to validate the wait duration.
 
@@ -52,7 +52,7 @@ The Lamatic.ai Wait Node allows you to introduce a controlled wait during your f
 
 | **Parameter**       | **Description**                                       | **Required** | **Example Value** |
 | ------------------- | ----------------------------------------------------- | ------------ | ----------------- |
-| **Wait Time (sec)** | Time in seconds to wait before proceeding (0–90 sec). | Yes          | 10                |
+| **Wait Time (sec)** | Time in seconds to wait before proceeding (1–90 sec). | Yes          | 10                |
 
 ## Low-Code Example
 
@@ -71,24 +71,37 @@ responseNode:
   nodeType: graphqlResponseNode
   nodeName: API Response
   values:
-    outputMapping: '{}'
+    outputMapping: "{}"
   needs:
     - waitNode_614
 ```
 
 ## Output
 
-The Wait Node does not return any data. It simply waits for the configured duration before triggering the next node.
+The Wait Node return status (true/false). It simply waits for the configured duration before triggering the next node.
 
+```json
+{
+  "output": {
+    "success": true
+  },
+  "input": {
+    "nodeName": "Wait",
+    "seconds": 30
+  },
+  "logs": null,
+  "status": "success"
+}
+```
 
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**                    | **Solution**                                                 |
-| ------------------------------ | ------------------------------------------------------------ |
-| **Flow Not Continuing**                | Ensure the wait time is a number between 0 and 90 seconds.                                   |
-| **Unexpected Wait Time	** | 	Check for additional waits or slow nodes in the flow. |
+| **Problem**               | **Solution**                                               |
+| ------------------------- | ---------------------------------------------------------- |
+| **Flow Not Continuing**   | Ensure the wait time is a number between 1 and 90 seconds. |
+| **Unexpected Wait Time ** | Check for additional waits or slow nodes in the flow.      |
 
 ### Debugging
 

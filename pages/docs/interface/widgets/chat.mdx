@@ -71,7 +71,7 @@ A live preview panel is available on the right side to visualize real-time chang
 
 #### ✅ Final Step
 
-After customizing, don’t forget to click **Save** to apply your changes.
+After customizing, don't forget to click **Save** to apply your changes.
 
 
 ### 3. Include the CDN Script and Configure the Widget
@@ -156,5 +156,44 @@ Otherwise, click on the chat widget located at the bottom right corner of your s
 - Ensure the `apiUrl` is correctly set to your pod URL.
 - Verify that the `workflowId` matches your workflow ID.
 - Check the console for any errors related to script loading or widget initialization.
+
+## Common Issues
+
+### Chat Input Not Focusing When Using Material UI Drawer
+
+If you're using Material UI's Drawer component alongside the chat widget, you might encounter an issue where the chat input cannot be focused when the Drawer is open. This happens because the Drawer's Modal behavior enforces focus within itself.
+
+**Solution:**
+
+Add the `disableEnforceFocus` prop to the Drawer's ModalProps:
+
+```jsx
+// Option 1: Apply to a specific Drawer instance
+<Drawer
+  anchor="right"
+  open={drawerOpen}
+  onClose={toggleDrawer}
+  ModalProps={{
+    disableEnforceFocus: true,
+  }}
+>
+  {/* Drawer content */}
+</Drawer>
+
+// Option 2: Apply globally using a custom theme
+const theme = createTheme({
+  components: {
+    MuiDrawer: {
+      defaultProps: {
+        ModalProps: {
+          disableEnforceFocus: true,
+        },
+      },
+    },
+  },
+});
+```
+
+This allows the chat widget input to properly receive focus even when the Drawer is open, without affecting the overall functionality of your drawer.
 
 This documentation provides a comprehensive guide to integrating the chat widget, including all necessary configurations and troubleshooting tips.

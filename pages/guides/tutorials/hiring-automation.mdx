@@ -70,7 +70,7 @@ In this tutorial, you'll learn how to build a sophisticated hiring automation ag
 
 ### 2. API Trigger Node Setup
 
-1. Add an API Trigger Node to your canvas.
+1. Add an **API Trigger** Node to your canvas.
 2. Configure the advanced schema to accept two parameters:
    ```json
    {
@@ -82,7 +82,7 @@ In this tutorial, you'll learn how to build a sophisticated hiring automation ag
 
 ### 3. Supervisor Agent Node Configuration
 
-1. Add a Supervisor Agent Node to your canvas and connect it to the API Trigger Node.
+1. Add a **Supervisor** Node to your canvas and connect it to the **API Trigger** Node.
 2. Configure the agent with two sub-agents:
 
    - **Parser**: Responsible for analyzing the resume and finding GitHub projects
@@ -91,6 +91,7 @@ In this tutorial, you'll learn how to build a sophisticated hiring automation ag
 3. Configure each agent's schema:
 
    For the Parser agent:
+   ![Hiring Parser Agent Schema Config](./img/hiring-automation/hiring-agent-parser-schema.webp)
    ```json
    {
      "type": "object",
@@ -110,6 +111,8 @@ In this tutorial, you'll learn how to build a sophisticated hiring automation ag
    ```
 
    For the Evaluator agent:
+   ![Hiring Evaluator Agent Schema Config](./img/hiring-automation/hiring-agent-evaluator-schema.webp)
+
    ```json
    {
      "type": "object",
@@ -130,16 +133,32 @@ In this tutorial, you'll learn how to build a sophisticated hiring automation ag
 
 4. Add system prompts to guide the supervisor:
    ```
-   You are the HR team manager at a tech company, where you will be given the job description by your company, and the link to the resume of a new applicant. You have to pass on the resume url to the parser agent, which will give you the content and more insights on the projects of the applicant. After that, your job is to pass the insights of the project to the evaluator team, which would give back the final score and reasoning.
+   You are the HR team manager at a tech company, where you will be given the job description by your company, and the link to the resume of a new applicant. You have to pass on the resume url to the parser agent, which will give you the content and more insights on the projects of the applicant. After that, your job is to pass the insights of the project to the evaluator team, which would give back the final score and reasoning. In the end, you have to return the final output to the user in the format :
+    `
+      {
+        "score" : Number ranging from 1 to 10, with 1 being the lowest and 10 the highest. this is as per the evaluator agent
+        "reasoning" : String with the reasoning so as to why the above score is given, which will be given by the agent
+        "insights" : String with the insights on the projects and technical adaptability of the user for the given job description
+      }
+    `
 
-   The ideal order of using the agents is:
-   PARSER -> EVALUATOR
+    Now, make sure the ideal order of using the agents is :
 
-   Make sure the values for 'score' and 'reasoning' are the same as the evaluator agent gives you, and the value for 'insights' is the same as given by parser agent. They are your subordinate teams and the answers they give you are ideal.
+    PROJECTPARSER -> EVALUATOR
+
+    Make sure the values for 'score' and 'reasoning' are the same as the evaluator agent gives you, and the value for 'insights' is the same as given by parser agent. They are your subordinate teams and the answers they give you are ideal.
+
+    In the end, you final answer should have no leading statements, backticks or JSON written, just the finalised JSON which you can attain with the help of all the sub-agents.
    ```
 
-5. Set the generative model to `o3-mini` for efficient processing.
-6. Set maximum iterations to 5 to allow sufficient cycles for completion.
+5. Add the user prompt:
+   ```
+   RESUME URL : {{apiTriggerNode_620.output.resume_url}}
+   JOB DESCRIPTION : {{apiTriggerNode_620.output.job_description}}
+   ```
+
+6. Set the generative model to `o3-mini` for efficient processing.
+7. Set maximum iterations to 5 to allow sufficient cycles for completion.
 
 ### 4. Extract from File Node Setup
 
@@ -202,6 +221,43 @@ In this tutorial, you'll learn how to build a sophisticated hiring automation ag
      Your answer should have no leading statements, just your analysis as a continuous paragraph of your findings.
      ```
 5. Set the generative model to `o3-mini`.
+6. Now, this node will need a tool to fetch GitHub repository information. You can use a custom tool or an API that retrieves public repositories for a given GitHub username. The tool can be configured as follows : 
+
+    **Tool Parameters**
+    ```
+      {
+        "username": {
+          "type": "string",
+          "required": true,
+          "description": "This is the github username of which all repositories are to be fetched"
+        }
+      }
+    ```
+
+    **Tool Code**
+    ```
+      const response = await fetch(`https://api.github.com/users/${input.username}/repos`);
+      data = await response.json(); 
+
+      repos = []
+      for (x in data) {
+        if (!data[x].fork) {
+          repos.push(data[x].name)
+        }
+      }
+
+      output = {}
+      for (i in repos) {
+        const response = await fetch(`https://api.github.com/repos/${input.username}/${repos[i]}/languages`);
+        repoLanguages = await response.json(); 
+        
+        output[repos[i]] = [];
+
+        for (let lang in repoLanguages) {
+          output[repos[i]].push(lang);
+        }
+      }
+    ```
 
 ### 8. Resume Projects Analyzer LLM Node
 

@@ -5,52 +5,26 @@ category: Intermediate
 thumbnail: /images/tutorials/firecrawl-guide.png
 order: 8
 ---
+
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import SectionRows  from '@/components/SectionRows'
-import { Callout } from 'nextra-theme-docs'
-import {buttonVariants, Button} from '@/components/ui/button'
+import SectionRows from "@/components/SectionRows";
+import { Callout } from "nextra-theme-docs";
+import { buttonVariants, Button } from "@/components/ui/button";
 
 # Powerful Knowledge Chatbot with Firecrawl and RAG
+
 <div className="grid md:grid-cols-1 gap-2 mb-8">
   <div className="">
-    <SectionRows 
-      section="Difficulty Level" 
-      chips={["Intermediate"]} 
-    />
-    
-    <SectionRows 
-      section="Nodes" 
-      chips={[
-         "Crawler",
-         "Vectorisation",
-         "Indexing",
-         "RAG LLM"
-      ]} 
-    />
-    
-    <SectionRows 
-      section="Tags" 
-      chips={[
-        "Support",
-        "Operations"
-      ]} 
-    />
-  </div>
-</div>
+    <SectionRows section="Difficulty Level" chips={["Intermediate"]} />
 
-<div className="mt-4 mb-4">
-  <Callout>
-  Try out these flows yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
-  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=firecrawl-scrapping" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=firecrawl-scrapping" target="_blank">Add Flow 1 to Lamatic</a>
-  </Button>
-  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=firecrawl-webhook" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=firecrawl-webhook" target="_blank">Add Flow 2 to Lamatic</a>
-  </Button>
-  <Button variant="destructive" className="mt-3 mx-2" href="https://studio.lamatic.ai/_?templateSlug=document-chatbot-widget" size="sm" asChild>
-    <a href="https://studio.lamatic.ai/_?templateSlug=document-chatbot-widget" target="_blank">Add Flow 3 to Lamatic</a>
-  </Button>
-</Callout>
+    <SectionRows
+      section="Nodes"
+      chips={["Crawler", "Vectorisation", "Indexing", "RAG LLM"]}
+    />
+
+    <SectionRows section="Tags" chips={["Support", "Operations"]} />
+
+  </div>
 </div>
 
 In this tutorial, you'll learn how to build a custom knowledge chatbot using Lamatic.ai, Firecrawl, and RAG (Retrieval-Augmented Generation).
@@ -114,54 +88,76 @@ This flow enables user interaction and intelligent responses:
 1. Name your flow Website Crawler.
 1. Select API Request as the trigger type Node and define the schema:
    ```json
-   { "trigger": "bool" }
+   { "url": "string" }
    ```
 1. Add a Crawler Node, then enter your Firecrawl API key.
-   ![flow.png](./img/chatbot-firecrawl/rag-firecrawl1.png)
-1. Provide a website URL for crawling.
+   ![flow.png](./img/chatbot-firecrawl/firecrawl-1.webp)
+1. Click the "+" icon on the API Request Node to select and provide the website URL for crawling.
+   ![flow.png](./img/chatbot-firecrawl/firecrawl-2.webp)
+1. Use Async mode for the crawler to fetch all pages sequentially, one by one.
 1. Configure the Webhook Notification (this will be set up in the next step).
+1. Ensure that the Webhook Events value is set to "page" in the crawler configuration options.
 1. Save the Node and Test the node.
 
 ### 3. Creating the Webhook Processing Flow
 
-1.  Create a new flow named Crawler Data Processor.
-1.  Set Webhook as the trigger type and fetch data from Firecrawl.
-    ![flow.png](./img/chatbot-firecrawl/rag-firecrawl.png)
+![flow.png](./img/chatbot-firecrawl/firecrawl-3.webp)
+
+1.  Create a new flow named Firecrawl Webhook.
+1.  Set Webhook as the trigger type to fetch data from Firecrawl Website Flow.
 1.  Add a Conditional Node to check page data.
+    ```js
+      {
+        "operator": null,
+        "operands": [
+          {
+            "name": "{{triggerNode_1.output.type}}",
+            "operator": "==",
+            "value": "crawl.page"
+          }
+        ]
+      }
+    ```
 1.  Use a Logic Node to parse data before vectorization.
-    ![flow.png](./img/chatbot-firecrawl/code.png)
+    Example
 
-        Example
-        ```js
-            let vectorData = "title: " + {{ triggerNode_1.output.data }}[0].metadata.title + " \n description: " + {{ triggerNode_1.output.data }}[0].metadata.description + " \n url: " + {{ triggerNode_1.output.data }}[0].metadata.url + " \n sourceURL: " + {{ triggerNode_1.output.data }}[0].metadata.sourceURL + " \n markdown: " + {{ triggerNode_1.output.data }}[0].markdown
+    ```js
+    let triggerData = {{ triggerNode_1.output.data }}
 
-            let MetaData = {
-            rawHtml: {{ triggerNode_1.output.data }}[0].rawHtml,  
-            markdown: {{ triggerNode_1.output.data }}[0].markdown,
-            title: {{ triggerNode_1.output.data }} [0].metadata.title,
-            description: {{ triggerNode_1.output.data }} [0].metadata.description,
-            url: {{ triggerNode_1.output.data }}[0].metadata.url,
-            sourceURL:{{ triggerNode_1.output.data }} [0].metadata.sourceURL,
-            }
-            output = {"vectorData":[vectorData],"MetaData":[MetaData]};
+    let vectorData = "title: " + triggerData[0].metadata.title + " \n description: " + triggerData[0].metadata.description + " \n url: " + triggerData[0].metadata.url + " \n sourceURL: " + triggerData[0].metadata.sourceURL + " \n markdown: " + triggerData[0].markdown
+
+    let metaData = {
+      rawHtml: triggerData[0].rawHtml,
+      markdown: triggerData[0].markdown,
+      title: triggerData [0].metadata.title,
+      description: triggerData [0].metadata.description,
+      url: triggerData[0].metadata.url,
+      sourceURL:triggerData [0].metadata.sourceURL,
+    }
+
+    output = {"vectorData":[vectorData],"metaData":[metaData]};
     ```
 
-1.  Add a Vectorize Node, selecting an embedding model for conversion.
-1.  Add an Indexing Node to store vectorized data in a vector database.
+1.  Add a Vectorize Node by selecting an embedding model for conversion, then choose the vector data by clicking the plus icon.
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-4.webp)
+1.  Add an Indexing Node to store vectorized data in a vector database. Choose your preferred vector database and ensure that each entry includes the vector, metadata, and the primary key url.
+    ![flow.png](./img/chatbot-firecrawl/firecrawl-5.webp)
 1.  Save and publish the flow.
 1.  Link the Webhook to the Firecrawl Flow. Save and publish the Firecrawl Flow.
 1.  Check the Webhook Processing Flow to verify the data received from the Firecrawl Node.
+
 ### 4. Building the Chatbot Flow
 
 1. Create a new flow named RAG Chatbot or use the RAG Chatbot Template.
-   ![flow.png](./img/building-chatbot/chatbot.png)
+
 1. Add a Chat Interface Node.
 1. Add a RAG Node, configure the database, and connect it to an LLM.
 
-### 5. Testing Chatbot
-
-1. Run the Firecrawl Flow to collect website data.
-1. Test the Chatbot Flow to ensure accurate responses.
+### 5. Testing
+1. Run the Firecrawl Flow (the first flow) to collect data from the website.
+1. Ensure the webhook flow is deployed before testing the first flow.
+1. After execution, you should see the vectors stored in the vector database.
+1. Test the Chatbot Flow to verify that it generates accurate responses.
 
 ### 6. Deployment and Integration
 
@@ -171,9 +167,6 @@ This flow enables user interaction and intelligent responses:
    1. Paste the code into your website’s HTML.
    1. Ensure allowed domains are configured before deployment.
 
-   ![Flow Deploy](./img/ai-review-responder/deploy.png)
-
 Ensure that the allowed domains are specified before integrating this chat widget.
-
 
 Congratulations! You've completed the tutorial and created your custom knowledge chatbot using Lamatic.ai!

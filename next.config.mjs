@@ -22,7 +22,25 @@ const cspHeader = `
   object-src 'none';
   base-uri 'self';
   form-action 'self';
-  frame-ancestors 'none';
+  frame-ancestors 'self';
+  upgrade-insecure-requests;
+  block-all-mixed-content;
+`;
+
+// CSP header for guides route that allows frame-ancestors
+const guidesCSPHeader = `
+  default-src 'self' https: wss:;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline' https:;
+  style-src 'self' 'unsafe-inline' https:;
+  img-src 'self' https: blob: data:;
+  media-src 'self' https: blob: data:;
+  font-src 'self' https:;
+  frame-src 'self' https:;
+  worker-src 'self' blob:;
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'self' https:;
   upgrade-insecure-requests;
   block-all-mixed-content;
 `;
@@ -70,18 +88,18 @@ const nextraConfig = withNextra({
             {
                 source: "/:path*",
                 headers: [
-                    {
-                        key: "x-frame-options",
-                        value: "SAMEORIGIN",
-                    },
-                    {
-                        key: "X-Content-Type-Options",
-                        value: "nosniff",
-                    },
-                    {
-                        key: "Referrer-Policy",
-                        value: "strict-origin-when-cross-origin",
-                    },
+                    // {
+                    //     key: "x-frame-options",
+                    //     value: "SAMEORIGIN",
+                    // },
+                    // {
+                    //     key: "X-Content-Type-Options",
+                    //     value: "nosniff",
+                    // },
+                    // {
+                    //     key: "Referrer-Policy",
+                    //     value: "strict-origin-when-cross-origin",
+                    // },
                     {
                         key: "Permissions-Policy",
                         value: "autoplay=*, fullscreen=*, microphone=*",
@@ -95,7 +113,16 @@ const nextraConfig = withNextra({
                 ],
             },
             {
-                source: "/:path((?!api).*)*",
+                source: "/guides/:path*",
+                headers: [
+                    {
+                        key: "Content-Security-Policy",
+                        value: guidesCSPHeader.replace(/\n/g, ""),
+                    },
+                ],
+            },
+            {
+                source: "/:path((?!api|guides).*)*",
                 headers: [
                     {
                         key: "Content-Security-Policy",

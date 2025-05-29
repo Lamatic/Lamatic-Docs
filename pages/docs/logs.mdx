@@ -2,8 +2,6 @@
 description: Logs in Lamatic.ai
 ---
 
-
-
 # **Logs: Monitoring and Analyzing Requests in Real Time**
 
 ![logs.png](./img/logs.webp)
@@ -16,12 +14,19 @@ The Log Dashboard provides a centralized view of workflow executions, showing de
 
 - **Date and Time**: Logs when each event occurred (Local & UTC).
 - **Status**: Indicates the status code of the execution (e.g., 200 for success).
-  - `200 - Success`: Indicates that the request was processed successfully without any errors.
-  - `500 - Flow Error`: Signifies that an error occurred during the request processing, requiring further investigation.
+  | Status Code | Description |
+  |-------------|--------------------------------------------------------------------------------------------------------------|
+  | 200 | Success - Indicates that the request was processed successfully without any errors. |
+  | 204 | Successful execution of retried request. |
+  | 208 | Node has skipped its execution when retried the request. Applicable for retries triggered from a failed node.|
+  | 303 | Fallback Model is used. |
+  | 500 | Flow Error - Signifies that an error occurred during the request processing, requiring further investigation. |
+  | 509 | Failed execution of retried request. |
+
 - **Flow**: Unique FlowID associated with the request, enabling you to trace the entire lifecycle of a specific operation through your system..
 - **Trigger Node**: The source of the trigger (e.g., API Request, Slack, Google Drive).
 - **Input**: Inputs provided to the Flow (partial text is visible).
-- **Process Time**:  Total turnaround time of the requests, providing valuable insights into performance metrics and potential bottlenecks in your application..
+- **Process Time**: Total turnaround time of the requests, providing valuable insights into performance metrics and potential bottlenecks in your application..
 - **Tokens**: Token usage in the Flow
 
 ---
@@ -45,6 +50,7 @@ This detailed view allows you to pinpoint exactly where issues occur in your pro
 To efficiently manage and analyze your log data, the system provides powerful search and filtering capabilities. These features enable you to quickly locate specific information and identify patterns or issues within your logs.
 
 ![logs.png](./img/logs-filter.png)
+
 > 🔍 **Note**: The comprehensive search capability ensures that you can locate even the most specific details within your log data.
 
 - **Search**: Offers deep, query-level results, allowing you to find any keyword in request inputs, outputs, or within individual node inputs and outputs.

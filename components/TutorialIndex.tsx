@@ -1,6 +1,7 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
 import Link from 'next/link';
+import { useState, useMemo } from 'react';
 
 interface TutorialCardProps {
   href: string;
@@ -55,66 +56,125 @@ const TutorialCard = ({ href, title, thumbnail, description, tags }: TutorialCar
 );
 
 export const TutorialIndex = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  
   const pages = getPagesUnderRoute("/guides/tutorials") as Array<
     Page & { frontMatter: any }
   >;
 
   const filteredPages = pages.filter((page) => page.route !== "/tutorials");
-
-  // Define the order of categories
   const categoryOrder = ["Beginner", "Intermediate", "Advanced", "Other"];
-  
-  // Group pages by category
-  const categorizedPages = filteredPages.reduce((acc, page) => {
-    const category = page.frontMatter?.category || "Other";
-    if (!acc[category]) acc[category] = [];
-    acc[category].push(page);
-    return acc;
-  }, {} as Record<string, Array<Page & { frontMatter: any }>>);
 
-  // Ensure all categories exist in the object
-  categoryOrder.forEach(category => {
-    if (!categorizedPages[category]) {
-      categorizedPages[category] = [];
-    }
-  });
+  // Group pages by category
+  const categorizedPages = useMemo(() => {
+    const grouped = filteredPages.reduce((acc, page) => {
+      const category = page.frontMatter?.category || "Other";
+      if (!acc[category]) acc[category] = [];
+      acc[category].push(page);
+      return acc;
+    }, {} as Record<string, Array<Page & { frontMatter: any }>>);
+
+    // Ensure all categories exist
+    categoryOrder.forEach(category => {
+      if (!grouped[category]) {
+        grouped[category] = [];
+      }
+    });
+
+    return grouped;
+  }, [filteredPages]);
+
+  // Filter pages based on search query and category
+  const filteredCategories = useMemo(() => {
+    return categoryOrder.reduce((acc, category) => {
+      const categoryPages = categorizedPages[category] || [];
+      
+      const filtered = categoryPages.filter(page => {
+        const matchesSearch = searchQuery.toLowerCase() === '' || 
+          page.frontMatter?.title?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          page.frontMatter?.description?.toLowerCase().includes(searchQuery.toLowerCase());
+        
+        const matchesCategory = !selectedCategory || category === selectedCategory;
+        
+        return matchesSearch && matchesCategory;
+      });
+
+      if (filtered.length > 0) {
+        acc[category] = filtered;
+      }
+      
+      return acc;
+    }, {} as Record<string, Array<Page & { frontMatter: any }>>);
+  }, [categorizedPages, searchQuery, selectedCategory]);
 
   return (
-    <div className="space-y-12">
-      {categoryOrder.map((category) => {
-        const categoryPages = categorizedPages[category] || [];
-        
-        // Skip rendering empty categories
-        if (categoryPages.length === 0) return null;
-        
-        return (
-          <div key={category}>
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
-              {category}
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-3">
-              {categoryPages
-                .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity))
-                .map((page) => (
-                  <TutorialCard
-                    key={page.route}
-                    href={page.route}
-                    title={
-                      page.frontMatter?.title ||
-                      page.name
-                        .split("_")
-                        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                        .join(" ")
-                    }
-                    thumbnail={page.frontMatter?.thumbnail}
-                    description={page.frontMatter?.description}
-                    tags={page.frontMatter?.tags || []}
-                  />
-                ))}
+    <div className="space-y-8">
+      {/* Search and Filter UI */}
+      <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex-1">
+          <input
+            type="text"
+            placeholder="Search tutorials..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 
+              focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-900"
+          />
+        </div>
+        <div className="w-full sm:w-48">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-800 
+              focus:outline-none focus:ring-2 focus:ring-red-500 dark:bg-gray-900"
+          >
+            <option value="">All Categories</option>
+            {categoryOrder.map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {/* Tutorial Grid */}
+      <div className="space-y-12">
+        {categoryOrder.map((category) => {
+          const categoryPages = filteredCategories[category] || [];
+          
+          if (categoryPages.length === 0) return null;
+          
+          return (
+            <div key={category}>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+                {category}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-3">
+                {categoryPages
+                  .sort((a, b) => (a.frontMatter?.order ?? Infinity) - (b.frontMatter?.order ?? Infinity))
+                  .map((page) => (
+                    <TutorialCard
+                      key={page.route}
+                      href={page.route}
+                      title={
+                        page.frontMatter?.title ||
+                        page.name
+                          .split("_")
+                          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                          .join(" ")
+                      }
+                      thumbnail={page.frontMatter?.thumbnail}
+                      description={page.frontMatter?.description}
+                      tags={page.frontMatter?.tags || []}
+                    />
+                  ))}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };

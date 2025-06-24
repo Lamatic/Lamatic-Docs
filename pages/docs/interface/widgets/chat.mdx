@@ -151,7 +151,85 @@ The output will be given as follows :
 ```
 Otherwise, click on the chat widget located at the bottom right corner of your screen to start a conversation. The widget will open, allowing you to interact with it.
 
-### 5. Troubleshooting
+### 5. Chat Widget CSS IDs Documentation 
+<Callout type="error" emoji="⚠️">
+    **PRO Feature** <br/>
+    The following CSS IDs are available only in the Pro version of the chat widget. If you are using the free version, these IDs will not be present, and you will not be able to apply custom styles using them.
+</Callout>
+
+| ID                                 | Description                                                 |
+| ---------------------------------- | ----------------------------------------------------------- |
+| `lam-chat-header`                  | Main header container with logo, title, and close button    |
+| `lam-chat-header-logo`             | Bot avatar/logo image in the header                         |
+| `lam-chat-header-title`            | Bot name/title text in the header                           |
+| `lam-chat-header-close-button`     | Close button (X) in the header                              |
+| `lam-chat-body`                    | Main chat messages container with scrollable area           |
+| `lam-chat-message-*`               | Individual message container (user or bot)                  |
+| `lam-chat-message-avatar-*`        | Bot avatar image for each bot message                       |
+| `lam-chat-message-container-*`     | Message content wrapper including bubble and timestamp      |
+| `lam-chat-message-bubble-*`        | Message bubble container with background and styling        |
+| `lam-chat-user-message-content-*`  | User message text content area                              |
+| `lam-chat-bot-message-content-*`   | Bot message content area with markdown rendering            |
+| `lam-chat-message-file-*`          | File attachment container within a message                  |
+| `lam-chat-message-timestamp-*`     | Timestamp text below each message                           |
+| `lam-chat-typing-indicator`        | Container for the typing animation indicator                |
+| `lam-chat-typing-avatar`           | Bot avatar in the typing indicator                          |
+| `lam-chat-typing-bubble`           | Typing animation bubble with dots                           |
+| `lam-chat-image-attachment`        | Image attachment container with click-to-zoom functionality |
+| `lam-chat-image-skeleton`          | Loading skeleton placeholder for images                     |
+| `lam-chat-image-content`           | Actual image content that replaces the skeleton             |
+| `lam-chat-file-attachment`         | Non-image file attachment container                         |
+| `lam-chat-file-download-link`      | Download link for file attachments                          |
+| `lam-chat-references-container`    | Container for source references/sources section             |
+| `lam-chat-references-label`        | "Sources:" label text                                       |
+| `lam-chat-references-list`         | List container for all reference items                      |
+| `lam-chat-reference-*`             | Individual reference item container                         |
+| `lam-chat-reference-title-*`       | Reference title text                                        |
+| `lam-chat-reference-description-*` | Reference description text                                  |
+| `lam-chat-reference-icon-*`        | External link icon for references                           |
+| `lam-chat-citation-*`              | Citation link in markdown content                           |
+| `lam-chat-citation-badge-*`        | Citation number badge styling                               |
+| `lam-chat-markdown-link`           | Regular markdown links in bot messages                      |
+| `lam-chat-table-container`         | Table wrapper with horizontal scroll                        |
+| `lam-chat-table`                   | Markdown table element                                      |
+| `lam-chat-table-header`            | Table header cells                                          |
+| `lam-chat-table-cell`              | Table data cells                                            |
+| `lam-chat-footer`                  | Main footer container with input and suggestions            |
+| `lam-chat-suggestions-container`   | Container for quick suggestion buttons                      |
+| `lam-chat-suggestion-*`            | Individual suggestion button                                |
+| `lam-chat-input-container`         | Input area container with border                            |
+| `lam-chat-message-input`           | Text input field for typing messages                        |
+| `lam-chat-input-actions`           | Container for emoji and send buttons                        |
+| `lam-chat-emoji-section`           | Emoji picker button container                               |
+| `lam-chat-emoji-button`            | Emoji picker toggle button                                  |
+| `lam-chat-send-section`            | Send button container                                       |
+| `lam-chat-send-button`             | Send message button                                         |
+
+> **Note:** The asterisk (\*) in the IDs represents a dynamic index that gets assigned to each element. For example, `lam-chat-message-0`, `lam-chat-message-1`, etc.
+
+### Usage Examples
+
+Here are examples of how to use these CSS IDs as selectors:
+
+**Plain selector (targeting all elements of that type):**
+
+```css
+#lam-chat-message-bubble-* {
+  border-radius: 12px;
+  padding: 12px 16px;
+}
+```
+
+**Specific index selector (targeting a specific element):**
+
+```css
+#lam-chat-message-bubble-0 {
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+}
+```
+
+### 6. Troubleshooting
 
 - Ensure the `apiUrl` is correctly set to your pod URL.
 - Verify that the `workflowId` matches your workflow ID.

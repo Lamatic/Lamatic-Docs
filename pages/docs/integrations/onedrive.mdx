@@ -1,0 +1,80 @@
+---
+title: OneDrive
+description: Learn how to configure OneDrive Business as a source in Lamatic to sync and parse documents for downstream workflows.
+---
+
+# OneDrive Business Integration
+
+This node lets you connect your OneDrive Business account to Lamatic for automated document syncing, parsing, and downstream AI workflows. It supports scheduled syncing, file pattern filtering, and incremental refresh — making it ideal for document intelligence and RAG use cases.
+
+---
+
+## Setup Credentials
+
+Provide your Microsoft 365 **Tenant ID**. This is required to authenticate your organization's SharePoint instance.
+
+- Go to [Microsoft Entra Admin Center](https://entra.microsoft.com)
+- Navigate to **Azure Active Directory**
+- Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
+
+## Node Configuration
+
+| Field | Description | Example | Required |
+|-------|-------------|---------|----------|
+| **Credentials** | Microsoft 365 credentials with access to OneDrive files | `Credentials` | Yes |
+| **Drive Name** | Name of the connected OneDrive drive | `OneDrive` | Yes |
+| **Folder Path** | Path within the drive to target.<br/>Use `"."` to sync all folders | `.` | Yes |
+| **Globs (Path Patterns)** | Glob pattern for matching files | `**` | No |
+| **Sync Mode** | Controls how files are re-indexed:<br/>- `full_refresh`<br/>- `incremental` | `incremental` | Yes |
+| **Sync Schedule** | Schedule for automated syncs | `Every 24 hours` | No |
+| **Search Scope** | Scope of files to include:<br/>- `ACCESSIBLE_DRIVES`<br/>- `SHARED_ITEMS`<br/>- `ALL` | `ALL` | Yes |
+| **Parsing Strategy** | Strategy for extracting content:<br/>- `fast`, `ocr_only`, `hi_r
+
+## Features
+
+### Key Functionalities
+
+- **Scheduled Syncing**  
+    Keep your OneDrive content up to date with automated refreshes.
+
+- **Selective Sync**  
+  Use folder paths and glob patterns to precisely control which files are included.
+
+- **AI-Ready Pipeline**  
+  All synced documents are automatically parsed and vectorized for search, summarization, and question answering.
+
+---
+
+### Benefits
+
+- **Automated RAG Workflow**  
+  Seamlessly brings structured and unstructured documents into Lamatic pipelines.
+
+- **Granular File Selection**  
+  Define exact inclusion rules using globs, scopes, and folder paths.
+
+- **Performance Optimized**  
+  Use `incremental` sync mode and day-based filtering to avoid unnecessary reprocessing.
+
+---
+
+## Example Use Case
+
+Use this node to automatically sync the following types of files from your organization's OneDrive into Lamatic:
+- ✅ Business documents (e.g., reports, contracts, spreadsheets)
+- ✅ Internal wikis and knowledge bases
+- ✅ Legal and compliance-related files
+- ✅ Team-shared folders across departments
+
+These documents can then be used for:
+- 🔍 **Semantic search**
+- ❓ **Question answering (Q&A)**
+- 📝 **Document summarization**
+
+---
+
+## Tips
+
+- Make sure your Microsoft account has appropriate **OneDrive API permissions** to access the selected files and drives.
+- For scanned PDFs or images, prefer using `hi_res` or `ocr_only` parsing strategies for better text extraction.
+- Optimize sync schedules using **cron expressions** to avoid unnecessary load (e.g., sync every night or every 6 hours).

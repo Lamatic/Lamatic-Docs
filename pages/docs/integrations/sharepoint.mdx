@@ -1,0 +1,59 @@
+---
+title: SharePoint
+description: Learn how to connect and configure Microsoft SharePoint for syncing files with Lamatic AI workflows.
+---
+
+# SharePoint Business Integration
+
+The SharePoint Business integration node allows you to connect your organization's SharePoint instance with Lamatic AI. This enables you to retrieve, sync, and parse documents stored in SharePoint folders and sites to power your RAG workflows or document intelligence pipelines.
+
+<Callout>
+  You must have appropriate SharePoint access permissions and Microsoft 365
+  credentials to use this integration.
+</Callout>
+---
+
+## Setup Credentials
+
+Provide your Microsoft 365 **Tenant ID**. This is required to authenticate your organization's SharePoint instance.
+
+- Go to [Microsoft Entra Admin Center](https://entra.microsoft.com)
+- Navigate to **Azure Active Directory**
+- Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
+
+## Node Configuration
+
+| Field                               | Description                                                                                              | Example                                     | Required |
+| ----------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------- |
+| **Site URL**                        | URL of the SharePoint site to search for files                                                           | `https://lamatic.sharepoint.com/sites/test` | Yes      |
+| **Folder Path**                     | Path to a specific folder within the drive. Use `"."` to search all folders                              | `./TeamDocs/HR`                             | Yes      |
+| **Globs (Path Patterns)**           | Pattern to filter specific files based on extension or name                                              | `**/*.pdf`, `**/*.docx`                     | No       |
+| **Sync Mode**                       | Sync behavior:<br/>- `full_refresh`: Re-index everything<br/>- `incremental`: Update only modified files | `incremental`                               | Yes      |
+| **Sync Schedule**                   | Cron expression for scheduled syncs                                                                      | `0 0 * * *`                                 | No       |
+| **Search Scope**                    | Location to search:<br/>- `ACCESSIBLE_DRIVES`<br/>- `SHARED_ITEMS`<br/>- `ALL`                           | `ALL`                                       | Yes      |
+| **Parsing Strategy**                | Document parsing method:<br/>- `fast`<br/>- `ocr_only`<br/>- `hi_res`                                    | `hi_res`                                    | Yes      |
+| **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                    | `30`                                        | No       |
+| **Start Date**                      | Ignore files modified before this UTC datetime (ISO format)                                              | `2017-01-25T00:00:00.000000Z`               | No       |
+
+---
+
+## Example Use Case
+Use this node to automatically sync the following types of content from your organization's SharePoint instance into Lamatic:
+
+- ✅ Company policies and HR documents
+- ✅ Departmental wikis and team knowledge hubs
+- ✅ Project documentation and shared collaboration files
+- ✅ Internal compliance or audit-related content
+
+These documents can then be used for:
+
+- 🔍 **Semantic search**
+- ❓ **Question answering (Q&A)**
+- 📝 **Document summarization**
+---
+
+## Tips
+
+- Ensure permissions are properly configured for access to SharePoint resources.
+- For best accuracy on scanned documents or images, prefer `hi_res` or `ocr_only` parsing.
+- Use cron expressions smartly to avoid redundant syncs.

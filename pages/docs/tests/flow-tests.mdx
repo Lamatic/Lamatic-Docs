@@ -8,7 +8,7 @@ description: Flow builder in Lamatic.ai Studio
 
 
 ## Complete Flow Testing
-![img.png](./img.png)
+![img.png](./img/testing.png)
 
 Run a full flow test for end-to-end execution:
 
@@ -30,8 +30,6 @@ Different triggers require unique testing methods:
 
 
 ### Preview Test
-![img_2.png](./img_2.png)
-
 For widget-triggered flows:
 
 - **UI Preview:** Use the preview feature to visualize widget appearance and functionality.
@@ -39,12 +37,42 @@ For widget-triggered flows:
 
 
 ## Debug: Node-Level Testing
-![img_1.png](./img_1.png)
+![Debuging](./img/debug.gif)
 
-Test individual nodes iteratively:
+Lamatic Studio provides powerful tools to help developers debug and test their flows efficiently. Use the debug mode to simulate inputs, capture outputs, and iterate quickly.
 
-- **Execution:** Click the `▶️` button on any node to execute it along with its connected preceding nodes.
-- **Output View:** Click on the node bar to access the debugging section and view the output after execution.
+To begin testing your flows:
+
+1. Go to your **Flow Editor**.
+2. Click the **Debug** Button in the bottom right.
+3. Enter your test input data (as JSON or plain text).
+4. Hit **Run Test** to simulate execution.
+
+<Callout emoji="💡">
+Each test run executes the full flow using your provided input, showing node-by-node progress and output.
+</Callout>
+
+### Saving Test Cases
+Click the plus (+) icon to add and save new test cases.
+
+### To Save a Test Case:
+1. Enter your input data.
+2. Click **+**.
+3. Give it a name (e.g., `User sign-up flow test`).
+
+### To Reuse a Test Case:
+- Select the saved test case from the **Saved Tests** dropdown and click **Run Test**.
+
+### Debugging Output
+
+After running a test:
+- Each node will show a status: ✅ Success, ❌ Error.
+- Click on any node to inspect:
+  - **Input received**
+  - **Output generated**
+  - **Execution time**
+  - **Error messages** (if any)
+
 
 ## Code and Prompt Testing
 

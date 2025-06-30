@@ -98,7 +98,7 @@
 
   p {
     margin: 0 !important;
-    font-size: medium;
+    /* font-size: medium; */
   }
 
   h2 {
@@ -120,7 +120,7 @@
 
   ul,
   ol {
-    font-size: medium;
+    /* font-size: medium; */
     margin-top: 0 !important;
     padding-left: 7px !important; /* Base indentation for all lists */
   }
@@ -141,7 +141,7 @@
   }
 
   code {
-    font-size: medium !important;
+    /* font-size: medium !important; */
   }
 
   img{

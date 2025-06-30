@@ -1,0 +1,19 @@
+{
+  "azure": "Azure",
+  "amazon": "Amazon",
+  "anthropic": "Anthropic",
+  "cloudflare": "Cloudflare",
+  "cohere": "Cohere",
+  "deepinfra": "DeepInfra",
+  "fireworks-ai": "Fireworks AI",
+  "gemini": "Gemini",
+  "groq": "Groq",
+  "huggingface": "Hugging Face",
+  "ibm-watsonx-ai": "IBM Watsonx.ai",
+  "mistral-ai": "Mistral AI",
+  "open-ai": "OpenAI",
+  "perplexity-ai": "Perplexity AI",
+  "together-ai": "Together AI",
+  "voyage-AI": "Voyage AI",
+  "xai": "xAI"
+} 

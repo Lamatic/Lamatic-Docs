@@ -1,0 +1,118 @@
+---
+title: Azure AI Hub
+description: Azure AI Hub provides enterprise-grade resource management and shared configurations for collaborative AI development teams with advanced security and networking capabilities.
+---
+
+[Azure AI Foundry Portal]: https://ai.azure.com/
+[Azure Portal]: https://portal.azure.com/
+[Azure Machine Learning Guide]: https://learn.microsoft.com/en-us/azure/machine-learning/
+[Azure AI Hub Guide]: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources
+[Azure AI Hub Pricing]: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://support.lamatic.ai
+
+# Azure AI Hub
+Azure AI Hub provides enterprise-grade resource management for collaborative AI development teams. It offers shared configurations, centralized security settings, and advanced networking capabilities. With Lamatic, you can seamlessly integrate with models deployed through Azure AI Hub and take advantage of features like observability, prompt management, fallbacks, and more.
+
+Learn how to integrate Azure AI Hub with Portkey to access a wide range of AI models with enhanced observability and reliability features for enterprise environments.
+<br/>
+Azure AI Hub offers three different deployment types through hub-based projects:
+1. **Hub Resources**: Centralized management of compute, storage, and networking
+2. **Shared Projects**: Multiple projects sharing hub configurations and resources  
+3. **Enterprise Security**: Advanced networking, private endpoints, and compliance features
+<br/>
+You can learn more about Azure AI Hub architecture [here](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture).
+
+<Callout type="info">Provider Slug: `azure_ai`</Callout>
+
+### 1. Access Azure AI Foundry Portal
+Go to [ai.azure.com](https://ai.azure.com) (Azure AI Foundry portal) and sign in with your Azure account.
+
+### 2. Create an Azure AI Hub
+1. Click **"Create new"** in the top right
+2. Select **"AI hub resource"**
+3. Enter a **hub name**
+4. Select your **subscription** and **resource group**
+5. Choose a **location/region**
+6. Configure **security settings** (networking, encryption, etc.)
+7. Click **"Create"**
+
+### 3. Create a Hub-Based Project
+1. Navigate to your created hub
+2. Click **"Create project"**
+3. Enter a **project name**
+4. Select the hub you want to use
+5. Configure project-specific settings
+6. Click **"Create"**
+
+### 4. Deploy a Model
+1. Navigate to **"Model catalog"** or **"Models + endpoints"**
+2. Browse available models (GPT-4, GPT-3.5-turbo, etc.)
+3. Select a model and click **"Deploy"**
+4. Provide a **Deployment Name** (e.g., "gpt-4-enterprise-deployment")
+5. Configure deployment settings and compute resources
+6. Click **"Deploy"**
+
+### 5. Get API Credentials
+Navigate to your hub's **"Settings"** or **"Keys and endpoints"** section and copy the **API key**.
+
+## Required Information
+
+### Hub Name
+Found in the **hub overview** section and serves as your resource identifier.
+
+### Project Name
+Listed in the **projects** section within your hub.
+
+### Deployment Name
+Listed in the **"Models + endpoints"** section of your project.
+
+### Azure API Version
+Check the latest versions in Azure AI Hub documentation. Common versions:
+- `2024-06-01`
+- `2024-02-15-preview`
+
+### Endpoint URL Format
+```
+https://[HubName]-[ProjectName].openai.azure.com/
+```
+
+## Example Configuration
+```bash
+Azure API Key: your-hub-api-key-here
+Azure API Version: 2024-06-01
+Hub Name: my-enterprise-ai-hub
+Project Name: production-chatbot-project
+Deployment Name: gpt-4-enterprise-deployment
+Endpoint: https://my-enterprise-ai-hub-production-chatbot-project.openai.azure.com/
+```
+
+Once you provide these details, your selected foundation model will be automatically populated.
+
+<Callout type="default">
+  For more information, refer to the [official Azure AI Hub guide][Azure AI Hub Guide].
+</Callout>
+
+### Follow these general steps in Lamatic.ai:
+
+1. Open your [Lamatic.ai Studio]
+2. Navigate to Models section
+3. Select `azure-ai-hub` provider
+4. Provide the following credentials:
+   - Azure API Key
+   - Azure API Version
+   - Hub Name
+   - Project Name
+   - Deployment Name
+5. Save your changes
+
+## Important Notes
+
+- Keep your API keys secure and never share them
+- Hub-based projects are ideal for enterprise environments requiring shared resources
+- Configure networking and security settings at the hub level for all projects
+- Monitor resource usage across all projects in your hub
+- Regularly review access permissions for team members
+- Test your integration after adding each key
+- Consider using managed identities for enhanced security

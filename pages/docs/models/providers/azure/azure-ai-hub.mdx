@@ -8,28 +8,23 @@ description: Azure AI Hub provides enterprise-grade resource management and shar
 [Azure Machine Learning Guide]: https://learn.microsoft.com/en-us/azure/machine-learning/
 [Azure AI Hub Guide]: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources
 [Azure AI Hub Pricing]: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+[Azure AI Hub Models]: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models
 
 [Lamatic.ai Studio]: https://studio.lamatic.ai
-[Lamatic support]: https://support.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
 
 # Azure AI Hub
-Azure AI Hub provides enterprise-grade resource management for collaborative AI development teams. It offers shared configurations, centralized security settings, and advanced networking capabilities. With Lamatic, you can seamlessly integrate with models deployed through Azure AI Hub and take advantage of features like observability, prompt management, fallbacks, and more.
 
-Learn how to integrate Azure AI Hub with Portkey to access a wide range of AI models with enhanced observability and reliability features for enterprise environments.
-<br/>
-Azure AI Hub offers three different deployment types through hub-based projects:
-1. **Hub Resources**: Centralized management of compute, storage, and networking
-2. **Shared Projects**: Multiple projects sharing hub configurations and resources  
-3. **Enterprise Security**: Advanced networking, private endpoints, and compliance features
-<br/>
-You can learn more about Azure AI Hub architecture [here](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture).
+Azure AI Hub provides enterprise-grade resource management for collaborative AI development teams. It offers shared configurations, centralized security settings, and advanced networking capabilities. With Lamatic, you can seamlessly integrate with models deployed through Azure AI Hub and take advantage of features like observability, prompt management, fallbacks, and more.
 
 <Callout type="info">Provider Slug: `azure_ai`</Callout>
 
-### 1. Access Azure AI Foundry Portal
+## Get Started
+
+### Step 1: Access Azure AI Foundry Portal
 Go to [ai.azure.com](https://ai.azure.com) (Azure AI Foundry portal) and sign in with your Azure account.
 
-### 2. Create an Azure AI Hub
+### Step 2: Create an Azure AI Hub
 1. Click **"Create new"** in the top right
 2. Select **"AI hub resource"**
 3. Enter a **hub name**
@@ -38,7 +33,7 @@ Go to [ai.azure.com](https://ai.azure.com) (Azure AI Foundry portal) and sign in
 6. Configure **security settings** (networking, encryption, etc.)
 7. Click **"Create"**
 
-### 3. Create a Hub-Based Project
+### Step 3: Create a Hub-Based Project
 1. Navigate to your created hub
 2. Click **"Create project"**
 3. Enter a **project name**
@@ -46,7 +41,7 @@ Go to [ai.azure.com](https://ai.azure.com) (Azure AI Foundry portal) and sign in
 5. Configure project-specific settings
 6. Click **"Create"**
 
-### 4. Deploy a Model
+### Step 4: Deploy a Model
 1. Navigate to **"Model catalog"** or **"Models + endpoints"**
 2. Browse available models (GPT-4, GPT-3.5-turbo, etc.)
 3. Select a model and click **"Deploy"**
@@ -54,8 +49,54 @@ Go to [ai.azure.com](https://ai.azure.com) (Azure AI Foundry portal) and sign in
 5. Configure deployment settings and compute resources
 6. Click **"Deploy"**
 
-### 5. Get API Credentials
+### Step 5: Get API Credentials
 Navigate to your hub's **"Settings"** or **"Keys and endpoints"** section and copy the **API key**.
+
+### Step 6: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **Azure AI Hub** from the provider list
+4. Provide the following credentials:
+   - Azure API Key
+   - Azure API Version
+   - Hub Name
+   - Project Name
+   - Deployment Name
+5. Save your changes
+
+## Key Features
+
+- **Hub Resources**: Centralized management of compute, storage, and networking
+- **Shared Projects**: Multiple projects sharing hub configurations and resources
+- **Enterprise Security**: Advanced networking, private endpoints, and compliance features
+- **Collaborative Development**: Team-based AI development with shared resources
+- **Scalable Infrastructure**: Enterprise-grade scalability and performance
+- **Cost Effective**: Shared resource utilization for cost optimization
+- **Developer Friendly**: Comprehensive API and documentation
+- **Compliance Ready**: Meets enterprise compliance and security requirements
+
+## Available Models
+
+Azure AI Hub provides access to various models through hub-based deployments:
+
+- **GPT Models**: GPT-4, GPT-3.5-turbo, and other OpenAI models
+- **Custom Models**: Your own fine-tuned or custom models
+- **Open Source Models**: Various open-source models available in the catalog
+- **Enterprise Models**: Models optimized for enterprise use cases
+- **Specialized Models**: Models for specific domains and industries
+
+Check the [Azure AI Hub Models][Azure AI Hub Models] documentation for the complete list of available models and their specifications.
+
+## Configuration Options
+
+- **Azure API Key**: Your Azure AI Hub API key for authentication
+- **Azure API Version**: The API version to use (e.g., 2024-06-01)
+- **Hub Name**: The name of your Azure AI Hub resource
+- **Project Name**: The name of your hub-based project
+- **Deployment Name**: The name of your model deployment
+- **Model Selection**: Choose from available Azure AI Hub models
+- **Custom Parameters**: Configure model-specific parameters
+- **Security Settings**: Configure networking and access controls
 
 ## Required Information
 
@@ -88,24 +129,43 @@ Deployment Name: gpt-4-enterprise-deployment
 Endpoint: https://my-enterprise-ai-hub-production-chatbot-project.openai.azure.com/
 ```
 
-Once you provide these details, your selected foundation model will be automatically populated.
+## Best Practices
 
-<Callout type="default">
-  For more information, refer to the [official Azure AI Hub guide][Azure AI Hub Guide].
-</Callout>
+- **API Key Security**: Keep your Azure API keys secure and never share them publicly
+- **Hub Management**: Configure networking and security settings at the hub level for all projects
+- **Resource Optimization**: Monitor resource usage across all projects in your hub
+- **Access Control**: Regularly review access permissions for team members
+- **Rate Limiting**: Be aware of Azure AI Hub's rate limits and implement appropriate throttling
+- **Error Handling**: Implement proper error handling for API failures and rate limits
+- **Cost Optimization**: Monitor your usage and optimize resource allocation
+- **Security Configuration**: Use private endpoints and network security groups
 
-### Follow these general steps in Lamatic.ai:
+## Troubleshooting
 
-1. Open your [Lamatic.ai Studio]
-2. Navigate to Models section
-3. Select `azure-ai-hub` provider
-4. Provide the following credentials:
-   - Azure API Key
-   - Azure API Version
-   - Hub Name
-   - Project Name
-   - Deployment Name
-5. Save your changes
+**Access Denied:**
+- Verify your Azure account has access to Azure AI Hub
+- Check if your API key is correct and hasn't expired
+- Ensure your hub and project are properly configured
+
+**Hub Creation Issues:**
+- Verify your Azure subscription has sufficient permissions
+- Check if the hub name is unique and follows naming conventions
+- Ensure the selected region supports Azure AI Hub
+
+**Project Configuration:**
+- Verify the project is created within the correct hub
+- Check if project settings are properly configured
+- Ensure proper permissions for the project
+
+**Model Deployment Issues:**
+- Verify the model is available in your region
+- Check if deployment settings are correct
+- Ensure sufficient compute resources are available
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your Azure account is active and verified
+- Verify you're using the correct endpoint URL
 
 ## Important Notes
 
@@ -116,3 +176,13 @@ Once you provide these details, your selected foundation model will be automatic
 - Regularly review access permissions for team members
 - Test your integration after adding each key
 - Consider using managed identities for enhanced security
+- Review [Azure AI Hub pricing][Azure AI Hub Pricing] before deployment
+
+## Additional Resources
+
+- [Azure AI Hub Documentation][Azure AI Hub Guide]
+- [Model Documentation][Azure AI Hub Models]
+- [Pricing Information][Azure AI Hub Pricing]
+- [Azure Support](https://azure.microsoft.com/en-us/support/)
+
+Need help? Contact [Lamatic support]

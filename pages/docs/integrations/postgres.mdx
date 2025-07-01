@@ -1,113 +1,216 @@
 ---
 title: PostgreSQL
-description: The PostgreSQL node in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) flow.
+description: The PostgreSQL integration in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
 ---
 
-# PostgreSQL Node Documentation
+# PostgreSQL Integration
 
-The PostgreSQL node in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) flow.
+The PostgreSQL integration in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
 
+<Callout type="info">
+This integration connects to your PostgreSQL database to sync data for processing in Lamatic Flow.
+</Callout>
 
 ## Features
 
 ### ✅ Key Functionalities
-- **Batch Trigger**: Automates data extraction and synchronization on a schedule.
-- **Table Support**: Compatible with Tables and Materialized Views.
-- **RAG Integration**: Supports vectorization and indexing of PostgreSQL rows.
+
+- **Data Synchronization**: Automatically syncs data from PostgreSQL tables and materialized views
+- **Scheduled Processing**: Supports automated sync schedules with cron expressions
+- **RAG Integration**: Enables vectorization and indexing for AI-powered data retrieval
+- **Flexible Sync Modes**: Supports both incremental and full-refresh synchronization
 
 ### ✅ Benefits
-- Streamlines database synchronization processes.
-- Enables RAG capabilities with PostgreSQL data.
-- Supports incremental and full refresh sync modes.
 
+- Automates database synchronization processes
+- Enables RAG workflows with PostgreSQL data
+- Provides granular control over table selection and processing
+- Supports both incremental and full-refresh synchronization modes
 
 ## Available Functionality
 
-### Batch Trigger
-✅ Fetch PostgreSQL table data on scheduled intervals
-✅ Support for Tables and Materialized Views
-✅ Vectorization and indexing for RAG flow
-
-### Event Trigger
-❌ Record insert/update/delete events
-❌ Table create/update/delete events
+### Event Triggers
+✅ Scheduled data syncing from PostgreSQL tables <br/>
+✅ Support for tables and materialized views <br/>
+✅ Schema-specific monitoring and filtering <br/>
+✅ Incremental and full-refresh sync modes<br/>
 
 ### Actions
-❌ Row manipulation (add/update/delete)
-❌ Table manipulation (create/update/delete)
-
+✅ Parse and extract data from PostgreSQL rows <br/>
+✅ Vectorize content for RAG workflows <br/>
+✅ Filter tables using schema and table names <br/>
+✅ Schedule automated sync operations <br/>
 
 ## Prerequisites
 
-Before setting up the PostgreSQL node, ensure you have:
-- PostgreSQL database credentials
-- Access to target database and tables
-- Understanding of Cron expressions for scheduling
+Before setting up the PostgreSQL integration, ensure you have:
 
+- PostgreSQL database credentials (host, port, database, username, password)
+- Access to target database, schemas, and tables
+- Understanding of cron expressions for scheduling
+- Appropriate database permissions for read operations
 
 ## Installation
 
-### Create a Flow in Lamatic
+### Step 1: Set Up PostgreSQL Credentials
 
-#### Option 1: Create a Custom Flow
-1. **Follow Webhook Integration Guide**:
-   - Configure webhooks as triggers
-   - Set up custom actions
-   - Test webhook endpoints
+1. **Database Access**: Ensure you have access to the PostgreSQL database
+2. **User Permissions**: Verify your database user has appropriate read permissions
+3. **Connection Details**: Gather your database connection information:
+   - Host address
+   - Port number (default: 5432)
+   - Database name
+   - Username and password
 
-#### Option 2: Use Pre-built Template
-1. **Start with Template**:
-   - Use ready-made webhook template
-   - Customize as needed
-   - Implement common scenarios
+<Callout type="warning">
+Ensure your database user has appropriate permissions to access the selected schemas and tables.
+</Callout>
 
-### Important Note
-Always test webhook endpoints before production deployment.
+### Step 2: Configure PostgreSQL Node
 
+1. **Add PostgreSQL Node**: Drag the PostgreSQL node to your flow
+2. **Enter Credentials**: Provide your database connection details
+3. **Configure Schema**: Enter the database schema to process
+4. **Set Table/View**: Specify the table or materialized view name
+
+### Step 3: Test and Deploy
+
+1. **Test Connection**: Verify the node can connect to your PostgreSQL database
+2. **Configure Sync Settings**: Set up sync mode, schedule, and table filters
+3. **Deploy Flow**: Activate the flow to start syncing data
 
 ## Configuration Reference
 
-### Batch Trigger Parameters
+### PostgreSQL Node Parameters
 
-| **Parameter**       | **Description**                                                                                             | **Required** | **Config Key**        |
-|---------------------|-------------------------------------------------------------------------------------------------------------|--------------|----------------------|
-| **Name**           | Display name for the node                                                                                    | ✅           | `nodeName`           |
-| **Credentials**    | PostgreSQL authentication details (Host, Port, Database, Username, Password)                                 | ✅           | `credentials`        |
-| **Schema**         | Database schema to be processed                                                                              | ✅           | `schemas`            |
-| **Table/View**     | Source table for data processing                                                                            | ✅           | `tables`             |
-| **Sync Mode**      | `incremental` or `full-refresh`                                                                             | ✅           | `syncMode`           |
-| **Sync Schedule**  | Cron expression for scheduling                                                                              | ✅           | `cronExpression`     |
+| **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
+| **Credentials**                  | PostgreSQL database connection details                                                                       | ✅           | -           | `PostgreSQL Connection`                         |
+| **Schema**                       | Database schema to be processed                                                                              | ✅           | -           | `public`                                        |
+| **Table/View**                   | Source table or materialized view for data processing                                                        | ✅           | -           | `users`                                         |
+| **Sync Mode**                    | Controls how data is re-indexed: `incremental` or `full-refresh`                                            | ✅           | `incremental` | `incremental`                                   |
+| **Sync Schedule**                | Schedule for automated syncs using cron expressions                                                         | ✅           | -           | `0 0 * * *`                                     |
 
+### Sync Configuration Options
 
-
-## Low-Code Example
+#### Sync Modes
 ```yaml
-triggerNode:
-  nodeId: triggerNode_1
-  nodeType: postgresNode
-  nodeName: Postgres
-  values:
-    credentials: Test_212
-    syncMode: incremental_append
-    cronExpression: 0 0 00 1/1 * ? * UTC
-    schemas: ''
-    tables: 'test'
+# Incremental Sync (recommended)
+sync_mode: "incremental"  # Only sync new/modified data
+
+# Full Refresh
+sync_mode: "full-refresh"  # Re-index all data
+```
+
+#### Schedule Examples
+```yaml
+# Daily at midnight
+sync_schedule: "0 0 * * *"
+
+# Every 6 hours
+sync_schedule: "0 */6 * * *"
+
+# Weekdays only at 9 AM
+sync_schedule: "0 9 * * 1-5"
+
+# Every 30 minutes
+sync_schedule: "*/30 * * * *"
+```
+
+### Database Configuration
+
+#### Schema and Table Selection
+```yaml
+# Single schema and table
+schema: "public"
+table: "users"
+
+# Multiple schemas (comma-separated)
+schemas: "public,analytics,reports"
+
+# Multiple tables (comma-separated)
+tables: "users,orders,products"
+```
+
+## Usage Examples
+
+### Basic PostgreSQL Sync
+
+```yaml
+# Basic configuration for syncing user data
+credentials: "PostgreSQL Connection"
+schema: "public"
+table: "users"
+sync_mode: "incremental"
+sync_schedule: "0 0 * * *"  # Daily at midnight
+```
+
+### Advanced Configuration
+
+```yaml
+# Advanced setup with multiple schemas and scheduling
+credentials: "PostgreSQL Connection"
+schema: "analytics"
+table: "user_metrics"
+sync_mode: "incremental"
+sync_schedule: "0 2 * * *"  # Daily at 2 AM
+```
+
+### Materialized View Sync
+
+```yaml
+# Sync data from a materialized view
+credentials: "PostgreSQL Connection"
+schema: "reports"
+table: "daily_summary_mv"  # Materialized view
+sync_mode: "full-refresh"  # Full refresh for materialized views
+sync_schedule: "0 6 * * *"  # Daily at 6 AM
 ```
 
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**                | **Solution**                                                                                  |
-|---------------------------|----------------------------------------------------------------------------------------------|
-| **Connection Failed**      | Verify PostgreSQL credentials and network connectivity                                        |
-| **Table Not Found**        | Confirm schema and table names                                                               |
-| **Sync Issues**           | Check Cron expression and sync mode settings                                                  |
-| **Permission Denied**      | Verify database user permissions                                                             |
+| **Problem**                    | **Solution**                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------------- |
+| **Connection Failed**          | Verify PostgreSQL credentials and network connectivity                                       |
+| **Table Not Found**            | Check schema and table names, ensure they exist in the database                             |
+| **Permission Denied**          | Ensure your database user has appropriate read permissions                                  |
+| **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                 |
+| **Schema Access Error**        | Verify you have access to the specified database schema                                     |
 
-### Debugging Tips
+### Debugging Steps
 
-- Check Lamatic Flow logs for error details
-- Verify PostgreSQL connection parameters
-- Test database access permissions
-- Validate table structure and compatibility
+1. **Verify Credentials**: Test your PostgreSQL connection details
+2. **Check Database Access**: Ensure you can connect to the database using a client
+3. **Validate Schema/Table**: Confirm the schema and table exist and are accessible
+4. **Test Permissions**: Verify your user has read permissions on the target objects
+5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
+
+### Best Practices
+
+- Use `incremental` sync mode for better performance with large tables
+- Schedule syncs during off-peak hours to minimize database impact
+- Use materialized views for complex queries that need regular updates
+- Implement appropriate database indexes for better sync performance
+- Regularly monitor sync logs for any issues
+- Consider using read replicas for sync operations to avoid impacting production
+
+## Example Use Cases
+
+### Data Intelligence Workflows
+- **User Analytics**: Sync user behavior data for AI-powered insights
+- **Business Metrics**: Process sales, inventory, and performance data
+- **Customer Data**: Index customer profiles and interactions for personalized experiences
+- **Operational Data**: Automate access to logs, events, and system metrics
+
+### RAG Applications
+- **Semantic Search**: Enable natural language search across database records
+- **Question Answering**: Build AI assistants that can answer questions about business data
+- **Data Summarization**: Automatically summarize large datasets and reports
+- **Content Discovery**: Help users find relevant information across database tables
+
+## Related Resources
+
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [Cron Expression Guide](https://crontab.guru/)

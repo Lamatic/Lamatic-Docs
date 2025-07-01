@@ -1,6 +1,6 @@
 {
   "azure": "Azure",
-  "amazon": "Amazon",
+  "bedrock": "Bedrock",
   "anthropic": "Anthropic",
   "cloudflare": "Cloudflare",
   "cohere": "Cohere",
@@ -14,6 +14,6 @@
   "open-ai": "OpenAI",
   "perplexity-ai": "Perplexity AI",
   "together-ai": "Together AI",
-  "voyage-AI": "Voyage AI",
+  "voyage-ai": "Voyage AI",
   "xai": "xAI"
 } 

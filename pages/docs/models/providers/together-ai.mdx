@@ -1,34 +1,127 @@
 ---
 title: Together AI
+description: Together AI provides a comprehensive platform that enables developers, researchers, and businesses to train, fine-tune, and deploy AI models efficiently with access to a wide range of models.
 ---
 
 [Together AI Account Setting]: https://api.together.ai/settings/profile
+[Together AI Docs]: https://docs.together.ai/
+[Together AI Models]: https://docs.together.ai/docs/models
 
 [Lamatic.ai Studio]: https://studio.lamatic.ai
-[Lamatic support]: https://support.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
 
 # Together AI 
-Together AI provide a comprehensive platform that enables developers, researchers, and businesses to train, fine-tune, and deploy AI models efficiently.
 
-1. Visit [Together AI Account Setting][Together AI Account Setting]
-2. Access API keys section
-3. Generate new key
-4. In [Lamatic.ai Studio]: Models → Together AI → Paste key
+Together AI provides a comprehensive platform that enables developers, researchers, and businesses to train, fine-tune, and deploy AI models efficiently. They offer access to a wide range of models and provide tools for custom model development.
+
+<Callout type="info">Provider Slug: `together-ai`</Callout>
+
+## Get Started
+
+### Step 1: Create Together AI Account
+1. Visit the [Together AI Account Setting][Together AI Account Setting]
+2. Sign up for a new account or log in to your existing account
+3. Complete the account verification process
+
+### Step 2: Generate API Key
+1. Navigate to the **API Keys** section in your Together AI dashboard
+2. Click **Generate New Key**
+3. Give your API key a descriptive name
+4. Copy the generated API key (you won't be able to see it again)
 
 ![Together AI](./img/togetherai.png)
 
-### Follow these general steps in Lamatic.ai:
+### Step 3: Configure in Lamatic
 1. Open your [Lamatic.ai Studio]
-2. Navigate to Models section
-3. Select Together AI provider
-4. Paste the API key in the designated field
+2. Navigate to **Models** section
+3. Select **Together AI** from the provider list
+4. Paste your API key in the designated field
 5. Save your changes
 
-## Important Notes
-- Keep your API keys secure and never share them
-- Some providers may require additional setup steps
-- Regularly rotate your API keys for security
-- Test your integration after adding each key
+## Key Features
 
+- **Wide Model Access**: Access to hundreds of open-source and proprietary models
+- **Custom Model Training**: Tools for training and fine-tuning your own models
+- **Cost Effective**: Competitive pricing for model inference and training
+- **High Performance**: Optimized infrastructure for fast model serving
+- **Developer Friendly**: Comprehensive API and documentation
+- **Scalable**: Automatic scaling based on demand
+- **Research Support**: Specialized tools for AI research and development
+
+## Available Models
+
+Together AI supports a wide variety of models including:
+
+- **Open Source Models**: Llama, Mistral, CodeLlama, and many others
+- **Proprietary Models**: Access to various commercial models
+- **Custom Models**: Deploy and serve your own trained models
+- **Specialized Models**: Models for specific tasks like coding, reasoning, and creative writing
+- **Research Models**: Models designed for research and experimentation
+
+Check the [Together AI Models][Together AI Models] documentation for the complete list of available models and their specifications.
+
+## Configuration Options
+
+- **API Key**: Your Together AI API key for authentication
+- **Model Selection**: Choose from available Together AI models
+- **Custom Parameters**: Configure temperature, max_tokens, top_p, and other generation parameters
+- **Streaming**: Enable real-time text generation streaming
+- **Custom Model Endpoints**: Use your own trained models if available
+- **Training Configuration**: Configure model training parameters if applicable
+
+## Best Practices
+
+- **API Key Security**: Keep your API keys secure and never share them publicly
+- **Rate Limiting**: Be aware of Together AI's rate limits and implement appropriate throttling
+- **Model Selection**: Choose the appropriate model based on your use case and budget
+- **Error Handling**: Implement proper error handling for API failures and rate limits
+- **Cost Optimization**: Monitor your usage and optimize prompts to reduce token consumption
+- **Performance Monitoring**: Track model performance and latency for your specific use cases
+- **Custom Model Management**: If using custom models, ensure proper versioning and deployment
+
+## Troubleshooting
+
+**Invalid API Key:**
+- Verify your API key is correct and hasn't expired
+- Check if your account has sufficient credits
+- Ensure the API key has the necessary permissions
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff in your requests
+- Consider upgrading your Together AI plan for higher limits
+- Monitor your usage in the Together AI dashboard
+
+**Model Not Available:**
+- Check if the model is available in your region
+- Verify your account has access to the specific model
+- Contact Together AI support for model availability issues
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your account is active and verified
+- Verify you're using the correct API endpoint
+
+**Custom Model Issues:**
+- Verify your custom model is properly deployed and running
+- Check model endpoint configuration
+- Ensure proper permissions for custom model access
+- Verify model compatibility and versioning
+
+## Important Notes
+
+- Keep your API keys secure and never share them
+- Regularly rotate your API keys for enhanced security
+- Monitor your usage and costs in the Together AI dashboard
+- Test your integration after adding each key
+- Some models may require additional setup or approval
+- Be aware of Together AI's terms of service and usage policies
+- Custom models may have different pricing and availability
+- Consider model licensing and usage rights for custom models
+
+## Additional Resources
+
+- [Together AI API Documentation][Together AI Docs]
+- [Model Documentation][Together AI Models]
+- [Together AI Community](https://discord.gg/together-ai)
 
 Need help? Contact [Lamatic support]

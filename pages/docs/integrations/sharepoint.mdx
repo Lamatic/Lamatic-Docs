@@ -29,26 +29,17 @@ This integration connects to your organization's SharePoint instance to sync doc
 
 ## Available Functionality
 
-<Tabs items={['Event Triggers', 'Actions']}>
-<Tab>
-
 ### Event Triggers
 ✅ Scheduled document syncing from SharePoint sites <br/>
 ✅ Support for multiple file types (PDF, DOCX, XLSX, etc.)<br/>
 ✅ Folder-specific monitoring and filtering <br/>
 ✅ Incremental and full-refresh sync modes<br/>
 
-</Tab>
-<Tab>
-
 ### Actions
 ✅ Parse and extract text from documents <br/>
 ✅ Vectorize content for RAG workflows <br/>
 ✅ Filter files using glob patterns <br/>
 ✅ Schedule automated sync operations <br/>
-
-</Tab>
-</Tabs>
 
 ## Prerequisites
 
@@ -61,9 +52,6 @@ Before setting up the SharePoint integration, ensure you have:
 
 ## Installation
 
-<Tabs items={['Setup Credentials', 'Configure Node', 'Test Connection']}>
-<Tab>
-
 ### Step 1: Set Up Microsoft 365 Credentials
 
 1. **Get Tenant ID**: Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com)
@@ -74,9 +62,6 @@ Before setting up the SharePoint integration, ensure you have:
 Ensure you have appropriate SharePoint access permissions for the sites you want to sync.
 </Callout>
 
-</Tab>
-<Tab>
-
 ### Step 2: Configure SharePoint Node
 
 1. **Add SharePoint Node**: Drag the SharePoint node to your flow
@@ -84,22 +69,13 @@ Ensure you have appropriate SharePoint access permissions for the sites you want
 3. **Configure Site URL**: Enter the SharePoint site URL you want to sync from
 4. **Set Folder Path**: Specify the folder path within the site (use `"."` for all folders)
 
-</Tab>
-<Tab>
-
 ### Step 3: Test and Deploy
 
 1. **Test Connection**: Verify the node can access your SharePoint site
 2. **Configure Sync Settings**: Set up sync mode, schedule, and file filters
 3. **Deploy Flow**: Activate the flow to start syncing documents
 
-</Tab>
-</Tabs>
-
 ## Configuration Reference
-
-<Tabs items={['Node Parameters', 'Sync Options', 'File Filtering']}>
-<Tab>
 
 ### SharePoint Node Parameters
 
@@ -114,9 +90,6 @@ Ensure you have appropriate SharePoint access permissions for the sites you want
 | **Parsing Strategy**             | Document parsing method: `fast`, `ocr_only`, or `hi_res`                                                    | ✅           | `fast`      | `hi_res`                                        |
 | **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                   | ❌           | `30`        | `30`                                            |
 | **Start Date**                   | Ignore files modified before this UTC datetime (ISO format)                                                 | ❌           | -           | `2017-01-25T00:00:00.000000Z`                   |
-
-</Tab>
-<Tab>
 
 ### Sync Configuration Options
 
@@ -141,9 +114,6 @@ sync_schedule: "0 */6 * * *"
 sync_schedule: "0 9 * * 1-5"
 ```
 
-</Tab>
-<Tab>
-
 ### File Filtering Patterns
 
 #### Common Glob Patterns
@@ -166,13 +136,7 @@ globs: "**/*", "!**/draft/**"
 - **`SHARED_ITEMS`**: Files shared with you by others
 - **`ALL`**: All accessible files (recommended)
 
-</Tab>
-</Tabs>
-
 ## Usage Examples
-
-<Tabs items={['Basic Setup', 'Advanced Configuration', 'Selective Sync']}>
-<Tab>
 
 ### Basic SharePoint Sync
 
@@ -185,9 +149,6 @@ sync_mode: "incremental"
 search_scope: "ALL"
 parsing_strategy: "fast"
 ```
-
-</Tab>
-<Tab>
 
 ### Advanced Configuration
 
@@ -204,9 +165,6 @@ days_to_sync_if_history_full: 30
 start_date: "2024-01-01T00:00:00.000000Z"
 ```
 
-</Tab>
-<Tab>
-
 ### Selective Document Sync
 
 ```yaml
@@ -219,13 +177,7 @@ search_scope: "ACCESSIBLE_DRIVES"
 parsing_strategy: "ocr_only"  # Better for scanned documents
 ```
 
-</Tab>
-</Tabs>
-
 ## Troubleshooting
-
-<Tabs items={['Common Issues', 'Debugging Steps', 'Best Practices']}>
-<Tab>
 
 ### Common Issues
 
@@ -237,9 +189,6 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 | **Permission Denied**          | Ensure your Microsoft 365 account has appropriate SharePoint permissions                   |
 | **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                |
 
-</Tab>
-<Tab>
-
 ### Debugging Steps
 
 1. **Verify Credentials**: Test your Microsoft 365 credentials and Tenant ID
@@ -247,9 +196,6 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 3. **Validate Folder Path**: Confirm the folder path exists and is accessible
 4. **Test Glob Patterns**: Verify file filtering patterns match your documents
 5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
-
-</Tab>
-<Tab>
 
 ### Best Practices
 
@@ -259,9 +205,6 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 - Use `hi_res` parsing for scanned documents and images
 - Regularly monitor sync logs for any issues
 - Set appropriate `days_to_sync_if_history_full` to limit historical data
-
-</Tab>
-</Tabs>
 
 ## Example Use Cases
 

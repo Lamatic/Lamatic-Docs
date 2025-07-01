@@ -1,59 +1,285 @@
 ---
 title: SharePoint
-description: Learn how to connect and configure Microsoft SharePoint for syncing files with Lamatic AI workflows.
+description: The SharePoint integration in Lamatic automates document syncing and processing from Microsoft SharePoint sites. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 ---
 
-# SharePoint Business Integration
+# SharePoint Integration
 
-The SharePoint Business integration node allows you to connect your organization's SharePoint instance with Lamatic AI. This enables you to retrieve, sync, and parse documents stored in SharePoint folders and sites to power your RAG workflows or document intelligence pipelines.
+The SharePoint integration in Lamatic automates document syncing and processing from Microsoft SharePoint sites. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 
-<Callout>
-  You must have appropriate SharePoint access permissions and Microsoft 365
-  credentials to use this integration.
+<Callout type="info">
+This integration connects to your organization's SharePoint instance to sync documents for processing in Lamatic Flow.
 </Callout>
----
 
-## Setup Credentials
+## Features
 
-Provide your Microsoft 365 **Tenant ID**. This is required to authenticate your organization's SharePoint instance.
+### ✅ Key Functionalities
 
-- Go to [Microsoft Entra Admin Center](https://entra.microsoft.com)
-- Navigate to **Azure Active Directory**
-- Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
+- **Document Syncing**: Automatically syncs documents from SharePoint sites and folders
+- **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats
+- **Scheduled Processing**: Supports automated sync schedules with cron expressions
+- **Selective Filtering**: Use glob patterns to filter specific file types and paths
 
-## Node Configuration
+### ✅ Benefits
 
-| Field                               | Description                                                                                              | Example                                     | Required |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------- | ------------------------------------------- | -------- |
-| **Site URL**                        | URL of the SharePoint site to search for files                                                           | `https://lamatic.sharepoint.com/sites/test` | Yes      |
-| **Folder Path**                     | Path to a specific folder within the drive. Use `"."` to search all folders                              | `./TeamDocs/HR`                             | Yes      |
-| **Globs (Path Patterns)**           | Pattern to filter specific files based on extension or name                                              | `**/*.pdf`, `**/*.docx`                     | No       |
-| **Sync Mode**                       | Sync behavior:<br/>- `full_refresh`: Re-index everything<br/>- `incremental`: Update only modified files | `incremental`                               | Yes      |
-| **Sync Schedule**                   | Cron expression for scheduled syncs                                                                      | `0 0 * * *`                                 | No       |
-| **Search Scope**                    | Location to search:<br/>- `ACCESSIBLE_DRIVES`<br/>- `SHARED_ITEMS`<br/>- `ALL`                           | `ALL`                                       | Yes      |
-| **Parsing Strategy**                | Document parsing method:<br/>- `fast`<br/>- `ocr_only`<br/>- `hi_res`                                    | `hi_res`                                    | Yes      |
-| **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                    | `30`                                        | No       |
-| **Start Date**                      | Ignore files modified before this UTC datetime (ISO format)                                              | `2017-01-25T00:00:00.000000Z`               | No       |
+- Automates document collection from SharePoint repositories
+- Enables RAG workflows with organizational knowledge
+- Provides granular control over file selection and processing
+- Supports both incremental and full-refresh synchronization modes
 
----
+## Available Functionality
 
-## Example Use Case
-Use this node to automatically sync the following types of content from your organization's SharePoint instance into Lamatic:
+<Tabs items={['Event Triggers', 'Actions']}>
+<Tab>
 
-- ✅ Company policies and HR documents
-- ✅ Departmental wikis and team knowledge hubs
-- ✅ Project documentation and shared collaboration files
-- ✅ Internal compliance or audit-related content
+### Event Triggers
+✅ Scheduled document syncing from SharePoint sites <br/>
+✅ Support for multiple file types (PDF, DOCX, XLSX, etc.)<br/>
+✅ Folder-specific monitoring and filtering <br/>
+✅ Incremental and full-refresh sync modes<br/>
 
-These documents can then be used for:
+</Tab>
+<Tab>
 
-- 🔍 **Semantic search**
-- ❓ **Question answering (Q&A)**
-- 📝 **Document summarization**
----
+### Actions
+✅ Parse and extract text from documents <br/>
+✅ Vectorize content for RAG workflows <br/>
+✅ Filter files using glob patterns <br/>
+✅ Schedule automated sync operations <br/>
 
-## Tips
+</Tab>
+</Tabs>
 
-- Ensure permissions are properly configured for access to SharePoint resources.
-- For best accuracy on scanned documents or images, prefer `hi_res` or `ocr_only` parsing.
-- Use cron expressions smartly to avoid redundant syncs.
+## Prerequisites
+
+Before setting up the SharePoint integration, ensure you have:
+
+- A Microsoft 365 account with SharePoint access
+- Appropriate permissions to access SharePoint sites and folders
+- Your organization's Tenant ID from Microsoft Entra Admin Center
+- Understanding of SharePoint site structure and file organization
+
+## Installation
+
+<Tabs items={['Setup Credentials', 'Configure Node', 'Test Connection']}>
+<Tab>
+
+### Step 1: Set Up Microsoft 365 Credentials
+
+1. **Get Tenant ID**: Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com)
+2. **Access Azure Active Directory**: Go to **Azure Active Directory** section
+3. **Copy Tenant ID**: Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
+
+<Callout type="warning">
+Ensure you have appropriate SharePoint access permissions for the sites you want to sync.
+</Callout>
+
+</Tab>
+<Tab>
+
+### Step 2: Configure SharePoint Node
+
+1. **Add SharePoint Node**: Drag the SharePoint node to your flow
+2. **Enter Credentials**: Provide your Microsoft 365 Tenant ID
+3. **Configure Site URL**: Enter the SharePoint site URL you want to sync from
+4. **Set Folder Path**: Specify the folder path within the site (use `"."` for all folders)
+
+</Tab>
+<Tab>
+
+### Step 3: Test and Deploy
+
+1. **Test Connection**: Verify the node can access your SharePoint site
+2. **Configure Sync Settings**: Set up sync mode, schedule, and file filters
+3. **Deploy Flow**: Activate the flow to start syncing documents
+
+</Tab>
+</Tabs>
+
+## Configuration Reference
+
+<Tabs items={['Node Parameters', 'Sync Options', 'File Filtering']}>
+<Tab>
+
+### SharePoint Node Parameters
+
+| **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
+| **Site URL**                     | URL of the SharePoint site to search for files                                                              | ✅           | -           | `https://lamatic.sharepoint.com/sites/test`     |
+| **Folder Path**                  | Path to a specific folder within the drive. Use `"."` to search all folders                                 | ✅           | -           | `./TeamDocs/HR`                                 |
+| **Globs (Path Patterns)**        | Pattern to filter specific files based on extension or name                                                 | ❌           | `**`        | `**/*.pdf`, `**/*.docx`                         |
+| **Sync Mode**                    | Sync behavior: `full_refresh` or `incremental`                                                              | ✅           | `incremental` | `incremental`                                   |
+| **Sync Schedule**                | Cron expression for scheduled syncs                                                                         | ❌           | -           | `0 0 * * *` (daily at midnight)                 |
+| **Search Scope**                 | Location to search: `ACCESSIBLE_DRIVES`, `SHARED_ITEMS`, or `ALL`                                           | ✅           | `ALL`       | `ALL`                                           |
+| **Parsing Strategy**             | Document parsing method: `fast`, `ocr_only`, or `hi_res`                                                    | ✅           | `fast`      | `hi_res`                                        |
+| **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                   | ❌           | `30`        | `30`                                            |
+| **Start Date**                   | Ignore files modified before this UTC datetime (ISO format)                                                 | ❌           | -           | `2017-01-25T00:00:00.000000Z`                   |
+
+</Tab>
+<Tab>
+
+### Sync Configuration Options
+
+#### Sync Modes
+```yaml
+# Incremental Sync (recommended)
+sync_mode: "incremental"  # Only sync new/modified files
+
+# Full Refresh
+sync_mode: "full_refresh"  # Re-index all files
+```
+
+#### Schedule Examples
+```yaml
+# Daily at midnight
+sync_schedule: "0 0 * * *"
+
+# Every 6 hours
+sync_schedule: "0 */6 * * *"
+
+# Weekdays only at 9 AM
+sync_schedule: "0 9 * * 1-5"
+```
+
+</Tab>
+<Tab>
+
+### File Filtering Patterns
+
+#### Common Glob Patterns
+```yaml
+# All PDF files
+globs: "**/*.pdf"
+
+# All Word and Excel files
+globs: "**/*.docx", "**/*.xlsx"
+
+# Files in specific folders
+globs: "HR/**/*", "Legal/**/*"
+
+# Exclude draft folders
+globs: "**/*", "!**/draft/**"
+```
+
+#### Search Scope Options
+- **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to
+- **`SHARED_ITEMS`**: Files shared with you by others
+- **`ALL`**: All accessible files (recommended)
+
+</Tab>
+</Tabs>
+
+## Usage Examples
+
+<Tabs items={['Basic Setup', 'Advanced Configuration', 'Selective Sync']}>
+<Tab>
+
+### Basic SharePoint Sync
+
+```yaml
+# Basic configuration for syncing all documents
+site_url: "https://company.sharepoint.com/sites/documents"
+folder_path: "."
+globs: "**/*.pdf", "**/*.docx"
+sync_mode: "incremental"
+search_scope: "ALL"
+parsing_strategy: "fast"
+```
+
+</Tab>
+<Tab>
+
+### Advanced Configuration
+
+```yaml
+# Advanced setup with scheduling and filtering
+site_url: "https://company.sharepoint.com/sites/knowledge"
+folder_path: "./TeamDocs"
+globs: "**/*.pdf", "**/*.docx", "!**/draft/**"
+sync_mode: "incremental"
+sync_schedule: "0 2 * * *"  # Daily at 2 AM
+search_scope: "ALL"
+parsing_strategy: "hi_res"
+days_to_sync_if_history_full: 30
+start_date: "2024-01-01T00:00:00.000000Z"
+```
+
+</Tab>
+<Tab>
+
+### Selective Document Sync
+
+```yaml
+# Sync only specific document types from HR folder
+site_url: "https://company.sharepoint.com/sites/hr"
+folder_path: "./Policies"
+globs: "**/*.pdf", "**/*.docx"
+sync_mode: "incremental"
+search_scope: "ACCESSIBLE_DRIVES"
+parsing_strategy: "ocr_only"  # Better for scanned documents
+```
+
+</Tab>
+</Tabs>
+
+## Troubleshooting
+
+<Tabs items={['Common Issues', 'Debugging Steps', 'Best Practices']}>
+<Tab>
+
+### Common Issues
+
+| **Problem**                    | **Solution**                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------------- |
+| **Authentication Failed**      | Verify Tenant ID is correct and you have SharePoint access permissions                     |
+| **Site Not Found**             | Check the Site URL format and ensure you have access to the specified site                 |
+| **Files Not Syncing**          | Verify folder path exists and glob patterns are correctly formatted                        |
+| **Permission Denied**          | Ensure your Microsoft 365 account has appropriate SharePoint permissions                   |
+| **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                |
+
+</Tab>
+<Tab>
+
+### Debugging Steps
+
+1. **Verify Credentials**: Test your Microsoft 365 credentials and Tenant ID
+2. **Check Site Access**: Ensure you can access the SharePoint site in your browser
+3. **Validate Folder Path**: Confirm the folder path exists and is accessible
+4. **Test Glob Patterns**: Verify file filtering patterns match your documents
+5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
+
+</Tab>
+<Tab>
+
+### Best Practices
+
+- Use `incremental` sync mode for better performance
+- Implement specific glob patterns to avoid syncing unnecessary files
+- Schedule syncs during off-peak hours to minimize impact
+- Use `hi_res` parsing for scanned documents and images
+- Regularly monitor sync logs for any issues
+- Set appropriate `days_to_sync_if_history_full` to limit historical data
+
+</Tab>
+</Tabs>
+
+## Example Use Cases
+
+### Document Intelligence Workflows
+- **Company Policies**: Sync HR policies and procedures for automated Q&A
+- **Knowledge Bases**: Index departmental wikis and team documentation
+- **Compliance Documents**: Process legal and audit-related content
+- **Project Documentation**: Automate access to project files and reports
+
+### RAG Applications
+- **Semantic Search**: Enable natural language search across organizational documents
+- **Question Answering**: Build AI assistants that can answer questions about company policies
+- **Document Summarization**: Automatically summarize lengthy reports and documents
+- **Content Discovery**: Help users find relevant information across SharePoint sites
+
+## Related Resources
+
+- [Microsoft Entra Admin Center](https://entra.microsoft.com)
+- [SharePoint API Documentation](https://docs.microsoft.com/en-us/sharepoint/dev/)
+- [Cron Expression Guide](https://crontab.guru/)
+- [Lamatic Flow Templates](https://hub.lamatic.ai/templates)

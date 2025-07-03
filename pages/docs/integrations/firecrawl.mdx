@@ -3,7 +3,7 @@ title: Firecrawl
 description: Firecrawl is a robust tool designed to transform websites into LLM-ready data by leveraging its **Crawler** and **Scraper** functionalities. Whether you need to map website structures or extract specific data, Firecrawl provides a seamless and customizable solution.
 ---
 
-# Firecrawl Documentation
+# Firecrawl Integration
 
 Firecrawl is a robust tool designed to transform websites into LLM-ready data by leveraging its **Crawler** and **Scraper** functionalities. Whether you need to map website structures or extract specific data, Firecrawl provides a seamless and customizable solution.
 
@@ -32,6 +32,10 @@ Before using Firecrawl, ensure the following:
 - Access to the Firecrawl service host URL.
 - Properly configured credentials for Firecrawl.
 - A webhook endpoint for receiving notifications (required for the crawler).
+
+<Callout type="warning">  
+For Self Hosting,If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+</Callout>
 
 ## Installation
 
@@ -187,3 +191,4 @@ The output in the case of async mode will be as follows :
 
 - Check Firecrawl logs for detailed error information.
 - Test the webhook endpoint to confirm it is receiving updates.
+- If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)

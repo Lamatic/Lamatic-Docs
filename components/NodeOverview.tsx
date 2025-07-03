@@ -43,6 +43,8 @@ const IntegrationIcon = ({ title }: { title: string }) => {
       return <AlertTriangle className="w-5 h-5" />;
     case "Installation":
       return <Download className="w-5 h-5" />;
+    case "Setup":
+        return <Download className="w-5 h-5" />;
     case "Configuration":
       return <Settings2 className="w-5 h-5" />;
     case "Configuration Reference":

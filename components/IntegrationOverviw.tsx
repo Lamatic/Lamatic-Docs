@@ -12,7 +12,9 @@ import {
   CheckCircle,
   Settings2,
   Info,
-  FileOutput
+  FileOutput,
+  Cog,
+  BetweenHorizonalEnd
 } from "lucide-react";
 
 // Get Integration page data by slug (example: /pages/docs/integrations/firecrawl)
@@ -42,7 +44,9 @@ const IntegrationIcon = ({ title }: { title: string }) => {
     case "Prerequisites":
       return <AlertTriangle className="w-5 h-5" />;
     case "Installation":
-      return <Download className="w-5 h-5" />;
+      return <BetweenHorizonalEnd className="w-5 h-5" />;
+    case "Setup":
+        return <BetweenHorizonalEnd className="w-5 h-5" />;
     case "Configuration":
       return <Settings2 className="w-5 h-5" />;
     case "Configuration Reference":

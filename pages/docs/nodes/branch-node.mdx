@@ -5,7 +5,12 @@ type: Logic
 order: 6
 ---
 
-# Branch Node Documentation
+import { NodeOverview } from "@/components/NodeOverview"
+
+# Branch Node
+<NodeOverview slug="branch-node"/>
+
+## Overview
 
 The branch node enables the execution of multiple nodes in parallel, allowing actions to run simultaneously instead of one after the other.
 
@@ -97,20 +102,23 @@ nodes:
       - plus-node-addNode_801189
 ```
 
-## Output 
+## Output
 
 #### `input`
+
 - An object containing the data or parameters provided to the node for processing.
 
 #### `output`
+
 - An object representing the result or decision made by the branching logic.
 
 #### `skip`
+
 - A boolean indicating whether the branch condition resulted in skipping further processing or execution.
 
 #### `status`
-- A string denoting the operational status of the node, indicating success or failure of the branching process.
 
+- A string denoting the operational status of the node, indicating success or failure of the branching process.
 
 ### Example Output
 

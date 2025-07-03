@@ -35,6 +35,9 @@ Before setting up the AWS S3 node, ensure you have the following:
 - The target S3 bucket name and configuration.
 - An understanding of IAM policies and credentials.
 
+<Callout type="warning">  
+If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+</Callout>
 ---
 
 ## Installation
@@ -267,3 +270,4 @@ values:
 - Verify IAM policy permissions are correctly configured.
 - Test bucket accessibility using AWS CLI or console.
 - Check Lamatic Flow logs for detailed error information.
+- If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)

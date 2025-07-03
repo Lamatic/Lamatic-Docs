@@ -63,7 +63,8 @@ Before setting up the PostgreSQL integration, ensure you have:
    - Username and password
 
 <Callout type="warning">
-Ensure your database user has appropriate permissions to access the selected schemas and tables.
+Ensure your database user has appropriate permissions to access the selected schemas and tables.  
+If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
 </Callout>
 
 ### Step 2: Configure PostgreSQL Node
@@ -186,6 +187,7 @@ sync_schedule: "0 6 * * *"  # Daily at 6 AM
 3. **Validate Schema/Table**: Confirm the schema and table exist and are accessible
 4. **Test Permissions**: Verify your user has read permissions on the target objects
 5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
+6. If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
 
 ### Best Practices
 

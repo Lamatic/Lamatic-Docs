@@ -4,8 +4,13 @@ description: The Memory Retrieve Node enables searching and retrieving stored me
 type: Data
 order: 10
 ---
+import { NodeOverview } from "@/components/NodeOverview"
 
-# Memory Retrieve Node Documentation
+# Memory Retrieve Node
+
+<NodeOverview slug="memory-retrieve-node"/>
+
+## Overview
 
 The Memory Retrieve Node allows users to search and retrieve stored memories from collections using semantic search capabilities. This node is essential for accessing previously stored contextual information and implementing memory-based features in flow.
 
@@ -121,7 +126,7 @@ The node provides two output formats:
 ## Output
 
 -`rawMemories`: An array of objects representing unprocessed or original memory data retrieved from storage.
--`memories`: An array of objects containing processed or formatted memory data retrieved based on the node’s query or criteria.
+-`memories`: An array of objects containing processed or formatted memory data retrieved based on the node's query or criteria.
 
 ### Example Output
 

@@ -1,21 +1,29 @@
 ---
 title: Generate Image Node
-description: The Generate Image node creates image outputs programmatically that can be integrated into flow.
+description: The Generate Image Node allows users to create images using AI models based on text prompts and configuration parameters.
 type: AI
 order: 4
 ---
 
 import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
-# Image Gen Node
+# Generate Image Node
 
 <NodeOverview slug="generate-image-node" type="ai" />
 
 ## Overview
 
-The Generate Image node creates image outputs programmatically that can be integrated into flow. Images are generated based on specified parameters and prompts. This node leverages models like OpenAI's DALL-E. It is useful for applications requiring automated image generation.
+The Generate Image Node is a powerful AI component that creates images from text descriptions using advanced image generation models. This node enables users to generate custom visuals for various applications including content creation, design prototyping, and creative workflows.
 
-![imggen.png](../img/imggen/imggen.webp)
+![image-gen.png](../img/imggen/imggen.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that processes text input and generates images based on the provided prompts and configuration."
+/>
 
 ## Features
 

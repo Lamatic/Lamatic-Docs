@@ -1,20 +1,31 @@
 ---
 title: Branch Node
-description: The branch node enables the execution of multiple nodes in parallel, allowing actions to run simultaneously instead of one after the other.
+description: The Branch Node creates multiple execution paths in a workflow based on conditions or data routing logic.
 type: Logic
-order: 6
+order: 1
 ---
 
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Branch Node
 <NodeOverview slug="branch-node" type="logic" />
 
 ## Overview
 
-The branch node enables the execution of multiple nodes in parallel, allowing actions to run simultaneously instead of one after the other.
+The Branch Node is a workflow control component that creates multiple execution paths based on conditions or data routing logic. This node enables complex workflow branching and parallel processing of different data streams.
 
 ![branch.png](../img/branch/branch.webp)
+
+## Node Type Information
+
+| **Type** | **Status** |
+|----------|------------|
+| **Batch Trigger** | ❌ False |
+| **Event Trigger** | ❌ False |
+| **Action** | ✅ True |
+
+This node is an **Action** node that creates multiple execution paths in workflows based on conditions and routing logic.
 
 ## Features
 

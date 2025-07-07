@@ -1,10 +1,11 @@
 ---
 title: Variable Node
-description: The Variable Node in Lamatic allows you to define and map variables that can be reused throughout your flow.
+description: The Variable Node allows users to define and manage variables for storing and manipulating data within workflows.
 type: Logic
-order: 4
+order: 6
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Variable Node
 
@@ -12,9 +13,19 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Variable Node in Lamatic allows you to define and map variables that can be reused throughout your flow. This is useful for setting static values, referencing outputs from previous nodes, or making your flows more dynamic and maintainable.
+The Variable Node is a data management component that allows users to define and manage variables for storing and manipulating data within workflows. This node enables dynamic data handling and state management across workflow executions.
 
-![variable node](../img/variable/image.png)
+![variable.png](../img/variable/variable.webp)
+
+## Node Type Information
+
+| **Type** | **Status** |
+|----------|------------|
+| **Batch Trigger** | ❌ False |
+| **Event Trigger** | ❌ False |
+| **Action** | ✅ True |
+
+This node is an **Action** node that defines and manages variables for data storage and manipulation within workflows.
 
 You can map variables in the Variable Node using a simple interface. Each variable can be assigned a type (e.g., string, number) and a value, which can be a static value or a reference to another node's output.
 

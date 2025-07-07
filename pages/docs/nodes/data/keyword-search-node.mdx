@@ -1,10 +1,11 @@
 ---
 title: Keyword Search Node
-description: The Keyword Search Node is designed to search for specific keywords within a Vector Database.
+description: The Keyword Search Node performs text-based searches using specific keywords and phrases to find relevant content.
 type: Data
-order: 6
+order: 5
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 
 # Keyword Search Node
@@ -13,9 +14,16 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Keyword Search Node is designed to search for specific keywords within a Vector Database.
+The Keyword Search Node is a search component that performs text-based searches using specific keywords and phrases. This node enables users to find relevant content based on exact keyword matches and text patterns.
 
-![keyword.png](../img/keyword/keyword.webp)
+![keyword-search.png](../img/keyword/keyword.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that performs keyword-based search operations to find relevant content in datasets."
+/>
 
 ## Features
 

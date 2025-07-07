@@ -1,39 +1,51 @@
 ---
 title: Classifier Node
-description: The Classifier Node categorizes and routes input data based on predefined classification criteria
+description: The Classifier Node allows users to categorize and classify data based on predefined criteria or machine learning models.
 type: AI
-order: 4
+order: 2
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Classifier Node
 
-<NodeOverview slug="classifier-node" type="ai"/>
+<NodeOverview slug="classifier-node" type="ai" />
 
 ## Overview
 
-The Classifier Node processes input data and classifies it into predefined categories. This node is essential for applications requiring automated data categorization, intent recognition, or routing tasks based on classification results.
+The Classifier Node is a powerful AI component that enables users to automatically categorize and classify data based on predefined criteria or machine learning models. This node is essential for applications requiring intelligent data sorting, sentiment analysis, content moderation, and automated decision-making processes.
 
-![agentc.png](../img/agentc/agent-classifier.png)
+![classifier.png](../img/classifier/classifier.png)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that processes input data and classifies it into predefined categories using AI models."
+/>
 
 ## Features
 
 <details>
   <summary>**Key Functionalities**</summary>
-  1. **Multi-Input Classification:** Supports both text and structured data inputs for classification. 
-  2. **Customizable Categories:** Allows defining specific categories for classification based on application needs. 
-  3. **Intent Recognition:** Identifies user intent from textual input and maps it to predefined intents. 
-  4. **Automated Routing:** Routes data or user queries to the appropriate workflow based on classification results. 
-  5. **LLM Integration:** Uses large language models to enhance classification accuracy and contextual understanding.
+  1. **Multi-Input Classification:** Supports both text and structured data inputs
+  for classification. 2. **Customizable Categories:** Allows defining specific categories
+  for classification based on application needs. 3. **Intent Recognition:** Identifies
+  user intent from textual input and maps it to predefined intents. 4. **Automated
+  Routing:** Routes data or user queries to the appropriate workflow based on classification
+  results. 5. **LLM Integration:** Uses large language models to enhance classification
+  accuracy and contextual understanding.
 </details>
 
 <details>
   <summary>**Benefits**</summary>
-  1. **Improved Automation:** Reduces manual intervention by automatically categorizing input data. 
-  2. **Enhanced User Experience:** Directs queries or data to the appropriate processing module efficiently. 
-  3. **Scalability:** Supports multiple classification tasks across different domains. 
-  4. **Efficiency:** Streamlines flow by integrating classification and routing into a single node. 
-  5. **AI-Powered Accuracy:** Leverages advanced AI models for context-aware classification.
+  1. **Improved Automation:** Reduces manual intervention by automatically categorizing
+  input data. 2. **Enhanced User Experience:** Directs queries or data to the appropriate
+  processing module efficiently. 3. **Scalability:** Supports multiple classification
+  tasks across different domains. 4. **Efficiency:** Streamlines flow by integrating
+  classification and routing into a single node. 5. **AI-Powered Accuracy:** Leverages
+  advanced AI models for context-aware classification.
 </details>
 
 ## What can I build?
@@ -57,7 +69,7 @@ The Classifier Node processes input data and classifies it into predefined categ
 
 ## Configuration Reference
 
-![agentc.png](../img/agentc/agent-classifier-config.webp)
+![agentc.png](../img/classifier/classifier-config.webp)
 
 | **Parameter**             | **Description**                                                                                                | **Example Value**            |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
@@ -103,37 +115,40 @@ nodes:
   - nodeId: plus-node-addNode_605143
 ```
 
-## Output 
+## Output
 
 #### `_meta`
+
 - A nested object containing metadata about the request processing.
 
   - **`prompt_tokens`**: The number of tokens in the input prompt provided to the model.
-  - **`completion_tokens`**: The number of tokens generated in the model’s output.
+  - **`completion_tokens`**: The number of tokens generated in the model's output.
   - **`total_tokens`**: The total sum of `prompt_tokens` and `completion_tokens`.
   - **`model_name`**: The identifier of the AI model utilized for processing the request.
   - **`model_provider`**: The organization or entity supplying the AI model.
 
 #### `class`
+
 - The classification label or result determined by the classifier.
 
 #### `condition`
+
 - A secondary attribute indicating the condition or context of the classification.
 
 ### Example Output
 
 ```json
-    {
-      "_meta": {
-      "prompt_tokens": 56,
-      "completion_tokens": 4,
-      "total_tokens": 60,
-      "model_name": "gemini-1.5-pro-latest",
-      "model_provider": "google"
-    },
-    "class": "Classifier 1",
-    "condition": "Classifier 1"
-    }
+{
+  "_meta": {
+    "prompt_tokens": 56,
+    "completion_tokens": 4,
+    "total_tokens": 60,
+    "model_name": "gemini-1.5-pro-latest",
+    "model_provider": "google"
+  },
+  "class": "Classifier 1",
+  "condition": "Classifier 1"
+}
 ```
 
 ## Troubleshooting

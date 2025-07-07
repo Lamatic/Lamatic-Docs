@@ -7,6 +7,7 @@ order: 1
 ---
 
 import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Generate Text Node
 
@@ -18,6 +19,13 @@ The Generate Text node allows users to programmatically generate text outputs by
 
 ![text-gen.png](../img/text-gen/text-llm.webp)
 
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that processes input data and generates text output based on the provided prompt and selected LLM model."
+/>
+
 ## Features
 
 <details>
@@ -26,7 +34,7 @@ The Generate Text node allows users to programmatically generate text outputs by
 
 2. **Customizable Prompts**: Features a field for creating prompt templates, enabling tailored input for specific use cases.
 
-3. **System Prompt Definition**: Includes an option to define a system-level prompt to guide the AI’s behavior, ensuring context-aware and role-specific responses.
+3. **System Prompt Definition**: Includes an option to define a system-level prompt to guide the AI's behavior, ensuring context-aware and role-specific responses.
 
 4. **Additional Properties Management**: Offers expandable sections for configuring advanced properties to fine-tune AI-generated outputs.
 </details> 
@@ -38,7 +46,7 @@ The Generate Text node allows users to programmatically generate text outputs by
 
 6. **User-Centric Design**: Provides intuitive interfaces for prompt customization and system prompt definition, making it accessible to both beginners and advanced users.
 
-7. **Enhanced Control**: Enables precise control over the AI’s behavior and output quality through customizable prompts and system configurations.
+7. **Enhanced Control**: Enables precise control over the AI's behavior and output quality through customizable prompts and system configurations.
 
 8. **Scalability**: Facilitates the creation of reusable prompt templates for diverse flow, ensuring consistency across projects.
 </details>

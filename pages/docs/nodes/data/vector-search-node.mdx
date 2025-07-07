@@ -1,10 +1,11 @@
 ---
 title: Vector Search Node
-description: Vector search Node provides the ability to retrieve information where documents and queries are represented as vectors instead of plain text.
+description: The Vector Search Node performs semantic search operations on vector databases to find similar content.
 type: Data
-order: 6
+order: 9
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Vector Search Node
 
@@ -12,9 +13,15 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-Vector search Node provides the ability to retrieve information where documents and queries are represented as vectors instead of plain text.
+The Vector Search Node is a semantic search component that performs similarity-based searches on vector databases. This node enables finding content that is semantically similar to the search query, rather than just keyword matches.
 
-![vector.png](../img/vector/vector.webp)
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that performs semantic search operations on vector databases to find similar content."
+/>
+
 
 ## Features
 

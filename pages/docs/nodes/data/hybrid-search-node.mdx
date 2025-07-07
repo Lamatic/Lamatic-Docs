@@ -1,19 +1,27 @@
 ---
 title: Hybrid Search Node
-description: The Hybrid Search node provides the ability to embed a vector search of a connected vector database within a Lamatic flow.
+description: The Hybrid Search Node combines multiple search strategies to provide comprehensive and accurate search results from vector databases.
 type: Data
-order: 5
+order: 3
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Hybrid Search Node
 <NodeOverview slug="hybrid-search-node" type="data" />
 
 ## Overview
 
-The Hybrid Search node provides the ability to embed a vector search of a connected vector database within a Lamatic flow.
+The Hybrid Search Node is an advanced search component that combines multiple search strategies including semantic search, keyword search, and other retrieval methods to provide comprehensive and accurate results from vector databases.
 
-![hybrid.png](../img/hybrid/hybrid.webp)
+![hybrid-search.png](../img/hybrid/hybrid.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that performs hybrid search operations combining multiple search strategies to retrieve relevant data."
+/>
 
 ## Features
 

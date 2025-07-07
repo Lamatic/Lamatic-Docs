@@ -1,19 +1,31 @@
 ---
 title: Execute Flow Node
-description: The Execute Flow in Lamatic enables execution of other flows within your current workflow, facilitating modular and reusable flow designs.
+description: The Execute Flow Node allows users to call and execute other workflows from within a current workflow.
 type: Logic
-order: 3
+order: 4
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
-# Execute Flow 
+# Execute Flow Node
 
 <NodeOverview slug="execute-flow" type="logic" />
 
 ## Overview
 
-The Execute Flow in Lamatic enables execution of other flows within your current workflow, facilitating modular and reusable flow designs. This node serves as a powerful tool for creating complex, interconnected flow by allowing flows to be used as building blocks.
-![execute.png](../img/execute/execute.webp)
+The Execute Flow Node is a workflow orchestration component that allows users to call and execute other workflows from within a current workflow. This node enables modular workflow design and reusability of workflow components.
+
+![execute-flow.png](../img/execute/execute-flow.webp)
+
+## Node Type Information
+
+| **Type** | **Status** |
+|----------|------------|
+| **Batch Trigger** | ❌ False |
+| **Event Trigger** | ❌ False |
+| **Action** | ✅ True |
+
+This node is an **Action** node that executes other workflows from within the current workflow for modular workflow design.
 
 ## Features
 

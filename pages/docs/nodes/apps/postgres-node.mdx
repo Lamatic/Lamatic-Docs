@@ -1,20 +1,31 @@
 ---
-title: Postgres Node
+title: PostgreSQL Node
 
-description: PostgreSQL Node in Lamatic automates data synchronization from PostgreSQL databases.
-type: App
-order: 3
+description: The PostgreSQL Node allows users to interact with PostgreSQL databases for data storage and retrieval operations.
+type: Apps
+order: 2
 ---
 
 import { NodeOverview } from "@/components/NodeOverview";
 
-# Postgres Node
+# PostgreSQL Node
 
-<NodeOverview slug="postgres-node" type="apps"  />
+<NodeOverview slug="postgres-node" type="apps" />
+
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 ## Overview
 
-PostgreSQL Node in Lamatic automates data synchronization from PostgreSQL databases. The node allows users to run the queries from the Postgres Database.
+The PostgreSQL Node is a database integration component that allows users to interact with PostgreSQL databases. This node enables data storage, retrieval, and manipulation operations within workflows.
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={true}
+  action={true}
+  description="This node is an Action node that processes input data and classifies it into predefined categories using AI models."
+/>
+
+This node is an **Action** node that performs database operations on PostgreSQL databases for data storage and retrieval.
 
 <Callout type="info">
   This integration connects to your PostgreSQL database to sync data for

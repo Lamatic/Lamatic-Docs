@@ -4,7 +4,8 @@ description: You can use Firecrawl with the Crawl node to systematically browse 
 type: App
 order: 2
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Scraper Node
 <NodeOverview slug="scraper-node" type="apps" />
@@ -14,6 +15,16 @@ import { NodeOverview } from "@/components/NodeOverview"
 Scraper Node is a web scraping tool designed to transform entire websites into structured, LLM-compatible data using Firecrawl. It Extract targeted content from specific web pages using customizable rules.
 
 ![scraper.png](../img/scraper/scraper.webp)
+
+## Node Type Information
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that scrapes web content from specified URLs using Firecrawl, extracting structured data for further processing."
+/>
+
 
 ## Features
 

@@ -1,10 +1,11 @@
 ---
 title: Code Node
-description: The Lamatic.ai JavaScript Code Node empowers users to integrate custom logic seamlessly into their flow.
+description: The Code Node allows users to execute custom JavaScript code within workflows for data processing and logic implementation.
 type: Logic
-order: 1
+order: 2
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Code Node 
 
@@ -12,8 +13,19 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Lamatic.ai JavaScript Code Node allows users to enhance their workflow automation by integrating custom logic into their Lamatic flow. It provides a flexible and powerful way to manipulate data and create complex operations within the Lamatic platform using JavaScript. This node is designed to be user-friendly, enabling developers to easily add, test, and deploy their code within the platform. By using this node, users can tailor their flow to meet specific needs.
-![logic.png](../img/logic/code.webp)
+The Code Node is a programming component that allows users to execute custom JavaScript code within workflows. This node enables custom data processing, logic implementation, and integration with external systems through code.
+
+![code.png](../img/code/code.webp)
+
+## Node Type Information
+
+| **Type** | **Status** |
+|----------|------------|
+| **Batch Trigger** | ❌ False |
+| **Event Trigger** | ❌ False |
+| **Action** | ✅ True |
+
+This node is an **Action** node that executes custom JavaScript code for data processing and logic implementation in workflows.
 
 <Callout type="info">
  We will expand support to include additional programming languages.

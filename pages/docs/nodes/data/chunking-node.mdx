@@ -1,19 +1,27 @@
 ---
 title: Chunking Node
-description: The Chunking node is a tool designed to parse data into manageable chunks to facilitate vectorization and semantic retrieval. By breaking text into smaller, logical units, it prepares the data for more efficient processing and analysis.
+description: The Chunking Node breaks down large text documents into smaller, manageable chunks for processing by AI models.
 type: Data
-order: 9
+order: 1
 ---
 import { NodeOverview } from "@/components/NodeOverview"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
 
 # Chunking Node
 <NodeOverview slug="chunking-node" type="data" />
 
 ## Overview
 
-The Chunking node is a tool designed to parse data into manageable chunks to facilitate vectorization and semantic retrieval. By breaking text into smaller, logical units, it prepares the data for more efficient processing and analysis. This node can be configured to use specific chunking methodologies and separators, ensuring that the text is divided in a way that maintains context and relevance. Lamatic.ai provides this functionality as part of its suite of tools to enhance data processing and streamline flow, making it easier for users to manage large datasets and extract meaningful insights.
+The Chunking Node is a data processing component that breaks down large text documents into smaller, manageable chunks. This is essential for processing large documents with AI models that have token limits, enabling efficient text analysis and processing.
 
-![chunk.png](../img/chunk/chunk.webp)
+![chunking.png](../img/chunk/chunk.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that processes large text documents and breaks them into smaller chunks for further processing."
+/>
 
 ## Features
 
@@ -24,7 +32,7 @@ The Chunking node is a tool designed to parse data into manageable chunks to fac
 
 1. **Semantic Preparation:** Break data into manageable chunks optimized for vectorization and semantic retrieval processes.
 
-1. **Flexible Integration:** Incorporate Lamatic.ai’s Chunking node into various flow for tailored data processing solutions.
+1. **Flexible Integration:** Incorporate Lamatic.ai's Chunking node into various flow for tailored data processing solutions.
 
 1. **Contextual Integrity:** Ensure the resulting chunks maintain relevance and logical flow for downstream analysis.
 
@@ -102,48 +110,6 @@ nodes:
 - The textual content of the chunk, extracted from the input data.
 
 #### `metadata`
-- A nested object providing additional details about the chunk’s origin or properties.
+- A nested object providing additional details about the chunk's origin or properties.
 
 #### `loc`
-- A nested object specifying the location of the chunk within the source document.
-
-#### `lines`
-- A nested object indicating the line range of the chunk in the source document.
-
-#### `from`
-- The starting line number of the chunk.
-
-#### `to`
-- The ending line number of the chunk.
-
-### Example Output
-
-```json
-{
-    "chunks": [
-      {
-        "pageContent": "LLM transformers, like GPT and BERT, use self-attention mechanisms to process and generate human-like text efficiently across various natural language tasks.",
-        "metadata": {
-          "loc": {
-            "lines": {
-              "from": 1,
-              "to": 1
-            }
-          }
-        }
-      }
-    ]
-  }
-```
-
-## Troubleshooting
-
-### Common Issues
-
-| **Problem**                    | **Solution**                                                 |
-| ------------------------------ | ------------------------------------------------------------ |
-| **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration. |
-
-### Debugging
-
-1. Check Lamatic Flow logs for error details.

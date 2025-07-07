@@ -1,10 +1,11 @@
 ---
 title: Wait Node
-description: The Lamatic.ai Wait Node allows you to wait for a specified duration (1–90 seconds) during flow execution.
+description: The Wait Node introduces delays in workflow execution for timing control and rate limiting purposes.
 type: Logic
-order: 9
+order: 7
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Wait Node
 
@@ -12,9 +13,19 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Lamatic.ai Wait Node allows you to introduce a controlled wait during your flow execution for a duration between 1 and 90 seconds. This is ideal for handling rate limits, sequencing actions, or waiting between dependent steps.
+The Wait Node is a timing control component that introduces delays in workflow execution. This node is useful for rate limiting, scheduling, and ensuring proper timing between workflow steps.
 
-![wait.png](../img/wait/wait-node.webp)
+![wait.png](../img/wait/wait.webp)
+
+## Node Type Information
+
+| **Type** | **Status** |
+|----------|------------|
+| **Batch Trigger** | ❌ False |
+| **Event Trigger** | ❌ False |
+| **Action** | ✅ True |
+
+This node is an **Action** node that introduces controlled delays in workflow execution for timing and rate limiting purposes.
 
 ## Features
 

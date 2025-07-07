@@ -1,8 +1,11 @@
 ---
 title: Supervisor Node
-description: The Supervisor Node orchestrates multi-agent flow by collecting input, maintaining memory, and coordinating execution paths.
+description: The Supervisor Node monitors and manages the execution of other nodes in a workflow, providing oversight and control capabilities.
+type: AI
+order: 7
 ---
 import { NodeOverview } from "@/components/NodeOverview"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
 
 # Supervisor Node
 
@@ -10,9 +13,16 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The **Supervisor Node** is a central agent that orchestrates multi-agent flow. It collects input, maintains structured memory, and coordinates with sub-agents based on predefined logic. This node ensures a seamless iterative process for dynamic AI-powered applications, including structured decision-making systems and task automation.
+The **Supervisor Node** is an advanced AI component that provides oversight and management capabilities for workflow execution. It can monitor the performance of other nodes, make decisions about workflow routing, and ensure quality control throughout the process.
 
 ![Supervisor Node](../img/supervisor/supervisor-node.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that monitors and manages workflow execution while providing oversight and control capabilities."
+/>
 
 ## Features
 

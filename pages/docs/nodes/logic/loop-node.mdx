@@ -1,10 +1,11 @@
 ---
 title: Loop Node
-description: The Loop Node enables iteration over a range of values or a list, allowing repeated execution of processes within a workflow
+description: The Loop Node enables iterative processing of data by repeating operations on collections or arrays of data.
 type: Logic
-order: 3
+order: 5
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Loop Node
 
@@ -12,9 +13,19 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Loop Node allows users to execute loops in a workflow by iterating over a specified range or a list of objects. This node is particularly useful for automating repetitive tasks, handling iterative processing, and managing multiple data points within a single workflow execution.
+The Loop Node is a control flow component that enables iterative processing of data by repeating operations on collections or arrays. This node is essential for processing large datasets and implementing repetitive logic in workflows.
 
-![forloop.png](../img/loop-node/loop.webp)
+![loop.png](../img/loop-node/loop-node.webp)
+
+## Node Type Information
+
+| **Type** | **Status** |
+|----------|------------|
+| **Batch Trigger** | ❌ False |
+| **Event Trigger** | ❌ False |
+| **Action** | ✅ True |
+
+This node is an **Action** node that performs iterative processing on collections of data by repeating operations.
 
 ## Features
 

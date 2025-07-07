@@ -1,20 +1,29 @@
 ---
-title: Vector Action Node
-description: Vector action node enables indexing, filtering, and deletion of vector records in vector databases.
+title: VectorDB Node
+description: The VectorDB Node performs various operations on vector databases including insertion, deletion, and management of vector data.
 type: Data
-order: 7
+order: 8
 ---
-import { NodeOverview } from "@/components/NodeOverview"
 
-# Vector Action Node
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
-<NodeOverview slug="vector-actions-node" type="data" />
+# VectorDB Node
+
+<NodeOverview slug="vectordb-node" type="data" />
 
 ## Overview
 
-The Vector Action Node enables users to **index**, **filter**, and **delete** data from vector databases. These actions form the core of vector-based data workflows in Lamatic.
+The VectorDB Node is a comprehensive vector database management component that performs various operations including insertion, deletion, updating, and management of vector data. This node provides full control over vector database operations.
 
-![vector-action.png](../img/vector/vector_action_node.webp)
+![vector-actions.png](../img/vector/vector-actions.webp)
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={true}
+  action={true}
+  description="This node is an **Action** node that performs various operations on vector databases for data management and manipulation."
+/>
 
 ## Features
 
@@ -34,7 +43,7 @@ The Vector Action Node enables users to **index**, **filter**, and **delete** da
 1. **Flexibility**: Handle multiple vector operations within one node.
 2. **Control**: Fine-tune data updates with filters and duplication settings.
 3. **Efficiency**: Manage large vector datasets with scalable indexing and deletion.
-4. **Search Precision**: Use rich metadata and filters to retrieve exactly what’s needed.
+4. **Search Precision**: Use rich metadata and filters to retrieve exactly what's needed.
 
 </details>
 
@@ -46,11 +55,13 @@ The Vector Action Node enables users to **index**, **filter**, and **delete** da
 
 ---
 
-## 1. Index Action
+## Setup
+
+### 1. Index Action
 
 Indexes vectors and metadata into the selected vector database.
 
-## Configuration Reference
+#### Configuration Reference
 
 | **Parameter**           | **Description**                                                        | **Required** | **Example Value**                 |
 | ----------------------- | ---------------------------------------------------------------------- | ------------ | --------------------------------- |
@@ -60,7 +71,7 @@ Indexes vectors and metadata into the selected vector database.
 | **Primary Keys (JSON)** | Provide unique identifiers for each vector in JSON format.             | Yes          | []                                |
 | **Duplication Records** | Manage duplicates by choosing to `overwrite` or `skip` them.           | No           | `overwrite`                       |
 
-## Low-Code Example
+#### Low-Code Example
 
 ```yaml
 - nodeId: IndexNode_543
@@ -83,36 +94,36 @@ Indexes vectors and metadata into the selected vector database.
       - codeNode_540
 ```
 
+#### Output
 
-## Output
 - `recordsIndexed`: An integer indicating the number of records successfully indexed.
 - `duplicateRecordsDeleted`: An integer representing the number of duplicate records removed during the indexing process.
 - `message`: A string providing a status or summary of the indexing operation.
 
-### Example Output
+##### Example Output
 
 ```json
- {
-    "recordsIndexed": 1,
-    "duplicateRecordsDeleted": 0,
-    "message": "Data indexed successfully"
-  }
+{
+  "recordsIndexed": 1,
+  "duplicateRecordsDeleted": 0,
+  "message": "Data indexed successfully"
+}
 ```
 
-## 2. Filter Action
+### 2. Filter Action
 
 Filters indexed records using metadata and/or vector queries.
 
-### Configuration Reference
+#### Configuration Reference
 
-| **Parameter**   | **Description**                                               | **Required** | **Example**      |
-|-----------------|---------------------------------------------------------------|--------------|------------------|
-| **vectorDB**    | Target vector database                                        | Yes          | `CallData`       |
-| **action**      | Must be set to `filter`                                       | Yes          | `filter`         |
-| **filters**     | JSON filter using logical operators and conditions            | Yes          | See below        |
-| **limit**       | Number of results to return                                   | No           | `20`             |
+| **Parameter** | **Description**                                    | **Required** | **Example** |
+| ------------- | -------------------------------------------------- | ------------ | ----------- |
+| **vectorDB**  | Target vector database                             | Yes          | `CallData`  |
+| **action**    | Must be set to `filter`                            | Yes          | `filter`    |
+| **filters**   | JSON filter using logical operators and conditions | Yes          | See below   |
+| **limit**     | Number of results to return                        | No           | `20`        |
 
-### Example
+#### Example
 
 ```yaml
 - nodeId: vectorNode_2
@@ -121,9 +132,9 @@ Filters indexed records using metadata and/or vector queries.
   values:
     vectorDB: CallData
     action: filter
-    vectorsField: '[]'
-    metadataField: '[]'
-    primaryKeys: ['topic']
+    vectorsField: "[]"
+    metadataField: "[]"
+    primaryKeys: ["topic"]
     duplicateOperation: overwrite
     filters: |-
       {
@@ -139,40 +150,41 @@ Filters indexed records using metadata and/or vector queries.
     limit: 20
 ```
 
-## Output
--  `success`: A boolean indicating if the filter operation was successful.
--  `data`: An array of records matching the filter criteria.
--  `count`: The number of records returned by the filter operation.
+#### Output
 
-### Example Output
+- `success`: A boolean indicating if the filter operation was successful.
+- `data`: An array of records matching the filter criteria.
+- `count`: The number of records returned by the filter operation.
+
+##### Example Output
 
 ```json
 {
-    "success": true,
-    "data": [
-      {
-        "title": "Lamatic Docs",
-        "content": "Welcome to the Lamatic documentation!",
-      }
-    ],
-    "count": 1
-  }
+  "success": true,
+  "data": [
+    {
+      "title": "Lamatic Docs",
+      "content": "Welcome to the Lamatic documentation!"
+    }
+  ],
+  "count": 1
+}
 ```
 
-## 3. Delete Action
+### 3. Delete Action
 
 Deletes records matching filter criteria.
 
-### Configuration Reference
+#### Configuration Reference
 
-| **Parameter**   | **Description**                                         | **Required** | **Example**      |
-|-----------------|---------------------------------------------------------|--------------|------------------|
-| **vectorDB**    | Target vector database                                  | Yes          | `CallData`       |
-| **action**      | Must be set to `delete`                                 | Yes          | `delete`         |
-| **filters**     | JSON filter for selecting items to delete               | Yes          | See below        |
-| **primaryKeys** | Optional fields used to match entries for deletion      | No           | `["topic"]`      |
+| **Parameter**   | **Description**                                    | **Required** | **Example** |
+| --------------- | -------------------------------------------------- | ------------ | ----------- |
+| **vectorDB**    | Target vector database                             | Yes          | `CallData`  |
+| **action**      | Must be set to `delete`                            | Yes          | `delete`    |
+| **filters**     | JSON filter for selecting items to delete          | Yes          | See below   |
+| **primaryKeys** | Optional fields used to match entries for deletion | No           | `["topic"]` |
 
-### Example
+#### Example
 
 ```yaml
 - nodeId: vectorNode_3
@@ -181,9 +193,9 @@ Deletes records matching filter criteria.
   values:
     vectorDB: CallData
     action: delete
-    vectorsField: '[]'
-    metadataField: '[]'
-    primaryKeys: ['topic']
+    vectorsField: "[]"
+    metadataField: "[]"
+    primaryKeys: ["topic"]
     duplicateOperation: overwrite
     filters: |-
       {
@@ -201,18 +213,19 @@ Deletes records matching filter criteria.
     - triggerNode_1
 ```
 
-## Output
+#### Output
+
 - `deletedCount`: Number of records successfully deleted.
 - `matches`: Number of records that matched the filter criteria.
 - `failed`: Number of records that failed to delete.
 
-### Example Output
+##### Example Output
 
 ```json
 {
-    "deletedCount": 2,
-    "matches": 2,
-    "failed": 0
+  "deletedCount": 2,
+  "matches": 2,
+  "failed": 0
 }
 ```
 
@@ -220,9 +233,9 @@ Deletes records matching filter criteria.
 
 ### Common Issues
 
-| **Problem**               | **Solution**                                                                 |
-|---------------------------|------------------------------------------------------------------------------|
-| **Invalid Vector DB**     | Ensure the database name exists and is spelled correctly.                   |
-| **Missing Embeddings**    | Make sure vectors are provided or an embedding model is configured.         |
-| **Misconfigured Filters** | Ensure filters use valid JSON and correct field paths and operators.        |
-| **Primary Key Conflicts** | Resolve using `overwrite` or `skip` options for handling duplicates.         |
+| **Problem**               | **Solution**                                                         |
+| ------------------------- | -------------------------------------------------------------------- |
+| **Invalid Vector DB**     | Ensure the database name exists and is spelled correctly.            |
+| **Missing Embeddings**    | Make sure vectors are provided or an embedding model is configured.  |
+| **Misconfigured Filters** | Ensure filters use valid JSON and correct field paths and operators. |
+| **Primary Key Conflicts** | Resolve using `overwrite` or `skip` options for handling duplicates. |

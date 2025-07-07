@@ -1,11 +1,12 @@
 ---
-title: Multimodal Node
-description: The Multimodal Node returns textual output from selected large language models (LLMs).
+title: Multimodel Node
+description: The Multimodel Node allows users to process multiple types of data (text, images, audio) using AI models in a single workflow.
 type: AI
-order: 4
+order: 5
 ---
 
 import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Multimodel Node
 
@@ -13,9 +14,16 @@ import { NodeOverview } from "@/components/NodeOverview";
 
 ## Overview
 
-The Multimodal Node returns textual output from selected large language models (LLMs). It supports both text and image inputs. This node is particularly useful for applications that require a seamless integration of textual and visual data processing, such as image captioning where the text is generated based on the content of an image.
+The Multimodel Node is an advanced AI component that can process and analyze multiple types of data including text, images, and audio using various AI models. This node enables complex multimodal workflows where different types of input data need to be processed together.
 
 ![multimodel.png](../img/multimodel/multimodel.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that processes multiple types of input data and generates outputs using various AI models."
+/>
 
 ## Features
 

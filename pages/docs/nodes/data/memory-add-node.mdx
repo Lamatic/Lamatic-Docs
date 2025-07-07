@@ -1,10 +1,11 @@
 ---
 title: Memory Add Node
-description: The Memory Add Node enables storing and managing contextual information for users and sessions, allowing for persistent data storage within flow
+description: The Memory Add Node stores and manages data in memory for use across workflow executions.
 type: Data
-order: 9
+order: 6
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Memory Add Node
 
@@ -12,9 +13,16 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Memory Node Add allows users to store and manage contextual information by creating persistent memory collections tied to unique users and sessions. This node is particularly useful for maintaining conversation history, user preferences, and other stateful data across workflow executions.
+The Memory Add Node is a data storage component that stores and manages information in memory for use across workflow executions. This node enables persistent data storage and retrieval within workflows.
 
 ![memory-add.png](../img/mem-add/mem-add.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that stores data in memory for persistent use across workflow executions."
+/>
 
 ## Features
 

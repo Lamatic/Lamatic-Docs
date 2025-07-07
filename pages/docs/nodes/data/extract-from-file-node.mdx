@@ -1,10 +1,11 @@
 ---
 title: Extract from File Node
-description: The Extract from File node enables parsing and extraction of data from various file formats including CSV, JSON, Text, HTML, PDF, DOCX, and XLSX.
+description: The Extract from File Node extracts and processes data from various file formats including PDFs, Word documents, and text files.
 type: Data
-order: 3
+order: 2
 ---
 import { NodeOverview } from "@/components/NodeOverview"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
 
 # Extract from File Node
 
@@ -12,9 +13,16 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Extract from File node is designed to parse and extract data from multiple file formats. It provides a flexible interface for handling different file types with customizable configuration options, ensuring accurate data extraction and formatting for downstream processing.
+The Extract from File Node is a powerful data extraction component that can process and extract content from various file formats including PDFs, Word documents, text files, and more. This node enables users to convert unstructured file content into structured data for further processing.
 
-![file.png](../img/file/extract.webp)
+![extract-file.png](../img/file/extract.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that extracts and processes data from various file formats for use in workflows."
+/>
 
 ## Features
 
@@ -206,10 +214,10 @@ nodes:
 #### `metadata`
 - A nested object containing descriptive attributes of the file.
 
-  - **`mime_type`**: Specifies the file’s MIME type, indicating its format and encoding.
-  - **`type`**: Categorizes the file’s general type.
+  - **`mime_type`**: Specifies the file's MIME type, indicating its format and encoding.
+  - **`type`**: Categorizes the file's general type.
   - **`filename`**: The name of the file.
-  - **`extension`**: The file’s extension.
+  - **`extension`**: The file's extension.
   - **`url`**: The source URL of the file.
   - **`size`**: The file size in bytes, or `null` if not available.
   - **`file_id`**: A unique identifier for the file within the processing context.
@@ -224,17 +232,17 @@ nodes:
 - An array of objects providing unprocessed or detailed extraction data.
 
   - **`metadata`**: A nested object within `raw` detailing file format and creation metadata.
-    - **`format`**: The file’s format version.
-    - **`title`**: The file’s title.
-    - **`author`**: The file’s author.
-    - **`subject`**: A description of the file’s subject.
+    - **`format`**: The file's format version.
+    - **`title`**: The file's title.
+    - **`author`**: The file's author.
+    - **`subject`**: A description of the file's subject.
     - **`keywords`**: Keywords associated with the file.
     - **`creator`**: The software or tool used to create the file.
     - **`producer`**: The software or library that produced the file.
-    - **`creationDate`**: The file’s creation date.
-    - **`modDate`**: The file’s last modification date.
+    - **`creationDate`**: The file's creation date.
+    - **`modDate`**: The file's last modification date.
     - **`trapped`**: Related to PDF trapping status.
-    - **`encryption`**: Indicates the file’s encryption status, or `null` if not encrypted.
+    - **`encryption`**: Indicates the file's encryption status, or `null` if not encrypted.
 
 #### `file_path`
 - A string specifying the temporary or local file path used during processing.

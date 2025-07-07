@@ -1,17 +1,27 @@
 ---
 title: RAG Node
 
-description: The RAG Node generates more relevant responses from a Language Learning Model (LLM) by using Retrieval Augmented Generation (RAG).
+description: The RAG (Retrieval-Augmented Generation) Node combines information retrieval with text generation to provide contextually relevant responses.
 type: AI
-order: 3
+order: 6
 ---
 import { NodeOverview } from "@/components/NodeOverview"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
 
 # RAG Node
 
 <NodeOverview slug="rag-node" type="ai"/>
 
 ## Overview
+
+The RAG (Retrieval-Augmented Generation) Node is a sophisticated AI component that combines information retrieval with text generation. It first retrieves relevant information from a knowledge base or vector database, then uses that context to generate more accurate and informed responses.
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that retrieves relevant information and generates contextually enhanced responses using AI models."
+/>
 
 The RAG Node generates more relevant responses from a Language Learning Model (LLM) by using Retrieval Augmented Generation (RAG). This approach incorporates additional context retrieved from a vector database to improve the accuracy and relevance of the generated text.
 
@@ -133,10 +143,10 @@ nodes:
   - **`certainty`** (duplicate at the top level): Same as the one inside `_additional`.
 
 #### `_meta`
-- Metadata about the model’s processing of the request.
+- Metadata about the model's processing of the request.
 
   - **`prompt_tokens`**: Number of tokens in the input prompt.
-  - **`completion_tokens`**: Number of tokens in the AI’s response.
+  - **`completion_tokens`**: Number of tokens in the AI's response.
   - **`total_tokens`**: Sum of `prompt_tokens` and `completion_tokens`.
 
   - **`prompt_tokens_details`**: Breakdown of token usage in the prompt.

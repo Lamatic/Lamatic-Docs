@@ -1,10 +1,11 @@
 ---
 title: Memory Retrieve Node
-description: The Memory Retrieve Node enables searching and retrieving stored memories from collections using semantic search and filtering capabilities
+description: The Memory Retrieve Node retrieves stored data from memory for use in current workflow executions.
 type: Data
-order: 10
+order: 7
 ---
 import { NodeOverview } from "@/components/NodeOverview"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Memory Retrieve Node
 
@@ -12,9 +13,16 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 ## Overview
 
-The Memory Retrieve Node allows users to search and retrieve stored memories from collections using semantic search capabilities. This node is essential for accessing previously stored contextual information and implementing memory-based features in flow.
+The Memory Retrieve Node is a data retrieval component that fetches stored information from memory for use in current workflow executions. This node enables access to previously stored data and context.
 
 ![memory-retrieve.png](../img/memory-retrieve/mem-ret.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that retrieves data from memory for use in current workflow executions."
+/>
 
 ## Features
 

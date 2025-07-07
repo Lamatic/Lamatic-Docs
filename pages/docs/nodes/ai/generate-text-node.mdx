@@ -1,0 +1,165 @@
+---
+title: Generate Text Node
+
+description: The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs.
+type: AI
+order: 1
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Generate Text Node
+
+<NodeOverview slug="generate-text-node" type="ai" />
+
+## Overview
+
+The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs. These text outputs can be further processed within each flow. This node is particularly useful for applications requiring dynamic text creation, such as chatbots, content creation, and automated report generation.
+
+![text-gen.png](../img/text-gen/text-llm.webp)
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that processes input data and generates text output based on the provided prompt and selected LLM model."
+/>
+
+## Features
+
+<details>
+<summary>**Key Functionalities**</summary>
+1. **Generative Model Selection**: Allows users to select credentials for their preferred generative model, ensuring flexibility and compatibility with various LLMs.
+
+2. **Customizable Prompts**: Features a field for creating prompt templates, enabling tailored input for specific use cases.
+
+3. **System Prompt Definition**: Includes an option to define a system-level prompt to guide the AI's behavior, ensuring context-aware and role-specific responses.
+
+4. **Additional Properties Management**: Offers expandable sections for configuring advanced properties to fine-tune AI-generated outputs.
+</details> 
+
+<details>
+<summary>**Benefits**</summary>
+
+5. **Flexibility**: Supports integration with multiple LLMs, allowing users to utilize different models based on their specific needs and use cases.
+
+6. **User-Centric Design**: Provides intuitive interfaces for prompt customization and system prompt definition, making it accessible to both beginners and advanced users.
+
+7. **Enhanced Control**: Enables precise control over the AI's behavior and output quality through customizable prompts and system configurations.
+
+8. **Scalability**: Facilitates the creation of reusable prompt templates for diverse flow, ensuring consistency across projects.
+</details>
+
+## What can I build?
+
+1. Automated content creation flow for blogs and social media posts.
+1. Intelligent chatbots capable of generating dynamic and personalized responses.
+1. Automated report generation systems for business intelligence and data analysis.
+1. Customizable email and message drafting tools for improved communication efficiency.
+
+## Setup
+
+### Select the Text LLM Node
+
+1. Fill in the required parameters.
+1. Build the desired flow
+1. Deploy the Project
+1. Click Setup on the workflow editor to get the automatically generated instruction and add it in your application.
+
+## Configuration Reference
+
+| **Parameter**             | **Description**                                                                                                | **Example Value**            |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **Generative Model Name** | Select the model to generate text based on the prompt.                                                         | Gemini Model                 |
+| **User Prompt**           | Define the instructions for generating the text output.Define the instructions for generating the text output. | Tell me something about Bali |
+| **System Prompt**         | System prompt to guide the LLM                                                                                 | You are Travel Planner       |
+
+## Low-Code Example
+
+```yaml
+nodes:
+  - nodeId: LLMNode_565
+    nodeType: LLMNode
+    nodeName: Text Generate
+    values:
+      promptTemplate: Tell me something about Bali
+      systemPrompt: You are an AI Assistant
+      messages: "[]"
+      generativeModelName:
+        provider_name: openai
+        type: generator/text
+        credential_name: Test OpenAI
+        credentialId: aeeb2922-a7d3-431a-a376-77e01e725c51
+        model_name: gpt-4-turbo
+    needs:
+      - triggerNode_1
+```
+
+## Output
+
+#### `_meta`
+
+- A nested object containing metadata about the processing of the text generation request.
+
+  - **`prompt_tokens`**: Number of tokens in the input prompt.
+  - **`completion_tokens`**: Number of tokens in the generated output.
+  - **`total_tokens`**: Sum of `prompt_tokens` and `completion_tokens`.
+
+  - **`prompt_tokens_details`**: Breakdown of token usage in the prompt.
+
+    - **`cached_tokens`**: Tokens reused from cache.
+    - **`audio_tokens`**: Tokens from audio input (if applicable).
+
+  - **`completion_tokens_details`**: Breakdown of token usage in the generated output.
+
+    - **`reasoning_tokens`**: Tokens used for reasoning.
+    - **`audio_tokens`**: Tokens from audio output (if applicable).
+    - **`accepted_prediction_tokens`**: Tokens from accepted predictions.
+    - **`rejected_prediction_tokens`**: Tokens from rejected predictions.
+
+  - **`model_name`**: Name of the AI model used for text generation.
+  - **`model_provider`**: The provider or organization supplying the model.
+
+#### `generatedResponse`
+
+- A string containing the text output generated by the model based on the input prompt.
+
+### Example Output
+
+```json
+{
+  "_meta": {
+    "prompt_tokens": 19,
+    "completion_tokens": 212,
+    "total_tokens": 231,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "model_name": "gpt-4-turbo",
+    "model_provider": "openai"
+  },
+  "generatedResponse": "Response"
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                    | **Solution**                                                 |
+| ------------------------------ | ------------------------------------------------------------ |
+| **Invalid API Key**            | Ensure the API key is correct and has not expired.           |
+| **Dynamic Content Not Loaded** | Increase the `Wait for Page Load` time in the configuration. |
+
+### Debugging
+
+1. Check Lamatic Flow logs for error details.
+1. Verify API Key.

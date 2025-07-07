@@ -1,0 +1,351 @@
+---
+title: Web Search Node
+description: The Web Search Node enables powerful web scraping and search capabilities through serper.dev, supporting multiple search types and customizable filters for comprehensive web data access.
+type: Apps
+order: 9
+---
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Web Search Node
+
+<NodeOverview slug="web-search-node" type="apps" />
+
+## Overview
+
+The Web Search Node is a web data access component that enables powerful web scraping and search capabilities through [serper.dev](https://serper.dev). This node supports multiple search types including web search, news search, and direct webpage scraping, with customizable filters and structured result retrieval for comprehensive web data access and analysis.
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that performs web searches and content extraction using serper.dev's robust API for comprehensive web data access."
+/>
+
+This node is an **Action** node that provides comprehensive web data access and analysis through multiple search types and advanced filtering capabilities.
+
+<Callout type="info">
+This integration connects to serper.dev's robust API to provide web search, news search, and webpage scraping capabilities with extensive filtering options.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Multiple Search Types**: Supports web search, news search, and direct webpage scraping for comprehensive data access.
+2. **Advanced Filtering**: Provides date range, location, language, and country-based filtering for precise results.
+3. **Pagination Support**: Retrieves results from specific pages with customizable result counts for large datasets.
+4. **Structured Results**: Delivers clean, organized data output for easy processing and integration.
+5. **Real-time Data**: Accesses current web information and news for up-to-date content.
+6. **Geographic Targeting**: Supports location-based search results for region-specific information.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Comprehensive Data Access**: Provides comprehensive web data access and analysis capabilities for research and automation.
+2. **Granular Control**: Offers granular control over search parameters and filters for precise result targeting.
+3. **Reliable Integration**: Integrates with serper.dev's robust and reliable API for consistent performance.
+4. **Enhanced Research**: Enhances data collection and research capabilities through automated web scraping.
+5. **Flexible Search**: Supports multiple search types and filtering options for diverse use cases.
+6. **Structured Output**: Delivers structured, clean data for easy processing and integration with other workflows.
+
+</details>
+
+## Prerequisites
+
+Before using Web Search Node, ensure the following:
+
+- **Serper API Key**: Valid API key from [serper.dev](https://serper.dev/api-key) for authentication.
+- **Web Search Credentials**: Web Search credentials configured in Lamatic with proper API access.
+- **Search Parameters Understanding**: Understanding of search parameters and filtering options.
+- **API Usage Awareness**: Proper awareness of API usage limits and rate limiting requirements.
+
+## Installation
+
+### Step 1: Get Serper API Key
+
+1. **Sign Up**: Create an account at [serper.dev](https://serper.dev)
+2. **Generate API Key**: Navigate to the API key section in your dashboard
+3. **Copy Key**: Save your API key securely for configuration
+
+<Callout type="warning">
+Keep your API key secure and never expose it in public repositories or client-side code.
+</Callout>
+
+### Step 2: Configure Web Search Credentials
+
+Use the following format to set up your credentials:
+
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-web-search-creds`       |
+| **API Key**           | Serper authentication key from serper.dev          | `your-api-key`              |
+
+### Step 3: Set Up Lamatic Flow
+
+1. **Add Web Search Node**: Drag the Web Search node to your flow
+2. **Enter Credentials**: Provide your Serper API key
+3. **Configure Search Parameters**: Set up search type, filters, and preferences
+4. **Test Connection**: Verify the credentials work properly
+
+## Configuration Reference
+
+### Action Node Configuration
+
+| **Parameter**       | **Description**                 | **Required** | **Default** | **Example**                    |
+| ------------------- | ------------------------------- | ------------ | ----------- | ------------------------------ |
+| **Credential Name** | Selected Web Search credentials | ✅           | -           | `my-web-search-creds`          |
+| **Query**           | Search terms or webpage URL     | ✅           | -           | `best restaurants in new york` |
+| **Type**            | Search type selection           | ✅           | `Search`    | `News`                         |
+| **Date Range**      | Time period filter              | ❌           | -           | `Last 24 Hours`                |
+| **Results**         | Maximum results per page        | ❌           | `10`        | `5`                            |
+| **Page**            | Result page number              | ❌           | `1`         | `2`                            |
+| **Country**         | Target country for results      | ❌           | -           | `US`                           |
+| **Language**        | Result language preference      | ❌           | -           | `en`                           |
+| **Location**        | Specific geographic target      | ❌           | -           | `New York, NY`                 |
+
+### Search Types
+
+| **Type**        | **Description**                                    | **Use Case**                           |
+| --------------- | -------------------------------------------------- | --------------------------------------- |
+| **Web Search**  | General web search results                        | Finding websites, articles, information |
+| **News Search** | Recent news articles and updates                  | Current events, trending topics         |
+| **WebPage**     | Direct URL scraping and content extraction        | Extracting specific webpage content     |
+
+### Date Range Options
+
+| **Option**        | **Description**                    | **Time Period**     |
+| ----------------- | ---------------------------------- | ------------------- |
+| **Last 24 Hours** | Results from the past day          | 24 hours            |
+| **Past Week**     | Results from the past 7 days       | 7 days              |
+| **Past Month**    | Results from the past 30 days      | 30 days             |
+| **Past Year**     | Results from the past 365 days     | 365 days            |
+| **Custom Range**  | User-defined date range            | Custom              |
+
+### Language Options
+
+| **Code** | **Language** | **Code** | **Language** |
+| -------- | ------------ | -------- | ------------ |
+| `en`     | English      | `es`     | Spanish      |
+| `fr`     | French       | `de`     | German       |
+| `it`     | Italian      | `pt`     | Portuguese   |
+| `ru`     | Russian      | `ja`     | Japanese     |
+| `ko`     | Korean       | `zh`     | Chinese      |
+
+## Low-Code Example
+
+```yaml
+nodes:
+  - nodeId: webSearchNode_788
+    nodeType: webSearchNode
+    nodeName: Web Search
+    values:
+      credentials: Serper Basic Auth
+      query: test
+      type: https://google.serper.dev/search
+      dateRange: ""
+      results: 10
+      page: 1
+      country: in
+      language: hi
+      location: ""
+    needs:
+      - triggerNode_1
+```
+
+## Event Trigger Output
+
+The Web Search node outputs search results in the following format:
+
+### Example Output
+
+```json
+{
+    "searchParameters": {
+        "q": "best restaurants in new york",
+        "type": "search",
+        "num": 10,
+        "page": 1,
+        "country": "US",
+        "language": "en"
+    },
+    "organic": [
+        {
+            "position": 1,
+            "title": "Best Restaurants in New York City",
+            "link": "https://example.com/restaurants",
+            "displayed_link": "example.com/restaurants",
+            "snippet": "Discover the top restaurants in NYC...",
+            "sitelinks": []
+        }
+    ],
+    "knowledgeGraph": {
+        "title": "New York City",
+        "type": "City",
+        "description": "New York City is the most populous city..."
+    },
+    "relatedSearches": [
+        {
+            "query": "best pizza in new york",
+            "displayQuery": "best pizza in new york"
+        }
+    ]
+}
+```
+
+### Output Schema
+
+- `searchParameters`: Object containing the search parameters used
+- `organic`: Array of organic search results
+  - `position`: Integer ranking position
+  - `title`: String title of the result
+  - `link`: String URL of the result
+  - `displayed_link`: String display URL
+  - `snippet`: String description snippet
+- `knowledgeGraph`: Object containing knowledge graph information (if available)
+- `relatedSearches`: Array of related search suggestions
+
+## Output Schema
+
+### Action Node Output
+
+- `searchParameters`: Object containing search configuration
+  - `q`: String search query
+  - `type`: String search type
+  - `num`: Integer number of results
+  - `page`: Integer page number
+  - `country`: String country code
+  - `language`: String language code
+- `organic`: Array of search results
+  - `position`: Integer result position
+  - `title`: String result title
+  - `link`: String result URL
+  - `displayed_link`: String display URL
+  - `snippet`: String result description
+- `knowledgeGraph`: Object with knowledge graph data (optional)
+- `relatedSearches`: Array of related search queries (optional)
+- `news`: Array of news results (for news searches)
+- `places`: Array of place results (for location searches)
+
+## Usage Examples
+
+### Basic Web Search
+
+```yaml
+# Basic web search configuration
+nodes:
+  - nodeId: webSearchNode_1
+    nodeType: webSearchNode
+    nodeName: Web Search
+    values:
+      credentials: Serper Basic Auth
+      query: "artificial intelligence trends 2024"
+      type: "Search"
+      results: 10
+      page: 1
+    needs:
+      - triggerNode_1
+```
+
+### News Search with Filters
+
+```yaml
+# News search with date and location filters
+nodes:
+  - nodeId: webSearchNode_2
+    nodeType: webSearchNode
+    nodeName: News Search
+    values:
+      credentials: Serper Basic Auth
+      query: "tech industry news"
+      type: "News"
+      dateRange: "Last 24 Hours"
+      results: 5
+      country: "US"
+      language: "en"
+    needs:
+      - triggerNode_1
+```
+
+### Webpage Scraping
+
+```yaml
+# Direct webpage content extraction
+nodes:
+  - nodeId: webSearchNode_3
+    nodeType: webSearchNode
+    nodeName: Webpage Scrape
+    values:
+      credentials: Serper Basic Auth
+      query: "https://example.com/article"
+      type: "WebPage"
+    needs:
+      - triggerNode_1
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**           | **Solution**                                        |
+| --------------------- | --------------------------------------------------- |
+| **API Key Invalid**   | Verify API key in serper.dev dashboard              |
+| **No Results**        | Check search parameters and broaden search criteria |
+| **Credential Errors** | Confirm credentials are properly configured         |
+| **Rate Limiting**     | Check API usage limits in serper.dev account        |
+| **Invalid Query**     | Ensure search terms are properly formatted          |
+| **Location Errors**   | Verify location format and availability             |
+| **Language Issues**   | Confirm language codes are valid and supported      |
+| **Date Range Errors** | Verify date range format and availability           |
+
+### Debugging
+
+- Review Lamatic Flow logs for detailed error messages
+- Verify API key status and usage in serper.dev dashboard
+- Test search parameters individually to isolate issues
+- Check network connectivity and API endpoint accessibility
+- Monitor API usage and respect rate limiting
+- Use simple queries first, then add complexity
+- Verify country and language codes are correct
+- Test with different search types to identify type-specific issues
+
+### Best Practices
+
+- Use specific, targeted search queries for better results
+- Implement proper error handling for API failures
+- Monitor API usage to stay within rate limits
+- Use appropriate date ranges to filter relevant content
+- Test search parameters in development before production
+- Implement result caching for frequently searched queries
+- Use geographic targeting for location-specific searches
+- Regularly verify API key validity and permissions
+
+## Example Use Cases
+
+### Research and Analysis
+- **Market Research**: Search for industry trends and competitor information
+- **Content Research**: Gather information for content creation and analysis
+- **Academic Research**: Collect data for research papers and studies
+- **News Monitoring**: Track current events and trending topics
+
+### Business Intelligence
+- **Competitive Analysis**: Monitor competitor activities and strategies
+- **Market Trends**: Track industry developments and market changes
+- **Customer Insights**: Research customer preferences and behaviors
+- **Product Research**: Gather information about products and services
+
+### Content Creation
+- **Article Research**: Collect information for blog posts and articles
+- **Fact Checking**: Verify information and gather supporting data
+- **Trend Analysis**: Identify trending topics and popular content
+- **Source Verification**: Find and verify information sources
+
+## Additional Resources
+
+- [Serper API Documentation](https://serper.dev/api)
+- [Serper Dashboard](https://serper.dev/dashboard)
+- [API Key Management](https://serper.dev/api-key)
+- [Search Parameters Guide](https://serper.dev/docs)

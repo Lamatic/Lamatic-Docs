@@ -1,0 +1,189 @@
+---
+title: Google Drive Node
+description: The Google Drive Node automates fetching and synchronizing files from Google Drive, supporting various file types for vectorization and indexing in RAG flows.
+type: Apps
+order: 3
+---
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Google Drive Node
+
+<NodeOverview slug="google-drive-node" type="apps" />
+
+## Overview
+
+The Google Drive Node is a file synchronization component that automates fetching and synchronizing files from Google Drive. This node supports various file types, including Google Docs, Slides, Word Documents, PDFs, and text files, enabling regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+
+<NodeTypeInfo 
+  batchTrigger={true}
+  eventTrigger={false}
+  action={false}
+  description="This node is a Batch Trigger node that automates file fetching and synchronization from Google Drive on a scheduled basis."
+/>
+
+This node is a **Batch Trigger** node that streamlines file collection from Google Drive and prepares files for vectorization and indexing to enhance RAG flows.
+
+<Callout type="warning">
+To use the Google Drive node, you need to create a separate flow to Implement RAG. You can integrate it into this distinct flow.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Batch Trigger**: Automates file fetching and synchronization on a schedule using Cron expressions for regular execution.
+2. **File Type Support**: Handles multiple file formats including Google Docs, Slides, Word Documents, PDFs, and text files.
+3. **Synchronization Modes**: Supports both incremental (process new/updated files only) and full-refresh (reprocess all files) modes.
+4. **Folder-based Processing**: Processes files from specified Google Drive folders with configurable access permissions.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Streamlined File Collection**: Automates the process of collecting files from Google Drive, reducing manual effort and ensuring consistency.
+2. **RAG Flow Preparation**: Prepares files for vectorization and indexing to enhance Retrieval-Augmented Generation workflows.
+3. **Scheduled Synchronization**: Enables regular file updates through configurable scheduling, keeping data current.
+4. **Flexible Processing**: Supports both incremental and full synchronization modes to optimize processing efficiency.
+
+</details>
+
+## Prerequisites
+
+Before using Google Drive Node, ensure the following:
+
+- **Google Drive Credentials**: Valid Google authentication details for accessing the desired folder.
+- **Target Folder URL**: The specific Google Drive folder URL from which files will be fetched.
+- **Cron Expression Knowledge**: Understanding of Cron expressions for scheduling flows.
+- **RAG Flow Setup**: A separate flow configured for implementing Retrieval-Augmented Generation.
+
+## Installation
+
+### Step 1: Set Up Google Drive Access
+
+1. **Create Google Drive Credentials**:
+   - Set up Google OAuth credentials for Drive API access
+   - Ensure proper permissions for the target folder
+   - Test folder accessibility and file permissions
+
+2. **Identify Target Folder**:
+   - Copy the Google Drive folder URL
+   - Verify folder contains supported file types
+   - Ensure folder is accessible with provided credentials
+
+### Step 2: Configure Google Drive Credentials
+
+Use the following format to set up your credentials:
+
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-google-drive-creds`     |
+| **Google OAuth**      | Google authentication details for Drive access      | `Google Drive OAuth`        |
+
+### Step 3: Set Up Lamatic Flow
+
+1. **Create a Custom Flow** for Google Drive:
+   - Configure the Google Drive node
+   - Set up scheduling parameters
+   - Define synchronization preferences
+
+2. **Use Pre-built Usecases** from the Lamatic Studio
+## Configuration Reference
+
+### Batch Trigger Configuration
+
+| **Parameter**     | **Description**                                                                                        | **Required** | **Example**                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------ | ------------ | ---------------------------------------------------- |
+| **Name**          | Display name for the node                                                                              | ✅           | `Google Drive`                                       |
+| **Credentials**   | Google authentication details required to connect to the Drive folder                                 | ✅           | `my-google-drive-credentials`                        |
+| **Folder**        | The folder from which files will be fetched                                                           | ✅           | `https://drive.google.com/drive/folders/{folder-id}` |
+| **Sync Mode**     | Specify either `incremental` (process new/updated files only) or `full-refresh` (reprocess all files) | ✅           | `incremental`                                        |
+| **Sync Schedule** | Frequency for running the flow, specified using a Cron expression                                     | ✅           | `0 0 05 1/1 * ? * UTC`                               |
+
+## Low-Code Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: googleDriveNode
+  nodeName: Google Drive
+  values:
+    process: batch
+    syncMode: incremental_append
+    credentials: Google Drive OAuth
+    cronExpression: 0 0 */12 ? * * UTC
+    folderUrl: https://drive.google.com/drive/folders/YOUR_ID
+```
+
+## Event Trigger Output
+
+The Google Drive node outputs file data in the following format:
+
+### Example Output
+
+```json
+{
+    "document_key": "your_filename", 
+    "content": "data or text that will be stored in the document"
+}
+```
+
+### Output Schema
+
+- `document_key`: Serves as the unique identifier for the document, used to locate or update the specific file or filename.
+- `content`: Represents the data or text that will be stored in the document.
+
+## Testing
+
+For testing purposes, you need to manually provide `content` and `document_key` as dummy data. Once deployed, these values will be automatically fetched from your configured Google Drive folder.
+
+### Test Configuration
+
+```json
+{
+    "document_key": "test_document.pdf", 
+    "content": "This is test content that will be processed for RAG flows"
+}
+```
+
+## Output Schema
+
+### Batch Trigger Output
+
+- `document_key`: String identifier for the document (filename or unique key)
+- `content`: String containing the document content or text data
+- `metadata`: Additional file information (if available)
+  - `file_type`: Type of the processed file
+  - `last_modified`: Timestamp of last modification
+  - `file_size`: Size of the file in bytes
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                           |
+| -------------------------- | -------------------------------------------------------------------------------------- |
+| **Invalid Credentials**    | Verify that the correct Google Drive credentials are provided                          |
+| **Folder Not Found**       | Ensure the folder URL is accurate and accessible                                       |
+| **Sync Not Working**       | Check the Cron expression for correctness                                              |
+| **File Types Unsupported** | Confirm that the files in the folder are of supported types (Google Docs, PDFs, etc.) |
+| **Permission Errors**      | Verify Google Drive API access permissions and folder sharing settings                 |
+| **Scheduling Issues**      | Validate Cron expression syntax and timezone settings                                  |
+
+### Debugging
+
+- Check Lamatic Flow logs for detailed error messages
+- Verify Google Drive API access permissions
+- Test the folder URL to ensure it's valid and accessible
+- Validate Cron expression syntax using online Cron validators
+- Monitor file processing logs for specific file errors
+- Test with a small folder containing few files before scaling up
+- Verify network connectivity and API rate limits
+
+### Additional Resources
+
+- [Google Drive API Documentation](https://developers.google.com/drive/api)
+- [Cron Expression Generator](https://crontab.guru/)
+- [Google OAuth Setup Guide](https://developers.google.com/identity/protocols/oauth2)

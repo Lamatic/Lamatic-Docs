@@ -1,0 +1,268 @@
+---
+title: N8N Node
+description: The N8N Node enables bidirectional integration between Lamatic and N8N platforms, supporting both triggering N8N flows from Lamatic and executing Lamatic flows from N8N.
+type: Apps
+order: 2
+---
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# N8N Node
+
+<NodeOverview slug="n8n-node" type="apps" />
+
+## Overview
+
+The N8N Node is an integration component that enables bidirectional communication between Lamatic and N8N platforms. This node supports both triggering N8N flows from Lamatic and executing Lamatic flows from N8N, providing flexible automation capabilities for complex workflows.
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={true}
+  action={true}
+  description="This node is an Action node that enables bidirectional integration between Lamatic and N8N platforms for workflow automation."
+/>
+
+This node is an **Action** node that facilitates cross-platform workflow automation between Lamatic and N8N systems.
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Bidirectional Integration**: Supports both N8N to Lamatic and Lamatic to N8N flow execution, enabling flexible cross-platform automation.
+2. **Easy Configuration**: Simple dropdown-based workflow selection and credential management for seamless setup.
+3. **Webhook Support**: Built-in webhook handling for real-time communication between platforms.
+4. **Flexible Triggers**: Multiple trigger options for different automation scenarios and use cases.
+5. **Real-time Execution**: Instant flow execution with webhook-based communication for immediate responses.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Cross-Platform Automation**: Combines N8N's powerful workflow automation with Lamatic's Gen AI capabilities for sophisticated automation scenarios.
+2. **Seamless Integration**: Maintains existing N8N flows while adding AI functionality without disrupting current workflows.
+3. **Highly Configurable**: Enables complex workflow orchestration across multiple systems with flexible configuration options.
+4. **Real-time Communication**: Provides instant communication between platforms through webhook-based architecture.
+
+</details>
+
+## Prerequisites
+
+Before using N8N Node, ensure the following:
+
+- **N8N Setup**: Choose your preferred deployment option:
+  - **N8N Cloud**: Hosted version with associated pricing plans
+  - **Community Edition**: Self-hosted installation on your own server
+- **N8N Lamatic Module**: Community node installed in your N8N instance
+- **API Access**: Valid N8N API key for authentication
+- **Network Access**: Proper network connectivity between Lamatic and N8N instances
+- **Webhook Configuration**: Understanding of webhook setup and management
+
+<Callout type="warning">  
+If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+</Callout>
+
+## Installation
+
+### Step 1: Set Up N8N
+
+1. **Choose Deployment Option**:
+   - **Cloud**: Sign up at [n8n.cloud](https://n8n.cloud)
+   - **Self-hosted**: Follow [installation guide](https://docs.n8n.io/hosting/)
+
+2. **Install Lamatic Module**:
+   - Navigate to **Settings > Community Nodes** in N8N interface
+   - Click **Install** and enter `n8n-nodes-lamatic-ai`
+   - Restart N8N to activate the module
+
+<Callout type="warning">
+Ensure you have proper permissions to install community nodes in your N8N instance.
+</Callout>
+
+### Step 2: Configure N8N API Access
+
+1. **Generate API Key**:
+   - Go to **Settings > API** in N8N interface
+   - Copy the generated API key securely
+   - Note your N8N host URL
+
+2. **Test Connection**:
+   - Verify API key works with N8N instance
+   - Ensure proper network connectivity
+
+### Step 3: Configure N8N Credentials
+
+Use the following format to set up your credentials:
+
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-n8n-creds`              |
+| **Host URL**          | N8N instance URL (with protocol)                    | `https://n8n.example.com`   |
+| **API Key**           | N8N authentication key                              | `your-api-key`              |
+
+## Configuration Reference
+
+### Trigger Node Configuration (N8N > Lamatic)
+
+| **Parameter**       | **Description**                                     | **Required** | **Example**           |
+| ------------------- | --------------------------------------------------- | ------------ | --------------------- |
+| **Credentials**     | Selected N8N credentials                            | ✅           | `my-n8n-creds`        |
+| **Workflow ID**     | N8N workflow identifier                             | ✅           | `workflow-123`        |
+| **Advanced Schema** | Custom input schema for workflow data               | ❌           | `{}`                  |
+
+### Action Node Configuration (Lamatic > N8N)
+
+| **Parameter**       | **Description**                                     | **Required** | **Example**           |
+| ------------------- | --------------------------------------------------- | ------------ | --------------------- |
+| **Credentials**     | Selected N8N credentials                            | ✅           | `my-n8n-creds`        |
+| **Workflow ID**     | N8N workflow identifier                             | ✅           | `workflow-123`        |
+| **Webhook Path**    | Auto-generated webhook path (non-configurable)      | ✅           | `auto-generated-path` |
+
+## Integration Scenarios
+
+### Scenario 1: Trigger Lamatic from N8N
+
+**Setup Process**:
+1. **N8N Side**:
+   - Create new workflow in N8N
+   - Add Lamatic node to workflow
+   - Configure with Lamatic project URL and API key
+   - Define workflow input in JSON format
+   - Specify Lamatic workflow ID
+
+2. **Lamatic Side**:
+   - Use N8N as trigger node
+   - Define input schema for incoming data
+   - Configure credentials with N8N host URL and API key
+
+### Scenario 2: Trigger N8N from Lamatic
+
+**Setup Process**:
+1. **N8N Side**:
+   - Create new workflow in N8N
+   - Add webhook trigger node
+   - Define webhook path for Lamatic communication
+   - Configure workflow to handle incoming data
+
+2. **Lamatic Side**:
+   - Use API node as trigger
+   - Add N8N node to flow
+   - Select webhook created in N8N
+   - Configure workflow execution parameters
+
+## Low-Code Example
+
+```yaml
+# Trigger Lamatic from N8N 
+nodes:
+  - nodeId: triggerNode_1
+    nodeType: n8nTriggerNode
+    nodeName: N8N Trigger
+    values:
+      advance_schema: '{}'
+      credentials: your credential name
+      workflowId: your n8n workflow id which is linked to this node
+
+# Trigger N8N from Lamatic
+nodes:
+  - nodeId: n8nNode_716
+    nodeType: n8nNode
+    nodeName: N8N
+    values:
+      credentials: your credential name
+      workflowId: your n8n workflow id which is linked to this node
+      webhookPath: Auto Fetched Non Configurable Webhook Path
+    needs:
+      - triggerNode_1
+```
+
+## Event Trigger Output
+
+The N8N node can trigger events based on the integration type:
+
+### N8N to Lamatic Trigger Output
+
+When N8N triggers a Lamatic flow, the output contains:
+
+```json
+{
+  "success": true,
+  "workflowId": "workflow-123",
+  "data": {
+    "input": "Data from N8N workflow",
+    "metadata": {
+      "source": "n8n",
+      "timestamp": "2024-01-01T00:00:00Z"
+    }
+  }
+}
+```
+
+### Lamatic to N8N Action Output
+
+When Lamatic executes an N8N workflow, the output contains:
+
+```json
+{
+  "success": true,
+  "workflowId": "workflow-123",
+  "executionId": "exec-456",
+  "status": "completed",
+  "data": {
+    "result": "N8N workflow execution result",
+    "metadata": {
+      "executionTime": "2.5s",
+      "nodesExecuted": 5
+    }
+  }
+}
+```
+
+## Output Schema
+
+### Trigger Node Output (N8N > Lamatic)
+
+- `success`: Boolean indicating successful trigger activation
+- `workflowId`: N8N workflow identifier that triggered the event
+- `data`: Input data from the N8N workflow execution
+- `metadata`: Additional information about the trigger event
+
+### Action Node Output (Lamatic > N8N)
+
+- `success`: Boolean indicating successful workflow execution
+- `workflowId`: N8N workflow identifier that was executed
+- `executionId`: Unique identifier for the workflow execution
+- `status`: Status of the workflow execution (completed, failed, running)
+- `data`: Output data from the N8N workflow execution
+- `metadata`: Additional execution metadata
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                                |
+|---------------------------|--------------------------------------------------------------------------------------------|
+| **Connection Failure**     | Verify N8N Host URL and API credentials are correct                                        |
+| **Webhook Issues**         | Check if webhooks are properly configured and accessible                                   |
+| **Workflow Not Found**     | Ensure workflow IDs are correct and workflows are active                                   |
+| **Response Timeout**       | Verify network connectivity and increase timeout settings if needed                        |
+| **Authentication Errors**  | Confirm API key permissions and validity                                                   |
+| **Module Not Found**       | Ensure N8N Lamatic module is properly installed and N8N is restarted                      |
+| **Schema Mismatch**        | Verify input/output schemas match between N8N and Lamatic workflows                        |
+
+### Debugging
+
+- Check Lamatic Flow logs for detailed error messages
+- Verify N8N workflow status and trigger configurations
+- Test webhook endpoints for accessibility and proper response
+- Confirm credential permissions and API access rights
+- Monitor network connectivity between Lamatic and N8N instances
+- Review N8N execution logs for workflow-specific issues
+- Test with simple workflows before implementing complex integrations
+
+### Additional Resources
+
+- [N8N Documentation](https://docs.n8n.io/)
+- [N8N Community Nodes](https://n8n.io/integrations)
+- If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)

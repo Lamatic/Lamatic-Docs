@@ -15,17 +15,15 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 The Loop Node is a control flow component that enables iterative processing of data by repeating operations on collections or arrays. This node is essential for processing large datasets and implementing repetitive logic in workflows.
 
-![loop.png](../img/loop-node/loop-node.webp)
+![loop.png](../img/loop-node/loop.webp)
 
-## Node Type Information
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that performs iterative processing on collections of data by repeating operations."
+/>
 
-| **Type** | **Status** |
-|----------|------------|
-| **Batch Trigger** | ❌ False |
-| **Event Trigger** | ❌ False |
-| **Action** | ✅ True |
-
-This node is an **Action** node that performs iterative processing on collections of data by repeating operations.
 
 ## Features
 

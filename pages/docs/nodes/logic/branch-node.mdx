@@ -17,15 +17,12 @@ The Branch Node is a workflow control component that creates multiple execution 
 
 ![branch.png](../img/branch/branch.webp)
 
-## Node Type Information
-
-| **Type** | **Status** |
-|----------|------------|
-| **Batch Trigger** | ❌ False |
-| **Event Trigger** | ❌ False |
-| **Action** | ✅ True |
-
-This node is an **Action** node that creates multiple execution paths in workflows based on conditions and routing logic.
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that creates multiple execution paths in workflows based on conditions and routing logic."
+/>
 
 ## Features
 

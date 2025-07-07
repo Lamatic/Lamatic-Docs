@@ -15,17 +15,14 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 The Execute Flow Node is a workflow orchestration component that allows users to call and execute other workflows from within a current workflow. This node enables modular workflow design and reusability of workflow components.
 
-![execute-flow.png](../img/execute/execute-flow.webp)
+![execute-flow.png](../img/execute/execute.webp)
 
-## Node Type Information
-
-| **Type** | **Status** |
-|----------|------------|
-| **Batch Trigger** | ❌ False |
-| **Event Trigger** | ❌ False |
-| **Action** | ✅ True |
-
-This node is an **Action** node that executes other workflows from within the current workflow for modular workflow design.
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that executes other workflows from within the current workflow for modular workflow design."
+/>
 
 ## Features
 

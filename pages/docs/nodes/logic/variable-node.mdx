@@ -15,17 +15,16 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 The Variable Node is a data management component that allows users to define and manage variables for storing and manipulating data within workflows. This node enables dynamic data handling and state management across workflow executions.
 
-![variable.png](../img/variable/variable.webp)
+![variable.png](../img/variable/variable.png)
 
-## Node Type Information
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that defines and manages variables for data storage and manipulation within workflows."
+/>
 
-| **Type** | **Status** |
-|----------|------------|
-| **Batch Trigger** | ❌ False |
-| **Event Trigger** | ❌ False |
-| **Action** | ✅ True |
 
-This node is an **Action** node that defines and manages variables for data storage and manipulation within workflows.
 
 You can map variables in the Variable Node using a simple interface. Each variable can be assigned a type (e.g., string, number) and a value, which can be a static value or a reference to another node's output.
 

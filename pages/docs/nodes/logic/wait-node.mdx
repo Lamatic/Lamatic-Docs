@@ -15,17 +15,16 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 The Wait Node is a timing control component that introduces delays in workflow execution. This node is useful for rate limiting, scheduling, and ensuring proper timing between workflow steps.
 
-![wait.png](../img/wait/wait.webp)
+![wait.png](../img/wait/wait-node.webp)
 
-## Node Type Information
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that introduces controlled delays in workflow execution for timing and rate limiting purposes."
+/>
 
-| **Type** | **Status** |
-|----------|------------|
-| **Batch Trigger** | ❌ False |
-| **Event Trigger** | ❌ False |
-| **Action** | ✅ True |
 
-This node is an **Action** node that introduces controlled delays in workflow execution for timing and rate limiting purposes.
 
 ## Features
 

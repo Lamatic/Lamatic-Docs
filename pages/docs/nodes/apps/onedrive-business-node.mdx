@@ -1,0 +1,328 @@
+---
+title: OneDrive Business Node
+description: The OneDrive Business Node automates document syncing and processing from Microsoft OneDrive Business accounts, supporting various file types for document intelligence and RAG workflows.
+type: Apps
+order: 5
+---
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# OneDrive Business Node
+
+<NodeOverview slug="onedrive-business-node" type="apps" />
+
+## Overview
+
+The OneDrive Business Node is a document synchronization component that automates document syncing and processing from Microsoft OneDrive Business accounts. This node supports various file types including PDFs, Word documents, Excel files, and other compatible formats, providing secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
+
+<NodeTypeInfo 
+  batchTrigger={true}
+  eventTrigger={false}
+  action={false}
+  description="This node is a Batch Trigger node that automates document syncing and processing from OneDrive Business accounts on a scheduled basis."
+/>
+
+This node is a **Batch Trigger** node that automates document collection from OneDrive repositories and enables RAG workflows with organizational knowledge.
+
+<Callout type="info">
+This integration connects to your OneDrive Business account to sync documents for processing in Lamatic Flow.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Document Syncing**: Automatically syncs documents from OneDrive drives and folders with configurable scheduling.
+2. **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats for comprehensive document processing.
+3. **Scheduled Processing**: Supports automated sync schedules with cron expressions for regular document updates.
+4. **Selective Filtering**: Use glob patterns to filter specific file types and paths for targeted document processing.
+5. **Multiple Sync Modes**: Supports both incremental (new/modified files only) and full-refresh (all files) synchronization modes.
+6. **Search Scope Control**: Configurable search scope including accessible drives, shared items, or all files.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Automated Document Collection**: Automates document collection from OneDrive repositories, reducing manual effort and ensuring consistency.
+2. **RAG Workflow Enablement**: Enables RAG workflows with organizational knowledge for intelligent document processing.
+3. **Granular Control**: Provides granular control over file selection and processing through glob patterns and search scopes.
+4. **Secure Integration**: Offers secure integration with Microsoft 365 accounts and OneDrive Business environments.
+5. **Flexible Processing**: Supports various parsing strategies for different document types and quality requirements.
+
+</details>
+
+## Prerequisites
+
+Before using OneDrive Business Node, ensure the following:
+
+- **Microsoft 365 Account**: A Microsoft 365 account with OneDrive Business access.
+- **OneDrive Permissions**: Appropriate permissions to access OneDrive files and drives.
+- **Tenant ID**: Your organization's Tenant ID from Microsoft Entra Admin Center.
+- **Folder Structure Knowledge**: Understanding of OneDrive folder structure and file organization.
+- **API Permissions**: Proper OneDrive API permissions for accessing selected files and drives.
+
+## Installation
+
+### Step 1: Set Up Microsoft 365 Credentials
+
+1. **Get Tenant ID**:
+   - Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com)
+   - Go to **Azure Active Directory** section
+   - Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
+
+2. **Verify Permissions**:
+   - Ensure you have appropriate OneDrive API permissions
+   - Test access to the target OneDrive drives and folders
+
+<Callout type="warning">
+Ensure you have appropriate OneDrive API permissions to access the selected files and drives.
+</Callout>
+
+### Step 2: Configure OneDrive Credentials
+
+Use the following format to set up your credentials:
+
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-onedrive-creds`         |
+| **Microsoft 365**     | Microsoft 365 credentials with OneDrive access     | `Microsoft 365`             |
+
+### Step 3: Set Up Lamatic Flow
+
+1. **Add OneDrive Node**: Drag the OneDrive node to your flow
+2. **Enter Credentials**: Provide your Microsoft 365 Tenant ID
+3. **Configure Drive Name**: Enter the name of your OneDrive drive (usually "OneDrive")
+4. **Set Folder Path**: Specify the folder path within the drive (use `"."` for all folders)
+
+## Configuration Reference
+
+### Batch Trigger Configuration
+
+| **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
+| **Credentials**                  | Microsoft 365 credentials with access to OneDrive files                                                     | ✅           | -           | `Microsoft 365`                                 |
+| **Drive Name**                   | Name of the connected OneDrive drive                                                                        | ✅           | -           | `OneDrive`                                      |
+| **Folder Path**                  | Path within the drive to target. Use `"."` to sync all folders                                             | ✅           | -           | `.`                                             |
+| **Globs (Path Patterns)**        | Glob pattern for matching files                                                                             | ❌           | `**`        | `**/*.pdf`, `**/*.docx`                         |
+| **Sync Mode**                    | Controls how files are re-indexed: `full_refresh` or `incremental`                                          | ✅           | `incremental` | `incremental`                                   |
+| **Sync Schedule**                | Schedule for automated syncs                                                                                | ❌           | -           | `Every 24 hours`                                |
+| **Search Scope**                 | Scope of files to include: `ACCESSIBLE_DRIVES`, `SHARED_ITEMS`, or `ALL`                                    | ✅           | `ALL`       | `ALL`                                           |
+| **Parsing Strategy**             | Strategy for extracting content: `fast`, `ocr_only`, or `hi_res`                                           | ✅           | `fast`      | `hi_res`                                        |
+| **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                   | ❌           | `30`        | `30`                                            |
+| **Start Date**                   | Ignore files modified before this UTC datetime (ISO format)                                                 | ❌           | -           | `2024-01-01T00:00:00.000000Z`                   |
+
+### Sync Configuration Options
+
+#### Sync Modes
+```yaml
+# Incremental Sync (recommended)
+sync_mode: "incremental"  # Only sync new/modified files
+
+# Full Refresh
+sync_mode: "full_refresh"  # Re-index all files
+```
+
+#### Schedule Examples
+```yaml
+# Daily at midnight
+sync_schedule: "0 0 * * *"
+
+# Every 6 hours
+sync_schedule: "0 */6 * * *"
+
+# Weekdays only at 9 AM
+sync_schedule: "0 9 * * 1-5"
+```
+
+### File Filtering Patterns
+
+#### Common Glob Patterns
+```yaml
+# All PDF files
+globs: "**/*.pdf"
+
+# All Word and Excel files
+globs: "**/*.docx", "**/*.xlsx"
+
+# Files in specific folders
+globs: "HR/**/*", "Legal/**/*"
+
+# Exclude draft folders
+globs: "**/*", "!**/draft/**"
+```
+
+#### Search Scope Options
+- **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to
+- **`SHARED_ITEMS`**: Files shared with you by others
+- **`ALL`**: All accessible files (recommended)
+
+## Low-Code Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: onedriveBusinessNode
+  nodeName: OneDrive Business
+  values:
+    credentials: Microsoft 365
+    drive_name: OneDrive
+    folder_path: .
+    globs: ["**/*.pdf", "**/*.docx"]
+    sync_mode: incremental
+    sync_schedule: "0 2 * * *"
+    search_scope: ALL
+    parsing_strategy: fast
+    days_to_sync_if_history_full: 30
+    start_date: "2024-01-01T00:00:00.000000Z"
+```
+
+## Event Trigger Output
+
+The OneDrive Business node outputs document data in the following format:
+
+### Example Output
+
+```json
+{
+    "document_key": "document_name.pdf",
+    "content": "Extracted text content from the document",
+    "metadata": {
+        "file_type": "pdf",
+        "file_size": 1024000,
+        "last_modified": "2024-01-01T00:00:00.000Z",
+        "drive_name": "OneDrive",
+        "folder_path": "./Documents",
+        "parsing_strategy": "fast"
+    }
+}
+```
+
+### Output Schema
+
+- `document_key`: String identifier for the document (filename)
+- `content`: String containing the extracted text content from the document
+- `metadata`: Additional information about the document
+  - `file_type`: Type of the processed file
+  - `file_size`: Size of the file in bytes
+  - `last_modified`: Timestamp of last modification
+  - `drive_name`: Name of the OneDrive drive
+  - `folder_path`: Path within the drive
+  - `parsing_strategy`: Strategy used for content extraction
+
+## Output Schema
+
+### Batch Trigger Output
+
+- `document_key`: String identifier for the document (filename)
+- `content`: String containing the extracted text content
+- `metadata`: Additional document information
+  - `file_type`: String indicating file type (pdf, docx, xlsx, etc.)
+  - `file_size`: Integer size in bytes
+  - `last_modified`: ISO timestamp of last modification
+  - `drive_name`: String name of the OneDrive drive
+  - `folder_path`: String path within the drive
+  - `parsing_strategy`: String indicating parsing method used
+  - `sync_mode`: String indicating sync mode used
+  - `search_scope`: String indicating search scope used
+
+## Usage Examples
+
+### Basic OneDrive Sync
+
+```yaml
+# Basic configuration for syncing all documents
+credentials: "Microsoft 365"
+drive_name: "OneDrive"
+folder_path: "."
+globs: "**/*.pdf", "**/*.docx"
+sync_mode: "incremental"
+search_scope: "ALL"
+parsing_strategy: "fast"
+```
+
+### Advanced Configuration
+
+```yaml
+# Advanced setup with scheduling and filtering
+credentials: "Microsoft 365"
+drive_name: "OneDrive"
+folder_path: "./Documents"
+globs: "**/*.pdf", "**/*.docx", "!**/draft/**"
+sync_mode: "incremental"
+sync_schedule: "0 2 * * *"  # Daily at 2 AM
+search_scope: "ALL"
+parsing_strategy: "hi_res"
+days_to_sync_if_history_full: 30
+start_date: "2024-01-01T00:00:00.000000Z"
+```
+
+### Selective Document Sync
+
+```yaml
+# Sync only specific document types from Work folder
+credentials: "Microsoft 365"
+drive_name: "OneDrive"
+folder_path: "./Work"
+globs: "**/*.pdf", "**/*.docx"
+sync_mode: "incremental"
+search_scope: "ACCESSIBLE_DRIVES"
+parsing_strategy: "ocr_only"  # Better for scanned documents
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                    | **Solution**                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------------- |
+| **Authentication Failed**      | Verify Tenant ID is correct and you have OneDrive access permissions                       |
+| **Drive Not Found**            | Check the Drive Name and ensure you have access to the specified OneDrive                  |
+| **Files Not Syncing**          | Verify folder path exists and glob patterns are correctly formatted                        |
+| **Permission Denied**          | Ensure your Microsoft 365 account has appropriate OneDrive API permissions                 |
+| **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                |
+| **Parsing Errors**             | Verify parsing strategy is appropriate for the document types being processed              |
+| **Large File Issues**          | Check file size limits and consider using incremental sync for large repositories          |
+
+### Debugging
+
+- Check Lamatic Flow logs for detailed error messages
+- Verify Microsoft 365 credentials and Tenant ID
+- Test OneDrive drive access in your browser
+- Validate folder path exists and is accessible
+- Test glob patterns to ensure they match your documents
+- Monitor sync logs for specific file processing errors
+- Verify network connectivity and API rate limits
+- Test with a small folder before processing large repositories
+
+### Best Practices
+
+- Use `incremental` sync mode for better performance
+- Implement specific glob patterns to avoid syncing unnecessary files
+- Schedule syncs during off-peak hours to minimize impact
+- Use `hi_res` parsing for scanned documents and images
+- Regularly monitor sync logs for any issues
+- Set appropriate `days_to_sync_if_history_full` to limit historical data
+- Test parsing strategies with sample documents before full deployment
+
+## Example Use Cases
+
+### Document Intelligence Workflows
+- **Business Documents**: Sync reports, contracts, and spreadsheets for automated processing
+- **Internal Wikis**: Index knowledge bases and team documentation
+- **Legal Documents**: Process compliance and audit-related content
+- **Team Collaboration**: Automate access to shared folders and project files
+
+### RAG Applications
+- **Semantic Search**: Enable natural language search across OneDrive documents
+- **Question Answering**: Build AI assistants that can answer questions about business documents
+- **Document Summarization**: Automatically summarize lengthy reports and documents
+- **Content Discovery**: Help users find relevant information across OneDrive repositories
+
+## Additional Resources
+
+- [Microsoft Entra Admin Center](https://entra.microsoft.com)
+- [OneDrive API Documentation](https://docs.microsoft.com/en-us/onedrive/developer/)
+- [Cron Expression Guide](https://crontab.guru/)
+- [Lamatic Flow Templates](https://hub.lamatic.ai/templates)

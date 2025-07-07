@@ -121,35 +121,6 @@ triggerNode:
     spreadSheetLink: https://docs.google.com/spreadsheets/d/{your-spreadsheet-id}
 ```
 
-## Event Trigger Output
-
-The Google Sheets node outputs spreadsheet data in the following format:
-
-### Example Output
-
-```json
-{
-    "sheet_name": "Sheet1",
-    "data": [
-        {
-            "column1": "value1",
-            "column2": "value2",
-            "column3": "value3"
-        },
-        {
-            "column1": "value4",
-            "column2": "value5",
-            "column3": "value6"
-        }
-    ],
-    "metadata": {
-        "total_rows": 2,
-        "total_columns": 3,
-        "last_updated": "2024-01-01T00:00:00Z"
-    }
-}
-```
-
 ### Output Schema
 
 - `sheet_name`: String identifier for the processed sheet

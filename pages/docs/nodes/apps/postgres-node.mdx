@@ -4,6 +4,7 @@ description: The PostgreSQL Node automates data synchronization from PostgreSQL 
 type: Apps
 order: 10
 ---
+
 import { NodeOverview } from "@/components/NodeOverview";
 import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
@@ -15,7 +16,7 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 The PostgreSQL Node is a database integration component that automates data synchronization from PostgreSQL databases. This node enables scheduled fetching of rows from specified tables and materialized views, supporting vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
 
-<NodeTypeInfo 
+<NodeTypeInfo
   batchTrigger={true}
   eventTrigger={false}
   action={true}
@@ -25,7 +26,11 @@ The PostgreSQL Node is a database integration component that automates data sync
 This node is a **Batch Trigger** node that automates database synchronization processes and enables RAG workflows with PostgreSQL data.
 
 <Callout type="info">
-This integration connects to your PostgreSQL database to sync data for processing in Lamatic Flow. Ensure your database user has appropriate permissions to access the selected schemas and tables. If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+  This integration connects to your PostgreSQL database to sync data for
+  processing in Lamatic Flow. Ensure your database user has appropriate
+  permissions to access the selected schemas and tables. If the connection
+  fails, whitelist the following IPs:
+  [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
 </Callout>
 
 ## Features
@@ -64,11 +69,12 @@ Before using PostgreSQL Node, ensure the following:
 - **Cron Expression Knowledge**: Understanding of cron expressions for scheduling flows.
 - **Network Access**: Proper network connectivity to the PostgreSQL database server.
 
-## Installation
+## Setup
 
 ### Step 1: Set Up PostgreSQL Credentials
 
 1. **Database Access**:
+
    - Ensure you have access to the PostgreSQL database
    - Verify your database user has appropriate read permissions
    - Test connection using a PostgreSQL client
@@ -81,21 +87,23 @@ Before using PostgreSQL Node, ensure the following:
      - Username and password
 
 <Callout type="warning">
-Ensure your database user has appropriate permissions to access the selected schemas and tables. If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+  Ensure your database user has appropriate permissions to access the selected
+  schemas and tables. If the connection fails, whitelist the following IPs:
+  [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
 </Callout>
 
 ### Step 2: Configure PostgreSQL Credentials
 
 Use the following format to set up your credentials:
 
-| **Key Name**          | **Description**                                     | **Example Value**           |
-| --------------------- | --------------------------------------------------- | --------------------------- |
-| **Credential Name**   | Name to identify this set of credentials            | `my-postgres-creds`         |
-| **Host**              | PostgreSQL database host address                    | `localhost` or `db.example.com` |
-| **Port**              | PostgreSQL database port number                     | `5432`                      |
-| **Database**          | Name of the PostgreSQL database                     | `myapp_production`           |
-| **Username**          | PostgreSQL database username                        | `db_user`                   |
-| **Password**          | PostgreSQL database password                        | `secure_password`           |
+| **Key Name**        | **Description**                          | **Example Value**               |
+| ------------------- | ---------------------------------------- | ------------------------------- |
+| **Credential Name** | Name to identify this set of credentials | `my-postgres-creds`             |
+| **Host**            | PostgreSQL database host address         | `localhost` or `db.example.com` |
+| **Port**            | PostgreSQL database port number          | `5432`                          |
+| **Database**        | Name of the PostgreSQL database          | `myapp_production`              |
+| **Username**        | PostgreSQL database username             | `db_user`                       |
+| **Password**        | PostgreSQL database password             | `secure_password`               |
 
 ### Step 3: Set Up Lamatic Flow
 
@@ -108,17 +116,18 @@ Use the following format to set up your credentials:
 
 ### Batch Trigger Configuration
 
-| **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
-| **Credentials**                  | PostgreSQL database connection details                                                                       | ✅           | -           | `PostgreSQL Connection`                         |
-| **Schema**                       | Database schema to be processed                                                                              | ✅           | -           | `public`                                        |
-| **Table/View**                   | Source table or materialized view for data processing                                                        | ✅           | -           | `users`                                         |
-| **Sync Mode**                    | Controls how data is re-indexed: `incremental` or `full-refresh`                                            | ✅           | `incremental` | `incremental`                                   |
-| **Sync Schedule**                | Schedule for automated syncs using cron expressions                                                         | ✅           | -           | `0 0 * * *`                                     |
+| **Parameter**     | **Description**                                                  | **Required** | **Default**   | **Example**             |
+| ----------------- | ---------------------------------------------------------------- | ------------ | ------------- | ----------------------- |
+| **Credentials**   | PostgreSQL database connection details                           | ✅           | -             | `PostgreSQL Connection` |
+| **Schema**        | Database schema to be processed                                  | ✅           | -             | `public`                |
+| **Table/View**    | Source table or materialized view for data processing            | ✅           | -             | `users`                 |
+| **Sync Mode**     | Controls how data is re-indexed: `incremental` or `full-refresh` | ✅           | `incremental` | `incremental`           |
+| **Sync Schedule** | Schedule for automated syncs using cron expressions              | ✅           | -             | `0 0 * * *`             |
 
-### Sync Configuration Options
+#### Sync Configuration Options
 
-#### Sync Modes
+##### Sync Modes
+
 ```yaml
 # Incremental Sync (recommended)
 sync_mode: "incremental"  # Only sync new/modified data
@@ -127,7 +136,8 @@ sync_mode: "incremental"  # Only sync new/modified data
 sync_mode: "full-refresh"  # Re-index all data
 ```
 
-#### Schedule Examples
+##### Schedule Examples
+
 ```yaml
 # Daily at midnight
 sync_schedule: "0 0 * * *"
@@ -142,20 +152,15 @@ sync_schedule: "0 9 * * 1-5"
 sync_schedule: "*/30 * * * *"
 ```
 
-### Database Configuration
+### Action Configuration
 
-#### Schema and Table Selection
-```yaml
-# Single schema and table
-schema: "public"
-table: "users"
+Configure the Postgres node by selecting the desired action and providing the necessary parameters.
 
-# Multiple schemas (comma-separated)
-schemas: "public,analytics,reports"
-
-# Multiple tables (comma-separated)
-tables: "users,orders,products"
-```
+| **Parameter**   | **Description**                                                | **Required** | **Default** | **Example**                    |
+|-----------------|----------------------------------------------------------------|--------------|-------------|--------------------------------|
+| **Credentials** | Connection settings for your PostgreSQL database               | ✅           | —           | `PostgreSQL Connection`        |
+| **Action**      | Action to perform on the Postgres node (e.g., execute a query) | ✅           | —           | `Run Query`                    |
+| **Query**       | SQL statement to be executed                                   | ✅           | —           | `SELECT * FROM users;`         |
 
 ## Low-Code Example
 
@@ -172,7 +177,7 @@ triggerNode:
     sync_schedule: "0 0 * * *"
 ```
 
-## Event Trigger Output
+### Event Trigger Output
 
 The PostgreSQL node outputs database data in the following format:
 
@@ -180,31 +185,31 @@ The PostgreSQL node outputs database data in the following format:
 
 ```json
 {
-    "table_name": "users",
-    "schema_name": "public",
-    "data": [
-        {
-            "id": 1,
-            "name": "John Doe",
-            "email": "john@example.com",
-            "created_at": "2024-01-01T00:00:00Z"
-        },
-        {
-            "id": 2,
-            "name": "Jane Smith",
-            "email": "jane@example.com",
-            "created_at": "2024-01-02T00:00:00Z"
-        }
-    ],
-    "metadata": {
-        "total_rows": 2,
-        "sync_mode": "incremental",
-        "last_sync": "2024-01-01T12:00:00Z"
+  "table_name": "users",
+  "schema_name": "public",
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "created_at": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "created_at": "2024-01-02T00:00:00Z"
     }
+  ],
+  "metadata": {
+    "total_rows": 2,
+    "sync_mode": "incremental",
+    "last_sync": "2024-01-01T12:00:00Z"
+  }
 }
 ```
 
-### Output Schema
+##### Output Schema
 
 - `table_name`: String name of the processed table
 - `schema_name`: String name of the database schema
@@ -214,7 +219,7 @@ The PostgreSQL node outputs database data in the following format:
   - `sync_mode`: Sync mode used (incremental/full-refresh)
   - `last_sync`: Timestamp of the sync operation
 
-## Output Schema
+### Output Schema
 
 ### Batch Trigger Output
 
@@ -228,54 +233,20 @@ The PostgreSQL node outputs database data in the following format:
   - `columns`: Array of column names in the table
   - `row_count`: Integer total number of rows in table
 
-## Usage Examples
-
-### Basic PostgreSQL Sync
-
-```yaml
-# Basic configuration for syncing user data
-credentials: "PostgreSQL Connection"
-schema: "public"
-table: "users"
-sync_mode: "incremental"
-sync_schedule: "0 0 * * *"  # Daily at midnight
-```
-
-### Advanced Configuration
-
-```yaml
-# Advanced setup with multiple schemas and scheduling
-credentials: "PostgreSQL Connection"
-schema: "analytics"
-table: "user_metrics"
-sync_mode: "incremental"
-sync_schedule: "0 2 * * *"  # Daily at 2 AM
-```
-
-### Materialized View Sync
-
-```yaml
-# Sync data from a materialized view
-credentials: "PostgreSQL Connection"
-schema: "reports"
-table: "daily_summary_mv"  # Materialized view
-sync_mode: "full-refresh"  # Full refresh for materialized views
-sync_schedule: "0 6 * * *"  # Daily at 6 AM
-```
 
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**                    | **Solution**                                                                                |
-| ------------------------------ | ------------------------------------------------------------------------------------------- |
-| **Connection Failed**          | Verify PostgreSQL credentials and network connectivity                                       |
-| **Table Not Found**            | Check schema and table names, ensure they exist in the database                             |
-| **Permission Denied**          | Ensure your database user has appropriate read permissions                                  |
-| **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                 |
-| **Schema Access Error**        | Verify you have access to the specified database schema                                     |
-| **Large Table Performance**    | Use incremental sync mode and consider using materialized views for large datasets          |
-| **Network Connectivity**       | Check firewall settings and whitelist Cloudflare IPs if connection fails                    |
+| **Problem**                 | **Solution**                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| **Connection Failed**       | Verify PostgreSQL credentials and network connectivity                             |
+| **Table Not Found**         | Check schema and table names, ensure they exist in the database                    |
+| **Permission Denied**       | Ensure your database user has appropriate read permissions                         |
+| **Sync Not Scheduled**      | Check cron expression format and ensure sync schedule is properly configured       |
+| **Schema Access Error**     | Verify you have access to the specified database schema                            |
+| **Large Table Performance** | Use incremental sync mode and consider using materialized views for large datasets |
+| **Network Connectivity**    | Check firewall settings and whitelist Cloudflare IPs if connection fails           |
 
 ### Debugging
 
@@ -302,12 +273,14 @@ sync_schedule: "0 6 * * *"  # Daily at 6 AM
 ## Example Use Cases
 
 ### Data Intelligence Workflows
+
 - **User Analytics**: Sync user behavior data for AI-powered insights
 - **Business Metrics**: Process sales, inventory, and performance data
 - **Customer Data**: Index customer profiles and interactions for personalized experiences
 - **Operational Data**: Automate access to logs, events, and system metrics
 
 ### RAG Applications
+
 - **Semantic Search**: Enable natural language search across database records
 - **Question Answering**: Build AI assistants that can answer questions about business data
 - **Data Summarization**: Automatically summarize large datasets and reports

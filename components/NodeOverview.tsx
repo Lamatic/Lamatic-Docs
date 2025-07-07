@@ -13,7 +13,8 @@ import {
   Settings2,
   Info,
   FileOutput,
-  BetweenHorizonalEnd
+  BetweenHorizonalEnd,
+  BookCheck
 } from "lucide-react";
 
 // Get Node page data by slug (example: /pages/docs/nodes/api-node)
@@ -66,6 +67,8 @@ const IntegrationIcon = ({ title }: { title: string }) => {
         return <Code className="w-5 h-5" />;
     case "Rate Limits":
         return <Code className="w-5 h-5" />;
+    case "Testing":
+          return <BookCheck className="w-5 h-5" />;
     case "Security":
         return <Code className="w-5 h-5" />;
     default:

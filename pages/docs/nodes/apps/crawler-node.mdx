@@ -54,7 +54,7 @@ Before using Crawler Node, ensure the following:
 - Properly configured credentials for Firecrawl.
 - A webhook endpoint for receiving notifications (required for the crawler).
 
-## Installation
+## Setup
 
 ### Step 1: Obtain API Credentials
 
@@ -95,8 +95,9 @@ This is the base configuraion for the crawler node, regardless of the mode you c
 | **Ignore Query Parameters** |Don't re-scrape the same path with different (or none) query parameters     | `false`           |
 | **Delay**               | Delay between requests to avoid overloading the server                       | `2` (seconds)                 |
 
+<br/>
 You can choose between sync and async mode. If you choose async mode, you need to set up a webhook endpoint to receive the crawl results. For that, you would create a Webhook flow/url to receive crawl updates and results.
-
+<br/><br/>
 In case of async mode, the user will have the option to choose the following configurations : 
 
 | **Parameter**          | **Description**                                                                 | **Example Value**                     |
@@ -143,8 +144,8 @@ nodes:
     needs:
       - triggerNode_1
 ```
-
-## Event Trigger Output 
+## Output
+### Event Trigger Output 
 Now, there are four events that can be triggered from the crawler node. The events are as follows:
 
 1. **Started** : This event is triggered when the crawl process begins. It provides information about the crawl job, including the job ID and the URL being crawled.
@@ -152,7 +153,7 @@ Now, there are four events that can be triggered from the crawler node. The even
 3. **Completed** : This event is triggered when the crawl process is completed. It provides a summary of the crawl job, including the total number of pages crawled and any errors encountered.
 4. **Failed** : This event is triggered when the crawl process fails. It provides information about the error that occurred, including the error message and the job ID.
 
-### Example Event Output - Started
+#### Example Event Output - Started
 
 ```json
 {
@@ -164,7 +165,7 @@ Now, there are four events that can be triggered from the crawler node. The even
 }
 ```
 
-### Example Event Output - Page
+#### Example Event Output - Page
 
 ```json
 {
@@ -206,7 +207,7 @@ Now, there are four events that can be triggered from the crawler node. The even
 }
 ```
 
-### Event Output - Completed
+#### Event Output - Completed
 
 ```json
 {
@@ -230,15 +231,15 @@ Now, there are four events that can be triggered from the crawler node. The even
   "metadata": {}
 }
 ```
-## Output Schema
+### Output Schema
 
-### Async Mode
+#### Async Mode
 
 - `success`: A boolean indicating whether the crawl operation was successfully initiated.                              
 - `id`: A unique identifier assigned to the crawl job.
 - `url`: The API endpoint URL associated with the crawl job, used for tracking or retrieving results.
 
-#### Example Output
+##### Example Output
 
 ```json
 {
@@ -247,7 +248,7 @@ Now, there are four events that can be triggered from the crawler node. The even
     "url": "https://api.firecrawl.dev/v1/crawl/8***************************7"
 }
 ```
-### Sync Mode
+#### Sync Mode
 
 - `success`: A boolean indicating whether the crawl operation was successfully completed.
 - `status`: The status of the crawl operation (e.g., "completed").
@@ -257,7 +258,7 @@ Now, there are four events that can be triggered from the crawler node. The even
 - `expiresAt`: The expiration date and time of the crawl job.
 - `data`: An array containing the crawled data, including metadata and extracted information.
 
-#### Example Output
+##### Example Output
 ```json
 {
     "success": true,

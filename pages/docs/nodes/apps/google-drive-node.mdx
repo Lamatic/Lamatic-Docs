@@ -59,7 +59,7 @@ Before using Google Drive Node, ensure the following:
 - **Cron Expression Knowledge**: Understanding of Cron expressions for scheduling flows.
 - **RAG Flow Setup**: A separate flow configured for implementing Retrieval-Augmented Generation.
 
-## Installation
+## Setup
 
 ### Step 1: Set Up Google Drive Access
 
@@ -117,23 +117,6 @@ triggerNode:
     folderUrl: https://drive.google.com/drive/folders/YOUR_ID
 ```
 
-## Event Trigger Output
-
-The Google Drive node outputs file data in the following format:
-
-### Example Output
-
-```json
-{
-    "document_key": "your_filename", 
-    "content": "data or text that will be stored in the document"
-}
-```
-
-### Output Schema
-
-- `document_key`: Serves as the unique identifier for the document, used to locate or update the specific file or filename.
-- `content`: Represents the data or text that will be stored in the document.
 
 ## Testing
 
@@ -148,7 +131,10 @@ For testing purposes, you need to manually provide `content` and `document_key` 
 }
 ```
 
-## Output Schema
+- `document_key`: Serves as the unique identifier for the document, used to locate or update the specific file or filename.
+- `content`: Represents the data or text that will be stored in the document.
+
+## Output
 
 ### Batch Trigger Output
 

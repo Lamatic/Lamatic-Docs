@@ -1,18 +1,22 @@
 {
   "ai": {
     "title": "AI",
-    "type":"doc"
+    "type":"doc",
+    "sort": 1
   },
   "apps":{
     "title": "Apps",
-    "type":"doc"
+    "type":"doc",
+    "sort": 2
   },
   "data": {
     "title": "Data",
-    "type":"doc"
+    "type":"doc",
+    "sort": 3
   },
   "logic": {
     "title": "Logic",
-    "type":"doc"
+    "type":"doc",
+    "sort": 4
   }
 }

@@ -1,39 +1,33 @@
 ---
-title: Multimodal Text Node
+title: Multimodal Node
 description: The Multimodal Node returns textual output from selected large language models (LLMs).
 type: AI
 order: 4
 ---
-import { NodeOverview } from "@/components/NodeOverview"
 
-# Multimodel Text Node
+import { NodeOverview } from "@/components/NodeOverview";
 
-<NodeOverview slug="multimodel-text-node"/>
+# Multimodel Node
+
+<NodeOverview slug="multimodel-node" type="ai" />
 
 ## Overview
 
 The Multimodal Node returns textual output from selected large language models (LLMs). It supports both text and image inputs. This node is particularly useful for applications that require a seamless integration of textual and visual data processing, such as image captioning where the text is generated based on the content of an image.
 
-![multimodel.png](./img/multimodel/multimodel.webp)
+![multimodel.png](../img/multimodel/multimodel.webp)
 
 ## Features
 
 <details>
   <summary>**Key Functionalities**</summary>
   1. **Textual and Visual Input Support**: Accepts both text and image inputs, enabling
-  seamless integration of multimodal data for processing. 
-  
-  2. **Text Generation**:
+  seamless integration of multimodal data for processing. 2. **Text Generation**:
   Produces textual outputs from selected large language models (LLMs) based on the
-  provided input. 
-  
-  3. **Image-Based Text Generation**: Generates captions and descriptive
+  provided input. 3. **Image-Based Text Generation**: Generates captions and descriptive
   text based on the content of images, making it suitable for applications like image
-  captioning. 
-  
-  4. **LLM Integration**: Supports integration with multiple large language
+  captioning. 4. **LLM Integration**: Supports integration with multiple large language
   models, offering flexibility to choose the best-suited model for specific use cases.
-  
   5. **Context-Aware Processing**: Combines textual and visual data inputs to enhance
   the accuracy and relevance of the generated output.
 </details>
@@ -41,20 +35,13 @@ The Multimodal Node returns textual output from selected large language models (
 <details>
   <summary>**Benefits**</summary>
   1. **Versatility**: Enables applications in various domains, such as image captioning,
-  multimodal analysis, and AI-driven content generation. 
-  
-  2. **Enhanced User Experience**:
+  multimodal analysis, and AI-driven content generation. 2. **Enhanced User Experience**:
   Provides seamless handling of both text and image inputs, improving workflow efficiency.
-  
   3. **Scalability**: Adapts easily to a wide range of use cases, from simple text
-  generation to complex multimodal data analysis. 
-  
-  4. **Efficiency**: Consolidates
+  generation to complex multimodal data analysis. 4. **Efficiency**: Consolidates
   textual and visual processing into a single node, reducing the need for separate
-  tools and streamlining flow. 
-  
-  5. **Advanced AI Integration**: Leverages the
-  capabilities of modern LLMs to deliver accurate and contextually rich outputs.
+  tools and streamlining flow. 5. **Advanced AI Integration**: Leverages the capabilities
+  of modern LLMs to deliver accurate and contextually rich outputs.
 </details>
 
 ## What can I build?
@@ -80,6 +67,7 @@ The Multimodal Node returns textual output from selected large language models (
 | **Generative Model Name** | Select the model to generate text based on the prompt.                                                         | Gemini Model                     |
 | **Prompt Template**       | Define the instructions for generating the text output.Define the instructions for generating the text output. | Tell me something about Bali     |
 | **Attachments**           | Select the attachments to be used for the multi modal LLM.                                                     | `{{triggerNode_1.output.topic}}` |
+| **Messages (History)**    | Pass your messages history herePass                                                                            | []                   |
 | **System Prompt**         | System prompt to guide the LLM                                                                                 | You are Travel Planner           |
 
 ## Low-Code Example
@@ -91,9 +79,9 @@ nodes:
     nodeName: Multi Modal
     values:
       promptTemplate: Tell me something about ${{triggerNode_1.output.topic}}
-      attachments: '{{triggerNode_1.output.topic}}'
+      attachments: "{{triggerNode_1.output.topic}}"
       systemPrompt: You are an AI Assistant
-      messages: '[]'
+      messages: "[]"
       generativeModelName:
         provider_name: mistral
         type: generator/text
@@ -104,14 +92,16 @@ nodes:
       - triggerNode_1
   - nodeId: plus-node-addNode_704346
     nodeType: addNode
-    nodeName: ''
+    nodeName: ""
     values: {}
     needs:
       - multiModalLLMNode_924
 ```
-## Output 
+
+## Output
 
 #### `_meta`
+
 - A nested object containing metadata about the processing of the text generation request.
 
   - **`prompt_tokens`**: The number of tokens in the input prompt provided to the model.
@@ -119,10 +109,12 @@ nodes:
   - **`total_tokens`**: The sum of `prompt_tokens` and `completion_tokens`.
 
   - **`prompt_tokens_details`**: Breakdown of token usage in the prompt.
+
     - **`cached_tokens`**: The number of tokens reused from a cache.
     - **`audio_tokens`**: The number of tokens associated with audio input (if applicable).
 
   - **`completion_tokens_details`**: Breakdown of token usage in the generated output.
+
     - **`reasoning_tokens`**: The number of tokens used for reasoning processes (if applicable).
     - **`audio_tokens`**: The number of tokens associated with audio output (if applicable).
     - **`accepted_prediction_tokens`**: The number of tokens from accepted predictions (if applicable).
@@ -130,29 +122,30 @@ nodes:
 
   - **`model_name`**: The name of the AI model used for text generation.
   - **`model_provider`**
+
 ### Example Output
 
 ```json
 {
-    "_meta": {
-      "prompt_tokens": 276,
-      "completion_tokens": 130,
-      "total_tokens": 406,
-      "prompt_tokens_details": {
-        "cached_tokens": 0,
-        "audio_tokens": 0
-      },
-      "completion_tokens_details": {
-        "reasoning_tokens": 0,
-        "audio_tokens": 0,
-        "accepted_prediction_tokens": 0,
-        "rejected_prediction_tokens": 0
-      },
-      "model_name": "gpt-4-turbo",
-      "model_provider": "openai"
+  "_meta": {
+    "prompt_tokens": 276,
+    "completion_tokens": 130,
+    "total_tokens": 406,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
     },
-    "generatedResponse": "Response"
-  }
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "model_name": "gpt-4-turbo",
+    "model_provider": "openai"
+  },
+  "generatedResponse": "Response"
+}
 ```
 
 ## Troubleshooting

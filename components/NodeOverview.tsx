@@ -113,12 +113,14 @@ const NodeCard = ({
 
 interface NodeOverviewProps {
   slug?: string;
+  type?: string;
 }
 
-export const NodeOverview = ({ slug }: NodeOverviewProps) => {
+export const NodeOverview = ({ slug, type }: NodeOverviewProps) => {
   const [headings, setHeadings] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
 
   const pages = getPagesUnderRoute("/docs/nodes") as Array<
     Page & { frontMatter: any }
@@ -129,21 +131,52 @@ export const NodeOverview = ({ slug }: NodeOverviewProps) => {
     return pages.find((page) => page.name === slug);
   }, [pages, slug]);
 
+  // Infer type from current page route if not provided
+  const inferredType = useMemo(() => {
+    if (type) return type;
+    if (currentPage?.route) {
+      // Extract type from route like /docs/nodes/ai/agent-classifier-node
+      const routeParts = currentPage.route.split('/');
+      const typeIndex = routeParts.indexOf('nodes') + 1;
+      return routeParts[typeIndex] || null;
+    }
+    return null;
+  }, [type, currentPage]);
+
+  // Set client flag
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Fetch headings from API
   useEffect(() => {
-    if (!slug) {
+    console.log('useEffect triggered:', { slug, inferredType, isClient });
+    
+    if (!slug || !inferredType) {
+      console.log('Missing slug or type');
       setHeadings([]);
       return;
     }
 
+    // Only fetch on client side
+    if (!isClient) {
+      console.log('Not on client yet');
+      return;
+    }
+
+    console.log('Starting fetch...');
     const fetchHeadings = async () => {
       setLoading(true);
       setError(null);
       
       try {
-        const response = await fetch(`/api/node-headings?slug=${slug}`);
+        console.log('Fetching from:', `/api/node-headings?slug=${slug}&type=${inferredType}`);
+        const response = await fetch(`/api/node-headings?slug=${slug}&type=${inferredType}`);
+        
+        console.log('Response status:', response.status);
         
         if (!response.ok) {
+          console.log('Response not ok:', response.status, response.statusText);
           if (response.status === 404) {
             setError('Node not found');
           } else {
@@ -154,6 +187,7 @@ export const NodeOverview = ({ slug }: NodeOverviewProps) => {
         }
 
         const data = await response.json();
+        console.log('Response data:', data);
         setHeadings(data.headings || []);
       } catch (err) {
         console.error('Error fetching headings:', err);
@@ -165,22 +199,22 @@ export const NodeOverview = ({ slug }: NodeOverviewProps) => {
     };
 
     fetchHeadings();
-  }, [slug]);
+  }, [slug, inferredType, isClient]);
 
-  if (!slug || !currentPage) {
+  if (!slug || !inferredType) {
     return (
       <div className="text-center py-12">
         <div className="text-gray-500 dark:text-gray-400 text-lg mb-2">
-          Node not found
+          Missing parameters
         </div>
         <div className="text-gray-400 dark:text-gray-500 text-sm">
-          Please provide a valid node slug
+          Please provide a valid slug parameter
         </div>
       </div>
     );
   }
 
-  if (loading) {
+  if (!isClient || loading) {
     return (
       <div className="text-center py-12">
         <div className="text-gray-500 dark:text-gray-400 text-lg mb-2">
@@ -227,7 +261,11 @@ export const NodeOverview = ({ slug }: NodeOverviewProps) => {
             .toLowerCase()
             .replace(/\s+/g, "-")
             .replace(/[^\w\-]+/g, "");
-          const href = `${currentPage.route}#${anchor}`;
+          
+          // Generate href - if currentPage is available, use it, otherwise construct from slug and type
+          const href = currentPage 
+            ? `${currentPage.route}#${anchor}`
+            : `/docs/nodes/${inferredType}/${slug}#${anchor}`;
 
           // Generate description based on heading
           const description = getHeadingDescription(heading);
@@ -270,6 +308,8 @@ function getHeadingDescription(heading: string): string {
     "Rate Limits": "Rate limiting information and best practices.",
     Security: "Security considerations and best practices.",
     Overview: "Get an overview of this node and its capabilities.",
+    Output: "Learn about the output format and data structure of this node.",
+    "What can I build?": "Discover practical use cases and applications for this node.",
   };
 
   return (

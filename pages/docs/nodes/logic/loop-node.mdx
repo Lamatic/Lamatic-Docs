@@ -8,13 +8,13 @@ import { NodeOverview } from "@/components/NodeOverview"
 
 # Loop Node
 
-<NodeOverview slug="loop-node"/>
+<NodeOverview slug="loop-node" type="logic" />
 
 ## Overview
 
 The Loop Node allows users to execute loops in a workflow by iterating over a specified range or a list of objects. This node is particularly useful for automating repetitive tasks, handling iterative processing, and managing multiple data points within a single workflow execution.
 
-![forloop.png](./img/loop-node/loop.webp)
+![forloop.png](../img/loop-node/loop.webp)
 
 ## Features
 
@@ -142,7 +142,7 @@ The output from the loop will be an array of objects.
 
 #### Accessing Output of Looped Nodes
 
-![forloop.png](./img/loop-node/loop-select.png)
+![forloop.png](../img/loop-node/loop-select.png)
 
 You can select the looped node's output from the variable selector as shown above. After which you can modify the index by modifying the index key to a specific index or a looping variable as per your requirement as show below.
 
@@ -174,12 +174,12 @@ for (let i = 0; i < recipeIngredientsFinal.length; i++) {
 ## Testing
 
 You can also check the individual outcome from each iteration using the dropdown in Testing.
-![forloop.png](./img/loop-node/loop-test.png)
+![forloop.png](../img/loop-node/loop-test.png)
 
 ## Flow Execution Logs
 
 The flow execution logs provide detailed insights into the execution process of each iteration in the logs sections
-![forloop.png](./img/loop-node/loop-log.png)
+![forloop.png](../img/loop-node/loop-log.png)
 
 ## Troubleshooting
 

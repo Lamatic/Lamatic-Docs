@@ -1,0 +1,40 @@
+---
+title: Postgres Node
+
+description: PostgreSQL Node in Lamatic automates data synchronization from PostgreSQL databases.
+type: App
+order: 3
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+
+# Postgres Node
+
+<NodeOverview slug="postgres-node" type="apps"  />
+
+## Overview
+
+PostgreSQL Node in Lamatic automates data synchronization from PostgreSQL databases. The node allows users to run the queries from the Postgres Database.
+
+<Callout type="info">
+  This integration connects to your PostgreSQL database to sync data for
+  processing in Lamatic Flow. Ensure your database user has appropriate
+  permissions to access the selected schemas and tables. If the connection
+  fails, whitelist the following IPs:
+  [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+</Callout>
+
+## Features
+### ✅ Key Functionalities
+
+- **Data Synchronization**: Automatically syncs data from PostgreSQL tables and materialized views
+- **Scheduled Processing**: Supports automated sync schedules with cron expressions
+- **RAG Integration**: Enables vectorization and indexing for AI-powered data retrieval
+- **Flexible Sync Modes**: Supports both incremental and full-refresh synchronization
+
+### ✅ Benefits
+
+- Automates database synchronization processes
+- Enables RAG workflows with PostgreSQL data
+- Provides granular control over table selection and processing
+- Supports both incremental and full-refresh synchronization modes

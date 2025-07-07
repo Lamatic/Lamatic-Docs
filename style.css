@@ -113,7 +113,7 @@
   h3 {
     font-size: 1.5em !important;
     margin-top: 1.2em !important;
-    margin-bottom: 0em !important;
+    margin-bottom: 0.5em !important;
     margin-left: 0;
     margin-right: 0;
   }
@@ -123,6 +123,7 @@
     /* font-size: medium; */
     margin-top: 0 !important;
     padding-left: 7px !important; /* Base indentation for all lists */
+    margin-bottom: 0 !important;
   }
 
 
@@ -133,11 +134,14 @@
   ol ul,
   ol ol {
     margin-left: 18px !important; /* Additional indentation for nested lists */
+    margin-bottom: 0 !important;
+
   }
 
   /* List items */
   li {
-    margin: 0; /* Vertical spacing between list items */
+    margin: 0 !important; /* Vertical spacing between list items */
+    margin-bottom: 3px !important;
   }
 
   code {

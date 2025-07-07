@@ -1,21 +1,22 @@
 ---
-title: JSON Generate Node
+title: Generate JSON Node
 
-description: The JSON Generate node is used to produce structured JSON outputs from language model (LLM) prompts.
+description: The Generate JSON node is used to produce structured JSON outputs from language model (LLM) prompts.
 type: AI
 order: 2
 ---
-import { NodeOverview } from "@/components/NodeOverview"
 
-# JSON Generate Node
+import { NodeOverview } from "@/components/NodeOverview";
 
-<NodeOverview slug="json-generate-node"/>
+# Generate JSON Node
+
+<NodeOverview slug="generate-json-node" type="ai" />
 
 ## Overview
 
-The JSON Generate node is used to produce structured JSON outputs from language model (LLM) prompts. It allows users to define a specific output schema, ensuring consistency and precision in data formatting for various applications.The node is part of a larger workflow system, enabling seamless integration with other processes and providing a streamlined setup experience for developers. This functionality is particularly useful in contexts where structured data is needed from natural language inputs, such as generating recipes or other content where specific data fields are required.
+The Generate JSON node is used to produce structured JSON outputs from language model (LLM) prompts. It allows users to define a specific output schema, ensuring consistency and precision in data formatting for various applications.The node is part of a larger workflow system, enabling seamless integration with other processes and providing a streamlined setup experience for developers. This functionality is particularly useful in contexts where structured data is needed from natural language inputs, such as generating recipes or other content where specific data fields are required.
 
-![json.png](./img/json/json.webp)
+![json.png](../img/json/json.webp)
 
 ## Features
 
@@ -63,11 +64,12 @@ The JSON Generate node is used to produce structured JSON outputs from language 
 
 ## Configuration Reference
 
-| **Parameter**             | **Description**                                                                                                | **Example Value**            |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **Generative Model Name** | Select the model to generate text based on the prompt.                                                         | Gemini Model                 |
-| **Prompt Template**       | Define the instructions for generating the text output.Define the instructions for generating the text output. | Tell me something about Bali |
-| **System Prompt**         | System prompt to guide the LLM                                                                                 | You are Travel Planner       |
+| **Parameter**                | **Description**                                                                                                | **Example Value**                     |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| **Generative Model Name**    | Select the model to generate text based on the prompt.                                                         | Gemini Model                          |
+| **Output Schema (Zod JSON)** | Define the output structure and validation rules using Zod JSON.                                               | JSON Schema                           |
+| **User Prompt**              | Define the instructions for generating the text output.Define the instructions for generating the text output. | Tell me travel from Bali to Singapore |
+| **System Prompt**            | System prompt to guide the LLM                                                                                 | You are Travel Planner                |
 
 ## Low-Code Example
 
@@ -100,20 +102,25 @@ nodes:
 ```
 
 ## Output Schema
+
 #### `_meta`
+
 - A nested object containing metadata about the processing of the generation request.
 
 #### Token Usage Details
+
 - **`prompt_tokens`**: Number of tokens in the input prompt provided to the model.
 - **`completion_tokens`**: Number of tokens in the generated output.
 - **`total_tokens`**: Sum of `prompt_tokens` and `completion_tokens`.
 
 #### `prompt_tokens_details`
+
 - A nested object providing a breakdown of token usage in the prompt.
   - **`cached_tokens`**: Number of tokens reused from a cache.
   - **`audio_tokens`**: Number of tokens associated with audio input (if applicable).
 
 #### `completion_tokens_details`
+
 - A nested object detailing token usage in the generated output.
   - **`reasoning_tokens`**: Number of tokens used for reasoning processes (if applicable).
   - **`audio_tokens`**: Number of tokens associated with audio output (if applicable).
@@ -121,6 +128,7 @@ nodes:
   - **`rejected_prediction_tokens`**: Number of tokens from rejected predictions (if applicable).
 
 #### Model Information
+
 - **`model_name`**: The name of the AI model used for generation.
 - **`model_provider`**: The provider or organization supplying the model.
 
@@ -128,25 +136,25 @@ nodes:
 
 ```json
 {
-    "name": "Adelaide",
-    "_meta": {
-      "prompt_tokens": 56,
-      "completion_tokens": 7,
-      "total_tokens": 63,
-      "prompt_tokens_details": {
-        "cached_tokens": 0,
-        "audio_tokens": 0
-      },
-      "completion_tokens_details": {
-        "reasoning_tokens": 0,
-        "audio_tokens": 0,
-        "accepted_prediction_tokens": 0,
-        "rejected_prediction_tokens": 0
-      },
-      "model_name": "gpt-4-turbo",
-      "model_provider": "openai"
-    }
+  "name": "Adelaide",
+  "_meta": {
+    "prompt_tokens": 56,
+    "completion_tokens": 7,
+    "total_tokens": 63,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "model_name": "gpt-4-turbo",
+    "model_provider": "openai"
   }
+}
 ```
 
 ## Troubleshooting

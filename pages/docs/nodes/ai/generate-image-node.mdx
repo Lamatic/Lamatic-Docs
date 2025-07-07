@@ -1,25 +1,26 @@
 ---
-title: Image Gen Node
-description: The Image Generator node creates image outputs programmatically that can be integrated into flow.
+title: Generate Image Node
+description: The Generate Image node creates image outputs programmatically that can be integrated into flow.
 type: AI
 order: 4
 ---
-import { NodeOverview } from "@/components/NodeOverview"
+
+import { NodeOverview } from "@/components/NodeOverview";
 
 # Image Gen Node
-<NodeOverview slug="image-gen-node"/>
+
+<NodeOverview slug="generate-image-node" type="ai" />
 
 ## Overview
 
-The Image Generator node creates image outputs programmatically that can be integrated into flow. Images are generated based on specified parameters and prompts. This node leverages models like OpenAI's DALL-E. It is useful for applications requiring automated image generation.
+The Generate Image node creates image outputs programmatically that can be integrated into flow. Images are generated based on specified parameters and prompts. This node leverages models like OpenAI's DALL-E. It is useful for applications requiring automated image generation.
 
-![imggen.png](./img/imggen/imggen.webp)
+![imggen.png](../img/imggen/imggen.webp)
 
 ## Features
 
 <details>
   <summary>**Key Functionalities**</summary>
-
 1. **Generative Images**: Allows users to select credentials for their preferred generative model, ensuring flexibility and compatibility with various LLMs.
 
 1. **Customizable Prompts**: Features a field for creating prompt templates, enabling tailored input for specific use cases.
@@ -54,7 +55,7 @@ The Image Generator node creates image outputs programmatically that can be inte
 | **Parameter**             | **Description**                                                                                                | **Example Value**             |
 | ------------------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | **Generative Model Name** | Select the model to generate text based on the prompt.                                                         | Open AI Model                 |
-| **Prompt Template**       | Define the instructions for generating the text output.Define the instructions for generating the text output. | Create a Image of Car in Bali |
+| **User Prompt**           | Define the instructions for generating the text output.Define the instructions for generating the text output. | Create a Image of Car in Bali |
 
 ## Low-Code Example
 

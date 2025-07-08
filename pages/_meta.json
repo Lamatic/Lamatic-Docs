@@ -16,6 +16,11 @@
     "title": "Guides",
     "display":"hidden"
   },
+  "integrations": {
+    "type": "page",
+    "title": "Integrations",
+    "display":"hidden"
+  },
   "Changelog": {
     "title": "Change Log",
     "type": "page",

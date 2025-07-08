@@ -9,6 +9,7 @@ import {
   Cards,
   Callout,
 } from "nextra-theme-docs";
+
 import { Logo } from "@/components/logo";
 import { useRouter } from "next/router";
 import { MainContentWrapper } from "./components/MainContentWrapper";
@@ -17,7 +18,14 @@ import { COOKBOOK_ROUTE_MAPPING } from "./lib/cookbook_route_mapping";
 import { GeistSans } from "geist/font/sans";
 import FooterMenu from "./components/FooterMenu";
 import Link from "next/link";
-import { SquareGanttChart, LibraryBig, Phone, Slack, GraduationCap } from "lucide-react";
+import {
+  SquareGanttChart,
+  LibraryBig,
+  Phone,
+  Slack,
+  GraduationCap,
+  Blocks,
+} from "lucide-react";
 import {
   AvailabilityBanner,
   AvailabilitySidebar,
@@ -50,6 +58,7 @@ const config: DocsThemeConfig = {
           <div className="-mx-2 hidden md:block">
             {[
               { title: "Docs", path: "/docs", Icon: LibraryBig },
+              { title: "Integrations", path: "/integrations", Icon: Blocks },
               { title: "Guides", path: "/guides", Icon: GraduationCap },
               { title: "Book a demo", path: "/docs/demo", Icon: Phone },
               {
@@ -119,8 +128,10 @@ const config: DocsThemeConfig = {
           ? "lamatic.ai"
           : asPath.startsWith("/blog/")
           ? "%s - lamatic.ai Blog"
-          : asPath.startsWith("/docs/guides/")
+          : asPath.startsWith("/guides/")
           ? "%s - Lamatic.ai Guides"
+          : asPath.startsWith("/integrations/")
+          ? "%s - Lamatic.ai Integrations"
           : "%s - Lamatic.ai Docs",
       canonical,
     };
@@ -157,7 +168,7 @@ const config: DocsThemeConfig = {
           description
         )}&section=${encodeURIComponent(section)}`;
 
-    const video = frontMatter.ogVideo ? +frontMatter.ogVideo : null;
+    const video = frontMatter.ogVideo ? frontMatter.ogVideo : null;
 
     return (
       <>

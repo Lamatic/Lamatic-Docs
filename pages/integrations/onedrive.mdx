@@ -1,28 +1,14 @@
 ---
-title: OneDrive Business Node
-description: The OneDrive Business Node automates document syncing and processing from Microsoft OneDrive Business accounts, supporting various file types for document intelligence and RAG workflows.
-type: Apps
-order: 5
+title: OneDrive
+description: The OneDrive integration in Lamatic automates document syncing and processing from Microsoft OneDrive Business accounts. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 ---
-import { NodeOverview } from "@/components/NodeOverview";
-import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
-# OneDrive Business Node
-
-<NodeOverview slug="onedrive-business-node" type="apps" />
+# OneDrive Integration
+<IntegrationOverviw slug="onedrive"/>
 
 ## Overview
-
-The OneDrive Business Node is a document synchronization component that automates document syncing and processing from Microsoft OneDrive Business accounts. This node supports various file types including PDFs, Word documents, Excel files, and other compatible formats, providing secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
-
-<NodeTypeInfo 
-  batchTrigger={true}
-  eventTrigger={false}
-  action={false}
-  description="This node is a Batch Trigger node that automates document syncing and processing from OneDrive Business accounts on a scheduled basis."
-/>
-
-This node is a **Batch Trigger** node that automates document collection from OneDrive repositories and enables RAG workflows with organizational knowledge.
+The OneDrive integration in Lamatic automates document syncing and processing from Microsoft OneDrive Business accounts. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 
 <Callout type="info">
 This integration connects to your OneDrive Business account to sync documents for processing in Lamatic Flow.
@@ -30,59 +16,71 @@ This integration connects to your OneDrive Business account to sync documents fo
 
 ## Features
 
-<details>
-  <summary>**Key Functionalities**</summary>
+### ✅ Key Functionalities
 
-1. **Document Syncing**: Automatically syncs documents from OneDrive drives and folders with configurable scheduling.
-2. **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats for comprehensive document processing.
-3. **Scheduled Processing**: Supports automated sync schedules with cron expressions for regular document updates.
-4. **Selective Filtering**: Use glob patterns to filter specific file types and paths for targeted document processing.
-5. **Multiple Sync Modes**: Supports both incremental (new/modified files only) and full-refresh (all files) synchronization modes.
-6. **Search Scope Control**: Configurable search scope including accessible drives, shared items, or all files.
+- **Document Syncing**: Automatically syncs documents from OneDrive drives and folders
+- **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats
+- **Scheduled Processing**: Supports automated sync schedules with cron expressions
+- **Selective Filtering**: Use glob patterns to filter specific file types and paths
 
-</details>
+### ✅ Benefits
 
-<details>
-  <summary>**Benefits**</summary>
+- Automates document collection from OneDrive repositories
+- Enables RAG workflows with organizational knowledge
+- Provides granular control over file selection and processing
+- Supports both incremental and full-refresh synchronization modes
 
-1. **Automated Document Collection**: Automates document collection from OneDrive repositories, reducing manual effort and ensuring consistency.
-2. **RAG Workflow Enablement**: Enables RAG workflows with organizational knowledge for intelligent document processing.
-3. **Granular Control**: Provides granular control over file selection and processing through glob patterns and search scopes.
-4. **Secure Integration**: Offers secure integration with Microsoft 365 accounts and OneDrive Business environments.
-5. **Flexible Processing**: Supports various parsing strategies for different document types and quality requirements.
+## Available Functionality
 
-</details>
+### Event Triggers
+✅ Scheduled document syncing from OneDrive drives <br/>
+✅ Support for multiple file types (PDF, DOCX, XLSX, etc.)<br/>
+✅ Folder-specific monitoring and filtering <br/>
+✅ Incremental and full-refresh sync modes<br/>
+
+### Actions
+✅ Parse and extract text from documents <br/>
+✅ Vectorize content for RAG workflows <br/>
+✅ Filter files using glob patterns <br/>
+✅ Schedule automated sync operations <br/>
 
 ## Prerequisites
 
-Before using OneDrive Business Node, ensure the following:
+Before setting up the OneDrive integration, ensure you have:
 
-- **Microsoft 365 Account**: A Microsoft 365 account with OneDrive Business access.
-- **OneDrive Permissions**: Appropriate permissions to access OneDrive files and drives.
-- **Tenant ID**: Your organization's Tenant ID from Microsoft Entra Admin Center.
-- **Folder Structure Knowledge**: Understanding of OneDrive folder structure and file organization.
-- **API Permissions**: Proper OneDrive API permissions for accessing selected files and drives.
+- A Microsoft 365 account with OneDrive Business access
+- Appropriate permissions to access OneDrive files and drives
+- Your organization's Tenant ID from Microsoft Entra Admin Center
+- Understanding of OneDrive folder structure and file organization
 
-## Installation
+## Setup
 
 ### Step 1: Set Up Microsoft 365 Credentials
 
-Please refer to the [OneDrive Integration documentation](/integrations/onedrive) to complete the setup and obtain the necessary credentials.
+1. **Get Tenant ID**: Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com)
+2. **Access Azure Active Directory**: Go to **Azure Active Directory** section
+3. **Copy Tenant ID**: Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
 
 <Callout type="warning">
 Ensure you have appropriate OneDrive API permissions to access the selected files and drives.
 </Callout>
 
-### Step 3: Set Up Lamatic Flow
+### Step 2: Configure OneDrive Node
 
 1. **Add OneDrive Node**: Drag the OneDrive node to your flow
 2. **Enter Credentials**: Provide your Microsoft 365 Tenant ID
 3. **Configure Drive Name**: Enter the name of your OneDrive drive (usually "OneDrive")
 4. **Set Folder Path**: Specify the folder path within the drive (use `"."` for all folders)
 
+### Step 3: Test and Deploy
+
+1. **Test Connection**: Verify the node can access your OneDrive account
+2. **Configure Sync Settings**: Set up sync mode, schedule, and file filters
+3. **Deploy Flow**: Activate the flow to start syncing documents
+
 ## Configuration Reference
 
-### Batch Trigger Configuration
+### OneDrive Node Parameters
 
 | **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
@@ -142,75 +140,6 @@ globs: "**/*", "!**/draft/**"
 - **`SHARED_ITEMS`**: Files shared with you by others
 - **`ALL`**: All accessible files (recommended)
 
-## Low-Code Example
-
-```yaml
-triggerNode:
-  nodeId: triggerNode_1
-  nodeType: onedriveBusinessNode
-  nodeName: OneDrive Business
-  values:
-    credentials: Microsoft 365
-    drive_name: OneDrive
-    folder_path: .
-    globs: ["**/*.pdf", "**/*.docx"]
-    sync_mode: incremental
-    sync_schedule: "0 2 * * *"
-    search_scope: ALL
-    parsing_strategy: fast
-    days_to_sync_if_history_full: 30
-    start_date: "2024-01-01T00:00:00.000000Z"
-```
-
-## Event Trigger Output
-
-The OneDrive Business node outputs document data in the following format:
-
-### Example Output
-
-```json
-{
-    "document_key": "document_name.pdf",
-    "content": "Extracted text content from the document",
-    "metadata": {
-        "file_type": "pdf",
-        "file_size": 1024000,
-        "last_modified": "2024-01-01T00:00:00.000Z",
-        "drive_name": "OneDrive",
-        "folder_path": "./Documents",
-        "parsing_strategy": "fast"
-    }
-}
-```
-
-### Output Schema
-
-- `document_key`: String identifier for the document (filename)
-- `content`: String containing the extracted text content from the document
-- `metadata`: Additional information about the document
-  - `file_type`: Type of the processed file
-  - `file_size`: Size of the file in bytes
-  - `last_modified`: Timestamp of last modification
-  - `drive_name`: Name of the OneDrive drive
-  - `folder_path`: Path within the drive
-  - `parsing_strategy`: Strategy used for content extraction
-
-## Output Schema
-
-### Batch Trigger Output
-
-- `document_key`: String identifier for the document (filename)
-- `content`: String containing the extracted text content
-- `metadata`: Additional document information
-  - `file_type`: String indicating file type (pdf, docx, xlsx, etc.)
-  - `file_size`: Integer size in bytes
-  - `last_modified`: ISO timestamp of last modification
-  - `drive_name`: String name of the OneDrive drive
-  - `folder_path`: String path within the drive
-  - `parsing_strategy`: String indicating parsing method used
-  - `sync_mode`: String indicating sync mode used
-  - `search_scope`: String indicating search scope used
-
 ## Usage Examples
 
 ### Basic OneDrive Sync
@@ -266,19 +195,14 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 | **Files Not Syncing**          | Verify folder path exists and glob patterns are correctly formatted                        |
 | **Permission Denied**          | Ensure your Microsoft 365 account has appropriate OneDrive API permissions                 |
 | **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                |
-| **Parsing Errors**             | Verify parsing strategy is appropriate for the document types being processed              |
-| **Large File Issues**          | Check file size limits and consider using incremental sync for large repositories          |
 
-### Debugging
+### Debugging Steps
 
-- Check Lamatic Flow logs for detailed error messages
-- Verify Microsoft 365 credentials and Tenant ID
-- Test OneDrive drive access in your browser
-- Validate folder path exists and is accessible
-- Test glob patterns to ensure they match your documents
-- Monitor sync logs for specific file processing errors
-- Verify network connectivity and API rate limits
-- Test with a small folder before processing large repositories
+1. **Verify Credentials**: Test your Microsoft 365 credentials and Tenant ID
+2. **Check Drive Access**: Ensure you can access the OneDrive drive in your browser
+3. **Validate Folder Path**: Confirm the folder path exists and is accessible
+4. **Test Glob Patterns**: Verify file filtering patterns match your documents
+5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
 
 ### Best Practices
 
@@ -288,7 +212,6 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 - Use `hi_res` parsing for scanned documents and images
 - Regularly monitor sync logs for any issues
 - Set appropriate `days_to_sync_if_history_full` to limit historical data
-- Test parsing strategies with sample documents before full deployment
 
 ## Example Use Cases
 
@@ -304,7 +227,7 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 - **Document Summarization**: Automatically summarize lengthy reports and documents
 - **Content Discovery**: Help users find relevant information across OneDrive repositories
 
-## Additional Resources
+## Related Resources
 
 - [Microsoft Entra Admin Center](https://entra.microsoft.com)
 - [OneDrive API Documentation](https://docs.microsoft.com/en-us/onedrive/developer/)

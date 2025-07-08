@@ -1,0 +1,311 @@
+---
+title: GitHub Action
+description: The GitHub Action integration in Lamatic automates file monitoring and webhook triggering when files are modified in your repository. It supports various file types and provides secure integration with Lamatic Flow for automated processing and indexing.
+---
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# GitHub Action Integration
+
+<IntegrationOverviw slug="github"/>
+
+## Overview
+
+The GitHub Action integration in Lamatic automates file monitoring and webhook triggering when files are modified in your repository. It supports various file types and provides secure integration with Lamatic Flow for automated processing and indexing.
+
+<Callout type="info">
+This integration uses the `Lamatic/Index-to-lamatic@v1.6` GitHub Action to detect file changes and send them to your Lamatic Flow webhook for processing.
+</Callout>
+
+## Features
+
+### Key Functionalities
+
+- **File Monitoring**: Automatically detects when files are added or modified in specified paths
+- **Webhook Integration**: Sends file contents to Lamatic Flow webhooks securely
+- **Security Features**: Supports GitHub Secrets for secure credential management
+- **Flexible Configuration**: Supports multiple file types and monitoring modes
+
+### Benefits
+
+- Automates flow triggering based on repository changes
+- Enables seamless integration with Lamatic Flow templates
+- Provides robust configuration for selective file monitoring
+- Supports both incremental and full-refresh synchronization modes
+
+## Available Functionality
+
+### Event Triggers
+✅ File changes in specified paths (push events) <br/>
+✅ Support for multiple file types (mdx, md, txt, etc.)<br/>
+✅ Branch-specific monitoring <br/>
+✅ Path-based filtering<br/>
+
+### Actions
+✅ Send file contents to webhook <br/>
+✅ Incremental and full-refresh modes <br/>
+✅ Verbose logging for debugging <br/>
+
+## Prerequisites
+
+Before setting up the GitHub Action integration, ensure you have:
+
+- A GitHub repository with appropriate permissions
+- A Lamatic Flow webhook endpoint configured
+- Access to GitHub repository settings for managing secrets
+- Understanding of GitHub Actions workflow configuration
+
+## Setup
+
+### Step 1: Set Up Lamatic Flow Webhook
+
+1. **Create a Custom Flow**: Follow the [webhook integration guide](https://lamatic.ai/docs/interface/webhooks) to create a flow that receives webhook data
+1. **Note your webhook URL and key** for the next steps
+
+### Step 2: Configure GitHub Secrets
+
+1. Navigate to your repository's **Settings > Secrets and Variables > Actions**
+2. Add the following repository secrets:
+   - **`WEBHOOK_URL`**: Your Lamatic Flow webhook URL
+   - **`WEBHOOK_KEY`**: Your webhook authorization key (if required)
+
+<Callout type="warning">
+Keep your webhook credentials secure. Never commit them directly to your repository.
+</Callout>
+
+### Step 3: Create GitHub Workflow
+
+Create a workflow file in `.github/workflows/` (e.g., `lamatic-integration.yml`) with the following configuration:
+
+```yaml
+name: Lamatic Integration
+
+on:
+  push:
+    branches:
+      - main  # Adjust to your default branch
+    paths: 
+      - '**.mdx'  # Monitor specific file types
+
+jobs:
+  send-to-lamatic:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send File Changes to Lamatic
+      uses: Lamatic/Index-to-lamatic@v1.6
+      with:
+        webhook_url: ${{ secrets.WEBHOOK_URL }}
+        webhook_key: ${{ secrets.WEBHOOK_KEY }}
+        github_ref: ${{ github.ref }}
+        file_type: "mdx"
+        mode: "incremental"
+        verbose: "true"
+```
+
+Check out more info for Lamatic Github Action [here](https://github.com/marketplace/actions/send-file-changes-to-lamatic-webhook)
+
+## Configuration Reference
+
+<Tabs items={['Action Parameters', 'Workflow Options', 'Path Patterns']}>
+<Tab>
+
+### GitHub Action Parameters
+
+| **Parameter**   | **Description**                                         | **Required** | **Default** | **Example**                   |
+| --------------- | ------------------------------------------------------- | ------------ | ----------- | ----------------------------- |
+| **webhook_url** | The URL of your Lamatic Flow webhook                    | ✅           | -           | `https://api.lamatic.ai/webhook/abc123` |
+| **webhook_key** | The authorization key for your webhook                  | ✅           | -           | `your_webhook_key`            |
+| **github_ref**  | The GitHub reference (branch) to monitor                | ✅           | -           | `refs/heads/main`             |
+| **file_type**   | The file extension to detect and send                   | ✅           | -           | `mdx`, `md`, `txt`            |
+| **mode**        | Synchronization mode: `incremental` or `full-refresh`   | ✅           | `incremental` | `incremental`                 |
+| **verbose**     | Enable verbose output for debugging                     | ❌           | `false`     | `true`                        |
+
+</Tab>
+<Tab>
+
+### Workflow Configuration Options
+
+#### File Type Monitoring
+```yaml
+# Monitor multiple file types
+paths: 
+  - '**.mdx'
+  - '**.md'
+  - '**.txt'
+  - 'docs/**/*.json'
+```
+
+#### Branch Configuration
+```yaml
+# Monitor specific branches
+branches:
+  - main
+  - develop
+  - feature/*
+```
+
+</Tab>
+<Tab>
+
+### Advanced Path Filtering
+
+```yaml
+# Monitor specific directories
+paths:
+  - 'docs/**/*.mdx'
+  - 'content/**/*.md'
+  - '!**/draft/**'  # Exclude draft folders
+```
+
+#### Common Path Patterns
+
+| **Pattern** | **Description** | **Example** |
+|-------------|-----------------|-------------|
+| `**/*.mdx` | All .mdx files in any directory | `docs/page.mdx`, `content/blog/post.mdx` |
+| `docs/**/*` | All files in docs directory and subdirectories | `docs/api/reference.mdx` |
+| `!**/draft/**` | Exclude all files in draft directories | Excludes `content/draft/unpublished.mdx` |
+| `*.md` | Only .md files in root directory | `README.md` |
+
+</Tab>
+</Tabs>
+
+import { Tabs, Tab } from 'nextra-theme-docs'
+
+## Usage Examples
+
+<Tabs items={['Basic Integration', 'Advanced Configuration', 'Multiple File Types']}>
+<Tab>
+
+### Basic Integration
+
+```yaml
+name: Basic Lamatic Integration
+
+on:
+  push:
+    branches: [main]
+    paths: ['**.mdx']
+
+jobs:
+  sync-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync to Lamatic
+        uses: Lamatic/Index-to-lamatic@v1.6
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_key: ${{ secrets.WEBHOOK_KEY }}
+          github_ref: ${{ github.ref }}
+          file_type: "mdx"
+          mode: "incremental"
+```
+
+</Tab>
+<Tab>
+
+### Advanced Configuration
+
+```yaml
+name: Advanced Lamatic Integration
+
+on:
+  push:
+    branches: [main, develop]
+    paths: 
+      - 'docs/**/*.mdx'
+      - 'content/**/*.md'
+      - '!**/draft/**'
+
+jobs:
+  sync-documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Sync Documentation to Lamatic
+        uses: Lamatic/Index-to-lamatic@v1.6
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_key: ${{ secrets.WEBHOOK_KEY }}
+          github_ref: ${{ github.ref }}
+          file_type: "mdx"
+          mode: "incremental"
+          verbose: "true"
+```
+
+</Tab>
+<Tab>
+
+### Multiple File Types
+
+```yaml
+name: Multi-Format Integration
+
+on:
+  push:
+    branches: [main]
+    paths: 
+      - '**.mdx'
+      - '**.md'
+      - '**.txt'
+
+jobs:
+  sync-all-formats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync Markdown Files
+        uses: Lamatic/Index-to-lamatic@v1.6
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_key: ${{ secrets.WEBHOOK_KEY }}
+          github_ref: ${{ github.ref }}
+          file_type: "mdx"
+          mode: "incremental"
+      
+      - name: Sync Text Files
+        uses: Lamatic/Index-to-lamatic@v1.6
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_key: ${{ secrets.WEBHOOK_KEY }}
+          github_ref: ${{ github.ref }}
+          file_type: "txt"
+          mode: "incremental"
+```
+
+</Tab>
+</Tabs>
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                   | **Solution**                                                            |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| **Webhook Not Triggering**    | Verify webhook URL is correct and accessible from GitHub Actions        |
+| **File Changes Not Detected** | Check the `paths` section matches your file structure and extensions    |
+| **Authorization Errors**      | Ensure `WEBHOOK_KEY` secret is correctly set and valid                  |
+| **Workflow Not Running**      | Confirm the workflow file is in `.github/workflows/` directory          |
+| **Verbose Mode Not Working**  | Set `verbose: "true"` and check GitHub Actions logs for detailed output |
+
+### Debugging Steps
+
+1. **Check Workflow Logs**: Navigate to your repository's Actions tab to view detailed logs
+2. **Verify Webhook Endpoint**: Test your webhook URL manually to ensure it's accessible
+3. **Validate File Paths**: Confirm the monitored file paths exist in your repository
+4. **Check Branch Configuration**: Ensure the monitored branches match your repository structure
+
+### Best Practices
+
+- Use specific file paths to avoid unnecessary triggers
+- Implement proper error handling in your Lamatic Flow
+- Monitor GitHub Actions usage to stay within limits
+- Regularly update the GitHub Action to the latest version
+- Use descriptive workflow names for better organization
+
+## Related Resources
+
+- [Webhook Integration Guide](https://lamatic.ai/docs/interface/webhooks)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [GitHub Secrets Management](https://docs.github.com/en/actions/security-guides/encrypted-secrets)

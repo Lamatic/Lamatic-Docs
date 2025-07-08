@@ -440,7 +440,7 @@ const rewrites = [
     ["/sitemap-doc.xml", "/public/sitemap.xml"],["/sitemap-0.xml", "/public/sitemap-0.xml"],
     ["/sitemap.xml", "/public/website-sitemap.xml"],
     ["/robots.txt", "/public/robots.txt"],
-    ["/:path((?!docs|blog|guides|_next|public|assets|images|api|robots.txt|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
+    ["/:path((?!docs|blog|guides|integrations|_next|public|assets|images|api|robots.txt|sitemap-0.xml).*)", "https://get.lamatic.ai/:path*"],
 
 ]
 

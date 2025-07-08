@@ -66,30 +66,13 @@ Before using SharePoint Business Node, ensure the following:
 ## Installation
 
 ### Step 1: Set Up Microsoft 365 Credentials
-
-1. **Get Tenant ID**:
-   - Navigate to [Microsoft Entra Admin Center](https://entra.microsoft.com)
-   - Go to **Azure Active Directory** section
-   - Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
-
-2. **Verify Permissions**:
-   - Ensure you have appropriate SharePoint access permissions
-   - Test access to the target SharePoint sites and folders
+Please refer to the [SharePoint Integration documentation](/docs/integrations/sharepoint) to complete the setup and obtain the necessary credentials.
 
 <Callout type="warning">
 Ensure you have appropriate SharePoint access permissions for the sites you want to sync.
 </Callout>
 
-### Step 2: Configure SharePoint Credentials
-
-Use the following format to set up your credentials:
-
-| **Key Name**          | **Description**                                     | **Example Value**           |
-| --------------------- | --------------------------------------------------- | --------------------------- |
-| **Credential Name**   | Name to identify this set of credentials            | `my-sharepoint-creds`       |
-| **Microsoft 365**     | Microsoft 365 credentials with SharePoint access   | `Microsoft 365`             |
-
-### Step 3: Set Up Lamatic Flow
+### Step 2: Set Up Lamatic Flow
 
 1. **Add SharePoint Node**: Drag the SharePoint node to your flow
 2. **Enter Credentials**: Provide your Microsoft 365 Tenant ID

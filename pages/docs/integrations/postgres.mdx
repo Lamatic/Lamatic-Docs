@@ -57,6 +57,23 @@ Before setting up the PostgreSQL integration, ensure you have:
 
 ### Step 1: Set Up PostgreSQL Credentials
 
+Follow the steps below to properly configure a PostgreSQL connector with the required read-only access.
+
+#### Create a dedicated read-only Postgres user
+It's recommended to use a dedicated read-only user for secure data replication. You may also use an existing user with similar permissions.
+
+Run the following SQL command to create a new user:
+```
+CREATE USER <user_name> PASSWORD 'your_password_here';
+```
+
+Then, grant the user read-only access to the desired schemas and tables. Execute the following commands for each schema you intend to replicate data from:
+```
+GRANT USAGE ON SCHEMA <schema_name> TO <user_name>;
+GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <user_name>;
+ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO <user_name>;
+```
+#### Connection Requirements
 1. **Database Access**: Ensure you have access to the PostgreSQL database
 2. **User Permissions**: Verify your database user has appropriate read permissions
 3. **Connection Details**: Gather your database connection information:

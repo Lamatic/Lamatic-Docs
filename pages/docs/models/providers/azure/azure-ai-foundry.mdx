@@ -58,13 +58,18 @@ Azure AI Foundry supports two types of projects: a **hub-based project** and a *
 ### Step 6: Configure in Lamatic
 1. Open your [Lamatic.ai Studio]
 2. Navigate to **Models** section
-3. Select **Azure AI Foundry** from the provider list
+3. Select `azure-ai-foundry` from the provider list
 4. Provide the following credentials:
-   - Azure API Key
-   - Azure API Version
-   - Resource Name
+   - Azure API Key: Your Azure AI Foundry API key
+   - Azure Foundry URL: The base endpoint URL for your deployment, formatted according to your deployment type:
+      - For AI Services: `https://your-resource-name.services.ai.azure.com/models`
+      - For Managed: `https://your-model-name.region.inference.ml.azure.com/score`
+      - For Serverless: `https://your-model-name.region.models.ai.azure.com`
+   - Azure API Version: The API version to use (e.g., “2024-05-01-preview”). This is required if you have api version in your deployment url. For example:
+      If your URL is `https://mycompany-ai.westus2.services.ai.azure.com/models?api-version=2024-05-01-preview`, the API version is `2024-05-01-preview`
    - Deployment Name
-5. Save your changes
+5. Add Custom Model   
+6. Save your changes
 
 ## Key Features
 

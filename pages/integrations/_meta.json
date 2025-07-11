@@ -1,0 +1,73 @@
+{
+  "-- Switcher": {
+    "type": "separator",
+    "title": "Switcher"
+  },
+  "index": {
+    "title": "Overview"
+  },
+  "--": {
+    "type": "separator",
+    "title": ""
+  },
+  "--Apps": {
+    "type": "separator",
+    "title": "Apps"
+  },
+  "slack": {
+    "title": "Slack",
+    "type": "doc"
+  },
+  "--Data": {
+    "type": "separator",
+    "title": "Data"
+  },
+  "aws-s3": {
+    "title": "AWS S3",
+    "type": "doc"
+  },
+  "google-drive": {
+    "title": "Google Drive",
+    "type": "doc"
+  },
+  "google-sheets": {
+    "title": "Google Sheets",
+    "type": "doc"
+  },
+  "onedrive": {
+    "title": "OneDrive",
+    "type": "doc"
+  },
+  "sharepoint": {
+    "title": "SharePoint",
+    "type": "doc"
+  },
+  "postgres": {
+    "title": "PostgreSQL",
+    "type": "doc"
+  },
+  "--Web & Content": {
+    "type": "separator",
+    "title": "Web & Content"
+  },
+  "firecrawl": {
+    "title": "Firecrawl",
+    "type": "doc"
+  },
+  "websearch": {
+    "title": "Web Search",
+    "type": "doc"
+  },
+  "--Tools": {
+    "type": "separator",
+    "title": "Tools"
+  },
+  "github": {
+    "title": "GitHub Actions",
+    "type": "doc"
+  },
+  "n8n": {
+    "title": "N8N",
+    "type": "doc"
+  }
+}

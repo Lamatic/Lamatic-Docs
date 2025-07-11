@@ -1,0 +1,162 @@
+---
+title: Web Search
+description: The Web Search integration in Lamatic.ai enables powerful web scraping and search capabilities through serper.dev. It supports multiple search types, customizable filters, and structured result retrieval for comprehensive web data access.
+---
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Web Search Integration
+<IntegrationOverviw slug="websearch"/>
+
+## Overview
+
+The Web Search integration in Lamatic.ai enables powerful web scraping and search capabilities through [serper.dev](https://serper.dev). This integration supports multiple search types, customizable filters, and structured result retrieval, making it ideal for gathering comprehensive web data and performing advanced search operations.
+
+<Callout type="info">
+This integration connects to serper.dev's robust API to provide web search, news search, and webpage scraping capabilities with extensive filtering options.
+</Callout>
+
+## Features
+
+### ✅ Key Functionalities
+
+- **Multiple Search Types**: Web search, news search, and direct webpage scraping
+- **Advanced Filtering**: Date range, location, language, and country-based filtering
+- **Pagination Support**: Retrieve results from specific pages with customizable result counts
+- **Structured Results**: Clean, organized data output for easy processing
+- **Real-time Data**: Access to current web information and news
+
+### ✅ Benefits
+
+- Comprehensive web data access and analysis
+- Granular control over search parameters and filters
+- Integration with serper.dev's robust and reliable API
+- Enhanced data collection and research capabilities
+- Automated web scraping and content extraction
+
+## Prerequisites
+
+Before using the Web Search integration, ensure you have:
+
+- Valid Serper API Key from [serper.dev](https://serper.dev/api-key)
+- Web Search credentials configured in Lamatic
+- Understanding of search parameters and filtering options
+- Proper API usage limits and rate limiting awareness
+
+## Setup
+
+### Step 1: Get Serper API Key
+
+1. **Sign Up**: Create an account at [serper.dev](https://serper.dev)
+2. **Generate API Key**: Navigate to the API key section
+3. **Copy Key**: Save your API key securely for configuration
+
+<Callout type="warning">
+Keep your API key secure and never expose it in public repositories or client-side code.
+</Callout>
+
+### Step 2: Configure Credentials
+
+1. **Add Web Search Node**: Drag the Web Search node to your flow
+2. **Enter Credentials**: Provide your Serper API key
+3. **Test Connection**: Verify the credentials work properly
+
+### Step 3: Configure Search Parameters
+
+1. **Set Search Type**: Choose between web, news, or webpage scraping
+2. **Configure Filters**: Set up date range, location, and language preferences
+3. **Test Search**: Verify search functionality with sample queries
+
+## Configuration Reference
+
+### Credential Configuration
+
+| **Parameter**       | **Description**                                     | **Required** | **Example**           |
+| ------------------- | --------------------------------------------------- | ------------ | --------------------- |
+| **Credential Name** | Identifier for the credential set                   | ✅           | `my-web-search-creds` |
+| **API Key**         | Serper authentication key (from serper.dev/api-key) | ✅           | `your-api-key`        |
+
+### Search Parameters
+
+| **Parameter**       | **Description**                 | **Required** | **Default** | **Example**                    |
+| ------------------- | ------------------------------- | ------------ | ----------- | ------------------------------ |
+| **Credential Name** | Selected Web Search credentials | ✅           | -           | `my-web-search-creds`          |
+| **Query**           | Search terms or webpage URL     | ✅           | -           | `best restaurants in new york` |
+| **Type**            | Search type selection           | ✅           | `Search`    | `News`                         |
+| **Date Range**      | Time period filter              | ❌           | -           | `Last 24 Hours`                |
+| **Results**         | Maximum results per page        | ❌           | `10`        | `5`                            |
+| **Page**            | Result page number              | ❌           | `1`         | `2`                            |
+| **Country**         | Target country for results      | ❌           | -           | `US`                           |
+| **Language**        | Result language preference      | ❌           | -           | `en`                           |
+| **Location**        | Specific geographic target      | ❌           | -           | `New York, NY`                 |
+
+### Search Types
+
+| **Type**        | **Description**                                    | **Use Case**                           |
+| --------------- | -------------------------------------------------- | --------------------------------------- |
+| **Web Search**  | General web search results                        | Finding websites, articles, information |
+| **News Search** | Recent news articles and updates                  | Current events, trending topics         |
+| **WebPage**     | Direct URL scraping and content extraction        | Extracting specific webpage content     |
+
+### Date Range Options
+
+| **Option**        | **Description**                    | **Time Period**     |
+| ----------------- | ---------------------------------- | ------------------- |
+| **Last 24 Hours** | Results from the past day          | 24 hours            |
+| **Past Week**     | Results from the past 7 days       | 7 days              |
+| **Past Month**    | Results from the past 30 days      | 30 days             |
+| **Past Year**     | Results from the past 365 days     | 365 days            |
+| **Custom Range**  | User-defined date range            | Custom              |
+
+### Language Options
+
+| **Code** | **Language** | **Code** | **Language** |
+| -------- | ------------ | -------- | ------------ |
+| `en`     | English      | `es`     | Spanish      |
+| `fr`     | French       | `de`     | German       |
+| `it`     | Italian      | `pt`     | Portuguese   |
+| `ru`     | Russian      | `ja`     | Japanese     |
+| `ko`     | Korean       | `zh`     | Chinese      |
+
+## Low-Code Examples
+
+```yaml
+nodes:
+  - nodeId: webSearchNode_788
+    nodeType: webSearchNode
+    nodeName: Web Search
+    values:
+      credentials: Serper Basic Auth
+      query: test
+      type: https://google.serper.dev/search
+      dateRange: ""
+      results: 10
+      page: 1
+      country: in
+      language: hi
+      location: ""
+    needs:
+      - triggerNode_1
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**           | **Solution**                                        |
+| --------------------- | --------------------------------------------------- |
+| **API Key Invalid**   | Verify API key in serper.dev dashboard              |
+| **No Results**        | Check search parameters and broaden search criteria |
+| **Credential Errors** | Confirm credentials are properly configured         |
+| **Rate Limiting**     | Check API usage limits in serper.dev account        |
+| **Invalid Query**     | Ensure search terms are properly formatted          |
+| **Location Errors**   | Verify location format and availability             |
+
+### Debugging Tips
+
+- Review Lamatic Flow logs for detailed error messages
+- Verify API key status and usage in serper.dev dashboard
+- Test search parameters individually to isolate issues
+- Check network connectivity and API endpoint accessibility
+- Monitor API usage and respect rate limiting
+- Use simple queries first, then add complexity
+- [Serper API Documentation](https://serper.dev/api)

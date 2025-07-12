@@ -68,11 +68,6 @@
     "type": "separator",
     "title": "🧩 Connect"
   },
-  "hub": {
-    "title": "📦 Hub ↗",
-    "href": "https://hub.lamatic.ai",
-    "newWindow": true
-  },
   "nodes": {
     "title": "Nodes",
     "type": "doc"

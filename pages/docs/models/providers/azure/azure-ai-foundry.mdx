@@ -28,33 +28,48 @@ Azure AI Foundry supports two types of projects: a **hub-based project** and a *
 
 ### Step 3: Create a Foundry Project
 1. Click **"Create new"** in the top right
+![azure](../img/azure-create-new.png)
 2. Select **"Azure AI Foundry resource"**
+![azure foundry](../img/azure-foundry.png)
 3. Enter a **project name**
 4. Select your **subscription** and **resource group**
 5. Choose a **location/region**
+![azure foundry resource](../img/azure-foundry-resource.png)
 6. Click **"Create"**
 
 ### Step 4: Deploy a Model
 1. Navigate to **"Model catalog"** or **"Models + endpoints"**
-2. Browse available models (GPT-4, GPT-3.5-turbo, etc.)
-3. Select a model and click **"Deploy"**
-4. Provide a **Deployment Name** (e.g., "gpt-4-deployment")
-5. Configure deployment settings
-6. Click **"Deploy"**
+![azure foundry resource](../img/azure-model-endpoint.png)
+2. Click on **"Deploy model"**
+3. Browse available models (GPT-4, GPT-3.5-turbo, etc.)
+![azure foundry resource](../img/azure-model-list.png)
+4. Select a model and click **"Confirm"**
+5. Provide a **Deployment Name** (e.g., "gpt-4-deployment")
+6. Configure deployment settings
+![azure foundry resource](../img/azure-model-deployment.png)
+7. Click **"Deploy"**
 
 ### Step 5: Get API Credentials
-Navigate to your project's **"Settings"** or **"Keys and endpoints"** and copy the **API key**.
+1. Navigate to **"Model catalog"** or **"Models + endpoints"**
+2. Select your deployment
+![azure foundry resource](../img/azure-model-credentials.png)
+3. You can get the required credentials from there
 
 ### Step 6: Configure in Lamatic
 1. Open your [Lamatic.ai Studio]
 2. Navigate to **Models** section
-3. Select **Azure AI Foundry** from the provider list
+3. Select `azure-ai-foundry` from the provider list
 4. Provide the following credentials:
-   - Azure API Key
-   - Azure API Version
-   - Resource Name
+   - Azure API Key: Your Azure AI Foundry API key
+   - Azure Foundry URL: The base endpoint URL for your deployment, formatted according to your deployment type:
+      - For AI Services: `https://your-resource-name.services.ai.azure.com/models`
+      - For Managed: `https://your-model-name.region.inference.ml.azure.com/score`
+      - For Serverless: `https://your-model-name.region.models.ai.azure.com`
+   - Azure API Version: The API version to use (e.g., “2024-05-01-preview”). This is required if you have api version in your deployment url. For example:
+      If your URL is `https://mycompany-ai.westus2.services.ai.azure.com/models?api-version=2024-05-01-preview`, the API version is `2024-05-01-preview`
    - Deployment Name
-5. Save your changes
+5. Add Custom Model   
+6. Save your changes
 
 ## Key Features
 

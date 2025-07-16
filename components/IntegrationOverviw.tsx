@@ -121,7 +121,7 @@ export const IntegrationOverviw = ({ slug }: IntegrationOverviwProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const pages = getPagesUnderRoute("/docs/integrations") as Array<
+  const pages = getPagesUnderRoute("/integrations") as Array<
     Page & { frontMatter: any }
   >;
 

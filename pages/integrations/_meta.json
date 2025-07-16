@@ -14,16 +14,12 @@
     "type": "separator",
     "title": "Apps"
   },
-  "slack": {
-    "title": "Slack",
+  "firecrawl": {
+    "title": "Firecrawl",
     "type": "doc"
   },
-  "--Data": {
-    "type": "separator",
-    "title": "Data"
-  },
-  "aws-s3": {
-    "title": "AWS S3",
+  "github": {
+    "title": "GitHub Actions",
     "type": "doc"
   },
   "google-drive": {
@@ -34,6 +30,29 @@
     "title": "Google Sheets",
     "type": "doc"
   },
+ 
+  "n8n": {
+    "title": "N8N",
+    "type": "doc"
+  },
+  "postgres": {
+    "title": "PostgreSQL",
+    "type": "doc"
+  },
+  "aws-s3": {
+    "title": "AWS S3",
+    "type": "doc"
+  },
+  "slack": {
+    "title": "Slack",
+    "type": "doc"
+  },
+  "--Data": {
+    "type": "separator",
+    "title": "Data"
+  },
+  
+ 
   "onedrive": {
     "title": "OneDrive",
     "type": "doc"
@@ -42,18 +61,12 @@
     "title": "SharePoint",
     "type": "doc"
   },
-  "postgres": {
-    "title": "PostgreSQL",
-    "type": "doc"
-  },
+  
   "--Web & Content": {
     "type": "separator",
     "title": "Web & Content"
   },
-  "firecrawl": {
-    "title": "Firecrawl",
-    "type": "doc"
-  },
+  
   "websearch": {
     "title": "Web Search",
     "type": "doc"
@@ -61,13 +74,5 @@
   "--Tools": {
     "type": "separator",
     "title": "Tools"
-  },
-  "github": {
-    "title": "GitHub Actions",
-    "type": "doc"
-  },
-  "n8n": {
-    "title": "N8N",
-    "type": "doc"
   }
 }

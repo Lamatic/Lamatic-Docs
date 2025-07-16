@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   try {
     // Construct the path to the MDX file
-    const mdxPath = path.join(process.cwd(), 'pages', 'docs', 'integrations', `${slug}.mdx`);
+    const mdxPath = path.join(process.cwd(), 'pages', 'integrations', `${slug}.mdx`);
     
     // Check if file exists
     if (!fs.existsSync(mdxPath)) {

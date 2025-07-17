@@ -148,9 +148,9 @@ This flow enables user interaction and intelligent responses:
 
 ### 4. Building the Chatbot Flow
 
-1. Create a new flow named RAG Chatbot or use the RAG Chatbot Template.
-
+1. Create a new flow named RAG Chatbot 
 1. Add a Chat Interface Node.
+  1. [Configure the Chat Widget and whitelist the Domain](/docs/interface/widgets/chat)
 1. Add a RAG Node, configure the database, and connect it to an LLM.
 
 ### 5. Testing
@@ -165,8 +165,16 @@ This flow enables user interaction and intelligent responses:
 1. To integrate the chatbot into your website:
    1. Click Setup to access the embed code.
    1. Paste the code into your website’s HTML.
-   1. Ensure allowed domains are configured before deployment.
+   1. Ensure allowed domains are configured before deployment Configure the Chat Widget.
 
-Ensure that the allowed domains are specified before integrating this chat widget.
+<Callout>
+Ensure that the [allowed domains](/docs/interface/widgets/chat) are specified before integrating this chat widget.
+</Callout>
+<br/>
+
+### 7. Troubleshooting
+- Make sure the `apiUrl` is set correctly to your pod's URL.
+- Confirm that the `workflowId` matches the ID of your intended workflow.
+- Inspect the browser console for any errors related to script loading or widget initialization.
 
 Congratulations! You've completed the tutorial and created your custom knowledge chatbot using Lamatic.ai!

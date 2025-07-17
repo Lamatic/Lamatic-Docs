@@ -32,6 +32,7 @@ import {
 } from "./components/availability";
 import { CloudflareVideo, Video } from "./components/Video";
 import { Button } from "@/components/ui/button";
+import { CustomTOC } from "./components/CustomTOC";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,

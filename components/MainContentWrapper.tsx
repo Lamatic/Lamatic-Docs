@@ -14,6 +14,7 @@ import { NotebookBanner } from "./NotebookBanner";
 import { ProductUpdateSignup } from "./productUpdateSignup";
 import { COOKBOOK_ROUTE_MAPPING } from "@/lib/cookbook_route_mapping";
 import IconGithub from "./icons/openai";
+import { TOCFix } from "./TOCFix";
 
 const pathsWithoutFooterWidgets = ["/imprint", "/blog"];
 
@@ -25,6 +26,7 @@ export const MainContentWrapper = (props) => {
 
   return (
     <>
+      <TOCFix />
       {cookbook ? (
         <NotebookBanner src={cookbook.ipynbPath} className="mb-4" />
       ) : null}

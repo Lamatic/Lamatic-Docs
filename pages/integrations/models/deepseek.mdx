@@ -20,14 +20,33 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
 DeepSeek is a leading AI research company that develops advanced large language models. Their models are known for their strong reasoning capabilities, code generation skills, and multilingual support, making them ideal for various AI applications.
 
+<Callout type="info">Provider Slug: `deepseek`</Callout>
 
 ## Setup
 
-<Callout type="info">
-Learn how to integrate the DeepSeek model by visiting the documentation [here](/docs/models/providers/deepseek).
-</Callout>
 
-## Features
+### Step 1: Create DeepSeek Platform Account
+1. Visit the [DeepSeek Platform]
+2. Sign up for a new account or log in to your existing account
+3. Complete the account verification process
+
+### Step 2: Generate API Key
+1. Navigate to the **API Keys** section in your DeepSeek Platform
+2. Click **Create API Key**
+3. Give your API key a descriptive name
+4. Copy the generated API key (you won't be able to see it again)
+
+![DeepSeek](./img/deepseek.png)
+*DeepSeek Platform API Key Generation Screen*
+
+### Step 3: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **DeepSeek** from the provider list
+4. Paste your API key in the designated field
+5. Save your changes
+
+## Key Features
 
 - **Advanced Reasoning**: Strong logical reasoning and problem-solving capabilities
 - **Code Generation**: Excellent code generation and programming assistance
@@ -50,6 +69,28 @@ DeepSeek offers several model variants:
 
 Check the [DeepSeek Models][DeepSeek models] documentation for the latest model specifications and capabilities.
 
+## Configuration Options
+
+- **API Key**: Your DeepSeek API key for authentication
+- **Model Selection**: Choose from available DeepSeek models
+- **Custom Parameters**: Configure temperature, max_tokens, top_p, and other generation parameters
+- **Streaming**: Enable real-time text generation streaming
+- **Code Generation**: Configure specialized code generation settings
+- **Safety Settings**: Configure content safety and filtering options
+
+## Best Practices
+
+- **API Key Security**: Keep your API keys secure and never share them publicly
+- **Rate Limiting**: Be aware of DeepSeek's rate limits and implement appropriate throttling
+- **Model Selection**: Choose the appropriate model based on your use case:
+  - Use Chat for general conversation and reasoning tasks
+  - Use Coder for programming and code generation tasks
+  - Use Math for mathematical problem-solving
+  - Use V2.5 for the most advanced capabilities
+- **Error Handling**: Implement proper error handling for API failures and rate limits
+- **Cost Optimization**: Monitor your usage and optimize prompts to reduce token consumption
+- **Code Generation**: Provide clear context and requirements for better code generation
+- **Safety Configuration**: Configure appropriate safety settings for your use case
 
 ## Troubleshooting
 
@@ -82,3 +123,25 @@ Check the [DeepSeek Models][DeepSeek models] documentation for the latest model 
 - Review DeepSeek's content safety guidelines
 - Modify inputs to comply with safety standards
 - Configure safety settings appropriately
+
+## Important Notes
+
+- Keep your API keys secure and never share them
+- Check provider's pricing before generating API keys: [DeepSeek pricing][DeepSeek pricing]
+- Regularly rotate your API keys for enhanced security
+- Monitor your usage and costs in the DeepSeek Platform
+- Test your integration after adding each key
+- Some models may require additional setup or approval
+- Be aware of DeepSeek's content safety and usage policies
+- Consider specialized models for specific use cases (coding, math, etc.)
+- Respect DeepSeek's responsible AI principles
+
+## Additional Resources
+
+- [DeepSeek API Documentation][DeepSeek docs]
+- [Model Documentation][DeepSeek models]
+- [Pricing Information][DeepSeek pricing]
+- [DeepSeek Community](https://platform.deepseek.com/community)
+
+Need help? Contact [Lamatic support]
+

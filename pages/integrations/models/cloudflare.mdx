@@ -18,13 +18,32 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
 Cloudflare AI is a platform that integrates artificial intelligence capabilities into Cloudflare's global network infrastructure. It leverages Cloudflare's extensive global network to provide fast, reliable, and secure AI services.
 
+<Callout type="info">Provider Slug: `cloudflare`</Callout>
+
 ## Setup
 
-<Callout type="info">
-Learn how to integrate the Cloudflare model by visiting the documentation [here](/docs/models/providers/cloudflare).
-</Callout>
 
-## Features
+### Step 1: Create Cloudflare Account
+1. Visit the [Cloudflare Dashboard][Cloudflare Dashboard]
+2. Sign up for a new account or log in to your existing account
+3. Complete the account verification process
+
+### Step 2: Get Account ID and API Token
+1. Navigate to **Overview** to find your Account ID
+2. Navigate to **Profile** to access API keys section
+3. Generate a new API token with appropriate permissions
+4. Copy both the Account ID and API token
+
+![Cloudflare](./img/cloudflareai.png)
+
+### Step 3: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **Cloudflare** from the provider list
+4. Paste your Account ID and API token in the designated fields
+5. Save your changes
+
+## Key Features
 
 - **Global Network**: Leverages Cloudflare's worldwide infrastructure for low-latency AI services
 - **Edge Computing**: AI processing at the edge for faster response times
@@ -44,6 +63,23 @@ Cloudflare AI offers several model categories:
 - **Classification**: Models for text and image classification
 
 Check the [Cloudflare AI Models][Cloudflare AI Models] documentation for the latest model offerings and specifications.
+
+## Configuration Options
+
+- **Account ID**: Your Cloudflare account identifier
+- **API Token**: Your Cloudflare API token for authentication
+- **Model Selection**: Choose from available Cloudflare AI models
+- **Custom Parameters**: Configure temperature, max_tokens, and other generation parameters
+- **Region Selection**: Choose the optimal region for your use case
+
+## Best Practices
+
+- **API Token Security**: Keep your API tokens secure and never share them publicly
+- **Account ID Management**: Store your Account ID securely for configuration
+- **Rate Limiting**: Be aware of Cloudflare's rate limits and implement appropriate throttling
+- **Model Selection**: Choose the appropriate model based on your specific use case
+- **Error Handling**: Implement proper error handling for API failures and rate limits
+- **Cost Optimization**: Monitor your usage and optimize requests to reduce costs
 
 ## Troubleshooting
 
@@ -71,3 +107,20 @@ Check the [Cloudflare AI Models][Cloudflare AI Models] documentation for the lat
 - Ensure your API token is properly formatted
 - Check if your account is active and verified
 - Verify you're using the correct API endpoint
+
+## Important Notes
+
+- Keep your API tokens and Account ID secure and never share them
+- Regularly rotate your API tokens for enhanced security
+- Monitor your usage and costs in the Cloudflare dashboard
+- Test your integration after adding each token
+- Some models may require additional setup or approval
+- Be aware of Cloudflare's terms of service and usage policies
+
+## Additional Resources
+
+- [Cloudflare AI Documentation][Cloudflare AI Docs]
+- [Model Documentation][Cloudflare AI Models]
+- [Cloudflare Community](https://community.cloudflare.com/)
+
+Need help? Contact [Lamatic support]

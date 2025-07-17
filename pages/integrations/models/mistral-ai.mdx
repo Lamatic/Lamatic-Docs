@@ -21,12 +21,33 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
 Mistral AI provides a comprehensive suite of AI products and services. Their core offerings include several powerful language models in the Mistral series, starting with Mistral 7B, their foundational open-source model that made headlines for its efficient performance.
 
-## Setup
-<Callout type="info">
-Learn how to integrate the Mistal model by visiting the documentation [here](/docs/models/providers/mistral-ai).
-</Callout>
+<Callout type="info">Provider Slug: `mistral`</Callout>
 
-## Features
+## Setup
+
+
+### Step 1: Create Mistral AI Account
+1. Visit the [Mistral platform][Mistral platform]
+2. Sign up for a new account or log in to your existing account
+3. Complete the account verification process
+
+### Step 2: Generate API Key
+1. Navigate to the [API Keys section][Mistral keys] in your Mistral console
+2. Click **Generate New Key**
+3. Give your API key a descriptive name
+4. Copy the generated API key (you won't be able to see it again)
+
+![Mistal AI](./img/mistral.png)
+*Mistral AI Platform API Key Generation Screen*
+
+### Step 3: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **mistral** from the provider list
+4. Paste your API key in the designated field
+5. Save your changes
+
+## Key Features
 
 - **Efficient Models**: High-performance models with excellent performance-to-size ratios
 - **Open Source Foundation**: Strong commitment to open-source AI development
@@ -47,6 +68,26 @@ Mistral AI offers several model variants:
 - **Mixtral Models**: Mixture of experts models for enhanced performance
 
 Check the [Mistral Models][Mistral models] documentation for the latest model specifications and capabilities.
+
+## Configuration Options
+
+- **API Key**: Your Mistral AI API key for authentication
+- **Model Selection**: Choose from available Mistral models
+- **Custom Parameters**: Configure temperature, max_tokens, top_p, and other generation parameters
+- **Streaming**: Enable real-time text generation streaming
+- **System Prompts**: Define behavior and constraints for the model
+
+## Best Practices
+
+- **API Key Security**: Keep your API keys secure and never share them publicly
+- **Rate Limiting**: Be aware of Mistral AI's rate limits and implement appropriate throttling
+- **Model Selection**: Choose the appropriate model based on your use case:
+  - Use Small for speed-critical applications
+  - Use Medium for balanced performance
+  - Use Large for complex reasoning tasks
+- **Error Handling**: Implement proper error handling for API failures and rate limits
+- **Cost Optimization**: Monitor your usage and optimize prompts to reduce token consumption
+- **Performance Monitoring**: Track model performance and latency for your specific use cases
 
 ## Troubleshooting
 
@@ -74,3 +115,22 @@ Check the [Mistral Models][Mistral models] documentation for the latest model sp
 - Check if the model is currently under high load
 - Consider using a different model or region
 - Monitor Mistral AI's status page for any service issues
+
+## Important Notes
+
+- Keep your API keys secure and never share them
+- Check provider's pricing before generating API keys: [Mistral pricing][Mistral pricing]
+- Regularly rotate your API keys for enhanced security
+- Monitor your usage and costs in the Mistral console
+- Test your integration after adding each key
+- Some models may require additional setup or approval
+- Be aware of Mistral AI's terms of service and usage policies
+
+## Additional Resources
+
+- [Mistral AI API Documentation][Mistral docs]
+- [Model Documentation][Mistral models]
+- [Pricing Information][Mistral pricing]
+- [Mistral AI Community](https://discord.gg/mistralai)
+
+Need help? Contact [Lamatic support]

@@ -18,12 +18,31 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 <IntegrationOverviw slug="voyage-ai" type="models" />
 Voyage AI represents a specialized player in the enterprise AI landscape, focusing on transforming how organizations handle their information retrieval and knowledge management needs. They specialize in advanced embedding models and search capabilities.
 
-## Setup
-<Callout type="info">
-Learn how to integrate the Voyage AI model by visiting the documentation [here](/docs/models/providers/voyage-ai).
-</Callout>
+<Callout type="info">Provider Slug: `voyage-ai`</Callout>
 
-## Features
+## Setup
+
+### Step 1: Create Voyage AI Account
+1. Visit the [Voyage AI Dashboard][Voyage AI Dashboard]
+2. Sign up for a new account or log in to your existing account
+3. Complete the account verification process
+
+### Step 2: Generate API Key
+1. Navigate to the **API Keys** section in your Voyage AI dashboard
+2. Click **Generate New Key**
+3. Give your API key a descriptive name
+4. Copy the generated API key (you won't be able to see it again)
+
+![Voyage](./img/voyageai.png)
+
+### Step 3: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **Voyage AI** from the provider list
+4. Paste your API key in the designated field
+5. Save your changes
+
+## Key Features
 
 - **Advanced Embeddings**: High-quality text embeddings for semantic search and RAG
 - **Enterprise Focus**: Specialized solutions for enterprise information retrieval
@@ -43,6 +62,28 @@ Voyage AI offers specialized models for information retrieval:
 - **Enterprise Models**: Models optimized for enterprise use cases
 
 Check the [Voyage AI Models][Voyage AI Models] documentation for the latest model specifications and capabilities.
+
+## Configuration Options
+
+- **API Key**: Your Voyage AI API key for authentication
+- **Model Selection**: Choose from available Voyage AI models
+- **Custom Parameters**: Configure embedding dimensions, search parameters, and other options
+- **Batch Processing**: Configure batch sizes for large-scale operations
+- **Search Configuration**: Configure search parameters and filters
+- **Reranking Options**: Configure reranking parameters for improved results
+
+## Best Practices
+
+- **API Key Security**: Keep your API keys secure and never share them publicly
+- **Rate Limiting**: Be aware of Voyage AI's rate limits and implement appropriate throttling
+- **Model Selection**: Choose the appropriate model based on your use case:
+  - Use embedding models for semantic search
+  - Use rerank models for improving search relevance
+  - Use search models for information retrieval
+- **Error Handling**: Implement proper error handling for API failures and rate limits
+- **Cost Optimization**: Monitor your usage and optimize operations to reduce costs
+- **Performance Monitoring**: Track embedding quality and search performance
+- **Data Quality**: Ensure high-quality input data for optimal embedding results
 
 ## Troubleshooting
 
@@ -70,3 +111,23 @@ Check the [Voyage AI Models][Voyage AI Models] documentation for the latest mode
 - Check if your input text is properly formatted
 - Verify that the text length is within model limits
 - Consider preprocessing text for better results
+
+## Important Notes
+
+- Keep your API keys secure and never share them
+- Check provider's pricing before generating API keys: [Voyage AI pricing][Voyage AI pricing]
+- Regularly rotate your API keys for enhanced security
+- Monitor your usage and costs in the Voyage AI dashboard
+- Test your integration after adding each key
+- Some models may require additional setup or approval
+- Be aware of Voyage AI's terms of service and usage policies
+- Consider data privacy and security for enterprise deployments
+
+## Additional Resources
+
+- [Voyage AI API Documentation][Voyage AI Docs]
+- [Model Documentation][Voyage AI Models]
+- [Pricing Information][Voyage AI pricing]
+- [Voyage AI Community](https://discord.gg/voyage-ai)
+
+Need help? Contact [Lamatic support]

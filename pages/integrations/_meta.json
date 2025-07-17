@@ -6,9 +6,8 @@
   "index": {
     "title": "Overview"
   },
-  "catalogs": {
-    "title": "Catalogs",
-    "type": "doc"
+  "adding-integration": {
+    "title": "Adding Integration"
   },
   "--": {
     "type": "separator",
@@ -21,9 +20,5 @@
   "models": {
     "type": "separator",
     "title": "Models"
-  },
-  "tools": {
-    "type": "separator",
-    "title": "Tools"
   }
 }

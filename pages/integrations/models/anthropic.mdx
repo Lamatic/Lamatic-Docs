@@ -21,14 +21,32 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
 Anthropic is an AI research company that offers a range of AI products and services centered around their Claude AI assistant technology. Their flagship offering is the Claude family of AI models, which includes Claude 3.5 Sonnet for general intelligence and complex tasks, Claude 3 Opus for writing and complex work, and Claude 3 Haiku for faster, everyday tasks.
 
+<Callout type="info">Provider Slug: `anthropic`</Callout>
 
 ## Setup
+### Step 1: Create Anthropic Account
+1. Visit the [Anthropic console][Anthropic console]
+2. Sign up for a new account or log in to your existing account
+3. Complete the account verification process
 
-<Callout type="info">
-Learn how to integrate the Anthropic model by visiting the documentation [here](/docs/models/providers/anthropic).
-</Callout>
+### Step 2: Generate API Key
+1. Navigate to the [API Keys section][Anthropic keys] in your Anthropic console
+2. Click **Create Key**
+3. Give your API key a descriptive name
+4. Copy the generated API key (you won't be able to see it again)
 
-## Features
+![anthropic](./img/anthropic.png)
+
+*Anthropic Console API Key Screen*
+
+### Step 3: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **Anthropic** from the provider list
+4. Paste your API key in the designated field
+5. Save your changes
+
+## Key Features
 
 - **Advanced Reasoning**: Claude models excel at complex reasoning and problem-solving tasks
 - **Constitutional AI**: Built with safety and helpfulness principles at their core
@@ -47,6 +65,26 @@ Anthropic offers several Claude model variants:
 - **Claude 3.5 Sonnet (with vision)**: Multimodal capabilities for text and image processing
 
 Check the [Anthropic Models][Anthropic models] documentation for the latest model specifications and capabilities.
+
+## Configuration Options
+
+- **API Key**: Your Anthropic API key for authentication
+- **Model Selection**: Choose from available Claude models
+- **Custom Parameters**: Configure temperature, max_tokens, top_p, and other generation parameters
+- **Streaming**: Enable real-time text generation streaming
+- **System Prompts**: Define behavior and constraints for the model
+
+## Best Practices
+
+- **API Key Security**: Keep your API keys secure and never share them publicly
+- **Rate Limiting**: Be aware of Anthropic's rate limits and implement appropriate throttling
+- **Model Selection**: Choose the appropriate model based on your use case:
+  - Use Haiku for speed-critical applications
+  - Use Sonnet for balanced performance
+  - Use Opus for complex reasoning tasks
+- **Prompt Engineering**: Leverage Claude's constitutional AI principles for better results
+- **Cost Optimization**: Monitor your usage and optimize prompts to reduce token consumption
+- **Error Handling**: Implement proper error handling for API failures and rate limits
 
 ## Troubleshooting
 
@@ -75,3 +113,21 @@ Check the [Anthropic Models][Anthropic models] documentation for the latest mode
 - Modify prompts to comply with safety standards
 - Use system prompts to guide model behavior appropriately
 
+## Important Notes
+
+- Keep your API keys secure and never share them
+- Check provider's pricing before generating API keys: [Anthropic pricing][Anthropic pricing]
+- Regularly rotate your API keys for enhanced security
+- Monitor your usage and costs in the Anthropic console
+- Test your integration after adding each key
+- Some models may require additional setup or approval
+- Be aware of Anthropic's content policy and safety guidelines
+
+## Additional Resources
+
+- [Anthropic API Documentation][Anthropic docs]
+- [Model Documentation][Anthropic models]
+- [Pricing Information][Anthropic pricing]
+- [Anthropic Community](https://community.anthropic.com/)
+
+Need help? Contact [Lamatic support]

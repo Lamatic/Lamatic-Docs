@@ -24,14 +24,51 @@ Hugging Face is a leading platform for building, hosting, and deploying state-of
 
 > You can integrate popular models from the Hugging Face Hub or connect your own secure, fine-tuned endpoints for production use.
 
-
+<Callout type="info">Provider Slug: `huggingface`</Callout>
 
 ## Setup
-<Callout type="info">
-Learn how to integrate the HuggingFace model by visiting the documentation [here](/docs/models/providers/huggingface).
-</Callout>
 
-## Features
+### Step 1: Create a Hugging Face Account
+1. Go to the [Hugging Face Hub] and sign up or log in.
+2. Complete account verification if prompted.
+
+### Step 2: Prepare Your Model Endpoint
+
+#### Option A: Public Model Endpoint
+1. Browse the [Hugging Face Hub] and find the public model you wish to use.
+2. Copy the model name (e.g., `bert-base-uncased`).
+3. The public inference API endpoint is:  
+   `https://api-inference.huggingface.co/models/your-model-name`
+
+#### Option B: Self-Hosted (Dedicated) Inference Endpoint
+1. Go to [Hugging Face Inference Endpoints].
+![Huggingface Setup](./img/huggingface_endpoint1.png)
+2. Create a new endpoint for your private or fine-tuned model.
+3. Once deployed, copy the **Base URL** of your endpoint (e.g., `https://your-namespace.hf.space/proxy/your-endpoint`).
+
+### Step 3: Generate Access Token
+1. Visit [Hugging Face Access Tokens].
+2. Create a new token with `read` or `inference` permissions.
+3. Copy your access token (you will need it for Lamatic.ai Studio).
+
+### Step 4: Configure in Lamatic.ai Studio
+
+1. Open [Lamatic.ai Studio].
+2. Navigate to the **Models** section.
+3. Select **HuggingFace** from the provider list.
+4. Enter the following depending on your setup:
+    - **Public model:**  
+      - Paste the public inference API URL or the model name.
+      - Paste your Hugging Face access token.
+    - **Self-hosted endpoint:**  
+      - Paste your dedicated endpoint Base URL.
+      - Paste your Hugging Face access token.
+5. Save your configuration.
+
+![Huggingface Setup](./img/hg-integration.png)
+*Hugging Face Model Configuration in Lamatic.ai Studio*
+
+## Key Features
 
 - **Custom & Fine-Tuned Models:**  
   Connect your own models or use domain-specific fine-tuned endpoints.
@@ -45,6 +82,21 @@ Learn how to integrate the HuggingFace model by visiting the documentation [here
   All access is managed via Hugging Face tokens.
 - **Provider-Level Customization:**  
   Override default behaviors per model or endpoint as needed.
+
+For advanced options, see [Custom Model Integration].
+
+## Available Configuration Options
+
+- **Model URL or Name:** The public model name, public API endpoint URL, or self-hosted endpoint Base URL
+- **Access Token:** Your Hugging Face access token (required for both public and private endpoints)
+
+## Best Practices
+
+- **Credential Security:** Keep your access tokens private and never share them.
+- **Token Rotation:** Regularly rotate your Hugging Face tokens.
+- **Testing:** Test model responses after integration.
+- **Production:** Use self-hosted, dedicated endpoints for critical or production workloads.
+- **Monitoring:** Monitor rate limits and usage from your Hugging Face account.
 
 ## Troubleshooting
 
@@ -67,3 +119,13 @@ Learn how to integrate the HuggingFace model by visiting the documentation [here
 **Integration Errors:**  
 - Confirm Lamatic.ai Studio configuration matches your Hugging Face setup.
 - Consult [Hugging Face Docs] and [Lamatic Support] for troubleshooting.
+
+## Additional Resources
+
+- [Hugging Face Documentation][Hugging Face Docs]
+- [Model Hub][Hugging Face Hub]
+- [Access Tokens][Hugging Face Access Tokens]
+- [Custom Model Integration]
+- [Lamatic Support]
+
+Need help? Contact [Lamatic Support].

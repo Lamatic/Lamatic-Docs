@@ -96,12 +96,14 @@ export const IntegrationsIndex = () => {
                     .split("-")
                     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(" ");
+                const icon = page.frontMatter?.icon || null;
                 return (
                   <div
                     key={page.route}
                     className="rounded-xl bg-white dark:bg-stone-950 border border-gray-200 dark:border-gray-700 p-4 flex flex-col items-start justify-between min-h-[140px] shadow-sm hover:shadow-md transition-shadow"
                   >
                     <div className="mb-2 w-full">
+                      {icon && <img src={icon} alt={title} className="w-6 h-6 mb-2" />}
                       <div className="font-medium text-base leading-tight mb-2 text-black dark:text-white">
                         {title}
                       </div>

@@ -6,72 +6,23 @@
   "index": {
     "title": "Overview"
   },
+  "catalogs": {
+    "title": "Catalogs",
+    "type": "doc"
+  },
   "--": {
     "type": "separator",
     "title": ""
   },
-  "--Apps": {
+  "apps-data-sources": {
     "type": "separator",
-    "title": "Apps"
+    "title": "Apps & Data Sources"
   },
-  "firecrawl": {
-    "title": "Firecrawl",
-    "type": "doc"
-  },
-  "github": {
-    "title": "GitHub Actions",
-    "type": "doc"
-  },
-  "google-drive": {
-    "title": "Google Drive",
-    "type": "doc"
-  },
-  "google-sheets": {
-    "title": "Google Sheets",
-    "type": "doc"
-  },
- 
-  "n8n": {
-    "title": "N8N",
-    "type": "doc"
-  },
-  "postgres": {
-    "title": "PostgreSQL",
-    "type": "doc"
-  },
-  "aws-s3": {
-    "title": "AWS S3",
-    "type": "doc"
-  },
-  "slack": {
-    "title": "Slack",
-    "type": "doc"
-  },
-  "--Data": {
+  "models": {
     "type": "separator",
-    "title": "Data"
+    "title": "Models"
   },
-  
- 
-  "onedrive": {
-    "title": "OneDrive",
-    "type": "doc"
-  },
-  "sharepoint": {
-    "title": "SharePoint",
-    "type": "doc"
-  },
-  
-  "--Web & Content": {
-    "type": "separator",
-    "title": "Web & Content"
-  },
-  
-  "websearch": {
-    "title": "Web Search",
-    "type": "doc"
-  },
-  "--Tools": {
+  "tools": {
     "type": "separator",
     "title": "Tools"
   }

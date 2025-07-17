@@ -1,33 +1,31 @@
 ---
-title: SharePoint
-description: The SharePoint integration in Lamatic automates document syncing and processing from Microsoft SharePoint sites. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
+title: OneDrive
+description: The OneDrive integration in Lamatic automates document syncing and processing from Microsoft OneDrive Business accounts. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 ---
 import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
-# SharePoint Integration
-
-<IntegrationOverviw slug="sharepoint"/>
+# OneDrive Integration
+<IntegrationOverviw slug="onedrive" type="apps-data-sources" />
 
 ## Overview
-
-The SharePoint integration in Lamatic automates document syncing and processing from Microsoft SharePoint sites. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
+The OneDrive integration in Lamatic automates document syncing and processing from Microsoft OneDrive Business accounts. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 
 <Callout type="info">
-This integration connects to your organization's SharePoint instance to sync documents for processing in Lamatic Flow.
+This integration connects to your OneDrive Business account to sync documents for processing in Lamatic Flow.
 </Callout>
 
 ## Features
 
 ### ✅ Key Functionalities
 
-- **Document Syncing**: Automatically syncs documents from SharePoint sites and folders
+- **Document Syncing**: Automatically syncs documents from OneDrive drives and folders
 - **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats
 - **Scheduled Processing**: Supports automated sync schedules with cron expressions
 - **Selective Filtering**: Use glob patterns to filter specific file types and paths
 
 ### ✅ Benefits
 
-- Automates document collection from SharePoint repositories
+- Automates document collection from OneDrive repositories
 - Enables RAG workflows with organizational knowledge
 - Provides granular control over file selection and processing
 - Supports both incremental and full-refresh synchronization modes
@@ -35,7 +33,7 @@ This integration connects to your organization's SharePoint instance to sync doc
 ## Available Functionality
 
 ### Event Triggers
-✅ Scheduled document syncing from SharePoint sites <br/>
+✅ Scheduled document syncing from OneDrive drives <br/>
 ✅ Support for multiple file types (PDF, DOCX, XLSX, etc.)<br/>
 ✅ Folder-specific monitoring and filtering <br/>
 ✅ Incremental and full-refresh sync modes<br/>
@@ -48,12 +46,12 @@ This integration connects to your organization's SharePoint instance to sync doc
 
 ## Prerequisites
 
-Before setting up the SharePoint integration, ensure you have:
+Before setting up the OneDrive integration, ensure you have:
 
-- A Microsoft 365 account with SharePoint access
-- Appropriate permissions to access SharePoint sites and folders
+- A Microsoft 365 account with OneDrive Business access
+- Appropriate permissions to access OneDrive files and drives
 - Your organization's Tenant ID from Microsoft Entra Admin Center
-- Understanding of SharePoint site structure and file organization
+- Understanding of OneDrive folder structure and file organization
 
 ## Setup
 
@@ -64,37 +62,38 @@ Before setting up the SharePoint integration, ensure you have:
 3. **Copy Tenant ID**: Under **Tenant Information**, copy the **Tenant ID** (also called **Directory ID**)
 
 <Callout type="warning">
-Ensure you have appropriate SharePoint access permissions for the sites you want to sync.
+Ensure you have appropriate OneDrive API permissions to access the selected files and drives.
 </Callout>
 
-### Step 2: Configure SharePoint Node
+### Step 2: Configure OneDrive Node
 
-1. **Add SharePoint Node**: Drag the SharePoint node to your flow
+1. **Add OneDrive Node**: Drag the OneDrive node to your flow
 2. **Enter Credentials**: Provide your Microsoft 365 Tenant ID
-3. **Configure Site URL**: Enter the SharePoint site URL you want to sync from
-4. **Set Folder Path**: Specify the folder path within the site (use `"."` for all folders)
+3. **Configure Drive Name**: Enter the name of your OneDrive drive (usually "OneDrive")
+4. **Set Folder Path**: Specify the folder path within the drive (use `"."` for all folders)
 
 ### Step 3: Test and Deploy
 
-1. **Test Connection**: Verify the node can access your SharePoint site
+1. **Test Connection**: Verify the node can access your OneDrive account
 2. **Configure Sync Settings**: Set up sync mode, schedule, and file filters
 3. **Deploy Flow**: Activate the flow to start syncing documents
 
 ## Configuration Reference
 
-### SharePoint Node Parameters
+### OneDrive Node Parameters
 
 | **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
-| **Site URL**                     | URL of the SharePoint site to search for files                                                              | ✅           | -           | `https://lamatic.sharepoint.com/sites/test`     |
-| **Folder Path**                  | Path to a specific folder within the drive. Use `"."` to search all folders                                 | ✅           | -           | `./TeamDocs/HR`                                 |
-| **Globs (Path Patterns)**        | Pattern to filter specific files based on extension or name                                                 | ❌           | `**`        | `**/*.pdf`, `**/*.docx`                         |
-| **Sync Mode**                    | Sync behavior: `full_refresh` or `incremental`                                                              | ✅           | `incremental` | `incremental`                                   |
-| **Sync Schedule**                | Cron expression for scheduled syncs                                                                         | ❌           | -           | `0 0 * * *` (daily at midnight)                 |
-| **Search Scope**                 | Location to search: `ACCESSIBLE_DRIVES`, `SHARED_ITEMS`, or `ALL`                                           | ✅           | `ALL`       | `ALL`                                           |
-| **Parsing Strategy**             | Document parsing method: `fast`, `ocr_only`, or `hi_res`                                                    | ✅           | `fast`      | `hi_res`                                        |
+| **Credentials**                  | Microsoft 365 credentials with access to OneDrive files                                                     | ✅           | -           | `Microsoft 365`                                 |
+| **Drive Name**                   | Name of the connected OneDrive drive                                                                        | ✅           | -           | `OneDrive`                                      |
+| **Folder Path**                  | Path within the drive to target. Use `"."` to sync all folders                                             | ✅           | -           | `.`                                             |
+| **Globs (Path Patterns)**        | Glob pattern for matching files                                                                             | ❌           | `**`        | `**/*.pdf`, `**/*.docx`                         |
+| **Sync Mode**                    | Controls how files are re-indexed: `full_refresh` or `incremental`                                          | ✅           | `incremental` | `incremental`                                   |
+| **Sync Schedule**                | Schedule for automated syncs                                                                                | ❌           | -           | `Every 24 hours`                                |
+| **Search Scope**                 | Scope of files to include: `ACCESSIBLE_DRIVES`, `SHARED_ITEMS`, or `ALL`                                    | ✅           | `ALL`       | `ALL`                                           |
+| **Parsing Strategy**             | Strategy for extracting content: `fast`, `ocr_only`, or `hi_res`                                           | ✅           | `fast`      | `hi_res`                                        |
 | **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                   | ❌           | `30`        | `30`                                            |
-| **Start Date**                   | Ignore files modified before this UTC datetime (ISO format)                                                 | ❌           | -           | `2017-01-25T00:00:00.000000Z`                   |
+| **Start Date**                   | Ignore files modified before this UTC datetime (ISO format)                                                 | ❌           | -           | `2024-01-01T00:00:00.000000Z`                   |
 
 ### Sync Configuration Options
 
@@ -143,11 +142,12 @@ globs: "**/*", "!**/draft/**"
 
 ## Usage Examples
 
-### Basic SharePoint Sync
+### Basic OneDrive Sync
 
 ```yaml
 # Basic configuration for syncing all documents
-site_url: "https://company.sharepoint.com/sites/documents"
+credentials: "Microsoft 365"
+drive_name: "OneDrive"
 folder_path: "."
 globs: "**/*.pdf", "**/*.docx"
 sync_mode: "incremental"
@@ -159,8 +159,9 @@ parsing_strategy: "fast"
 
 ```yaml
 # Advanced setup with scheduling and filtering
-site_url: "https://company.sharepoint.com/sites/knowledge"
-folder_path: "./TeamDocs"
+credentials: "Microsoft 365"
+drive_name: "OneDrive"
+folder_path: "./Documents"
 globs: "**/*.pdf", "**/*.docx", "!**/draft/**"
 sync_mode: "incremental"
 sync_schedule: "0 2 * * *"  # Daily at 2 AM
@@ -173,9 +174,10 @@ start_date: "2024-01-01T00:00:00.000000Z"
 ### Selective Document Sync
 
 ```yaml
-# Sync only specific document types from HR folder
-site_url: "https://company.sharepoint.com/sites/hr"
-folder_path: "./Policies"
+# Sync only specific document types from Work folder
+credentials: "Microsoft 365"
+drive_name: "OneDrive"
+folder_path: "./Work"
 globs: "**/*.pdf", "**/*.docx"
 sync_mode: "incremental"
 search_scope: "ACCESSIBLE_DRIVES"
@@ -188,16 +190,16 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 
 | **Problem**                    | **Solution**                                                                                |
 | ------------------------------ | ------------------------------------------------------------------------------------------- |
-| **Authentication Failed**      | Verify Tenant ID is correct and you have SharePoint access permissions                     |
-| **Site Not Found**             | Check the Site URL format and ensure you have access to the specified site                 |
+| **Authentication Failed**      | Verify Tenant ID is correct and you have OneDrive access permissions                       |
+| **Drive Not Found**            | Check the Drive Name and ensure you have access to the specified OneDrive                  |
 | **Files Not Syncing**          | Verify folder path exists and glob patterns are correctly formatted                        |
-| **Permission Denied**          | Ensure your Microsoft 365 account has appropriate SharePoint permissions                   |
+| **Permission Denied**          | Ensure your Microsoft 365 account has appropriate OneDrive API permissions                 |
 | **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                |
 
 ### Debugging Steps
 
 1. **Verify Credentials**: Test your Microsoft 365 credentials and Tenant ID
-2. **Check Site Access**: Ensure you can access the SharePoint site in your browser
+2. **Check Drive Access**: Ensure you can access the OneDrive drive in your browser
 3. **Validate Folder Path**: Confirm the folder path exists and is accessible
 4. **Test Glob Patterns**: Verify file filtering patterns match your documents
 5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
@@ -214,20 +216,20 @@ parsing_strategy: "ocr_only"  # Better for scanned documents
 ## Example Use Cases
 
 ### Document Intelligence Workflows
-- **Company Policies**: Sync HR policies and procedures for automated Q&A
-- **Knowledge Bases**: Index departmental wikis and team documentation
-- **Compliance Documents**: Process legal and audit-related content
-- **Project Documentation**: Automate access to project files and reports
+- **Business Documents**: Sync reports, contracts, and spreadsheets for automated processing
+- **Internal Wikis**: Index knowledge bases and team documentation
+- **Legal Documents**: Process compliance and audit-related content
+- **Team Collaboration**: Automate access to shared folders and project files
 
 ### RAG Applications
-- **Semantic Search**: Enable natural language search across organizational documents
-- **Question Answering**: Build AI assistants that can answer questions about company policies
+- **Semantic Search**: Enable natural language search across OneDrive documents
+- **Question Answering**: Build AI assistants that can answer questions about business documents
 - **Document Summarization**: Automatically summarize lengthy reports and documents
-- **Content Discovery**: Help users find relevant information across SharePoint sites
+- **Content Discovery**: Help users find relevant information across OneDrive repositories
 
 ## Related Resources
 
 - [Microsoft Entra Admin Center](https://entra.microsoft.com)
-- [SharePoint API Documentation](https://docs.microsoft.com/en-us/sharepoint/dev/)
+- [OneDrive API Documentation](https://docs.microsoft.com/en-us/onedrive/developer/)
 - [Cron Expression Guide](https://crontab.guru/)
 - [Lamatic Flow Templates](https://hub.lamatic.ai/templates)

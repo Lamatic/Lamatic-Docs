@@ -81,9 +81,9 @@ export const IntegrationsIndex = () => {
           <div key={category} className="space-y-4">
             <div className="flex items-center gap-2 mb-1 ">
               {/* {IconComponent && <IconComponent className="w-5 h-5 text-gray-600 dark:text-gray-400 flex-shrink-0" />} */}
-              <h2 className="text-lg font-semibold text-black dark:text-white leading-none">
+              <h3 className="text-lg font-semibold text-black dark:text-white leading-none">
                 {categoryTitle}
-              </h2>
+              </h3>
             </div>
             <p className="text-sm text-gray-700 dark:text-white mb-4 max-w-3xl">
               {SECTION_DESCRIPTIONS[category]}

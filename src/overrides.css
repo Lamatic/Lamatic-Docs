@@ -84,6 +84,86 @@ svg .edgeLabel {
     font-size: small;
 }
 
+/* Ensure TOC links are clickable and work properly */
+.nextra-toc a {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  pointer-events: auto !important;
+  user-select: text;
+  opacity: 0.6;
+  transition: color 0.2s ease;
+}
+
+/* Force TOC links to be updated on page change */
+.nextra-toc a[href^="#"] {
+  position: relative;
+}
+
+.nextra-toc a:hover {
+  text-decoration: underline;
+}
+
+.nextra-toc a:focus {
+  outline: none;
+}
+
+/* Ensure TOC container is properly positioned and clickable */
+.nextra-toc {
+  position: relative;
+  z-index: 10;
+}
+
+.nextra-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nextra-toc li {
+  margin: 0;
+  padding: 0;
+}
+
+/* Fix smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure anchor targets are properly positioned */
+:target {
+  scroll-margin-top: 100px;
+}
+
+/* Ensure headings have proper IDs for anchor links */
+h1, h2, h3, h4, h5, h6 {
+  scroll-margin-top: 100px;
+}
+
+/* Additional TOC fixes */
+.nextra-toc {
+  position: sticky;
+  top: 100px;
+}
+
+/* Ensure TOC links are properly styled and clickable */
+.nextra-toc a[href^="#"] {
+  display: block;
+  padding: 2px 0;
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.nextra-toc a[href^="#"]:hover {
+  color: var(--nextra-primary-hue);
+}
+
+/* Fix for TOC link states */
+.nextra-toc a[href^="#"]:focus {
+  outline: none;
+}
+
 main a:not([href]) {
   display: none;
 }

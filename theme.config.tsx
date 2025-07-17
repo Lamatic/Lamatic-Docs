@@ -24,6 +24,7 @@ import {
 } from "./components/availability";
 import { CloudflareVideo, Video } from "./components/Video";
 import { Button } from "@/components/ui/button";
+import { CustomTOC } from "./components/CustomTOC";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
@@ -157,7 +158,7 @@ const config: DocsThemeConfig = {
           description
         )}&section=${encodeURIComponent(section)}`;
 
-    const video = frontMatter.ogVideo ? +frontMatter.ogVideo : null;
+    const video = frontMatter.ogVideo ? frontMatter.ogVideo : null;
 
     return (
       <>

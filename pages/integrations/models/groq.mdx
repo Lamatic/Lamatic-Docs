@@ -1,0 +1,72 @@
+---
+title: Groq
+description: Groq is a platform that allows developers to run various large language models with extremely low latency, providing significantly faster response times compared to other platforms.
+---
+
+[Groq Dev Console]: https://console.groq.com/playground
+[Groq pricing]: https://groq.com/pricing/
+[Groq API Docs]: https://console.groq.com/docs
+[Groq Models]: https://console.groq.com/docs/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Groq
+<IntegrationOverviw slug="groq" type="models" />
+
+Groq is a platform that allows developers to run various large language models, including Mixtral and Llama 2, with reportedly very low latency compared to other providers. Many users have noted response times significantly faster than other platforms.
+
+## Setup
+<Callout type="info">
+Learn how to integrate the Groq model by visiting the documentation [here](/docs/models/providers/groq).
+</Callout>
+
+## Features
+
+- **Ultra-Low Latency**: Significantly faster response times compared to other providers
+- **High Performance**: Optimized infrastructure for rapid model inference
+- **Wide Model Support**: Access to various models including Mixtral, Llama 2, and others
+- **Cost Effective**: Competitive pricing with pay-per-use model
+- **Developer Friendly**: Simple API integration and comprehensive documentation
+- **Scalable**: Automatic scaling based on demand
+- **Enterprise Ready**: Production-grade infrastructure with high reliability
+
+## Available Models
+
+Groq provides access to various high-performance models:
+
+- **Mixtral Models**: High-quality models for general tasks and reasoning
+- **Llama 2 Models**: Popular open-source models for various applications
+- **Code Models**: Specialized models for coding and development tasks
+- **Custom Models**: Support for custom model deployments
+
+Check the [Groq Models][Groq Models] documentation for the complete list of available models and their specifications.
+
+## Troubleshooting
+
+**Invalid API Key:**
+- Verify your API key is correct and hasn't expired
+- Check if your account has sufficient credits
+- Ensure the API key has the necessary permissions
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff in your requests
+- Consider upgrading your Groq plan for higher limits
+- Monitor your usage in the Groq console
+
+**Model Not Available:**
+- Check if the model is available in your region
+- Verify your account has access to the specific model
+- Contact Groq support for model availability issues
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your account is active and verified
+- Verify you're using the correct API endpoint
+
+**Performance Issues:**
+- Check if the model is currently under high load
+- Consider using a different model or region
+- Monitor Groq's status page for any service issues

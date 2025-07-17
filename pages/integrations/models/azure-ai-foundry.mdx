@@ -1,0 +1,76 @@
+---
+title: Azure AI Foundry
+description: Azure AI Foundry provides a unified platform for enterprise AI operations, model building, and application development with flexible deployment options including AI Services, Managed, and Serverless deployments.
+---
+
+[Azure AI Foundry Portal]: https://ai.azure.com/
+[Azure Portal]: https://portal.azure.com/
+[Azure AI Foundry Guide]: https://learn.microsoft.com/en-us/azure/ai-foundry/
+[Azure AI Foundry Pricing]: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+[Azure AI Foundry Models]: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Azure AI Foundry
+
+<IntegrationOverviw slug="azure-ai-foundry" type="models" />
+
+Azure AI Foundry provides a unified platform for enterprise AI operations, model building, and application development. With Lamatic, you can seamlessly integrate with various models available on Azure AI Foundry and take advantage of features like observability, prompt management, fallbacks, and more.
+
+## Setup
+<Callout type="info">
+Learn how to integrate the Azure AI Foundry model by visiting the documentation [here](/docs/models/providers/azure-ai-foundry).
+</Callout>
+
+## Features
+
+- **Unified Platform**: Comprehensive platform for AI operations and development
+- **Flexible Deployment**: Three deployment types - AI Services, Managed, and Serverless
+- **Enterprise Security**: Advanced security and compliance features
+- **Scalable Infrastructure**: Enterprise-grade scalability and performance
+- **Cost Effective**: Pay-per-use pricing with flexible deployment options
+- **Developer Friendly**: Comprehensive API and documentation
+- **Model Variety**: Access to a wide range of AI models
+- **Compliance Ready**: Meets enterprise compliance and security requirements
+
+## Available Models
+
+Azure AI Foundry provides access to various models through different deployment types:
+
+- **AI Services Models**: Azure-managed models accessed through Azure AI Services endpoints
+- **Managed Models**: User-managed deployments running on dedicated Azure compute resources
+- **Serverless Models**: Seamless, scalable deployment without managing infrastructure
+- **Custom Models**: Your own fine-tuned or custom models
+- **Open Source Models**: Various open-source models available in the catalog
+
+Check the [Azure AI Foundry Models][Azure AI Foundry Models] documentation for the complete list of available models and their specifications.
+
+## Troubleshooting
+
+**Access Denied:**
+- Verify your Azure account has access to Azure AI Foundry
+- Check if your API key is correct and hasn't expired
+- Ensure your project is properly configured
+
+**Project Creation Issues:**
+- Verify your Azure subscription has sufficient permissions
+- Check if the project name is unique and follows naming conventions
+- Ensure the selected region supports Azure AI Foundry
+
+**Model Deployment Issues:**
+- Verify the model is available in your region
+- Check if deployment settings are correct
+- Ensure sufficient compute resources are available for managed deployments
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your Azure account is active and verified
+- Verify you're using the correct endpoint URL
+
+**Deployment Type Issues:**
+- Verify the deployment type is appropriate for your use case
+- Check if the deployment is in "Succeeded" state
+- Ensure proper permissions for the deployment type

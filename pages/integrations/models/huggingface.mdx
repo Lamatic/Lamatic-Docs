@@ -1,0 +1,68 @@
+---
+title: HuggingFace
+description: Hugging Face is a platform for building, hosting, and deploying machine learning models. This guide explains how to connect both public and self-hosted HuggingFace models with Lamatic.ai Studio.
+---
+
+[Hugging Face Hub]: https://huggingface.co/
+[Hugging Face Access Tokens]: https://huggingface.co/settings/tokens
+[Hugging Face Inference Endpoints]: https://huggingface.co/inference-endpoints
+[Hugging Face Docs]: https://huggingface.co/docs
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic Support]: https://help.lamatic.ai/en/
+[Custom Model Integration]: https://lamatic.ai/docs/models/custom-model-integration
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# HuggingFace
+
+<IntegrationOverviw slug="huggingface" type="models" />
+
+
+Hugging Face is a leading platform for building, hosting, and deploying state-of-the-art machine learning models. With its extensive model hub and flexible deployment options, Hugging Face allows you to use both public models and your own self-hosted endpoints. Lamatic.ai Studio enables seamless integration of these models, whether you use a managed public endpoint or a private, self-hosted endpoint for custom or fine-tuned models.
+> **Lamatic.ai Studio supports both public (open-source) and private (self-hosted/dedicated) Hugging Face models.**  
+
+> You can integrate popular models from the Hugging Face Hub or connect your own secure, fine-tuned endpoints for production use.
+
+
+
+## Setup
+<Callout type="info">
+Learn how to integrate the HuggingFace model by visiting the documentation [here](/docs/models/providers/huggingface).
+</Callout>
+
+## Features
+
+- **Custom & Fine-Tuned Models:**  
+  Connect your own models or use domain-specific fine-tuned endpoints.
+- **Public Model Access:**  
+  Quickly integrate popular open-source models from the Hugging Face Hub.
+- **Self-Hosted Endpoints:**  
+  Use private, scalable endpoints for production workloads and enhanced security.
+- **Seamless Integration:**  
+  Easily manage models from both public and private endpoints in Lamatic workflows.
+- **Secure Authentication:**  
+  All access is managed via Hugging Face tokens.
+- **Provider-Level Customization:**  
+  Override default behaviors per model or endpoint as needed.
+
+## Troubleshooting
+
+**Invalid Token:**  
+- Ensure your access token is correct and has the required permissions.
+- Confirm your Hugging Face account is active.
+
+**Access Denied:**  
+- Check your token’s permissions and endpoint/model visibility.
+- Make sure you have access to the deployed endpoint if using self-hosted.
+
+**Model or Endpoint Not Found:**  
+- Double-check the model name or endpoint URL.
+- Confirm you have access to the model or endpoint.
+
+**Rate Limit Exceeded:**  
+- Wait before retrying requests.
+- Upgrade your Hugging Face plan if necessary.
+
+**Integration Errors:**  
+- Confirm Lamatic.ai Studio configuration matches your Hugging Face setup.
+- Consult [Hugging Face Docs] and [Lamatic Support] for troubleshooting.

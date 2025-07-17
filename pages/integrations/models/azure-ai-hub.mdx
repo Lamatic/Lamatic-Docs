@@ -1,0 +1,77 @@
+---
+title: Azure AI Hub
+description: Azure AI Hub provides enterprise-grade resource management and shared configurations for collaborative AI development teams with advanced security and networking capabilities.
+---
+
+[Azure AI Foundry Portal]: https://ai.azure.com/
+[Azure Portal]: https://portal.azure.com/
+[Azure Machine Learning Guide]: https://learn.microsoft.com/en-us/azure/machine-learning/
+[Azure AI Hub Guide]: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources
+[Azure AI Hub Pricing]: https://azure.microsoft.com/en-us/pricing/details/machine-learning/
+[Azure AI Hub Models]: https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Azure AI Hub
+
+<IntegrationOverviw slug="azure-ai-hub" type="models" />
+
+Azure AI Hub provides enterprise-grade resource management for collaborative AI development teams. It offers shared configurations, centralized security settings, and advanced networking capabilities. With Lamatic, you can seamlessly integrate with models deployed through Azure AI Hub and take advantage of features like observability, prompt management, fallbacks, and more.
+
+## Setup
+<Callout type="info">
+Learn how to integrate the Azure AI Hub model by visiting the documentation [here](/docs/models/providers/azure-ai-hub).
+</Callout>
+
+## Features
+
+- **Hub Resources**: Centralized management of compute, storage, and networking
+- **Shared Projects**: Multiple projects sharing hub configurations and resources
+- **Enterprise Security**: Advanced networking, private endpoints, and compliance features
+- **Collaborative Development**: Team-based AI development with shared resources
+- **Scalable Infrastructure**: Enterprise-grade scalability and performance
+- **Cost Effective**: Shared resource utilization for cost optimization
+- **Developer Friendly**: Comprehensive API and documentation
+- **Compliance Ready**: Meets enterprise compliance and security requirements
+
+## Available Models
+
+Azure AI Hub provides access to various models through hub-based deployments:
+
+- **GPT Models**: GPT-4, GPT-3.5-turbo, and other OpenAI models
+- **Custom Models**: Your own fine-tuned or custom models
+- **Open Source Models**: Various open-source models available in the catalog
+- **Enterprise Models**: Models optimized for enterprise use cases
+- **Specialized Models**: Models for specific domains and industries
+
+Check the [Azure AI Hub Models][Azure AI Hub Models] documentation for the complete list of available models and their specifications.
+
+## Troubleshooting
+
+**Access Denied:**
+- Verify your Azure account has access to Azure AI Hub
+- Check if your API key is correct and hasn't expired
+- Ensure your hub and project are properly configured
+
+**Hub Creation Issues:**
+- Verify your Azure subscription has sufficient permissions
+- Check if the hub name is unique and follows naming conventions
+- Ensure the selected region supports Azure AI Hub
+
+**Project Configuration:**
+- Verify the project is created within the correct hub
+- Check if project settings are properly configured
+- Ensure proper permissions for the project
+
+**Model Deployment Issues:**
+- Verify the model is available in your region
+- Check if deployment settings are correct
+- Ensure sufficient compute resources are available
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your Azure account is active and verified
+- Verify you're using the correct endpoint URL

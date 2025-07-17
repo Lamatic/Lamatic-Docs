@@ -1,0 +1,79 @@
+---
+title: Open AI
+description: OpenAI provides several key products and services that have become widely used in various industries, offering state-of-the-art language models and AI capabilities.
+---
+
+[OpenAI API]: https://platform.openai.com/api-keys
+[OpenAI signup]: https://platform.openai.com/signup
+[OpenAI docs]: https://platform.openai.com/docs
+[OpenAI pricing]: https://openai.com/pricing
+[OpenAI models]: https://platform.openai.com/docs/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# OpenAI
+
+<IntegrationOverviw slug="open-ai" type="models" />
+
+OpenAI provides several key products and services that have become widely used in various industries. Their flagship offerings include GPT models, DALL-E for image generation, and Whisper for speech recognition.
+
+
+## Setup
+<Callout type="info">
+Learn how to integrate the OpenAI model by visiting the documentation [here](/docs/models/providers/open-ai).
+</Callout>
+
+## Features
+
+- **State-of-the-Art Models**: Access to the latest GPT models and other advanced AI capabilities
+- **Comprehensive AI Suite**: Text generation, image generation, speech recognition, and more
+- **High Quality**: Industry-leading model performance and reliability
+- **Extensive Documentation**: Comprehensive API documentation and examples
+- **Enterprise Ready**: Production-grade infrastructure with high reliability
+- **Cost Effective**: Competitive pricing with flexible usage plans
+- **Wide Adoption**: Extensive community support and integrations
+
+## Available Models
+
+OpenAI offers several model categories:
+
+- **GPT Models**: Advanced language models for text generation and completion
+  - GPT-4: Most capable model for complex reasoning
+  - GPT-4 Turbo: Optimized for speed and cost
+  - GPT-3.5 Turbo: Fast and efficient for most tasks
+- **DALL-E Models**: Image generation models
+- **Whisper Models**: Speech recognition and transcription
+- **Embedding Models**: Text embedding for semantic search and RAG
+- **Moderation Models**: Content moderation and filtering
+
+Check the [OpenAI Models][OpenAI models] documentation for the latest model specifications and capabilities.
+
+## Troubleshooting
+
+**Invalid API Key:**
+- Verify your API key is correct and hasn't expired
+- Check if your account has sufficient credits
+- Ensure the API key has the necessary permissions
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff in your requests
+- Consider upgrading your OpenAI plan for higher limits
+- Monitor your usage in the OpenAI platform
+
+**Model Not Available:**
+- Check if the model is available in your region
+- Verify your account has access to the specific model
+- Contact OpenAI support for model availability issues
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your account is active and verified
+- Verify you're using the correct API endpoint
+
+**Content Policy Violations:**
+- Review OpenAI's content policy guidelines
+- Modify prompts to comply with safety standards
+- Use system prompts to guide model behavior appropriately

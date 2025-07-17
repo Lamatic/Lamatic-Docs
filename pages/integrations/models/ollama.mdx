@@ -1,0 +1,51 @@
+---
+title: Ollama
+description: Ollama is a robust and secure gateway to facilitate the integration of various Large Language Models (LLMs) into your applications, including your locally hosted models through Ollama.
+---
+
+[Ollama]: https://ollama.com/
+[ngrok]: https://ngrok.com/
+[Ollama Docs]: https://github.com/ollama/ollama/tree/main/docs
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+
+# Ollama
+
+<IntegrationOverviw slug="ollama" type="models" />
+
+Ollama is a powerful tool for running large language models locally on your machine. It provides a simple way to download, run, and manage open-source models like Llama, Mistral, and many others directly on your local hardware.
+
+## Setup
+<Callout type="info">
+Learn how to integrate the Ollama model by visiting the documentation [here](/docs/models/providers/ollama).
+</Callout>
+
+## Features
+
+- **Local Model Execution**: Run models directly on your hardware without cloud dependencies
+- **Wide Model Support**: Access hundreds of open-source models from Hugging Face
+- **Easy Model Management**: Simple CLI commands to pull, run, and manage models
+- **Cost Effective**: No API costs - only your local computing resources
+- **Privacy Focused**: All processing happens locally on your machine
+
+## Available Models
+Ollama supports a wide variety of models including check out the [Ollama Library](https://ollama.com/library) 
+
+## Troubleshooting
+
+**Ollama service not starting:**
+- Check if port 11434 is available
+- Ensure you have sufficient system resources
+- Verify installation was successful
+
+**Model not found:**
+- Pull the model first using `ollama pull <model-name>`
+- Check available models with `ollama list`
+
+**Connection issues:**
+- Verify Ollama is running with `ollama serve`
+- Check firewall settings if using ngrok
+- Ensure the API URL is correct in Lamatic

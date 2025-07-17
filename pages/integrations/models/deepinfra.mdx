@@ -1,0 +1,72 @@
+---
+title: Deepinfra
+description: DeepInfra is a cloud infrastructure platform focused on making AI model deployment and serving more accessible and cost-effective, providing access to a wide range of open-source and proprietary models.
+---
+
+[deepinfra Dashboard]: https://deepinfra.com/
+[Deepinfra API Docs]: https://deepinfra.com/docs
+[Deepinfra Models]: https://deepinfra.com/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Deepinfra 
+
+<IntegrationOverviw slug="cohere" type="models" />
+
+DeepInfra is a cloud infrastructure platform focused on making AI model deployment and serving more accessible and cost-effective. It provides developers and businesses with easy access to a wide range of AI models through a unified API.
+
+## Setup
+
+<Callout type="info">
+Learn how to integrate the DeepInfra model by visiting the documentation [here](/docs/models/providers/deepinfra).
+</Callout>
+
+## Features
+
+- **Wide Model Selection**: Access to hundreds of open-source and proprietary models
+- **Cost Effective**: Competitive pricing for model inference
+- **High Performance**: Optimized infrastructure for fast model serving
+- **Easy Integration**: Simple API for model deployment and inference
+- **Scalable**: Automatic scaling based on demand
+- **Developer Friendly**: Comprehensive documentation and SDKs
+
+## Available Models
+
+Deepinfra supports a wide variety of models including:
+
+- **Open Source Models**: Llama, Mistral, CodeLlama, and many others
+- **Proprietary Models**: Access to various commercial models
+- **Specialized Models**: Models for specific tasks like coding, reasoning, and creative writing
+- **Multimodal Models**: Models that can process both text and images
+
+Check the [Deepinfra Models][Deepinfra Models] page for the complete list of available models and their specifications.
+
+## Troubleshooting
+
+**Invalid API Key:**
+- Verify your API key is correct and hasn't expired
+- Check if your account has sufficient credits
+- Ensure the API key has the necessary permissions
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff in your requests
+- Consider upgrading your Deepinfra plan for higher limits
+- Monitor your usage in the Deepinfra dashboard
+
+**Model Not Available:**
+- Check if the model is available in your region
+- Verify your account has access to the specific model
+- Contact Deepinfra support for model availability issues
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your account is active and verified
+- Verify you're using the correct API endpoint
+
+**High Latency:**
+- Check if the model is currently under high load
+- Consider using a different model or region
+- Monitor Deepinfra's status page for any service issues

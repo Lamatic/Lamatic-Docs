@@ -1,0 +1,74 @@
+---
+title: Together AI
+description: Together AI provides a comprehensive platform that enables developers, researchers, and businesses to train, fine-tune, and deploy AI models efficiently with access to a wide range of models.
+---
+
+[Together AI Account Setting]: https://api.together.ai/settings/profile
+[Together AI Docs]: https://docs.together.ai/
+[Together AI Models]: https://docs.together.ai/docs/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Together AI 
+<IntegrationOverviw slug="together-ai" type="models" />
+
+Together AI provides a comprehensive platform that enables developers, researchers, and businesses to train, fine-tune, and deploy AI models efficiently. They offer access to a wide range of models and provide tools for custom model development.
+
+
+## Setup
+<Callout type="info">
+Learn how to integrate the Together AI model by visiting the documentation [here](/docs/models/providers/together-ai).
+</Callout>
+
+## Features
+
+- **Wide Model Access**: Access to hundreds of open-source and proprietary models
+- **Custom Model Training**: Tools for training and fine-tuning your own models
+- **Cost Effective**: Competitive pricing for model inference and training
+- **High Performance**: Optimized infrastructure for fast model serving
+- **Developer Friendly**: Comprehensive API and documentation
+- **Scalable**: Automatic scaling based on demand
+- **Research Support**: Specialized tools for AI research and development
+
+## Available Models
+
+Together AI supports a wide variety of models including:
+
+- **Open Source Models**: Llama, Mistral, CodeLlama, and many others
+- **Proprietary Models**: Access to various commercial models
+- **Custom Models**: Deploy and serve your own trained models
+- **Specialized Models**: Models for specific tasks like coding, reasoning, and creative writing
+- **Research Models**: Models designed for research and experimentation
+
+Check the [Together AI Models][Together AI Models] documentation for the complete list of available models and their specifications.
+
+## Troubleshooting
+
+**Invalid API Key:**
+- Verify your API key is correct and hasn't expired
+- Check if your account has sufficient credits
+- Ensure the API key has the necessary permissions
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff in your requests
+- Consider upgrading your Together AI plan for higher limits
+- Monitor your usage in the Together AI dashboard
+
+**Model Not Available:**
+- Check if the model is available in your region
+- Verify your account has access to the specific model
+- Contact Together AI support for model availability issues
+
+**Authentication Errors:**
+- Ensure your API key is properly formatted
+- Check if your account is active and verified
+- Verify you're using the correct API endpoint
+
+**Custom Model Issues:**
+- Verify your custom model is properly deployed and running
+- Check model endpoint configuration
+- Ensure proper permissions for custom model access
+- Verify model compatibility and versioning

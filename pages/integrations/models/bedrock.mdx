@@ -1,0 +1,77 @@
+---
+title: Amazon Bedrock
+description: Amazon Bedrock is a fully managed service by Amazon Web Services (AWS) that simplifies the creation and scaling of generative AI applications, providing access to high-performing foundation models from leading AI companies.
+---
+
+[AWS console]: https://aws.amazon.com/bedrock
+[AWS Bedrock]: https://console.aws.amazon.com/bedrock
+[AWS credentials]: https://console.aws.amazon.com/iam/home#/security_credentials
+[AWS docs]: https://docs.aws.amazon.com/bedrock/
+[AWS pricing]: https://aws.amazon.com/bedrock/pricing/
+[AWS models]: https://docs.aws.amazon.com/bedrock/latest/userguide/models.html
+
+[Lamatic.ai studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Amazon Bedrock
+<IntegrationOverviw slug="bedrock" type="models" />
+Amazon Bedrock is a fully managed service by Amazon Web Services (AWS) that simplifies the creation and scaling of generative AI applications. It provides access to a variety of high-performing foundation models (FMs) from leading AI companies such as AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, Stability AI, and Amazon's own models, all through a single API.
+
+## Setup
+<Callout type="info">
+Learn how to integrate the Bedrock model by visiting the documentation [here](/docs/models/providers/bedrock).
+</Callout>
+
+## Features
+
+- **Multiple Model Providers**: Access to models from AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, Stability AI, and Amazon
+- **Fully Managed Service**: AWS handles infrastructure, scaling, and maintenance
+- **Enterprise Security**: Built on AWS security and compliance standards
+- **Cost Effective**: Pay-per-use pricing with no upfront costs
+- **Scalable**: Automatic scaling based on demand
+- **Developer Friendly**: Simple API integration with comprehensive documentation
+- **AWS Integration**: Seamless integration with other AWS services
+- **Compliance Ready**: Meets enterprise compliance and security requirements
+
+## Available Models
+
+Amazon Bedrock provides access to models from multiple providers:
+
+- **Anthropic Models**: Claude models for advanced reasoning and creative tasks
+- **AI21 Labs Models**: Jurassic models for text generation and analysis
+- **Cohere Models**: Command models for text generation and embeddings
+- **Meta Models**: Llama models for various language tasks
+- **Mistral AI Models**: Mistral models for efficient text processing
+- **Stability AI Models**: Models for image generation and creative tasks
+- **Amazon Models**: Titan models for text generation and embeddings
+
+Check the [AWS Bedrock Models][AWS models] documentation for the complete list of available models and their specifications.
+
+## Troubleshooting
+
+**Invalid Credentials:**
+- Verify your Access Key ID and Secret Access Key are correct
+- Check if your IAM user has the necessary Bedrock permissions
+- Ensure your AWS account is active and verified
+
+**Access Denied:**
+- Verify your IAM user has Bedrock permissions
+- Check if Bedrock service is enabled in your region
+- Ensure proper IAM policies are attached to your user
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff in your requests
+- Consider upgrading your AWS plan for higher limits
+- Monitor your usage in the AWS console
+
+**Model Not Available:**
+- Check if the model is available in your selected region
+- Verify your account has access to the specific model
+- Contact AWS support for model availability issues
+
+**Region Issues:**
+- Ensure Bedrock is available in your selected region
+- Check if your credentials are valid for the selected region
+- Verify region-specific model availability

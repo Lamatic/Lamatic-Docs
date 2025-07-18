@@ -1,0 +1,120 @@
+---
+title: Ollama
+description: Ollama is a robust and secure gateway to facilitate the integration of various Large Language Models (LLMs) into your applications, including your locally hosted models through Ollama.
+icon: /images/icons/models/ollama.png
+---
+
+[Ollama]: https://ollama.com/
+[ngrok]: https://ngrok.com/
+[Ollama Docs]: https://github.com/ollama/ollama/tree/main/docs
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+
+# Ollama
+
+<IntegrationOverviw slug="ollama" type="models" />
+
+Ollama is a powerful tool for running large language models locally on your machine. It provides a simple way to download, run, and manage open-source models like Llama, Mistral, and many others directly on your local hardware.
+
+<Callout type="info">Provider Slug: `ollama`</Callout>
+
+## Setup
+
+
+### Step 1: Install Ollama
+1. Download and install [Ollama](https://ollama.com/) for your operating system
+2. Follow the installation instructions for your platform (macOS, Linux, or Windows) from [Ollama Docs][Ollama Docs]
+
+### Step 2: Pull a Model
+1. Open your terminal or command prompt
+2. Pull a model using the Ollama CLI:
+
+```bash
+ollama pull <model-name>
+```
+
+You can also pull other models like:
+- `ollama pull mistral`
+- `ollama pull codellama`
+- `ollama pull llama2:7b`
+
+### Step 3: Start Ollama Service
+1. Start the Ollama service (it runs on port 11434 by default):
+
+```bash
+ollama serve
+```
+
+### Step 4: Expose Ollama API
+If you're not self-hosting the Lamatic Gateway, you'll need to expose your local Ollama API:
+
+1. Install a tunneling service like [ngrok](https://ngrok.com/)
+2. Expose your Ollama API:
+
+```bash
+ngrok http 11434 --host-header="localhost:11434"
+```
+
+For using Ollama with ngrok, here’s a [useful guide](https://github.com/ollama/ollama/blob/main/docs/faq.md#how-can-i-use-ollama-with-ngrok)
+
+3. Copy the generated ngrok URL (e.g., `https://abc123.ngrok.io`)
+
+## Setup Instructions
+
+### Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to **Models** section
+3. Select **Ollama** from the provider list
+4. Enter your Ollama API URL (Need HTTPS):
+   - If self-hosting: `http://localhost:11434`
+   - If using ngrok: Use the ngrok URL from Step 4 above
+5. Save your changes
+
+## Key Features
+
+- **Local Model Execution**: Run models directly on your hardware without cloud dependencies
+- **Wide Model Support**: Access hundreds of open-source models from Hugging Face
+- **Easy Model Management**: Simple CLI commands to pull, run, and manage models
+- **Cost Effective**: No API costs - only your local computing resources
+- **Privacy Focused**: All processing happens locally on your machine
+
+## Available Models
+Ollama supports a wide variety of models including check out the [Ollama Library](https://ollama.com/library) 
+
+## Configuration Options
+
+- **API URL**: The endpoint where Ollama is running (default: `http://localhost:11434`)
+- **Model Selection**: Choose from your locally installed models
+- **Custom Parameters**: Configure temperature, top_p, and other generation parameters
+
+## Best Practices
+
+- Ensure you have sufficient RAM and storage for your chosen models
+- Use GPU acceleration when available for better performance
+- Keep your Ollama installation updated
+- Monitor system resources when running large models
+- Consider using smaller models for faster inference if speed is critical
+
+## Troubleshooting
+
+**Ollama service not starting:**
+- Check if port 11434 is available
+- Ensure you have sufficient system resources
+- Verify installation was successful
+
+**Model not found:**
+- Pull the model first using `ollama pull <model-name>`
+- Check available models with `ollama list`
+
+**Connection issues:**
+- Verify Ollama is running with `ollama serve`
+- Check firewall settings if using ngrok
+- Ensure the API URL is correct in Lamatic
+
+## Additional Resources
+
+- [Ollama documentation][Ollama Docs]
+- [Model library](https://ollama.com/library)

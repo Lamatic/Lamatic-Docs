@@ -1,22 +1,18 @@
 {
     "flow-testing":{
         "title": "Flow Testing",
-        "type": "doc",
-        "sort": 1
+        "type": "doc"
     },
     "flow-debugging":{
         "title": "Flow Debugging",
-        "type": "doc",
-        "sort": 2
+        "type": "doc"
     },
     "prompt-testing":{
         "title": "Prompt Testing",
-        "type": "doc",
-        "sort": 3
+        "type": "doc"
     },
     "code-testing":{
         "title": "Code Testing",
-        "type": "doc",
-        "sort": 4
+        "type": "doc"
     }
 }

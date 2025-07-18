@@ -1,0 +1,140 @@
+---
+title: Microsoft Teams
+description: The Microsoft Teams integration in Lamatic automates data extraction, syncing, and real-time triggers from Teams channels and messages. It enables conversational intelligence and workflow automation in Lamatic Flow.
+icon: /images/icons/apps/teams.png
+---
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw";
+
+# Microsoft Teams Integration
+
+<IntegrationOverviw slug="teams" type="apps-data-sources" />
+
+## Overview
+
+The Microsoft Teams integration in Lamatic enables real-time message syncing, content extraction, and workflow automation using Teams data. Use it to build conversational intelligence flows, extract structured insights, and respond to user activity within your organization.
+
+<Callout type="info">
+  This integration connects to Microsoft Teams to sync messages and trigger
+  workflows based on channel activity.
+</Callout>
+
+## Features
+
+### ✅ Key Functionalities
+
+- **Message Syncing**: Automatically pulls messages from selected Teams channels
+- **Channel Monitoring**: Detects new messages or replies in real-time
+- **Metadata Extraction**: Captures message content, sender info, timestamps, and thread context
+
+### ✅ Benefits
+
+- Automates insights extraction from internal team conversations
+- Enables question-answering and summarization from chat history
+- Integrates chat content into RAG flows or custom workflows
+- Triggers flows based on new messages or keywords
+
+## Available Functionality
+
+### Event Triggers
+
+✅ Trigger flows based on new messages in a channel <br/>
+✅ Schedule channel message syncing <br/>
+
+### Actions
+
+✅ Extract message content and metadata <br/>
+✅ Perform sentiment or entity analysis on chat messages <br/>
+✅ Filter messages based on keywords, timestamps, or users <br/>
+✅ Index message history for semantic search <br/>
+
+## Prerequisites
+
+Before setting up the Microsoft Teams integration, ensure you have:
+
+- A Microsoft 365 account with Microsoft Teams access
+- Admin permission or appropriate app registration rights
+- Your organization's Tenant ID from Microsoft Entra Admin Center
+- Permissions granted for Teams Graph API scopes (`Channel.Read.All`, `Chat.Read.All`, etc.)
+
+## Setup
+
+### Step 1: Set Up Microsoft 365 Credentials
+
+1. **Get Tenant ID**: Go to [Microsoft Entra Admin Center](https://entra.microsoft.com)
+2. **Navigate to Azure AD**: Go to **Azure Active Directory**
+3. **Copy Tenant ID**: Under **Tenant Information**, copy the **Directory ID**
+
+<Callout type="warning">
+  Ensure Teams Graph API permissions are enabled to allow access to messages,
+  channels, and user metadata.
+</Callout>
+
+### Step 2: Configure Teams Node
+
+1. **Add Teams Node**: Drag the Microsoft Teams node into your flow
+2. **Enter Credentials**: Provide your Microsoft 365 Tenant ID
+3. **Select Team and Channel**: Choose the team and channel you want to monitor
+4. **Configure Filters**: Apply filters for message types, keywords, or time ranges
+
+### Step 3: Test and Deploy
+
+1. **Test Connection**: Confirm the node can access Teams and list messages
+2. **Set Trigger Conditions**: Define keyword triggers or scheduled syncs
+3. **Deploy Flow**: Activate the flow to begin real-time or scheduled message processing
+
+## Configuration Reference
+
+### Trigger Node
+
+| **Parameter**         | **Description**                                                                             | **Required** | **Default** | **Example**                         |
+| --------------------- | ------------------------------------------------------------------------------------------- | ------------ | ----------- | ----------------------------------- |
+| **Credentials**       | Microsoft 365 credentials with Teams API access                                             | ✅           | -           | `Microsoft 365`                     |
+| **Conversation Type** | Select the conversation type for the Teams node (e.g., Group Chat, Personal Chat, Channel). | ✅           | `Bot Chat`  | `Bot Chat`, `Group Chat`, `Channel` |
+
+### Actions Node
+
+| **Parameter**          | **Description**                                                                                      | **Required** | **Default**    | **Example**             |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- | ------------ | -------------- | ----------------------- |
+| **Credentials**        | Microsoft 365 credentials with Teams API access                                                      | ✅           | -              | `Microsoft 365`         |
+| **Conversation Type**  | Select the conversation type for the Teams node (e.g., Group Chat, Personal Chat, Channel).          | ✅           | `Chat`         | `Chat`, `Channel`       |
+| **Chat Operation**     | Select the operation for the Teams node (e.g., Send Message).                                        | ✅           | `Send Message` | `Send Message`          |
+| **Chat ID**            | Select the chat from the list, by URL, or by ID (find the chat ID after "conversations/" in the URL) | ✅           |                | `id`                    |
+| **Message**            | The message to send                                                                                  | ✅           |                |                         |
+| **Include Powered By** | Whether to include the powered by message                                                            | ❌           | true           | `true`, `false`         |
+
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                         | **Solution**                                                                                 |
+|------------------------------------|----------------------------------------------------------------------------------------------|
+| **Authentication Failed**          | Confirm Tenant ID is correct and the app has necessary Teams Graph API permissions.          |
+| **Team or Channel Not Found**      | Verify that the provided team and channel names are correct and accessible.                  |
+| **No Messages Fetched**            | Ensure recent messages exist and filters (e.g., keywords, sender) aren't overly restrictive. |
+| **Permission Denied**              | Ensure your app has delegated or application permissions for Teams messages and channels.    |
+| **Real-time Trigger Not Working**  | Verify that webhook or change notification permissions are configured in Microsoft Graph.    |
+
+### Debugging Steps
+
+1. **Verify Microsoft 365 Credentials**  
+   Ensure the Tenant ID and Microsoft 365 credentials are valid and have access to Teams API scopes.
+
+2. **Check Team & Channel Access**  
+   Confirm your user account or registered app has permission to view and fetch messages from the selected Team and Channel.
+
+3. **Validate Filters**  
+   Temporarily remove or simplify keyword and sender filters to check if messages are being pulled without them.
+
+4. **Inspect Node Logs**  
+   Use Lamatic Flow logs to examine any errors, API failures, or permission issues.
+
+5. **Test API Access via Graph Explorer**  
+   Use [Microsoft Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer) to test reading channel messages with the same credentials.
+
+6. **Check Sync Schedule Format**  
+   Verify your `sync_schedule` cron expression is valid using [crontab.guru](https://crontab.guru/).
+
+7. **Ensure Permissions Are Consented**  
+   In Microsoft Entra Admin Center, make sure Graph API permissions (like `ChannelMessage.Read.All`) are granted and consented by an admin.

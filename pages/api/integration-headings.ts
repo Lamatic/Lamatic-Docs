@@ -7,15 +7,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
-  const { slug } = req.query;
+  const { slug, type } = req.query;
 
   if (!slug || typeof slug !== 'string') {
     return res.status(400).json({ message: 'Slug parameter is required' });
   }
 
+  if (!type || typeof type !== 'string') {
+    return res.status(400).json({ message: 'Type parameter is required' });
+  }
+
   try {
     // Construct the path to the MDX file
-    const mdxPath = path.join(process.cwd(), 'pages', 'docs', 'integrations', `${slug}.mdx`);
+    const mdxPath = path.join(process.cwd(), 'pages', 'integrations', `${type}`, `${slug}.mdx`);
     
     // Check if file exists
     if (!fs.existsSync(mdxPath)) {

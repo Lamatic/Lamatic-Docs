@@ -1,44 +1,30 @@
 {
   "generate-text-node": {
     "title": "Generate Text",
-    "type": "doc",
-    "sort": 1,
-    "path": "docs/nodes/ai/generate-text-node"
+    "type": "doc"
   },
   "generate-json-node": {
     "title": "Generate JSON",
-    "type": "doc",
-    "sort": 2,
-    "path": "docs/nodes/ai/generate-json-node"
+    "type": "doc"
   },
   "generate-image-node": {
     "title": "Generate Image",
-    "type": "doc",
-    "sort": 3,
-    "path": "docs/nodes/ai/generate-image-node"
+    "type": "doc"
   },
   "multimodel-node": {
     "title": "Multimodal",
-    "type": "doc",
-    "sort": 4,
-    "path": "docs/nodes/ai/multimodel-node"
+    "type": "doc"
   },
   "classifier-node": {
     "title": "Classifier Node",
-    "type": "doc",
-    "sort": 5,
-    "path": "docs/nodes/ai/classifier-node"
+    "type": "doc"
   },
   "rag-node": {
     "title": "RAG Node",
-    "type": "doc",
-    "sort": 6,
-    "path": "docs/nodes/ai/rag-node"
+    "type": "doc"
   },
   "supervisor-node": {
     "title": "Supervisor Node",
-    "type": "doc",
-    "sort": 7,
-    "path": "docs/nodes/ai/supervisor-node"
+    "type": "doc"
   }
 }

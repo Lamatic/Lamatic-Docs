@@ -20,10 +20,7 @@
     "title": "Architecture",
     "type": "doc"
   },
-  "concepts": {
-    "title": "Concepts",
-    "type": "doc"
-  },
+  
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"
@@ -70,10 +67,6 @@
   },
   "nodes": {
     "title": "Nodes",
-    "type": "doc"
-  },
-  "integrations": {
-    "title": "Integrations",
     "type": "doc"
   },
   "models": {
@@ -155,6 +148,10 @@
   "-- more": {
     "type": "separator",
     "title": "More"
+  },
+  "concepts": {
+    "title": "Concepts",
+    "type": "doc"
   },
   "legal": {
     "title": "Legal",

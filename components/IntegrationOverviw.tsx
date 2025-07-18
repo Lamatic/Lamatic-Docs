@@ -114,14 +114,15 @@ const IntegrationCard = ({
 
 interface IntegrationOverviwProps {
   slug?: string;
+  type?: string;
 }
 
-export const IntegrationOverviw = ({ slug }: IntegrationOverviwProps) => {
+export const IntegrationOverviw = ({ slug, type }: IntegrationOverviwProps) => {
   const [headings, setHeadings] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const pages = getPagesUnderRoute("/docs/integrations") as Array<
+  const pages = getPagesUnderRoute(`/integrations/${type}`) as Array<
     Page & { frontMatter: any }
   >;
 
@@ -142,7 +143,7 @@ export const IntegrationOverviw = ({ slug }: IntegrationOverviwProps) => {
       setError(null);
       
       try {
-        const response = await fetch(`/api/integration-headings?slug=${slug}`);
+        const response = await fetch(`/api/integration-headings?slug=${slug}&type=${type}`);
         
         if (!response.ok) {
           if (response.status === 404) {

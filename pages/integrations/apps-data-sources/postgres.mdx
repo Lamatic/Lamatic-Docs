@@ -75,18 +75,36 @@ GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <user_name>;
 ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO <user_name>;
 ```
 #### Connection Requirements
-1. **Database Access**: Ensure you have access to the PostgreSQL database
-2. **User Permissions**: Verify your database user has appropriate read permissions
-3. **Connection Details**: Gather your database connection information:
-   - Host address
-   - Port number (default: 5432)
-   - Database name
-   - Username and password
+
+1. **Database Access**
+   Make sure you can connect to the PostgreSQL database.
+
+2. **User Permissions**
+   Confirm that your database user has sufficient read access to the required schemas and tables.
+
+3. **Connection Information**
+   Gather the following details for the database connection:
+
+   * Host address
+   * Port number *(default: 5432)*
+   * Database name
+   * Username and password
 
 <Callout type="warning">
-Ensure your database user has appropriate permissions to access the selected schemas and tables.  
-If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+**Important:** Your database user must have permissions to access the relevant schemas and tables.  
+If the connection fails, you may need to [whitelist Cloudflare IPs](https://www.cloudflare.com/ips/).
 </Callout>
+
+#### Connecting via SSL
+
+Lamatic supports various SSL modes when connecting to PostgreSQL databases.
+
+* `disable` – Disables encryption entirely, this mode should be used if you are using supabase
+* `allow` – Enables encryption only if the source requires it
+* `prefer` – Uses unencrypted communication unless the source supports encryption
+* `require` – Always encrypts the connection; fails if encryption isn't supported by the source
+* `verify-ca` – Like `require`, but also verifies the server's SSL certificate
+* `verify-full` – Requires encryption and also verifies the server’s hostname against the certificate
 
 ### Step 2: Configure PostgreSQL Node
 

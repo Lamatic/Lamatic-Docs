@@ -8,7 +8,9 @@ export default async function handler(
 ) {
     try {
         const footerHtml = await fetchFooter();
-        res.status(200).send(footerHtml);
+        // Wrap with Div having class lamatic-docs-footer
+        const footerHtmlWithClass = `<div class="lamatic-docs-footer">${footerHtml}</div>`;
+        res.status(200).send(footerHtmlWithClass);
     } catch (error) {
         res.status(500).json({ error: (error as Error).message });
     }

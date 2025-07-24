@@ -16,7 +16,7 @@ export default function Document() {
                   
                   // Function to hide elements
                   function hideElements() {
-                    var elements = document.querySelectorAll('.lamatic-docs-footer, .nextra-nav-container, .nextra-sidebar-container, .nextra-toc, .section.red, .visual-holder.footer, .nextra-breadcrumb');
+                    var elements = document.querySelectorAll('.lamatic-docs-footer, .nextra-nav-container, .nextra-sidebar-container, .nextra-toc, .section.red, .visual-holder.footer, .nextra-breadcrumb, #docs-feedback');
                     elements.forEach(function(element) {
                       element.style.display = 'none';
                     });

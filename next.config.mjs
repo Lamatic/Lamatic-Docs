@@ -22,11 +22,10 @@ const cspHeader = `
   object-src 'none';
   base-uri 'self';
   form-action 'self';
-  frame-ancestors 'none';
+  frame-ancestors 'self' https://studio.lamatic.ai;
   upgrade-insecure-requests;
   block-all-mixed-content;
 `;
-
 // nextra config
 const withNextra = nextra({
     theme: 'nextra-theme-docs',

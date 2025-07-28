@@ -77,8 +77,8 @@
     "title": "Interface",
     "type": "doc"
   },
-  "tools": {
-    "title": "Tools",
+  "mcp": {
+    "title": "MCP/Tools",
     "type": "doc"
   },
   "sdk": {

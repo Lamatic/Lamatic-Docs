@@ -26,5 +26,9 @@
   "supervisor-node": {
     "title": "Supervisor Node",
     "type": "doc"
+  },
+  "mcp-node": {
+    "title": "MCP Node",
+    "type": "doc"
   }
 }

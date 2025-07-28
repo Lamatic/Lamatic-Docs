@@ -1,0 +1,231 @@
+---
+title: MCP Node
+
+description: The MCP Node allows users to connect to and interact with external data sources and tools through the Model Context Protocol (MCP).
+type: AI
+order: 6
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# MCP Node
+
+<NodeOverview slug="mcp-node" type="ai" />
+
+## Overview
+
+The MCP Node enables seamless integration with external data sources, APIs, and tools through the Model Context Protocol (MCP). This node allows AI models to securely access external resources, retrieve real-time data, and execute specific functions in a structured manner. It's particularly useful for applications requiring dynamic data access, real-time information retrieval, and integration with third-party services.
+
+
+![image-gen.png](../img/mcp/mcp.png)
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that connects to MCP servers and executes functions to retrieve data or perform operations."
+/>
+
+## Features
+
+<details>
+      <summary>**Key Functionalities**</summary>
+      1. **MCP Server Integration**: Connect to configured MCP servers to access external data sources and tools.
+
+    1. **Function Execution**: Execute specific functions provided by MCP servers to retrieve data or perform operations.
+
+    1. **Real-time Data Access**: Access live data feeds, APIs, and dynamic content through MCP connections.
+
+    1. **Secure Communication**: Utilize secure protocols (HTTP/SSE) with proper authentication for data access.
+
+    1. **Flexible Configuration**: Support for custom headers, authentication methods, and connection parameters.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+    1. **External Data Integration**: Seamlessly integrate with databases, APIs, and external services without compromising security.
+
+    1. **Real-time Information**: Access live data such as weather updates, stock prices, news feeds, and more.
+
+    1. **Tool Ecosystem**: Leverage custom tools and functions provided by MCP servers for enhanced AI capabilities.
+
+    1. **Scalable Architecture**: Connect to multiple MCP servers and handle complex data retrieval scenarios.
+
+    1. **Standardized Protocol**: Use a consistent interface for all external data interactions.
+
+</details>
+
+## What can I build?
+
+1. **Weather Information Systems** - Retrieve real-time weather data for specific locations
+2. **Financial Data Applications** - Access stock prices, currency conversion rates, and market data
+3. **Document Processing Systems** - Search and retrieve documents from various sources
+4. **API Integration Workflows** - Connect to third-party services and APIs
+5. **Real-time Monitoring Systems** - Access live data feeds for monitoring and alerts
+6. **Custom Tool Integration** - Use specialized tools and functions provided by MCP servers
+
+## Setup
+
+### Configure MCP Server
+
+1. Go to Lamatic Studio
+2. Navigate to MCP/Tools > MCP
+3. Click on + Add MCP
+4. Configure the MCP server with connection details:
+   - **Credential Name**: Enter a descriptive name for your MCP server
+   - **Host**: Provide the MCP server URL (required field)
+   - **Type**: Select the protocol type (http or sse)
+   - **Headers**: Configure authentication and custom headers
+5. Click "Test & Save" to validate the connection
+
+### Select the MCP Node
+
+1. Add the MCP node to your flow
+2. Select the configured MCP server
+3. Choose the specific function or tool to execute
+4. Configure input parameters for the selected function
+5. Deploy the project
+
+## Configuration Reference
+
+| **Parameter**             | **Description**                                           | **Example Value** |
+| ------------------------- | --------------------------------------------------------- | ----------------- |
+| **Query**                 | Define the instructions for generating the text output.   | `User Query`      |
+| **MCP Server**            | Select the MCP server to use for the MCP node.            | `Server 1`        |
+| **Generative Model Name** | Select the model to generate text based on the prompt.    | `openai`          |
+| **Selected Tools**        | Select the tools to be used for the MCP node.             | Tools             |
+| **Messages (History)**    | Pass your messages history here                           | []                |
+| **Memories**              | Pass your memories here                                   | []                |
+| **Attachments**           | Select the attachments to be used for the multimodal LLM. | []                |
+
+## Low-Code Example
+
+```yaml
+nodes:
+  - nodeId: mcpNode_195
+    nodeType: mcpNode
+    nodeName: MCP
+    values:
+      memories: "[]"
+      messages: "[]"
+      attachments: ""
+      credentials: MCP Server
+      selectedTools:
+        - add_comment_to_pending_review
+        - add_issue_comment
+        - assign_copilot_to_issue
+        - cancel_workflow_run
+        - create_and_submit_pull_request_review
+      promptTemplate: Tell me details about github user ABC
+      generativeModelName:
+        type: generator/text
+        model_name: default
+        credentialId: Credential
+        provider_name: openai
+        credential_name: AI_API
+    modes: {}
+    needs:
+      - triggerNode_1
+```
+
+## Output
+
+```json
+{
+  "_meta": {
+    "prompt_tokens_cost": 0.07718000000000001,
+    "completion_tokens_cost": 0.0027,
+    "total_cost": 0.07988,
+    "cached_prompt_tokens_cost": 0,
+    "prompt_tokens": 7718,
+    "completion_tokens": 90,
+    "total_tokens": 7808,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "model_name": "gpt-4-turbo-preview",
+    "model_provider": "openai",
+    "info": {
+      "max_tokens": 4096,
+      "max_input_tokens": 128000,
+      "max_output_tokens": 4096,
+      "input_cost_per_token": 0.00001,
+      "output_cost_per_token": 0.00003,
+      "supports_pdf_input": true,
+      "supports_function_calling": true,
+      "supports_parallel_function_calling": true,
+      "supports_prompt_caching": true,
+      "supports_system_messages": true,
+      "supports_tool_choice": true
+    }
+  },
+  "generatedResponse": "response"
+}
+```
+
+#### `_meta`
+
+- A nested object containing metadata about the MCP function execution and model usage.
+
+  - **`prompt_tokens_cost`**: Cost of prompt tokens used in the request.
+  - **`completion_tokens_cost`**: Cost of completion tokens generated.
+  - **`total_cost`**: Total cost of the entire operation.
+  - **`cached_prompt_tokens_cost`**: Cost of cached prompt tokens (if any).
+  - **`prompt_tokens`**: Number of prompt tokens used.
+  - **`completion_tokens`**: Number of completion tokens generated.
+  - **`total_tokens`**: Total number of tokens used.
+  - **`prompt_tokens_details`**: Detailed breakdown of prompt token usage.
+    - **`cached_tokens`**: Number of cached tokens used.
+    - **`audio_tokens`**: Number of audio tokens (if applicable).
+  - **`completion_tokens_details`**: Detailed breakdown of completion token usage.
+    - **`reasoning_tokens`**: Number of reasoning tokens used.
+    - **`audio_tokens`**: Number of audio tokens generated.
+    - **`accepted_prediction_tokens`**: Number of accepted prediction tokens.
+    - **`rejected_prediction_tokens`**: Number of rejected prediction tokens.
+  - **`model_name`**: Name of the AI model used (e.g., "gpt-4-turbo-preview").
+  - **`model_provider`**: Provider of the AI model (e.g., "openai").
+  - **`info`**: Model capabilities and configuration information.
+    - **`max_tokens`**: Maximum tokens allowed for output.
+    - **`max_input_tokens`**: Maximum tokens allowed for input.
+    - **`max_output_tokens`**: Maximum tokens allowed for output.
+    - **`input_cost_per_token`**: Cost per input token.
+    - **`output_cost_per_token`**: Cost per output token.
+    - **`supports_pdf_input`**: Whether the model supports PDF input.
+    - **`supports_function_calling`**: Whether the model supports function calling.
+    - **`supports_parallel_function_calling`**: Whether the model supports parallel function calling.
+    - **`supports_prompt_caching`**: Whether the model supports prompt caching.
+    - **`supports_system_messages`**: Whether the model supports system messages.
+    - **`supports_tool_choice`**: Whether the model supports tool choice.
+
+#### `generatedResponse`
+
+- The response generated by the MCP node, which includes the result of the MCP function execution processed through the AI model.
+
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**               | **Solution**                                                         |
+| ------------------------- | -------------------------------------------------------------------- |
+| **Connection Timeout**    | Check network connectivity and increase timeout settings.            |
+| **Authentication Errors** | Verify API keys and authentication credentials.                      |
+| **Function Not Found**    | Ensure the function name is correct and available on the MCP server. |
+| **Invalid Parameters**    | Check parameter format and requirements for the selected function.   |
+
+### Debugging
+
+1. Check Lamatic Flow logs for error details.
+2. Verify MCP server configuration and connectivity.
+3. Test the MCP server connection independently.
+4. Review function documentation for correct parameter usage.

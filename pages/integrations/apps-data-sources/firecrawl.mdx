@@ -70,8 +70,14 @@ Firecrawl supports two execution modes:
 ---
 
 In **Async mode**, Firecrawl runs the operation in the background and sends a notification to your configured webhook when complete.
+The async mode has the two modes : 
+- **Single**: For single URL operations (crawler or scraper).
+- **Batch**: For multiple URLs, allowing you to process a list of URLs in one go. Here, you would need to provide **URL List** instead of a single URL.
 
 In **Sync mode**, Firecrawl performs the operation in real-time and returns the result directly in the response.
+The sync mode has the two modes:
+- **Single**: For single URL operations (crawler or scraper).
+- **Batch**: For multiple URLs, allowing you to process a list of URLs in one go. Here, you would need to provide **URL List** instead of a single URL.
 
 ---
 
@@ -173,6 +179,25 @@ In case of async mode, the user will have the option to choose the following con
 
 ---
 
+### Batch Crawler Configuration (Async / Sync)
+
+| **Parameter**         | **Description**                                                         | **Example Value**                      |
+|-----------------------|-------------------------------------------------------------------------|----------------------------------------|
+| Credential Name       | Select previously saved credentials                                     | `my-firecrawl-creds`                   |
+| URL List              | List of starting URLs to crawl                                          | `[ "https://x.com", "https://y.com" ]` |
+| Include Path          | Paths to include during crawl                                           | `"blog/*"`                             |
+| Exclude Path          | Paths to exclude during crawl                                           | `"admin/*"`                            |
+| Crawl Depth           | Depth to crawl for each URL                                             | `3`                                    |
+| Crawl Limit           | Max pages per domain                                                    | `500`                                  |
+| Max Discovery Depth   | How far discovered links can go                                         | `4`                                    |
+| Allow External Links  | Whether to crawl external domains                                       | `false`                                |
+| Allow Backward Links  | Whether to revisit previous pages                                       | `true`                                 |
+| Crawl Sub Pages       | Enable sub-page traversal                                               | `true`                                 |
+| Ignore Sitemap        | Skip sitemap.xml                                                        | `false`                                |
+| Delay                 | Throttle request delay in seconds                                       | `1`                                    |
+
+---
+
 ### Scraper Configuration (Single)
 
 | **Parameter**         | **Description**                                                         | **Example Value**            |
@@ -201,26 +226,18 @@ In case of async mode, the user will have the option to choose the following con
 | Emulate Mobile Device | Use mobile browser viewport                                              | `true`                                 |
 | Wait for Page Load    | Delay for dynamic content to appear (in ms)                             | `200`                                  |
 
----
 
-### Batch Crawler Configuration (Async / Sync)
-
-| **Parameter**         | **Description**                                                         | **Example Value**                      |
-|-----------------------|-------------------------------------------------------------------------|----------------------------------------|
-| Credential Name       | Select previously saved credentials                                     | `my-firecrawl-creds`                   |
-| URL List              | List of starting URLs to crawl                                          | `[ "https://x.com", "https://y.com" ]` |
-| Include Path          | Paths to include during crawl                                           | `"blog/*"`                             |
-| Exclude Path          | Paths to exclude during crawl                                           | `"admin/*"`                            |
-| Crawl Depth           | Depth to crawl for each URL                                             | `3`                                    |
-| Crawl Limit           | Max pages per domain                                                    | `500`                                  |
-| Max Discovery Depth   | How far discovered links can go                                         | `4`                                    |
-| Allow External Links  | Whether to crawl external domains                                       | `false`                                |
-| Allow Backward Links  | Whether to revisit previous pages                                       | `true`                                 |
-| Crawl Sub Pages       | Enable sub-page traversal                                               | `true`                                 |
-| Ignore Sitemap        | Skip sitemap.xml                                                        | `false`                                |
-| Delay                 | Throttle request delay in seconds                                       | `1`                                    |
-
----
+### Map URL Configuration
+| **Parameter**         | **Description**                                                         | **Example Value**                 |
+|-----------------------|-------------------------------------------------------------------------|-----------------------------------|
+| Credential Name       | Select previously saved credentials                                     | `my-firecrawl-creds`              |
+| URL                   | Starting URL to map the structure                                       | `https://example.com`             |
+| Main Content          | Extract only main content from each page                                | `true`                                 |
+| Skip TLS Verification | Ignore SSL certificate errors                                           | `false`                                |
+| Include Tags          | HTML tags to extract                                                    | `p, h1, h2`                             |
+| Exclude Tags          | HTML tags to exclude from extraction                                    | `aside, footer`                        |
+| Emulate Mobile Device | Use mobile browser viewport                                              | `true`                                 |
+| Wait for Page Load    | Delay for dynamic content to appear (in ms)                             | `200`                                  |
 
 ### Troubleshooting
 

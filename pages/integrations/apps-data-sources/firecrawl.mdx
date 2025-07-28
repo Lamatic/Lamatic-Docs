@@ -62,47 +62,9 @@ Use the following format to set up your credentials:
 
 ## Configuration Reference
 
-Firecrawl supports two execution modes:
+### Sync Mode Output Format
 
-1. **Synchronous (Sync) Mode**
-2. **Asynchronous (Async) Mode**
-
----
-
-In **Async mode**, Firecrawl runs the operation in the background and sends a notification to your configured webhook when complete.
-The async mode has the two modes : 
-- **Single**: For single URL operations (crawler or scraper).
-- **Batch**: For multiple URLs, allowing you to process a list of URLs in one go. Here, you would need to provide **URL List** instead of a single URL.
-
-In **Sync mode**, Firecrawl performs the operation in real-time and returns the result directly in the response.
-The sync mode has the two modes:
-- **Single**: For single URL operations (crawler or scraper).
-- **Batch**: For multiple URLs, allowing you to process a list of URLs in one go. Here, you would need to provide **URL List** instead of a single URL.
-
----
-
-### Sync Mode Configuration
-
-| **Parameter**         | **Description**                                                  | **Example Value**                 |
-|------------------------|------------------------------------------------------------------|-----------------------------------|
-| Credential Name        | Select previously saved credentials                              | `my-firecrawl-creds`              |
-| URL                    | Starting URL (for crawler) or target URL (for scraper)           | `https://example.com`             |
-| Main Content           | Extract only primary page content                                | `true`                            |
-| Include Tags           | HTML tags to include (scraper only)                              | `p, h1, h2`                        |
-| Exclude Tags           | HTML tags to exclude (scraper only)                              | `nav, footer`                     |
-| Include Path           | Paths to include in crawl (crawler only)                         | `"blog/*"`                        |
-| Exclude Path           | Paths to exclude in crawl (crawler only)                         | `"admin/*"`                       |
-| Crawl Depth            | Maximum crawl depth from start URL                               | `3`                               |
-| Crawl Limit            | Maximum number of pages to crawl                                 | `1000`                            |
-| Allow External Links   | Allow crawler to follow links to other domains                   | `false`                           |
-| Allow Backward Links   | Allow links that point backward in structure                     | `true`                            |
-| Crawl Sub Pages        | Enable crawling of sub-pages                                     | `true`                            |
-| Ignore Sitemap         | Skip sitemap.xml parsing                                         | `false`                           |
-| Wait for Page Load     | Time (in ms) to wait for dynamic content (scraper only)          | `200`                             |
-| Emulate Mobile Device  | Simulate a mobile browser environment                            | `true`                            |
-
-#### Sync Mode Output Format
-
+#### Batched Mode
 ```json
 {
   "success": true,
@@ -135,19 +97,28 @@ The sync mode has the two modes:
 }
 ```
 
-### Async Mode Configuration
-
-In case of async mode, the user will have the option to choose the following configurations:
-
-| Parameter          | Description                                           | Example Value                              |
-|--------------------|-------------------------------------------------------|--------------------------------------------|
-| Credential Name     | Select previously saved credentials                   | `my-firecrawl-creds`                        |
-| Callback Webhook    | URL to receive notifications about crawl completion   | `https://example.com/webhook`              |
-| Webhook Headers     | Headers to be sent to the webhook                     | `{'Content-Type:application/json'}`        |
-| Webhook Metadata    | Metadata to be sent to the webhook                    | `{'status':'{{codeNode_540.status}}'}`     |
-| Webhook Events      | A multiselect list of events to be sent to the webhook| `["completed", "failed", "page", "started"]` |
-
-<br/>
+#### Single Mode
+```json
+{
+  "success": true,
+  "status": "completed",
+  "completed": 1,
+  "total": 2,
+  "creditsUsed": 1,
+  "expiresAt": "2025-08-02T12:30:00.000Z",
+  "data": [
+    {
+      "url": "https://example.com/page-1",
+      "content": "Lorem ipsum dolor sit amet...",
+      "metadata": {
+        "title": "Page 1 Title",
+        "description": "This is a sample description.",
+        "language": "en"
+      }
+    }
+  ]
+}
+```
 
 #### Async Mode Output Format
 
@@ -195,6 +166,10 @@ In case of async mode, the user will have the option to choose the following con
 | Crawl Sub Pages       | Enable sub-page traversal                                               | `true`                                 |
 | Ignore Sitemap        | Skip sitemap.xml                                                        | `false`                                |
 | Delay                 | Throttle request delay in seconds                                       | `1`                                    |
+| Callback Webhook    | URL to receive notifications about crawl completion   | `https://example.com/webhook`              |
+| Webhook Headers     | Headers to be sent to the webhook                     | `{'Content-Type:application/json'}`        |
+| Webhook Metadata    | Metadata to be sent to the webhook                    | `{'status':'{{codeNode_540.status}}'}`     |
+| Webhook Events      | A multiselect list of events to be sent to the webhook| `["completed", "failed", "page", "started"]` |
 
 ---
 
@@ -225,6 +200,10 @@ In case of async mode, the user will have the option to choose the following con
 | Exclude Tags          | HTML tags to exclude from extraction                                    | `aside, footer`                        |
 | Emulate Mobile Device | Use mobile browser viewport                                              | `true`                                 |
 | Wait for Page Load    | Delay for dynamic content to appear (in ms)                             | `200`                                  |
+| Callback Webhook    | URL to receive notifications about crawl completion   | `https://example.com/webhook`              |
+| Webhook Headers     | Headers to be sent to the webhook                     | `{'Content-Type:application/json'}`        |
+| Webhook Metadata    | Metadata to be sent to the webhook                    | `{'status':'{{codeNode_540.status}}'}`     |
+| Webhook Events      | A multiselect list of events to be sent to the webhook| `["completed", "failed", "page", "started"]` |
 
 
 ### Map URL Configuration
@@ -238,6 +217,26 @@ In case of async mode, the user will have the option to choose the following con
 | Exclude Tags          | HTML tags to exclude from extraction                                    | `aside, footer`                        |
 | Emulate Mobile Device | Use mobile browser viewport                                              | `true`                                 |
 | Wait for Page Load    | Delay for dynamic content to appear (in ms)                             | `200`                                  |
+
+### Map URL Output Example
+```json
+{
+  "success": true,
+  "links": [
+    "https://lamatic.ai/docs",
+    "https://lamatic.ai/docs/architecture",
+    "https://lamatic.ai/docs/career",
+    "https://lamatic.ai/docs/context",
+    "https://lamatic.ai/docs/context/vectordb",
+    "https://lamatic.ai/docs/context/vectordb/adding-data",
+    "https://lamatic.ai/docs/contributing",
+    "https://lamatic.ai/docs/demo",
+    "https://lamatic.ai/docs/deployments",
+    "https://lamatic.ai/docs/deployments/cache"
+  ]
+}
+```
+
 
 ### Troubleshooting
 

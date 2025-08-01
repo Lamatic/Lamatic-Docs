@@ -80,7 +80,32 @@ For testing, you need to manually provide `content` and `document_key` as dummy 
 | **Folder**        | The folder from which files will be fetched.                                                           | ✅           | `https://drive.google.com/drive/folders/{folder-id}` |
 | **Sync Mode**     | Specify either `incremental` (process new/updated files only) or `full-refresh` (reprocess all files). | ✅           | `incremental`                                        |
 | **Sync Schedule** | Frequency for running the flow, specified using a Cron expression.                                     | ✅           | `0 0 05 1/1 * ? * UTC`                               |
+| **Globs (Path Patterns)**        | Glob pattern for matching files                                                                             | ❌           | `**/*.pdf`, `**/*.docx`           |
 
+#### Supported File Types
+
+Only specific file types are currently supported for vectorization and indexing in Lamatic. Using unsupported formats may result in parsing errors during synchronization.
+
+##### ✅ Allowed File Extensions
+
+- `.pdf` — PDF Documents  
+- `.txt` — Plain Text Files  
+- `.docx` — Microsoft Word  
+- `.pptx` — Microsoft PowerPoint  
+- `.md` — Markdown Files
+
+To avoid sync issues, ensure your **glob patterns** are configured to include only these types.
+
+##### 🔍 Recommended Glob Pattern
+
+```yaml
+    globs:
+    - "**/*.pdf"
+    - "**/*.txt"
+    - "**/*.docx"
+    - "**/*.pptx"
+    - "**/*.md"
+```
 
 ### Low-Code Example
 

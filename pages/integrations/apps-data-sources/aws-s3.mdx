@@ -207,6 +207,31 @@ If the connection fails, whitelist the following IPs: [https://www.cloudflare.co
 
     This is helpful for excluding unnecessary files.
 
+    ##### Supported File Types
+
+    Only specific file types are currently supported for vectorization and indexing in Lamatic. Using unsupported formats may result in parsing errors during synchronization.
+
+    ##### ✅ Allowed File Extensions
+
+    - `.pdf` — PDF Documents  
+    - `.txt` — Plain Text Files  
+    - `.docx` — Microsoft Word  
+    - `.pptx` — Microsoft PowerPoint  
+    - `.md` — Markdown Files
+
+    To avoid sync issues, ensure your **glob patterns** are configured to include only these types.
+
+    ##### 🔍 Recommended Glob Pattern
+
+    ```yaml
+        globs:
+        - "**/*.pdf"
+        - "**/*.txt"
+        - "**/*.docx"
+        - "**/*.pptx"
+        - "**/*.md"
+    ```
+
     ##### Days to Sync If History Is Full
     If the system encounters a large backlog of files, this setting limits the synchronization to a defined number of recent days. It helps manage processing time and storage efficiently.
 

@@ -457,6 +457,7 @@ const permanentRedirects = [
     ['/docs/models/providers/together-ai', '/integrations/models/together-ai'],
     ['/docs/models/providers/voyage-ai', '/integrations/models/voyage-ai'],
     ['/docs/models/providers/xai', '/integrations/models/xai'],
+    ['/docs/flows/getting-started', '/docs/get-started'],
 ]
 
 // Caution : Overriding /public messes with the assets

@@ -97,6 +97,31 @@ Ensure you have appropriate SharePoint access permissions for the sites you want
 | **Days To Sync If History Is Full** | Limit sync to files modified in the last N days if sync state is full                                   | ❌           | `30`        | `30`                                            |
 | **Start Date**                   | Ignore files modified before this UTC datetime (ISO format)                                                 | ❌           | -           | `2017-01-25T00:00:00.000000Z`                   |
 
+#### Supported File Types
+
+Only specific file types are currently supported for vectorization and indexing in Lamatic. Using unsupported formats may result in parsing errors during synchronization.
+
+##### ✅ Allowed File Extensions
+
+- `.pdf` — PDF Documents  
+- `.txt` — Plain Text Files  
+- `.docx` — Microsoft Word  
+- `.pptx` — Microsoft PowerPoint  
+- `.md` — Markdown Files
+
+To avoid sync issues, ensure your **glob patterns** are configured to include only these types.
+
+##### 🔍 Recommended Glob Pattern
+
+```yaml
+    globs:
+    - "**/*.pdf"
+    - "**/*.txt"
+    - "**/*.docx"
+    - "**/*.pptx"
+    - "**/*.md"
+```
+
 ### Sync Configuration Options
 
 #### Sync Modes

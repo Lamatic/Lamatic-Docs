@@ -10,7 +10,8 @@ Model Context Protocol (MCP) is a standardized protocol that enables AI models t
 ![mcp-overview](./img/mcp-overview.png)
 
 <Callout>
-MCP can be integrated with [**Text-Gen Node**](/docs/nodes/text-generate-node) and [**Multimodel Node**](/docs/nodes/multimodel-text-node) for enhanced AI capabilities
+  MCP can be integrated with [**Text-Gen Node**](/docs/nodes/text-generate-node)
+  for enhanced AI capabilities
 </Callout>
 <br />
 
@@ -48,27 +49,34 @@ MCP can be integrated with [**Text-Gen Node**](/docs/nodes/text-generate-node) a
 ## MCP Configuration
 
 ### Credential Name
+
 A descriptive name for your MCP server connection. This will be used to identify the server in your flows.
 
 Example: `MCP Server`
 
 ### Host
+
 The endpoint URL where your MCP server is hosted. This is a required field that specifies the server address.
 
 Example: `https://api.weatherapi.com/v1`
 
 ### Type
+
 The protocol type for your MCP server connection. Choose between:
+
 - **http**: Standard HTTP protocol for most API connections
 - **sse**: Server-Sent Events for real-time data streaming
 
 ### Headers
+
 Custom HTTP headers for authentication and configuration. You can add headers like:
+
 - **Authorization**: For API key or bearer token authentication
 - **Content-Type**: Specify the content type for requests
 - **Custom Headers**: Any additional headers required by your MCP server
 
 Click the "Edit" button to configure headers in JSON format:
+
 ```json
 {
   "Authorization": "Bearer your-api-key",
@@ -76,13 +84,12 @@ Click the "Edit" button to configure headers in JSON format:
 }
 ```
 
-
 ## How to Use MCP in Flows
 
 <Callout>
-MCP can be integrated with [**Text-Gen Node**](/docs/nodes/text-generate-node) and [**Multimodel Node**](/docs/nodes/multimodel-text-node)
+  MCP can be integrated with [**Text-Gen Node**](/docs/nodes/text-generate-node)
 </Callout>
-<br/>
+<br />
 
 To integrate MCP into your flow, follow these steps:
 
@@ -95,6 +102,7 @@ To integrate MCP into your flow, follow these steps:
 ### MCP Node Configuration
 
 The MCP node allows you to:
+
 - **Select MCP Server**: Choose from your configured MCP servers
 - **Access Tools**: Use tools and resources provided by the MCP server
 - **Process Data**: Handle responses and integrate with other nodes in your flow
@@ -102,18 +110,21 @@ The MCP node allows you to:
 ## MCP Best Practices
 
 ### Security
+
 - Always use secure connections (HTTPS) for MCP servers
 - Implement proper authentication and authorization
 - Regularly rotate API keys and tokens
 - Monitor and log all MCP interactions
 
 ### Performance
+
 - Implement caching for frequently accessed data
 - Use connection pooling for better performance
 - Set appropriate timeouts and retry policies
 - Monitor response times and optimize slow queries
 
 ### Error Handling
+
 - Implement robust error handling for network failures
 - Provide fallback mechanisms for critical data
 - Log errors for debugging and monitoring
@@ -123,12 +134,12 @@ The MCP node allows you to:
 
 ### Common Issues
 
-| **Problem** | **Solution** |
-|-------------|--------------|
-| **Connection Timeout** | Check network connectivity and increase timeout settings |
-| **Authentication Errors** | Verify API keys and authentication credentials |
-| **Rate Limiting** | Implement proper rate limiting and retry logic |
-| **Data Format Issues** | Ensure MCP server returns data in expected format |
+| **Problem**               | **Solution**                                             |
+| ------------------------- | -------------------------------------------------------- |
+| **Connection Timeout**    | Check network connectivity and increase timeout settings |
+| **Authentication Errors** | Verify API keys and authentication credentials           |
+| **Rate Limiting**         | Implement proper rate limiting and retry logic           |
+| **Data Format Issues**    | Ensure MCP server returns data in expected format        |
 
 ### Debugging
 

@@ -1,8 +1,15 @@
 ---
-description:
+description: Opportunties at Lamatic
 ---
 
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { Tabs, Tab } from 'nextra-theme-docs'
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
+
+<style jsx global>{`
+  .career-accordion-trigger {
+    color: inherit !important;
+  }
+`}</style>
 
 # Career at Lamatic
 
@@ -25,188 +32,183 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
 ## Current Roles
 
 <Callout emoji="🔥">
-  Didn’t find a role that fits, but still want to work with us? Apply
-  anyway—with a title of your choice! We’re always on the lookout for
+  Didn't find a role that fits, but still want to work with us? Apply
+  anyway—with a title of your choice! We're always on the lookout for
   exceptional individuals who go beyond the typical roles and help us expand
-  what’s possible.
+  what's possible.
 </Callout>
 
-<Accordion>
-    <AccordionItem key="1" aria-label="Founding Engineer - Full Stack" title="Founding Engineer - Full Stack">
-        ### Founding Engineer - Full Stack
+<Tabs items={['Engineering', 'Design', 'Go-to-Market']}>
+  <Tab>
+    <Accordion type="single" collapsible>
+      <AccordionItem value="founding-engineer">
+        <AccordionTrigger className="career-accordion-trigger">Founding Engineer - Full Stack</AccordionTrigger>
+        <AccordionContent>
+          **Job Description:**
 
-        **Job Description:**
+          We're looking for a Full Stack Developer proficient in NextJS, Supabase, and GraphQL. In this role, you will
+          work on developing and enhancing our platform's frontend and backend, ensuring a seamless user experience. Your
+          contributions will be crucial in making our AI-driven platform more robust and user-friendly.
 
-        We're looking for a Full Stack Developer proficient in NextJS, Supabase, and GraphQL. In this role, you will
-        work on developing and enhancing our platform's frontend and backend, ensuring a seamless user experience. Your
-        contributions will be crucial in making our AI-driven platform more robust and user-friendly.
+          **Responsibilities:**
 
-        **Responsibilities:**
+          - Develop and maintain the front-end of our platform using NextJS, ensuring a responsive and intuitive user
+          interface.
+          - Build and optimize the backend of our platform using Supabase, focusing on performance, scalability, and data
+          management.
+          - Implement and manage GraphQL APIs for efficient data fetching and manipulation.
+          - Collaborate with cross-functional teams to translate business requirements into technical implementations.
+          - Ensure code quality, maintainability, and scalability through proper documentation and testing.
+          - Stay updated with the latest developments in full-stack development and implement best practices.
 
-        - Develop and maintain the front-end of our platform using NextJS, ensuring a responsive and intuitive user
-        interface.
-        - Build and optimize the backend of our platform using Supabase, focusing on performance, scalability, and data
-        management.
-        - Implement and manage GraphQL APIs for efficient data fetching and manipulation.
-        - Collaborate with cross-functional teams to translate business requirements into technical implementations.
-        - Ensure code quality, maintainability, and scalability through proper documentation and testing.
-        - Stay updated with the latest developments in full-stack development and implement best practices.
+          **Requirements:**
 
-        **Requirements:**
+          - Proficiency in NextJS, Supabase, and GraphQL.
+          - Strong experience in full-stack development, particularly in AI-driven application platforms.
+          - Solid understanding of front-end technologies, including HTML, CSS, JavaScript, and relevant frameworks.
+          - Experience with backend development, database management, and API integration.
+          - Ability to write efficient, clean, and reusable code.
+          - Strong problem-solving skills and the ability to work in a fast-paced, dynamic environment.
+          - Excellent communication skills and teamwork capabilities.
+          - A passion for AI technology and its practical applications.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  </Tab>
+  <Tab>
+    <Accordion type="single" collapsible>
+      <AccordionItem value="ai-ux-ui-designer">
+        <AccordionTrigger className="career-accordion-trigger">AI/UX/UI Designer – Founding Role</AccordionTrigger>
+        <AccordionContent>
+          **Job Description:**
+          
+          Lamatic.ai is seeking a visionary **AI/UX/UI Designer** to craft the look, feel, and usability of our next-generation AI platform. As a founding team member, you'll define our design language, translate advanced AI workflows into approachable user experiences, and ensure that every interface is accessible, intuitive, and delightful. Your work will make sophisticated AI capabilities both engaging and transparent to a broad user base.
+          
+          **Responsibilities:**
+          
+          - **Design System Leadership**: Establish and evolve Lamatic.ai's design system, visual identity, and UI components for consistency across all experiences.
+          - **Human-Centered AI**: Translate complex AI concepts into clear, frictionless interactions that build trust and drive adoption.
+          - **Collaborative Workflows**: Partner closely with engineers and product managers to turn business needs and technical ideas into high-impact user journeys, wireframes, and interactive prototypes.
+          - **Usability Testing & Research**: Organize and conduct user research, usability tests, and interviews to validate design choices and uncover new insights.
+          - **Prototyping**: Develop high-fidelity mockups and clickable prototypes for web and mobile, iterating quickly based on feedback.
+          - **Accessibility & Inclusivity**: Champion inclusive design and accessibility (WCAG) in all user touchpoints.
+          - **Trend Awareness**: Keep up with emerging best practices in UX/UI, AI ethics, and designing for AI transparency and usability.
+          - **Iterative Mindset**: Rapidly adapt designs in response to evolving product requirements, market needs, and real user data.
+          
+          **Requirements:**
+          
+          - **Portfolio**: Strong portfolio demonstrating UX/UI design for complex web applications—AI products preferred.
+          - **Technical Design Skills**: Mastery with tools like Figma, Sketch, Adobe Creative Suite, or similar.
+          - **Human-Centered Design**: Experience applying user research and HCD principles to deliver simple interfaces for complex processes.
+          - **Technical Collaboration**: Skilled at communicating with engineers and PMs and comfortable functioning in fast-paced, agile teams.
+          - **Information Design**: Ability to distill sophisticated technical workflows into clear, intuitive visual flows.
+          - **Ethical AI Perspective**: Deep interest in building transparent, ethical, user-empowering AI experiences.
+          - **Communication**: Excellent visual, written, and verbal communication skills.
+          - **Responsive Design**: Knowledge of responsive interface design and modern front-end capabilities.
+          
+          **Bonus:**
+          
+          - Experience with data visualization, generative AI, or AI explainability.
+          - Prior exposure to prototyping conversational UIs, adaptive interfaces, or copilot-like experiences.
+          - Front-end coding familiarity (HTML/CSS/JS) for more seamless design-to-dev handoff.
+          - Background as a founding designer or work in early-stage startups.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  </Tab>
+  <Tab>
+    <Accordion type="single" collapsible>
+      <AccordionItem value="applied-ai-engineer">
+        <AccordionTrigger className="career-accordion-trigger">Applied AI Engineer</AccordionTrigger>
+        <AccordionContent>
+          **Job Description:**
 
-        - Proficiency in NextJS, Supabase, and GraphQL.
-        - Strong experience in full-stack development, particularly in AI-driven application platforms.
-        - Solid understanding of front-end technologies, including HTML, CSS, JavaScript, and relevant frameworks.
-        - Experience with backend development, database management, and API integration.
-        - Ability to write efficient, clean, and reusable code.
-        - Strong problem-solving skills and the ability to work in a fast-paced, dynamic environment.
-        - Excellent communication skills and teamwork capabilities.
-        - A passion for AI technology and its practical applications.
-    </AccordionItem>
-    <AccordionItem key="2" aria-label="Applied AI Engineer" title="Applied AI Engineer">
+          Lamatic.ai is seeking an Applied AI Engineer with ambition and aptitude. In this role, you will ensure that new Lamatic customers derive value quickly by helping them design and configure the Lamatic Flows needed to achieve their goals. You'll be an essential partner in their success, driving customer satisfaction and adoption.
 
-        ### **Applied AI Engineer**
+          This role offers a base salary plus a variable compensation tied to the number of onboardings, degree of adoption, NPS ratings, and revenue generated from new customers.
 
-        **Job Description:**
+          **Responsibilities:**
 
-        Lamatic.ai is seeking an Applied AI Engineer with ambition and aptitude. In this role, you will ensure that new Lamatic customers derive value quickly by helping them design and configure the Lamatic Flows needed to achieve their goals. You’ll be an essential partner in their success, driving customer satisfaction and adoption.
+          - **Understand Customer Needs**: Gather and analyze customer requirements to ensure solutions align with their business objectives.
+          - **Design and Configure**: Translate customer needs into functional Lamatic Flow configurations using Generative AI and coding expertise.
+          - **Customer Education**: Train customers on how to use Lamatic to empower them to independently manage and scale their solutions.
+          - **Deliver Value Quickly**: Ensure customers derive measurable value during onboarding, fostering long-term success.
+          - **Feedback Loop**: Collaborate with product and engineering teams to share customer insights that drive continuous improvement.
 
-        This role offers a base salary plus a variable compensation tied to the number of onboardings, degree of adoption, NPS ratings, and revenue generated from new customers.
+          **Requirements:**
 
-        **Responsibilities:**
-
-        - **Understand Customer Needs**: Gather and analyze customer requirements to ensure solutions align with their business objectives.
-        - **Design and Configure**: Translate customer needs into functional Lamatic Flow configurations using Generative AI and coding expertise.
-        - **Customer Education**: Train customers on how to use Lamatic to empower them to independently manage and scale their solutions.
-        - **Deliver Value Quickly**: Ensure customers derive measurable value during onboarding, fostering long-term success.
-        - **Feedback Loop**: Collaborate with product and engineering teams to share customer insights that drive continuous improvement.
-
-        **Requirements:**
-
-        - **Interest in Generative AI**: Proven interest and aptitude in designing agentic systems using Generative AI technologies.
-        - **Coding Proficiency**: Skilled in **JavaScript** for configuring Lamatic Flows.
-        - **Customer Orientation**: Strong customer service and sales aptitude, with a focus on delivering excellent experiences.
-        - **Communication Skills**: Exceptional verbal and written communication skills to clearly convey technical concepts to diverse audiences.
-        - **Detail-Oriented**: Highly organized and meticulous, ensuring accuracy in configurations and communication.
-        - **Startup Mindset**: Comfortable thriving in a fast-paced, dynamic startup environment with a bias for action.
-
-        ---
-    </AccordionItem>
-    <AccordionItem key="3" aria-label="AI/UX/UI Designer" title="AI/UX/UI Designer">
-
-      ### **AI/UX/UI Designer – Founding Role**
-      
-      **Job Description:**
-      
-      Lamatic.ai is seeking a visionary **AI/UX/UI Designer** to craft the look, feel, and usability of our next-generation AI platform. As a founding team member, you'll define our design language, translate advanced AI workflows into approachable user experiences, and ensure that every interface is accessible, intuitive, and delightful. Your work will make sophisticated AI capabilities both engaging and transparent to a broad user base.
-      
-      **Responsibilities:**
-      
-      - **Design System Leadership**: Establish and evolve Lamatic.ai’s design system, visual identity, and UI components for consistency across all experiences.
-      - **Human-Centered AI**: Translate complex AI concepts into clear, frictionless interactions that build trust and drive adoption.
-      - **Collaborative Workflows**: Partner closely with engineers and product managers to turn business needs and technical ideas into high-impact user journeys, wireframes, and interactive prototypes.
-      - **Usability Testing & Research**: Organize and conduct user research, usability tests, and interviews to validate design choices and uncover new insights.
-      - **Prototyping**: Develop high-fidelity mockups and clickable prototypes for web and mobile, iterating quickly based on feedback.
-      - **Accessibility & Inclusivity**: Champion inclusive design and accessibility (WCAG) in all user touchpoints.
-      - **Trend Awareness**: Keep up with emerging best practices in UX/UI, AI ethics, and designing for AI transparency and usability.
-      - **Iterative Mindset**: Rapidly adapt designs in response to evolving product requirements, market needs, and real user data.
-      
-      **Requirements:**
-      
-      - **Portfolio**: Strong portfolio demonstrating UX/UI design for complex web applications—AI products preferred.
-      - **Technical Design Skills**: Mastery with tools like Figma, Sketch, Adobe Creative Suite, or similar.
-      - **Human-Centered Design**: Experience applying user research and HCD principles to deliver simple interfaces for complex processes.
-      - **Technical Collaboration**: Skilled at communicating with engineers and PMs and comfortable functioning in fast-paced, agile teams.
-      - **Information Design**: Ability to distill sophisticated technical workflows into clear, intuitive visual flows.
-      - **Ethical AI Perspective**: Deep interest in building transparent, ethical, user-empowering AI experiences.
-      - **Communication**: Excellent visual, written, and verbal communication skills.
-      - **Responsive Design**: Knowledge of responsive interface design and modern front-end capabilities.
-      
-      **Bonus:**
-      
-      - Experience with data visualization, generative AI, or AI explainability.
-      - Prior exposure to prototyping conversational UIs, adaptive interfaces, or copilot-like experiences.
-      - Front-end coding familiarity (HTML/CSS/JS) for more seamless design-to-dev handoff.
-      - Background as a founding designer or work in early-stage startups.
-      
-      ---
-      
+          - **Interest in Generative AI**: Proven interest and aptitude in designing agentic systems using Generative AI technologies.
+          - **Coding Proficiency**: Skilled in **JavaScript** for configuring Lamatic Flows.
+          - **Customer Orientation**: Strong customer service and sales aptitude, with a focus on delivering excellent experiences.
+          - **Communication Skills**: Exceptional verbal and written communication skills to clearly convey technical concepts to diverse audiences.
+          - **Detail-Oriented**: Highly organized and meticulous, ensuring accuracy in configurations and communication.
+          - **Startup Mindset**: Comfortable thriving in a fast-paced, dynamic startup environment with a bias for action.
+        </AccordionContent>
       </AccordionItem>
 
-    <AccordionItem key="4" aria-label="Developer Relations Engineer" title="Developer Relations Engineer">
+      <AccordionItem value="developer-relations">
+        <AccordionTrigger className="career-accordion-trigger">Developer Relations Engineer</AccordionTrigger>
+        <AccordionContent>
+          **Job Description:**
 
-        ### **Developer Relations Engineer**
+          Lamatic.ai is looking for a driven and talented Developer Relations Engineer. In this role, you will engage with developer forums, online communities, and events to understand their needs and collect valuable feedback. Additionally, you will create blog posts, tutorials, and documentation to help developers effectively learn and utilize our products.
 
-        **Job Description:**
+          **Responsibilities:**
 
-        Lamatic.ai is looking for a driven and talented Developer Relations Engineer. In this role, you will engage with developer forums, online communities, and events to understand their needs and collect valuable feedback. Additionally, you will create blog posts, tutorials, and documentation to help developers effectively learn and utilize our products.
+          - **Engage with the Developer Community**: Actively participate in developer forums, online communities, and events to understand their needs and gather feedback.
+          - **Create Technical Content**: Write blog posts, tutorials, and documentation that help developers understand and use our products effectively.
+          - **Support Developers**: Provide technical support, troubleshoot issues, and guide developers using our SDKs, APIs, or tools.
+          - **Contribute to Outreach Efforts**: Assist in planning and executing hackathons, webinars, meetups, or other community events.
+          - **Product Advocacy:** Serve as the technical voice of the product internally, advocating for developers' needs to the product, engineering, and design teams.
+          - **Feedback Loop:** Collect and analyze feedback from the developer community to ensure our products and APIs meet their needs and expectations.
+          - **Collaborate Across Teams**: Work closely with engineering, product, and marketing teams to ensure developer success and share insights from the community.
+          - **Monitor Trends**: Stay updated on industry trends, new technologies, and best practices in developer relations and advocacy.
 
-        <br/>
+          **Requirements:**
 
-        **Responsibilities:**
+          - **Education**: Currently pursuing a degree in Computer Science, Software Engineering, or a related field (or relevant experience).
+          - **Technical Skills**:
+          - Basic understanding of programming languages (e.g., Python, JavaScript, or others).
+          - Familiarity with APIs, SDKs, and cloud platforms is a plus.
+          - **Passion for Technology**: Enthusiasm for engaging with developers and empowering them to succeed.
+          - **Problem-Solving Skills**: Ability to troubleshoot and resolve technical issues efficiently.
+          - **Team Player**: Comfortable working in a collaborative environment.
+        </AccordionContent>
+      </AccordionItem>
 
-        - **Engage with the Developer Community**: Actively participate in developer forums, online communities, and events to understand their needs and gather feedback.
-        - **Create Technical Content**: Write blog posts, tutorials, and documentation that help developers understand and use our products effectively.
-        - **Support Developers**: Provide technical support, troubleshoot issues, and guide developers using our SDKs, APIs, or tools.
-        - **Contribute to Outreach Efforts**: Assist in planning and executing hackathons, webinars, meetups, or other community events.
-        - **Product Advocacy:** Serve as the technical voice of the product internally, advocating for developers’ needs to the product, engineering, and design teams.
-        - **Feedback Loop:** Collect and analyze feedback from the developer community to ensure our products and APIs meet their needs and expectations.
-        - **Collaborate Across Teams**: Work closely with engineering, product, and marketing teams to ensure developer success and share insights from the community.
-        - **Monitor Trends**: Stay updated on industry trends, new technologies, and best practices in developer relations and advocacy.
+      <AccordionItem value="support-engineer">
+        <AccordionTrigger className="career-accordion-trigger">Support Engineer</AccordionTrigger>
+        <AccordionContent>
+          **Job Description:**
 
-        <br/>
-        **Requirements:**
+          Lamatic.ai is seeking a highly motivated and customer-focused **Support Engineer**. In this role, you will provide technical support to developers and customers, troubleshoot issues, and help ensure a seamless experience with our products. You will work closely with the engineering, product, and developer relations teams to improve our support processes and enhance user satisfaction.
 
-        - **Education**: Currently pursuing a degree in Computer Science, Software Engineering, or a related field (or relevant experience).
-        - **Technical Skills**:
-        - Basic understanding of programming languages (e.g., Python, JavaScript, or others).
-        - Familiarity with APIs, SDKs, and cloud platforms is a plus.
-        - **Passion for Technology**: Enthusiasm for engaging with developers and empowering them to succeed.
-        - **Problem-Solving Skills**: Ability to troubleshoot and resolve technical issues efficiently.
-        - **Team Player**: Comfortable working in a collaborative environment.
+          **Responsibilities:**
 
-        ---
-    </AccordionItem>
+          - **Provide Technical Support**: Assist developers and customers in troubleshooting technical issues related to our APIs, SDKs, and platform.
+          - **Manage Support Tickets**: Track, prioritize, and resolve incoming support requests efficiently via email, chat, or support portals.
+          - **Document Solutions**: Create and maintain a knowledge base, FAQs, and troubleshooting guides to improve self-service support.
+          - **Collaborate with Engineering**: Escalate complex technical issues to the engineering team and work closely with them to resolve bugs and improve product reliability.
+          - **Collect and Analyze Feedback**: Gather insights from support interactions to identify common pain points and propose product improvements.
+          - **Assist in Onboarding**: Help new users get started with our products by providing guidance and technical assistance.
+          - **Monitor System Health**: Proactively track platform performance, identify potential issues, and escalate them as needed.
+          - **Stay Updated on Technology**: Keep up with industry trends, new features, and best practices to provide top-tier support.
 
-    <AccordionItem key="5" aria-label="Support Engineer" title="Support Engineer">
+          **Requirements:**
 
-        ### **Support Engineer**
-
-        **Job Description:**
-
-        Lamatic.ai is seeking a highly motivated and customer-focused **Support Engineer**. In this role, you will provide technical support to developers and customers, troubleshoot issues, and help ensure a seamless experience with our products. You will work closely with the engineering, product, and developer relations teams to improve our support processes and enhance user satisfaction.
-
-        <br />
-
-        **Responsibilities:**
-
-        - **Provide Technical Support**: Assist developers and customers in troubleshooting technical issues related to our APIs, SDKs, and platform.
-        - **Manage Support Tickets**: Track, prioritize, and resolve incoming support requests efficiently via email, chat, or support portals.
-        - **Document Solutions**: Create and maintain a knowledge base, FAQs, and troubleshooting guides to improve self-service support.
-        - **Collaborate with Engineering**: Escalate complex technical issues to the engineering team and work closely with them to resolve bugs and improve product reliability.
-        - **Collect and Analyze Feedback**: Gather insights from support interactions to identify common pain points and propose product improvements.
-        - **Assist in Onboarding**: Help new users get started with our products by providing guidance and technical assistance.
-        - **Monitor System Health**: Proactively track platform performance, identify potential issues, and escalate them as needed.
-        - **Stay Updated on Technology**: Keep up with industry trends, new features, and best practices to provide top-tier support.
-
-        <br />
-
-        **Requirements:**
-
-        - **Education**: Currently pursuing a degree in Computer Science, Software Engineering, Information Technology, or a related field (or relevant experience).
-        - **Technical Skills**:
-        - Basic understanding of programming languages (e.g., Python, JavaScript, or others).
-        - Familiarity with APIs, SDKs, and cloud platforms is a plus.
-        - **Customer-Centric Mindset**: Strong communication and problem-solving skills to assist customers effectively.
-        - **Troubleshooting Ability**: Ability to diagnose and resolve technical issues efficiently.
-        - **Team Player**: Comfortable working collaboratively across teams to ensure customer success.
-        - **Proactive Approach**: Ability to identify potential issues and work towards solutions before they impact users.
-
-        ---
-
-        </AccordionItem>
-
-</Accordion>
+          - **Education**: Currently pursuing a degree in Computer Science, Software Engineering, Information Technology, or a related field (or relevant experience).
+          - **Technical Skills**:
+          - Basic understanding of programming languages (e.g., Python, JavaScript, or others).
+          - Familiarity with APIs, SDKs, and cloud platforms is a plus.
+          - **Customer-Centric Mindset**: Strong communication and problem-solving skills to assist customers effectively.
+          - **Troubleshooting Ability**: Ability to diagnose and resolve technical issues efficiently.
+          - **Team Player**: Comfortable working collaboratively across teams to ensure customer success.
+          - **Proactive Approach**: Ability to identify potential issues and work towards solutions before they impact users.
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  </Tab>
+</Tabs>
 
 ## Application form
 
@@ -214,5 +216,5 @@ import { Accordion, AccordionItem } from "@nextui-org/react";
   className="airtable-embed"
   src="https://airtable.com/embed/app2tr5jY6N4KS5TY/pagG77yLOyCbX86JI/form"
   width="100%"
-  height="2300"
+  height="2500"
 ></iframe>

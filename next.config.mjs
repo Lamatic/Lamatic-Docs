@@ -1,4 +1,3 @@
-import remarkGfm from 'remark-gfm';
 import nextra from 'nextra';
 import NextBundleAnalyzer from '@next/bundle-analyzer'
 
@@ -28,11 +27,7 @@ const cspHeader = `
 `;
 // nextra config
 const withNextra = nextra({
-    theme: 'nextra-theme-docs',
-    themeConfig: './theme.config.tsx',
-    mdxOptions: {
-        remarkPlugins: [remarkGfm],
-    },
+    contentDirBasePath: '/',
     defaultShowCopyCode: true,
 })
 

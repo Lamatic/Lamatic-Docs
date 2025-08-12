@@ -5,12 +5,6 @@ description: Opportunties at Lamatic
 import { Tabs, Tab } from 'nextra-theme-docs'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
-<style jsx global>{`
-  .career-accordion-trigger {
-    color: inherit !important;
-  }
-`}</style>
-
 # Career at Lamatic
 
 ### **Company Overview:**
@@ -38,6 +32,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
   what's possible.
 </Callout>
 
+<div className="career-tabs">
 <Tabs items={['Engineering', 'Design', 'Go-to-Market']}>
   <Tab>
     <Accordion type="single" collapsible>
@@ -71,6 +66,33 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
           - Strong problem-solving skills and the ability to work in a fast-paced, dynamic environment.
           - Excellent communication skills and teamwork capabilities.
           - A passion for AI technology and its practical applications.
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="applied-ai-engineer">
+        <AccordionTrigger className="career-accordion-trigger">Applied AI Engineer</AccordionTrigger>
+        <AccordionContent>
+          **Job Description:**
+
+          Lamatic.ai is seeking an Applied AI Engineer with ambition and aptitude. In this role, you will ensure that new Lamatic customers derive value quickly by helping them design and configure the Lamatic Flows needed to achieve their goals. You'll be an essential partner in their success, driving customer satisfaction and adoption.
+
+          This role offers a base salary plus a variable compensation tied to the number of onboardings, degree of adoption, NPS ratings, and revenue generated from new customers.
+
+          **Responsibilities:**
+
+          - **Understand Customer Needs**: Gather and analyze customer requirements to ensure solutions align with their business objectives.
+          - **Design and Configure**: Translate customer needs into functional Lamatic Flow configurations using Generative AI and coding expertise.
+          - **Customer Education**: Train customers on how to use Lamatic to empower them to independently manage and scale their solutions.
+          - **Deliver Value Quickly**: Ensure customers derive measurable value during onboarding, fostering long-term success.
+          - **Feedback Loop**: Collaborate with product and engineering teams to share customer insights that drive continuous improvement.
+
+          **Requirements:**
+
+          - **Interest in Generative AI**: Proven interest and aptitude in designing agentic systems using Generative AI technologies.
+          - **Coding Proficiency**: Skilled in **JavaScript** for configuring Lamatic Flows.
+          - **Customer Orientation**: Strong customer service and sales aptitude, with a focus on delivering excellent experiences.
+          - **Communication Skills**: Exceptional verbal and written communication skills to clearly convey technical concepts to diverse audiences.
+          - **Detail-Oriented**: Highly organized and meticulous, ensuring accuracy in configurations and communication.
+          - **Startup Mindset**: Comfortable thriving in a fast-paced, dynamic startup environment with a bias for action.
         </AccordionContent>
       </AccordionItem>
     </Accordion>
@@ -118,33 +140,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
   </Tab>
   <Tab>
     <Accordion type="single" collapsible>
-      <AccordionItem value="applied-ai-engineer">
-        <AccordionTrigger className="career-accordion-trigger">Applied AI Engineer</AccordionTrigger>
-        <AccordionContent>
-          **Job Description:**
-
-          Lamatic.ai is seeking an Applied AI Engineer with ambition and aptitude. In this role, you will ensure that new Lamatic customers derive value quickly by helping them design and configure the Lamatic Flows needed to achieve their goals. You'll be an essential partner in their success, driving customer satisfaction and adoption.
-
-          This role offers a base salary plus a variable compensation tied to the number of onboardings, degree of adoption, NPS ratings, and revenue generated from new customers.
-
-          **Responsibilities:**
-
-          - **Understand Customer Needs**: Gather and analyze customer requirements to ensure solutions align with their business objectives.
-          - **Design and Configure**: Translate customer needs into functional Lamatic Flow configurations using Generative AI and coding expertise.
-          - **Customer Education**: Train customers on how to use Lamatic to empower them to independently manage and scale their solutions.
-          - **Deliver Value Quickly**: Ensure customers derive measurable value during onboarding, fostering long-term success.
-          - **Feedback Loop**: Collaborate with product and engineering teams to share customer insights that drive continuous improvement.
-
-          **Requirements:**
-
-          - **Interest in Generative AI**: Proven interest and aptitude in designing agentic systems using Generative AI technologies.
-          - **Coding Proficiency**: Skilled in **JavaScript** for configuring Lamatic Flows.
-          - **Customer Orientation**: Strong customer service and sales aptitude, with a focus on delivering excellent experiences.
-          - **Communication Skills**: Exceptional verbal and written communication skills to clearly convey technical concepts to diverse audiences.
-          - **Detail-Oriented**: Highly organized and meticulous, ensuring accuracy in configurations and communication.
-          - **Startup Mindset**: Comfortable thriving in a fast-paced, dynamic startup environment with a bias for action.
-        </AccordionContent>
-      </AccordionItem>
+      
 
       <AccordionItem value="developer-relations">
         <AccordionTrigger className="career-accordion-trigger">Developer Relations Engineer</AccordionTrigger>
@@ -209,6 +205,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
     </Accordion>
   </Tab>
 </Tabs>
+</div>
 
 ## Application form
 

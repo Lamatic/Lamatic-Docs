@@ -54,7 +54,7 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ className }) =
           onWheel={() => {}} 
           width="100%" 
           height="533" 
-          style={{ background: 'transparent', border: '1px solid #ccc' }}
+          style={{ background: 'transparent', border: '1px solid #ccc', borderRadius: '10px' }}
         />
       </div>
     </div>

@@ -93,53 +93,52 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
         </div>
       </div>
 
-      {/* Requirements Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        {requirements.map((requirement, index) => (
-          <Card
-            key={index}
-            className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
-          >
-            <CardHeader className="pb-4">
-              <div className={cn(
-                "w-14 h-14 rounded-xl bg-gradient-to-r flex items-center justify-center mb-0",
-                requirement.gradient
-              )}>
-                <requirement.icon className="w-7 h-7 text-white" />
-              </div>
-              <CardTitle className={cn("text-xl font-semibold -mb-0.5", requirement.color)}>
-                {requirement.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                {requirement.description}
-              </CardDescription>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      {/* Preferred Experience */}
-      <div className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8">
-        <div className="text-center mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Preferred Experience
-          </h3>
-          <div className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            While not all required, these experiences make for stronger candidates:
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {preferredExperience.map((experience, index) => (
-            <div key={index} className="flex items-start space-x-3">
-              <CheckCircle className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-              <span className="text-gray-700 dark:text-gray-300">
-                {experience}
-              </span>
+      {/* Requirements & Experience Combined */}
+      <div className="max-w-6xl mx-auto mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {/* Requirements */}
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+              Core Requirements
+            </h3>
+            <div className="space-y-4">
+              {requirements.map((requirement, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <div className={cn(
+                    "w-8 h-8 rounded-md bg-gradient-to-r flex items-center justify-center flex-shrink-0",
+                    requirement.gradient
+                  )}>
+                    <requirement.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className={cn("font-semibold text-sm", requirement.color)}>
+                      {requirement.title}
+                    </h4>
+                    <p className="text-xs text-gray-600 dark:text-gray-300">
+                      {requirement.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Preferred Experience */}
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+              Preferred Experience
+            </h3>
+            <div className="space-y-3">
+              {preferredExperience.map((experience, index) => (
+                <div key={index} className="flex items-center space-x-3">
+                  <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    {experience}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 

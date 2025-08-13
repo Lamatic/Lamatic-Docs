@@ -30,13 +30,13 @@ const privacyFeatures: PrivacyComplianceFeature[] = [
     icon: Eye,
     title: "Transparent Data Practices",
     description: "We clearly communicate how data is collected, used and stored, ensuring transparency and trust.",
-    color: "from-teal-400 to-teal-500"
+    color: "from-red-400 to-red-500"
   },
   {
     icon: UserCheck,
     title: "User Control",
     description: "Clients have control over their data, including options for data access, modification, and deletion, in accordance with applicable laws and regulations.",
-    color: "from-teal-400 to-teal-500"
+    color: "from-red-400 to-red-500"
   }
 ];
 
@@ -66,13 +66,13 @@ const complianceFeatures: PrivacyComplianceFeature[] = [
     icon: CheckCircle,
     title: "SOC Compliance",
     description: "Our SOC 2 compliance efforts are underway, focusing on security, availability and confidentiality principles.",
-    color: "from-emerald-400 to-emerald-500"
+    color: "from-red-400 to-red-500"
   },
   {
     icon: Shield,
     title: "GDPR Compliance",
     description: "We are aligning our data practices with GDPR requirements to ensure the protection of personal data for clients within the European Union.",
-    color: "from-emerald-400 to-emerald-500"
+    color: "from-red-400 to-red-500"
   }
 ];
 
@@ -81,11 +81,11 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
     <div className={cn("space-y-12", className)}>
       {/* Data Privacy */}
       <section>
-        <div className="text-center mb-8">
+        <div className="text-center mb-4">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Data Privacy
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             We are committed to maintaining the privacy of your data through transparent practices and user control.
           </p>
         </div>
@@ -94,9 +94,9 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           {privacyFeatures.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl hover:shadow-lg transition-shadow"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
-              <CardHeader className="pb-3">
+              <CardHeader className="pb-0">
                 <div className={cn(
                   "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-3",
                   feature.color
@@ -123,7 +123,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Security Programs
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             We maintain comprehensive security programs to continuously enhance our security posture and uphold ethical standards.
           </p>
         </div>
@@ -132,9 +132,9 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           {vulnerabilityFeatures.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl hover:shadow-lg transition-shadow"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
-              <CardHeader className="pb-3">
+              <CardHeader className="pb-0">
                 <div className={cn(
                   "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-3",
                   feature.color
@@ -161,7 +161,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Compliance Initiatives
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             We are actively pursuing compliance with industry standards to ensure the highest level of security and data protection.
           </p>
         </div>
@@ -170,9 +170,9 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           {complianceFeatures.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl hover:shadow-lg transition-shadow"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
-              <CardHeader className="pb-3">
+              <CardHeader className="pb-0">
                 <div className={cn(
                   "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-3",
                   feature.color

@@ -30,13 +30,13 @@ const productSecurityFeatures: SecurityFeature[] = [
     icon: Code,
     title: "Secure Development Lifecycle",
     description: "Security assessments are integrated throughout our development process to identify and mitigate potential vulnerabilities early.",
-    color: "from-orange-400 to-orange-500"
+    color: "from-red-400 to-red-500"
   },
   {
     icon: Shield,
     title: "Third-Party Assessments",
     description: "We engage independent security experts to conduct regular audits and penetration tests, ensuring our products meet the highest security standards.",
-    color: "from-orange-400 to-orange-500"
+    color: "from-red-400 to-red-500"
   }
 ];
 
@@ -45,13 +45,13 @@ const enterpriseSecurityFeatures: SecurityFeature[] = [
     icon: CheckCircle,
     title: "Compliance Alignment",
     description: "Our security practices are aligned with industry standards and regulations, including SOC 2 and GDPR efforts are underway, to meet your compliance requirements.",
-    color: "from-indigo-400 to-indigo-500"
+    color: "from-red-400 to-red-500"
   },
   {
     icon: Settings,
     title: "Custom Security Configurations",
     description: "We provide customizable security settings to align with your organization's specific policies and risk profiles.",
-    color: "from-indigo-400 to-indigo-500"
+    color: "from-red-400 to-red-500"
   }
 ];
 
@@ -64,7 +64,7 @@ export const ProductEnterpriseSecurity: React.FC<ProductEnterpriseSecurityProps>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Product Security
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             Our products are designed with security as a core component, ensuring robust protection at every level.
           </p>
         </div>
@@ -73,7 +73,7 @@ export const ProductEnterpriseSecurity: React.FC<ProductEnterpriseSecurityProps>
           {productSecurityFeatures.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl hover:shadow-lg transition-shadow"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
               <CardHeader className="pb-3">
                 <div className={cn(
@@ -102,7 +102,7 @@ export const ProductEnterpriseSecurity: React.FC<ProductEnterpriseSecurityProps>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Enterprise Security
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             For our enterprise clients, we offer tailored security solutions designed to meet the highest standards of corporate security.
           </p>
         </div>
@@ -111,7 +111,7 @@ export const ProductEnterpriseSecurity: React.FC<ProductEnterpriseSecurityProps>
           {enterpriseSecurityFeatures.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl hover:shadow-lg transition-shadow"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
               <CardHeader className="pb-3">
                 <div className={cn(

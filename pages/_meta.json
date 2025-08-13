@@ -50,7 +50,7 @@
     "theme": {
       "layout": "full"
     },
-    "display": "visible"
+    "display": "hidden"
   },
   "why": {
     "title": "Why Lamatic.ai",

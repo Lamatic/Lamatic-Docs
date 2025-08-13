@@ -221,5 +221,3 @@ export const sampleAmbassadors: Ambassador[] = [
     joinedDate: "2023",
   },
 ];
-
-export default AmbassadorCards;

@@ -3,109 +3,52 @@ title: Lamatic Ambassador
 description: Join the global community of AI/ML leaders shaping the future of Generative AI
 ---
 
-import AmbassadorCards, {
-  sampleAmbassadors,
-} from "@/components/ambassadors/cards";
-
-# Lamatic Ambassador
-
-The Lamatic Ambassador Program honors community leaders who are actively advancing the field of AI/ML. Our ambassadors are technical specialists and ML/AI enthusiasts dedicated to disseminating their expertise and passion for Generative AI within their local communities and across our expansive global network.
-
-<br />
-1. **Drive Awareness**: Increase developer awareness and usage of Lamatic.ai across
-global tech communities 
-<br />
-1. **Community Content**: Grow community-led content and
-advocacy through blogs, tutorials, and documentation 
-<br />
-1. **Talent Discovery**: Surface
-exceptional talent for potential hiring opportunities 
-<br />
-1. **Platform Feedback**: Gather
-valuable feedback to continuously improve the Lamatic platform 
-<br />
-1. **Local Hubs**:
-Create vibrant Lamatic community hubs across cities worldwide 
-<br />
-1. **Practical Events**:
-Conduct hands-on hackathons and events to provide developer insights
-
-## Become an Ambassador
-
-Are you passionate about AI/ML and want to make a difference in the community? We're always looking for dedicated individuals who can help us spread knowledge and foster innovation in the field of Generative AI.
-
-### What We Look For
-
-- **Technical Expertise**: Deep knowledge in AI/ML technologies and frameworks
-- **Community Leadership**: Experience in organizing events, workshops, or mentoring
-- **Communication Skills**: Ability to explain complex concepts clearly
-- **Passion for AI**: Genuine enthusiasm for advancing the field
-- **Global Perspective**: Understanding of diverse AI applications and challenges
-
-### Benefits of Being an Ambassador
-
-- **Exclusive Access**: Early access to new features and beta programs
-- **Networking**: Connect with other AI/ML professionals worldwide
-- **Recognition**: Featured on our platform and in our community
-- **Resources**: Access to premium tools and educational materials
-- **Speaking Opportunities**: Platform to share your expertise at events
-
-## Ambassador Activities
-
-Our ambassadors engage in various activities to promote AI/ML knowledge and foster community growth:
-
-### 🎓 Educational Initiatives
-
-- Hosting workshops and training sessions
-- Creating educational content and tutorials
-- Mentoring aspiring AI/ML professionals
-
-### 🌐 Community Building
-
-- Organizing local meetups and events
-- Moderating online discussions and forums
-- Building regional AI/ML communities
-
-### 💡 Innovation Support
-
-- Contributing to open-source projects
-- Sharing best practices and case studies
-- Providing feedback on new features and tools
-
-### 📢 Thought Leadership
-
-- Writing technical articles and blog posts
-- Speaking at conferences and events
-- Participating in panel discussions
-
-## Get Involved
-
-Even if you're not ready to become an ambassador, there are many ways to get involved with our community:
-
-- **Join Our Discord**: Connect with other AI/ML enthusiasts
-- **Attend Events**: Participate in workshops and meetups
-- **Contribute Content**: Share your knowledge and experiences
-- **Provide Feedback**: Help us improve our platform and tools
-
-Together, we can build a stronger, more inclusive AI/ML community that drives innovation and positive change.
+import { HeroSection } from "@/components/ambassadors/hero-section";
+import { FeaturesGrid } from "@/components/ambassadors/features-grid";
+import { BenefitsSection } from "@/components/ambassadors/benefits-section";
+import { RequirementsSection } from "@/components/ambassadors/requirements-section";
+import { ApplicationForm } from "@/components/ambassadors/application-form";
+import { GetInvolvedSection } from "@/components/ambassadors/get-involved-section";
+import { AmbassadorCards, sampleAmbassadors } from "@/components/ambassadors/cards";
 
 
-### How to Apply
 
-1. **Submit Application**: Fill out our ambassador application form
-2. **Review Process**: Our team will review your application
-3. **Interview**: Participate in a brief interview to discuss your goals
-4. **Onboarding**: Complete our ambassador orientation program
-5. **Start Contributing**: Begin your journey as a Lamatic Ambassador
 
-Ready to join our community? Apply now and help shape the future of AI/ML!
+<div className=" mx-auto px-4 sm:px-6 lg:px-0">
 
-<iframe
-  className="w-full overflow-x-hidden"
-  height="700"
-  src="https://airtable.com/embed/app7b9wDyU73T6rN2/pagopWyJtWPrIQCqX/form"
-  allowFullScreen
-></iframe>
+<HeroSection />
+
+<FeaturesGrid />
+
+<BenefitsSection />
+
+<RequirementsSection />
+
+<div className="ambassadors-section">
+  <div className="py-16 bg-gradient-to-br from-gray-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Meet Our Global Ambassadors
+        </h2>
+        <div className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          Discover the passionate individuals who are driving innovation and knowledge sharing 
+          in the AI/ML community worldwide.
+        </div>
+      </div>
+      
+      <AmbassadorCards ambassadors={sampleAmbassadors} />
+    </div>
+  </div>
+</div>
+
+<ApplicationForm />
+
+<GetInvolvedSection />
+
+</div>
+
+
 
 
 

@@ -17,7 +17,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ className }) => {
         <div className="text-center">
           {/* Main Heading */}
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-            Become a{" "}
+           
             <span className="">
               Lamatic Ambassador
             </span>

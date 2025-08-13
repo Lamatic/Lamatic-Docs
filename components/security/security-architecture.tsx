@@ -172,33 +172,33 @@ export const SecurityArchitecture: React.FC<SecurityArchitectureProps> = ({
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Core Security Principles
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             At Lamatic.ai, our security policies are founded on these core
             principles to ensure comprehensive protection.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-2 items-start">
           {corePrinciples.map((principle, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl hover:shadow-lg transition-shadow"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
-              <CardHeader className="pb-3">
+              <CardHeader className="mb-2">
                 <div className="flex items-start space-x-4">
-                  <div
-                    className={cn(
-                      "w-12 h-12 rounded-xl bg-gradient-to-r flex items-center justify-center flex-shrink-0",
-                      principle.color
-                    )}
-                  >
-                    <principle.icon className="w-6 h-6 text-white" />
-                  </div>
-                  <div className="flex-1 pt-1">
-                    <CardTitle className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  <div className="flex-1">
+                    <div
+                      className={cn(
+                        "w-10 h-10 rounded-xl bg-gradient-to-r flex items-center justify-center flex-shrink-0",
+                        principle.color
+                      )}
+                    >
+                      <principle.icon className="w-5 h-5 text-white" />
+                    </div>
+                    <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                       {principle.title}
                     </CardTitle>
-                    <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed text-base">
+                    <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
                       {principle.description}
                     </CardDescription>
                   </div>

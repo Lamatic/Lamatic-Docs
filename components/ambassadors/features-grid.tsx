@@ -112,11 +112,11 @@ export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
           </p> */}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
           {programGoals.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-0"
             >
               <CardHeader className="pb-0">
                 <div className={cn(

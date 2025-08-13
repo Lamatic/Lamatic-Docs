@@ -31,36 +31,36 @@ const requirements: Requirement[] = [
     icon: Brain,
     title: "Technical Expertise",
     description: "Deep knowledge in AI/ML technologies, frameworks, and practical applications",
-    color: "text-blue-600 dark:text-blue-400",
-    gradient: "from-blue-500 to-cyan-500"
+    color: "text-red-600 dark:text-red-400",
+    gradient: "from-red-500 to-red-500"
   },
   {
     icon: Users,
     title: "Community Leadership",
     description: "Experience in organizing events, workshops, or mentoring others in the field",
-    color: "text-purple-600 dark:text-purple-400",
-    gradient: "from-purple-500 to-pink-500"
+    color: "text-red-600 dark:text-red-400",
+    gradient: "from-red-500 to-red-500"
   },
   {
     icon: MessageSquare,
     title: "Communication Skills",
     description: "Ability to explain complex AI/ML concepts clearly to diverse audiences",
-    color: "text-green-600 dark:text-green-400",
-    gradient: "from-green-500 to-emerald-500"
+    color: "text-red-600 dark:text-red-400",
+    gradient: "from-red-500 to-red-500"
   },
   {
     icon: Heart,
     title: "Passion for AI",
     description: "Genuine enthusiasm for advancing the field and helping others learn",
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-pink-500"
+    gradient: "from-red-500 to-red-500"
   },
   {
     icon: Globe,
     title: "Global Perspective",
     description: "Understanding of diverse AI applications and challenges across different regions",
-    color: "text-orange-600 dark:text-orange-400",
-    gradient: "from-orange-500 to-yellow-500"
+    color: "text-red-600 dark:text-red-400",
+    gradient: "from-red-500 to-red-500"
   }
 ];
 
@@ -80,11 +80,11 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
     <div className={cn("py-16 bg-white dark:bg-gray-900", className)}>
       {/* Header */}
       <div className="text-center mb-16">
-        <Badge className="mb-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 px-4 py-2 text-sm font-medium">
+        {/* <Badge className="mb-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white border-0 px-4 py-2 text-sm font-medium">
           <Star className="w-4 h-4 mr-2" />
           What We Look For
-        </Badge>
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        </Badge> */}
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
           Ideal Ambassador Profile
         </h2>
         <div className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
@@ -98,16 +98,16 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
         {requirements.map((requirement, index) => (
           <Card
             key={index}
-            className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+            className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
           >
             <CardHeader className="pb-4">
               <div className={cn(
-                "w-14 h-14 rounded-xl bg-gradient-to-r flex items-center justify-center mb-4",
+                "w-14 h-14 rounded-xl bg-gradient-to-r flex items-center justify-center mb-0",
                 requirement.gradient
               )}>
                 <requirement.icon className="w-7 h-7 text-white" />
               </div>
-              <CardTitle className={cn("text-xl font-semibold", requirement.color)}>
+              <CardTitle className={cn("text-xl font-semibold -mb-0.5", requirement.color)}>
                 {requirement.title}
               </CardTitle>
             </CardHeader>
@@ -145,8 +145,8 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
 
       {/* Call to Action */}
       <div className="text-center mt-12">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-          <h3 className="text-2xl font-bold mb-4">
+        <div className="bg-black rounded-2xl p-8 text-white">
+          <h3 className="text-2xl font-bold mb-4 text-white">
             Don't Meet All Requirements?
           </h3>
           <div className="text-blue-100 mb-6 max-w-2xl mx-auto">

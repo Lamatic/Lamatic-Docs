@@ -88,7 +88,7 @@ export const BenefitsSection: React.FC<BenefitsSectionProps> = ({ className }) =
         {benefits.map((benefit, index) => (
           <Card
             key={index}
-            className="group duration-300 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 relative overflow-hidden"
+            className="group duration-300 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 relative overflow-hidden rounded-xl"
           >
             {/* Gradient Background */}
             <div className={cn(

@@ -63,7 +63,7 @@ const preferredExperience = [
 
 export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ className }) => {
   return (
-    <div className={cn("py-16 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 border-radius-2xl", className)}>
+    <div className={cn("py-16 bg-gradient-to-br from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 border-radius-2xl", className)}>
       {/* Header */}
       <div className="text-center mb-16">
         <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-red-500 to-red-600 mb-0">
@@ -84,7 +84,7 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
           {requirements.map((requirement, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
               <CardHeader className="text-center pb-4">
                 <div className={cn(

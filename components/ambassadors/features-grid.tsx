@@ -79,7 +79,7 @@ export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
           {programGoals.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
               <CardHeader className="pb-3">
                 <div className={cn(
@@ -117,7 +117,7 @@ export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
           {activities.map((feature, index) => (
             <Card
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
             >
               <CardHeader className="pb-3">
                 <div className={cn(

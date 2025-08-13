@@ -133,8 +133,10 @@ const config: DocsThemeConfig = {
           ? "%s - Lamatic.ai Guides"
           : asPath.startsWith("/integrations/")
           ? "%s - Lamatic.ai Integrations"
-          : asPath.startsWith("/lamatic-ambassador/")
+          : asPath.startsWith("/ambassadors")
           ? "%s - Lamatic.ai Ambassador"
+          : asPath.startsWith("/security/")
+          ? "%s - Lamatic.ai Security"
           : "%s - Lamatic.ai Docs",
       canonical,
     };

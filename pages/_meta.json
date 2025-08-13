@@ -52,6 +52,14 @@
     },
     "display": "hidden"
   },
+  "security": {
+    "title": "Security",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
   "why": {
     "title": "Why Lamatic.ai",
     "type": "page",

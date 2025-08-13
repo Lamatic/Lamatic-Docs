@@ -97,28 +97,30 @@ const activities: Feature[] = [
 
 export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
   return (
-    <div className={cn("space-y-16", className)}>
+    <div className={cn("space-y-16 ", className)}>
       {/* Program Goals */}
       <section>
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Program Goals
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 w-full text-center"> Our ambassador program is designed to create a global network of AI/ML leaders 
+          who drive innovation and knowledge sharing across the community.</p>
+          {/* <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto w-full text-center">
             Our ambassador program is designed to create a global network of AI/ML leaders 
             who drive innovation and knowledge sharing across the community.
-          </p>
+          </p> */}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {programGoals.map((feature, index) => (
             <Card
               key={index}
               className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
             >
-              <CardHeader className="pb-4">
+              <CardHeader className="pb-0">
                 <div className={cn(
-                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-4",
+                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-2",
                   feature.color
                 )}>
                   <feature.icon className="w-6 h-6 text-white" />
@@ -143,13 +145,17 @@ export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Ambassador Activities
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             Our ambassadors engage in various activities to promote AI/ML knowledge 
-            and foster community growth across different domains.
+            and foster community growth across different domains. 
           </p>
+          {/* <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            Our ambassadors engage in various activities to promote AI/ML knowledge 
+            and foster community growth across different domains. 
+          </p> */}
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
           {activities.map((feature, index) => (
             <Card
               key={index}
@@ -157,7 +163,7 @@ export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
             >
               <CardHeader className="pb-4">
                 <div className={cn(
-                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-4",
+                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-2",
                   feature.color
                 )}>
                   <feature.icon className="w-6 h-6 text-white" />

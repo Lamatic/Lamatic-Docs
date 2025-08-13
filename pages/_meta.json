@@ -44,6 +44,14 @@
     "type": "page",
     "display": "hidden"
   },
+  "ambassadors": {
+    "title": "Lamatic Ambassadors",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
   "why": {
     "title": "Why Lamatic.ai",
     "type": "page",

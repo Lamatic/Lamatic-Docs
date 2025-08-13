@@ -44,8 +44,8 @@
     "type": "page",
     "display": "hidden"
   },
-  "lamatic-ambassador": {
-    "title": "Lamatic Ambassador",
+  "ambassadors": {
+    "title": "Lamatic Ambassadors",
     "type": "page",
     "theme": {
       "layout": "full"

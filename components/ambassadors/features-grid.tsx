@@ -30,19 +30,19 @@ const programGoals: Feature[] = [
     icon: Target,
     title: "Drive Awareness & Community Growth",
     description: "Increase developer awareness of Lamatic.ai and grow community-led content through blogs, tutorials, and local hubs worldwide",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Users,
     title: "Talent Discovery & Feedback",
     description: "Surface exceptional talent for hiring opportunities and gather valuable platform feedback to continuously improve Lamatic",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Code,
     title: "Practical Events & Innovation",
     description: "Conduct hands-on hackathons, workshops, and events to provide developer insights and support open-source contributions",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 
@@ -51,13 +51,13 @@ const activities: Feature[] = [
     icon: BookOpen,
     title: "Educational Leadership",
     description: "Hosting workshops, creating tutorials, mentoring professionals, and writing technical articles",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Globe,
     title: "Community Building",
     description: "Organizing meetups, moderating discussions, building regional communities, and speaking at conferences",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 

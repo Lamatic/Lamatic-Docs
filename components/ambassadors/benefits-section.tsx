@@ -39,7 +39,7 @@ const benefits: Benefit[] = [
       "Speaking opportunities"
     ],
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-red-500"
+    gradient: "from-red-300 to-red-400"
   },
   {
     icon: Network,
@@ -52,7 +52,7 @@ const benefits: Benefit[] = [
       "Exclusive tutorials and training"
     ],
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-red-500"
+    gradient: "from-red-300 to-red-400"
   },
   {
     icon: Star,
@@ -65,7 +65,7 @@ const benefits: Benefit[] = [
       "Industry expert connections"
     ],
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-red-500"
+    gradient: "from-red-300 to-red-400"
   }
 ];
 

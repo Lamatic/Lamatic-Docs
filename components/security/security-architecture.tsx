@@ -38,21 +38,21 @@ const securityComponents: SecurityComponent[] = [
     title: "Network Security",
     description:
       "We employ firewalls, intrusion detection systems, and continuous monitoring to safeguard our network from unauthorized access and potential threats.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: Code,
     title: "Application Security",
     description:
       "Our development process integrates security at every stage, including regular code reviews, vulnerability assessments, and adherence to secure coding standards.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: UserCheck,
     title: "Access Control",
     description:
       "We implement the principle of least privilege, ensuring that access to systems and data is granted only to authorized personnel based on their roles and responsibilities.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
 ];
 
@@ -62,28 +62,28 @@ const corePrinciples: SecurityComponent[] = [
     title: "Access Control",
     description:
       "We limit access strictly to individuals with a legitimate business need, adhering to the principle of least privilege.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: Layers,
     title: "Layered Security",
     description:
       "We implement and layer security controls following the defense-in-depth principle to ensure comprehensive protection.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: Settings,
     title: "Consistency",
     description:
       "Our security controls are applied uniformly across all areas of the enterprise to maintain a consistent security posture.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: TrendingUp,
     title: "Continuous Improvement",
     description:
       "We iteratively enhance our controls, focusing on improved effectiveness, increased auditability, and reduced friction.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
 ];
 

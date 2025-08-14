@@ -30,13 +30,13 @@ const productSecurityFeatures: SecurityFeature[] = [
     icon: Code,
     title: "Secure Development Lifecycle",
     description: "Security assessments are integrated throughout our development process to identify and mitigate potential vulnerabilities early.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Shield,
     title: "Third-Party Assessments",
     description: "We engage independent security experts to conduct regular audits and penetration tests, ensuring our products meet the highest security standards.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 
@@ -45,13 +45,13 @@ const enterpriseSecurityFeatures: SecurityFeature[] = [
     icon: CheckCircle,
     title: "Compliance Alignment",
     description: "Our security practices are aligned with industry standards and regulations, including SOC 2 and GDPR efforts are underway, to meet your compliance requirements.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Settings,
     title: "Custom Security Configurations",
     description: "We provide customizable security settings to align with your organization's specific policies and risk profiles.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 

@@ -28,21 +28,21 @@ const protectionFeatures: ProtectionFeature[] = [
     title: "Encryption",
     description:
       "All data, both at rest and in transit, is encrypted using advanced encryption standards to prevent unauthorized access.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: Database,
     title: "Data Segmentation",
     description:
       "We separate and isolate data to ensure that each client's information remains distinct and secure.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
   {
     icon: RefreshCw,
     title: "Regular Backups",
     description:
       "Automated backups are performed regularly to ensure data integrity and availability in case of unforeseen events.",
-    color: "from-red-400 to-red-500",
+    color: "from-red-300 to-red-400",
   },
 ];
 

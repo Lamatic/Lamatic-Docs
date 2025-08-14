@@ -13,6 +13,7 @@ import {
   Users
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface PrivacyComplianceFeature {
   icon: React.ComponentType<{ className?: string }>;
@@ -30,13 +31,13 @@ const privacyFeatures: PrivacyComplianceFeature[] = [
     icon: Eye,
     title: "Transparent Data Practices",
     description: "We clearly communicate how data is collected, used and stored, ensuring transparency and trust.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: UserCheck,
     title: "User Control",
     description: "Clients have control over their data, including options for data access, modification, and deletion, in accordance with applicable laws and regulations.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 
@@ -45,19 +46,19 @@ const vulnerabilityFeatures: PrivacyComplianceFeature[] = [
     icon: Bug,
     title: "Community Engagement",
     description: "We invite security researchers to identify and report vulnerabilities, offering rewards for valid findings.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: AlertTriangle,
     title: "Responsible Disclosure",
     description: "Our program encourages responsible reporting and ensures timely remediation of identified issues.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Users,
     title: "Safe Reporting Channels",
     description: "Individuals can report unethical behavior or security concerns anonymously without fear of retaliation.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 
@@ -66,13 +67,13 @@ const complianceFeatures: PrivacyComplianceFeature[] = [
     icon: CheckCircle,
     title: "SOC Compliance",
     description: "Our SOC 2 compliance efforts are underway, focusing on security, availability and confidentiality principles.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   },
   {
     icon: Shield,
     title: "GDPR Compliance",
     description: "We are aligning our data practices with GDPR requirements to ensure the protection of personal data for clients within the European Union.",
-    color: "from-red-400 to-red-500"
+    color: "from-red-300 to-red-400"
   }
 ];
 
@@ -166,7 +167,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
           {complianceFeatures.map((feature, index) => (
             <Card
               key={index}
@@ -190,6 +191,20 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Compliance Logos */}
+        <div className="text-center">
+          <div className="max-w-xl mx-auto">
+            <Image
+              src="/public/sco2 logos.png"
+              alt="Compliance Logos - SOC2, GDPR, and other security certifications"
+              width={1000}
+              height={100}
+              className="w-full h-auto rounded-lg shadow-lg"
+              priority
+            />
+          </div>
         </div>
       </section>
     </div>

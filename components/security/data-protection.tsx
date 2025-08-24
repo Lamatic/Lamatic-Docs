@@ -48,7 +48,7 @@ export const DataProtection: React.FC<DataProtectionProps> = ({
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Data Protection
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+        <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
           Protecting your data is paramount. Our data protection strategies
           encompass multiple layers of security to ensure your information
           remains safe and secure.
@@ -59,7 +59,7 @@ export const DataProtection: React.FC<DataProtectionProps> = ({
         {protectionFeatures.map((feature, index) => (
           <div
             key={index}
-            className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
+            className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
           >
             <div
               className={cn(

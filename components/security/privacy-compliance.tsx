@@ -94,7 +94,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           {privacyFeatures.map((feature, index) => (
             <div
               key={index}
-              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
+              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
             >
               <div className="flex items-start space-x-4">
                 <div className={cn(
@@ -132,7 +132,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           {vulnerabilityFeatures.map((feature, index) => (
             <div
               key={index}
-              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
+              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
             >
               <div className={cn(
                 "w-16 h-16 rounded-2xl bg-gradient-to-r flex items-center justify-center mx-auto mb-6",
@@ -157,7 +157,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Compliance Initiatives
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             We are actively pursuing compliance with industry standards to ensure the highest level of security and data protection.
           </p>
         </div>
@@ -166,7 +166,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
           {complianceFeatures.map((feature, index) => (
             <div
               key={index}
-              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
+              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
             >
               <div className="flex items-start space-x-4">
                 <div className={cn(
@@ -196,7 +196,7 @@ export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className 
               alt="Compliance Logos - SOC2, GDPR, and other security certifications"
               width={1000}
               height={100}
-              className="w-full h-auto rounded-lg shadow-lg"
+              className="w-full h-auto rounded-lg "
               priority
             />
           </div>

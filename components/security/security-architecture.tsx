@@ -91,7 +91,7 @@ export const SecurityArchitecture: React.FC<SecurityArchitectureProps> = ({
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Security Architecture
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             Our security architecture is built on a foundation of
             industry-leading practices to ensure the integrity, confidentiality,
             and availability of your data.
@@ -103,7 +103,7 @@ export const SecurityArchitecture: React.FC<SecurityArchitectureProps> = ({
           {/* Left Column - Image */}
           <div className="relative">
             <div className="sticky top-8">
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              <div className="relative overflow-hidden rounded-2xl">
                 <Image
                   src="/public/architecture.jpg"
                   alt="Security Architecture"
@@ -131,7 +131,7 @@ export const SecurityArchitecture: React.FC<SecurityArchitectureProps> = ({
             {securityComponents.map((component, index) => (
               <div
                 key={index}
-                className="group p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
+                className="group p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
               >
                 <div className="flex items-start space-x-4">
                   <div
@@ -163,7 +163,7 @@ export const SecurityArchitecture: React.FC<SecurityArchitectureProps> = ({
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Core Security Principles
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
             At Lamatic.ai, our security policies are founded on these core
             principles to ensure comprehensive protection.
           </p>
@@ -173,7 +173,7 @@ export const SecurityArchitecture: React.FC<SecurityArchitectureProps> = ({
           {corePrinciples.map((principle, index) => (
             <div
               key={index}
-              className="group p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
+              className="group p-6 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
             >
               <div
                 className={cn(

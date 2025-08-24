@@ -1,7 +1,7 @@
 ---
 description: Reporting in Lamatic Studio
 ---
-# **Centralized Reporting System for Project Insights**
+# Reports
 
 <Callout type="warning" emoji="🧪">
     **Reports are in alpha** <br/>
@@ -9,67 +9,55 @@ description: Reporting in Lamatic Studio
 
 </Callout>
 
-![img_9.png](./img/report.webp)
+![img_9.png](./img/reports-new.png)
 
 Gain comprehensive insights into your project's performance with our centralized reporting system. Access critical project metrics and analytics all in one convenient location, enabling you to make data-driven decisions efficiently.
 
 ---
 
-## **Report Categories**
+The **Reports Dashboard** provides detailed analytics and insights into your project usage in Lamatic.  
+It helps you track tokens, costs, response times, and error rates across different flows.
 
 ---
 
-### **Request Analytics**
+## Overview
 
-Provides a detailed overview of request-related analytics, offering insights into various flows and responses across your project. This comprehensive report allows you to track and analyze the performance of different request types and their corresponding outcomes.
+At the top of the dashboard, you’ll find quick stats:
 
-📊 **Key Metrics**:
+- **Avg Response Time** → Average time taken to respond (e.g., `1.8s`)  
+- **Total Tokens** → Total tokens consumed across flows (e.g., `29.1k`)  
+- **Total Cost** → Total cost calculated based on token usage (e.g., `$0.00`)  
+- **Error Rate** → Percentage of requests that resulted in errors (e.g., `100%`)  
+- **Total Requests** → Number of total requests processed (e.g., `350`)  
 
-- **Performance**: Detailed analysis of request processing speed and efficiency.
-- **Throughput**: Measurement of system capacity and request handling capabilities.
-- **Success Rate**: Evaluation of successful request completions and error occurrences.
-
----
-
-### **Artificial Intelligence Metrics**
-
-Delivers in-depth AI-related analytics, focusing on crucial aspects of your AI systems:
-
-🤖 **Key Metrics**:
-
-- **Performance Metrics**: Comprehensive breakdown of request time, including latency analysis and response time distributions.
-- **Token Consumption Analysis**: Detailed examination of token usage by model, flow, and request type to optimize resource allocation.
-- **Throughput Assessment**: Evaluation of request processing capabilities, identifying peak performance and bottlenecks.
+You can filter the reports by **Time Range** and **Flows**.
 
 ---
 
-### **Context Utilization**
+## Report Widgets
 
-Presents a comprehensive snapshot of context consumption patterns within vectorDB and memory systems, enabling efficient resource management and optimization of context-aware processes.
-
-💡 **Pro Tip**: Use this report to optimize your system's context-aware processes for better resource efficiency.
-
----
-
-### **Deployment Statistics**
-
-Offers a detailed overview of deployment-related metrics:
-
-🚀 **Deployment Insights**:
-
-- **Total Deployments**: Track the number of deployments.
-- **Average Deployment Time**: Monitor how long deployments take.
-- **Success Rates**: Keep an eye on successful vs failed deployments.
+| Widget               | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| **Requests by Flow**  | Pie chart showing the distribution of requests across flows. Helps identify which flow is used most frequently. |
+| **Token Usage by Flow** | Bar graph showing how many tokens each flow consumed. Useful for understanding resource-heavy flows. |
+| **Response Time Trends** | Line graph tracking average response times over the selected period. Helps detect performance degradation. |
+| **Cost Trends**       | Chart showing token cost trends over time. Useful for monitoring budget and cost efficiency. |
+| **Token Usage Over Time** | Line chart showing how token usage changes throughout the selected timeframe. |
+| **Hourly Distribution** | Bar chart showing requests distribution per hour. Useful for identifying peak usage times. |
+| **Error Trends**      | Chart showing error rate trends over time. Helps debug recurring issues. |
+| **Token Costs by Flow** | Breakdown of token costs per flow. Identifies the most expensive flows. |
 
 ---
 
-### **Job Performance Analytics**
+## Usage
 
-Provides comprehensive insights into job-related metrics:
+Use this dashboard to:
 
-⚙️ **Job Metrics**:
+- Track performance across different flows  
+- Monitor errors and optimize flows accordingly  
+- Analyze token usage and cost trends  
+- Understand when your project is most active  
 
-- **Total Jobs Processed**: View the total number of jobs completed.
-- **Record Counts**: Analyze the total number of records processed.
-- **Execution Time**: Get detailed execution time breakdowns.
-- **Success Rates**: Monitor job success rates to identify potential issues in flows.
+---
+
+> ℹ️ **Tip:** Use filters (`Time Range`, `Flows`) to narrow down the insights for specific scenarios.

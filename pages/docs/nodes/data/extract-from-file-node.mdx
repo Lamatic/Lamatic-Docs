@@ -4,8 +4,9 @@ description: The Extract from File Node extracts and processes data from various
 type: Data
 order: 2
 ---
-import { NodeOverview } from "@/components/NodeOverview"
-import { NodeTypeInfo } from "@/components/NodeTypeInfo"
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # Extract from File Node
 
@@ -17,7 +18,7 @@ The Extract from File Node is a powerful data extraction component that can proc
 
 ![extract-file.png](../img/file/extract.webp)
 
-<NodeTypeInfo 
+<NodeTypeInfo
   batchTrigger={false}
   eventTrigger={false}
   action={true}
@@ -165,8 +166,16 @@ No additional config required
 
 </details>
 
-## Sample Input
+<details>
+  <summary>**PDF to Image Configuration**</summary>
 
+| Parameter   | Description                                                                                                                  | Required | Default |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------- | -------- | ------- |
+| Password(s) | Password for the PDF file, if the PDF is encrypted. You can also send an array of passwords to try. Used for pdf file types. | No       | false   |
+
+</details>
+
+## Sample Input
 
 ```
    File URL(s): ["https://calibre-ebook.com/downloads/demos/demo.docx","https://example-files.online-convert.com/document/txt/example.txt","https://sedl.org/afterschool/toolkits/science/pdf/ast_sci_data_tables_sample.pdf"]
@@ -209,9 +218,11 @@ nodes:
 ## Output
 
 #### `files`
+
 - An array of objects, each representing a file and its extracted content along with associated metadata.
 
 #### `metadata`
+
 - A nested object containing descriptive attributes of the file.
 
   - **`mime_type`**: Specifies the file's MIME type, indicating its format and encoding.
@@ -223,12 +234,15 @@ nodes:
   - **`file_id`**: A unique identifier for the file within the processing context.
 
 #### `data`
+
 - An array of strings containing the extracted content from the file.
 
 #### `additional_fields`
+
 - A nested object containing supplementary data or metadata about file processing.
 
 #### `raw`
+
 - An array of objects providing unprocessed or detailed extraction data.
 
   - **`metadata`**: A nested object within `raw` detailing file format and creation metadata.
@@ -245,18 +259,23 @@ nodes:
     - **`encryption`**: Indicates the file's encryption status, or `null` if not encrypted.
 
 #### `file_path`
+
 - A string specifying the temporary or local file path used during processing.
 
 #### `page_count`
+
 - An integer indicating the total number of pages in the file.
 
 #### `page`
+
 - An integer specifying the page number of the extracted content.
 
 #### `toc_items`
+
 - An array containing the table of contents items.
 
 #### `tables`
+
 - An array of objects describing tables extracted from the file.
 
   - **`bbox`**: An array of coordinates defining the bounding box of a table.
@@ -264,19 +283,23 @@ nodes:
   - **`columns`**: The number of columns in a table.
 
 #### `images`
+
 - An array of image data extracted from the file.
 
 #### `graphics`
+
 - An array of graphic elements extracted from the file.
 
 #### `text`
+
 - A string containing the raw text content extracted from a specific page or section.
 
 #### `words`
+
 - An array of individual words extracted from the text.
 
-
 ### Example Output
+
 ```json
 "files": [
       {
@@ -309,7 +332,6 @@ nodes:
       }
     ]
 ```
-
 
 ## Troubleshooting
 

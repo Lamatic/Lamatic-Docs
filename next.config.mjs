@@ -142,7 +142,7 @@ const nonPermanentRedirects = [
     ["/new-issue", "https://github.com/Lamatic/docs/issues/new/choose"],
     ["/issues", "https://github.com/Lamatic/docs/issues"],
     ["/get-a-demo", "/docs/demo"],
-    ["/security", "/docs/data-security-privacy"],
+    // ["/security", "/docs/data-security-privacy"],
     ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
     ["/new-idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
     ["/ideas", "https://github.com/Lamatic/docs/discussions/categories/ideas"],
@@ -477,7 +477,7 @@ const rewrites = [
     ["/sitemap.xml", "/public/website-sitemap.xml"],
     ["/.well-known", "/public/.well-known"],
     ["/robots.txt", "/public/robots.txt"],
-    ["/:path((?!docs|blog|guides|integrations|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors).*)", "https://get.lamatic.ai/:path*"],
+    ["/:path((?!docs|blog|guides|integrations|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors|security).*)", "https://get.lamatic.ai/:path*"],
 
 ]
 

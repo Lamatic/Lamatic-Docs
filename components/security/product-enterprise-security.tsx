@@ -3,80 +3,74 @@
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  Target, 
-  Users, 
-  MessageSquare, 
-  Code,
-  BookOpen,
-  Globe,
-  Lightbulb,
-  Mic
+  Code, 
+  Shield, 
+  Building, 
+  Settings,
+  CheckCircle,
+  Users,
+  FileText,
+  Zap
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface Feature {
+interface SecurityFeature {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
   description: string;
   color: string;
 }
 
-interface FeaturesGridProps {
+interface ProductEnterpriseSecurityProps {
   className?: string;
 }
 
-const programGoals: Feature[] = [
-  {
-    icon: Target,
-    title: "Drive Awareness & Community Growth",
-    description: "Increase developer awareness of Lamatic.ai and grow community-led content through blogs, tutorials, and local hubs worldwide",
-    color: "from-red-300 to-red-400"
-  },
-  {
-    icon: Users,
-    title: "Talent Discovery & Feedback",
-    description: "Surface exceptional talent for hiring opportunities and gather valuable platform feedback to continuously improve Lamatic",
-    color: "from-red-300 to-red-400"
-  },
+const productSecurityFeatures: SecurityFeature[] = [
   {
     icon: Code,
-    title: "Practical Events & Innovation",
-    description: "Conduct hands-on hackathons, workshops, and events to provide developer insights and support open-source contributions",
-    color: "from-red-300 to-red-400"
-  }
-];
-
-const activities: Feature[] = [
-  {
-    icon: BookOpen,
-    title: "Educational Leadership",
-    description: "Hosting workshops, creating tutorials, mentoring professionals, and writing technical articles",
+    title: "Secure Development Lifecycle",
+    description: "Security assessments are integrated throughout our development process to identify and mitigate potential vulnerabilities early.",
     color: "from-red-300 to-red-400"
   },
   {
-    icon: Globe,
-    title: "Community Building",
-    description: "Organizing meetups, moderating discussions, building regional communities, and speaking at conferences",
+    icon: Shield,
+    title: "Third-Party Assessments",
+    description: "We engage independent security experts to conduct regular audits and penetration tests, ensuring our products meet the highest security standards.",
     color: "from-red-300 to-red-400"
   }
 ];
 
-export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
+const enterpriseSecurityFeatures: SecurityFeature[] = [
+  {
+    icon: CheckCircle,
+    title: "Compliance Alignment",
+    description: "Our security practices are aligned with industry standards and regulations, including SOC 2 and GDPR efforts are underway, to meet your compliance requirements.",
+    color: "from-red-300 to-red-400"
+  },
+  {
+    icon: Settings,
+    title: "Custom Security Configurations",
+    description: "We provide customizable security settings to align with your organization's specific policies and risk profiles.",
+    color: "from-red-300 to-red-400"
+  }
+];
+
+export const ProductEnterpriseSecurity: React.FC<ProductEnterpriseSecurityProps> = ({ className }) => {
   return (
     <div className={cn("space-y-12", className)}>
-      {/* Program Goals */}
+      {/* Product Security */}
       <section>
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Program Goals
+            Product Security
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
-            Our ambassador program creates a global network of AI/ML leaders driving innovation and knowledge sharing.
+            Our products are designed with security as a core component, ensuring robust protection at every level.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {programGoals.map((feature, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {productSecurityFeatures.map((feature, index) => (
             <Card
               key={index}
               className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
@@ -102,19 +96,19 @@ export const FeaturesGrid: React.FC<FeaturesGridProps> = ({ className }) => {
         </div>
       </section>
 
-      {/* Ambassador Activities */}
+      {/* Enterprise Security */}
       <section>
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Ambassador Activities
+            Enterprise Security
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
-            Our ambassadors engage in key activities to promote AI/ML knowledge and foster community growth.
+            For our enterprise clients, we offer tailored security solutions designed to meet the highest standards of corporate security.
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {activities.map((feature, index) => (
+          {enterpriseSecurityFeatures.map((feature, index) => (
             <Card
               key={index}
               className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"

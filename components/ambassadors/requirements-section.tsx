@@ -34,21 +34,21 @@ const requirements: Requirement[] = [
     title: "Technical Expertise",
     description: "Deep knowledge in AI/ML technologies, frameworks, and practical applications",
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-red-600"
+    gradient: "from-red-300 to-red-400"
   },
   {
     icon: Users,
     title: "Community Leadership",
     description: "Experience in organizing events, workshops, or mentoring others in the field",
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-red-600"
+    gradient: "from-red-300 to-red-400"
   },
   {
     icon: MessageSquare,
     title: "Skills",
     description: "Ability to explain complex AI/ML concepts clearly to diverse audiences",
     color: "text-red-600 dark:text-red-400",
-    gradient: "from-red-500 to-red-600"
+    gradient: "from-red-300 to-red-400"
   }
 ];
 
@@ -66,7 +66,7 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
     <div className={cn("py-16 bg-gradient-to-br from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 border-radius-2xl", className)}>
       {/* Header */}
       <div className="text-center mb-16">
-        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-red-500 to-red-600 mb-0">
+        <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-red-300 to-red-400 mb-0">
           <Award className="w-8 h-8 text-white" />
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -150,7 +150,7 @@ export const RequirementsSection: React.FC<RequirementsSectionProps> = ({ classN
           </div>
           <button
             onClick={() => document.getElementById('application-form')?.scrollIntoView({ behavior: 'smooth' })}
-            className="inline-flex items-center px-8 py-3 bg-white text-red-600 font-semibold rounded-xl hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center px-8 py-3 bg-white text-red-600 font-semibold rounded-md hover:bg-gray-100 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Apply Anyway
             <CheckCircle className="w-5 h-5 ml-2" />

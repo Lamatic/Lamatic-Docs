@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
   Eye, 
   UserCheck, 
@@ -79,117 +78,113 @@ const complianceFeatures: PrivacyComplianceFeature[] = [
 
 export const PrivacyCompliance: React.FC<PrivacyComplianceProps> = ({ className }) => {
   return (
-    <div className={cn("space-y-12", className)}>
+    <div className={cn("py-16", className)}>
       {/* Data Privacy */}
-      <section>
-        <div className="text-center mb-4">
+      <section className="mb-20">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Data Privacy
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
             We are committed to maintaining the privacy of your data through transparent practices and user control.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {privacyFeatures.map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
+              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
             >
-              <CardHeader className="pb-0">
+              <div className="flex items-start space-x-4">
                 <div className={cn(
-                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-3",
+                  "w-16 h-16 rounded-2xl bg-gradient-to-r flex items-center justify-center flex-shrink-0",
                   feature.color
                 )}>
-                  <feature.icon className="w-6 h-6 text-white" />
+                  <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
       {/* Vulnerability Disclosure & Reporting */}
-      <section>
-        <div className="text-center mb-8">
+      <section className="mb-20">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Security Programs
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
             We maintain comprehensive security programs to continuously enhance our security posture and uphold ethical standards.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {vulnerabilityFeatures.map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
+              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
             >
-              <CardHeader className="pb-0">
-                <div className={cn(
-                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-3",
-                  feature.color
-                )}>
-                  <feature.icon className="w-6 h-6 text-white" />
-                </div>
-                <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+              <div className={cn(
+                "w-16 h-16 rounded-2xl bg-gradient-to-r flex items-center justify-center mx-auto mb-6",
+                feature.color
+              )}>
+                <feature.icon className="w-8 h-8 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {feature.description}
+              </p>
+            </div>
           ))}
         </div>
       </section>
 
       {/* Compliance Initiatives */}
       <section>
-        <div className="text-center mb-8">
+        <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Compliance Initiatives
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
             We are actively pursuing compliance with industry standards to ensure the highest level of security and data protection.
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {complianceFeatures.map((feature, index) => (
-            <Card
+            <div
               key={index}
-              className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
+              className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600"
             >
-              <CardHeader className="pb-0">
+              <div className="flex items-start space-x-4">
                 <div className={cn(
-                  "w-12 h-12 rounded-lg bg-gradient-to-r flex items-center justify-center mb-3",
+                  "w-16 h-16 rounded-2xl bg-gradient-to-r flex items-center justify-center flex-shrink-0",
                   feature.color
                 )}>
-                  <feature.icon className="w-6 h-6 text-white" />
+                  <feature.icon className="w-8 h-8 text-white" />
                 </div>
-                <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
-                  {feature.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
 

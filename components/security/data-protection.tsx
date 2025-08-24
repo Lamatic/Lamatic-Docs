@@ -1,13 +1,6 @@
 "use client";
 
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Lock, Database, Cloud, Shield, Eye, RefreshCw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -50,43 +43,39 @@ export const DataProtection: React.FC<DataProtectionProps> = ({
   className,
 }) => {
   return (
-    <div className={cn("space-y-8", className)}>
-      <div className="text-center mb-8">
+    <div className={cn("py-16", className)}>
+      <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           Data Protection
         </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto">
+        <p className="text-lg text-gray-600 dark:text-gray-300 mx-auto max-w-3xl">
           Protecting your data is paramount. Our data protection strategies
           encompass multiple layers of security to ensure your information
           remains safe and secure.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {protectionFeatures.map((feature, index) => (
-          <Card
+          <div
             key={index}
-            className="group border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-xl"
+            className="group p-8 border border-gray-200 dark:border-gray-700 bg-white dark:bg-zinc-900 rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-red-300 dark:hover:border-red-600 text-center"
           >
-            <CardHeader className="pb-0">
-              <div
-                className={cn(
-                  "w-10 h-10 rounded-lg bg-gradient-to-r flex items-center justify-center",
-                  feature.color
-                )}
-              >
-                <feature.icon className="w-5 h-5 text-white" />
-              </div>
-              <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white mb-0">
-                {feature.title}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="pt-0">
-              <CardDescription className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                {feature.description}
-              </CardDescription>
-            </CardContent>
-          </Card>
+            <div
+              className={cn(
+                "w-16 h-16 rounded-2xl bg-gradient-to-r flex items-center justify-center mx-auto mb-6",
+                feature.color
+              )}
+            >
+              <feature.icon className="w-8 h-8 text-white" />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              {feature.title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              {feature.description}
+            </p>
+          </div>
         ))}
       </div>
     </div>

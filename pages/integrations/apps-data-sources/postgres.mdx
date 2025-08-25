@@ -3,7 +3,8 @@ title: PostgreSQL
 description: The PostgreSQL integration in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
 icon: /images/icons/apps/postgres.png
 ---
-import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw";
 
 # PostgreSQL Integration
 
@@ -12,7 +13,8 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 The PostgreSQL integration in Lamatic automates data synchronization from PostgreSQL databases. It enables scheduled fetching of rows from specified tables and supports vectorization and indexing for Retrieval-Augmented Generation (RAG) workflows.
 
 <Callout type="info">
-This integration connects to your PostgreSQL database to sync data for processing in Lamatic Flow.
+  This integration connects to your PostgreSQL database to sync data for
+  processing in Lamatic Flow.
 </Callout>
 
 ## Features
@@ -34,12 +36,14 @@ This integration connects to your PostgreSQL database to sync data for processin
 ## Available Functionality
 
 ### Event Triggers
+
 ✅ Scheduled data syncing from PostgreSQL tables <br/>
 ✅ Support for tables and materialized views <br/>
 ✅ Schema-specific monitoring and filtering <br/>
 ✅ Incremental and full-refresh sync modes<br/>
 
 ### Actions
+
 ✅ Parse and extract data from PostgreSQL rows <br/>
 ✅ Vectorize content for RAG workflows <br/>
 ✅ Filter tables using schema and table names <br/>
@@ -61,19 +65,23 @@ Before setting up the PostgreSQL integration, ensure you have:
 Follow the steps below to properly configure a PostgreSQL connector with the required read-only access.
 
 #### Create a dedicated read-only Postgres user
+
 It's recommended to use a dedicated read-only user for secure data replication. You may also use an existing user with similar permissions.
 
 Run the following SQL command to create a new user:
+
 ```
 CREATE USER <user_name> PASSWORD 'your_password_here';
 ```
 
 Then, grant the user read-only access to the desired schemas and tables. Execute the following commands for each schema you intend to replicate data from:
+
 ```
 GRANT USAGE ON SCHEMA <schema_name> TO <user_name>;
 GRANT SELECT ON ALL TABLES IN SCHEMA <schema_name> TO <user_name>;
 ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO <user_name>;
 ```
+
 #### Connection Requirements
 
 1. **Database Access**
@@ -85,26 +93,27 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO <user
 3. **Connection Information**
    Gather the following details for the database connection:
 
-   * Host address
-   * Port number *(default: 5432)*
-   * Database name
-   * Username and password
+   - Host address
+   - Port number _(default: 5432)_
+   - Database name
+   - Username and password
 
 <Callout type="warning">
-**Important:** Your database user must have permissions to access the relevant schemas and tables.  
-If the connection fails, you may need to [whitelist Cloudflare IPs](https://www.cloudflare.com/ips/).
+  **Important:** Your database user must have permissions to access the relevant
+  schemas and tables. If the connection fails, you may need to whitelist Ips:
+  `34.60.178.119`, `35.188.95.166` and `104.197.162.200`
 </Callout>
 
 #### Connecting via SSL
 
 Lamatic supports various SSL modes when connecting to PostgreSQL databases.
 
-* `disable` – Disables encryption entirely, this mode should be used if you are using supabase
-* `allow` – Enables encryption only if the source requires it
-* `prefer` – Uses unencrypted communication unless the source supports encryption
-* `require` – Always encrypts the connection; fails if encryption isn't supported by the source
-* `verify-ca` – Like `require`, but also verifies the server's SSL certificate
-* `verify-full` – Requires encryption and also verifies the server’s hostname against the certificate
+- `disable` – Disables encryption entirely, this mode should be used if you are using supabase
+- `allow` – Enables encryption only if the source requires it
+- `prefer` – Uses unencrypted communication unless the source supports encryption
+- `require` – Always encrypts the connection; fails if encryption isn't supported by the source
+- `verify-ca` – Like `require`, but also verifies the server's SSL certificate
+- `verify-full` – Requires encryption and also verifies the server’s hostname against the certificate
 
 ### Step 2: Configure PostgreSQL Node
 
@@ -123,17 +132,18 @@ Lamatic supports various SSL modes when connecting to PostgreSQL databases.
 
 ### PostgreSQL Node Parameters
 
-| **Parameter**                    | **Description**                                                                                              | **Required** | **Default** | **Example**                                     |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------ | ----------- | ----------------------------------------------- |
-| **Credentials**                  | PostgreSQL database connection details                                                                       | ✅           | -           | `PostgreSQL Connection`                         |
-| **Schema**                       | Database schema to be processed                                                                              | ✅           | -           | `public`                                        |
-| **Table/View**                   | Source table or materialized view for data processing                                                        | ✅           | -           | `users`                                         |
-| **Sync Mode**                    | Controls how data is re-indexed: `incremental` or `full-refresh`                                            | ✅           | `incremental` | `incremental`                                   |
-| **Sync Schedule**                | Schedule for automated syncs using cron expressions                                                         | ✅           | -           | `0 0 * * *`                                     |
+| **Parameter**     | **Description**                                                  | **Required** | **Default**   | **Example**             |
+| ----------------- | ---------------------------------------------------------------- | ------------ | ------------- | ----------------------- |
+| **Credentials**   | PostgreSQL database connection details                           | ✅           | -             | `PostgreSQL Connection` |
+| **Schema**        | Database schema to be processed                                  | ✅           | -             | `public`                |
+| **Table/View**    | Source table or materialized view for data processing            | ✅           | -             | `users`                 |
+| **Sync Mode**     | Controls how data is re-indexed: `incremental` or `full-refresh` | ✅           | `incremental` | `incremental`           |
+| **Sync Schedule** | Schedule for automated syncs using cron expressions              | ✅           | -             | `0 0 * * *`             |
 
 ### Sync Configuration Options
 
 #### Sync Modes
+
 ```yaml
 # Incremental Sync (recommended)
 sync_mode: "incremental"  # Only sync new/modified data
@@ -143,6 +153,7 @@ sync_mode: "full-refresh"  # Re-index all data
 ```
 
 #### Schedule Examples
+
 ```yaml
 # Daily at midnight
 sync_schedule: "0 0 * * *"
@@ -160,6 +171,7 @@ sync_schedule: "*/30 * * * *"
 ### Database Configuration
 
 #### Schema and Table Selection
+
 ```yaml
 # Single schema and table
 schema: "public"
@@ -182,7 +194,7 @@ credentials: "PostgreSQL Connection"
 schema: "public"
 table: "users"
 sync_mode: "incremental"
-sync_schedule: "0 0 * * *"  # Daily at midnight
+sync_schedule: "0 0 * * *" # Daily at midnight
 ```
 
 ### Advanced Configuration
@@ -193,7 +205,7 @@ credentials: "PostgreSQL Connection"
 schema: "analytics"
 table: "user_metrics"
 sync_mode: "incremental"
-sync_schedule: "0 2 * * *"  # Daily at 2 AM
+sync_schedule: "0 2 * * *" # Daily at 2 AM
 ```
 
 ### Materialized View Sync
@@ -202,22 +214,22 @@ sync_schedule: "0 2 * * *"  # Daily at 2 AM
 # Sync data from a materialized view
 credentials: "PostgreSQL Connection"
 schema: "reports"
-table: "daily_summary_mv"  # Materialized view
-sync_mode: "full-refresh"  # Full refresh for materialized views
-sync_schedule: "0 6 * * *"  # Daily at 6 AM
+table: "daily_summary_mv" # Materialized view
+sync_mode: "full-refresh" # Full refresh for materialized views
+sync_schedule: "0 6 * * *" # Daily at 6 AM
 ```
 
 ## Troubleshooting
 
 ### Common Issues
 
-| **Problem**                    | **Solution**                                                                                |
-| ------------------------------ | ------------------------------------------------------------------------------------------- |
-| **Connection Failed**          | Verify PostgreSQL credentials and network connectivity                                       |
-| **Table Not Found**            | Check schema and table names, ensure they exist in the database                             |
-| **Permission Denied**          | Ensure your database user has appropriate read permissions                                  |
-| **Sync Not Scheduled**         | Check cron expression format and ensure sync schedule is properly configured                 |
-| **Schema Access Error**        | Verify you have access to the specified database schema                                     |
+| **Problem**             | **Solution**                                                                 |
+| ----------------------- | ---------------------------------------------------------------------------- |
+| **Connection Failed**   | Verify PostgreSQL credentials and network connectivity                       |
+| **Table Not Found**     | Check schema and table names, ensure they exist in the database              |
+| **Permission Denied**   | Ensure your database user has appropriate read permissions                   |
+| **Sync Not Scheduled**  | Check cron expression format and ensure sync schedule is properly configured |
+| **Schema Access Error** | Verify you have access to the specified database schema                      |
 
 ### Debugging Steps
 
@@ -240,12 +252,14 @@ sync_schedule: "0 6 * * *"  # Daily at 6 AM
 ## Example Use Cases
 
 ### Data Intelligence Workflows
+
 - **User Analytics**: Sync user behavior data for AI-powered insights
 - **Business Metrics**: Process sales, inventory, and performance data
 - **Customer Data**: Index customer profiles and interactions for personalized experiences
 - **Operational Data**: Automate access to logs, events, and system metrics
 
 ### RAG Applications
+
 - **Semantic Search**: Enable natural language search across database records
 - **Question Answering**: Build AI assistants that can answer questions about business data
 - **Data Summarization**: Automatically summarize large datasets and reports

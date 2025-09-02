@@ -1,0 +1,99 @@
+# Think Mode (Agent Kit)
+
+Enable **AI-powered search + chat** across your content, with a simple, fast interface.
+Users type in plain English; Think Mode finds relevant context, **grounds** the answer,
+and returns results with **citations**.
+
+## Links
+
+- **Preview**: https://v0-lamatic-think-mode.vercel.app/
+
+---
+
+## What this kit delivers
+
+- **Natural-language search** across multiple sources.
+- **Grounded answers with citations** so users trust results.
+- **Clean UI** for instant “type → answer → cite” experience.
+- **Enterprise connectors** (Drive, SharePoint, S3, Sheets, OneDrive, Postgres via FireCrawl).
+- **Zero-copy setup** – index your sources, drop in the widget, ship.
+
+---
+
+## How it works
+
+1. **Ingest & index** — Connect sources; Lamatic scrapes (FireCrawl), chunks, embeds, and stores with metadata.
+2. **Query & retrieve** — Hybrid semantic + keyword retrieval, tuned for relevance.
+3. **Rank & present** — Optionally re-rank; surface **snippets + citations**.
+4. **Answer** — Render grounded response; include links to original sources.
+5. **Stay fresh** — Scheduled syncs keep results up to date.
+
+---
+
+## Vertical use cases
+
+- **Support** — Deflect tickets with cited answers from policies and runbooks.
+- **Ops & IT** — Resolve “how-to” and config questions in seconds.
+- **Sales/CS** — Compare product features & pricing with cited collateral.
+- **Engineering** — Surface RFCs, design docs, playbooks, and runbooks instantly.
+- **HR/People** — Answer benefits and policy questions, with links to the source.
+
+---
+
+## Customization paths
+
+- **Data sources**: Google Drive, SharePoint, OneDrive, Sheets, S3, Postgres, Websites.
+- **UI**: Theme, logo, fonts, and widget placement.
+- **Ranking**: Adjust scorer/re-ranker; control snippet length and cite density.
+- **Policies**: Redaction rules, stop-lists, allow-lists, domain scoping.
+- **Observability**: Enable query logs, citations clicked, no-result reasons.
+
+---
+
+## Configuration best practices
+
+- **Chunking**: Keep chunks 400–1200 tokens; include titles & headings as metadata.
+- **Metadata**: Author, date, source, path; use as **filters** and **facets**.
+- **Relevance**: Start hybrid (BM25 + vector); tune k and cutoffs after logs.
+- **Citations**: Default on; require at least 2 distinct sources for “high confidence”.
+- **Syncs**: Schedule FireCrawl recrawls and connector syncs based on change rate.
+
+---
+
+## Success metrics
+
+- **Search → click-through rate** (CTR) on cited sources
+- **First-answer success rate** (no follow-up needed)
+- **No-results rate** (and reasons)
+- **Support deflection** and **time-to-answer**
+- **Content coverage** (indexed vs. total)
+
+---
+
+## Security & governance
+
+- **ACLs respected** — results filtered by user permissions.
+- **PII redaction** — configurable policies for masking.
+- **Audit logs** — per-query traces; who saw what, when.
+- **Data residency** — configurable storage regions.
+
+---
+
+## FAQs
+
+**Does it work with existing SharePoint/Drive permissions?**  
+Yes—permissions are enforced at query time.
+
+**Can we add web pages?**  
+Yes—use FireCrawl for site scraping and scheduled recrawls.
+
+**Can we embed it in our app?**  
+Yes—drop the widget; or call the backend APIs directly.
+
+---
+
+## Next steps
+
+- **Try the preview**: https://v0-lamatic-think-mode.vercel.app/
+- **Connect sources** in Studio and run your first crawl.
+- **Share feedback** in PR comments (copy edits welcome).

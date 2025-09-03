@@ -21,6 +21,11 @@
     "title": "Integrations",
     "display":"hidden"
   },
+  "agentkits": {
+    "type": "page",
+    "title": "Agent Kits",
+    "display":"hidden"
+  },
   "Changelog": {
     "title": "Change Log",
     "type": "page",

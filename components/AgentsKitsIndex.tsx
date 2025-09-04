@@ -78,23 +78,23 @@ const AgentKitCard = ({ page }: { page: Page & { frontMatter?: any } }) => {
     "Untitled";
 
   return (
-    <Card className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
-      <CardHeader className="pb-0">
+    <Card className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-black">
+      <CardHeader className="pb-0 pt-0">
         <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
           {title}
         </CardTitle>
       </CardHeader>
 
-      <CardContent>
-        <CardDescription className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+      <CardContent className="pt-0">
+        <CardDescription className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3 line-clamp-2 mb-4">
           {page.frontMatter?.description || "No description available"}
         </CardDescription>
 
         <Link
           href={page.route}
-          className="inline-flex mt-6 items-center text-sm font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors"
+          className="inline-flex items-center text-sm font-medium text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors mt-3"
         >
-          View Docs
+          View
           <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
         </Link>
       </CardContent>
@@ -149,7 +149,7 @@ const AgentsKitsIndex = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4">
               {categoryPages.map((page) => (
                 <AgentKitCard key={page.route} page={page} />
               ))}

@@ -6,6 +6,7 @@ order: 1
 ---
 
 import { Button } from "@/components/ui/button";
+import { FAQAccordion } from "@/components/FAQAccordion";
 
 # Think Mode
 
@@ -68,6 +69,7 @@ Enable AI-powered search + chat across your content, with a simple, fast interfa
 - **HR/People** - Answer benefits and policy questions with source links
 - **Research** - Deep research capabilities with comprehensive source tracking
 
+
 ## Customization
 
 - **Data Sources**: Google Drive, SharePoint, OneDrive, Sheets, S3, Postgres, Websites
@@ -76,6 +78,29 @@ Enable AI-powered search + chat across your content, with a simple, fast interfa
 - **Security Policies**: Redaction rules, stop-lists, allow-lists, domain scoping
 - **Observability**: Enable query logs, citations clicked, no-result reasons
 - **Integration APIs**: RESTful APIs and SDKs for seamless platform integration
+
+## FAQ
+
+<FAQAccordion
+  items={[
+    {
+      question: "What data sources are supported?",
+      answer: "Google Drive, SharePoint, OneDrive, Sheets, S3, Postgres, and websites."
+    },
+    {
+      question: "How does it ensure accuracy?",
+      answer: "Uses hybrid semantic + keyword retrieval with citations for verification."
+    },
+    {
+      question: "Can I customize the UI?",
+      answer: "Yes, themes, logos, fonts, and widget placement are fully customizable."
+    },
+    {
+      question: "What about security?",
+      answer: "Includes redaction rules, stop-lists, allow-lists, and domain scoping."
+    }
+  ]}
+/>
 
 ## Get Started
 

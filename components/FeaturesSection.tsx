@@ -30,24 +30,6 @@ const FEATURES = [
     title: "Enterprise Security",
     description: "Bank-grade security with end-to-end encryption, compliance, and privacy protection built-in.",
     color: "from-red-500 to-red-500"
-  },
-  {
-    icon: Code,
-    title: "Developer Friendly",
-    description: "Comprehensive APIs, SDKs, and documentation to integrate agents into any application.",
-    color: "from-red-500 to-red-500"
-  },
-  {
-    icon: BarChart3,
-    title: "Analytics & Insights",
-    description: "Monitor performance, track usage, and optimize your agents with detailed analytics dashboards.",
-    color: "from-red-500 to-red-500"
-  },
-  {
-    icon: Globe,
-    title: "Global Scale",
-    description: "Deploy agents worldwide with our global infrastructure and multi-region support.",
-    color: "from-red-500 to-red-500"
   }
 ];
 
@@ -93,7 +75,7 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-0">
           {FEATURES.map((feature, index) => {
             const IconComponent = feature.icon;
             return (

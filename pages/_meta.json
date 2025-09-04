@@ -22,9 +22,12 @@
     "display":"hidden"
   },
   "agentkits": {
-    "type": "page",
     "title": "Agent Kits",
-    "display":"hidden"
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
   },
   "Changelog": {
     "title": "Change Log",

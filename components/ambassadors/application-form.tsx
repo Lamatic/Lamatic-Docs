@@ -48,8 +48,8 @@ export const ApplicationForm: React.FC<ApplicationFormProps> = ({ className }) =
 
       <div className="w-full">
         <iframe 
-          className="airtable-embed" 
-          src="https://airtable.com/embed/app7b9wDyU73T6rN2/pagopWyJtWPrIQCqX/form" 
+          className="notion-embed" 
+          src="https://lamatic.notion.site/ebd/2682e0e2612880fe8058e69e9a91bf4a" 
           frameBorder="0" 
           onWheel={() => {}} 
           width="100%" 

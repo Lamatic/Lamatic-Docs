@@ -221,7 +221,7 @@ export default function TemplateGallery() {
         {(isSSR ? templates.slice(0, 6) : filteredTemplates).map(template => {
           const IconComponent = iconMap[template.icon] || Brain; // Fallback to Brain icon
           return (
-            <div key={template.id} className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+            <div key={template.id} className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg ${template.iconColor}`}>
                   <IconComponent className="w-6 h-6" />

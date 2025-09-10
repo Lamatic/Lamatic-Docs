@@ -103,20 +103,31 @@ const AgentKitCard = ({ page }: { page: Page & { frontMatter?: any } }) => {
 };
 
 const AgentsKitsIndex = () => {
-  // Get all pages under /agentkits (including subfolders)
-  const allPages = getPagesUnderRoute("/agentkits");
+  // Get all pages under /templates/agentkits (including subfolders)
+  const allPages = getPagesUnderRoute("/templates/agentkits");
   const pages = flattenPages(allPages).filter(
-    (page) => page.route !== "/agentkits" && page.route !== "/agentkits/index"
+    (page) => page.route !== "/templates/agentkits" && page.route !== "/templates/agentkits/index"
   );
 
-  // Group by type/category from frontmatter
+  // Group by type/category from route path or frontmatter
   const groupedPages = pages.reduce((acc, page) => {
-    let type = page.frontMatter?.type || "Other";
+    let type = page.frontMatter?.type;
+    
+    // If no type in frontmatter, extract from route path
+    if (!type) {
+      const routeParts = page.route.split('/');
+      const categoryIndex = routeParts.findIndex(part => part === 'agentkits');
+      if (categoryIndex !== -1 && routeParts[categoryIndex + 1]) {
+        type = routeParts[categoryIndex + 1];
+      }
+    }
+    
     // Normalize type names
-    if (type.toLowerCase() === "agentic") type = "Agentic";
-    if (type.toLowerCase() === "assistant") type = "Assistant";
-    if (type.toLowerCase() === "automation") type = "Automation";
-    if (type.toLowerCase() === "embedded") type = "Embedded";
+    if (type) {
+      type = type.charAt(0).toUpperCase() + type.slice(1).toLowerCase();
+    } else {
+      type = "Other";
+    }
 
     if (!acc[type]) acc[type] = [];
     acc[type].push(page);

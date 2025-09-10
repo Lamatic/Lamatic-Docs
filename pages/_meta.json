@@ -21,8 +21,8 @@
     "title": "Integrations",
     "display":"hidden"
   },
-  "agentkits": {
-    "title": "Agent Kits",
+  "templates": {
+    "title": "Templates",
     "type": "page",
     "theme": {
       "layout": "full"

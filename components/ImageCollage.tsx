@@ -42,26 +42,24 @@ export const ImageCollage: React.FC<ImageCollageProps> = ({
     if (images.length === 1) return "grid-cols-1";
     if (images.length === 2) return "grid-cols-2";
     if (images.length === 3) return "grid-cols-3";
-    if (images.length === 4) return "grid-cols-2";
-    return "grid-cols-2";
+    if (images.length === 4) return "grid-cols-4";
+    return "grid-cols-4";
   };
 
   return (
     <>
-      <div className={`w-full max-w-2xl mx-auto ${className}`}>
-        <div className={`grid ${getGridCols()} gap-${gap} auto-rows-fr`}>
+      <div className={`w-full max-w-8xl mx-auto ${className}`}>
+        <div className={`grid ${getGridCols()} gap-${gap} auto-rows-fr max-h-[300px]`}>
           {images.map((image, index) => (
             <div
               key={index}
-              className={`relative group cursor-pointer overflow-hidden rounded-lg  ${
-                images.length === 3 && index === 0 ? 'col-span-2' : ''
-              }`}
+              className={`relative group cursor-pointer overflow-hidden rounded-lg max-h-[300px]`}
               onClick={() => openLightbox(image)}
             >
               <img
                 src={image}
                 alt={`${alt} ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover max-h-[300px]"
                 loading="lazy"
               />
               

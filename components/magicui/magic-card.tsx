@@ -25,8 +25,16 @@ function useMousePosition(): MousePosition {
     x: 0,
     y: 0,
   });
+  const [isClient, setIsClient] = useState(false);
+
+  // Set client flag to prevent hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+
     const handleMouseMove = (event: globalThis.MouseEvent) => {
       setMousePosition({ x: event.clientX, y: event.clientY });
     };
@@ -36,7 +44,7 @@ function useMousePosition(): MousePosition {
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, []);
+  }, [isClient]);
 
   return mousePosition;
 }
@@ -52,23 +60,33 @@ const MagicContainer = ({ children, className }: MagicContainerProps) => {
   const mouse = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const containerSize = useRef<{ w: number; h: number }>({ w: 0, h: 0 });
   const [boxes, setBoxes] = useState<Array<HTMLElement>>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  // Set client flag to prevent hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+    
     init();
     containerRef.current &&
       setBoxes(
         Array.from(containerRef.current.children).map((el) => el as HTMLElement)
       );
-  }, []);
+  }, [isClient]);
 
   useEffect(() => {
+    if (!isClient) return;
+    
     init();
     window.addEventListener("resize", init);
 
     return () => {
       window.removeEventListener("resize", init);
     };
-  }, [setBoxes]);
+  }, [setBoxes, isClient]);
 
   useEffect(() => {
     onMouseMove();

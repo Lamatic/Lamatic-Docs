@@ -4,19 +4,15 @@
     "display": "hidden"
   },
   "agentic":{
-    "title": "Agentic",
-    "type": "page"
+    "title": "Agentic"
   },
   "automation":{
-    "title": "Automation",
-    "type": "page"
+    "title": "Automation"
   },
   "assistant":{
-    "title": "Assistant",
-    "type": "page"
+    "title": "Assistant"
   },
   "embedded":{
-    "title": "Embedded",
-    "type": "page"
+    "title": "Embedded"
   }
 }

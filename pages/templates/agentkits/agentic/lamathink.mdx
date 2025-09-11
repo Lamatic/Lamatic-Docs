@@ -7,10 +7,25 @@ order: 1
 
 import { Button } from "@/components/ui/button";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { ImageCollage } from "@/components/ImageCollage";
 
 # Think Mode
 
 A collaborative multi-agent setup that processes user input, extracts key information, and delivers context-aware results. Using the Agentic Reasoning API (Google AI Think Mode clone), agents work together through structured reasoning to provide accurate, explainable, and adaptive outputs.
+
+<ImageCollage
+  images={[
+    "/images/agentkits/lamathink/cover.png",
+    "/images/agentkits/lamathink/screenshot1.png",
+    "/images/agentkits/lamathink/screenshot2.png",
+    "/images/agentkits/lamathink/screenshot3.png"
+  ]}
+  alt="LamaThink Screenshots"
+  className="my-6"
+  columns={2}
+  gap="4"
+  showLightbox={true}
+/>
 
 <Button
   variant="destructive"

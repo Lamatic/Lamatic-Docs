@@ -3,7 +3,7 @@ import IconGithub from "./icons/github";
 
 export const GithubMenuBadge = () => (
   <a
-    href="https://github.com/lamaticai/lamaticai"
+    href="https://github.com/lamatic"
     className="group h-8 flex shrink-0 flex-row items-center rounded border border-primary/10 overflow-hidden transition-opacity"
     target="_blank"
     rel="nofollow noreferrer"

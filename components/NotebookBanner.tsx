@@ -11,7 +11,7 @@ export const NotebookBanner: React.FC<{ src: string; className?: string }> = ({
         <span>This is a Jupyter notebook</span>
         <div className="flex gap-2 flex-wrap">
           <a
-            href={`https://github.com/lamaticai/lamaticai-docs/blob/main${src}`}
+            href={`https://github.com/lamatic/lamatic-docs/blob/main${src}`}
             target="_blank"
             rel="noopener noreferrer"
           >

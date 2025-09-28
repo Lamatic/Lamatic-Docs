@@ -132,9 +132,12 @@ export default function TemplateGallery() {
             <div className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse h-10"></div>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {Array.from({ length: 6 }).map((_, index) => (
             <div key={index} className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 animate-pulse">
+              {/* Preview Image Placeholder */}
+              <div className="mb-4 rounded-lg bg-gray-200 dark:bg-gray-700 h-32"></div>
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg w-10 h-10"></div>
                 <div className="flex-1">
@@ -212,6 +215,21 @@ export default function TemplateGallery() {
                 }
               }}
             >
+              {/* Preview Image */}
+              {template.previewImage && (
+                <div className="mb-4 rounded-lg overflow-hidden">
+                  <img 
+                    src={`https://api.lamatic.ai/storage/v1/object/public/workflow-previews/${template.previewImage}`}
+                    alt={template.title}
+                    className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-200"
+                    onError={(e) => {
+                      // Hide image if it fails to load
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
+                </div>
+              )}
+              
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg ${template.iconColor}`}>
                   <IconComponent className="w-6 h-6" />

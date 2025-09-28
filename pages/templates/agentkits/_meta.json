@@ -5,14 +5,5 @@
   },
   "agentic":{
     "title": "Agentic"
-  },
-  "automation":{
-    "title": "Automation"
-  },
-  "assistant":{
-    "title": "Assistant"
-  },
-  "embedded":{
-    "title": "Embedded"
   }
 }

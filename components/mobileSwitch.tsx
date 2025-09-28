@@ -8,11 +8,21 @@ export default function MobileSwitch(props: {
   desktop: React.ElementType;
 }) {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
+  const [isClient, setIsClient] = useState(false);
   const objectRef = useRef(null);
 
+  // Set client flag to prevent hydration mismatch
   useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isClient) return;
+
     const handleResize = () => {
-      setIsMobile(objectRef.current.offsetWidth <= MOBILE_BREAKPOINT);
+      if (objectRef.current) {
+        setIsMobile(objectRef.current.offsetWidth <= MOBILE_BREAKPOINT);
+      }
     };
     handleResize();
 
@@ -23,7 +33,12 @@ export default function MobileSwitch(props: {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isClient]);
+
+  // Don't render anything on server-side to prevent hydration mismatch
+  if (!isClient) {
+    return <div ref={objectRef} />;
+  }
 
   return (
     <div ref={objectRef}>

@@ -51,15 +51,13 @@ type Template = {
   isPro?: boolean;
 };
 
-type Category = {
-  id: string;
-  label: string;
-  count: number;
-};
-
 type TemplatesResponse = {
   templates: Template[];
-  categories: Category[];
+  categories: Array<{
+    id: string;
+    label: string;
+    count: number;
+  }>;
 };
 
 // Icon mapping
@@ -79,10 +77,8 @@ const iconMap: Record<string, any> = {
 
 export default function TemplateGallery() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeFilter, setActiveFilter] = useState("all");
   const [isClient, setIsClient] = useState(false);
   const [templates, setTemplates] = useState<Template[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -103,7 +99,6 @@ export default function TemplateGallery() {
         
         const data: TemplatesResponse = await response.json();
         setTemplates(data.templates);
-        setCategories(data.categories);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'An error occurred');
         console.error('Error fetching templates:', err);
@@ -121,8 +116,7 @@ export default function TemplateGallery() {
     const matchesSearch = template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          template.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    const matchesFilter = activeFilter === "all" || template.category === activeFilter;
-    return matchesSearch && matchesFilter;
+    return matchesSearch;
   });
 
   // Always render the same structure, but disable interactions during SSR
@@ -132,17 +126,10 @@ export default function TemplateGallery() {
   if (loading) {
     return (
       <div className="mb-8">
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
-          <div className="flex-1">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-              <div className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse h-10"></div>
-            </div>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <div key={index} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 animate-pulse h-8 w-20"></div>
-            ))}
+        <div className="mb-6">
+          <div className="relative max-w-md">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <div className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse h-10"></div>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -198,35 +185,17 @@ export default function TemplateGallery() {
 
   return (
     <div className="mb-8">
-      <div className="flex flex-col md:flex-row gap-4 mb-6">
-        <div className="flex-1">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-            <input
-              type="text"
-              placeholder="Search templates..."
-              className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
-              value={isSSR ? "" : searchTerm}
-              onChange={isSSR ? undefined : (e) => setSearchTerm(e.target.value)}
-              disabled={isSSR}
-            />
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {categories.map(category => (
-            <button
-              key={category.id}
-              className={`px-3 py-1 text-sm rounded-full border transition-colors ${
-                (isSSR ? "all" : activeFilter) === category.id
-                  ? "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800"
-                  : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
-              }`}
-              onClick={isSSR ? undefined : () => setActiveFilter(category.id)}
-              disabled={isSSR}
-            >
-              {category.label} ({category.count})
-            </button>
-          ))}
+      <div className="mb-6">
+        <div className="relative max-w-md">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+          <input
+            type="text"
+            placeholder="Search templates..."
+            className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            value={isSSR ? "" : searchTerm}
+            onChange={isSSR ? undefined : (e) => setSearchTerm(e.target.value)}
+            disabled={isSSR}
+          />
         </div>
       </div>
       

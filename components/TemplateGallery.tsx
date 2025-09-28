@@ -77,6 +77,7 @@ const iconMap: Record<string, any> = {
 
 export default function TemplateGallery() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isClient, setIsClient] = useState(false);
   const [templates, setTemplates] = useState<Template[]>([]);
   const [loading, setLoading] = useState(true);
@@ -112,12 +113,29 @@ export default function TemplateGallery() {
     }
   }, [isClient]);
 
+  // Get all unique tags from templates
+  const allTags = Array.from(new Set(templates.flatMap(template => template.tags))).sort();
+
   const filteredTemplates = templates.filter(template => {
     const matchesSearch = template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          template.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    return matchesSearch;
+    
+    const matchesTags = selectedTags.length === 0 || 
+                       selectedTags.some(selectedTag => 
+                         template.tags.some(tag => tag.toLowerCase() === selectedTag.toLowerCase())
+                       );
+    
+    return matchesSearch && matchesTags;
   });
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev => 
+      prev.includes(tag) 
+        ? prev.filter(t => t !== tag)
+        : [...prev, tag]
+    );
+  };
 
   // Always render the same structure, but disable interactions during SSR
   const isSSR = !isClient;
@@ -127,9 +145,14 @@ export default function TemplateGallery() {
     return (
       <div className="mb-8">
         <div className="mb-6">
-          <div className="relative max-w-md">
+          <div className="relative max-w-md mb-4">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <div className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse h-10"></div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <div key={index} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 animate-pulse h-8 w-16"></div>
+            ))}
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -189,7 +212,7 @@ export default function TemplateGallery() {
   return (
     <div className="mb-8">
       <div className="mb-6">
-        <div className="relative max-w-md">
+        <div className="relative max-w-md mb-4">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <input
             type="text"
@@ -200,6 +223,35 @@ export default function TemplateGallery() {
             disabled={isSSR}
           />
         </div>
+        
+        {/* Tag Filters */}
+        {allTags.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {allTags.map(tag => (
+              <button
+                key={tag}
+                onClick={() => !isSSR && toggleTag(tag)}
+                disabled={isSSR}
+                className={`px-3 py-1 text-sm rounded-full border transition-colors ${
+                  selectedTags.includes(tag)
+                    ? "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800"
+                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+            {selectedTags.length > 0 && (
+              <button
+                onClick={() => !isSSR && setSelectedTags([])}
+                disabled={isSSR}
+                className="px-3 py-1 text-sm rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              >
+                Clear all
+              </button>
+            )}
+          </div>
+        )}
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">

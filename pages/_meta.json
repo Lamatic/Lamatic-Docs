@@ -21,6 +21,14 @@
     "title": "Integrations",
     "display":"hidden"
   },
+  "templates": {
+    "title": "Templates",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
   "Changelog": {
     "title": "Change Log",
     "type": "page",

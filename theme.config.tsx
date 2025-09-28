@@ -25,6 +25,8 @@ import {
   Slack,
   GraduationCap,
   Blocks,
+  BotMessageSquare,
+  LayoutTemplate
 } from "lucide-react";
 import {
   AvailabilityBanner,
@@ -60,6 +62,7 @@ const config: DocsThemeConfig = {
             {[
               { title: "Docs", path: "/docs", Icon: LibraryBig },
               { title: "Integrations", path: "/integrations", Icon: Blocks },
+              { title: "Templates", path: "/templates", Icon: LayoutTemplate },
               { title: "Guides", path: "/guides", Icon: GraduationCap },
               { title: "Book a demo", path: "/docs/demo", Icon: Phone },
               {
@@ -135,6 +138,8 @@ const config: DocsThemeConfig = {
           ? "%s - Lamatic.ai Integrations"
           : asPath.startsWith("/ambassadors")
           ? "%s - Lamatic.ai Ambassador"
+          : asPath.startsWith("/templates/")
+          ? "%s - Lamatic.ai Agent Kits"
           : asPath.startsWith("/security/")
           ? "%s - Lamatic.ai Security"
           : "%s - Lamatic.ai Docs",
@@ -158,6 +163,8 @@ const config: DocsThemeConfig = {
       ? "Changelog"
       : asPath.startsWith("/cookbook/")
       ? "Cookbook"
+      : asPath.startsWith("/templates/")
+      ? "Agent Kits"
       : "";
 
     if (process.env.VERCEL_URL) {

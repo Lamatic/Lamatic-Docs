@@ -6,8 +6,16 @@ export function CustomTOC() {
   const router = useRouter();
   const { frontMatter } = useConfig();
   const [headings, setHeadings] = useState<Array<{ id: string; text: string; level: number }>>([]);
+  const [isClient, setIsClient] = useState(false);
+
+  // Set client flag to prevent hydration mismatch
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
+    if (!isClient) return;
+
     // Function to extract headings from the current page
     const extractHeadings = () => {
       const article = document.querySelector('article');
@@ -36,7 +44,7 @@ export function CustomTOC() {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [router.asPath]); // Re-run when the path changes
+  }, [router.asPath, isClient]); // Re-run when the path changes or client is ready
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
@@ -45,7 +53,8 @@ export function CustomTOC() {
     }
   };
 
-  if (headings.length === 0) {
+  // Don't render anything on server-side to prevent hydration mismatch
+  if (!isClient || headings.length === 0) {
     return null;
   }
 

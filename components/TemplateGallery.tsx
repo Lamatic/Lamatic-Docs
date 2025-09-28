@@ -205,7 +205,7 @@ export default function TemplateGallery() {
           return (
             <div 
               key={template.id} 
-              className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 hover:shadow-lg transition-all duration-200"
+              className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200"
               onClick={() => {
                 if (!isSSR && template.slug) {
                   window.open(`https://studio.lamatic.ai/_?templateSlug=${template.slug}`, '_blank');
@@ -219,7 +219,7 @@ export default function TemplateGallery() {
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{template.title}</h3>
                   <div className="flex gap-2">
-                    <Badge variant="secondary" className="text-xs">{template.category}</Badge>
+                    {/* <Badge variant="secondary" className="text-xs">{template.category}</Badge> */}
                     <Badge variant="outline" className="text-xs">
                       {template.complexity.charAt(0).toUpperCase() + template.complexity.slice(1)}
                     </Badge>

@@ -20,6 +20,7 @@ import {
   ExternalLink,
   Loader2,
   AlertCircle,
+  Play,
 } from "lucide-react";
 
 type Template = {
@@ -28,14 +29,26 @@ type Template = {
   description: string;
   category: string;
   tags: string[];
-  complexity: "Beginner" | "Intermediate" | "Advanced";
+  complexity: "beginner" | "intermediate" | "advanced";
   features: string[];
   useCases: string[];
   integrations: string[];
   icon: string;
   iconColor: string;
-  href: string;
+  href?: string;
   industry?: string[];
+  previewImage?: string;
+  maker?: {
+    name: string;
+    link?: string;
+  };
+  nodesUsed?: Array<{
+    name: string;
+    label: string;
+  }>;
+  slug?: string;
+  demoUrl?: string;
+  isPro?: boolean;
 };
 
 type Category = {
@@ -82,7 +95,7 @@ export default function TemplateGallery() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch('/api/templates');
+        const response = await fetch('/api/templates-public');
         
         if (!response.ok) {
           throw new Error('Failed to fetch templates');
@@ -221,7 +234,15 @@ export default function TemplateGallery() {
         {(isSSR ? templates.slice(0, 6) : filteredTemplates).map(template => {
           const IconComponent = iconMap[template.icon] || Brain; // Fallback to Brain icon
           return (
-            <div key={template.id} className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700">
+            <div 
+              key={template.id} 
+              className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 hover:shadow-lg transition-all duration-200"
+              onClick={() => {
+                if (!isSSR && template.slug) {
+                  window.open(`https://studio.lamatic.ai/_?templateSlug=${template.slug}`, '_blank');
+                }
+              }}
+            >
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg ${template.iconColor}`}>
                   <IconComponent className="w-6 h-6" />
@@ -230,7 +251,14 @@ export default function TemplateGallery() {
                   <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{template.title}</h3>
                   <div className="flex gap-2">
                     <Badge variant="secondary" className="text-xs">{template.category}</Badge>
-                    <Badge variant="outline" className="text-xs">{template.complexity}</Badge>
+                    <Badge variant="outline" className="text-xs">
+                      {template.complexity.charAt(0).toUpperCase() + template.complexity.slice(1)}
+                    </Badge>
+                    {template.isPro && (
+                      <Badge variant="default" className="text-xs bg-gradient-to-r from-purple-500 to-pink-500">
+                        Pro
+                      </Badge>
+                    )}
                   </div>
                 </div>
               </div>
@@ -250,10 +278,45 @@ export default function TemplateGallery() {
                   </Badge>
                 ))}
               </div>
-              <Button variant="outline" size="sm" className="w-full" disabled={isSSR}>
-                <ExternalLink className="w-4 h-4 mr-2" />
-                View Template
-              </Button>
+              {template.maker && (
+                <div className="text-xs text-muted-foreground mb-3">
+                  Created by {template.maker.name}
+                </div>
+              )}
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="flex-1" 
+                  disabled={isSSR}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (!isSSR && template.slug) {
+                      window.open(`https://studio.lamatic.ai/_?templateSlug=${template.slug}`, '_blank');
+                    }
+                  }}
+                >
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  View Template
+                </Button>
+                {template.demoUrl && (
+                  <Button 
+                    variant="default" 
+                    size="sm" 
+                    className="flex-1" 
+                    disabled={isSSR}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (!isSSR && template.demoUrl) {
+                        window.open(template.demoUrl, '_blank');
+                      }
+                    }}
+                  >
+                    <Play className="w-4 h-4 mr-2" />
+                    Demo
+                  </Button>
+                )}
+              </div>
             </div>
           );
         })}

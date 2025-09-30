@@ -170,6 +170,11 @@
     "title": "Contributing",
     "type": "doc"
   },
+  "security": {
+    "title": "Security",
+    "href": "https://lamatic.ai/security",
+    "type": "doc"
+  },
   "Trash": {
     "title": "Privacy Policy",
     "type": "page",

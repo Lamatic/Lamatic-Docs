@@ -1,0 +1,243 @@
+---
+title: Twilio Node
+description: The Twilio Node provides communication automation capabilities through SMS, voice calls, and WhatsApp messaging, enabling multi-channel communication within workflows.
+type: Apps
+order: 5
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Twilio Node
+
+<NodeOverview slug="twilio-node" type="apps" />
+
+## Overview
+
+The Twilio Node is a communication automation component that provides action capabilities for multi-channel messaging and calling. This node enables automated SMS sending, voice calls, and WhatsApp messaging within flows, supporting comprehensive communication automation across different channels.
+
+![twilio.png](../img/twilio/twilio.png)
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that provides communication automation capabilities for SMS, voice calls, and WhatsApp messaging."
+/>
+
+This node provides **Action** capabilities to enable comprehensive communication automation within your workflows.
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Action - Send SMS**: Sends text messages to phone numbers with customizable content and delivery options.
+2. **Action - Send Voice Call**: Makes automated voice calls with custom messages and call management features.
+3. **Action - Send WhatsApp Message**: Sends WhatsApp messages including text and media content to WhatsApp-enabled numbers.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Multi-Channel Communication**: Supports SMS, voice calls, and WhatsApp messaging from a single integration.
+2. **Automated Messaging**: Streamlines communication processes with programmable messaging and calling.
+3. **Global Reach**: Leverages Twilio's global infrastructure for reliable message delivery worldwide.
+4. **Rich Media Support**: Enables sending media files through WhatsApp messaging for enhanced communication.
+
+</details>
+
+## Prerequisites
+
+Before using Twilio Node, ensure the following:
+
+- **Twilio Account**: A valid Twilio account with active phone numbers and proper authentication setup.
+- **Twilio Credentials**: Account SID and Auth Token from your Twilio console.
+
+## Setup
+
+### Step 1: Set Up Twilio Account
+
+1. **Create Twilio Account**:
+   - Sign up for a Twilio account at [twilio.com](https://www.twilio.com)
+   - Verify your phone number and complete account setup
+
+2. **Get Credentials**:
+   - Navigate to your Twilio Console Dashboard
+   - Copy your Account SID and Auth Token
+   - Store these credentials securely for use in Lamatic
+
+3. **Purchase Phone Numbers** (if needed):
+   - Buy phone numbers for SMS and voice calls
+   - Set up WhatsApp Business API (for WhatsApp messaging)
+
+### Step 2: Set Up Lamatic Flow
+
+1. **Create a Custom Flow** for Twilio automation:
+   - Configure the Twilio node based on your use case
+   - Set up action parameters for your communication needs
+   - Test the integration with your Twilio credentials
+
+## Configuration Reference
+
+### Credential Configuration
+
+| **Parameter**    | **Description**                                             | **Required** | **Example**            |
+| ---------------- | ----------------------------------------------------------- | ------------ | ---------------------- |
+| **Credential Name** | Display name for the Twilio credentials                    | ✅           | `my-twilio-credentials` |
+| **Account SID**  | Your Twilio Account SID from the console                   | ✅           | `ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxx` |
+| **Auth Token**   | Your Twilio Auth Token from the console                    | ✅           | `your-auth-token-here` |
+
+### Action Configuration
+
+#### Send SMS Action
+
+| **Parameter**        | **Description**                                      | **Required** | **Example**                                       |
+| -------------------- | ---------------------------------------------------- | ------------ | ------------------------------------------------- |
+| **Name**             | Display name for the action                          | ✅           | `Send SMS`                                        |
+| **Credentials**      | Twilio authentication details                        | ✅           | `my-twilio-credentials`                           |
+| **Action**           | Type of Twilio action to perform                     | ✅           | `Send SMS`, `Send Voice Call`, `Send WhatsApp Message` |
+| **Body**             | SMS message content                                  | ✅           | `Hello, this is an automated SMS message.`        |
+| **To**               | Recipient phone number (E.164 format)                | ✅           | `+1234567890`                                     |
+| **From**             | Sender phone number (your Twilio number)             | ✅           | `+1987654321`                                     |
+
+#### Send Voice Call Action
+
+| **Parameter**        | **Description**                                      | **Required** | **Example**                                       |
+| -------------------- | ---------------------------------------------------- | ------------ | ------------------------------------------------- |
+| **Name**             | Display name for the action                          | ✅           | `Send Voice Call`                                 |
+| **Credentials**      | Twilio authentication details                        | ✅           | `my-twilio-credentials`                           |
+| **Action**           | Type of Twilio action to perform                     | ✅           | `Send Voice Call`                                 |
+| **Voice Message**    | Text to be converted to speech for the call          | ✅           | `Hello, this is an automated voice call.`         |
+| **Call To**          | Recipient phone number (E.164 format)                | ✅           | `+1234567890`                                     |
+| **Call From**        | Sender phone number (your Twilio number)             | ✅           | `+1987654321`                                     |
+| **Call Timeout**     | Maximum call duration in seconds                     | ❌           | `30`                                              |
+
+#### Send WhatsApp Message Action
+
+| **Parameter**        | **Description**                                      | **Required** | **Example**                                       |
+| -------------------- | ---------------------------------------------------- | ------------ | ------------------------------------------------- |
+| **Name**             | Display name for the action                          | ✅           | `Send WhatsApp Message`                           |
+| **Credentials**      | Twilio authentication details                        | ✅           | `my-twilio-credentials`                           |
+| **Action**           | Type of Twilio action to perform                     | ✅           | `Send WhatsApp Message`                           |
+| **WhatsApp Message** | WhatsApp message content                             | ✅           | `Hello, this is an automated WhatsApp message.`   |
+| **To (WhatsApp)**    | Recipient WhatsApp number (E.164 format)             | ✅           | `+1234567890`                                     |
+| **From (WhatsApp)**  | Sender WhatsApp number (your Twilio WhatsApp number) | ✅           | `+1987654321`                                     |
+| **Media URL**        | URL of media file to send (image, document, etc.)    | ❌           | `https://example.com/image.jpg`                   |
+
+## Low-Code Example
+
+### Send SMS Action
+
+```yaml
+nodes:
+  - nodeId: twilioNode_1
+    nodeType: twilioNode
+    nodeName: Twilio
+    values:
+      credentials: my-twilio-credentials
+      action: sms
+      timeout: 60
+      to: '{{triggerNode_1.output.sampleInput}}'
+      from: '{{triggerNode_1.output.sampleInput}}'
+      body: Test SMS
+    modes: {}
+    needs:
+      - triggerNode_1
+```
+
+### Send Voice Call Action
+
+```yaml
+nodes:
+  - nodeId: twilioNode_2
+    nodeType: twilioNode
+    nodeName: Twilio
+    values:
+      credentials: my-twilio-credentials
+      action: voice_call
+      timeout: 60
+      to: '{{triggerNode_1.output.sampleInput}}'
+      from: '{{triggerNode_1.output.sampleInput}}'
+      body: Test SMS
+    modes: {}
+    needs:
+      - triggerNode_1
+```
+
+### Send WhatsApp Message Action
+
+```yaml
+nodes:
+  - nodeId: twilioNode_3
+    nodeType: twilioNode
+    nodeName: Twilio
+    values:
+      credentials: my-twilio-credentials
+      action: whatsapp
+      timeout: 60
+      to: '{{triggerNode_1.output.sampleInput}}'
+      from: '{{triggerNode_1.output.sampleInput}}'
+      body: Test SMS
+    modes: {}
+    needs:
+      - triggerNode_1
+```
+
+## Output
+
+### Send SMS Output
+
+- `messageId`: String identifier for the sent SMS message
+- `status`: String indicating the delivery status
+- `to`: String containing the recipient phone number
+- `from`: String containing the sender phone number
+- `body`: String containing the message content
+- `price`: String containing the cost of the message
+- `timestamp`: String containing the send timestamp
+
+### Send Voice Call Output
+
+- `callId`: String identifier for the voice call
+- `status`: String indicating the call status
+- `to`: String containing the recipient phone number
+- `from`: String containing the sender phone number
+- `duration`: String containing the call duration
+- `price`: String containing the cost of the call
+- `timestamp`: String containing the call timestamp
+
+### Send WhatsApp Message Output
+
+- `messageId`: String identifier for the WhatsApp message
+- `status`: String indicating the delivery status
+- `to`: String containing the recipient WhatsApp number
+- `from`: String containing the sender WhatsApp number
+- `body`: String containing the message content
+- `mediaUrl`: String containing the media URL (if sent)
+- `timestamp`: String containing the send timestamp
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                    |
+| -------------------------- | ------------------------------------------------------------------------------- |
+| **Authentication Errors**  | Verify that the Account SID and Auth Token are correct and valid                |
+| **Invalid Phone Numbers**  | Ensure phone numbers are in E.164 format (e.g., +1234567890)                   |
+| **SMS Delivery Fails**     | Check if the recipient number is valid and can receive SMS                      |
+| **Voice Call Issues**      | Verify the sender number has voice calling capabilities enabled                 |
+| **WhatsApp API Errors**    | Ensure WhatsApp Business API is properly configured and approved                |
+| **Rate Limiting**          | Implement appropriate delays between API calls to avoid hitting rate limits     |
+| **Insufficient Credits**   | Check your Twilio account balance and add funds if necessary                    |
+
+### Debugging
+
+- Check Twilio API logs for detailed error messages
+- Verify phone number formats and validity
+- Test credentials using Twilio's API explorer
+- Monitor account usage and billing
+- Validate media URLs for WhatsApp messages
+- Check network connectivity and firewall settings
+- Review Twilio API documentation for specific error codes
+- Ensure proper permissions for the phone numbers being used

@@ -15,7 +15,7 @@ export const NodeTypeInfo: React.FC<NodeTypeInfoProps> = ({
 }) => {
   return (
     <div className="my-6">
-      <h3 className="text-lg font-semibold mb-4">Node Type Information</h3>
+      <h3 className="text-lg text-black dark:text-white font-semibold mb-4">Node Type Information</h3>
       <div className="overflow-x-auto">
         <table className="w-full border-collapse border border-gray-300">
           <thead>

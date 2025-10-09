@@ -1,0 +1,412 @@
+---
+title: Airtable Node
+description: The Airtable Node automates data synchronization and manipulation with Airtable bases, enabling both trigger-based workflows and action-based operations for comprehensive Airtable integration.
+type: Apps
+order: 10
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Airtable Node
+
+<NodeOverview slug="airtable-node" type="apps" />
+
+## Overview
+
+The Airtable Node is a comprehensive integration component that automates data synchronization and manipulation with Airtable bases. This node enables both trigger-based workflows that respond to Airtable automation events and action-based operations for creating, updating, and managing Airtable records, tables, and bases.
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={true}
+  action={true}
+  description="This node supports both Event Trigger and Action modes for comprehensive Airtable integration."
+/>
+
+This node supports both **Event Trigger** and **Action** modes, providing flexible integration capabilities for Airtable workflows.
+
+<Callout type="info">
+  This integration connects to your Airtable account to sync and manipulate data
+  for processing in Lamatic Flow.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Event Trigger Support**: Responds to Airtable automation events via webhook endpoints for real-time data processing.
+2. **Action Operations**: Supports comprehensive Airtable operations including record creation, updates, field management, and base operations.
+3. **Multiple Action Types**: Provides various actions like List Bases, Create Comment, Create Field, Create Multiple Records, Create Record, Create Table, and more.
+4. **Flexible Configuration**: Each action type has specific parameters tailored to its functionality.
+5. **Real-time Processing**: Processes Airtable data in real-time when triggered by automation events.
+6. **Comprehensive Base Management**: Supports operations across multiple Airtable bases and tables.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Automated Workflows**: Enables automated data processing triggered by Airtable events, reducing manual effort.
+2. **Bidirectional Integration**: Supports both reading from and writing to Airtable bases for comprehensive data management.
+3. **Flexible Operations**: Provides multiple action types for diverse Airtable management needs.
+4. **Real-time Processing**: Processes data immediately when Airtable automations trigger the flow.
+5. **Scalable Integration**: Handles operations across multiple bases and tables efficiently.
+6. **Customizable Actions**: Each action type offers specific parameters for precise control over operations.
+
+</details>
+
+## Prerequisites
+
+Before using Airtable Node, ensure the following:
+
+- **Airtable Account**: Access to an Airtable account with appropriate permissions.
+- **API Token**: Valid Airtable API token with necessary permissions for target bases.
+- **Base Access**: Read/write permissions on target Airtable bases and tables.
+- **Webhook Endpoint**: For trigger mode, access to the flow's webhook endpoint URL.
+- **Airtable Automation**: For trigger mode, ability to create and configure Airtable automations.
+
+## Setup
+
+### Step 1: Set Up Airtable Credentials
+
+Please refer to the [Airtable Integration documentation](https://airtable.com/) to complete the setup and obtain the necessary credentials.
+
+### Step 2: Set Up Lamatic Flow
+
+#### For Trigger Node:
+1. **Add Airtable Node**: Drag the Airtable node to your flow as a trigger
+2. **Setup Trigger In Airtable**: Create automation in Airtable that triggers this flow
+    1. In Airtable, go to your base and click "Automations"
+    1. Create a new automation or edit an existing one
+3. **Provide Script**
+    1. Add a "Run a script" action after your trigger
+    1. Paste the script into the script editor
+
+#### For Action Node:
+1. **Add Airtable Node**: Drag the Airtable node to your flow as an action
+2. **Enter Credentials**: Provide your Airtable API token
+3. **Select Action**: Choose the desired action type
+4. **Configure Parameters**: Set up action-specific parameters
+
+## Configuration Reference
+
+### Event Trigger Configuration
+
+
+#### Airtable Automation Setup
+
+1. **In your Airtable Automation**, select a trigger when you would like to trigger this flow
+2. **Define your input** and use this script to send data to the webhook:
+
+```javascript
+const inputconfig = input.config();
+fetch("https://hooks.lamatic.ai/hook/XXXX", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(inputconfig)
+})
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(result => {
+    console.log(result);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+```
+Important Notes:
+1. Customize the `inputconfig` object to match your Airtable fields
+1. Test your automation before enabling it in production
+
+### Action Configuration
+
+Configure the Airtable node by selecting the desired action and providing the necessary parameters.
+
+| **Parameter**   | **Description**                                                | **Required**  | **Example**                    |
+|-----------------|----------------------------------------------------------------|--------------|--------------------------------|
+| **Credentials** | Airtable API token for authentication                          | ✅           | `Airtable Connection`          |
+| **Action**      | Action to perform on Airtable (see available actions below)   | ✅           | `Create Record`                |
+
+#### Available Actions
+
+##### 1. List Bases
+Retrieves all bases accessible to the authenticated user.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **No additional parameters** | | | |
+
+##### 2. Create Comment
+Adds a comment to a specific record.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Record ID** | The ID of the record to comment on | ✅ | `recXXXXXXXXXXXXXX` |
+| **Comment Text** | The text content of the comment | ✅ | `This is a comment` |
+
+##### 3. Create Field
+Creates a new field in a specified table.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Field Name** | Name of the new field | ✅ | `New Field` |
+| **Field Type** | Type of the field (text, number, date, etc.) | ✅ | `singleLineText` |
+
+##### 4. Create Multiple Records
+Creates multiple records in a specified table.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Records** | Array of record objects with field data | ✅ | `[{"Name": "John"}, {"Name": "Jane"}]` |
+
+##### 5. Create Record
+Creates a single record in a specified table.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Fields** | Object containing field data for the record | ✅ | `{"Name": "John Doe", "Email": "john@example.com"}` |
+
+##### 6. Create Table
+Creates a new table in a specified base.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table Name** | Name of the new table | ✅ | `New Table` |
+| **Fields** | Array of field definitions | ✅ | `[{"name": "Name", "type": "singleLineText"}]` |
+
+##### 7. Delete Record
+Deletes a specific record from a table.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Record ID** | The ID of the record to delete | ✅ | `recXXXXXXXXXXXXXX` |
+
+##### 8. Get Record
+Retrieves a specific record from a table.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Record ID** | The ID of the record to retrieve | ✅ | `recXXXXXXXXXXXXXX` |
+
+##### 9. List Records
+Retrieves multiple records from a table with optional filtering.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Filter Formula** | Airtable filter formula (optional) | ❌ | `{Status} = "Active"` |
+| **Max Records** | Maximum number of records to return (optional) | ❌ | `100` |
+
+##### 10. Update Record
+Updates a specific record in a table.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Base ID** | The ID of the Airtable base | ✅ | `appXXXXXXXXXXXXXX` |
+| **Table ID** | The ID of the table | ✅ | `tblXXXXXXXXXXXXXX` |
+| **Record ID** | The ID of the record to update | ✅ | `recXXXXXXXXXXXXXX` |
+| **Fields** | Object containing updated field data | ✅ | `{"Status": "Completed"}` |
+
+## Low-Code Example
+
+### Event Trigger Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: airtableNode
+  nodeName: Airtable
+  values: {}
+  modes: {}
+```
+
+### Action Node Example
+
+```yaml
+nodes:
+  - nodeId: airtableNode_510
+    nodeType: airtableNode
+    nodeName: Airtable
+    values:
+      credentials: ''
+      action: AIRTABLE_LIST_BASES
+      baseId: ''
+      tableIdOrName: ''
+      recordId: ''
+      fields: ''
+      records: ''
+      recordIds: ''
+      name: ''
+      workspaceId: ''
+      tables: ''
+      fieldsConfig: ''
+      fieldType: singleLineText
+      fieldOptions: ''
+      fieldDescription: ''
+      tableDescription: ''
+      baseDescription: ''
+      commentText: ''
+      rowCommentId: ''
+      cellFormat: json
+      returnFieldsByFieldId: false
+      fieldsFilter: ''
+      filterByFormula: ''
+      maxRecords: ''
+      pageSize: 100
+      offset: ''
+      sort: ''
+      view: ''
+      timeZone: utc
+      userLocale: ''
+      recordMetadata: ''
+    modes: {}
+    needs:
+      - triggerNode_1
+```
+
+## Output Schema
+
+### Event Trigger Output
+
+The Airtable trigger node outputs data in the following format when triggered by an Airtable automation:
+
+```json
+{
+  "base_id": "appXXXXXXXXXXXXXX",
+  "table_id": "tblXXXXXXXXXXXXXX",
+  "record_id": "recXXXXXXXXXXXXXX",
+  "event_type": "record_created",
+  "data": {
+    "Name": "John Doe",
+    "Email": "john@example.com",
+    "Status": "Active",
+    "Created": "2024-01-01T00:00:00Z"
+  },
+  "metadata": {
+    "triggered_at": "2024-01-01T12:00:00Z",
+    "automation_id": "automation_123"
+  }
+}
+```
+
+### Action Node Output
+
+Action nodes return data based on the specific action performed:
+
+#### Create Record Output
+```json
+{
+  "id": "recXXXXXXXXXXXXXX",
+  "fields": {
+    "Name": "John Doe",
+    "Email": "john@example.com",
+    "Status": "Active"
+  },
+  "createdTime": "2024-01-01T12:00:00Z"
+}
+```
+
+#### List Records Output
+```json
+{
+  "records": [
+    {
+      "id": "recXXXXXXXXXXXXXX",
+      "fields": {
+        "Name": "John Doe",
+        "Email": "john@example.com"
+      },
+      "createdTime": "2024-01-01T12:00:00Z"
+    }
+  ],
+  "offset": "itrXXXXXXXXXXXXXX"
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                 | **Solution**                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| **Authentication Failed**   | Verify Airtable API token is valid and has appropriate permissions                 |
+| **Base Not Found**          | Check base ID and ensure the token has access to the specified base                |
+| **Table Not Found**         | Verify table ID exists in the specified base                                       |
+| **Record Not Found**        | Check record ID and ensure it exists in the specified table                        |
+| **Webhook Not Triggered**   | Verify webhook URL is correct and Airtable automation is properly configured       |
+| **Permission Denied**       | Ensure API token has read/write permissions for the target base and table          |
+| **Field Type Mismatch**     | Verify field types match the expected format for the target table                  |
+| **Rate Limit Exceeded**     | Implement appropriate delays between API calls to respect Airtable rate limits     |
+
+### Debugging
+
+- Check Lamatic Flow logs for detailed error messages
+- Verify Airtable API token permissions and validity
+- Test API token using Airtable's API documentation
+- Validate base and table IDs exist and are accessible
+- Confirm webhook URL is reachable from Airtable
+- Monitor Airtable automation logs for trigger issues
+- Test with simple operations before complex workflows
+- Check Airtable API rate limits and implement appropriate delays
+
+### Best Practices
+
+- Use specific field names and types when creating records
+- Implement error handling for API rate limits
+- Test webhook endpoints before deploying automations
+- Use appropriate field types for data consistency
+- Regularly monitor API token permissions
+- Implement retry logic for failed API calls
+- Use filter formulas efficiently for large datasets
+- Keep record payloads within Airtable's size limits
+- Test automations with sample data before production use
+
+## Example Use Cases
+
+### Data Synchronization Workflows
+
+- **CRM Integration**: Sync customer data between Airtable and other systems
+- **Project Management**: Automate task creation and updates based on external events
+- **Inventory Management**: Update product information and stock levels
+- **Lead Management**: Process and route leads from various sources
+
+### Automation Workflows
+
+- **Form Submissions**: Process form data and create Airtable records
+- **Email Integration**: Create records from incoming emails
+- **Calendar Integration**: Sync events and appointments
+- **Social Media Monitoring**: Track mentions and create engagement records
+
+### Data Processing Workflows
+
+- **Data Validation**: Validate and clean incoming data before storage
+- **Data Transformation**: Transform data formats for different systems
+- **Reporting**: Generate reports from Airtable data
+- **Backup and Archival**: Automate data backup and archival processes
+
+## Additional Resources
+
+- [Airtable API Documentation](https://airtable.com/developers/web/api/introduction)
+- [Airtable Automation Guide](https://support.airtable.com/docs/automation-introduction)
+- [Airtable Field Types Reference](https://airtable.com/developers/web/api/field-model)

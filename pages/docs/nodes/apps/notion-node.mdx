@@ -1,0 +1,315 @@
+---
+title: Notion Node
+description: The Notion Node automates content management and page operations with Notion workspaces, enabling both trigger-based workflows and action-based operations for comprehensive Notion integration.
+type: Apps
+order: 11
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Notion Node
+
+<NodeOverview slug="notion-node" type="apps" />
+
+## Overview
+
+The Notion Node is a comprehensive integration component that automates content management and page operations with Notion workspaces. This node enables both trigger-based workflows that respond to Notion events and action-based operations for creating, updating, and managing Notion pages, comments, and content.
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={true}
+  action={true}
+  description="This node supports both Event Trigger and Action modes for comprehensive Notion integration."
+/>
+
+This node supports both **Event Trigger** and **Action** modes, providing flexible integration capabilities for Notion workflows.
+
+<Callout type="info">
+  This integration connects to your Notion workspace to sync and manipulate content
+  for processing in Lamatic Flow.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Event Trigger Support**: Responds to Notion workspace events via webhook endpoints for real-time content processing.
+2. **Action Operations**: Supports comprehensive Notion operations including page creation, updates, content management, and comment operations.
+3. **Multiple Action Types**: Provides various actions like Add Content to Page, Archive Page, New Comment, New Page, Page Added to Page, and Page Updated.
+4. **Flexible Configuration**: Each action type has specific parameters tailored to its functionality.
+5. **Real-time Processing**: Processes Notion content in real-time when triggered by workspace events.
+6. **Comprehensive Page Management**: Supports operations across multiple Notion pages and databases.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Automated Workflows**: Enables automated content processing triggered by Notion events, reducing manual effort.
+2. **Bidirectional Integration**: Supports both reading from and writing to Notion workspaces for comprehensive content management.
+3. **Flexible Operations**: Provides multiple action types for diverse Notion management needs.
+4. **Real-time Processing**: Processes content immediately when Notion events trigger the flow.
+5. **Scalable Integration**: Handles operations across multiple pages and databases efficiently.
+6. **Customizable Actions**: Each action type offers specific parameters for precise control over operations.
+
+</details>
+
+## Prerequisites
+
+Before using Notion Node, ensure the following:
+
+- **Notion Account**: Access to a Notion account with appropriate permissions.
+- **Page Access**: Read/write permissions on target Notion pages and databases.
+
+## Setup
+
+### Step 1: Set Up Notion Credentials
+
+Please refer to the [Notion Integration documentation](https://developers.notion.com/) to complete the setup and obtain the necessary credentials.
+
+### Step 2: Set Up Lamatic Flow
+
+#### For Trigger Node:
+1. **Add Notion Node**: Drag the Notion node to your flow as a trigger
+2. **Setup Notion Credentials**: Setup your Notion Credential
+
+#### For Action Node:
+1. **Add Notion Node**: Drag the Notion node to your flow as an action
+2. **Setup Notion Credentials**: Setup your Notion Credential
+3. **Select Action**: Choose the desired action type
+4. **Configure Parameters**: Set up action-specific parameters
+
+## Configuration Reference
+
+### Event Trigger Configuration
+
+| **Parameter**   | **Description**                                                | **Required**  | **Example**                    |
+|-----------------|----------------------------------------------------------------|--------------|--------------------------------|
+| **Credentials** | Notion integration token for authentication                    | ✅           | `Notion Connection`            |
+| **Action**      | Action to perform on Notion (see available actions below)     | ✅           | `New Page`                     |
+
+<br/>
+1. **Setup Notion Credentials**: Setup your Notion Credential
+2. **Select Event Types**: Choose from available event types:
+   - All Page Events
+   - New Comment
+   - New Page
+   - Page Added to Page
+   - Page Updated
+
+### Action Configuration
+
+Configure the Notion node by selecting the desired action and providing the necessary parameters.
+
+| **Parameter**   | **Description**                                                | **Required**  | **Example**                    |
+|-----------------|----------------------------------------------------------------|--------------|--------------------------------|
+| **Credentials** | Notion integration token for authentication                    | ✅           | `Notion Connection`            |
+| **Action**      | Action to perform on Notion (see available actions below)     | ✅           | `New Page`                     |
+
+#### Available Actions
+
+##### 1. Add Content to Page
+Adds content to an existing Notion page.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Page ID** | The ID of the Notion page | ✅ | `page_id_here` |
+| **Content** | The content to add to the page | ✅ | `{"type": "paragraph", "text": "New content"}` |
+
+##### 2. Archive Page
+Archives a specific Notion page.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Page ID** | The ID of the Notion page to archive | ✅ | `page_id_here` |
+
+##### 3. New Comment
+Creates a new comment on a Notion page.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Page ID** | The ID of the Notion page | ✅ | `page_id_here` |
+| **Comment Text** | The text content of the comment | ✅ | `This is a comment` |
+
+##### 4. New Page
+Creates a new page in a Notion workspace.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Parent Page ID** | The ID of the parent page or database | ✅ | `page_id_here` |
+| **Page Title** | Title of the new page | ✅ | `New Page Title` |
+| **Page Content** | Initial content for the page (optional) | ❌ | `{"type": "paragraph", "text": "Page content"}` |
+
+##### 5. Page Added to Page
+Handles when a page is added to another page.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Parent Page ID** | The ID of the parent page | ✅ | `page_id_here` |
+| **Child Page ID** | The ID of the child page being added | ✅ | `page_id_here` |
+
+##### 6. Page Updated
+Updates an existing Notion page.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Page ID** | The ID of the Notion page to update | ✅ | `page_id_here` |
+| **Properties** | Object containing updated page properties | ✅ | `{"title": "Updated Title"}` |
+| **Content** | Updated content for the page (optional) | ❌ | `{"type": "paragraph", "text": "Updated content"}` |
+
+## Low-Code Example
+
+### Event Trigger Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: notionNode
+  nodeName: Notion
+  values:
+    credentials: ''
+    action: ''
+    database_id: ''
+    page_id: ''
+  modes: {}
+```
+
+### Action Node Example
+
+```yaml
+- nodeId: notionNode_983
+    nodeType: notionNode
+    nodeName: Notion
+    values:
+      credentials: ''
+      action: ''
+      pageId: ''
+      databaseId: ''
+      blockId: ''
+      content: ''
+      title: ''
+      parent: ''
+      parentDatabase: ''
+      properties: ''
+      query: ''
+      commentText: ''
+      commentId: ''
+      userId: ''
+      rowId: ''
+      propertyId: ''
+      getAll: false
+      getDatabases: false
+      getPages: false
+      queryFetchData: ''
+    modes: {}
+    needs:
+        - triggerNode
+```
+
+## Output Schema
+
+### Event Trigger Output
+
+The Notion trigger node outputs data in the following format when triggered by a Notion event:
+
+```json
+{
+  "page_id": "page_id_here",
+  "event_type": "page_updated",
+  "data": {
+    "title": "Page Title",
+    "content": "Page content",
+    "properties": {
+      "Status": "Active"
+    }
+  },
+  "metadata": {
+    "triggered_at": "2024-01-01T12:00:00Z",
+    "integration_id": "integration_123"
+  }
+}
+```
+
+### Action Node Output
+
+Action nodes return data based on the specific action performed:
+
+#### New Page Output
+```json
+{
+  "id": "page_id_here",
+  "title": "New Page Title",
+  "created_time": "2024-01-01T12:00:00Z",
+  "last_edited_time": "2024-01-01T12:00:00Z"
+}
+```
+
+#### Add Content to Page Output
+```json
+{
+  "page_id": "page_id_here",
+  "content_added": true,
+  "updated_time": "2024-01-01T12:00:00Z"
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                 | **Solution**                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------- |
+| **Authentication Failed**   | Verify Notion integration token is valid and has appropriate permissions          |
+| **Page Not Found**          | Check page ID and ensure the token has access to the specified page                |
+| **Permission Denied**       | Ensure integration token has read/write permissions for the target workspace       |
+| **Webhook Not Triggered**   | Verify webhook URL is correct and Notion integration is properly configured        |
+| **Content Format Error**    | Verify content format matches Notion's block structure requirements                |
+| **Rate Limit Exceeded**     | Implement appropriate delays between API calls to respect Notion rate limits       |
+
+### Debugging
+
+- Check Lamatic Flow logs for detailed error messages
+- Verify Notion integration token permissions and validity
+- Test integration token using Notion's API documentation
+- Validate page IDs exist and are accessible
+- Confirm webhook URL is reachable from Notion
+- Monitor Notion integration logs for trigger issues
+- Test with simple operations before complex workflows
+- Check Notion API rate limits and implement appropriate delays
+
+### Best Practices
+
+- Use specific page IDs when referencing Notion pages
+- Implement error handling for API rate limits
+- Test webhook endpoints before deploying integrations
+- Use appropriate content formats for Notion blocks
+- Regularly monitor integration token permissions
+- Implement retry logic for failed API calls
+- Use efficient content structures for large pages
+- Keep content payloads within Notion's size limits
+- Test integrations with sample data before production use
+
+## Example Use Cases
+
+### Content Management Workflows
+
+- **Documentation Automation**: Automatically create and update documentation pages
+- **Project Management**: Sync project updates and task management
+- **Knowledge Base**: Maintain and organize knowledge base content
+- **Meeting Notes**: Automate meeting note creation and organization
+
+### Automation Workflows
+
+- **Form Submissions**: Process form data and create Notion pages
+- **Email Integration**: Create pages from incoming emails
+- **Calendar Integration**: Sync events and create meeting pages
+- **Social Media Monitoring**: Track mentions and create engagement pages
+
+### Data Processing Workflows
+
+- **Content Validation**: Validate and clean incoming content before storage
+- **Content Transformation**: Transform content formats for different systems
+- **Reporting**: Generate reports from Notion data
+- **Backup and Archival**: Automate content backup and archival processes

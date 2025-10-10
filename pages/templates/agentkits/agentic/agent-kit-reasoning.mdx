@@ -1,0 +1,155 @@
+---
+title: Agent Kit Reasoning 
+description: Use multi-agent system to process and extract information based on user input. This uses the Agentic Reasoning API
+type: agentic
+order: 1
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Reasoning",
+  description: "A collaborative multi-agent setup that processes user input, extracts key information, and delivers context-aware results. Using the Agentic Reasoning API (Google AI Think Mode clone), agents work together through structured reasoning to provide accurate, explainable, and adaptive outputs.",
+  type: "agentic",
+  icon: "🧠",
+  images: [
+    "/images/agentkits/reasoning/cover.png",
+    "/images/agentkits/reasoning/img1.png",
+    "/images/agentkits/reasoning/img2.png",
+  ],
+  imagesAlt: "Agent Kit Reasoning Screenshots",
+  deployUrl: "https://github.com/Lamatic/agentkit-reasoning",
+  documentationUrl: "https://docs.lamatic.ai/agent-kits/reasoning",
+  githubUrl: "https://github.com/Lamatic/agentkit-reasoning",
+  liveDemoUrl: "https://agent-kit-reasoning.vercel.app",
+  features: [
+    {
+      title: "Natural Language Search",
+      description: "Search across multiple sources using plain English queries",
+    },
+    {
+      title: "Grounded Answers",
+      description: "Get reliable answers with citations for trust and verification",
+    },
+    {
+      title: "Clean UI Experience",
+      description: 'Instant "type → answer → cite" experience',
+    },
+    {
+      title: "Enterprise Connectors",
+      description: "Connect to Drive, SharePoint, S3, Sheets, OneDrive, Postgres via FireCrawl",
+    },
+    {
+      title: "Zero-Copy Setup",
+      description: "Index sources, drop in widget, and ship",
+    },
+    {
+      title: "Team Collaboration",
+      description: "Enable teams to work together with shared knowledge bases",
+    },
+  ],
+  integrationSteps: [
+    {
+      number: 1,
+      title: "Initialize",
+      description: "Set up your AgentKit instance with API credentials",
+    },
+    {
+      number: 2,
+      title: "Configure",
+      description: "Customize behavior and integration points",
+    },
+    {
+      number: 3,
+      title: "Deploy",
+      description: "Launch to production with monitoring enabled",
+    },
+  ],
+  quickStartSteps: [
+    {
+      number: 1,
+      title: 'Click "Deploy AgentKit" to begin',
+    },
+    {
+      number: 2,
+      title: "Configure integration settings",
+    },
+    {
+      number: 3,
+      title: "Test in sandbox environment",
+    },
+    {
+      number: 4,
+      title: "Deploy to production",
+    },
+  ],
+  estimatedTime: "~15 minutes",
+  useCases: [
+    {
+      title: "Support",
+      description: "Deflect tickets with cited answers from policies and runbooks",
+    },
+    {
+      title: "Ops & IT",
+      description: 'Resolve "how-to" and config questions in seconds',
+    },
+    {
+      title: "Sales/CS",
+      description: "Compare product features & pricing with cited collateral",
+    },
+    {
+      title: "Engineering",
+      description: "Surface RFCs, design docs, playbooks, and runbooks instantly",
+    },
+    {
+      title: "HR/People",
+      description: "Answer benefits and policy questions with source links",
+    },
+    {
+      title: "Research",
+      description: "Deep research capabilities with comprehensive source tracking",
+    },
+  ],
+  resources: [
+    {
+      title: "Documentation",
+      url: "https://docs.lamatic.ai/agent-kits/reasoning",
+      icon: "documentation",
+    },
+    {
+      title: "Community Forum",
+      url: "https://community.lamatic.ai",
+      icon: "community",
+    },
+    {
+      title: "Contact Support",
+      url: "https://support.lamatic.ai",
+      icon: "support",
+    },
+    {
+      title: "API Reference",
+      url: "https://api.lamatic.ai/docs",
+      icon: "api",
+    },
+  ],
+  faq: [
+    {
+      question: "What data sources are supported?",
+      answer: "Google Drive, SharePoint, OneDrive, Sheets, S3, Postgres, and websites.",
+    },
+    {
+      question: "How does it ensure accuracy?",
+      answer: "Uses hybrid semantic + keyword retrieval with citations for verification.",
+    },
+    {
+      question: "Can I customize the UI?",
+      answer: "Yes, themes, logos, fonts, and widget placement are fully customizable.",
+    },
+    {
+      question: "What about security?",
+      answer: "Includes redaction rules, stop-lists, allow-lists, and domain scoping.",
+    },
+  ],
+};
+
+<AgentKitTemplate {...agentKitData} />

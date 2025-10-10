@@ -218,14 +218,20 @@ export function AgentKitTemplate({
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
               Integration Steps
             </h2>
-            <div className="space-y-2">
+            <div className="space-y-4">
               {integrationSteps.map((step, index) => (
-                <div key={index} className="flex items-start gap-3 p-3 border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg">
-                  <div>
-                    <h3 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                    {step.number}. {step.title}:
+                <div key={index} className="flex items-center gap-2 p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50/30 dark:bg-gray-800/30">
+                  {/* Step Number Badge */}
+                  <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-red-500 to-red-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">
+                    {step.number}
+                  </div>
+                  
+                  {/* Step Content */}
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-bold text-gray-900 dark:text-gray-100">
+                      {step.title}
                     </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-md">
+                    <p className="text-gray-600 dark:text-gray-300 text-sm">
                       {step.description}
                     </p>
                   </div>

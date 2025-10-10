@@ -213,39 +213,14 @@ export function AgentKitTemplate({
             </div>
           </section>
 
-          {/* Integration Steps Section */}
-          <section>
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6">
-              Integration Steps
-            </h2>
-            <div className="space-y-4">
-              {integrationSteps.map((step, index) => (
-                <div key={index} className="flex items-center gap-2 p-4 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50/30 dark:bg-gray-800/30">
-                  {/* Step Number Badge */}
-                  <div className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-red-500 to-red-500 text-white rounded-lg flex items-center justify-center font-bold text-lg">
-                    {step.number}
-                  </div>
-                  
-                  {/* Step Content */}
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-gray-900 dark:text-gray-100">
-                      {step.title}
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+       
         </div>
 
         {/* Right Column - Sidebar */}
         <div className="space-y-8">
           {/* Quick Start Section */}
           <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-6">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4">
+            <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-4 mt-0">
               Quick Start
             </h3>
             <div className="space-y-3">

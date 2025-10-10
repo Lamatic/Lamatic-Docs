@@ -317,11 +317,14 @@ export default function TemplateGallery() {
                   </Badge>
                 ))}
               </div>
+              {/* Maker 
               {template.maker && (
                 <div className="text-xs text-muted-foreground mb-3">
                   Created by {template.maker.name}
                 </div>
               )}
+                */}
+              {/* Actions 
               <div className="flex gap-2">
                 <Button 
                   variant="outline" 
@@ -356,6 +359,7 @@ export default function TemplateGallery() {
                   </Button>
                 )}
               </div>
+              */}
             </div>
           );
         })}

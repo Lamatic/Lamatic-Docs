@@ -1,0 +1,137 @@
+---
+title: Agent Kit Embedded Chat 
+description: A embedded chat widget that can be used to chat with your customers. You can index PDF or web pages and chat with them.
+type: embed
+order: 1
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Embedded Chat",
+  description: "A embedded chat widget that can be used to chat with your customers. You can index PDF or web pages and chat with them.",
+  type: "embed",
+  icon: "🧠",
+  images: [
+    "/images/agentkits/embedded-chat/cover.png",
+    "/images/agentkits/embedded-chat/img1.png",
+    "/images/agentkits/embedded-chat/img2.png",
+  ],
+  imagesAlt: "Agent Kit Embedded Chat Screenshots",
+  deployUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/embed/chat",
+  documentationUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/embed/chat",
+  githubUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/embed/chat",
+  liveDemoUrl: "https://agent-kit-embedded-chat.vercel.app",
+  features: [
+    {
+      title: "PDF Indexing",
+      description: "Index PDF files and chat with them",
+    },
+    {
+      title: "Web Page Indexing",
+      description: "Index web pages and chat with them",
+    },
+    {
+      title: "RAG Search",
+      description: "Search the indexed data and chat with the results",
+    },
+    {
+      title: "Customizable",
+      description: "Customize the chat widget to your liking",
+    },
+    {
+      title: "Multi-Language Support",
+      description: "Support multiple languages",
+    },
+    {
+      title: "Customizable UI",
+      description: "Customize the UI to your liking",
+    },
+  ],
+
+  quickStartSteps: [
+    {
+      number: 1,
+      title: 'Click "Deploy AgentKit" to begin',
+    },
+    {
+      number: 2,
+      title: "Configure integration settings",
+    },
+    {
+      number: 3,
+      title: "Test in sandbox environment",
+    },
+    {
+      number: 4,
+      title: "Deploy to production",
+    },
+  ],
+  estimatedTime: "~10 minutes",
+  useCases: [
+    {
+      title: "Customer Support",
+      description: "Provide customer support with AI-powered chat",
+    },
+    {
+    title: "Sales",
+      description: "Provide sales support with AI-powered chat",
+    },
+    {
+      title: "Marketing",
+      description: "Pitch your products multiple times with AI-powered chat",
+    },
+    {
+      title: "Education",
+      description: "Educate your students with AI-powered chat",
+    },
+    {
+      title: "Product Support",
+      description: "Provide product support with AI-powered chat",
+    },
+    {
+      title: "Content Creation",
+      description: "Create content with AI-powered chat",
+    },
+  ],
+  resources: [
+    {
+      title: "Documentation",
+      url: "https://github.com/Lamatic/AgentKit/tree/main/templates/embed/chat",
+      icon: "documentation",
+    },
+    {
+      title: "Contact Support",
+      url: "https://lamatic.ai/docs/slack",
+      icon: "support",
+    }
+  ],
+  faq: [
+    {
+      question: "How fast is the AI evaluation?",
+      answer: "The system uses Gemini 2.0 flash lite model for deep analysis, providing consistent and objective evaluations based on the indexed data. All recommendations include detailed explanations.",
+    },
+    {
+      question: "Can I customize the chat widget?",
+      answer: "Yes, the chat widget is fully customizable in lamtic studio with multiple options to customize the appearance and behavior.",
+    },
+    {
+      question: "What file formats are supported?",
+      answer: "The system supports PDF and webpages",
+    },
+    {
+      question: "How is the data stored?",
+      answer: "The data is stored in Lamatic's database and is processed in real-time and displayed to the user. No data is permanently stored without your explicit implementation.",
+    },
+    {
+      question: "Can I integrate this with my website?",
+      answer: "Yes, you can integrate this with your website by using the embed code provided in lamtic studio. You can also customize the chat widget to your liking.",
+    },
+    {
+      question: "What's the cost per chat?",
+      answer: "The cost per chat is $0.0002 per token. You can check the cost in the _meta field in responses for exact token costs.",
+    },
+  ],
+};
+
+<AgentKitTemplate {...agentKitData} />

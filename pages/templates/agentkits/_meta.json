@@ -5,5 +5,11 @@
   },
   "agentic":{
     "title": "Agentic"
+  },
+  "automation" : {
+    "title": "Automation"
+  },
+  "embed": {
+    "title": "Embed"
   }
 }

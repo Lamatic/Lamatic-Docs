@@ -65,7 +65,7 @@ const FeaturesSection = () => {
     <div className="py-2">
       <div className="max-w-7xl mx-auto">
         {/* Features Grid */}
-        <div className="mb-10">
+        {/* <div className="mb-10">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white ">
             Why Choose Lamatic?
           </h2>
@@ -73,7 +73,7 @@ const FeaturesSection = () => {
             Built for developers, designed for scale. Our platform provides everything you need 
             to create, deploy, and manage intelligent AI agents.
           </p>
-        </div>
+        </div> */}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-0">
           {FEATURES.map((feature, index) => {

@@ -1,0 +1,49 @@
+---
+title: "Vibe Coding Tools & LLM Setup"
+description: "A guide to integrating LLM-powered coding tools like GitHub Copilot and Cursor with the Lamatic Docs codebase for enhanced development."
+---
+
+# Vibe Coding Tools Setup Guide
+
+This guide explains how to configure your development environment to work effectively with LLM-powered coding assistants ("Vibe Coding tools") using the project's dedicated context file (`llm.txt`). This helps AI models provide meaningful, context-aware suggestions by focusing on relevant parts of the repository.
+
+## 1. Prerequisites
+
+- Make sure you have your preferred Vibe Coding tool installed (e.g., GitHub Copilot, Cursor).
+- Ensure your local environment meets the Lamatic Docs system requirements: **Node.js 18+** and **Git**.
+
+## 2. The LLM Context File (`llm.txt`)
+
+- Located at the root of the repository, `llm.txt` lists essential source code and documentation directories to help LLM tools understand the project structure.
+- This file improves AI suggestion quality by preventing unnecessary files (like build directories) from overwhelming the model.
+
+## 3. Tool Setup and Integration
+
+- Most modern Vibe Coding tools automatically detect and honor the `llm.txt` file if present at the root.
+- To verify:
+
+  1. Check the tool's documentation for repository context support.
+  2. Ensure your tool is updated to the latest version.
+  3. If needed, manually set the context root to the repository base where `llm.txt` resides.
+
+## 4. Example Usage and Best Practices
+
+| Task               | Bad Prompt                                  | Good Prompt (Context-Aware)                                                                        |
+| ------------------ | -------------------------------------------| -------------------------------------------------------------------------------------------------|
+| **Component Creation** | "Write a new button component."             | "Using the structure of `components/ui/button.tsx`, create a React `Badge` component with `variant='secondary'`."|
+| **Logic Implementation**| "How to pass props to the new section?"    | "Looking at the `HeroSection.tsx` component, how should I pass `title` and `description` as props?" |
+
+## 5. Troubleshooting
+
+| Problem                | Solution                                                                                          |
+| ---------------------- | -------------------------------------------------------------------------------------------------|
+| **Outdated Suggestions**| Clear your local AI cache for the project and keep your IDE extensions updated.                  |
+| **Syntax Errors**       | Run the project’s formatter/linter (`npm run format`) to align your code to project style.       |
+
+---
+
+Feel free to open an issue if you encounter further problems or need assistance with integration.
+
+---
+
+By following this guide and using the `llm.txt` file, you enable powerful, context-aware coding assistance that accelerates development and maintains high code quality.

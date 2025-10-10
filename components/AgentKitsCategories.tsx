@@ -41,7 +41,7 @@ const categories = [
 
 export default function AgentKitsCategories() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 my-8">
       {categories.map((category, index) => (
         <Card
           key={index}

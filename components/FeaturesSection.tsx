@@ -9,10 +9,17 @@ import {
   Brain,
   Workflow,
   MessageSquare,
-  Cpu
+  Cpu,
+  Sparkles
 } from "lucide-react";
 
 const FEATURES = [
+  {
+    icon: Sparkles,
+    title: "Deploy in Minutes",
+    description: "Pre-built agent kits that integrate seamlessly. Go from idea to production in minutes, not months.",
+    color: "from-red-500 to-red-500"
+  },
   {
     icon: Brain,
     title: "Intelligent Agents",
@@ -75,7 +82,7 @@ const FeaturesSection = () => {
           </p>
         </div> */}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-0">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 mb-0">
           {FEATURES.map((feature, index) => {
             const IconComponent = feature.icon;
             return (

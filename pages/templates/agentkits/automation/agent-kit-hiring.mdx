@@ -1,0 +1,137 @@
+---
+title: Agent Kit Hiring 
+description: A hiring automation system that evaluates candidates by analyzing resumes and providing objective scoring for roles and sends emails to the candidates.
+type: automation
+order: 1
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Hiring",
+  description: "A hiring automation system that evaluates candidates by analyzing resumes and providing objective scoring for roles and sends emails to the candidates.",
+  type: "automation",
+  icon: "🧠",
+  images: [
+    "/images/agentkits/hiring/cover.png",
+    "/images/agentkits/hiring/img1.png",
+    "/images/agentkits/hiring/img2.png",
+  ],
+  imagesAlt: "Agent Kit Hiring Screenshots",
+  deployUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/automation/hiring",
+  documentationUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/automation/hiring",
+  githubUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/automation/hiring",
+  liveDemoUrl: "https://agent-kit-hiring.vercel.app",
+  features: [
+    {
+      title: "AI-Powered Resume Analysis",
+      description: "Leverage advanced AI models to analyze resumes and extract key qualifications",
+    },
+    {
+      title: "Job Category Management",
+      description: "Organize positions by department with detailed job descriptions and requirements",
+    },
+    {
+      title: "Real-time Candidate Evaluation",
+      description: "Get instant scoring, strengths, weaknesses, and hiring recommendations",
+    },
+    {
+      title: "Automated Scoring System",
+      description: "Objective 0-10 scoring based on job requirements and candidate qualifications",
+    },
+    {
+      title: "PDF Resume Upload",
+      description: "Seamless resume upload with Vercel Blob storage integration",
+    },
+    {
+      title: "Dark Mode Interface",
+      description: "Modern, professional UI with purple and cyan accent colors",
+    },
+  ],
+
+  quickStartSteps: [
+    {
+      number: 1,
+      title: 'Click "Deploy AgentKit" to begin',
+    },
+    {
+      number: 2,
+      title: "Configure integration settings",
+    },
+    {
+      number: 3,
+      title: "Test in sandbox environment",
+    },
+    {
+      number: 4,
+      title: "Deploy to production",
+    },
+  ],
+  estimatedTime: "~10 minutes",
+  useCases: [
+    {
+      title: "HR Teams",
+      description: "Automate initial candidate screening and reduce time-to-hire by 60%",
+    },
+    {
+      title: "Recruiters",
+      description: "Quickly evaluate multiple candidates with consistent, objective criteria",
+    },
+    {
+      title: "Hiring Managers",
+      description: "Get AI-powered recommendations with detailed strength/weakness analysis",
+    },
+    {
+      title: "Startups",
+      description: "Scale hiring operations without building large HR infrastructure",
+    },
+    {
+      title: "Remote Teams",
+      description: "Standardize candidate evaluation across distributed hiring teams",
+    },
+    {
+      title: "High-Volume Hiring",
+      description: "Process hundreds of applications efficiently during growth phases",
+    },
+  ],
+  resources: [
+    {
+      title: "Documentation",
+      url: "https://github.com/Lamatic/AgentKit/tree/main/templates/automation/hiring",
+      icon: "documentation",
+    },
+    {
+      title: "Contact Support",
+      url: "https://lamatic.ai/docs/slack",
+      icon: "support",
+    }
+  ],
+  faq: [
+    {
+      question: "How accurate is the AI evaluation?",
+      answer: "The system uses OpenAI's o3-mini reasoning model for deep analysis, providing consistent and objective evaluations based on job requirements. All recommendations include detailed explanations.",
+    },
+    {
+      question: "Can I customize job categories and descriptions?",
+      answer: "Yes, job categories and descriptions are fully customizable in lib/jobs-data.ts. You can add unlimited categories and jobs with custom requirements, locations, and types.",
+    },
+    {
+      question: "What resume formats are supported?",
+      answer: "The system supports PDF resumes, which are uploaded to Vercel Blob storage and analyzed by the AI. The resume URL is securely passed to the Lamatic workflow.",
+    },
+    {
+      question: "How is candidate data stored?",
+      answer: "Resume files are stored in Vercel Blob with secure URLs. Analysis results are processed in real-time and displayed to the user. No candidate data is permanently stored without your explicit implementation.",
+    },
+    {
+      question: "Can I integrate this with my ATS?",
+      answer: "Yes, the system is built with Next.js and can be extended to integrate with any ATS via API. The modular architecture makes it easy to add custom integrations.",
+    },
+    {
+      question: "What's the cost per candidate evaluation?",
+      answer: "Costs depend on your Lamatic plan and AI model usage. The o3-mini model typically costs $0.005-0.01 per evaluation. Check the _meta field in responses for exact token costs.",
+    },
+  ],
+};
+
+<AgentKitTemplate {...agentKitData} />

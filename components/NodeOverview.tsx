@@ -153,33 +153,24 @@ export const NodeOverview = ({ slug, type }: NodeOverviewProps) => {
 
   // Fetch headings from API
   useEffect(() => {
-    console.log('useEffect triggered:', { slug, inferredType, isClient });
-    
     if (!slug || !inferredType) {
-      console.log('Missing slug or type');
       setHeadings([]);
       return;
     }
 
     // Only fetch on client side
     if (!isClient) {
-      console.log('Not on client yet');
       return;
     }
 
-    console.log('Starting fetch...');
     const fetchHeadings = async () => {
       setLoading(true);
       setError(null);
       
       try {
-        console.log('Fetching from:', `/api/node-headings?slug=${slug}&type=${inferredType}`);
         const response = await fetch(`/api/node-headings?slug=${slug}&type=${inferredType}`);
         
-        console.log('Response status:', response.status);
-        
         if (!response.ok) {
-          console.log('Response not ok:', response.status, response.statusText);
           if (response.status === 404) {
             setError('Node not found');
           } else {
@@ -190,10 +181,8 @@ export const NodeOverview = ({ slug, type }: NodeOverviewProps) => {
         }
 
         const data = await response.json();
-        console.log('Response data:', data);
         setHeadings(data.headings || []);
       } catch (err) {
-        console.error('Error fetching headings:', err);
         setError('Failed to load node sections');
         setHeadings([]);
       } finally {

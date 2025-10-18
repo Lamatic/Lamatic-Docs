@@ -52,8 +52,7 @@ export const ImageSlider: React.FC<ImageSliderProps> = ({
     return <div>No images provided</div>;
   }
 
-  // Debug: log the images array
-  console.log('ImageSlider images:', images);
+  
 
   return (
     <div className={`relative w-full max-w-4xl mx-auto ${className}`}>

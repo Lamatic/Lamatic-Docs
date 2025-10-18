@@ -167,11 +167,6 @@ const config: DocsThemeConfig = {
       ? "Agent Kits"
       : "";
 
-    if (process.env.VERCEL_URL) {
-      var domain = process.env.VERCEL_URL;
-      console.log(domain);
-    }
-
     const image = frontMatter.ogImage
       ? frontMatter.ogImage
       : `https://lamatic.ai/api/og?title=${encodeURIComponent(

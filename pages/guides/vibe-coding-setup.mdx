@@ -12,9 +12,9 @@ Developers working on **Lamatic.ai Docs** can now supercharge productivity using
 * Node.js **18+** and Git installed
 * Access to the Lamatic.ai Docs repository
 * Any LLM‑based coding assistant installed:
-    * GitHub **Copilot** (extension enabled in VS Code)
-    * **Cursor** IDE (with Lamatic project workspace loaded)
-    * **Continue.dev** (community‑compatible setup)
+    * GitHub **Copilot** (extension enabled in VS Code)
+    * **Cursor** IDE (with Lamatic project workspace loaded)
+    * **Continue.dev** (community‑compatible setup)
 
 ## 2. Understanding `llm.txt`
 
@@ -22,11 +22,11 @@ The **`llm.txt`** file defines the directories and configuration files that AI t
 
 The file includes:
 
-/components/ → Core UI and React elements
-/pages/docs/ → Lamatic documentation and integration guides
-/next.config.mjs → Next.js configuration
-/package.json → Node.js project manifest
-/pyproject.toml → Python project configuration
+* /components/ — Core UI and React elements
+* /pages/docs/ — Lamatic documentation and integration guides
+* /next.config.mjs — Next.js configuration
+* /package.json — Node.js project manifest
+* /pyproject.toml — Python project configuration
 
 By guiding your LLM here, you prevent distractions from build artifacts or external modules.
 
@@ -35,17 +35,18 @@ By guiding your LLM here, you prevent distractions from build artifacts or exter
 ### GitHub Copilot Setup
 
 1.  Ensure the **Copilot extension** is installed in VS Code.
-2.  Enable repository context loading by verifying `github.copilot.chat.codeGeneration.useInstructionFiles = true`.
-3.  Copilot automatically references Lamatic’s structure similar to Cursor’s `.cursorrules`.
-4.  Start typing in `/components/` or `/pages/docs/`, and watch Copilot adapt to Lamatic’s context instantly.
+2.  **Context Note:** Copilot does **not** automatically read the `llm.txt` file. To ensure Copilot uses the project context:
+    * **Use `Attach Context`:** In the Copilot Chat pane, click the paperclip icon and manually attach the necessary component folders (e.g., `/components/`, `/pages/docs/`).
+    * **Use Tags:** Explicitly reference files in your prompts (e.g., `#file:components/Header.tsx`).
+3.  For specialized instruction, ensure `github.copilot.chat.codeGeneration.useInstructionFiles` is enabled to read any `.instructions.md` files you may create in the `.github` folder.
 
 ### Cursor Integration
 
 1.  Open the Lamatic Docs root folder in **Cursor IDE**.
-2.  Cursor automatically respects the `llm.txt` file as its project context.
+2.  Cursor **automatically respects** the `llm.txt` file as its project context.
 3.  Use the in‑line prompt (`Cmd/Ctrl + K`) to generate or refactor code.
-    Example prompt:
-    > “Based on Lamatic’s `DocsNav` component, generate a collapsible section with AI‑powered section titles.”
+    Example prompt:
+    > “Based on Lamatic’s `DocsNav` component, generate a collapsible section with AI‑powered section titles.”
 
 Cursor lets you connect custom AI APIs too—ideal for contributors using their own OpenAI or Anthropic credentials for Lamatic.ai development.
 
@@ -71,7 +72,7 @@ Cursor lets you connect custom AI APIs too—ideal for contributors using their 
 
 ### Why This Matters
 
-Lamatic.ai thrives on collaborative, intelligent documentation. By configuring `llm.txt` correctly and aligning Vibe Coding tools to it, your LLM assistant effectively “understands” Lamatic’s structure—making your prompts smarter, faster, and fully contextual.
+Lamatic.ai thrives on collaborative, intelligent documentation. By configuring context correctly and aligning Vibe Coding tools, your LLM assistant effectively “understands” Lamatic’s structure—making your prompts smarter, faster, and fully contextual.
 
 These improvements allow new contributors to **get productive immediately**, reducing setup friction and ensuring Lamatic.ai remains a pioneer in developer‑friendly AI documentation integration.
 

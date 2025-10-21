@@ -6,6 +6,9 @@
   "agentic":{
     "title": "Agentic"
   },
+  "assistant":{
+    "title": "Assistant"
+  },
   "automation" : {
     "title": "Automation"
   },

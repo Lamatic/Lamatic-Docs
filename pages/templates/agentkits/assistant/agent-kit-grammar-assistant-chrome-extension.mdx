@@ -1,0 +1,136 @@
+---
+title: Agent Kit Grammar Assistant Chrome Extension
+description: An AI-powered Chrome extension that helps you check and improve your grammar instantly. Built with Lamatic.ai, it allows you to select any text on any webpage and get real-time grammar corrections and suggestions through an elegant side panel interface.
+type: assistant
+order: 1
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Grammar Assistant Chrome Extension",
+  description: "An AI-powered Chrome extension that helps you check and improve your grammar instantly. Built with Lamatic.ai, it allows you to select any text on any webpage and get real-time grammar corrections and suggestions through an elegant side panel interface.",
+  type: "assistant",
+  icon: "✍️",
+  images: [
+    "/images/agentkits/chrome-extension/cover.png",
+    "/images/agentkits/chrome-extension/img1.png"
+  ],
+  imagesAlt: "Agent Kit Grammar Assistant Chrome Extension Screenshots",
+  deployUrl: "",
+  documentationUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/assistant/grammar-extension",
+  githubUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/assistant/grammar-extension",
+  liveDemoUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/assistant/grammar-extension",
+  features: [
+    {
+      title: "Real-time Grammar Check",
+      description: "Get instant grammar corrections and suggestions for any selected text",
+    },
+    {
+      title: "Universal Text Selection",
+      description: "Select text on any webpage and get grammar assistance",
+    },
+    {
+      title: "Elegant Side Panel",
+      description: "Beautiful side panel interface that doesn't interfere with your browsing",
+    },
+    {
+      title: "AI-Powered Analysis",
+      description: "Advanced AI analysis using Lamatic.ai for accurate grammar suggestions",
+    },
+    {
+      title: "Context-Aware Corrections",
+      description: "Understands context to provide more relevant grammar suggestions",
+    },
+    {
+      title: "Multi-Language Support",
+      description: "Support for multiple languages and writing styles",
+    },
+  ],
+
+  quickStartSteps: [
+    {
+      number: 1,
+      title: 'Click "Deploy AgentKit" to begin',
+    },
+    {
+      number: 2,
+      title: "Configure Chrome extension settings",
+    },
+    {
+      number: 3,
+      title: "Install the extension in Chrome",
+    },
+    {
+      number: 4,
+      title: "Start checking grammar on any webpage",
+    },
+  ],
+  estimatedTime: "~5 minutes",
+  useCases: [
+    {
+      title: "Content Writing",
+      description: "Improve grammar while writing blog posts, articles, and content",
+    },
+    {
+      title: "Email Communication",
+      description: "Ensure professional and error-free email communications",
+    },
+    {
+      title: "Social Media",
+      description: "Polish your social media posts and comments",
+    },
+    {
+      title: "Academic Writing",
+      description: "Enhance essays, research papers, and academic documents",
+    },
+    {
+      title: "Professional Documents",
+      description: "Perfect business proposals, reports, and presentations",
+    },
+    {
+      title: "Language Learning",
+      description: "Learn proper grammar through real-time corrections",
+    },
+  ],
+  resources: [
+    {
+      title: "Documentation",
+      url: "https://github.com/Lamatic/AgentKit/tree/main/templates/assistant/grammar-assistant-chrome-extension",
+      icon: "documentation",
+    },
+    {
+      title: "Contact Support",
+      url: "https://lamatic.ai/docs/slack",
+      icon: "support",
+    }
+  ],
+  faq: [
+    {
+      question: "How accurate is the grammar checking?",
+      answer: "The extension uses advanced AI models through Lamatic.ai to provide highly accurate grammar suggestions and corrections, understanding context and nuance in your writing.",
+    },
+    {
+      question: "Does it work on all websites?",
+      answer: "Yes, the extension works on any webpage where you can select text, including Gmail, social media, blogs, and any other website.",
+    },
+    {
+      question: "Is my text data secure?",
+      answer: "Yes, your text is processed securely through Lamatic.ai's infrastructure. No data is permanently stored without your explicit consent.",
+    },
+    {
+      question: "Can I customize the grammar checking rules?",
+      answer: "Yes, you can customize the grammar checking preferences and rules through the extension settings to match your writing style and requirements.",
+    },
+    {
+      question: "Does it support multiple languages?",
+      answer: "Yes, the extension supports multiple languages and can provide grammar suggestions in various languages based on your content.",
+    },
+    {
+      question: "What's the cost per grammar check?",
+      answer: "The cost is $0.0002 per token. You can check the exact token costs in the response metadata for each grammar check.",
+    },
+  ],
+};
+
+<AgentKitTemplate {...agentKitData} />

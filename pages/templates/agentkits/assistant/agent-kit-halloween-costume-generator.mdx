@@ -1,0 +1,129 @@
+---
+title: Agent Kit Halloween Costume Generator
+description: Transform your photos into spooky Halloween costumes using AI-powered multi-agent workflow with image generation capabilities
+type: assistant
+order: 1
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Halloween Costume Generator",
+  description: "An AI-powered Halloween costume generator that transforms your photos into spooky Halloween costumes through an intuitive Next.js interface. Using multi-agent workflow, it analyzes your photos and generates creative costume suggestions with AI-generated visual representations.",
+  type: "assistant",
+  icon: "🎃",
+  images: [
+    "/images/agentkits/halloween/cover.png",
+    "/images/agentkits/halloween/img1.png",
+    "/images/agentkits/halloween/img2.png",
+  ],
+  imagesAlt: "Agent Kit Halloween Costume Generator Screenshots",
+  deployUrl: "https://agent-kit-halloween-costume-generator.vercel.app/",
+  documentationUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/special/halloween-costume-generator",
+  githubUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/special/halloween-costume-generator",
+  liveDemoUrl: "https://agent-kit-halloween-costume-generator.vercel.app/",
+  features: [
+    {
+      title: "Photo Analysis",
+      description: "AI analyzes your uploaded photos to understand facial features, body type, and style preferences",
+    },
+    {
+      title: "Costume Suggestions",
+      description: "Generate personalized Halloween costume ideas based on your photo analysis",
+    },
+    {
+      title: "AI Image Generation",
+      description: "Create visual representations of suggested costumes using advanced image generation",
+    },
+    {
+      title: "Multi-Agent Workflow",
+      description: "Collaborative AI agents work together to analyze, suggest, and generate costume ideas",
+    },
+    {
+      title: "Interactive Interface",
+      description: "Intuitive Next.js interface for easy photo upload and costume exploration",
+    },
+    {
+      title: "Creative Variations",
+      description: "Get multiple costume variations and styles for the perfect Halloween look",
+    },
+  ],
+
+  quickStartSteps: [
+    {
+      number: 1,
+      title: 'Click "Deploy AgentKit" to begin',
+    },
+    {
+      number: 2,
+      title: "Upload your photo for analysis",
+    },
+    {
+      number: 3,
+      title: "Let AI analyze and suggest costumes",
+    },
+    {
+      number: 4,
+      title: "Generate and download costume images",
+    },
+  ],
+  estimatedTime: "~10 minutes",
+  useCases: [
+    {
+      title: "Halloween Planning",
+      description: "Find the perfect Halloween costume based on your appearance and preferences",
+    },
+    {
+      title: "Party Preparation",
+      description: "Get creative costume ideas for Halloween parties and events",
+    },
+    {
+      title: "Family Costumes",
+      description: "Generate matching or themed costume ideas for families and groups",
+    },
+    {
+      title: "Creative Inspiration",
+      description: "Explore unique and creative Halloween costume concepts",
+    },
+    {
+      title: "Social Media",
+      description: "Create shareable Halloween costume content for social platforms",
+    },
+    {
+      title: "Event Planning",
+      description: "Plan costumes for Halloween events, contests, and celebrations",
+    },
+  ],
+  resources: [
+    {
+      title: "Documentation",
+      url: "https://github.com/Lamatic/AgentKit/tree/main/templates/special/halloween-costume-generator",
+      icon: "documentation",
+    },
+    {
+      title: "Contact Support",
+      url: "https://lamatic.ai/docs/slack",
+      icon: "support",
+    }
+  ],
+  faq: [
+    {
+      question: "What types of photos work best?",
+      answer: "Clear, well-lit photos with your face visible work best for accurate costume suggestions.",
+    },
+    {
+      question: "Can I customize the costume suggestions?",
+      answer: "Yes, you can provide additional preferences and the AI will adjust suggestions accordingly.",
+    },
+    {
+      question: "How accurate are the generated images?",
+      answer: "The AI generates high-quality costume representations, though results may vary based on input quality.",
+    },
+    {
+      question: "Is my photo data secure?",
+      answer: "Yes, photos are processed securely and not stored permanently on our servers.",
+    },
+  ],
+};
+
+<AgentKitTemplate {...agentKitData} />

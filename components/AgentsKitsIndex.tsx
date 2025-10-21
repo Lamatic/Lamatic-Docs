@@ -78,7 +78,7 @@ const AgentKitCard = ({ page }: { page: Page & { frontMatter?: any } }) => {
     "Untitled";
 
   return (
-    <Card className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-black">
+    <Card className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-black ">
       <CardHeader className="pb-0 pt-0">
         <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
           {title}
@@ -160,7 +160,7 @@ const AgentsKitsIndex = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-3">
               {categoryPages.map((page) => (
                 <AgentKitCard key={page.route} page={page} />
               ))}

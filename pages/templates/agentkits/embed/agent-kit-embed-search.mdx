@@ -1,0 +1,131 @@
+---
+title: Agent Kit Embedded Search
+description: An AI-powered document/website search system built with Lamatic.ai. It uses intelligent workflows to index PDFs and webpages, then provides an interactive search widget where users can search across their data in seconds.
+type: embed
+order: 2
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Embedded Search",
+  description: "An AI-powered document/website search system built with Lamatic.ai. It uses intelligent workflows to index PDFs and webpages, then provides an interactive search widget where users can search across their data in seconds.",
+  type: "embed",
+  icon: "🔍",
+  images: [
+    "/images/agentkits/embed-search/cover.png",
+    "/images/agentkits/embed-search/img1.png",
+    "/images/agentkits/embed-search/img2.png",
+  ],
+  imagesAlt: "Agent Kit Embedded Search Screenshots",
+  deployUrl: "https://agent-kit-embedded-search.vercel.app/",
+  githubUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/embed/search",
+  liveDemoUrl: "https://agent-kit-embedded-search.vercel.app/",
+  features: [
+    {
+      title: "PDF Indexing",
+      description: "Index PDF files and search through them instantly",
+    },
+    {
+      title: "Web Page Indexing",
+      description: "Index web pages and search through them instantly",
+    },
+    {
+      title: "Intelligent Search",
+      description: "AI-powered search that understands context and meaning",
+    },
+    {
+      title: "Real-time Results",
+      description: "Get search results in seconds with intelligent ranking",
+    },
+    {
+      title: "Multi-Language Support",
+      description: "Search across content in multiple languages",
+    },
+    {
+      title: "Customizable Widget",
+      description: "Customize the search widget to match your brand",
+    },
+  ],
+
+  quickStartSteps: [
+    {
+      number: 1,
+      title: 'Click "Deploy AgentKit" to begin',
+    },
+    {
+      number: 2,
+      title: "Configure your data sources (PDFs, webpages)",
+    },
+    {
+      number: 3,
+      title: "Test search functionality in sandbox",
+    },
+    {
+      number: 4,
+      title: "Embed search widget on your website",
+    },
+  ],
+  estimatedTime: "~15 minutes",
+  useCases: [
+    {
+      title: "Document Search",
+      description: "Search through company documents, manuals, and PDFs",
+    },
+    {
+      title: "Knowledge Base",
+      description: "Create searchable knowledge bases for your organization",
+    },
+    {
+      title: "Website Search",
+      description: "Provide intelligent search for your website content",
+    },
+    {
+      title: "Research Assistant",
+      description: "Help researchers find relevant information quickly",
+    },
+    {
+      title: "Customer Support",
+      description: "Enable customers to find answers through intelligent search",
+    },
+    {
+      title: "Content Discovery",
+      description: "Help users discover relevant content on your platform",
+    },
+  ],
+  resources: [
+    {
+      title: "Contact Support",
+      url: "https://lamatic.ai/docs/slack",
+      icon: "support",
+    }
+  ],
+  faq: [
+    {
+      question: "How fast is the search?",
+      answer: "The system provides search results in seconds using intelligent indexing and AI-powered search algorithms. Results are ranked by relevance and context.",
+    },
+    {
+      question: "Can I customize the search widget?",
+      answer: "Yes, the search widget is fully customizable in Lamatic Studio with multiple options to customize the appearance, behavior, and search parameters.",
+    },
+    {
+      question: "What file formats are supported?",
+      answer: "The system supports PDF files and webpages. You can also index text documents and other content types.",
+    },
+    {
+      question: "How is the data indexed?",
+      answer: "The data is processed using intelligent workflows that extract and index content for fast retrieval. The indexing process is optimized for search performance and accuracy.",
+    },
+    {
+      question: "Can I integrate this with my website?",
+      answer: "Yes, you can integrate the search widget with your website using the embed code provided in Lamatic Studio. The widget is responsive and works across all devices.",
+    },
+    {
+      question: "What's the cost per search?",
+      answer: "The cost per search is $0.0001 per query. You can check the exact costs in the response metadata for each search operation.",
+    },
+  ],
+};
+
+<AgentKitTemplate {...agentKitData} />

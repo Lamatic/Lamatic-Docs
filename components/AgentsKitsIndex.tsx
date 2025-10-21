@@ -34,7 +34,7 @@ const SECTION_DESCRIPTIONS: Record<string, string> = {
     "Lightweight agents designed for integration into existing applications, websites, and digital products.",
 };
 
-const SECTION_ORDER = ["Agentic", "Assistant", "Automation", "Embedded"];
+const SECTION_ORDER = ["Agentic", "Assistant", "Automation", "Embed"];
 
 // Icon mapping for different agent kit types
 const ICON_MAPPING: Record<string, any> = {

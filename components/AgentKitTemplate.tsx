@@ -11,7 +11,7 @@ interface AgentKitTemplateProps {
   // Hero Section
   title: string;
   description: string;
-  type: "agentic" | "assistant" | "automation" | "embedded";
+  type: "agentic" | "assistant" | "automation" | "embed";
   icon: string;
   images?: string[];
   imagesAlt?: string;

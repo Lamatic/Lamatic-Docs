@@ -14,5 +14,8 @@
   },
   "embed": {
     "title": "Embed"
+  },
+  "misc": {
+    "title": "Misc"
   }
 }

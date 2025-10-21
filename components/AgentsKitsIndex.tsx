@@ -33,9 +33,11 @@ const SECTION_DESCRIPTIONS: Record<string, string> = {
     "Workflow automation agents that streamline repetitive tasks and business processes with intelligent decision making.",
   Embedded:
     "Lightweight agents designed for integration into existing applications, websites, and digital products.",
+  Misc:
+    "Miscellaneous agent kits that don't fit into the other categories.",
 };
 
-const SECTION_ORDER = ["Agentic", "Assistant", "Automation", "Embed"];
+const SECTION_ORDER = ["Agentic", "Assistant", "Automation", "Embed", "Misc"];
 
 // Icon mapping for different agent kit types
 const ICON_MAPPING: Record<string, any> = {

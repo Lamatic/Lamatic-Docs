@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
 import {
@@ -77,16 +78,58 @@ const AgentKitCard = ({ page }: { page: Page & { frontMatter?: any } }) => {
       .join(" ") ||
     "Untitled";
 
+  // Extract cover image from agentKitData via API
+  const [coverImage, setCoverImage] = React.useState<string | null>(null);
+  const [imagesAlt, setImagesAlt] = React.useState<string>("");
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    const fetchAgentKitData = async () => {
+      if (!page.route) return;
+      
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/agent-kit-data?route=${encodeURIComponent(page.route)}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.images && data.images.length > 0) {
+            setCoverImage(data.images[0]); // First image is the cover
+            setImagesAlt(data.imagesAlt || "");
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching agent kit data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchAgentKitData();
+  }, [page.route]);
+
   return (
-    <Card className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-black ">
-      <CardHeader className="pb-0 pt-0">
+    <Card className="group rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-black overflow-hidden">
+      {/* Thumbnail Image */}
+      {coverImage && (
+        <div className="relative w-full h-48 overflow-hidden">
+          <Image
+            src={coverImage}
+            alt={imagesAlt || title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      )}
+      
+      <CardHeader className="pb-0 pt-4">
         <CardTitle className="text-lg font-semibold text-gray-900 dark:text-white">
           {title}
         </CardTitle>
       </CardHeader>
 
       <CardContent className="pt-0">
-        <CardDescription className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-3 line-clamp-2 mb-4">
+        <CardDescription className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed mb-4 line-clamp-2">
           {page.frontMatter?.description || "No description available"}
         </CardDescription>
 

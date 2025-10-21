@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import {
   Calendar,
   Mail,
-  MessageSquare,
+  MessageSquareHeart,
   ThumbsDown,
   ThumbsUp,
 } from "lucide-react";
@@ -13,7 +13,6 @@ import { Background } from "./Background";
 import { NotebookBanner } from "./NotebookBanner";
 import { ProductUpdateSignup } from "./productUpdateSignup";
 import { COOKBOOK_ROUTE_MAPPING } from "@/lib/cookbook_route_mapping";
-import IconGithub from "./icons/openai";
 import { TOCFix } from "./TOCFix";
 
 const pathsWithoutFooterWidgets = ["/imprint", "/blog"];
@@ -67,7 +66,7 @@ export const DocsSupport = () => {
         <Button variant="outline" size="sm" asChild>
           <a href="https://product.lamatic.ai/" target="_blank">
             <span>Feedback</span>
-            <IconGithub className="h-4 w-4 ml-3" />
+            <MessageSquareHeart className="h-4 w-4 ml-3" />
           </a>
         </Button>
         <Button variant="outline" size="sm" asChild>

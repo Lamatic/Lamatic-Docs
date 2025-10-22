@@ -1,0 +1,21 @@
+# Lamatic Documentation - LLM Context
+
+> This file guides LLM-powered coding tools to the key source code directories and configuration files for improved context and relevant suggestions.
+
+## Source Directories
+
+- [/components/](https://github.com/Lamatic/Lamatic-Docs/tree/main/components) — Core UI components and React elements
+- [/pages/docs/](https://github.com/Lamatic/Lamatic-Docs/tree/main/pages/docs) — Documentation pages, integrations, and guides
+
+## Configuration Files
+
+- [/next.config.mjs](https://github.com/Lamatic/Lamatic-Docs/blob/main/next.config.mjs) — Next.js configuration
+- [/package.json](https://github.com/Lamatic/Lamatic-Docs/blob/main/package.json) — Node.js project manifest
+- [/pyproject.toml](https://github.com/Lamatic/Lamatic-Docs/blob/main/pyproject.toml) — Python project settings
+
+## Optional Resources
+
+These resources might be useful but are secondary:
+
+- [.github/](https://github.com/Lamatic/Lamatic-Docs/tree/main/.github) — GitHub workflows and issue templates
+- [/pages/guides/](https://github.com/Lamatic/Lamatic-Docs/tree/main/pages/guides) — User guides and tutorials

@@ -1,6 +1,8 @@
 import React from "react";
-import {
+import type {
   DocsThemeConfig,
+} from "nextra-theme-docs";
+import {
   Tabs,
   Tab,
   useConfig,

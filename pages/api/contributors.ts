@@ -24,28 +24,45 @@ export default async function handler(
     }
 
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10s
 
     try {
-      const response = await fetch(GITHUB_REPO_API_URL, {
-        headers,
-        signal: controller.signal
-      });
-      clearTimeout(timeoutId);
+      const allContributors: GitHubContributor[] = [];
+      let nextUrl = `${GITHUB_REPO_API_URL}?per_page=100`;
 
-    if (!response.ok) {
-      if (response.status === 403) {
-        throw new Error("GitHub API rate limit exceeded. Please try again later.");
-      } else if (response.status === 404) {
-        throw new Error("Repository not found or access denied.");
-      } else {
-        throw new Error(`GitHub API responded with status: ${response.status}`);
+      while (nextUrl) {
+        const response = await fetch(nextUrl, {
+          headers,
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (!response.ok) {
+          if (response.status === 403) {
+            throw new Error("GitHub API rate limit exceeded. Please try again later.");
+          } else if (response.status === 404) {
+            throw new Error("Repository not found or access denied.");
+          } else {
+            throw new Error(`GitHub API responded with status: ${response.status}`);
+          }
+        }
+
+        const pageContributors: GitHubContributor[] = await response.json();
+        allContributors.push(...pageContributors);
+
+        // Check for next page in Link header
+        const linkHeader = response.headers.get('link');
+        if (linkHeader) {
+          const nextMatch = linkHeader.match(/<([^>]+)>;\s*rel="next"/);
+          nextUrl = nextMatch ? nextMatch[1] : null;
+        } else {
+          nextUrl = null;
+        }
       }
-    }
 
-    const contributors: GitHubContributor[] = await response.json();
+      const contributors = allContributors;
 
-    return res
+      return res
       .status(200)
       .setHeader("Content-Type", "application/json")
       // Cache the response for 1 hour, also CDNs as public
@@ -63,6 +80,8 @@ export default async function handler(
         contributors: [],
         error: error instanceof Error ? error.message : "Internal Server Error"
       });
+    } finally {
+      clearTimeout(timeoutId);
     }
   } catch (error) {
     console.error("Error fetching contributors:", error);

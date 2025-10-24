@@ -14,6 +14,7 @@ import { NotebookBanner } from "./NotebookBanner";
 import { ProductUpdateSignup } from "./productUpdateSignup";
 import { COOKBOOK_ROUTE_MAPPING } from "@/lib/cookbook_route_mapping";
 import { TOCFix } from "./TOCFix";
+import { Contributors } from "./Contributors";
 
 const pathsWithoutFooterWidgets = ["/imprint", "/blog"];
 
@@ -38,6 +39,7 @@ export const MainContentWrapper = (props) => {
           <DocsFeedback key={router.pathname} />
           <DocsSupport />
           <DocsSubscribeToUpdates />
+          <Contributors />
         </div>
       ) : null}
       <Background />

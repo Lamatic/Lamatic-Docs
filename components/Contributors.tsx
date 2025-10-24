@@ -4,19 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, Users } from 'lucide-react';
 import Link from 'next/link';
-
-interface GitHubContributor {
-  login: string;
-  id: number;
-  avatar_url: string;
-  html_url: string;
-  contributions: number;
-}
-
-interface ContributorsResponse {
-  contributors: GitHubContributor[];
-  error?: string;
-}
+import { GitHubContributor, ContributorsResponse } from '@/types/contributors';
 
 export const Contributors: React.FC = () => {
   const [contributors, setContributors] = useState<GitHubContributor[]>([]);

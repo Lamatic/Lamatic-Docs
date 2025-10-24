@@ -1,17 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
-interface GitHubContributor {
-  login: string;
-  id: number;
-  avatar_url: string;
-  html_url: string;
-  contributions: number;
-}
-
-interface ContributorsResponse {
-  contributors: GitHubContributor[];
-  error?: string;
-}
+import { GitHubContributor, ContributorsResponse } from "@/types/contributors";
 
 const GITHUB_REPO_API_URL = "https://api.github.com/repos/lamatic/lamatic-docs/contributors";
 
@@ -55,7 +43,6 @@ export default async function handler(
       .setHeader("Content-Type", "application/json")
       // Cache the response for 1 hour, also CDNs as public
       .setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600")
-      .setHeader("ETag", `"contributors-${Date.now()}"`)
       .json({ contributors: contributors });
   } catch (error) {
     console.error("Error fetching contributors:", error);

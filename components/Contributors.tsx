@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { ExternalLink, Github, Users } from 'lucide-react';
 import Link from 'next/link';
 import { GitHubContributor, ContributorsResponse } from '@/types/contributors';
+import { GITHUB_REPO_URL } from '@/lib/constants';
 
 export const Contributors: React.FC = () => {
   const [contributors, setContributors] = useState<GitHubContributor[]>([]);
@@ -110,7 +111,7 @@ export const Contributors: React.FC = () => {
               href={contributor.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex flex-col items-center p-3 rounded-lg border border-border/50 hover:border-border hover:bg-accent/50 transition-all duration-200"
+              className="group flex flex-col items-center p-3 rounded-lg border border-border/50 hover:border-border hover:bg-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 transition-all duration-200"
             >
               <div className="relative">
                 <Avatar className="w-12 h-12 mb-2">
@@ -132,10 +133,7 @@ export const Contributors: React.FC = () => {
                   {contributor.login}
                 </p>
                 <Badge variant="secondary" className="text-xs mt-1">
-                  {contributor.contributions === 0
-                    ? 'Contributor'
-                    : `${contributor.contributions} ${contributor.contributions === 1 ? 'commit' : 'commits'}`
-                  }
+                  {`${contributor.contributions} ${contributor.contributions === 1 ? 'commit' : 'commits'}`}
                 </Badge>
               </div>
             </Link>
@@ -148,7 +146,7 @@ export const Contributors: React.FC = () => {
             <span>
               Want to contribute?
               <Link
-                href="https://github.com/lamatic/lamatic-docs"
+                href={GITHUB_REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-primary hover:underline ml-1"

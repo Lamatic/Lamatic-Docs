@@ -24,7 +24,7 @@ export function AvailabilitySidebar(props: {
   if (Object.keys(relevantFrontMatter).length === 0) return null;
 
   return (
-    <div className="flex flex-col space-y-2 text-primary/60 w-full align-middle border-y py-2">
+    <div className="flex flex-col space-y-2 text-primary/60 w-full align-middle border-b pb-2 pt-2">
       <div className="font-bold">Availability</div>
       <ul className="flex flex-col space-y-1">
         {plans

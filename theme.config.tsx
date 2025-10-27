@@ -33,6 +33,7 @@ import {
   AvailabilitySidebar,
 } from "./components/availability";
 import { CloudflareVideo, Video } from "./components/Video";
+import { PageContributors } from "./components/PageContributors";
 import { Button } from "@/components/ui/button";
 import { CustomTOC } from "./components/CustomTOC";
 
@@ -110,7 +111,12 @@ const config: DocsThemeConfig = {
     backToTop: true,
     extraContent: () => {
       const { frontMatter } = useConfig();
-      return <AvailabilitySidebar frontMatter={frontMatter} />;
+      return (
+        <>
+          <AvailabilitySidebar frontMatter={frontMatter} />
+          <PageContributors />
+        </>
+      );
     },
   },
   docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",

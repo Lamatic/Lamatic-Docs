@@ -132,9 +132,9 @@ export const Contributors: React.FC = () => {
                 <p className="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-200 truncate max-w-[80px]">
                   {contributor.login}
                 </p>
-                <Badge variant="secondary" className="text-xs mt-1">
+                {/* <Badge variant="secondary" className="text-xs mt-1">
                   {`${contributor.contributions} ${contributor.contributions === 1 ? 'commit' : 'commits'}`}
-                </Badge>
+                </Badge> */}
               </div>
             </Link>
           ))}

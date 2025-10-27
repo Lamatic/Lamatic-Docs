@@ -13,14 +13,17 @@ export const PageContributors: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    const controller = new AbortController();
     const fetchPageContributors = async () => {
       try {
-        // Convert URL path to GitHub file path
-        const githubPath = urlPathToGitHubPath(router.asPath);
+        // Convert URL path to GitHub file path (strip query/hash just in case)
+        const cleanPath = router.asPath.split(/[?#]/)[0];
+        const githubPath = urlPathToGitHubPath(cleanPath);
 
         // Fetch contributors for this specific file
         const response = await fetch(
-          `/api/contributors-per-page?path=${encodeURIComponent(githubPath)}`
+          `/api/contributors-per-page?path=${encodeURIComponent(githubPath)}`,
+          { signal: controller.signal }
         );
 
         if (!response.ok) {
@@ -35,6 +38,7 @@ export const PageContributors: React.FC = () => {
 
         setContributors(data.contributors);
       } catch (err) {
+        if (err instanceof DOMException && err.name === 'AbortError') return;
         console.error('Error fetching page contributors:', err);
         setError(err instanceof Error ? err.message : 'Failed to fetch contributors');
       } finally {
@@ -43,6 +47,7 @@ export const PageContributors: React.FC = () => {
     };
 
     fetchPageContributors();
+    return () => controller.abort();
   }, [router.asPath]);
 
   if (loading) {

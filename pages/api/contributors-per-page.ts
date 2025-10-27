@@ -124,8 +124,8 @@ export default async function handler(
       .setHeader("Content-Type", "application/json")
       .setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600")
       .json({ contributors: contributors });
-    } catch (error) {
-      if (error.name === 'AbortError') {
+    } catch (error: unknown) {
+      if ((error as any)?.name === 'AbortError') {
         return res.status(504).json({
           contributors: [],
           error: "Request timeout while fetching contributors"

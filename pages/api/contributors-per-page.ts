@@ -136,8 +136,6 @@ export default async function handler(
         contributors: [],
         error: error instanceof Error ? error.message : "Internal Server Error"
       });
-    } finally {
-    }
     }
   } catch (error) {
     console.error("Error fetching contributors:", error);

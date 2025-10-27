@@ -13,8 +13,9 @@ export function cn(...inputs: ClassValue[]) {
  *   / -> pages/index.mdx
  */
 export function urlPathToGitHubPath(urlPath: string): string {
-  // Remove leading slash
-  const path = urlPath.startsWith('/') ? urlPath.slice(1) : urlPath;
+  // Strip query/hash and leading slash
+  const clean = urlPath.split(/[?#]/)[0] || "/";
+  const path = clean.startsWith("/") ? clean.slice(1) : clean;
 
   // Handle root path
   if (!path || path === '') {

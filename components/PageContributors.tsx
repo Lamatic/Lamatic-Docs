@@ -98,9 +98,9 @@ export const PageContributors: React.FC = () => {
               </AvatarFallback>
             </Avatar>
             <span className="text-xs flex-1 truncate min-w-0">{contributor.login}</span>
-            <Badge variant="secondary" className="text-xs flex-shrink-0 whitespace-nowrap">
+            {/* <Badge variant="secondary" className="text-xs flex-shrink-0 whitespace-nowrap">
               {`${contributor.contributions} ${contributor.contributions === 1 ? 'commit' : 'commits'}`}
-            </Badge>
+            </Badge> */}
             <ExternalLink className="w-3 h-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
         ))}

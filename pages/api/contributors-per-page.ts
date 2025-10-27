@@ -56,19 +56,24 @@ export default async function handler(
       headers["Authorization"] = `Bearer ${process.env.GITHUB_ACCESS_TOKEN}`;
     }
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    // Helper to fetch with per-request timeout
+    const fetchWithTimeout = async (url: string, headers: Record<string, string>, ms = 15000) => {
+      const controller = new AbortController();
+      const to = setTimeout(() => controller.abort(), ms);
+      try {
+        const res = await fetch(url, { headers, signal: controller.signal });
+        return res;
+      } finally {
+        clearTimeout(to);
+      }
+    }
 
     try {
       const allCommits: GitHubCommit[] = [];
-      let nextUrl = `${GITHUB_REPO_API_BASE}/commits?path=${encodeURIComponent(path)}&per_page=100`;
+      let nextUrl: string | null = `${GITHUB_REPO_API_BASE}/commits?path=${encodeURIComponent(path)}&per_page=100`;
 
       while (nextUrl) {
-        const response = await fetch(nextUrl, {
-          headers,
-          signal: controller.signal
-        });
-        clearTimeout(timeoutId);
+        const response = await fetchWithTimeout(nextUrl, headers, 15000);
 
         if (!response.ok) {
           if (response.status === 403) {
@@ -91,7 +96,6 @@ export default async function handler(
           nextUrl = null;
         }
       }
-
       // Aggregate commits by author
       const contributorMap = new Map<string, GitHubContributor>();
 

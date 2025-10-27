@@ -32,6 +32,7 @@ const withNextra = nextra({
         remarkPlugins: [remarkGfm],
     },
     defaultShowCopyCode: true,
+    contentDirBasePath: '/content',
 })
 
 // next config

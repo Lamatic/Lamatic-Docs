@@ -1,7 +1,9 @@
+'use client'
+
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getPagesUnderRoute } from "nextra/context";
+import { getPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import {
   Card,

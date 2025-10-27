@@ -1,9 +1,11 @@
-import { useRouter } from 'next/router';
+'use client'
+
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useConfig } from 'nextra-theme-docs';
 
 export function CustomTOC() {
-  const router = useRouter();
+  const pathname = usePathname();
   const { frontMatter } = useConfig();
   const [headings, setHeadings] = useState<Array<{ id: string; text: string; level: number }>>([]);
   const [isClient, setIsClient] = useState(false);
@@ -44,7 +46,7 @@ export function CustomTOC() {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [router.asPath, isClient]); // Re-run when the path changes or client is ready
+  }, [pathname, isClient]); // Re-run when the path changes or client is ready
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);

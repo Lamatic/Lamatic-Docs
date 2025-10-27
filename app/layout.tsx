@@ -1,9 +1,9 @@
 import { Layout } from 'nextra-theme-docs'
 import { getPageMap } from 'nextra/page-map'
-import 'nextra-theme-docs/style.css'
 import '../style.css'
 import "vidstack/styles/base.css"
 import "../src/overrides.css"
+import 'nextra-theme-docs/style-prefixed.css'
 import { GeistSans } from "geist/font/sans"
 import { GeistMono } from "geist/font/mono"
 import { Logo } from "@/components/logo"

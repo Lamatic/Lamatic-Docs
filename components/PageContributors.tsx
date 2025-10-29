@@ -1,15 +1,13 @@
-'use client'
-
 import React, { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Users, ExternalLink } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import { GitHubContributor, ContributorsResponse } from '@/types/contributors';
 import { urlPathToGitHubPath } from '@/lib/utils';
 
 export const PageContributors: React.FC = () => {
-  const pathname = usePathname();
+  const router = useRouter();
   const [contributors, setContributors] = useState<GitHubContributor[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,7 +17,7 @@ export const PageContributors: React.FC = () => {
     const fetchPageContributors = async () => {
       try {
         // Convert URL path to GitHub file path (strip query/hash just in case)
-        const cleanPath = pathname.split(/[?#]/)[0];
+        const cleanPath = router.asPath.split(/[?#]/)[0];
         const githubPath = urlPathToGitHubPath(cleanPath);
 
         // Fetch contributors for this specific file
@@ -50,7 +48,7 @@ export const PageContributors: React.FC = () => {
 
     fetchPageContributors();
     return () => controller.abort();
-  }, [pathname]);
+  }, [router.asPath]);
 
   if (loading) {
     return (

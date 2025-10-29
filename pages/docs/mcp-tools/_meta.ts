@@ -1,4 +1,4 @@
-{
+export default {
     "mcp":{
         "title": "MCP",
         "type": "doc"

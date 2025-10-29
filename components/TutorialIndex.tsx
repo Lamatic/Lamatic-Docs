@@ -1,6 +1,4 @@
-'use client'
-
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
 import Link from 'next/link';
 import { useState, useMemo } from 'react';

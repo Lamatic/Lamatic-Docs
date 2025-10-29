@@ -1,4 +1,4 @@
-{
+export default {
   "generate-text-node": {
     "title": "Generate Text",
     "type": "doc"

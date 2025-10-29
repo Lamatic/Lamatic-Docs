@@ -1,4 +1,4 @@
-{ "editor": "Flow editor",
+export default { "editor": "Flow editor",
   "sticky-notes": "Sticky Notes",
   "nodes": "Nodes" ,
   "variables": "Variables",

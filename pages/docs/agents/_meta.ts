@@ -1,4 +1,4 @@
-{ 
+export default { 
   "getting-started": "Getting Started",
   "text-agent": "Text Agent",
   "json-agent": "JSON Agent",

@@ -1,6 +1,4 @@
-'use client'
-
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { Button } from "./ui/button";
 import {
@@ -20,9 +18,9 @@ import { TOCFix } from "./TOCFix";
 const pathsWithoutFooterWidgets = ["/imprint", "/blog"];
 
 export const MainContentWrapper = (props) => {
-  const pathname = usePathname();
+  const router = useRouter();
   const cookbook = COOKBOOK_ROUTE_MAPPING.find(
-    (cookbook) => cookbook.path === pathname
+    (cookbook) => cookbook.path === router.pathname
   );
 
   return (
@@ -32,12 +30,12 @@ export const MainContentWrapper = (props) => {
         <NotebookBanner src={cookbook.ipynbPath} className="mb-4" />
       ) : null}
       {props.children}
-      {!pathsWithoutFooterWidgets.includes(pathname) ? (
+      {!pathsWithoutFooterWidgets.includes(router.pathname) ? (
         <div
           className="flex flex-col gap-10 pt-14 border-t dark:border-neutral-800 mb-20"
           id="docs-feedback"
         >
-          <DocsFeedback key={pathname} />
+          <DocsFeedback key={router.pathname} />
           <DocsSupport />
           <DocsSubscribeToUpdates />
         </div>
@@ -89,7 +87,7 @@ export const DocsSupport = () => {
 };
 
 export const DocsFeedback = () => {
-  const pathname = usePathname();
+  const router = useRouter();
   const [selected, setSelected] = useState<
     "positive" | "negative" | "submitted" | null
   >(null);
@@ -101,7 +99,7 @@ export const DocsFeedback = () => {
     fetch("/api/feedback", {
       method: "POST",
       body: JSON.stringify({
-        page: pathname,
+        page: router.pathname,
         feedback: newSelection,
       }),
     })
@@ -118,7 +116,7 @@ export const DocsFeedback = () => {
     fetch("/api/feedback", {
       method: "POST",
       body: JSON.stringify({
-        page: pathname,
+        page: router.pathname,
         feedback: selected,
         comment: feedbackComment,
       }),

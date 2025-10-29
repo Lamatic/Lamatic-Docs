@@ -1,4 +1,4 @@
-{
+export default {
   "ai": {
     "title": "AI",
     "type":"doc"

@@ -1,4 +1,4 @@
-{
+export default {
     "flow-testing":{
         "title": "Flow Testing",
         "type": "doc"

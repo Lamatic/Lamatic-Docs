@@ -1,0 +1,9 @@
+ Lamatic Documentation
+
+> This file directs Large Language Models to the canonical documentation for the Lamatic project, focusing on core guides and LLM-powered features.
+
+## Core Documentation
+
+- [Getting Started Guide](/docs/getting-started.md)
+- [Vibe Coding Tools Guide](/docs/vibe-coding-guide.md)  
+- [API Reference](/docs/api-reference.md)

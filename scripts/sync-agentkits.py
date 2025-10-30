@@ -2,10 +2,12 @@ import os
 import requests
 import json
 import hashlib
+import sys
 
 LOCAL_TEMPLATES_DIR = "files/templates"
+API_BASE_URL = "https://lamatic.ai/templates/agentkits"
 
-API_BASE_URL = "https://lamatic.ai/templates/agentkits" 
+REQUEST_TIMEOUT = 30
 
 API_KEY = os.environ.get("LAMATIC_API_KEY")
 if not API_KEY:
@@ -27,7 +29,7 @@ def get_local_files():
     local_files = {}
     for root, _, files in os.walk(LOCAL_TEMPLATES_DIR):
         for filename in files:
-            if filename.endswith(".json"): 
+            if filename.endswith(".json"):
                 filepath = os.path.join(root, filename)
                 file_hash = get_file_hash(filepath)
                 local_files[filename] = {"path": filepath, "hash": file_hash}
@@ -38,10 +40,10 @@ def get_remote_templates():
     """Returns a dictionary of remote templates: {filename: hash}"""
     print("Fetching remote templates...")
     try:
-        response = requests.get(API_BASE_URL, headers=HEADERS)
+        response = requests.get(API_BASE_URL, headers=HEADERS, timeout=REQUEST_TIMEOUT)
         response.raise_for_status()
         
-        templates = response.json() 
+        templates = response.json()
         
         remote_templates = {t['name']: t['hash'] for t in templates}
         print(f"Found {len(remote_templates)} remote templates.")
@@ -54,27 +56,36 @@ def get_remote_templates():
 def sync_templates(local_files, remote_templates):
     """Compares local and remote and performs sync operations."""
     
+    sync_failed = False
+    
     for filename, local_data in local_files.items():
-        with open(local_data['path'], 'r') as f:
-            content = json.load(f)
+        try:
+            with open(local_data['path'], 'r') as f:
+                content = json.load(f)
+        except Exception as e:
+            print(f"Error reading local file {filename}: {e}")
+            sync_failed = True
+            continue
 
         if filename not in remote_templates:
             print(f"CREATING: {filename}")
             try:
                 payload = {"name": filename, "content": content, "hash": local_data['hash']}
-                response = requests.post(API_BASE_URL, headers=HEADERS, json=payload)
+                response = requests.post(API_BASE_URL, headers=HEADERS, json=payload, timeout=REQUEST_TIMEOUT)
                 response.raise_for_status()
             except Exception as e:
                 print(f"Error creating {filename}: {e}")
+                sync_failed = True
                 
         elif local_data['hash'] != remote_templates[filename]:
             print(f"UPDATING: {filename}")
             try:
                 payload = {"content": content, "hash": local_data['hash']}
-                response = requests.put(f"{API_BASE_URL}/{filename}", headers=HEADERS, json=payload)
+                response = requests.put(f"{API_BASE_URL}/{filename}", headers=HEADERS, json=payload, timeout=REQUEST_TIMEOUT)
                 response.raise_for_status()
             except Exception as e:
                 print(f"Error updating {filename}: {e}")
+                sync_failed = True
         else:
             print(f"UNCHANGED: {filename}")
 
@@ -82,13 +93,20 @@ def sync_templates(local_files, remote_templates):
         if filename not in local_files:
             print(f"DELETING: {filename}")
             try:
-                response = requests.delete(f"{API_BASE_URL}/{filename}", headers=HEADERS)
+                response = requests.delete(f"{API_BASE_URL}/{filename}", headers=HEADERS, timeout=REQUEST_TIMEOUT)
                 response.raise_for_status()
             except Exception as e:
                 print(f"Error deleting {filename}: {e}")
+                sync_failed = True
+
+    return not sync_failed
 
 if __name__ == "__main__":
     local = get_local_files()
     remote = get_remote_templates()
-    sync_templates(local, remote)
-    print("Sync complete.")
+    
+    if sync_templates(local, remote):
+        print("Sync complete.")
+    else:
+        print("Sync finished with errors.")
+        exit(1)

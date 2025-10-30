@@ -10,10 +10,6 @@ on:
     paths:
       - 'files/templates/**'
 
-  pull_request:
-    branches:
-      - main
-
   workflow_dispatch:
 
 jobs:
@@ -34,6 +30,6 @@ jobs:
           pip install requests
 
       - name: Run sync script
-        run: python .github/scripts/sync_agentkits.py
+        run: python scripts/sync-agentkits.py
         env:
           LAMATIC_API_KEY: ${{ secrets.LAMATIC_API_KEY }}

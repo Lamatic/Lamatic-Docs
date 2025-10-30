@@ -1,9 +1,117 @@
- Lamatic Documentation
+Overview
+--------
+Vibe provides seamless integration with Large Language Models (LLMs) to enhance coding workflows such as code generation, refactoring, documentation, and testing.
+To configure and manage these capabilities, projects use an `llm.txt` file at the root of the repository.
 
-> This file directs Large Language Models to the canonical documentation for the Lamatic project, focusing on core guides and LLM-powered features.
+This document explains:
+- The purpose and format of `llm.txt`
+- How to integrate Vibe’s supported LLM-powered tools
+- Example usage and troubleshooting
+- Prerequisites and dependencies
 
-## Core Documentation
+Purpose of llm.txt
+------------------
+`llm.txt` defines project-wide settings for using LLMs with Vibe tools.
+It ensures consistent configuration across contributors and enables tool discovery and automation.
 
-- [Getting Started Guide](/docs/getting-started.md)
-- [Vibe Coding Tools Guide](/docs/vibe-coding-guide.md)  
-- [API Reference](/docs/api-reference.md)
+Example:
+```
+# llm.txt
+model=gpt-5
+temperature=0.7
+max_tokens=4096
+tool_support=vibe,openai,copilot
+```
+
+Supported Keys:
+| Key | Description | Example |
+|-----|--------------|----------|
+| model | The LLM model to use | gpt-5, claude-3 |
+| temperature | Creativity of the output (0–1) | 0.7 |
+| max_tokens | Output length limit | 4096 |
+| tool_support | Comma-separated list of enabled tools | vibe,openai |
+
+Setup & Integration
+-------------------
+
+1. Install Dependencies
+   ```bash
+   npm install -g vibe
+   ```
+
+   If your project uses Vibe tools locally:
+   ```bash
+   npm install vibe-tools --save-dev
+   ```
+
+2. Create llm.txt
+   ```bash
+   touch llm.txt
+   ```
+
+   Example content:
+   ```
+   model=gpt-5
+   temperature=0.5
+   tool_support=vibe
+   ```
+
+3. Initialize Vibe LLM Support
+   ```bash
+   vibe init --with-llm
+   ```
+
+4. Verify Integration
+   ```bash
+   vibe status
+   ```
+
+   Expected output:
+   ```
+   ✔ LLM model: gpt-5
+   ✔ Tools enabled: vibe
+   ✔ Configuration: llm.txt found
+   ```
+
+Example Usage
+-------------
+
+Generate code suggestions:
+```bash
+vibe run --ai "create a Python function to sort a list of numbers"
+```
+
+Refactor existing code:
+```bash
+vibe refactor --ai
+```
+
+Document your code:
+```bash
+vibe doc --ai
+```
+
+Test generation:
+```bash
+vibe testgen --ai
+```
+
+Troubleshooting
+----------------
+
+| Problem | Cause | Solution |
+|----------|--------|-----------|
+| Error: llm.txt not found | Missing config file | Create an llm.txt in your project root |
+| Unknown tool: vibe | Unsupported or outdated CLI | Run npm update -g vibe |
+| Model not responding | Invalid or expired API key | Check your .env or credentials setup |
+| Unexpected output | Temperature too high | Lower the temperature value in llm.txt |
+
+Prerequisites
+-------------
+
+| Requirement | Version | Notes |
+|--------------|----------|-------|
+| Node.js | ≥ 18.0.0 | Required for Vibe CLI |
+| Vibe CLI | ≥ 1.2.0 | Install globally via npm |
+| LLM Provider Account | Any supported model | e.g., OpenAI, Anthropic |
+| Internet Access | — | Required for LLM requests |

@@ -79,7 +79,7 @@ def sync_templates(local_files, remote_templates):
         try:
             with open(local_data['path'], 'r') as f:
                 content = json.load(f)
-        except Exception as e:
+        except (FileNotFoundError, json.JSONDecodeError, PermissionError, OSError) as e:
             print(f"Error reading local file {local_data['path']}: {e}")
             sync_failed = True
             continue

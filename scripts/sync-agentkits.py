@@ -57,7 +57,13 @@ def get_remote_templates():
             sys.exit(1)
             
         templates = response.json()
-        remote_templates = {t['name']: t['hash'] for t in templates}
+        try:
+            remote_templates = {t['name']: t['hash'] for t in templates}
+        except (KeyError, TypeError) as e:
+            print(f"Error: API response has unexpected structure. {e}")
+            print("Expected list of objects with 'name' and 'hash' keys.")
+            print(f"Received (first 500 chars): {str(templates)[:500]}")
+            sys.exit(1)
         print(f"Found {len(remote_templates)} remote templates.")
         return remote_templates
         

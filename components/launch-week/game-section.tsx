@@ -518,7 +518,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
 
       {/* Hint Section */}
       {showHint && (
-        <Card className="mt-6 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
+        <Card className="mt-6 bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-left">
           <CardContent className="pt-6">
             <div className="flex items-start gap-3">
               <Sparkles className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />

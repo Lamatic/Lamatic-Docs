@@ -33,7 +33,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
     <div
       id="join-launch-week"
       className={cn(
-        "relative overflow-hidden py-20 md:py-32",
+        "relative overflow-hidden py-20 md:py-10",
         "bg-gradient-to-br",
         "dark:from-gray-900 dark:via-gray-800 dark:to-gray-900",
         className

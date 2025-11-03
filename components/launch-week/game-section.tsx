@@ -275,7 +275,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
         </div>
       </div>
 
-      <Card className="border-2 bg-white dark:bg-gray-800 rounded-lg shadow-xl">
+      <Card className="border-2 bg-white dark:bg-gray-800 rounded-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="text-2xl">Challenge</CardTitle>

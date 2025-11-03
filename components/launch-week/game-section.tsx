@@ -215,7 +215,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
       case "output":
         return "bg-green-100 dark:bg-green-900 border-green-300 dark:border-green-700 text-green-800 dark:text-green-200";
       default:
-        return "bg-gray-100 dark:bg-gray-800 border-gray-300 dark:border-gray-700";
+        return "bg-gray-100 dark:bg-zinc-900 border-gray-300 dark:border-gray-700";
     }
   };
 
@@ -275,7 +275,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
         </div>
       </div>
 
-      <Card className="border-2 bg-white dark:bg-gray-800 rounded-lg">
+      <Card className="border-2 bg-white dark:bg-zinc-900 rounded-lg">
         <CardHeader>
           <div className="flex items-center justify-between">
             <CardTitle className="text-2xl">Challenge</CardTitle>
@@ -296,7 +296,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
           {/* Puzzle Challenge */}
           {challengeType === "puzzle" && (
             <>
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6 min-h-[200px]">
+              <div className="bg-gray-50 dark:bg-zinc-800 rounded-lg p-6 min-h-[200px]">
                 <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">
                   Flow Sequence
                 </h3>
@@ -359,7 +359,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
           {/* Code Challenge */}
           {challengeType === "code" && (
             <>
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+              <div className="bg-gray-50 dark:bg-zinc-800 rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-4 text-gray-700 dark:text-gray-300">
                   {codeChallenge.question}
                 </h3>
@@ -376,7 +376,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
                         "w-full text-left px-4 py-3 rounded-lg border-2 transition-all font-medium",
                         selectedCodeAnswer === index
                           ? "bg-red-600 text-white border-red-600"
-                          : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500",
+                          : "bg-white dark:bg-zinc-900 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500",
                         completed && "opacity-50 cursor-not-allowed"
                       )}
                     >
@@ -391,7 +391,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
           {/* Quiz Challenge */}
           {challengeType === "quiz" && (
             <>
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
+              <div className="bg-gray-50 dark:bg-zinc-800 rounded-lg p-6">
                 <h3 className="text-lg font-semibold mb-6 text-gray-700 dark:text-gray-300">
                   {quizQuestion.question}
                 </h3>
@@ -405,7 +405,7 @@ export const LaunchWeekGame: React.FC<GameSectionProps> = ({ className }) => {
                         "w-full text-left px-4 py-3 rounded-lg border-2 transition-all font-medium",
                         selectedQuizAnswer === index
                           ? "bg-red-600 text-white border-red-600"
-                          : "bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500",
+                          : "bg-white dark:bg-zinc-900 border-gray-300 dark:border-gray-600 hover:border-red-500 dark:hover:border-red-500",
                         completed && "opacity-50 cursor-not-allowed"
                       )}
                     >

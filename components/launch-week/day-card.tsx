@@ -51,7 +51,7 @@ export const DayCard: React.FC<DayCardProps> = ({ day, className }) => {
   return (
     <Card
       className={cn(
-        "border-2 transition-all duration-300 bg-white dark:bg-gray-800",
+        "border-2 transition-all duration-300 bg-white dark:bg-zinc-900",
         
         className
       )}

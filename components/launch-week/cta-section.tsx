@@ -35,7 +35,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
       className={cn(
         "relative overflow-hidden py-20 md:py-10",
         "bg-gradient-to-br",
-        "dark:bg-zinc-900 rounded-lg",
+        " rounded-lg",
         className
       )}
     >
@@ -43,7 +43,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
         <div className="mb-8">
           <Bell className="w-12 h-12 mx-auto -mb-2 text-primary" />
 
-          <h2 className="text-2xl font-bold text-[#111827]">
+          <h2 className="text-2xl font-bold text-[#111827] dark:text-white">
             Don't Miss Out
           </h2>
 

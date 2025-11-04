@@ -18,7 +18,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
   return (
     <div
       className={cn(
-        "relative overflow-hidden py-16 md:py-24 bg-white dark:bg-gray-950",
+        "relative overflow-hidden py-16 md:py-24 ",
         className
       )}
     >
@@ -32,7 +32,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
 
       {/* ✅ Subtle White Bottom Gradient */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white dark:from-gray-950 to-transparent pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-40  to-transparent pointer-events-none"
         aria-hidden="true"
       />
 

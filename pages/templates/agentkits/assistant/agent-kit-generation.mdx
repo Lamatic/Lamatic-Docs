@@ -1,0 +1,129 @@
+---
+title: Agent Kit Generation
+description: AI-powered content generation system that creates text, images, and JSON through intelligent workflows
+type: generative
+order: 2
+---
+
+import { AgentKitTemplate } from "@/components/AgentKitTemplate";
+
+export const agentKitData = {
+  title: "Agent Kit Generation",
+  description: "An intelligent content generation system that transforms simple instructions into rich outputs. Using AI-powered workflows, generate formatted text with markdown, create images from descriptions, or produce structured JSON data—all through a clean, intuitive interface.",
+  type: "generative",
+  icon: "✨",
+  images: [
+    "/images/agentkits/generation/cover.png",
+    "/images/agentkits/generation/img1.png",
+    "/images/agentkits/generation/img2.png",
+  ],
+  imagesAlt: "Agent Kit Generation Screenshots",
+  deployUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/agentic/generation",
+  documentationUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/agentic/generation",
+  githubUrl: "https://github.com/Lamatic/AgentKit/tree/main/templates/agentic/generation",
+  liveDemoUrl: "https://agent-kit-generation.vercel.app",
+  features: [
+    {
+      title: "Multi-Modal Generation",
+      description: "Generate text, images, and JSON from simple instructions",
+    },
+    {
+      title: "Markdown Rendering",
+      description: "Text outputs are beautifully formatted with markdown support",
+    },
+    {
+      title: "Smart Output Detection",
+      description: "Automatically detects and displays content type appropriately",
+    },
+    {
+      title: "One-Click Copy",
+      description: "Copy any generated content to clipboard instantly",
+    },
+    {
+      title: "Clean Interface",
+      description: "Distraction-free generation with focused result display",
+    },
+    {
+      title: "Powered by Lamatic",
+      description: "Built on reliable Lamatic workflows for consistent quality",
+    },
+  ],
+
+quickStartSteps: [
+{
+number: 1,
+title: 'Click "Deploy AgentKit" to begin',
+},
+{
+number: 2,
+title: "Configure LAMATIC_CONFIG_GENERATION",
+},
+{
+number: 3,
+title: "Select generation mode and provide instructions",
+},
+{
+number: 4,
+title: "Generate and copy your content",
+},
+],
+estimatedTime: "~10 minutes",
+useCases: [
+{
+title: "Content Creation",
+description: "Generate blog posts, articles, and marketing copy with formatted markdown",
+},
+{
+title: "Image Generation",
+description: "Create images from text descriptions for design and media needs",
+},
+{
+title: "Data Structuring",
+description: "Convert natural language into structured JSON for APIs and databases",
+},
+{
+title: "Prototyping",
+description: "Quickly generate placeholder content for mockups and demos",
+},
+{
+title: "Documentation",
+description: "Create formatted technical documentation with proper markdown",
+},
+{
+title: "Creative Writing",
+description: "Generate poems, stories, and creative content with rich formatting",
+},
+],
+resources: [
+{
+title: "Documentation",
+url: "https://github.com/Lamatic/AgentKit/tree/main/templates/generation",
+icon: "documentation",
+},
+{
+title: "Contact Support",
+url: "https://lamatic.ai/docs/slack",
+icon: "support",
+}
+],
+faq: [
+{
+question: "What types of content can I generate?",
+answer: "You can generate three types: formatted text with markdown, images from descriptions, and structured JSON data.",
+},
+{
+question: "How does markdown rendering work?",
+answer: "Text mode automatically renders output as markdown, supporting headings, lists, links, code blocks, and more.",
+},
+{
+question: "Can I customize the generation logic?",
+answer: "Yes, edit actions/orchestrate.ts to customize input mapping and workflow execution.",
+},
+{
+question: "What's the difference between generation modes?",
+answer: "Text mode produces formatted content, image mode creates visual assets, and JSON mode outputs structured data.",
+},
+],
+};
+
+<AgentKitTemplate {...agentKitData} />

@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React, { useEffect } from "react";
 import { Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,81 +8,134 @@ interface CTASectionProps {
   className?: string;
 }
 
+declare global {
+  interface Window {
+    TuemilioObject?: string;
+    Tuemilio?: (...args: any[]) => void;
+  }
+}
+
 export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  useEffect(() => {
+    // Load Tuemilio script
+    const loadTuemilio = () => {
+      if (window.Tuemilio) {
+        // Script already loaded
+        return;
+      }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
+      const script = document.createElement("script");
+      script.id = "Tuemilio";
+      script.src = "https://tuemilio.com/assets/js/modal/4.0/tuemilio-modal.js";
+      script.async = true;
 
-    setIsSubmitting(true);
+      // Initialize Tuemilio object before script loads (queue system)
+      window.TuemilioObject = "Tuemilio";
+      const tuemilioFunc = function (...args: any[]) {
+        (tuemilioFunc as any).q = (tuemilioFunc as any).q || [];
+        (tuemilioFunc as any).q.push(args);
+      };
+      (tuemilioFunc as any).id = "93b3e64d-82ec-435b-86d8-db55371e17ed";
+      window.Tuemilio = window.Tuemilio || tuemilioFunc;
 
-    // Simulate a submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setEmail("");
-    }, 1000);
-  };
+      // Queue initialization calls (will be processed when script loads)
+      window.Tuemilio("init", {
+        form: {
+          style: {
+            inline: true,
+          },
+          input: {
+            texts: {
+              placeholder: "name@email.com",
+            },
+          },
+          button: {
+            texts: {
+              CTA: "Notify Me",
+              loading: "Loading",
+              checkDashboard: "Dashboard",
+              login: "Login",
+            },
+          },
+          feedback: {
+            texts: {
+              empty: "Don't forget your email!",
+              invalidEmail: "Wrong email!",
+              unaccepted: "We do not accept that email",
+              unauthorized: "You did not subscribe with that email",
+            },
+          },
+        },
+      });
+
+      // Queue visit event
+      window.Tuemilio("sendVisit");
+
+      const firstScript = document.getElementsByTagName("script")[0];
+      firstScript?.parentNode?.insertBefore(script, firstScript);
+    };
+
+    loadTuemilio();
+
+    // Cleanup function
+    return () => {
+      const script = document.getElementById("Tuemilio");
+      if (script) {
+        script.remove();
+      }
+    };
+  }, []);
 
   return (
-    <div
-      id="join-launch-week"
-      className={cn(
-        "relative overflow-hidden py-20 md:py-10",
-        "bg-gradient-to-br",
-        " rounded-lg",
-        className
-      )}
-    >
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="mb-8">
-          <Bell className="w-12 h-12 mx-auto -mb-2 text-primary" />
+    <>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          .t-button {
+            color: white;
+            background-color: #ef4444;
+          }
+          .t-primary-color {
+            color: white;
+            background-color: #ef4444;
+            fill: white;
+          }
+          .t-input-color {
+            color: black;
+            background-color: white;
+          }
+          .t-form {
+            max-width: 300px;
+          }
+        `
+      }} />
+      <div
+        id="join-launch-week"
+        className={cn(
+          "relative overflow-hidden py-20 md:py-10",
+          "bg-gradient-to-br",
+          " rounded-lg",
+          className
+        )}
+      >
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8">
+            <Bell className="w-12 h-12 mx-auto -mb-2 text-primary" />
 
-          <h2 className="text-2xl font-bold text-[#111827] dark:text-white">
-            Don't Miss Out
-          </h2>
+            <h2 className="text-2xl font-bold text-[#111827] dark:text-white">
+              Don't Miss Out
+            </h2>
 
-          <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 mb-12 text-center">
-            Join thousands of developers building the future of AI agents.
-            Get notified when we launch new features and announcements.
-          </p>
+            <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 mb-12 text-center">
+              Join thousands of developers building the future of AI agents.
+              Get notified when we launch new features and announcements.
+            </p>
+          </div>
+
+          <div className="flex justify-center items-center">
+            <div className="t-signup"></div>
+          </div>
         </div>
-
-        <form
-          onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto"
-        >
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            disabled={isSubmitting || isSubmitted}
-            className="w-full sm:flex-1 h-12 px-4 text-base border-2 rounded-lg focus:ring-2 focus:ring-primary"
-          />
-
-          <Button
-            type="submit"
-            size="lg"
-            disabled={isSubmitting || isSubmitted || !email}
-            className="w-full sm:w-auto bg-red-600 hover:bg-red-700 text-white px-8 py-6 text-lg font-semibold rounded-lg shadow-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-          >
-            {isSubmitting
-              ? "Submitting..."
-              : isSubmitted
-              ? "Reminder Set!"
-              : "Notify Me"}
-          </Button>
-        </form>
-
-        {/* <p className="mt-10 text-sm text-gray-500 dark:text-gray-400">
-          No spam. Unsubscribe anytime.
-        </p> */}
       </div>
-    </div>
+    </>
   );
 };

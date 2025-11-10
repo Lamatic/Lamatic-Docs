@@ -29,6 +29,39 @@ export const LaunchWeekTimeline: React.FC<LaunchWeekTimelineProps> = ({
   const [visibleCards, setVisibleCards] = useState<Set<number>>(new Set());
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // Check if a date is in the future
+  const isComingSoon = (dateString: string): boolean => {
+    try {
+      // Parse date string (format: "17 November 2024" or "17 Nov 2024")
+      let dayDate = new Date(dateString);
+      
+      // If parsing fails, try alternative format
+      if (isNaN(dayDate.getTime())) {
+        // Try parsing with different format
+        const parts = dateString.trim().split(/\s+/);
+        if (parts.length >= 3) {
+          // Format: "17 November 2024" -> try "November 17, 2024"
+          dayDate = new Date(`${parts[1]} ${parts[0]}, ${parts[2]}`);
+        }
+      }
+      
+      // Check if date is valid
+      if (isNaN(dayDate.getTime())) {
+        return false;
+      }
+      
+      const today = new Date();
+      // Reset time to midnight for accurate date comparison
+      today.setHours(0, 0, 0, 0);
+      dayDate.setHours(0, 0, 0, 0);
+      
+      // Return true if dayDate is after today
+      return dayDate > today;
+    } catch {
+      return false;
+    }
+  };
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -75,7 +108,7 @@ export const LaunchWeekTimeline: React.FC<LaunchWeekTimelineProps> = ({
               transitionDelay: `${index * 100}ms`,
             }}
           >
-            <DayCard day={day} />
+            <DayCard day={day} comingSoon={isComingSoon(day.date)} />
           </div>
         ))}
       </div>

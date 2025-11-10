@@ -20,6 +20,7 @@ interface LaunchDay {
 interface DayCardProps {
   day: LaunchDay;
   className?: string;
+  comingSoon?: boolean;
 }
 
 const getDayLabel = (day: number) => {
@@ -54,7 +55,11 @@ const formatShortDate = (dateString: string) => {
   }
 };
 
-export const DayCard: React.FC<DayCardProps> = ({ day, className }) => {
+export const DayCard: React.FC<DayCardProps> = ({
+  day,
+  className,
+  comingSoon = false,
+}) => {
   const formattedDate = formatShortDate(day.date);
 
   return (
@@ -62,6 +67,7 @@ export const DayCard: React.FC<DayCardProps> = ({ day, className }) => {
       className={cn(
         // ✅ Equal height & consistent spacing
         "flex flex-col md:flex-row items-stretch gap-6 w-full px-6 py-6 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl shadow-sm min-h-[240px]",
+        comingSoon && "opacity-75",
         className
       )}
     >
@@ -86,32 +92,53 @@ export const DayCard: React.FC<DayCardProps> = ({ day, className }) => {
       {/* Right Column */}
       <div className="flex flex-col justify-between flex-1">
         {/* Top — Title + Description */}
-        <div className="flex flex-col gap-1 -mt-6"> {/* 👈 Reduced margin on header */}
-          <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white leading-snug -mt-2 mb-0">
-            {day.title}
-          </h3>
+        <div className="flex flex-col gap-1 -mt-6">
+          {" "}
+          {/* 👈 Reduced margin on header */}
+          <div className="flex items-center gap-2 -mt-2 mb-0">
+            <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white leading-snug">
+              {day.title}
+            </h3>
+
+            {day.badge && !comingSoon && (
+              <span className="px-2.5 py-0.5 text-xs font-semibold uppercase bg-blue-500 text-white rounded-full">
+                {day.badge}
+              </span>
+            )}
+          </div>
           <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base leading-tight transform -translate-y-1">
             {day.description}
           </p>
         </div>
 
         {/* Bottom — CTAs */}
-        {day.links && (
-          <div className="flex flex-wrap gap-3 mt-6 md:mt-0">
-            {day.links.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-200 dark:border-zinc-700 text-gray-800 dark:text-gray-100 text-sm bg-white dark:bg-zinc-900 hover:bg-red-500 hover:text-white transition-colors duration-200"
-              >
-                {getIcon(link.type)}
-                {link.label}
-              </a>
-            ))}
-          </div>
-        )}
+        {comingSoon
+          ? null
+          : day.links &&
+            day.links.length > 0 && (
+              <div className="flex flex-wrap gap-3 mt-6 md:mt-0">
+                {day.links.map((link, index) => (
+                  <a
+                    key={index}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md border border-gray-200 dark:border-zinc-700 text-gray-800 dark:text-gray-100 text-sm bg-white dark:bg-zinc-900 hover:bg-red-500 hover:text-white transition-colors duration-200"
+                  >
+                    {getIcon(link.type)}
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+
+        <p>
+          {comingSoon && (
+            <span className="px-2.5 py-0.5 text-xs font-semibold uppercase bg-gradient-to-r from-pink-500 to-orange-500 text-white rounded-full">
+              Coming Soon
+            </span>
+          )}
+        </p>
       </div>
     </div>
   );

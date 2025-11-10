@@ -14,12 +14,12 @@
   "guides": {
     "type": "page",
     "title": "Guides",
-    "display":"hidden"
+    "display": "hidden"
   },
   "integrations": {
     "type": "page",
     "title": "Integrations",
-    "display":"hidden"
+    "display": "hidden"
   },
   "templates": {
     "title": "Templates",
@@ -52,6 +52,14 @@
     "type": "page",
     "display": "hidden"
   },
+  "launch-week": {
+    "title": "Launch Week",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
   "ambassadors": {
     "title": "Lamatic Ambassadors",
     "type": "page",
@@ -60,6 +68,7 @@
     },
     "display": "hidden"
   },
+
   "security": {
     "title": "Security",
     "type": "page",

@@ -148,6 +148,8 @@ const config: DocsThemeConfig = {
           ? "%s - Lamatic.ai Agent Kits"
           : asPath.startsWith("/security/")
           ? "%s - Lamatic.ai Security"
+          : asPath.startsWith("/launch-week/")
+          ? "%s - Lamatic.ai Launch Week"
           : "%s - Lamatic.ai Docs",
       canonical,
     };

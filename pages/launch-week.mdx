@@ -1,0 +1,81 @@
+---
+title: Launch Week
+description: A week designed to transform how you build, deploy and scale AI-powered agents with Lamatic.ai
+---
+
+import { LaunchWeekHero } from "@/components/launch-week/hero-section";
+import { LaunchWeekTimeline } from "@/components/launch-week/timeline";
+import { LaunchWeekCTA } from "@/components/launch-week/cta-section";
+import { LaunchWeekFAQ } from "@/components/launch-week/faq-section";
+import { LaunchWeekGame } from "@/components/launch-week/game-section";
+
+<>
+  <div className="mx-auto px-4 sm:px-6 lg:px-0">
+    <LaunchWeekHero />
+
+    <LaunchWeekTimeline
+      days={[
+        {
+          day: 1,
+          date: "17 November 2025",
+          title: "Open source AI agent",
+          description:
+            "We're open-sourcing the end-to-end toolkit to build AI agents, giving you modular pipelines, advanced tool use, seamless integrations, and one-click deployment.",
+          badge: "New",
+          links: [
+            { type: "github", label: "GitHub", url: "https://github.com/lamatic" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 2,
+          date: "18 November 2025",
+          title: "Build a Voice Agent Using MCP & A2A Protocols",
+          description:
+            "Connect your agent to the world. Our MCP & A2A support enables complex, agent-to-agent workflows for the future of enterprise AI.",
+          links: [
+            { type: "article", label: "Article", url: "/docs" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 3,
+          date: "19 November 2025",
+          title: "AI Avatar Agent with Lamatic",
+          description:
+            "Add AI avatar to your Lamatic agent with Python. Build an interactive, voice-enabled assistant that can answer live queries and more.",
+          links: [
+            { type: "article", label: "Article", url: "/docs" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 4,
+          date: "20 November 2025",
+          title: "Lamatic SIP Framework : AI Telephony Agent",
+          description:
+            "Build an AI telephony agent for inbound and outbound calls. Step-by-step guide to SIP, call automation, and real-time AI voice solutions.",
+          links: [
+            { type: "article", label: "Article", url: "/docs" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 5,
+          date: "21 November 2025",
+          title:
+            "Conversational Flow AI Agent with Voice Activity & Turn Detection",
+          description:
+            "Build a production-quality, self-contained Voice Agent featuring advanced conversational flow, voice activity detection (VAD), and turn detection.",
+          links: [
+            { type: "article", label: "Article", url: "/docs" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+      ]}
+    />
+
+    <LaunchWeekCTA />
+    <LaunchWeekGame />
+  </div>
+</>

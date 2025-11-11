@@ -13,6 +13,7 @@ interface HeroSectionProps {
 export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
+    days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0,
@@ -28,14 +29,17 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
       const difference = launchDate.getTime() - now.getTime();
 
       if (difference > 0) {
-        const hours = Math.floor(difference / (1000 * 60 * 60));
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
         const minutes = Math.floor(
           (difference % (1000 * 60 * 60)) / (1000 * 60)
         );
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-        return { hours, minutes, seconds };
+        return { days, hours, minutes, seconds };
       }
-      return { hours: 0, minutes: 0, seconds: 0 };
+      return { days: 0, hours: 0, minutes: 0, seconds: 0 };
     };
 
     // Set initial time
@@ -61,26 +65,74 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
 
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[450px]">
+  
+
         {/* Rocket Image - Top Left */}
-        <div className="absolute top-0 left-0 lg:left-8 z-10">
+        <div
+          className="absolute top-0 left-0 lg:left-8 z-10 floating-element"
+          style={{ animationDuration: "4s", animationDelay: "0s" }}
+        >
           <Image
             src="/images/launch/lamatic-rocket.png"
             alt="Build Faster Rocket"
-            width={200}
-            height={200}
-            className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+            width={180}
+            height={180}
+            className="w-29 h-29 md:w-36 md:h-36 lg:w-43 lg:h-43 object-contain"
             priority
           />
         </div>
 
         {/* POWERED BY CREATIVITY - Bottom Right */}
-        <div className="absolute bottom-0 right-0 lg:right-8 z-10">
+        <div
+          className="absolute bottom-[0] right-0 lg:left-20 z-10 floating-element drop-shadow-2xl"
+          style={{ 
+            animationDuration: "3s", 
+            animationDelay: "0.5s",
+            filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.3)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
+          }}
+        >
+          <Image
+            src="/images/launch/robot.png"
+            alt="Powered by Creativity"
+            width={180}
+            height={180}
+            className="w-18 h-18 md:w-25 md:h-25 lg:w-32 lg:h-32 object-contain"
+            priority
+          />
+        </div>
+        <div
+          className="absolute top-10 right-0 lg:right-20 z-10 floating-element drop-shadow-2xl"
+          style={{ 
+            animationDuration: "2s", 
+            animationDelay: "0.2s",
+            filter: "drop-shadow(0 0 15px rgba(239, 68, 68, 0.4)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.25))"
+          }}
+        >
+          <Image
+            src="/images/launch/lamatic-bolt.png"
+            alt="Build Faster Rocket"
+            width={180}
+            height={180}
+            className="w-29 h-29 md:w-36 md:h-36 lg:w-43 lg:h-43 object-contain"
+            priority
+          />
+        </div>
+
+        {/* POWERED BY CREATIVITY - Bottom Right */}
+        <div
+          className="absolute bottom-5 right-30 lg:right-8 z-10 floating-element drop-shadow-2xl"
+          style={{ 
+            animationDuration: "4s", 
+            animationDelay: "0.8s",
+            filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.35)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
+          }}
+        >
           <Image
             src="/images/launch/lamatic-power.png"
             alt="Powered by Creativity"
-            width={200}
-            height={200}
-            className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain"
+            width={180}
+            height={180}
+            className="w-22 h-22 md:w-29 md:h-29 lg:w-36 lg:h-36 object-contain"
             priority
           />
         </div>
@@ -97,7 +149,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
 
           {/* Main Heading */}
           <h1 className="text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-black mb-2 leading-tight">
-            Launch week #3
+            Launch Week #3
           </h1>
           <h2 className="text-[8rem] md:text-[12 rem] lg:text-[16rem] font-extrabold text-black mb-2 leading-tight">
             The Next Evolution of Software
@@ -120,7 +172,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              Join The Launch
+              Get Notified
             </Button>
           </div>
 
@@ -129,7 +181,8 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
             <Rocket className="w-4 h-4 text-gray-600 inline-block mr-2" />
             Launches in
             <span className="text-red-500 ml-1 font-semibold">
-              {String(timeLeft.hours).padStart(2, "0")}:
+              {String(timeLeft.days).padStart(1, "0")} days,{" "}
+              {String(timeLeft.hours).padStart(2, "0")}: 
               {String(timeLeft.minutes).padStart(2, "0")}:
               {String(timeLeft.seconds).padStart(2, "0")}
             </span>

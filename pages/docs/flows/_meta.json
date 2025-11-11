@@ -2,5 +2,6 @@
   "sticky-notes": "Sticky Notes",
   "nodes": "Nodes" ,
   "variables": "Variables",
-  "flow_config": "Flow Config"
+  "flow-config": "Flow Config",
+  "flow-assistant": "Flow Assistant"
 }

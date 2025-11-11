@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Rocket } from "lucide-react";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface HeroSectionProps {
@@ -28,7 +29,9 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
 
       if (difference > 0) {
         const hours = Math.floor(difference / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const minutes = Math.floor(
+          (difference % (1000 * 60 * 60)) / (1000 * 60)
+        );
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
         return { hours, minutes, seconds };
       }
@@ -47,12 +50,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
   }, []);
 
   return (
-    <div
-      className={cn(
-        "relative overflow-hidden py-16 md:py-24",
-        className
-      )}
-    >
+    <div className={cn("relative overflow-hidden py-16 md:py-24", className)}>
       {/* Background Grid Lines */}
       {/* {mounted && (
         <div
@@ -64,18 +62,20 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="relative">
+          {/* Rocket Image - Top Right */}
+          <div className="absolute top-0 left-0 lg:left-8 z-10">
+            <Image
+              src="/images/launch/lamatic-rocket.png"
+              alt="Build Faster Rocket"
+              width={200}
+              height={200}
+              className="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 object-contain"
+              priority
+            />
+          </div>
+
           {/* Center Aligned Main Content */}
           <div className="max-w-4xl mx-auto text-center">
-            {/* Rocket with Build Faster on its side */}
-            {/* <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="relative flex items-center">
-                <Rocket className="w-16 h-16 text-red-500" />
-                <span className="absolute left-12 text-xs font-bold text-red-500 whitespace-nowrap -rotate-12">
-                  Build Faster
-                </span>
-              </div>
-            </div> */}
-
             {/* Banner below rocket */}
             <div className="mb-8">
               <div className="inline-block px-5 py-2 border border-gray-200 rounded text-md font-normal text-gray-700 bg-white">
@@ -121,6 +121,17 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
                 {String(timeLeft.seconds).padStart(2, "0")}
               </span>
             </div>
+          </div>
+
+          <div className="absolute bottom-0 right-0 lg:right-8 z-10">
+            <Image
+              src="/images/launch/lamatic-power.png"
+              alt="Powered by Creativity"
+              width={200}
+              height={200}
+              className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain"
+              priority
+            />
           </div>
 
           {/* Right Side - POWERED BY CREATIVITY Banner */}

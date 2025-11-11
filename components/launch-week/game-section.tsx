@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { Brain } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const questions = [
   {
@@ -14,7 +15,8 @@ const questions = [
     hint: "It includes modular pipelines, tool use, and one-click deployment.",
   },
   {
-    question: "Which Lamatic feature allows flows to communicate with Vector databases?",
+    question:
+      "Which Lamatic feature allows flows to communicate with Vector databases?",
     options: ["Generate Text", "RAG Node", "File Explorer Node"],
     answer: "RAG Node",
     hint: "It allows flows to communicate with Vector databases.",
@@ -31,228 +33,171 @@ const questions = [
   },
 ];
 
-const nodes = [
-  "Trigger Node",
-  "RAG Node",
-  "Response Node"
-];
-
 export function LaunchWeekGame() {
-  const [current, setCurrent] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selected, setSelected] = useState("");
-  const [correctNodes, setCorrectNodes] = useState<string[]>([]);
   const [showHint, setShowHint] = useState(false);
   const [showMessage, setShowMessage] = useState("");
-  const [isOverlayVisible, setOverlayVisible] = useState(true);
+  const [score, setScore] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
-  const handleConfirm = () => {
+  const handleSubmit = () => {
     if (!selected) return;
 
-    if (selected === questions[current].answer) {
-      const nextNode = nodes[current];
-      setCorrectNodes([...correctNodes, nextNode]);
+    const current = questions[currentQuestion];
+    if (selected === current.answer) {
+      setScore(score + 1);
       setShowMessage("✅ Correct! Moving to next question...");
-
-      if (current === 0) setOverlayVisible(false);
+      setShowHint(false);
 
       setTimeout(() => {
-        setShowMessage("");
-        setShowHint(false);
-        setSelected("");
-        setCurrent(current + 1);
-      }, 1000);
+        if (currentQuestion < questions.length - 1) {
+          setCurrentQuestion(currentQuestion + 1);
+          setSelected("");
+          setShowMessage("");
+        } else {
+          setIsCompleted(true);
+          setShowMessage("");
+        }
+      }, 1500);
     } else {
-      setShowMessage("❌ Oops! Try again from the beginning.");
+      setShowMessage("❌ Incorrect! Try again.");
       setTimeout(() => {
         setShowMessage("");
-        setShowHint(false);
-        setSelected("");
-        setCurrent(0);
-        setCorrectNodes([]);
-        setOverlayVisible(true);
-      }, 1200);
+      }, 2000);
     }
   };
 
   const handleRestart = () => {
-    setCurrent(0);
+    setCurrentQuestion(0);
     setSelected("");
-    setCorrectNodes([]);
     setShowHint(false);
     setShowMessage("");
-    setOverlayVisible(true);
+    setScore(0);
+    setIsCompleted(false);
   };
 
-  const isCompleted = current >= questions.length;
-
   return (
-    <div className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-2xl shadow-lg dark:shadow-zinc-900/50 p-10 w-full max-w-6xl mx-auto mt-12 relative">
-      {/* Section Header */}
-      {!isCompleted && (
-        <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-[#111827] dark:text-white">
-            Lamatic Launch Quiz
-          </h1>
-          <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 mb-16">
-            Give the right answers to build your workflow.
-          </p>
-        </div>
-      )}
+    <div className="relative overflow-hidden py-16 md:py-16 border border-gray-200 rounded-lg max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col lg:flex-row items-start gap-12">
+          {/* Left Side - Title and Brain Icon */}
+          <div className="flex-2">
+            <h2 className="text-4xl md:text-6xl font-extrabold text-black mb-6">
+              Test <br />
+              Your <br /> Lamatic IQ!
+            </h2>
+            <p className="text-gray-500">Test your knowledge of Lamatic!</p>
+            <div className="relative inline-block">
+              {/* <Brain className="w-32 h-32 text-pink-500" strokeWidth={1.5} /> */}
+              {/* <div className="absolute -bottom-2 -right-2 bg-pink-100 px-3 py-1 rounded-full">
+                <span className="text-xs font-bold text-pink-600">
+                  you got this!
+                </span>
+              </div> */}
+            </div>
+          </div>
 
-      {/* Content Section */}
-      <div className="flex flex-col md:flex-row justify-between gap-10 relative min-h-[420px]">
-        {/* Left: Quiz or Success */}
-        <div className="flex-1 flex items-start justify-center">
-          {!isCompleted ? (
-            <div className="w-full flex flex-col justify-between h-full">
-              {/* Top Section: Question + Options */}
-              <div>
-                <h3 className="text-xl font-semibold mb-4 text-[#111827] dark:text-white">
-                  {questions[current].question}
+          {/* Right Side - Question and Options */}
+          <div className="flex-1">
+            {!isCompleted ? (
+              <>
+                <div className="mb-4">
+                  <span className="text-sm text-gray-500">
+                    Question {currentQuestion + 1} of {questions.length}
+                  </span>
+                </div>
+                <h3 className="text-xl font-semibold text-black mb-6">
+                  {questions[currentQuestion].question}
                 </h3>
-                <div className="space-y-3">
-                  {questions[current].options.map((option, i) => (
+                <div className="space-y-3 mb-6">
+                  {questions[currentQuestion].options.map((option, index) => (
                     <div
-                      key={i}
-                      className={`w-full px-4 py-3 rounded-xl border cursor-pointer transition-all ${
+                      key={index}
+                      className={cn(
+                        "w-full px-4 py-3 rounded-lg border-2 cursor-pointer transition-all",
                         selected === option
-                          ? "border-[#FF3E3E] bg-[#FFF3F3] dark:bg-red-900/20 dark:border-red-500 dark:text-white"
-                          : "border-gray-200 dark:border-zinc-700 hover:border-[#FF3E3E]/60 dark:hover:border-red-500/50 bg-white dark:bg-zinc-800 text-gray-900 dark:text-gray-200"
-                      }`}
+                          ? "border-red-500 bg-red-50"
+                          : "border-gray-200 hover:border-red-300 bg-white"
+                      )}
                       onClick={() => setSelected(option)}
                     >
-                      {String.fromCharCode(65 + i)}. {option}
+                      <span className="font-medium text-gray-800">
+                        {String.fromCharCode(97 + index)}. {option}
+                      </span>
                     </div>
                   ))}
                 </div>
 
-                {/* Confirm + Hint Buttons */}
-                <div className="flex items-center gap-4 mt-6">
-                  <button
-                    onClick={handleConfirm}
-                    className="px-6 py-2 bg-[#FF3E3E] text-white rounded-lg hover:bg-[#e63535] transition"
-                  >
-                    Confirm
-                  </button>
-                  <button
-                    onClick={() => setShowHint(!showHint)}
-                    className="px-6 py-2 border border-gray-300 dark:border-zinc-600 text-gray-600 dark:text-gray-300 rounded-lg hover:border-[#FF3E3E]/60 dark:hover:border-red-500/50 bg-white dark:bg-zinc-800 transition"
-                  >
-                    Hint
-                  </button>
-                </div>
-              </div>
-
-              {/* Bottom Section: Feedback + Hint */}
-              <div className="mt-10">
                 {showHint && (
-                  <div className="mb-4">
-                    <p className="text-sm text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-zinc-800/50 border border-gray-200 dark:border-zinc-700 rounded-lg p-4">
-                      💡 {questions[current].hint}
+                  <div className="mb-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                    <p className="text-sm text-yellow-800">
+                      💡 {questions[currentQuestion].hint}
                     </p>
                   </div>
                 )}
+
                 {showMessage && (
-                  <motion.p
-                    className={`text-sm font-medium ${
+                  <div
+                    className={cn(
+                      "mb-4 p-4 rounded-lg",
                       showMessage.includes("Correct")
-                        ? "text-green-600 dark:text-green-400"
-                        : "text-red-500 dark:text-red-400"
-                    }`}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
+                        ? "bg-green-50 border border-green-200"
+                        : "bg-red-50 border border-red-200"
+                    )}
                   >
-                    {showMessage}
-                  </motion.p>
+                    <p
+                      className={cn(
+                        "text-sm font-medium",
+                        showMessage.includes("Correct")
+                          ? "text-green-800"
+                          : "text-red-800"
+                      )}
+                    >
+                      {showMessage}
+                    </p>
+                  </div>
                 )}
-              </div>
-            </div>
-          ) : (
-            <motion.div
-              className="flex flex-col items-center text-center w-full py-12"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-3xl font-bold text-[#FF3E3E] mb-6">
-                🎉 Workflow Completed Successfully!
-              </h2>
 
-              <p className="text-gray-600 dark:text-gray-300 text-base max-w-md leading-relaxed mb-14">
-                You've mastered Lamatic's Launch Week quiz — your workflow is now fully built
-                and ready to go!
-              </p>
-
-              <div className="mt-8">
-               <button
-                onClick={handleRestart}
-                className="px-8 py-3 bg-[#FF3E3E] text-white rounded-lg font-semibold hover:bg-[#e63535] transition-all"
-                >
-                Play Again
-               </button>
-              </div>
-             
-            </motion.div>
-          )}
-        </div>
-
-        {/* Divider */}
-        {!isCompleted && <div className="hidden md:block w-px bg-gray-200 dark:bg-zinc-700"></div>}
-
-        {/* Right: Workflow */}
-        {!isCompleted && (
-          <div className="flex-1 flex flex-col items-center relative">
-            {isOverlayVisible && (
-              <motion.div
-                className="absolute inset-0 bg-white/60 dark:bg-zinc-900/60 backdrop-blur-sm flex items-center justify-center rounded-xl z-10"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-              >
-                <p className="text-gray-600 dark:text-gray-300 text-sm font-medium">
-                  Answer correctly to unlock your workflow →
-                </p>
-              </motion.div>
-            )}
-
-            <div className="relative flex flex-col items-center justify-center">
-              {nodes.map((node, index) => (
-                <div key={index} className="flex flex-col items-center justify-center w-full">
-                  <motion.div
-                    className={`px-6 py-3 rounded-lg border-2 text-center font-medium w-full ${
-                      correctNodes.includes(node)
-                        ? "border-[#FF3E3E] bg-[#FFF3F3] dark:bg-red-900/20 dark:border-red-500 shadow-[0_0_15px_#FF3E3E55] dark:shadow-[0_0_15px_#FF3E3E88] text-gray-900 dark:text-white"
-                        : "border-gray-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-gray-700 dark:text-gray-300"
-                    }`}
-                    animate={{
-                      scale: correctNodes.includes(node) ? 1.05 : 1,
-                      opacity: correctNodes.includes(node) ? 1 : 0.7,
-                    }}
-                    transition={{ duration: 0.6 }}
+                <div className="flex gap-3">
+                  <button
+                    onClick={handleSubmit}
+                    disabled={!selected}
+                    className={cn(
+                      "px-6 py-2 rounded-md text-white font-semibold transition-colors",
+                      selected
+                        ? "bg-red-500 hover:bg-red-600"
+                        : "bg-gray-300 cursor-not-allowed"
+                    )}
                   >
-                    {node}
-                  </motion.div>
-
-                  {index < nodes.length - 1 && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{
-                        height: "2.5rem",
-                        opacity: correctNodes.length > index ? 1 : 0.2,
-                      }}
-                      transition={{ duration: 0.5 }}
-                      className={`w-1 rounded-full ${
-                        correctNodes.length > index
-                          ? "bg-[#FF3E3E] shadow-[0_0_10px_#FF3E3E88]"
-                          : "bg-gray-300 dark:bg-zinc-700"
-                      }`}
-                    />
-                  )}
+                    Submit
+                  </button>
+                  <button
+                    onClick={() => setShowHint(!showHint)}
+                    className="px-6 py-2 rounded-md border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition-colors"
+                  >
+                    {showHint ? "Hide Hint" : "Show Hint"}
+                  </button>
                 </div>
-              ))}
-            </div>
+              </>
+            ) : (
+              <div className="text-center py-8">
+                <h3 className="text-2xl font-bold text-black mb-4">
+                  🎉 Quiz Completed!
+                </h3>
+                <p className="text-lg text-gray-700 mb-6">
+                  You scored {score} out of {questions.length}!
+                </p>
+                <button
+                  onClick={handleRestart}
+                  className="px-6 py-2 rounded-md bg-red-500 hover:bg-red-600 text-white font-semibold transition-colors"
+                >
+                  Play Again
+                </button>
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

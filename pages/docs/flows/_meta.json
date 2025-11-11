@@ -1,6 +1,8 @@
 { "editor": "Flow editor",
   "sticky-notes": "Sticky Notes",
   "nodes": "Nodes" ,
+  "node-config": "Node Config" ,
   "variables": "Variables",
-  "flow_config": "Flow Config"
+  "flow-config": "Flow Config",
+  "flow-assistant": "Flow Assistant"
 }

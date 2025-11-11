@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Bell } from "lucide-react";
+import { Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface CTASectionProps {
@@ -46,7 +46,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
           },
           input: {
             texts: {
-              placeholder: "name@email.com",
+              placeholder: "Enter your email id",
             },
           },
           button: {
@@ -88,11 +88,13 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{
-        __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
           .t-button {
             color: white;
             background-color: #ef4444;
+            justify-content: center;
           }
           .t-primary-color {
             color: white;
@@ -104,35 +106,47 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
             background-color: white;
           }
           .t-form {
-            max-width: 300px;
+            max-width: 100%;
           }
-        `
-      }} />
+        `,
+        }}
+      />
       <div
         id="join-launch-week"
         className={cn(
-          "relative overflow-hidden py-20 md:py-10",
-          "bg-gradient-to-br",
-          " rounded-lg",
+          "overflow-hidden py-20 md:py-24 bg-white",
           className
         )}
       >
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="mb-8">
-            <Bell className="w-12 h-12 mx-auto -mb-2 text-primary" />
+        {/* Background Grid Lines */}
+        {/* <div
+          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"
+          aria-hidden="true"
+        /> */}
 
-            <h2 className="text-2xl font-bold text-[#111827] dark:text-white">
-              Don't Miss Out
+        <div className="mx-auto px-4">
+          <div className="justify-center">
+            {/* Heading */}
+            <h2 className="text-4xl md:text-6xl font-extrabold text-black mb-6 text-center">
+              Join the Countdown — Get Notified <br /> When Launch Week 3 Begins
             </h2>
 
-            <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 mb-12 text-center">
-              Join thousands of developers building the future of AI agents.
-              Get notified when we launch new features and announcements.
-            </p>
-          </div>
+            {/* Email Form */}
+            <div className="flex items-center justify-center">
+              <div className="flex-1">
+                <div className="t-signup"></div>
+              </div>
 
-          <div className="flex justify-center items-center">
-            <div className="t-signup"></div>
+              {/* Envelope Icon */}
+              {/* <div className="hidden lg:block relative flex-shrink-0">
+                <div className="w-24 h-24 bg-red-500 rounded-lg flex items-center justify-center transform rotate-6 shadow-lg">
+                  <Mail className="w-12 h-12 text-white" />
+                </div>
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="w-20 h-20 border-2 border-red-300 rounded-lg animate-pulse"></div>
+                </div>
+              </div> */}
+            </div>
           </div>
         </div>
       </div>

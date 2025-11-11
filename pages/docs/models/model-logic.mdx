@@ -1,0 +1,214 @@
+---
+title: Model Logic
+description: Model Logic allows you to wrap and extend your model node's behavior with advanced control mechanisms like fallback, retry, conditional routing, parallel execution, and A/B testing.
+---
+
+# Model Logic
+
+![Model Logic](./img/model-logic.png)
+
+Model Logic provides powerful ways to wrap and extend your model node's behavior, enabling advanced control mechanisms for error handling, branching, experimentation, and performance optimization. These logic options help you build more robust, reliable, and flexible AI workflows.
+
+> 💡 **Tip**: Model Logic is useful for error handling, branching, and experimentation. Add logic to your model nodes to enhance reliability and control flow execution.
+
+## Overview
+
+When configuring a model node, you can add logic to control how the model executes and handles different scenarios. The available logic options include:
+
+- **Fallback** - Automatically switch to a backup model configuration on timeout or failure
+- **Retry** - Automatically retry model execution with configurable attempts and delays
+- **Go Back** - Conditionally route execution back to previous nodes based on output data
+- **Parallel** - Execute multiple model configurations simultaneously
+- **A/B Test** - Split traffic between two model configurations with configurable percentages
+
+---
+
+## **1. Fallback**
+
+Fallback logic enables automatic failover to a backup model configuration when the primary model times out or fails. This ensures your workflow continues executing even if the primary model encounters issues.
+
+### **When to Use Fallback**
+
+- When you need high availability and reliability
+- When working with models that may have variable response times
+- When you want to ensure your workflow doesn't fail due to model unavailability
+
+### **Configuration**
+
+When you select **Fallback**, you can configure:
+
+- **Config A (Primary Model)** - The primary model configuration that will be attempted first
+- **Config B (Fallback Model)** - The backup model configuration used if Config A fails or times out
+- **Timeout** - The maximum time to wait for Config A before switching to Config B
+
+### **How It Works**
+
+1. The system attempts to execute **Config A** (your primary model configuration)
+2. If Config A times out (based on your timeout setting) or fails, the system automatically switches to **Config B**
+3. The result from the successful configuration (either A or B) is used to continue the workflow
+
+> ⚠️ **Note**: Make sure Config B uses a different model or configuration that's more reliable or faster, even if potentially less optimal.
+
+---
+
+## **2. Retry**
+
+Retry logic automatically retries model execution when it fails, helping you handle transient errors and network issues gracefully.
+
+### **When to Use Retry**
+
+- When dealing with intermittent network issues or API rate limits
+- When you want to automatically recover from temporary failures
+- When working with models that may occasionally timeout
+
+### **Configuration**
+
+When you select **Retry**, you can configure:
+
+- **Max Retry Attempts** - The maximum number of times to retry the model execution (e.g., 3, 5, 10)
+- **Delay** - The time to wait between retry attempts (e.g., 1 second, 5 seconds)
+
+### **How It Works**
+
+1. The system attempts to execute the model
+2. If the execution fails, it waits for the specified **Delay** period
+3. The system retries the execution
+4. This process repeats until either:
+   - The execution succeeds, or
+   - The maximum number of retry attempts is reached
+
+> 💡 **Best Practice**: Set appropriate delay values to avoid overwhelming the model API and to respect rate limits.
+
+---
+
+## **3. Go Back**
+
+Go Back logic allows you to conditionally route execution back to a previous node in your workflow based on the model's output data. This enables dynamic flow control and iterative refinement.
+
+### **When to Use Go Back**
+
+- When you need to refine or reprocess data based on model output
+- When implementing iterative workflows that require multiple passes
+- When you want to conditionally loop back to previous processing steps
+
+### **Configuration**
+
+When you select **Go Back**, you can configure:
+
+- **Condition** - A condition based on the output data that determines when to go back
+- **Target Node** - The specific node to route execution back to when the condition is met
+- **Action** - The action to trigger when routing back (e.g., re-execute, update context)
+
+### **How It Works**
+
+1. The model executes and produces output
+2. The system evaluates the **Condition** against the output data
+3. If the condition is met, execution routes back to the specified **Target Node**
+4. The target node re-executes with the updated context
+5. If the condition is not met, execution continues to the next node in the flow
+
+> ⚠️ **Warning**: Be careful to avoid infinite loops. Ensure your conditions can eventually be false, or set maximum iteration limits.
+
+---
+
+## **4. Parallel Execution**
+
+Parallel logic executes two model configurations simultaneously, allowing you to compare results or combine outputs from different models.
+
+### **When to Use Parallel**
+
+- When you want to compare outputs from different models
+- When you need to combine results from multiple model configurations
+- When you want to improve performance by running models concurrently
+
+### **Configuration**
+
+When you select **Parallel**, you can configure:
+
+- **Config A** - The first model configuration to execute
+- **Config B** - The second model configuration to execute
+- Both configurations execute simultaneously
+
+### **How It Works**
+
+1. Both **Config A** and **Config B** start executing at the same time
+2. The system waits for both configurations to complete
+3. You can access results from both configurations in subsequent nodes
+4. Results are typically available as separate outputs or can be combined based on your workflow logic
+
+> 💡 **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple models, as they run concurrently rather than sequentially.
+
+---
+
+## **5. A/B Testing**
+
+A/B Testing logic allows you to split traffic between two model configurations with configurable percentages, enabling you to test and compare different model setups.
+
+### **When to Use A/B Testing**
+
+- When you want to compare the performance of different model configurations
+- When testing new models or prompts against existing ones
+- When you need to gradually roll out new model configurations
+
+### **Configuration**
+
+When you select **A/B Test**, you can configure:
+
+- **Config A** - The first model configuration
+- **Config B** - The second model configuration
+- **Traffic Split** - The percentage distribution between Config A and Config B
+  - **Config A Percentage** - e.g., 40% of requests go to Config A
+  - **Config B Percentage** - e.g., 60% of requests go to Config B
+  - Percentages must total 100%
+
+### **How It Works**
+
+1. For each execution, the system randomly selects Config A or Config B based on the configured percentages
+2. If Config A is set to 40% and Config B to 60%:
+   - Approximately 40% of executions use Config A
+   - Approximately 60% of executions use Config B
+3. Results from both configurations can be tracked and compared
+4. The system maintains the traffic split distribution over time
+
+> 📊 **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
+
+---
+
+## **Adding Model Logic to a Node**
+
+To add logic to a model node:
+
+1. Select the model node in your flow
+2. Open the **Config** tab in the right sidebar
+3. Navigate to the **MODEL** section
+4. Click on the **Logic** sub-tab
+5. Click **+ Add Logic** button
+6. Select the logic type you want to add:
+   - **Fallback** (clock icon)
+   - **Retry** (refresh icon)
+   - **Go Back** (back arrow icon)
+   - **Parallel** (parallel lines icon)
+   - **A/B Test** (A/B icon)
+7. Configure the selected logic type with the appropriate settings
+8. Save your configuration
+
+> 💡 **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability.
+
+---
+
+## **Best Practices**
+
+- **Fallback**: Always configure a reliable backup model that's faster or more stable than your primary
+- **Retry**: Set reasonable retry limits and delays to avoid excessive API calls and costs
+- **Go Back**: Implement safeguards to prevent infinite loops (e.g., iteration counters)
+- **Parallel**: Use when you genuinely need both results, as it increases resource usage
+- **A/B Testing**: Run tests for sufficient duration to gather statistically significant data
+
+---
+
+## **Related Resources**
+
+- [Model Config](./model-config.mdx) - Learn about configuring model parameters
+- [Custom Model Integration](./custom-model-integration.mdx) - Add and manage custom models
+- [Node Configuration](/docs/flows/node-config) - General node configuration guide
+

@@ -55,9 +55,9 @@ export const WhatToExpectSection: React.FC<WhatToExpectSectionProps> = ({
             </p>
           </div>
           {/* Lightning Bolt Icon */}
-          <div className="hidden lg:block ml-8">
+          {/* <div className="hidden lg:block ml-8">
             <Zap className="w-24 h-24 text-pink-500" strokeWidth={1.5} />
-          </div>
+          </div> */}
         </div>
 
         {/* Feature Cards */}
@@ -87,11 +87,11 @@ export const WhatToExpectSection: React.FC<WhatToExpectSectionProps> = ({
         </div>
 
         {/* Decorative Icon Below Cards */}
-        <div className="flex justify-center mt-8">
+        {/* <div className="flex justify-center mt-8">
           <div className="w-16 h-16 bg-red-500 rounded-lg flex items-center justify-center transform rotate-12">
             <span className="text-white font-bold text-2xl">L</span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

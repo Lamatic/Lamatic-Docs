@@ -12,30 +12,35 @@ interface HeroSectionProps {
 export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
-    hours: 30,
-    minutes: 47,
-    seconds: 23,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
   });
 
   useEffect(() => {
     setMounted(true);
 
-    // Countdown timer
-    const interval = setInterval(() => {
-      setTimeLeft((prev) => {
-        let { hours, minutes, seconds } = prev;
-        if (seconds > 0) {
-          seconds--;
-        } else if (minutes > 0) {
-          minutes--;
-          seconds = 59;
-        } else if (hours > 0) {
-          hours--;
-          minutes = 59;
-          seconds = 59;
-        }
+    // Calculate time until November 17, 2025 at midnight UTC
+    const calculateTimeLeft = () => {
+      const launchDate = new Date("2025-11-17T00:00:00Z");
+      const now = new Date();
+      const difference = launchDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const hours = Math.floor(difference / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
         return { hours, minutes, seconds };
-      });
+      }
+      return { hours: 0, minutes: 0, seconds: 0 };
+    };
+
+    // Set initial time
+    setTimeLeft(calculateTimeLeft());
+
+    // Update countdown every second
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft());
     }, 1000);
 
     return () => clearInterval(interval);
@@ -62,14 +67,14 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
           {/* Center Aligned Main Content */}
           <div className="max-w-4xl mx-auto text-center">
             {/* Rocket with Build Faster on its side */}
-            <div className="flex items-center justify-center gap-2 mb-3">
+            {/* <div className="flex items-center justify-center gap-2 mb-3">
               <div className="relative flex items-center">
                 <Rocket className="w-16 h-16 text-red-500" />
                 <span className="absolute left-12 text-xs font-bold text-red-500 whitespace-nowrap -rotate-12">
                   Build Faster
                 </span>
               </div>
-            </div>
+            </div> */}
 
             {/* Banner below rocket */}
             <div className="mb-8">
@@ -80,7 +85,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-extrabold text-black mb-2 leading-tight">
+            <h1 className="text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-black mb-2 leading-tight">
               The Next Evolution of Software
             </h1>
 
@@ -119,13 +124,13 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
           </div>
 
           {/* Right Side - POWERED BY CREATIVITY Banner */}
-          <div className="absolute top-0 right-0 lg:right-8">
+          {/* <div className="absolute top-0 right-0 lg:right-8">
             <div className="bg-red-500 text-white px-6 py-4 rounded-lg transform rotate-3 shadow-lg">
               <p className="font-bold text-lg md:text-xl">
                 POWERED BY CREATIVITY
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

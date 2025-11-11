@@ -4,6 +4,7 @@ description: A week designed to transform how you build, deploy and scale AI-pow
 ---
 
 import { LaunchWeekHero } from "@/components/launch-week/hero-section";
+import { WhatToExpectSection } from "@/components/launch-week/what-to-expect-section";
 import { LaunchWeekTimeline } from "@/components/launch-week/timeline";
 import { LaunchWeekCTA } from "@/components/launch-week/cta-section";
 import { LaunchWeekFAQ } from "@/components/launch-week/faq-section";
@@ -14,6 +15,8 @@ import { ForceLightTheme } from "@/components/launch-week/force-light-theme";
   <ForceLightTheme />
   <div className="mx-auto px-4 sm:px-6 lg:px-0">
     <LaunchWeekHero />
+
+    <WhatToExpectSection />
 
     <LaunchWeekTimeline
       days={[
@@ -54,7 +57,7 @@ import { ForceLightTheme } from "@/components/launch-week/force-light-theme";
         {
           day: 4,
           date: "20 November 2025",
-          title: "AgentKit",
+          title: "AgentKit Drop",
           description:
             "Introducing AgentKit and Templates to accelerate your development. Product Hunt launch continues with an AMA session where you can ask questions and get expert guidance.",
           links: [
@@ -65,7 +68,7 @@ import { ForceLightTheme } from "@/components/launch-week/force-light-theme";
         {
           day: 5,
           date: "21 November 2025",
-          title: "Conclusion",
+          title: "Finale & Integrations",
           description:
             "Final day featuring New Integrations, Tools, and Knowledge Stacks. Join us for the recap, leaderboard announcements, shoutouts, and exclusive swags for our community.",
           links: [
@@ -76,7 +79,7 @@ import { ForceLightTheme } from "@/components/launch-week/force-light-theme";
       ]}
     />
 
-    <LaunchWeekCTA />
     <LaunchWeekGame />
+    <LaunchWeekCTA />
   </div>
 </>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Rocket } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface HeroSectionProps {
@@ -10,87 +11,121 @@ interface HeroSectionProps {
 
 export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
   const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    hours: 30,
+    minutes: 47,
+    seconds: 23,
+  });
 
   useEffect(() => {
     setMounted(true);
+
+    // Countdown timer
+    const interval = setInterval(() => {
+      setTimeLeft((prev) => {
+        let { hours, minutes, seconds } = prev;
+        if (seconds > 0) {
+          seconds--;
+        } else if (minutes > 0) {
+          minutes--;
+          seconds = 59;
+        } else if (hours > 0) {
+          hours--;
+          minutes = 59;
+          seconds = 59;
+        }
+        return { hours, minutes, seconds };
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
     <div
       className={cn(
-        "relative overflow-hidden py-16 md:py-24 ",
+        "relative overflow-hidden py-16 md:py-24",
         className
       )}
     >
-      {/* ✅ Grid Overlay */}
-      {mounted && (
+      {/* Background Grid Lines */}
+      {/* {mounted && (
         <div
           className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"
           aria-hidden="true"
         />
-      )}
+      )} */}
 
-      {/* ✅ Subtle White Bottom Gradient */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-40  to-transparent pointer-events-none"
-        aria-hidden="true"
-      />
+      {/* Content */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative">
+          {/* Center Aligned Main Content */}
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Rocket with Build Faster on its side */}
+            <div className="flex items-center justify-center gap-2 mb-3">
+              <div className="relative flex items-center">
+                <Rocket className="w-16 h-16 text-red-500" />
+                <span className="absolute left-12 text-xs font-bold text-red-500 whitespace-nowrap -rotate-12">
+                  Build Faster
+                </span>
+              </div>
+            </div>
 
-      {/* ✅ Content */}
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Top Label */}
-        <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-8 tracking-wide">
-          🚀 LAUNCH WEEK • NOVEMBER 17–21, 2025
-        </p>
+            {/* Banner below rocket */}
+            <div className="mb-8">
+              <div className="inline-block px-5 py-2 border border-gray-200 rounded text-md font-normal text-gray-700 bg-white">
+                Launch Week:
+                <span className="text-red-500 ml-2">November 17-21, 2025</span>
+              </div>
+            </div>
 
-        {/* Main Heading */}
-        <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4">
-          The AI Agent Transformation Week
-        </h1>
+            {/* Main Heading */}
+            <h1 className="text-8xl md:text-9xl lg:text-[12rem] font-extrabold text-black mb-2 leading-tight">
+              The Next Evolution of Software
+            </h1>
 
-        {/* Supporting Text */}
-        <p className="text-lg md:text-lg text-gray-600 dark:text-gray-300 mb-16 text-center">
-          A week designed to transform how you build, deploy, and scale
-          AI-powered agents —{" "}
-          <span className="text-gray-800 dark:text-gray-100 font-medium">
-            faster than ever.
-          </span>
-        </p>
+            {/* Supporting Text */}
+            <p className="text-lg md:text-lg text-gray-700 mb-12 mx-auto">
+              Celebrating creativity, innovation, and the community that makes
+              Lamatic come alive.
+            </p>
 
-        {/* Three Key Feature Cards */}
-        <div className="flex flex-wrap justify-center gap-5 mt-6 mb-12">
-          {[
-            "Product Reveals",
-            "Agent Framework Workshops",
-            "Expert AI Sessions",
-          ].map((feature) => (
-            <div
-              key={feature}
-              className="border border-gray-200 dark:border-gray-700 rounded-lg px-6 py-3 flex items-center justify-center gap-3 bg-white dark:bg-gray-900"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="relative inline-flex rounded-lg h-2 w-2 bg-orange-500" />
-              </span>
-              <span className="font-medium text-gray-800 dark:text-gray-200 text-sm md:text-sm">
-                {feature}
+            {/* CTA Button */}
+            <div className="mb-6 mt-7">
+              <Button
+                size="lg"
+                className="bg-red-500 hover:bg-red-600 text-white px-8 py-6 text-lg font-semibold rounded-md"
+                onClick={() =>
+                  document
+                    .getElementById("join-launch-week")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Join The Launch
+              </Button>
+            </div>
+
+            {/* Countdown Timer */}
+            <div className="text-lg md:text-sm text-gray-600">
+              {/* Rocket Launching */}
+              <Rocket className="w-4 h-4 text-gray-600 inline-block mr-2" />
+              Launches in
+              <span className="text-red-500 ml-1">
+                {String(timeLeft.hours).padStart(2, "0")}:
+                {String(timeLeft.minutes).padStart(2, "0")}:
+                {String(timeLeft.seconds).padStart(2, "0")}
               </span>
             </div>
-          ))}
-        </div>
+          </div>
 
-        {/* CTA */}
-        <div className="flex flex-col items-center gap-5">
-          <Button
-            size="lg"
-            className="bg-red-500 hover:bg-red-600 text-white px-4 py-3 text-lg font-semibold rounded-md"
-            onClick={() =>
-              document
-                .getElementById("join-launch-week")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            Join the Launch Week
-          </Button>
+          {/* Right Side - POWERED BY CREATIVITY Banner */}
+          <div className="absolute top-0 right-0 lg:right-8">
+            <div className="bg-red-500 text-white px-6 py-4 rounded-lg transform rotate-3 shadow-lg">
+              <p className="font-bold text-lg md:text-xl">
+                POWERED BY CREATIVITY
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

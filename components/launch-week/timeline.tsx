@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { DayCard } from "./day-card";
+import { Lightbulb } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface LaunchDay {
@@ -89,28 +90,58 @@ export const LaunchWeekTimeline: React.FC<LaunchWeekTimelineProps> = ({
   }, []);
 
   return (
-    <div className={cn("max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24", className)}>
-      <div className="grid gap-10 md:gap-12">
-        {days.map((day, index) => (
-          <div
-            key={day.day}
-            ref={(el) => {
-              cardRefs.current[index] = el;
-            }}
-            data-day={day.day}
-            className={cn(
-              "relative transition-all duration-700 ease-out",
-              visibleCards.has(day.day)
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-8"
-            )}
-            style={{
-              transitionDelay: `${index * 100}ms`,
-            }}
-          >
-            <DayCard day={day} comingSoon={isComingSoon(day.date)} />
+    <div className={cn("relative overflow-hidden py-16 md:py-24 bg-white", className)}>
+      {/* Background Grid Lines */}
+      {/* <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"
+        aria-hidden="true"
+      /> */}
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        {/* Header */}
+        <div className="flex items-start justify-center mb-12">
+          <div className="flex-1">
+            <h2 className="font-extrabold text-black mb-2 text-6xl md:text-7xl lg:text-9xl">
+              Your Launch Week Roadmap
+            </h2>
+            <p className="text-lg md:text-md text-gray-700">
+              Follow the daily drops — new reveals unlock as the week unfolds.
+            </p>
           </div>
-        ))}
+          {/* Lightbulb Icon */}
+          {/* <div className="hidden lg:block ml-8">
+            <div className="relative">
+              <Lightbulb className="w-24 h-24 text-purple-500" strokeWidth={1.5} />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 border-2 border-yellow-400 rounded-full animate-pulse"></div>
+              </div>
+            </div>
+          </div> */}
+        </div>
+
+        {/* Horizontal Day Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          {days.map((day, index) => (
+            <div
+              key={day.day}
+              ref={(el) => {
+                cardRefs.current[index] = el;
+              }}
+              data-day={day.day}
+              className={cn(
+                "relative transition-all duration-700 ease-out",
+                visibleCards.has(day.day)
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-8"
+              )}
+              style={{
+                transitionDelay: `${index * 100}ms`,
+              }}
+            >
+              <DayCard day={day} comingSoon={isComingSoon(day.date)} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

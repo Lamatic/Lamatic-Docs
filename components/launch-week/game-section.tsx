@@ -29,15 +29,18 @@ export function LaunchWeekGame() {
           {/* Left Side - Title and Brain Icon */}
           <div className="flex-1">
             <h2 className="text-4xl md:text-6xl font-extrabold text-black mb-6">
-              Test Your Lamatic IQ!
+              Test <br />Your <br /> Lamatic IQ!
             </h2>
+            <p className="text-gray-500">
+              Test your knowledge of Lamatic!
+            </p>
             <div className="relative inline-block">
-              <Brain className="w-32 h-32 text-pink-500" strokeWidth={1.5} />
-              <div className="absolute -bottom-2 -right-2 bg-pink-100 px-3 py-1 rounded-full">
+              {/* <Brain className="w-32 h-32 text-pink-500" strokeWidth={1.5} /> */}
+              {/* <div className="absolute -bottom-2 -right-2 bg-pink-100 px-3 py-1 rounded-full">
                 <span className="text-xs font-bold text-pink-600">
                   you got this!
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
 

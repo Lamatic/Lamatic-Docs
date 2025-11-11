@@ -122,7 +122,7 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
           </div>
 
           {/* Countdown Timer */}
-          <div className="text-lg md:text-xl text-gray-600">
+          <div className="text-md md:text-md text-gray-600">
             <Rocket className="w-4 h-4 text-gray-600 inline-block mr-2" />
             Launches in
             <span className="text-red-500 ml-1 font-semibold">

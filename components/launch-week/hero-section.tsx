@@ -69,8 +69,12 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
 
         {/* Rocket Image - Top Left */}
         <div
-          className="absolute top-0 left-0 lg:left-8 z-10 floating-element"
-          style={{ animationDuration: "4s", animationDelay: "0s" }}
+          className="absolute top-0 left-0 lg:left-8 z-10 floating-element drop-shadow-2xl"
+          style={{ 
+            animationDuration: "4s", 
+            animationDelay: "0s", 
+          filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.3)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
+        }}
         >
           <Image
             src="/images/launch/lamatic-rocket.png"
@@ -161,20 +165,12 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
             Lamatic come alive.
           </p>
 
-          {/* CTA Button */}
-          <div className="mb-8 mt-10">
-            <Button
-              size="lg"
-              className="bg-red-500 hover:bg-red-600 text-white px-8 py-6 text-lg font-semibold rounded-md"
-              onClick={() =>
-                document
-                  .getElementById("join-launch-week")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              Get Notified
-            </Button>
-          </div>
+            {/* CTA Button */}
+            <div className="my-10 flex items-center justify-center relative z-50">
+              <div className="flex-1">
+              <div className="t-signup"></div>
+              </div>
+              </div>
 
           {/* Countdown Timer */}
           <div className="text-md md:text-md text-gray-600">

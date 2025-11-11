@@ -53,7 +53,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
             texts: {
               CTA: "Notify Me",
               loading: "Loading",
-              checkDashboard: "Dashboard",
+              checkDashboard: "Status",
               login: "Login",
             },
           },

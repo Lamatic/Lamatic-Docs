@@ -69,6 +69,10 @@ export const DayCard: React.FC<DayCardProps> = ({
         {day.day === 1 ? "Launch Kickoff" : day.title}
       </h3>
 
+      {/* {day.description && (
+       <p className="text-sm text-gray-600 mb-4">{day.description}</p>
+      )} */}
+
       {/* Features List (only for Day 1) */}
       {features.length > 0 && (
         <ul className="space-y-2 mb-6 flex-1">

@@ -53,7 +53,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
             texts: {
               CTA: "Notify Me",
               loading: "Loading",
-              checkDashboard: "Dashboard",
+              checkDashboard: "Status",
               login: "Login",
             },
           },
@@ -128,7 +128,7 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
           <div className="justify-center">
             {/* Heading */}
             <h2 className="text-4xl md:text-6xl font-extrabold text-black mb-6 text-center">
-              Join the Countdown — Get Notified <br /> When Launch Week 3 Begins
+              Get Notified <br /> When Launch Week 3 Begins
             </h2>
 
             {/* Email Form */}

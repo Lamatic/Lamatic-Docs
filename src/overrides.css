@@ -247,7 +247,7 @@ main a:not([href]) {
 /* Floating animation for hero elements */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-15px); }
 }
 
 .floating-element {
@@ -260,4 +260,29 @@ main a:not([href]) {
 
 .floating-element:nth-child(3) {
   animation-delay: 2s;
+}
+
+/* Wiggle animation for playful icons (left-right rotation/shift) */
+@keyframes wiggle {
+  0% { transform: translateX(0) rotate(0deg); }
+  25% { transform: translateX(-4px) rotate(-3deg); }
+  50% { transform: translateX(0) rotate(0deg); }
+  75% { transform: translateX(4px) rotate(3deg); }
+  100% { transform: translateX(0) rotate(0deg); }
+}
+
+.wiggle-element {
+  animation-name: wiggle;
+  animation-duration: 1.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .floating-element,
+  .wiggle-element {
+    animation: none !important;
+  }
 }

@@ -79,7 +79,7 @@ export function LaunchWeekGame() {
 
   return (
     <div className="relative overflow-hidden py-16 md:py-16 border border-gray-200 rounded-lg max-w-7xl mx-auto">
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-start gap-12">
           {/* Left Side - Title and Brain Icon */}
           <div className="flex-2">

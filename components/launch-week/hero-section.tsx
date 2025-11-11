@@ -97,8 +97,11 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
 
           {/* Main Heading */}
           <h1 className="text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-black mb-2 leading-tight">
-            The Next Evolution of Software
+            Launch week #3
           </h1>
+          <h2 className="text-[8rem] md:text-[12 rem] lg:text-[16rem] font-extrabold text-black mb-2 leading-tight">
+            The Next Evolution of Software
+          </h2>
 
           {/* Supporting Text */}
           <p className="text-lg md:text-xl text-gray-700 mb-12 mx-auto ">

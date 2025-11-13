@@ -1,18 +1,18 @@
 {
   "project": {
     "title": "Project",
-    "type":"doc"
+    "type": "doc"
   },
-  "keys":{
+  "keys": {
     "title": "Keys",
-    "type":"doc"
+    "type": "doc"
   },
   "role-based-access": {
     "title": "Role-Based Access",
-    "type":"doc"
+    "type": "doc"
   },
   "variables-and-secrets": {
     "title": "Variables & Secrets",
-    "type":"doc"
+    "type": "doc"
   }
 }

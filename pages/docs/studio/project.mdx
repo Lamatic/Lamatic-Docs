@@ -33,18 +33,38 @@ Studio provides a set of versatile resources that can be leveraged across variou
 
 ![Project Home.png](./img/project-settings-overview.png)
 
-### General Settings
+### 1. General Settings
 In the General Settings, you can update project details such as the project name and view the Project ID. You also have the option to pause or delete the project from this section.
+
+### 2. Configuration
+
+The Configuration section allows you to manage project-level settings that control how your flows behave and handle errors. These settings provide fine-grained control over retry mechanisms to ensure your flows are resilient and reliable.
+
+#### Smart Retries for Flows
+
+Smart Retries is a powerful feature that automatically retries failed flows from the last successfully executed node. When enabled, this feature helps maintain flow continuity and reduces manual intervention by intelligently resuming execution from the point of failure.
+
+Once enabled, your flows will be retried automatically from the last successfully executed node if they fail.
+
+##### Configuration Options
+
+- **Enable Smart Retries**: Toggle this switch to enable or disable the Smart Retries feature for all flows in your project.
+- **Max Retries**: Specify the maximum number of retry attempts for a failed flow. The default value is `1`.
+- **Retry Delay (in seconds)**: Set the delay between retry attempts in seconds. The default value is `1` second.
+
+> 🔄 **Pro Tip**: Smart Retries can significantly improve the reliability of your flows by automatically handling transient failures and network issues. Adjust the retry delay based on your flow's requirements and the expected recovery time of external services.
+
+After configuring these settings, click the **Save Changes** button to apply your changes to the project.
 
 ---
 
-### **Integration**
+### 3. Integration
 ![ProjectIntegration.png](./img/project-integration.png)
 Studio recognizes the importance of a robust development ecosystem. To this end, it offers integration capabilities with various developer tools, allowing you to enhance and optimize your project's capabilities. These integrations can significantly streamline your flow and provide valuable insights into your application's performance.
 
+<br/>
+
 As of now, the following developer integrations are available for your Studio projects:
-
-
 
 1. **[Langfuse (Beta)](/docs/reports/langfuse-integration)**: Advanced LLM observability and analytics to track, debug, and improve GenAI performance.
 2. **GitHub**: Connect a repository to commit workflow updates for seamless version control and team collaboration.
@@ -54,15 +74,12 @@ As of now, the following developer integrations are available for your Studio pr
 
 ---
 
+### 3. Authentication
 
-### **API Keys**
-
+#### API Keys
 Security and controlled access are paramount in GenAI projects. Studio provides robust API key management features, allowing you to generate, monitor, and revoke API keys as needed. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
 
----
-
-### **Secret Keys**
-
+#### Secret Keys
 Allow external services to access the project on behalf of a user. Checkout the Lamatic SDK to understand how to use the secret keys.
 
 <Callout type="warning" >
@@ -70,7 +87,7 @@ Allow external services to access the project on behalf of a user. Checkout the 
 </Callout>
 ---
 
-### **Variables & Secrets**
+### 4. Variables & Secrets
 
 With Variables and Secrets you can Safeguard your API keys and credentials with our new Secrets Management system, ensuring your data stays protected while maintaining easy access for authorized use.
 
@@ -78,30 +95,5 @@ With Variables and Secrets you can Safeguard your API keys and credentials with 
  A new Deployment is required for your changes to take effect.
 </Callout>
 ---
-
-### **Jobs Configuration**
-
-Optimize your job settings for smooth automation. Here, you can configure Batch Size, Batch Timeout, Max Retries, and Concurrency.
-
----
-
-### **Plans**
-
-Studio offers a range of project plans to cater to diverse needs and requirements. You have the flexibility to select from various plans, each offering a unique set of features and capabilities.
-
----
-
-### **Usage**
-
-Keeping track of your project's resource consumption is crucial for efficient management and planning. Studio provides comprehensive usage monitoring tools that allow you to closely observe and analyze the utilization of your project resources.
-
----
-
-### **Add-Ons**
-
-Studio offers the flexibility to enhance your project's capabilities through add-ons. These additional features or increased project limits can be purchased as needed.
-
----
-
 
 > 🔒 **Security Tip**: Maintain granular control over project access, ensuring security while facilitating authorized integration.

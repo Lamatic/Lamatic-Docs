@@ -53,10 +53,7 @@
     "title": "Templates",
     "type": "doc"
   },
-  "context": {
-    "title": "Context",
-    "type": "doc"
-  },
+  
   "ide": {
     "title": "IDE",
     "type": "doc"
@@ -64,6 +61,10 @@
   "-- connect": {
     "type": "separator",
     "title": "🧩 Connect"
+  },
+  "context": {
+    "title": "Data",
+    "type": "doc"
   },
   "nodes": {
     "title": "Nodes",
@@ -100,10 +101,6 @@
   },
   "jobs": {
     "title": "Jobs",
-    "type": "doc"
-  },
-  "keys": {
-    "title": "Keys",
     "type": "doc"
   },
   "reports": {

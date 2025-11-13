@@ -1,17 +1,16 @@
 {
-  "-- Switcher": {
+  "-- Navigation": {
     "type": "separator",
     "title": "Switcher"
   },
   "index": {
     "title": "Overview",
-    "type":"doc"
+    "type": "doc"
   },
   "why-lamatic": {
     "title": "Why Lamatic.ai",
     "type": "doc"
   },
-  "demo": "Demo",
   "get-started": {
     "title": "Quickstart",
     "type": "doc"
@@ -20,101 +19,161 @@
     "title": "Architecture",
     "type": "doc"
   },
+  "demo": "Demo",
   
-  "-- Build": {
+  "-- Studio": {
     "type": "separator",
-    "title": "🛠️ Build"
-  },
-  "Changelog": {
-    "title": "Changelog",
-    "type": "page"
-  },
-  "blog": {
-    "title": "Blog",
-    "type": "page"
+    "title": "Studio"
   },
   "studio": {
     "title": "Studio",
     "type": "doc"
   },
+  
+  "-- Flows": {
+    "type": "separator",
+    "title": "Flows"
+  },
   "flows": {
     "title": "Flows",
     "type": "doc"
   },
-  "agents": {
-    "title": "Agents",
-    "type": "doc"
+  
+  "-- Prompts": {
+    "type": "separator",
+    "title": "Prompts"
   },
-  "tests": {
-    "title": "Test",
-    "type": "doc"
-  },
-  "templates": {
-    "title": "Templates",
-    "type": "doc"
-  },
-  "context": {
-    "title": "Context",
+  "prompts": {
+    "title": "Prompts",
     "type": "doc"
   },
   "ide": {
     "title": "IDE",
     "type": "doc"
   },
-  "-- connect": {
+  
+  "-- Data": {
     "type": "separator",
-    "title": "🧩 Connect"
+    "title": "Data"
   },
-  "nodes": {
-    "title": "Nodes",
+  "context": {
+    "title": "Data",
     "type": "doc"
+  },
+  
+  "-- Connection": {
+    "type": "separator",
+    "title": "Connection"
   },
   "models": {
     "title": "Models",
-    "type": "doc"
-  },
-  "interface": {
-    "title": "Interface",
     "type": "doc"
   },
   "mcp-tools": {
     "title": "MCP/Tools",
     "type": "doc"
   },
-  "sdk": {
-    "title": "SDK",
+  "integrations": {
+    "title": "Integrations",
     "type": "doc"
   },
-
-  "-- deploy": {
+  "interface": {
+    "title": "Interface",
+    "type": "doc"
+  },
+  
+  "-- Logs": {
     "type": "separator",
-    "title": "🚀 Deploy"
-  },
-  "deployments": {
-    "title": "Deployments",
-    "type": "doc"
+    "title": "Logs"
   },
   "logs": {
     "title": "Logs",
     "type": "doc"
   },
+  
+  "-- Deployments": {
+    "type": "separator",
+    "title": "Deployments"
+  },
+  "deployments": {
+    "title": "Deployments",
+    "type": "doc"
+  },
+  
+  "-- Tests": {
+    "type": "separator",
+    "title": "Tests"
+  },
+  "tests": {
+    "title": "Tests",
+    "type": "doc"
+  },
+  
+  "-- Jobs": {
+    "type": "separator",
+    "title": "Jobs"
+  },
   "jobs": {
     "title": "Jobs",
     "type": "doc"
   },
-  "keys": {
-    "title": "Keys",
-    "type": "doc"
+  
+  "-- Reports": {
+    "type": "separator",
+    "title": "Reports"
   },
   "reports": {
     "title": "Reports",
     "type": "doc"
   },
-  "-- references": {
+  
+  "-- API Playground": {
+    "type": "separator",
+    "title": "API Playground"
+  },
+  "api-playground": {
+    "title": "API Playground",
+    "type": "doc"
+  },
+  
+  "-- Settings": {
+    "type": "separator",
+    "title": "Settings"
+  },
+  "settings": {
+    "title": "Settings",
+    "type": "doc"
+  },
+  
+  "-- References": {
     "type": "separator",
     "title": "References"
   },
-
+  "nodes": {
+    "title": "Nodes",
+    "type": "doc"
+  },
+  "agents": {
+    "title": "Agents",
+    "type": "doc"
+  },
+  "templates": {
+    "title": "Templates",
+    "type": "doc"
+  },
+  "sdk": {
+    "title": "SDK",
+    "type": "doc"
+  },
+  "concepts": {
+    "title": "Concepts",
+    "type": "doc"
+  },
+  
+  "-- External Links": {
+    "type": "separator",
+    "title": "External Links"
+  },
   "api-ref": {
     "title": "GraphQL API ↗",
     "href": "https://graphql.org/learn/",
@@ -145,17 +204,10 @@
     "href": "https://product.lamatic.ai/roadmap",
     "newWindow": true
   },
-  "-- more": {
+  
+  "-- More": {
     "type": "separator",
     "title": "More"
-  },
-  "concepts": {
-    "title": "Concepts",
-    "type": "doc"
-  },
-  "legal": {
-    "title": "Legal",
-    "type": "doc"
   },
   "partners": {
     "title": "Lamatic.ai Partners",
@@ -174,6 +226,38 @@
     "title": "Security",
     "href": "https://lamatic.ai/security",
     "type": "doc"
+  },
+  "legal": {
+    "title": "Legal",
+    "type": "doc"
+  },
+  "career": {
+    "title": "Career",
+    "type": "doc"
+  },
+  "report-issue": {
+    "title": "Report Issue",
+    "type": "doc"
+  },
+  "vulnerability-disclosure": {
+    "title": "Vulnerability Disclosure",
+    "type": "doc"
+  },
+  "hacktoberfest": {
+    "title": "Hacktoberfest",
+    "type": "doc"
+  },
+  "slack": {
+    "title": "Slack",
+    "type": "doc"
+  },
+  "Changelog": {
+    "title": "Changelog",
+    "type": "page"
+  },
+  "blog": {
+    "title": "Blog",
+    "type": "page"
   },
   "Trash": {
     "title": "Privacy Policy",

@@ -5,7 +5,7 @@
   },
   "index": {
     "title": "Overview",
-    "type":"doc"
+    "type": "doc"
   },
   "why-lamatic": {
     "title": "Why Lamatic.ai",
@@ -20,16 +20,16 @@
     "title": "AI Middleware",
     "type": "doc"
   },
-  
 
   "-- Studio": {
     "type": "separator",
     "title": "🎨 Studio"
   },
-  "studio": {
-    "title": "Studio",
-    "type": "page"
-  },
+  "studio-overview": "Overview",
+  "studio-project": "Project",
+  "studio-keys": "Keys",
+  "studio-role-based-access": "Role-Based Access",
+  "studio-variables-and-secrets": "Variables & Secrets",
 
   "-- Build": {
     "type": "separator",
@@ -43,7 +43,7 @@
     "title": "Blog",
     "type": "page"
   },
-  
+
   "flows": {
     "title": "Flows",
     "type": "doc"
@@ -60,7 +60,7 @@
     "title": "Templates",
     "type": "doc"
   },
-  
+
   "ide": {
     "title": "IDE",
     "type": "doc"

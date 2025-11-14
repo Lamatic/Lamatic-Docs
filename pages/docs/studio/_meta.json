@@ -1,4 +1,8 @@
 {
+  "overview": {
+    "title": "Overview",
+    "type": "doc"
+  },
   "project": {
     "title": "Project",
     "type": "doc"
@@ -16,3 +20,4 @@
     "type": "doc"
   }
 }
+

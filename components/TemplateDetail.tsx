@@ -191,9 +191,9 @@ export default function TemplateDetail() {
       {/* Hero Section */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
-          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(template.category)}`}>
+          {/* <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getTypeColor(template.category)}`}>
             {template.category.charAt(0).toUpperCase() + template.category.slice(1)}
-          </span>
+          </span> */}
           {template.isPro && (
             <Badge className="bg-gradient-to-r from-purple-500 to-pink-500 text-white border-0 text-xs">
               Pro
@@ -211,7 +211,7 @@ export default function TemplateDetail() {
         </p>
 
         {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex flex-col sm:flex-row gap-3 mt-5">
           {template.slug && (
             <Button
               className="bg-red-500 hover:bg-red-600 text-white px-6 py-2.5 text-sm font-semibold flex items-center gap-2 shadow-sm"
@@ -326,6 +326,26 @@ export default function TemplateDetail() {
                     className="text-sm py-1.5 px-3"
                   >
                     {integration}
+                  </Badge>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Nodes Used Section */}
+          {template.nodesUsed && template.nodesUsed.length > 0 && (
+            <section>
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
+                Nodes Used
+              </h2>
+              <div className="flex flex-wrap gap-2">
+                {template.nodesUsed.map((node, index) => (
+                  <Badge 
+                    key={index} 
+                    variant="outline" 
+                    className="text-sm py-1.5 px-3 border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 cursor-default"
+                  >
+                    {node.label || node.name}
                   </Badge>
                 ))}
               </div>

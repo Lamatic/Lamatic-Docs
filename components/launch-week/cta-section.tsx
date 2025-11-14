@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import { Mail } from "lucide-react";
+import { Mail,Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Script from "next/script";
+
+
 
 interface CTASectionProps {
   className?: string;
@@ -16,7 +19,7 @@ declare global {
 }
 
 export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
-  useEffect(() => {
+  /* useEffect(() => {
     // Load Tuemilio script
     const loadTuemilio = () => {
       if (window.Tuemilio) {
@@ -83,9 +86,9 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
       if (script) {
         script.remove();
       }
-    };
-  }, []);
-
+    };}, 
+    []);
+*/
   return (
     <>
       <style
@@ -125,28 +128,23 @@ export const LaunchWeekCTA: React.FC<CTASectionProps> = ({ className }) => {
         /> */}
 
         <div className="mx-auto px-4">
-          <div className="justify-center">
+          <div className="text-center">
             {/* Heading */}
-            <h2 className="text-4xl md:text-6xl font-extrabold text-black mb-6 text-center">
-              Get Notified <br /> When Launch Week 3 Begins
+            <h2 className="text-4xl md:text-5xl font-extrabold text-black mb-8 text-center max-w-3xl mx-auto leading-tight">
+              Join the Countdown — Get Notified When Launch Week 3 Begins
             </h2>
 
             {/* Email Form */}
-            <div className="flex items-center justify-center">
-              <div className="flex-1">
-                <div className="t-signup"></div>
-              </div>
-
-              {/* Envelope Icon */}
-              {/* <div className="hidden lg:block relative flex-shrink-0">
-                <div className="w-24 h-24 bg-red-500 rounded-lg flex items-center justify-center transform rotate-6 shadow-lg">
-                  <Mail className="w-12 h-12 text-white" />
-                </div>
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div className="w-20 h-20 border-2 border-red-300 rounded-lg animate-pulse"></div>
-                </div>
-              </div> */}
-            </div>
+            <a
+        href="https://luma.com/event/evt-ajOnQrFHv18GQp5"
+        className="luma-checkout--button bg-black hover:bg-gray-800 text-white font-bold text-base md:text-lg px-8 py-4 md:px-10 md:py-5 rounded-full transition-colors inline-flex items-center gap-3"
+        data-luma-action="checkout"
+        data-luma-event-id="evt-ajOnQrFHv18GQp5"
+        >
+        <Calendar className="w-5 h-5 md:w-6 md:h-6" />
+        <span>Get Notified</span>
+        </a>
+        <Script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" />
           </div>
         </div>
       </div>

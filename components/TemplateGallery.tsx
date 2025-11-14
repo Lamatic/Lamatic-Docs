@@ -1,12 +1,18 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { titleToSlug } from '@/lib/utils';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { titleToSlug } from "@/lib/utils";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { 
+import {
   Brain,
   MessageSquare,
   Workflow,
@@ -51,6 +57,7 @@ type Template = {
   slug?: string;
   demoUrl?: string;
   isPro?: boolean;
+  isAgentkit?: boolean;
 };
 
 type TemplatesResponse = {
@@ -74,7 +81,7 @@ const iconMap: Record<string, any> = {
   Code,
   Cpu,
   Bot,
-  BarChart3
+  BarChart3,
 };
 
 export default function TemplateGallery() {
@@ -94,17 +101,17 @@ export default function TemplateGallery() {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch('/api/templates-public');
-        
+        const response = await fetch("/api/templates-public");
+
         if (!response.ok) {
-          throw new Error('Failed to fetch templates');
+          throw new Error("Failed to fetch templates");
         }
-        
+
         const data: TemplatesResponse = await response.json();
         setTemplates(data.templates);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
-        console.error('Error fetching templates:', err);
+        setError(err instanceof Error ? err.message : "An error occurred");
+        console.error("Error fetching templates:", err);
       } finally {
         setLoading(false);
       }
@@ -116,26 +123,32 @@ export default function TemplateGallery() {
   }, [isClient]);
 
   // Get all unique tags from templates
-  const allTags = Array.from(new Set(templates.flatMap(template => template.tags))).sort();
+  const allTags = Array.from(
+    new Set(templates.flatMap((template) => template.tags))
+  ).sort();
 
-  const filteredTemplates = templates.filter(template => {
-    const matchesSearch = template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         template.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-    
-    const matchesTags = selectedTags.length === 0 || 
-                       selectedTags.some(selectedTag => 
-                         template.tags.some(tag => tag.toLowerCase() === selectedTag.toLowerCase())
-                       );
-    
+  const filteredTemplates = templates.filter((template) => {
+    const matchesSearch =
+      template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      template.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+    const matchesTags =
+      selectedTags.length === 0 ||
+      selectedTags.some((selectedTag) =>
+        template.tags.some(
+          (tag) => tag.toLowerCase() === selectedTag.toLowerCase()
+        )
+      );
+
     return matchesSearch && matchesTags;
   });
 
   const toggleTag = (tag: string) => {
-    setSelectedTags(prev => 
-      prev.includes(tag) 
-        ? prev.filter(t => t !== tag)
-        : [...prev, tag]
+    setSelectedTags((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
 
@@ -153,16 +166,22 @@ export default function TemplateGallery() {
           </div>
           <div className="flex flex-wrap gap-2">
             {Array.from({ length: 6 }).map((_, index) => (
-              <div key={index} className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 animate-pulse h-8 w-16"></div>
+              <div
+                key={index}
+                className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 animate-pulse h-8 w-16"
+              ></div>
             ))}
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
           {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 animate-pulse">
+            <div
+              key={index}
+              className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 animate-pulse"
+            >
               {/* Preview Image Placeholder */}
               <div className="mb-4 rounded-lg bg-gray-200 dark:bg-gray-700 h-32"></div>
-              
+
               <div className="flex items-center gap-3 mb-4">
                 <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg w-10 h-10"></div>
                 <div className="flex-1">
@@ -196,10 +215,12 @@ export default function TemplateGallery() {
       <div className="mb-8">
         <div className="text-center py-12">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Failed to load templates</h3>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            Failed to load templates
+          </h3>
           <div className="text-muted-foreground mb-4">{error}</div>
-          <Button 
-            onClick={() => window.location.reload()} 
+          <Button
+            onClick={() => window.location.reload()}
             variant="outline"
             className="mx-auto"
           >
@@ -225,11 +246,11 @@ export default function TemplateGallery() {
             disabled={isSSR}
           />
         </div>
-        
+
         {/* Tag Filters */}
         {allTags.length > 0 && (
           <div className="flex flex-wrap gap-2">
-            {allTags.map(tag => (
+            {allTags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => !isSSR && toggleTag(tag)}
@@ -255,53 +276,75 @@ export default function TemplateGallery() {
           </div>
         )}
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {(isSSR ? templates.slice(0, 6) : filteredTemplates).map(template => {
+        {(isSSR ? templates.slice(0, 6) : filteredTemplates).map((template) => {
           const IconComponent = iconMap[template.icon] || Brain; // Fallback to Brain icon
           // Use slug from template data, fallback to title-based slug if slug is not available
           const templateSlug = template.slug || titleToSlug(template.title);
+          // Route to agentkits if isAgentkit is true, otherwise to templates
+          const href = templateSlug
+            ? template.isAgentkit
+              ? `/agentkits/${templateSlug}`
+              : `/templates/${templateSlug}`
+            : "#";
           return (
             <Link
               key={template.id}
-              href={templateSlug ? `/templates/${templateSlug}` : '#'}
+              href={href}
               className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200 block"
             >
               {/* Preview Image */}
               {template.previewImage && (
                 <div className="mb-4 rounded-lg overflow-hidden">
-                  <img 
+                  <img
                     src={`https://api.lamatic.ai/storage/v1/object/public/workflow-previews/${template.previewImage}`}
                     alt={template.title}
                     className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-200"
                     onError={(e) => {
                       // Hide image if it fails to load
-                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.style.display = "none";
                     }}
                   />
                 </div>
               )}
-              
+
               <div className="flex items-center gap-3 mb-4">
                 <div className={`p-2 rounded-lg ${template.iconColor}`}>
                   <IconComponent className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{template.title}</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                    {template.title}
+                  </h3>
                   <div className="flex gap-2">
                     {/* <Badge variant="secondary" className="text-xs">{template.category}</Badge> */}
                     <Badge variant="outline" className="text-xs">
-                      {template.complexity.charAt(0).toUpperCase() + template.complexity.slice(1)}
+                      {template.complexity.charAt(0).toUpperCase() +
+                        template.complexity.slice(1)}
                     </Badge>
                     {template.isPro && (
-                      <Badge variant="default" className="text-xs bg-gradient-to-r from-purple-500 to-pink-500">
+                      <Badge
+                        variant="default"
+                        className="text-xs bg-gradient-to-r from-purple-500 to-pink-500"
+                      >
                         Pro
+                      </Badge>
+                    )}
+                    {template.isAgentkit && (
+                      <Badge
+                        variant="default"
+                        className="text-xs bg-gradient-to-r from-blue-500 to-cyan-500"
+                      >
+                        Agent Kit
                       </Badge>
                     )}
                   </div>
                 </div>
               </div>
-              <div className="text-sm text-muted-foreground mb-4">{template.description}</div>
+              <div className="text-sm text-muted-foreground mb-4">
+                {template.description}
+              </div>
               <div className="space-y-2 mb-4">
                 {template.features.slice(0, 3).map((feature, index) => (
                   <div key={index} className="flex items-center gap-2 text-sm">
@@ -311,11 +354,12 @@ export default function TemplateGallery() {
                 ))}
               </div>
               <div className="flex gap-2 mb-4">
-                {template.industry && template.industry.slice(0, 2).map((industry, index) => (
-                  <Badge key={index} variant="outline" className="text-xs">
-                    {industry}
-                  </Badge>
-                ))}
+                {template.industry &&
+                  template.industry.slice(0, 2).map((industry, index) => (
+                    <Badge key={index} variant="outline" className="text-xs">
+                      {industry}
+                    </Badge>
+                  ))}
               </div>
               {/* Maker 
               {template.maker && (
@@ -364,12 +408,16 @@ export default function TemplateGallery() {
           );
         })}
       </div>
-      
+
       {!isSSR && filteredTemplates.length === 0 && (
         <div className="text-center py-12">
           <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">No templates found</h3>
-          <div className="text-muted-foreground">Try adjusting your search or filter criteria.</div>
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+            No templates found
+          </h3>
+          <div className="text-muted-foreground">
+            Try adjusting your search or filter criteria.
+          </div>
         </div>
       )}
     </div>

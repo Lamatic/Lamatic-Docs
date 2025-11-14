@@ -33,6 +33,7 @@ interface ExternalTemplate {
   features?: any;
   integrations?: any;
   isPro?: boolean;
+  isAgentkit?: boolean;
   agentkit_config?: any;
   v0Link?: string | null;
   hideVibe?: boolean;
@@ -82,6 +83,7 @@ interface Template {
   slug?: string;
   demoUrl?: string;
   isPro?: boolean;
+  isAgentkit?: boolean;
 }
 
 interface Category {
@@ -335,7 +337,8 @@ const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
     nodesUsed: nodesUsed.length > 0 ? nodesUsed : undefined,
     slug: externalTemplate.slug || null,
     demoUrl,
-    isPro: externalTemplate.isPro || false
+    isPro: externalTemplate.isPro || false,
+    isAgentkit: externalTemplate.isAgentkit || false
   };
 };
 
@@ -384,7 +387,8 @@ export default async function handler(
             useCases: [],
             integrations: [],
             slug: template.slug || null,
-            isPro: template.isPro || false
+            isPro: template.isPro || false,
+            isAgentkit: template.isAgentkit || false
           };
         }
       });

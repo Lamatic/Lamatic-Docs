@@ -274,10 +274,10 @@ export default async function handler(
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { templateID } = req.query;
+  const { agentID } = req.query;
 
-  if (!templateID || typeof templateID !== 'string') {
-    return res.status(400).json({ error: 'Template ID is required' });
+  if (!agentID || typeof agentID !== 'string') {
+    return res.status(400).json({ error: 'Agent Kit ID is required' });
   }
 
   try {
@@ -293,20 +293,26 @@ export default async function handler(
     // Handle response with success wrapper
     const templatesArray = externalData.templates || [];
     
-    // Find the template by slug (prioritized), then ID, then title slug
+    // Find the agentkit by slug (prioritized), then ID, then title slug
+    // Also filter to only agentkits (isAgentkit: true)
     const externalTemplate = templatesArray.find(
       (template) => {
+        // Must be an agentkit
+        if (!template.isAgentkit) {
+          return false;
+        }
+        
         // First priority: match by slug field
-        if (template.slug && template.slug === templateID) {
+        if (template.slug && template.slug === agentID) {
           return true;
         }
         // Second priority: match by ID
-        if (template.id === templateID) {
+        if (template.id === agentID) {
           return true;
         }
         // Third priority: match by title slug (convert title to slug and compare)
         const templateTitleSlug = titleToSlug(template.name);
-        if (templateTitleSlug === templateID) {
+        if (templateTitleSlug === agentID) {
           return true;
         }
         return false;
@@ -314,7 +320,7 @@ export default async function handler(
     );
     
     if (!externalTemplate) {
-      return res.status(404).json({ error: 'Template not found' });
+      return res.status(404).json({ error: 'Agent Kit not found' });
     }
     
     // Transform external template to internal format
@@ -322,9 +328,9 @@ export default async function handler(
     
     res.status(200).json(template);
   } catch (error) {
-    console.error('Error fetching template from external API:', error);
+    console.error('Error fetching agentkit from external API:', error);
     res.status(500).json({ 
-      error: error instanceof Error ? error.message : 'Failed to fetch template' 
+      error: error instanceof Error ? error.message : 'Failed to fetch agentkit' 
     });
   }
 }

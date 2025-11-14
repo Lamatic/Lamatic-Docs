@@ -61,6 +61,7 @@ type Template = {
   slug?: string;
   demoUrl?: string;
   isPro?: boolean;
+  isAgentkit?: boolean;
   about?: any;
   inputs?: any;
   testInput?: any;
@@ -104,19 +105,25 @@ const getTypeColor = (category: string) => {
 
 export default function TemplateDetail() {
   const router = useRouter();
-  const { templateID } = router.query;
+  const { templateID, agentID } = router.query;
   const [template, setTemplate] = useState<Template | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Determine if we're on agentkits route or templates route
+  const isAgentkitRoute = router.pathname.includes('/agentkits/');
+  const id = isAgentkitRoute ? agentID : templateID;
+
   useEffect(() => {
-    if (!templateID) return;
+    if (!id) return;
 
     const fetchTemplate = async () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await fetch(`/api/templates/${templateID}`);
+        // Use appropriate API endpoint based on route
+        const apiEndpoint = isAgentkitRoute ? `/api/agentkits/${id}` : `/api/templates/${id}`;
+        const response = await fetch(apiEndpoint);
         
         if (!response.ok) {
           if (response.status === 404) {
@@ -136,7 +143,7 @@ export default function TemplateDetail() {
     };
 
     fetchTemplate();
-  }, [templateID]);
+  }, [id, isAgentkitRoute]);
 
 
   if (loading) {

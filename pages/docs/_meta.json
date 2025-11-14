@@ -27,10 +27,11 @@
   },
   "studio-overview": "Overview",
   "studio-project": "Project",
+  "studio-tags": "Tags",
   "studio-keys": "Keys",
   "studio-role-based-access": "Role-Based Access",
   "studio-variables-and-secrets": "Variables & Secrets",
-
+  
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"

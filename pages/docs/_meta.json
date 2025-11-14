@@ -89,6 +89,10 @@
     "title": "Templates",
     "type": "doc"
   },
+  "sdk": {
+    "title": "SDK",
+    "type": "doc"
+  },
 
   "-- deploy": {
     "type": "separator",
@@ -118,10 +122,7 @@
     "type": "doc"
   },
 
-  "sdk": {
-    "title": "SDK",
-    "type": "doc"
-  },
+ 
 
   "-- references": {
     "type": "separator",

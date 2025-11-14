@@ -6,38 +6,51 @@ interface ExternalTemplate {
   name: string;
   description: string | null;
   category: string;
-  preview_image: string;
-  config: string;
+  preview_image?: string | null;
+  config: string | any;
   organization_id: string;
   user_id: string;
   created_at: string;
   id: string;
   slug: string | null;
-  tags: string[];
-  preview_link: string | null;
-  maker: {
+  tags?: string[];
+  preview_link?: string | null;
+  maker?: {
     link: string | null;
     name: string;
   };
-  inputs: any;
-  testInput: any;
-  nodesUsed: Array<{
+  inputs?: any;
+  testInput?: any;
+  nodesUsed?: Array<{
     name: string;
     label: string;
   }>;
-  ux: any;
-  datasource: any;
-  compatibleSources: any;
-  demoUrl: string | null;
-  allMandatory: boolean;
-  about: any;
-  features: any;
-  integrations: any;
-  isPro: boolean;
+  ux?: any;
+  datasource?: any;
+  compatibleSources?: any;
+  demoUrl?: string | null;
+  allMandatory?: boolean;
+  about?: any;
+  features?: any;
+  integrations?: any;
+  isPro?: boolean;
   isAgentkit?: boolean;
-  agentkit_config: any;
-  v0Link: string | null;
-  hideVibe: boolean;
+  agentkit_config?: any;
+  v0Link?: string | null;
+  hideVibe?: boolean;
+  meta?: {
+    name?: string;
+    description?: string;
+    tags?: string[];
+    testInput?: any;
+    githubUrl?: string;
+    documentationUrl?: string;
+    deployUrl?: string;
+    author?: {
+      name: string;
+      email: string;
+    };
+  };
 }
 
 interface ExternalTemplatesResponse {
@@ -84,9 +97,9 @@ interface Template {
 
 // Icon mapping based on template name/description
 const getIconForTemplate = (template: ExternalTemplate): string => {
-  const name = template.name.toLowerCase();
-  const description = (template.description || '').toLowerCase();
-  const tags = template.tags.map(tag => tag.toLowerCase());
+  const name = (template.name || template.meta?.name || '').toLowerCase();
+  const description = (template.description || template.meta?.description || '').toLowerCase();
+  const tags = (template.tags || template.meta?.tags || []).map(tag => tag.toLowerCase());
   
   if (name.includes('chat') || name.includes('support') || name.includes('assistant')) {
     return 'MessageSquare';
@@ -140,14 +153,69 @@ const getIconColor = (icon: string): string => {
   return colorMap[icon] || 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400';
 };
 
+// Extract nodesUsed from config if not directly available
+const extractNodesUsed = (template: ExternalTemplate): Array<{name: string; label: string}> => {
+  // If nodesUsed is directly available, use it
+  if (template.nodesUsed && Array.isArray(template.nodesUsed)) {
+    return template.nodesUsed;
+  }
+  
+  // Try to extract from config
+  try {
+    if (!template.config) {
+      return [];
+    }
+    const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
+    if (config && config.nodes && Array.isArray(config.nodes)) {
+      // Extract node types from config
+      const nodeTypes = new Set<string>();
+      config.nodes.forEach((node: any) => {
+        if (node.type) {
+          nodeTypes.add(node.type);
+        }
+        if (node.data?.nodeId) {
+          nodeTypes.add(node.data.nodeId);
+        }
+      });
+      
+      // Convert to nodesUsed format
+      const nodeTypesArray: string[] = [];
+      nodeTypes.forEach(type => nodeTypesArray.push(type));
+      return nodeTypesArray.map(type => ({
+        name: type,
+        label: type.replace(/([A-Z])/g, ' $1').trim()
+      }));
+    }
+  } catch (e) {
+    // If parsing fails, return empty array
+    console.warn('Failed to parse config for template:', template.id);
+  }
+  
+  return [];
+};
+
 // Determine complexity based on nodes used and description
 const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' | 'advanced' => {
-  const nodeCount = template.nodesUsed?.length || 0;
-  const description = (template.description || '').toLowerCase();
+  const nodesUsed = extractNodesUsed(template);
+  const nodeCount = nodesUsed.length;
+  const description = (template.description || template.meta?.description || '').toLowerCase();
   
-  if (nodeCount <= 3 && !description.includes('complex')) {
+  // Try to get node count from config if available
+  let configNodeCount = nodeCount;
+  try {
+    if (template.config) {
+      const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
+      if (config && config.nodes && Array.isArray(config.nodes)) {
+        configNodeCount = config.nodes.length;
+      }
+    }
+  } catch (e) {
+    // Use nodeCount from nodesUsed
+  }
+  
+  if (configNodeCount <= 3 && !description.includes('complex')) {
     return 'beginner';
-  } else if (nodeCount <= 6) {
+  } else if (configNodeCount <= 6) {
     return 'intermediate';
   } else {
     return 'advanced';
@@ -157,8 +225,8 @@ const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' 
 // Extract features from nodes used and description
 const getFeatures = (template: ExternalTemplate): string[] => {
   const features: string[] = [];
-  const nodes = template.nodesUsed || [];
-  const description = template.description || '';
+  const nodes = extractNodesUsed(template);
+  const description = template.description || template.meta?.description || '';
   
   // Add features based on nodes used
   nodes.forEach(node => {
@@ -235,25 +303,38 @@ const mapCategory = (externalCategory: string): string => {
 // Transform external template to internal format
 const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
   const icon = getIconForTemplate(externalTemplate);
+  const nodesUsed = extractNodesUsed(externalTemplate);
+  
+  // Get tags from root level or meta.tags
+  const tags = externalTemplate.tags || externalTemplate.meta?.tags || [];
+  
+  // Get description from root or meta
+  const description = externalTemplate.description || externalTemplate.meta?.description || 'No description available';
+  
+  // Get demoUrl from root or meta.deployUrl
+  const demoUrl = externalTemplate.demoUrl || externalTemplate.meta?.deployUrl || null;
   
   return {
     id: externalTemplate.id,
-    title: externalTemplate.name,
-    description: externalTemplate.description || 'No description available',
-    tags: externalTemplate.tags || [],
+    title: externalTemplate.name || externalTemplate.meta?.name || 'Untitled Template',
+    description,
+    tags,
     icon,
     iconColor: getIconColor(icon),
     features: getFeatures(externalTemplate),
     category: mapCategory(externalTemplate.category),
     complexity: getComplexity(externalTemplate),
     useCases: [], // Could be extracted from description if needed
-    integrations: externalTemplate.nodesUsed?.map(node => node.label) || [],
-    previewImage: externalTemplate.preview_image,
-    maker: externalTemplate.maker,
-    nodesUsed: externalTemplate.nodesUsed,
-    slug: externalTemplate.slug,
-    demoUrl: externalTemplate.demoUrl,
-    isPro: externalTemplate.isPro,
+    integrations: nodesUsed.map(node => node.label),
+    previewImage: externalTemplate.preview_image || undefined,
+    maker: externalTemplate.maker || (externalTemplate.meta?.author ? {
+      name: externalTemplate.meta.author.name,
+      link: externalTemplate.meta.author.email ? `mailto:${externalTemplate.meta.author.email}` : undefined
+    } : undefined),
+    nodesUsed: nodesUsed.length > 0 ? nodesUsed : undefined,
+    slug: externalTemplate.slug || null,
+    demoUrl,
+    isPro: externalTemplate.isPro || false,
     isAgentkit: externalTemplate.isAgentkit || false,
     about: externalTemplate.about,
     inputs: externalTemplate.inputs,
@@ -317,8 +398,19 @@ export default async function handler(
       return res.status(404).json({ error: 'Template not found' });
     }
     
-    // Transform external template to internal format
-    const template: Template = transformTemplate(externalTemplate);
+    // Transform external template to internal format with error handling
+    let template: Template;
+    try {
+      template = transformTemplate(externalTemplate);
+    } catch (err) {
+      console.error('Error transforming template:', externalTemplate.id, err);
+      const errorMessage = err instanceof Error ? err.message : 'Failed to transform template';
+      const errorStack = err instanceof Error ? err.stack : undefined;
+      console.error('Error details:', { errorMessage, errorStack });
+      return res.status(500).json({ 
+        error: `Failed to transform template: ${errorMessage}` 
+      });
+    }
     
     res.status(200).json(template);
   } catch (error) {

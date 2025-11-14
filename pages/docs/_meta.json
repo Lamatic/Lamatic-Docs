@@ -31,7 +31,7 @@
   "studio-keys": "Keys",
   "studio-role-based-access": "Role-Based Access",
   "studio-variables-and-secrets": "Variables & Secrets",
-  
+
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"
@@ -49,37 +49,24 @@
     "title": "Flows",
     "type": "doc"
   },
-  "agents": {
-    "title": "Agents",
-    "type": "doc"
-  },
-  "tests": {
-    "title": "Test",
-    "type": "doc"
-  },
-  "templates": {
-    "title": "Templates",
-    "type": "doc"
-  },
-
-  "ide": {
-    "title": "IDE",
-    "type": "doc"
-  },
-  "-- connect": {
-    "type": "separator",
-    "title": "🧩 Connect"
-  },
-  "context": {
-    "title": "Data",
-    "type": "doc"
-  },
   "nodes": {
     "title": "Nodes",
     "type": "doc"
   },
+  "ide": {
+    "title": "IDE",
+    "type": "doc"
+  },
+  "agents": {
+    "title": "Agents",
+    "type": "doc"
+  },
   "models": {
     "title": "Models",
+    "type": "doc"
+  },
+  "context": {
+    "title": "Data",
     "type": "doc"
   },
   "interface": {
@@ -90,8 +77,16 @@
     "title": "MCP/Tools",
     "type": "doc"
   },
-  "sdk": {
-    "title": "SDK",
+  "tests": {
+    "title": "Test",
+    "type": "doc"
+  },
+  "version-control": {
+    "title": "Version Control",
+    "type": "doc"
+  },
+  "templates": {
+    "title": "Templates",
     "type": "doc"
   },
 
@@ -103,18 +98,31 @@
     "title": "Deployments",
     "type": "doc"
   },
-  "logs": {
-    "title": "Logs",
-    "type": "doc"
-  },
   "jobs": {
     "title": "Jobs",
     "type": "doc"
   },
+
+  "-- optimize": {
+    "type": "separator",
+    "title": "🧩 Optimize"
+  },
+
+  "logs": {
+    "title": "Logs",
+    "type": "doc"
+  },
+
   "reports": {
     "title": "Reports",
     "type": "doc"
   },
+
+  "sdk": {
+    "title": "SDK",
+    "type": "doc"
+  },
+
   "-- references": {
     "type": "separator",
     "title": "References"

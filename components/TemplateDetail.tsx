@@ -293,7 +293,7 @@ export default function TemplateDetail() {
           )}
 
           {/* Nodes Used Section */}
-          {template.nodesUsed && template.nodesUsed.length > 0 && (
+          {/* {template.nodesUsed && template.nodesUsed.length > 0 && (
             <section>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 Components Used
@@ -310,10 +310,10 @@ export default function TemplateDetail() {
                 ))}
               </div>
             </section>
-          )}
+          )} */}
 
           {/* Integrations Section */}
-          {template.integrations && template.integrations.length > 0 && (
+          {/* {template.integrations && template.integrations.length > 0 && (
             <section>
               <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
                 Integrations
@@ -330,7 +330,7 @@ export default function TemplateDetail() {
                 ))}
               </div>
             </section>
-          )}
+          )} */}
 
           {/* Nodes Used Section */}
           {template.nodesUsed && template.nodesUsed.length > 0 && (

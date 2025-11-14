@@ -259,8 +259,8 @@ export default function TemplateGallery() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {(isSSR ? templates.slice(0, 6) : filteredTemplates).map(template => {
           const IconComponent = iconMap[template.icon] || Brain; // Fallback to Brain icon
-          // Use title-based slug for the URL
-          const templateSlug = titleToSlug(template.title);
+          // Use slug from template data, fallback to title-based slug if slug is not available
+          const templateSlug = template.slug || titleToSlug(template.title);
           return (
             <Link
               key={template.id}

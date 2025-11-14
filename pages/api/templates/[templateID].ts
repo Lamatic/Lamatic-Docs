@@ -278,16 +278,23 @@ export default async function handler(
     
     const externalData: ExternalTemplatesResponse = await response.json();
     
-    // Find the template by title slug, ID, or slug
-    // First, try to match by title slug (convert title to slug and compare)
+    // Find the template by slug (prioritized), then ID, then title slug
     const externalTemplate = externalData.templates.find(
       (template) => {
+        // First priority: match by slug field
+        if (template.slug && template.slug === templateID) {
+          return true;
+        }
+        // Second priority: match by ID
+        if (template.id === templateID) {
+          return true;
+        }
+        // Third priority: match by title slug (convert title to slug and compare)
         const templateTitleSlug = titleToSlug(template.name);
-        return (
-          templateTitleSlug === templateID ||
-          template.id === templateID ||
-          template.slug === templateID
-        );
+        if (templateTitleSlug === templateID) {
+          return true;
+        }
+        return false;
       }
     );
     

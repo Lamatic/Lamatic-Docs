@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { titleToSlug } from '@/lib/utils';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -257,15 +259,13 @@ export default function TemplateGallery() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {(isSSR ? templates.slice(0, 6) : filteredTemplates).map(template => {
           const IconComponent = iconMap[template.icon] || Brain; // Fallback to Brain icon
+          // Use title-based slug for the URL
+          const templateSlug = titleToSlug(template.title);
           return (
-            <div 
-              key={template.id} 
-              className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200"
-              onClick={() => {
-                if (!isSSR && template.slug) {
-                  window.open(`https://studio.lamatic.ai/_?templateSlug=${template.slug}`, '_blank');
-                }
-              }}
+            <Link
+              key={template.id}
+              href={templateSlug ? `/templates/${templateSlug}` : '#'}
+              className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200 block"
             >
               {/* Preview Image */}
               {template.previewImage && (
@@ -360,7 +360,7 @@ export default function TemplateGallery() {
                 )}
               </div>
               */}
-            </div>
+            </Link>
           );
         })}
       </div>

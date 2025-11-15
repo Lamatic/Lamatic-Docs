@@ -286,3 +286,45 @@ main a:not([href]) {
     animation: none !important;
   }
 }
+
+/* Hide TOC and remove white space when toc: false */
+/* Target pages with toc: false in frontmatter */
+body:has(article[data-toc="false"]) .nextra-toc,
+body:has([data-toc="false"]) .nextra-toc {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Hide aside that only contains empty TOC */
+aside:has(.nextra-toc:empty),
+aside:has(.nextra-toc[style*="display: none"]) {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+/* Adjust grid layout when TOC aside is hidden */
+main > div:has(aside[style*="display: none"]) {
+  grid-template-columns: 1fr !important;
+}
+
+/* For template detail pages specifically */
+body:has([href*="/templates/"]) .nextra-toc {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+body:has([href*="/templates/"]) aside:has(.nextra-toc) {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+body:has([href*="/templates/"]) main > div {
+  grid-template-columns: 1fr !important;
+}

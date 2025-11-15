@@ -5,7 +5,7 @@
   },
   "index": {
     "title": "Overview",
-    "type":"doc"
+    "type": "doc"
   },
   "why-lamatic": {
     "title": "Why Lamatic.ai",
@@ -16,11 +16,22 @@
     "title": "Quickstart",
     "type": "doc"
   },
-  "architecture": {
-    "title": "Architecture",
+  "ai-middleware": {
+    "title": "AI Middleware",
     "type": "doc"
   },
-  
+
+  "-- Studio": {
+    "type": "separator",
+    "title": "🎨 Studio"
+  },
+  "studio-overview": "Overview",
+  "studio-project": "Project",
+  "studio-tags": "Tags",
+  "studio-keys": "Keys",
+  "studio-role-based-access": "Role-Based Access",
+  "studio-variables-and-secrets": "Variables & Secrets",
+
   "-- Build": {
     "type": "separator",
     "title": "🛠️ Build"
@@ -33,44 +44,29 @@
     "title": "Blog",
     "type": "page"
   },
-  "studio": {
-    "title": "Studio",
-    "type": "doc"
-  },
+
   "flows": {
     "title": "Flows",
     "type": "doc"
   },
-  "agents": {
-    "title": "Agents",
-    "type": "doc"
-  },
-  "tests": {
-    "title": "Test",
-    "type": "doc"
-  },
-  "templates": {
-    "title": "Templates",
-    "type": "doc"
-  },
-  "context": {
-    "title": "Context",
+  "nodes": {
+    "title": "Nodes",
     "type": "doc"
   },
   "ide": {
     "title": "IDE",
     "type": "doc"
   },
-  "-- connect": {
-    "type": "separator",
-    "title": "🧩 Connect"
-  },
-  "nodes": {
-    "title": "Nodes",
+  "agents": {
+    "title": "Agents",
     "type": "doc"
   },
   "models": {
     "title": "Models",
+    "type": "doc"
+  },
+  "context": {
+    "title": "Data",
     "type": "doc"
   },
   "interface": {
@@ -79,6 +75,18 @@
   },
   "mcp-tools": {
     "title": "MCP/Tools",
+    "type": "doc"
+  },
+  "tests": {
+    "title": "Test",
+    "type": "doc"
+  },
+  "version-control": {
+    "title": "Version Control",
+    "type": "doc"
+  },
+  "templates": {
+    "title": "Templates",
     "type": "doc"
   },
   "sdk": {
@@ -94,22 +102,28 @@
     "title": "Deployments",
     "type": "doc"
   },
-  "logs": {
-    "title": "Logs",
-    "type": "doc"
-  },
   "jobs": {
     "title": "Jobs",
     "type": "doc"
   },
-  "keys": {
-    "title": "Keys",
+
+  "-- optimize": {
+    "type": "separator",
+    "title": "🧩 Optimize"
+  },
+
+  "logs": {
+    "title": "Logs",
     "type": "doc"
   },
+
   "reports": {
     "title": "Reports",
     "type": "doc"
   },
+
+ 
+
   "-- references": {
     "type": "separator",
     "title": "References"

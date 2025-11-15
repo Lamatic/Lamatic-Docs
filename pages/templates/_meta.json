@@ -6,10 +6,6 @@
   "index": {
     "title": "Overview"
   },
-  "gallery": {
-    "title": "Gallery",
-    "type": "doc"
-  },
   "agentkits":{
     "title": "Agent Kits",
     "type": "doc"

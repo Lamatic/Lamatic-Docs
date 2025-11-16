@@ -4,22 +4,28 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 interface ExternalTemplate {
   name: string;
   description: string | null;
-  category: string;
+  category?: string;
   preview_image?: string | null;
-  config: string | any;
-  organization_id: string;
-  user_id: string;
+  config?: string | any;
+  organization_id?: string;
+  user_id?: string;
   created_at: string;
-  id: string;
+  id?: string;
   slug: string | null;
   tags?: string[];
   preview_link?: string | null;
+  template_link?: string | null;
+  agent_link?: string | null;
   maker?: {
     link: string | null;
     name: string;
   };
   inputs?: any;
   testInput?: any;
+  nodes?: Array<{
+    nodeName: string;
+    nodeId: string;
+  }>;
   nodesUsed?: Array<{
     name: string;
     label: string;
@@ -155,11 +161,30 @@ const getIconColor = (icon: string): string => {
   return colorMap[icon] || 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400';
 };
 
-// Extract nodesUsed from config if not directly available
+// Extract nodesUsed from nodes array, nodesUsed, or config
 const extractNodesUsed = (template: ExternalTemplate): Array<{name: string; label: string}> => {
   // If nodesUsed is directly available, use it
   if (template.nodesUsed && Array.isArray(template.nodesUsed)) {
     return template.nodesUsed;
+  }
+  
+  // If nodes array is available (from the actual API response), use it
+  if (template.nodes && Array.isArray(template.nodes)) {
+    const nodeTypes = new Set<string>();
+    template.nodes.forEach((node: any) => {
+      if (node.nodeId) {
+        nodeTypes.add(node.nodeId);
+      }
+      if (node.nodeName) {
+        nodeTypes.add(node.nodeName);
+      }
+    });
+    
+    // Convert to nodesUsed format
+    return Array.from(nodeTypes).map(type => ({
+      name: type,
+      label: type.replace(/([A-Z])/g, ' $1').replace(/([a-z])([A-Z])/g, '$1 $2').trim()
+    }));
   }
   
   // Try to extract from config
@@ -181,16 +206,14 @@ const extractNodesUsed = (template: ExternalTemplate): Array<{name: string; labe
       });
       
       // Convert to nodesUsed format
-      const nodeTypesArray: string[] = [];
-      nodeTypes.forEach(type => nodeTypesArray.push(type));
-      return nodeTypesArray.map(type => ({
+      return Array.from(nodeTypes).map(type => ({
         name: type,
-        label: type.replace(/([A-Z])/g, ' $1').trim()
+        label: type.replace(/([A-Z])/g, ' $1').replace(/([a-z])([A-Z])/g, '$1 $2').trim()
       }));
     }
   } catch (e) {
     // If parsing fails, return empty array
-    console.warn('Failed to parse config for template:', template.id);
+    console.warn('Failed to parse config for template:', template.id || template.slug || template.name);
   }
   
   return [];
@@ -202,22 +225,27 @@ const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' 
   const nodeCount = nodesUsed.length;
   const description = (template.description || template.meta?.description || '').toLowerCase();
   
-  // Try to get node count from config if available
-  let configNodeCount = nodeCount;
-  try {
-    if (template.config) {
-      const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
-      if (config && config.nodes && Array.isArray(config.nodes)) {
-        configNodeCount = config.nodes.length;
+  // Try to get node count from nodes array first (most direct)
+  let finalNodeCount = nodeCount;
+  if (template.nodes && Array.isArray(template.nodes)) {
+    finalNodeCount = template.nodes.length;
+  } else {
+    // Try to get node count from config if available
+    try {
+      if (template.config) {
+        const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
+        if (config && config.nodes && Array.isArray(config.nodes)) {
+          finalNodeCount = config.nodes.length;
+        }
       }
+    } catch (e) {
+      // Use nodeCount from nodesUsed
     }
-  } catch (e) {
-    // Use nodeCount from nodesUsed
   }
   
-  if (configNodeCount <= 3 && !description.includes('complex')) {
+  if (finalNodeCount <= 3 && !description.includes('complex')) {
     return 'beginner';
-  } else if (configNodeCount <= 6) {
+  } else if (finalNodeCount <= 6) {
     return 'intermediate';
   } else {
     return 'advanced';
@@ -292,7 +320,11 @@ const getFeatures = (template: ExternalTemplate): string[] => {
 };
 
 // Map external category to internal category
-const mapCategory = (externalCategory: string): string => {
+const mapCategory = (externalCategory?: string): string => {
+  if (!externalCategory) {
+    return 'public';
+  }
+  
   const categoryMap: Record<string, string> = {
     'Public': 'public',
     'Private': 'private',
@@ -301,6 +333,21 @@ const mapCategory = (externalCategory: string): string => {
   };
   
   return categoryMap[externalCategory] || 'public';
+};
+
+// Generate an ID from slug or name if id doesn't exist
+const generateId = (template: ExternalTemplate): string => {
+  if (template.id) {
+    return template.id;
+  }
+  if (template.slug) {
+    return template.slug;
+  }
+  // Generate a simple ID from name (slugify)
+  return (template.name || 'untitled')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 };
 
 // Transform external template to internal format
@@ -317,8 +364,11 @@ const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
   // Get demoUrl from root or meta.deployUrl
   const demoUrl = externalTemplate.demoUrl || externalTemplate.meta?.deployUrl || null;
   
+  // Generate ID if it doesn't exist
+  const id = generateId(externalTemplate);
+  
   return {
-    id: externalTemplate.id,
+    id,
     title: externalTemplate.name || externalTemplate.meta?.name || 'Untitled Template',
     description,
     tags,
@@ -367,22 +417,23 @@ export default async function handler(
     
     // Transform external templates to internal format with error handling
     const templates: Template[] = templatesArray
-      .filter(template => template && template.id) // Filter out invalid templates
+      .filter(template => template && template.name) // Filter out invalid templates (require at least a name)
       .map(template => {
         try {
           return transformTemplate(template);
         } catch (err) {
-          console.error('Error transforming template:', template.id, err);
+          console.error('Error transforming template:', template.id || template.slug || template.name, err);
           // Return a minimal valid template to prevent breaking the entire response
+          const fallbackId = generateId(template);
           return {
-            id: template.id,
+            id: fallbackId,
             title: template.name || template.meta?.name || 'Untitled Template',
             description: template.description || template.meta?.description || 'No description available',
             tags: template.tags || template.meta?.tags || [],
             icon: 'Workflow',
             iconColor: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400',
             features: [],
-            category: mapCategory(template.category || 'Public'),
+            category: mapCategory(template.category),
             complexity: 'beginner',
             useCases: [],
             integrations: [],

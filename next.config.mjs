@@ -494,6 +494,16 @@ const permanentRedirects = [
   ["/docs/models/providers/voyage-ai", "/integrations/models/voyage-ai"],
   ["/docs/models/providers/xai", "/integrations/models/xai"],
   ["/docs/flows/getting-started", "/docs/get-started"],
+  ["/docs/nodes/text-llm-node", "/docs/nodes/ai/generate-text-node"],
+  ["/docs/integrations/notion", "/integrations/apps-data-sources/notion"],
+  ["/docs/integrations", "/integrations"],
+  ["/docs/integrations/airtable", "/integrations/apps-data-sources/airtable"],
+  ["/docs/nodes/json-generate-node", "/docs/nodes/ai/generate-json-node"],
+  ["/docs/nodes/image-gen-node", "/docs/nodes/ai/generate-image-node"],
+  ["/docs/nodes/multimodel-node", "/docs/nodes/ai/multimodal-node"],
+  ["/docs/nodes/rag-node", "/docs/nodes/ai/rag-node"],
+  ["docs/nodes/supervisor-node", "/docs/nodes/ai/supervisor-node"],
+  ["/docs/nodes/agent-classifier-node", "/docs/nodes/ai/classifier-node"]
 ];
 
 // Caution : Overriding /public messes with the assets
@@ -514,10 +524,10 @@ const rewrites = [
   ["/sitemap.xml", "/public/website-sitemap.xml"],
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
-    [
-      "/:path((?!docs|blog|guides|integrations|agentkits|launch-week|templates|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors|security).*)",
-      "https://get.lamatic.ai/:path*",
-    ],
+  [
+    "/:path((?!docs|blog|guides|integrations|agentkits|launch-week|templates|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors|security).*)",
+    "https://get.lamatic.ai/:path*",
+  ],
 ];
 
 export default withBundleAnalyzer(nextraConfig);

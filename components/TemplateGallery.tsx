@@ -280,7 +280,7 @@ export default function TemplateGallery() {
                   {Array.from({ length: 4 }).map((_, index) => (
                     <div
                       key={index}
-                      className="flex-shrink-0 w-[280px] p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+                      className="flex-shrink-0 w-[400px] p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
                     >
                       {/* Icons row skeleton */}
                       <div className="flex items-center gap-1.5 mb-3">

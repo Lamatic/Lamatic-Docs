@@ -503,7 +503,26 @@ const permanentRedirects = [
   ["/docs/nodes/multimodel-node", "/docs/nodes/ai/multimodal-node"],
   ["/docs/nodes/rag-node", "/docs/nodes/ai/rag-node"],
   ["docs/nodes/supervisor-node", "/docs/nodes/ai/supervisor-node"],
-  ["/docs/nodes/agent-classifier-node", "/docs/nodes/ai/classifier-node"]
+  ["/docs/nodes/agent-classifier-node", "/docs/nodes/ai/classifier-node"],
+  ["/docs/integrations/notion", "/docs/nodes/apps/notion-node"],
+  ["/docs/integrations/twilio", "/integrations/apps-data-sources/twilio"],
+  ["/docs/integrations/smtp", "/docs/nodes/apps/smtp-node"],
+  [
+    "/docs/nodes/extact-from-file-node",
+    "/docs/nodes/data/extract-from-file-node",
+  ],
+  ["/docs/nodes/chunking-node", "/docs/nodes/data/chunking-node"],
+  ["/docs/nodes/vectorize-node", "/docs/nodes/data/vectorize-node"],
+  ["/docs/nodes/vector-actions-node", "/docs/nodes/data/vectordb-node"],
+  ["/docs/nodes/api-node", "/docs/nodes/data/api-node"],
+  ["/docs/nodes/hybrid-search-node", "/docs/nodes/data/hybrid-search-node"],
+  ["/docs/nodes/keyword-search-node", "/docs/nodes/data/keyword-search-node"],
+  ["/docs/nodes/memory-add-node", "/docs/nodes/data/memory-add-node"],
+  ["/docs/nodes/memory-retrieve-node", "/docs/nodes/data/memory-retrieve-node"],
+  ["/docs/nodes/code-node", "/docs/nodes/logic/code-node"],
+  ["/docs/nodes/condition-node", "/docs/nodes/logic/condition-node"],
+  ["/docs/nodes/variables-node", "/docs/nodes/logic/variable-node"],
+  ["/docs/nodes/wait-node", "/docs/nodes/logic/wait-node"],
 ];
 
 // Caution : Overriding /public messes with the assets

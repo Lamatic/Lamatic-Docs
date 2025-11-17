@@ -187,7 +187,8 @@ export default function TemplateDetail() {
       {/* Back Navigation */}
       <div className="mb-6">
         <Link 
-          href="/templates" 
+          asChild={isAgentkitRoute}
+          href={isAgentkitRoute ? "/agentkits" : "/templates"} 
           className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />

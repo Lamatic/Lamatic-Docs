@@ -191,7 +191,7 @@ export default function TemplateDetail() {
           className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Templates
+          Back to {isAgentkitRoute ? 'AgentKits' : 'Templates'}
         </Link>
       </div>
 

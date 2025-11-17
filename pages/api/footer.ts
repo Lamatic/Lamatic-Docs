@@ -8,6 +8,7 @@ export default async function handler(
 ) {
     try {
         const footerHtml = await fetchFooter();
+        console.log(footerHtml);
         // Wrap with Div having class lamatic-docs-footer
         const footerHtmlWithClass = `<div class="lamatic-docs-footer">${footerHtml}</div>`;
         res.status(200).send(footerHtmlWithClass);

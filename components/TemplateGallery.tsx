@@ -678,7 +678,7 @@ export default function TemplateGallery() {
                   className="flex gap-4 overflow-x-auto scroll-smooth pb-4 hide-scrollbar overflow-y-visible"
                   style={{ overflowY: "visible" }}
                 >
-                  {agentKitTemplates.slice(0, 4).map((template) => (
+                  {agentKitTemplates.map((template) => (
                     <div
                       key={template.id}
                       className="flex-shrink-0 w-[280px] overflow-visible"

@@ -148,12 +148,155 @@ export default function TemplateDetail() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh] py-12">
-        <div className="text-center">
-          <Loader2 className="w-12 h-12 text-red-500 animate-spin mx-auto mb-4" />
-          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
+      <>
+        <style dangerouslySetInnerHTML={{__html: `
+          @keyframes shimmer {
+            0% {
+              background-position: -1000px 0;
+            }
+            100% {
+              background-position: 1000px 0;
+            }
+          }
+          .shimmer {
+            animation: shimmer 2s infinite linear;
+            background: linear-gradient(
+              to right,
+              rgb(229, 231, 235) 0%,
+              rgb(243, 244, 246) 20%,
+              rgb(229, 231, 235) 40%,
+              rgb(229, 231, 235) 100%
+            );
+            background-size: 1000px 100%;
+          }
+          .dark .shimmer {
+            background: linear-gradient(
+              to right,
+              rgb(55, 65, 81) 0%,
+              rgb(75, 85, 99) 20%,
+              rgb(55, 65, 81) 40%,
+              rgb(55, 65, 81) 100%
+            );
+            background-size: 1000px 100%;
+          }
+        `}} />
+        <div className="mx-auto py-8">
+        
+        {/* Back Navigation Skeleton */}
+        <div className="mb-6">
+          <div className="h-4 w-24 shimmer rounded"></div>
+        </div>
+
+        {/* Hero Section Skeleton */}
+        <div className="mb-8">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="h-6 w-16 shimmer rounded-full"></div>
+            <div className="h-6 w-20 shimmer rounded-full"></div>
+          </div>
+          <div className="h-10 w-3/4 shimmer rounded mb-4"></div>
+          <div className="space-y-2 mb-6">
+            <div className="h-4 w-full shimmer rounded"></div>
+            <div className="h-4 w-5/6 shimmer rounded"></div>
+            <div className="h-4 w-4/6 shimmer rounded"></div>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-3 mt-5">
+            <div className="h-10 w-32 shimmer rounded"></div>
+            <div className="h-10 w-28 shimmer rounded"></div>
+          </div>
+        </div>
+
+        {/* Main Content Layout Skeleton */}
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Left Column - Main Content Skeleton */}
+          <div className="lg:col-span-2 space-y-10">
+            {/* Overview Section Skeleton */}
+            <section>
+              <div className="h-8 w-32 shimmer rounded mb-4"></div>
+              <div className="space-y-2">
+                <div className="h-4 w-full shimmer rounded"></div>
+                <div className="h-4 w-full shimmer rounded"></div>
+                <div className="h-4 w-5/6 shimmer rounded"></div>
+              </div>
+            </section>
+
+            {/* Key Features Section Skeleton */}
+            <section>
+              <div className="h-8 w-40 shimmer rounded mb-4"></div>
+              <div className="grid md:grid-cols-2 gap-4">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <div className="w-5 h-5 shimmer rounded-full flex-shrink-0 mt-0.5"></div>
+                    <div className="h-4 w-32 shimmer rounded"></div>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            {/* Nodes Used Section Skeleton */}
+            <section>
+              <div className="h-8 w-36 shimmer rounded mb-4"></div>
+              <div className="flex flex-wrap gap-2">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <div key={index} className="h-7 w-20 shimmer rounded-full"></div>
+                ))}
+              </div>
+            </section>
+          </div>
+
+          {/* Right Column - Sidebar Skeleton */}
+          <div className="space-y-6">
+            {/* Quick Start Section Skeleton */}
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-5 border border-gray-200 dark:border-gray-700">
+              <div className="h-6 w-28 shimmer rounded mb-4"></div>
+              <div className="space-y-3">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-6 h-6 shimmer rounded-full flex-shrink-0"></div>
+                    <div className="flex-1 space-y-1">
+                      <div className="h-3 w-full shimmer rounded"></div>
+                      <div className="h-3 w-4/5 shimmer rounded"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-5 pt-4 border-t border-gray-200 dark:border-gray-700">
+                <div className="h-3 w-32 shimmer rounded mb-1"></div>
+                <div className="h-6 w-24 shimmer rounded"></div>
+              </div>
+            </div>
+
+            {/* Template Info Skeleton */}
+            <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-5">
+              <div className="h-6 w-32 shimmer rounded mb-4"></div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2">
+                  <div className="h-4 w-20 shimmer rounded"></div>
+                  <div className="h-5 w-16 shimmer rounded-full"></div>
+                </div>
+                <div className="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-700">
+                  <div className="h-4 w-20 shimmer rounded"></div>
+                  <div className="h-5 w-16 shimmer rounded-full"></div>
+                </div>
+                <div className="flex justify-between items-center py-2 border-t border-gray-200 dark:border-gray-700">
+                  <div className="h-4 w-24 shimmer rounded"></div>
+                  <div className="h-4 w-8 shimmer rounded"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tags Skeleton */}
+            <div>
+              <div className="h-6 w-20 shimmer rounded mb-3"></div>
+              <div className="flex flex-wrap gap-2">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <div key={index} className="h-6 w-16 shimmer rounded-full"></div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      </>
     );
   }
 

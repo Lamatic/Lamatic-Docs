@@ -543,10 +543,10 @@ const rewrites = [
   ["/sitemap.xml", "/public/website-sitemap.xml"],
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
-  [
-    "/:path((?!docs|blog|guides|integrations|agentkits|launch-week|templates|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors|security).*)",
-    "https://get.lamatic.ai/:path*",
-  ],
+    [
+      "/:path((?!docs|blog|guides|integrations|agentkits|templates|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors|security).*)",
+      "https://get.lamatic.ai/:path*",
+    ],
 ];
 
 export default withBundleAnalyzer(nextraConfig);

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Head from "next/head";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -233,9 +234,29 @@ export default function TemplateDetail() {
     fetchTemplate();
   }, [id, isAgentkitRoute]);
 
+  // Update document title dynamically
+  useEffect(() => {
+    if (template) {
+      document.title = `${template.title} - ${isAgentkitRoute ? "AgentKit" : "Template"} | Lamatic`;
+    } else if (loading) {
+      document.title = isAgentkitRoute
+        ? "Loading AgentKit... | Lamatic"
+        : "Loading Template... | Lamatic";
+    } else if (error) {
+      document.title = `${error} | Lamatic`;
+    }
+  }, [template, loading, error, isAgentkitRoute]);
+
   if (loading) {
     return (
       <>
+        <Head>
+          <title>
+            {isAgentkitRoute
+              ? "Loading AgentKit... | Lamatic"
+              : "Loading Template... | Lamatic"}
+          </title>
+        </Head>
         <style
           dangerouslySetInnerHTML={{
             __html: `
@@ -398,7 +419,17 @@ export default function TemplateDetail() {
 
   if (error || !template) {
     return (
-      <div className="flex items-center justify-center min-h-[60vh] py-12">
+      <>
+        <Head>
+          <title>
+            {error
+              ? `${error} | Lamatic`
+              : isAgentkitRoute
+              ? "AgentKit Not Found | Lamatic"
+              : "Template Not Found | Lamatic"}
+          </title>
+        </Head>
+        <div className="flex items-center justify-center min-h-[60vh] py-12">
         <div className="text-center">
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -413,6 +444,7 @@ export default function TemplateDetail() {
           </Button>
         </div>
       </div>
+      </>
     );
   }
 
@@ -424,9 +456,26 @@ export default function TemplateDetail() {
     : [];
 
   return (
-    <div className="mx-auto py-8">
-      {/* Back Navigation */}
-      <div className="mb-6">
+    <>
+      <Head>
+        <title>
+          {template
+            ? `${template.title} - ${isAgentkitRoute ? "AgentKit" : "Template"} | Lamatic`
+            : isAgentkitRoute
+            ? "AgentKit Details | Lamatic"
+            : "Template Details | Lamatic"}
+        </title>
+        <meta
+          name="description"
+          content={
+            template?.description ||
+            `View details for this ${isAgentkitRoute ? "AgentKit" : "template"} on Lamatic`
+          }
+        />
+      </Head>
+      <div className="mx-auto py-8">
+        {/* Back Navigation */}
+        <div className="mb-6">
         <Link
           href={isAgentkitRoute ? "/agentkits" : "/templates"}
           className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
@@ -1020,6 +1069,7 @@ export default function TemplateDetail() {
           </div>
         </section>
       )}
-    </div>
+      </div>
+    </>
   );
 }

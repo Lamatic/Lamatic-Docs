@@ -659,8 +659,9 @@ export default function TemplateGallery() {
                     variant="default"
                     size="sm"
                     className="bg-red-600 hover:bg-red-700 text-white"
+                    asChild
                   >
-                    Explore
+                    <Link href="/agentkits">Explore</Link>
                   </Button>
                 </div>
               </div>

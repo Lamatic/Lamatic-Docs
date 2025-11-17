@@ -328,3 +328,13 @@ body:has([href*="/templates/"]) aside:has(.nextra-toc) {
 body:has([href*="/templates/"]) main > div {
   grid-template-columns: 1fr !important;
 }
+
+/* Hide scrollbar for carousel */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}

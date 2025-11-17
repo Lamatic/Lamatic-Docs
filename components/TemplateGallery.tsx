@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { titleToSlug } from "@/lib/utils";
 import {
@@ -29,7 +29,24 @@ import {
   Loader2,
   AlertCircle,
   Play,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  Wrench,
+  FileText,
+  Image as ImageIcon,
+  Rocket,
+  TrendingUp,
+  Phone,
+  DollarSign,
+  Database,
+  Grid3X3,
+  Lock,
+  Zap,
+  FolderOpen,
+  Infinity,
 } from "lucide-react";
+import IconGithub from "@/components/icons/github";
 
 type Template = {
   id: string;
@@ -84,13 +101,35 @@ const iconMap: Record<string, any> = {
   BarChart3,
 };
 
+// Tag icon mapping
+const tagIconMap: Record<string, any> = {
+  Tools: Wrench,
+  Generative: Sparkles,
+  Document: FileText,
+  Image: ImageIcon,
+  Startup: Rocket,
+  Growth: TrendingUp,
+  Support: Phone,
+  Sales: DollarSign,
+  Database: Database,
+  Apps: Grid3X3,
+  Reasoning: Brain,
+  Compliance: Lock,
+};
+
+// AgentKit category mapping
+const agentKitCategories = ["Agentic", "Automation", "Embedded", "Assistant"];
+
 export default function TemplateGallery() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedAgentKitCategory, setSelectedAgentKitCategory] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
   const [templates, setTemplates] = useState<Template[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [agentKitScrollPosition, setAgentKitScrollPosition] = useState(0);
+  const agentKitCarouselRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -127,6 +166,10 @@ export default function TemplateGallery() {
     new Set(templates.flatMap((template) => template.tags))
   ).sort();
 
+  // Separate AgentKit templates from regular templates
+  const agentKitTemplates = templates.filter((template) => template.isAgentkit);
+  const regularTemplates = templates.filter((template) => !template.isAgentkit);
+
   const filteredTemplates = templates.filter((template) => {
     const matchesSearch =
       template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -143,7 +186,10 @@ export default function TemplateGallery() {
         )
       );
 
-    return matchesSearch && matchesTags;
+    // Filter out AgentKit templates from regular grid (they're shown in featured section)
+    const isNotAgentKit = !template.isAgentkit;
+
+    return matchesSearch && matchesTags && isNotAgentKit;
   });
 
   const toggleTag = (tag: string) => {
@@ -151,6 +197,34 @@ export default function TemplateGallery() {
       prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
     );
   };
+
+  // Carousel scroll functions
+  const scrollAgentKitCarousel = (direction: "left" | "right") => {
+    if (!agentKitCarouselRef.current) return;
+    const scrollAmount = 400;
+    const currentScroll = agentKitCarouselRef.current.scrollLeft;
+    const newPosition =
+      direction === "left"
+        ? currentScroll - scrollAmount
+        : currentScroll + scrollAmount;
+    agentKitCarouselRef.current.scrollTo({
+      left: newPosition,
+      behavior: "smooth",
+    });
+  };
+
+  // Update scroll position when user scrolls manually
+  useEffect(() => {
+    const carousel = agentKitCarouselRef.current;
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      setAgentKitScrollPosition(carousel.scrollLeft);
+    };
+
+    carousel.addEventListener("scroll", handleScroll);
+    return () => carousel.removeEventListener("scroll", handleScroll);
+  }, [agentKitTemplates.length]);
 
   // Always render the same structure, but disable interactions during SSR
   const isSSR = !isClient;
@@ -232,194 +306,273 @@ export default function TemplateGallery() {
     );
   }
 
+  // Template card component
+  const TemplateCard = ({ template }: { template: Template }) => {
+    const IconComponent = iconMap[template.icon] || Brain;
+    const templateSlug = template.slug || titleToSlug(template.title);
+    const href = templateSlug
+      ? template.isAgentkit
+        ? `/agentkits/${templateSlug}`
+        : `/templates/${templateSlug}`
+      : "#";
+
+    return (
+      <Link
+        href={href}
+        className="group relative p-4 rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200 block bg-white dark:bg-gray-800"
+      >
+        {/* Icons row at top */}
+        {template.integrations && template.integrations.length > 0 && (
+          <div className="flex items-center gap-1.5 mb-3 flex-wrap">
+            {template.integrations.slice(0, 5).map((integration, idx) => {
+              // Try to map integration names to icons
+              const integrationLower = integration.toLowerCase();
+              let IntegrationIcon = null;
+              
+              if (integrationLower.includes('google')) IntegrationIcon = Globe;
+              else if (integrationLower.includes('openai') || integrationLower.includes('llm')) IntegrationIcon = Brain;
+              else if (integrationLower.includes('api') || integrationLower.includes('http')) IntegrationIcon = Code;
+              else if (integrationLower.includes('database') || integrationLower.includes('db')) IntegrationIcon = Database;
+              else if (integrationLower.includes('vector') || integrationLower.includes('rag')) IntegrationIcon = Search;
+              else if (integrationLower.includes('workflow') || integrationLower.includes('automation')) IntegrationIcon = Workflow;
+              else if (integrationLower.includes('chat') || integrationLower.includes('message')) IntegrationIcon = MessageSquare;
+              else if (integrationLower.includes('image') || integrationLower.includes('vision')) IntegrationIcon = ImageIcon;
+              else if (integrationLower.includes('infinity') || integrationLower.includes('unlimited')) IntegrationIcon = Infinity;
+              else IntegrationIcon = Zap;
+              
+              return IntegrationIcon ? (
+                <div
+                  key={idx}
+                  className="w-5 h-5 flex items-center justify-center text-gray-600 dark:text-gray-400"
+                  title={integration}
+                >
+                  <IntegrationIcon className="w-4 h-4" />
+                </div>
+              ) : null;
+            })}
+            {template.integrations.length > 5 && (
+              <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                +{template.integrations.length - 5}
+              </span>
+            )}
+          </div>
+        )}
+
+        {/* Title with icon */}
+        <div className="flex items-center gap-2 mb-2">
+          <div className={`p-1.5 rounded-lg ${template.iconColor}`}>
+            <IconComponent className="w-4 h-4" />
+          </div>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-1">
+            {template.title}
+          </h3>
+        </div>
+
+        {/* Description */}
+        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+          {template.description}
+        </p>
+      </Link>
+    );
+  };
+
   return (
     <div className="mb-8">
-      <div className="mb-6">
-        <div className="relative max-w-md mb-4">
+      {/* Header with search */}
+      <div className="mb-2 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          {/* <FolderOpen className="w-5 h-5 text-gray-600 dark:text-gray-400" /> */}
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Templates</h2>
+        </div>
+        <div className="relative w-full max-w-md">
           <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
           <input
             type="text"
-            placeholder="Search templates..."
+            placeholder="Search templates by name"
             className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
             value={isSSR ? "" : searchTerm}
             onChange={isSSR ? undefined : (e) => setSearchTerm(e.target.value)}
             disabled={isSSR}
           />
         </div>
-
-        {/* Tag Filters */}
-        {allTags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {allTags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => !isSSR && toggleTag(tag)}
-                disabled={isSSR}
-                className={`px-3 py-1 text-sm rounded-full border transition-colors ${
-                  selectedTags.includes(tag)
-                    ? "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800"
-                    : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
-            {selectedTags.length > 0 && (
-              <button
-                onClick={() => !isSSR && setSelectedTags([])}
-                disabled={isSSR}
-                className="px-3 py-1 text-sm rounded-full border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-              >
-                Clear all
-              </button>
-            )}
-          </div>
-        )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-        {(isSSR ? templates.slice(0, 6) : filteredTemplates).map((template) => {
-          const IconComponent = iconMap[template.icon] || Brain; // Fallback to Brain icon
-          // Use slug from template data, fallback to title-based slug if slug is not available
-          const templateSlug = template.slug || titleToSlug(template.title);
-          // Route to agentkits if isAgentkit is true, otherwise to templates
-          const href = templateSlug
-            ? template.isAgentkit
-              ? `/agentkits/${templateSlug}`
-              : `/templates/${templateSlug}`
-            : "#";
-          return (
-            <Link
-              key={template.id}
-              href={href}
-              className="group relative p-6 rounded-2xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200 block"
-            >
-              {/* Preview Image */}
-              {template.previewImage && (
-                <div className="mb-4 rounded-lg overflow-hidden">
-                  <img
-                    src={`https://api.lamatic.ai/storage/v1/object/public/workflow-previews/${template.previewImage}`}
-                    alt={template.title}
-                    className="w-full h-32 object-cover group-hover:scale-105 transition-transform duration-200"
-                    onError={(e) => {
-                      // Hide image if it fails to load
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
-                </div>
-              )}
+      {/* Main Content Area */}
+      <div className="w-full">
+          {/* Featured AgentKit Section */}
+          {agentKitTemplates.length > 0 && (
+            <div className="mb-8 relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-2xl p-6 border border-pink-100 dark:border-pink-900/30">
+              {/* Dotted pattern background */}
+              <div
+                className="absolute inset-0 rounded-2xl opacity-30"
+                style={{
+                  backgroundImage: `radial-gradient(circle, #ec4899 1px, transparent 1px)`,
+                  backgroundSize: "20px 20px",
+                }}
+              />
 
-              <div className="flex items-center gap-3 mb-4">
-                <div className={`p-2 rounded-lg ${template.iconColor}`}>
-                  <IconComponent className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                    {template.title}
-                  </h3>
-                  <div className="flex gap-2">
-                    {/* <Badge variant="secondary" className="text-xs">{template.category}</Badge> */}
-                    <Badge variant="outline" className="text-xs">
-                      {template.complexity.charAt(0).toUpperCase() +
-                        template.complexity.slice(1)}
-                    </Badge>
-                    {template.isPro && (
-                      <Badge
-                        variant="default"
-                        className="text-xs bg-gradient-to-r from-purple-500 to-pink-500"
-                      >
-                        Pro
-                      </Badge>
-                    )}
-                    {template.isAgentkit && (
-                      <Badge
-                        variant="default"
-                        className="text-xs bg-gradient-to-r from-blue-500 to-cyan-500"
-                      >
-                        Agent Kit
-                      </Badge>
-                    )}
+              <div className="relative z-0">
+                {/* Header */}
+                <div className="flex items-center justify-between mb-0">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                      AgentKit
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <IconGithub className="w-5 h-5 text-gray-600 dark:text-gray-400" />
+                    <Button
+                      variant="default"
+                      size="sm"
+                      className="bg-red-600 hover:bg-red-700 text-white"
+                    >
+                      Explore
+                    </Button>
                   </div>
                 </div>
-              </div>
-              <div className="text-sm text-muted-foreground mb-4">
-                {template.description}
-              </div>
-              <div className="space-y-2 mb-4">
-                {template.features.slice(0, 3).map((feature, index) => (
-                  <div key={index} className="flex items-center gap-2 text-sm">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>{feature}</span>
+
+                {/* Description */}
+                <p className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+                  Opensource Full Stack Agentic Apps in minutes built by the community.
+                </p>
+
+                {/* Carousel */}
+                <div className="relative">
+                  <div
+                    ref={agentKitCarouselRef}
+                    className="flex gap-4 overflow-x-auto scroll-smooth pb-4 hide-scrollbar"
+                  >
+                    {agentKitTemplates.map((template) => (
+                      <div
+                        key={template.id}
+                        className="flex-shrink-0 w-[280px]"
+                      >
+                        <TemplateCard template={template} />
+                      </div>
+                    ))}
                   </div>
+
+                  {/* Navigation arrows */}
+                  {agentKitTemplates.length > 3 && (
+                    <>
+                      <button
+                        onClick={() => scrollAgentKitCarousel("left")}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-1.5 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors z-20"
+                        disabled={isSSR}
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => scrollAgentKitCarousel("right")}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-1.5 shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors z-20"
+                        disabled={isSSR}
+                      >
+                        <ChevronRight className="w-4 h-4" />
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Horizontal Filters Section */}
+          <div className="mb-8 space-y-4">
+            {/* All Templates */}
+            <div>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                All Templates
+              </h3>
+            </div>
+
+            {/* AgentKit Section */}
+            {/* <div>
+              <div className="flex items-center gap-2 mb-3">
+                <Bot className="w-4 h-4 text-gray-600 dark:text-gray-400" />
+                <h3 className="text-sm font-semibold text-gray-900 dark:text-white">AgentKit</h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {agentKitCategories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() =>
+                      !isSSR &&
+                      setSelectedAgentKitCategory(
+                        selectedAgentKitCategory === category ? null : category
+                      )
+                    }
+                    disabled={isSSR}
+                    className={`px-3 py-1 text-xs rounded-full border transition-colors ${
+                      selectedAgentKitCategory === category
+                        ? "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800"
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    {category}
+                  </button>
                 ))}
               </div>
-              <div className="flex gap-2 mb-4">
-                {template.industry &&
-                  template.industry.slice(0, 2).map((industry, index) => (
-                    <Badge key={index} variant="outline" className="text-xs">
-                      {industry}
-                    </Badge>
-                  ))}
-              </div>
-              {/* Maker 
-              {template.maker && (
-                <div className="text-xs text-muted-foreground mb-3">
-                  Created by {template.maker.name}
-                </div>
-              )}
-                */}
-              {/* Actions 
-              <div className="flex gap-2">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="flex-1" 
-                  disabled={isSSR}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (!isSSR && template.slug) {
-                      window.open(`https://studio.lamatic.ai/_?templateSlug=${template.slug}`, '_blank');
-                    }
-                  }}
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  View Template
-                </Button>
-                {template.demoUrl && (
-                  <Button 
-                    variant="default" 
-                    size="sm" 
-                    className="flex-1" 
-                    disabled={isSSR}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (!isSSR && template.demoUrl) {
-                        window.open(template.demoUrl, '_blank');
-                      }
-                    }}
-                  >
-                    <Play className="w-4 h-4 mr-2" />
-                    Demo
-                  </Button>
-                )}
-              </div>
-              */}
-            </Link>
-          );
-        })}
-      </div>
+            </div> */}
 
-      {!isSSR && filteredTemplates.length === 0 && (
-        <div className="text-center py-12">
-          <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-            No templates found
-          </h3>
-          <div className="text-muted-foreground">
-            Try adjusting your search or filter criteria.
+            {/* Tags Section */}
+            <div>
+              {/* <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">Tags</h3> */}
+              <div className="flex flex-wrap gap-2">
+                {allTags.map((tag) => {
+                  const TagIcon = tagIconMap[tag] || null;
+                  return (
+                    <button
+                      key={tag}
+                      onClick={() => !isSSR && toggleTag(tag)}
+                      disabled={isSSR}
+                      className={`px-3 py-1.5 text-xs rounded-full border transition-colors flex items-center gap-1.5 ${
+                        selectedTags.includes(tag)
+                          ? "bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800"
+                          : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700"
+                      }`}
+                    >
+                      {TagIcon && <TagIcon className="w-3 h-3" />}
+                      {tag}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Personal Section */}
+            {/* <div>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                Personal
+              </h3>
+            </div> */}
+
+            {/* Team Section */}
+            {/* <div>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                Team
+              </h3>
+            </div> */}
           </div>
+
+          {/* Templates Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {(isSSR ? regularTemplates.slice(0, 6) : filteredTemplates).map((template) => (
+              <TemplateCard key={template.id} template={template} />
+            ))}
+          </div>
+
+          {!isSSR && filteredTemplates.length === 0 && (
+            <div className="text-center py-12">
+              <Search className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                No templates found
+              </h3>
+              <div className="text-muted-foreground">
+                Try adjusting your search or filter criteria.
+              </div>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </div>
   );
 }

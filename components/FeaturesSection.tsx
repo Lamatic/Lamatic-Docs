@@ -70,7 +70,7 @@ const AGENT_TYPES = [
 const FeaturesSection = () => {
   return (
     <div className="py-2">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-9xl mx-auto">
         {/* Features Grid */}
         {/* <div className="mb-10">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white ">

@@ -5,18 +5,19 @@ description: The RAG (Retrieval-Augmented Generation) Node combines information 
 type: AI
 order: 6
 ---
-import { NodeOverview } from "@/components/NodeOverview"
-import { NodeTypeInfo } from "@/components/NodeTypeInfo"
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 # RAG Node
 
-<NodeOverview slug="rag-node" type="ai"/>
+<NodeOverview slug="rag-node" type="ai" />
 
 ## Overview
 
 The RAG (Retrieval-Augmented Generation) Node is a sophisticated AI component that combines information retrieval with text generation. It first retrieves relevant information from a knowledge base or vector database, then uses that context to generate more accurate and informed responses.
 
-<NodeTypeInfo 
+<NodeTypeInfo
   batchTrigger={false}
   eventTrigger={false}
   action={true}
@@ -35,7 +36,7 @@ The node allows users to configure parameters such as the embedding model, gener
   <summary>**Key Functionalities**</summary>
   1. **Database Integration**: Allows integration with a specified database (e.g., `IndexCrawler`) to fetch relevant data for downstream processes. 
   
-  2. **Dynamic Query Handling**: Supports dynamic query generation using variables (e.g., `{{triggerNode.output.topic}}`) for flexible search and data retrieval. 
+  2. **Dynamic Query Handling**: Supports dynamic query generation using variables (e.g., `{'{'}{'{'}}triggerNode.output.topic{'{'}{'}'}}`) for flexible search and data retrieval. 
   
   3. **Embedding and Generative Models**: Enables the use of embedding models (e.g., `mistral-embed`) and generative models (e.g., `mistral-large-2402`) for advanced AI-powered search and content generation tasks. 
   
@@ -72,17 +73,17 @@ The node allows users to configure parameters such as the embedding model, gener
 
 ## Configuration Reference
 
-| **Parameter**             | **Description**                                                                                                                                                                                                                                                                                          | **Example Value**            |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| **Database**              | Select the vector database to be queried.                                                                                                                                                                                                                                                                | Database                     |
-| **Search Query**          | Input the query to search the vector database.                                                                                                                                                                                                                                                           | Tell me something about Bali |
-| **Embedding Model Name**  | This field allows the user to select the embedding model used to embed the query into vector space. It loads available embedding models through the listModels method.                                                                                                                                   | Embedding Model Name         |
-| **Generative Model Name** | Select the model to generate responses from the query results.                                                                                                                                                                                                                                           | LLM Model                    |
-| **System Prompt**         | System prompt to guide the LLM                                                                                                                                                                                                                                                                           | You are Travel Planner       |
-| **No. of References**     | Number of results to return                                                                                                                                                                                                                                                                              | 3                            |
-| **Certainty**             | Its the distance score into a value between `0 <= certainty <= 1`, where 1 would represent identical vectors and 0 would represent opposite vectors.Its the distance score into a value between `0 <= certainty <= 1`, where 1 would represent identical vectors and 0 would represent opposite vectors. | 0.7                          |
-| **Filters**               | Apply JSON-based filters to refine search results.Apply JSON-based filters to refine search results.                                                                                                                                                                                                     |                              |
-| **Messages (History)**    | Pass your messages history here                                                                                                                                                                                                                                                                          | []                           |
+| **Parameter**             | **Description**                                                                                                                                                        | **Example Value**            |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| **Database**              | Select the vector database to be queried.                                                                                                                              | Database                     |
+| **Search Query**          | Input the query to search the vector database.                                                                                                                         | Tell me something about Bali |
+| **Embedding Model Name**  | This field allows the user to select the embedding model used to embed the query into vector space. It loads available embedding models through the listModels method. | Embedding Model Name         |
+| **Generative Model Name** | Select the model to generate responses from the query results.                                                                                                         | LLM Model                    |
+| **System Prompt**         | System prompt to guide the LLM                                                                                                                                         | You are Travel Planner       |
+| **No. of References**     | Number of results to return                                                                                                                                            | 3                            |
+| **Certainty**             | It's the distance score into a value between 0 &lt;= certainty &lt;= 1, where 1 would represent identical vectors and 0 would represent opposite vectors.                    | 0.7                          |
+| **Filters**               | Apply JSON-based filters to refine search results.                                                                  |                              |
+| **Messages (History)**    | Pass your messages history here                                                                                                                                        | []                           |
 
 ## Low-Code Example
 
@@ -132,9 +133,11 @@ nodes:
 ## Output
 
 #### `modelResponse`
+
 - The AI-generated text response based on the retrieved information and reasoning.
 
 #### `references`
+
 - A list of source documents or data points used to generate the response.
   - **`_additional`**: Contains extra metadata about the reference.
   - **`certainty`**: A confidence score (float) indicating how relevant the reference is.
@@ -143,6 +146,7 @@ nodes:
   - **`certainty`** (duplicate at the top level): Same as the one inside `_additional`.
 
 #### `_meta`
+
 - Metadata about the model's processing of the request.
 
   - **`prompt_tokens`**: Number of tokens in the input prompt.
@@ -150,10 +154,12 @@ nodes:
   - **`total_tokens`**: Sum of `prompt_tokens` and `completion_tokens`.
 
   - **`prompt_tokens_details`**: Breakdown of token usage in the prompt.
+
     - **`cached_tokens`**: Tokens reused from cache.
     - **`audio_tokens`**: Tokens from audio input (if applicable).
 
   - **`completion_tokens_details`**: Breakdown of token usage in the generated output.
+
     - **`reasoning_tokens`**: Tokens used for reasoning.
     - **`audio_tokens`**: Tokens from audio output (if applicable).
     - **`accepted_prediction_tokens`**: Tokens from accepted predictions.
@@ -162,48 +168,47 @@ nodes:
   - **`model_name`**: Name of the AI model used.
   - **`model_provider`**: The provider or organization supplying the model.
 
-
 ### Example Output
 
 ```json
 {
-    "modelResponse": "Response",
-    "references": [
-      {
-        "_additional": {
-          "certainty": 0.8730262517929077
-        },
-        "data": null,
-        "rr": "wr",
+  "modelResponse": "Response",
+  "references": [
+    {
+      "_additional": {
         "certainty": 0.8730262517929077
       },
-      {
-        "_additional": {
-          "certainty": 0.8614917993545532
-        },
-        "data": "info",
-        "rr": null,
+      "data": null,
+      "rr": "wr",
+      "certainty": 0.8730262517929077
+    },
+    {
+      "_additional": {
         "certainty": 0.8614917993545532
-      }
-    ],
-    "_meta": {
-      "prompt_tokens": 112,
-      "completion_tokens": 111,
-      "total_tokens": 223,
-      "prompt_tokens_details": {
-        "cached_tokens": 0,
-        "audio_tokens": 0
       },
-      "completion_tokens_details": {
-        "reasoning_tokens": 0,
-        "audio_tokens": 0,
-        "accepted_prediction_tokens": 0,
-        "rejected_prediction_tokens": 0
-      },
-      "model_name": "gpt-4-turbo",
-      "model_provider": "openai"
+      "data": "info",
+      "rr": null,
+      "certainty": 0.8614917993545532
     }
+  ],
+  "_meta": {
+    "prompt_tokens": 112,
+    "completion_tokens": 111,
+    "total_tokens": 223,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    },
+    "model_name": "gpt-4-turbo",
+    "model_provider": "openai"
   }
+}
 ```
 
 ## Troubleshooting

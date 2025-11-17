@@ -67,3 +67,31 @@ export function githubPathToUrlPath(githubPath: string): string {
 
   return `/${path}`;
 }
+
+/**
+ * Converts a title to a URL-friendly slug
+ * Examples:
+ *   "Advertisement Poster Generation" -> "advertisement-poster-generation"
+ *   "Customer Support Assistant" -> "customer-support-assistant"
+ */
+export function titleToSlug(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
+    .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+}
+
+/**
+ * Converts a slug back to a title (approximate)
+ * Examples:
+ *   "advertisement-poster-generation" -> "Advertisement Poster Generation"
+ */
+export function slugToTitle(slug: string): string {
+  return slug
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}

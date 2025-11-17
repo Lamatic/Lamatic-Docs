@@ -1,0 +1,99 @@
+---
+description: Projects in Lamatic Studio
+---
+# **Projects**
+
+In the context of Studio, a project represents an individual **GenAI** application you're developing. The workspace structure allows for multiple projects to coexist, each representing a unique GenAI application with its own set of requirements and functionalities. Studio ensures that each project maintains its independence by providing dedicated resources and endpoint controls. This separation is crucial for maintaining the integrity and security of your applications. Even within the same workspace, projects are designed to operate without interference, and they do not share credentials, ensuring that each project remains a self-contained unit with its own secure environment.
+
+---
+
+### **Home View**
+![ProjectHome.png](./studio-img/project-home.png)
+
+The Home View in Studio offers an intuitive and comprehensive overview of your project and along with Onboarding Guide. This interactive project plan view provides a visual representation of all the features and integrations currently in use within your project.
+
+> 📊 **Insight**: At a glance, you can assess the complexity, scope, and capabilities of your GenAI application, making it easier to manage and strategize your development efforts.
+
+---
+
+### **Shared Resources within the Project**
+
+Studio provides a set of versatile resources that can be leveraged across various features within your project. These shared resources enhance the functionality and efficiency of your GenAI application. The following key resources are available for integration throughout your project:
+
+1. **Models**: Utilize pre-trained or custom AI models to power your application's core functionality.
+2. **App Integrations**: Seamlessly connect your project with external applications and services to extend its capabilities.
+3. **VectorDB**: Implement vector databases for efficient storage and retrieval of high-dimensional data, crucial for many AI applications.
+4. **Test Cases**: Develop and manage a suite of test cases to ensure the reliability and performance of your GenAI application.
+
+> 🔧 **Pro Tip**: These resources can be easily integrated and reused across various features, saving time and boosting efficiency.
+
+---
+
+## Project Settings
+
+![Project Home.png](./studio-img/project-settings-overview.png)
+
+### 1. General Settings
+In the General Settings, you can update project details such as the project name and view the Project ID. You also have the option to pause or delete the project from this section.
+
+### 2. Configuration
+
+The Configuration section allows you to manage project-level settings that control how your flows behave and handle errors. These settings provide fine-grained control over retry mechanisms to ensure your flows are resilient and reliable.
+
+#### Smart Retries for Flows
+
+Smart Retries is a powerful feature that automatically retries failed flows from the last successfully executed node. When enabled, this feature helps maintain flow continuity and reduces manual intervention by intelligently resuming execution from the point of failure.
+
+Once enabled, your flows will be retried automatically from the last successfully executed node if they fail.
+
+##### Configuration Options
+
+- **Enable Smart Retries**: Toggle this switch to enable or disable the Smart Retries feature for all flows in your project.
+- **Max Retries**: Specify the maximum number of retry attempts for a failed flow. The default value is `1`.
+- **Retry Delay (in seconds)**: Set the delay between retry attempts in seconds. The default value is `1` second.
+
+> 🔄 **Pro Tip**: Smart Retries can significantly improve the reliability of your flows by automatically handling transient failures and network issues. Adjust the retry delay based on your flow's requirements and the expected recovery time of external services.
+
+After configuring these settings, click the **Save Changes** button to apply your changes to the project.
+
+---
+
+### 3. Integration
+![ProjectIntegration.png](./studio-img/project-integration.png)
+Studio recognizes the importance of a robust development ecosystem. To this end, it offers integration capabilities with various developer tools, allowing you to enhance and optimize your project's capabilities. These integrations can significantly streamline your flow and provide valuable insights into your application's performance.
+
+<br/>
+
+As of now, the following developer integrations are available for your Studio projects:
+
+1. **[Langfuse (Beta)](/docs/reports/langfuse-integration)**: Advanced LLM observability and analytics to track, debug, and improve GenAI performance.
+2. **GitHub**: Connect a repository to commit workflow updates for seamless version control and team collaboration.
+
+
+> 🛠️ **Developer Note**: These integrations can help you keep your GenAI project optimized and data-driven.
+
+---
+
+### 3. Authentication
+
+#### API Keys
+Security and controlled access are paramount in GenAI projects. Studio provides robust API key management features, allowing you to generate, monitor, and revoke API keys as needed. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
+
+#### Secret Keys
+Allow external services to access the project on behalf of a user. Checkout the Lamatic SDK to understand how to use the secret keys.
+
+<Callout type="warning" >
+ Note: Any addition or removal of secret keys will be reflected only after the project has been deployed.
+</Callout>
+---
+
+### 4. Variables & Secrets
+
+With Variables and Secrets you can Safeguard your API keys and credentials with our new Secrets Management system, ensuring your data stays protected while maintaining easy access for authorized use.
+
+<Callout type="warning" >
+ A new Deployment is required for your changes to take effect.
+</Callout>
+---
+
+> 🔒 **Security Tip**: Maintain granular control over project access, ensuring security while facilitating authorized integration.

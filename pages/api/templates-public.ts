@@ -4,41 +4,62 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 interface ExternalTemplate {
   name: string;
   description: string | null;
-  category: string;
-  preview_image: string;
-  config: string;
-  organization_id: string;
-  user_id: string;
+  category?: string;
+  preview_image?: string | null;
+  config?: string | any;
+  organization_id?: string;
+  user_id?: string;
   created_at: string;
-  id: string;
+  id?: string;
   slug: string | null;
-  tags: string[];
-  preview_link: string | null;
-  maker: {
+  tags?: string[];
+  preview_link?: string | null;
+  template_link?: string | null;
+  agent_link?: string | null;
+  maker?: {
     link: string | null;
     name: string;
   };
-  inputs: any;
-  testInput: any;
-  nodesUsed: Array<{
+  inputs?: any;
+  testInput?: any;
+  nodes?: Array<{
+    nodeName: string;
+    nodeId: string;
+  }>;
+  nodesUsed?: Array<{
     name: string;
     label: string;
   }>;
-  ux: any;
-  datasource: any;
-  compatibleSources: any;
-  demoUrl: string | null;
-  allMandatory: boolean;
-  about: any;
-  features: any;
-  integrations: any;
-  isPro: boolean;
-  agentkit_config: any;
-  v0Link: string | null;
-  hideVibe: boolean;
+  ux?: any;
+  datasource?: any;
+  compatibleSources?: any;
+  demoUrl?: string | null;
+  allMandatory?: boolean;
+  about?: any;
+  features?: any;
+  integrations?: any;
+  isPro?: boolean;
+  isAgentkit?: boolean;
+  agentkit_config?: any;
+  v0Link?: string | null;
+  hideVibe?: boolean;
+  meta?: {
+    name?: string;
+    description?: string;
+    tags?: string[];
+    testInput?: any;
+    githubUrl?: string;
+    documentationUrl?: string;
+    deployUrl?: string;
+    author?: {
+      name: string;
+      email: string;
+    };
+  };
 }
 
 interface ExternalTemplatesResponse {
+  success?: boolean;
   templates: ExternalTemplate[];
 }
 
@@ -68,6 +89,7 @@ interface Template {
   slug?: string;
   demoUrl?: string;
   isPro?: boolean;
+  isAgentkit?: boolean;
 }
 
 interface Category {
@@ -83,9 +105,9 @@ export type TemplatesResponse = {
 
 // Icon mapping based on template name/description
 const getIconForTemplate = (template: ExternalTemplate): string => {
-  const name = template.name.toLowerCase();
-  const description = (template.description || '').toLowerCase();
-  const tags = template.tags.map(tag => tag.toLowerCase());
+  const name = (template.name || '').toLowerCase();
+  const description = (template.description || template.meta?.description || '').toLowerCase();
+  const tags = (template.tags || template.meta?.tags || []).map(tag => tag.toLowerCase());
   
   if (name.includes('chat') || name.includes('support') || name.includes('assistant')) {
     return 'MessageSquare';
@@ -139,14 +161,91 @@ const getIconColor = (icon: string): string => {
   return colorMap[icon] || 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400';
 };
 
+// Extract nodesUsed from nodes array, nodesUsed, or config
+const extractNodesUsed = (template: ExternalTemplate): Array<{name: string; label: string}> => {
+  // If nodesUsed is directly available, use it
+  if (template.nodesUsed && Array.isArray(template.nodesUsed)) {
+    return template.nodesUsed;
+  }
+  
+  // If nodes array is available (from the actual API response), use it
+  if (template.nodes && Array.isArray(template.nodes)) {
+    const nodeTypes = new Set<string>();
+    template.nodes.forEach((node: any) => {
+      if (node.nodeId) {
+        nodeTypes.add(node.nodeId);
+      }
+      if (node.nodeName) {
+        nodeTypes.add(node.nodeName);
+      }
+    });
+    
+    // Convert to nodesUsed format
+    return Array.from(nodeTypes).map(type => ({
+      name: type,
+      label: type.replace(/([A-Z])/g, ' $1').replace(/([a-z])([A-Z])/g, '$1 $2').trim()
+    }));
+  }
+  
+  // Try to extract from config
+  try {
+    if (!template.config) {
+      return [];
+    }
+    const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
+    if (config && config.nodes && Array.isArray(config.nodes)) {
+      // Extract node types from config
+      const nodeTypes = new Set<string>();
+      config.nodes.forEach((node: any) => {
+        if (node.type) {
+          nodeTypes.add(node.type);
+        }
+        if (node.data?.nodeId) {
+          nodeTypes.add(node.data.nodeId);
+        }
+      });
+      
+      // Convert to nodesUsed format
+      return Array.from(nodeTypes).map(type => ({
+        name: type,
+        label: type.replace(/([A-Z])/g, ' $1').replace(/([a-z])([A-Z])/g, '$1 $2').trim()
+      }));
+    }
+  } catch (e) {
+    // If parsing fails, return empty array
+    console.warn('Failed to parse config for template:', template.id || template.slug || template.name);
+  }
+  
+  return [];
+};
+
 // Determine complexity based on nodes used and description
 const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' | 'advanced' => {
-  const nodeCount = template.nodesUsed?.length || 0;
-  const description = (template.description || '').toLowerCase();
+  const nodesUsed = extractNodesUsed(template);
+  const nodeCount = nodesUsed.length;
+  const description = (template.description || template.meta?.description || '').toLowerCase();
   
-  if (nodeCount <= 3 && !description.includes('complex')) {
+  // Try to get node count from nodes array first (most direct)
+  let finalNodeCount = nodeCount;
+  if (template.nodes && Array.isArray(template.nodes)) {
+    finalNodeCount = template.nodes.length;
+  } else {
+    // Try to get node count from config if available
+    try {
+      if (template.config) {
+        const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
+        if (config && config.nodes && Array.isArray(config.nodes)) {
+          finalNodeCount = config.nodes.length;
+        }
+      }
+    } catch (e) {
+      // Use nodeCount from nodesUsed
+    }
+  }
+  
+  if (finalNodeCount <= 3 && !description.includes('complex')) {
     return 'beginner';
-  } else if (nodeCount <= 6) {
+  } else if (finalNodeCount <= 6) {
     return 'intermediate';
   } else {
     return 'advanced';
@@ -156,8 +255,8 @@ const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' 
 // Extract features from nodes used and description
 const getFeatures = (template: ExternalTemplate): string[] => {
   const features: string[] = [];
-  const nodes = template.nodesUsed || [];
-  const description = template.description || '';
+  const nodes = extractNodesUsed(template);
+  const description = template.description || template.meta?.description || '';
   
   // Add features based on nodes used
   nodes.forEach(node => {
@@ -194,25 +293,38 @@ const getFeatures = (template: ExternalTemplate): string[] => {
   });
   
   // Add features based on description
-  if (description.toLowerCase().includes('automation')) {
+  const descLower = description.toLowerCase();
+  if (descLower.includes('automation')) {
     features.push('Workflow automation');
   }
-  if (description.toLowerCase().includes('chat') || description.toLowerCase().includes('conversation')) {
+  if (descLower.includes('chat') || descLower.includes('conversation')) {
     features.push('Conversational AI');
   }
-  if (description.toLowerCase().includes('analysis') || description.toLowerCase().includes('insights')) {
+  if (descLower.includes('analysis') || descLower.includes('insights')) {
     features.push('Data analysis');
   }
-  if (description.toLowerCase().includes('search') || description.toLowerCase().includes('retrieval')) {
+  if (descLower.includes('search') || descLower.includes('retrieval')) {
     features.push('Information retrieval');
   }
   
   // Remove duplicates and limit to 4 features
-  return [...new Set(features)].slice(0, 4);
+  const uniqueFeatures: string[] = [];
+  const seen = new Set<string>();
+  features.forEach(feature => {
+    if (!seen.has(feature)) {
+      seen.add(feature);
+      uniqueFeatures.push(feature);
+    }
+  });
+  return uniqueFeatures.slice(0, 4);
 };
 
 // Map external category to internal category
-const mapCategory = (externalCategory: string): string => {
+const mapCategory = (externalCategory?: string): string => {
+  if (!externalCategory) {
+    return 'public';
+  }
+  
   const categoryMap: Record<string, string> = {
     'Public': 'public',
     'Private': 'private',
@@ -223,28 +335,60 @@ const mapCategory = (externalCategory: string): string => {
   return categoryMap[externalCategory] || 'public';
 };
 
+// Generate an ID from slug or name if id doesn't exist
+const generateId = (template: ExternalTemplate): string => {
+  if (template.id) {
+    return template.id;
+  }
+  if (template.slug) {
+    return template.slug;
+  }
+  // Generate a simple ID from name (slugify)
+  return (template.name || 'untitled')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+};
+
 // Transform external template to internal format
 const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
   const icon = getIconForTemplate(externalTemplate);
+  const nodesUsed = extractNodesUsed(externalTemplate);
+  
+  // Get tags from root level or meta.tags
+  const tags = externalTemplate.tags || externalTemplate.meta?.tags || [];
+  
+  // Get description from root or meta
+  const description = externalTemplate.description || externalTemplate.meta?.description || 'No description available';
+  
+  // Get demoUrl from root or meta.deployUrl
+  const demoUrl = externalTemplate.demoUrl || externalTemplate.meta?.deployUrl || null;
+  
+  // Generate ID if it doesn't exist
+  const id = generateId(externalTemplate);
   
   return {
-    id: externalTemplate.id,
-    title: externalTemplate.name,
-    description: externalTemplate.description || 'No description available',
-    tags: externalTemplate.tags || [],
+    id,
+    title: externalTemplate.name || externalTemplate.meta?.name || 'Untitled Template',
+    description,
+    tags,
     icon,
     iconColor: getIconColor(icon),
     features: getFeatures(externalTemplate),
     category: mapCategory(externalTemplate.category),
     complexity: getComplexity(externalTemplate),
     useCases: [], // Could be extracted from description if needed
-    integrations: externalTemplate.nodesUsed?.map(node => node.label) || [],
-    previewImage: externalTemplate.preview_image,
-    maker: externalTemplate.maker,
-    nodesUsed: externalTemplate.nodesUsed,
-    slug: externalTemplate.slug,
-    demoUrl: externalTemplate.demoUrl,
-    isPro: externalTemplate.isPro
+    integrations: nodesUsed.map(node => node.label),
+    previewImage: externalTemplate.preview_image || undefined,
+    maker: externalTemplate.maker || (externalTemplate.meta?.author ? {
+      name: externalTemplate.meta.author.name,
+      link: externalTemplate.meta.author.email ? `mailto:${externalTemplate.meta.author.email}` : undefined
+    } : undefined),
+    nodesUsed: nodesUsed.length > 0 ? nodesUsed : undefined,
+    slug: externalTemplate.slug || null,
+    demoUrl,
+    isPro: externalTemplate.isPro || false,
+    isAgentkit: externalTemplate.isAgentkit || false
   };
 };
 
@@ -258,7 +402,9 @@ export default async function handler(
 
   try {
     // Fetch templates from external API
-    const response = await fetch('https://studio.lamatic.ai/api/templates-public');
+    const response = await fetch('https://launch-three.lamatic.ai/api/public-templates');
+    // const response = await fetch('https://studio.lamatic.ai/api/templates-public');
+    // api/public-templates/
     
     if (!response.ok) {
       throw new Error(`External API responded with status: ${response.status}`);
@@ -266,8 +412,37 @@ export default async function handler(
     
     const externalData: ExternalTemplatesResponse = await response.json();
     
-    // Transform external templates to internal format
-    const templates: Template[] = externalData.templates.map(transformTemplate);
+    // Handle response with success wrapper
+    const templatesArray = externalData.templates || [];
+    
+    // Transform external templates to internal format with error handling
+    const templates: Template[] = templatesArray
+      .filter(template => template && template.name) // Filter out invalid templates (require at least a name)
+      .map(template => {
+        try {
+          return transformTemplate(template);
+        } catch (err) {
+          console.error('Error transforming template:', template.id || template.slug || template.name, err);
+          // Return a minimal valid template to prevent breaking the entire response
+          const fallbackId = generateId(template);
+          return {
+            id: fallbackId,
+            title: template.name || template.meta?.name || 'Untitled Template',
+            description: template.description || template.meta?.description || 'No description available',
+            tags: template.tags || template.meta?.tags || [],
+            icon: 'Workflow',
+            iconColor: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400',
+            features: [],
+            category: mapCategory(template.category),
+            complexity: 'beginner',
+            useCases: [],
+            integrations: [],
+            slug: template.slug || null,
+            isPro: template.isPro || false,
+            isAgentkit: template.isAgentkit || false
+          };
+        }
+      });
     
     // Create categories based on available templates
     const categoryMap = new Map<string, number>();
@@ -293,8 +468,11 @@ export default async function handler(
     res.status(200).json(result);
   } catch (error) {
     console.error('Error fetching templates from external API:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Failed to fetch templates';
+    const errorStack = error instanceof Error ? error.stack : undefined;
+    console.error('Error details:', { errorMessage, errorStack });
     res.status(500).json({ 
-      error: error instanceof Error ? error.message : 'Failed to fetch templates' 
+      error: errorMessage 
     });
   }
 }

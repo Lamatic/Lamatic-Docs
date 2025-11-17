@@ -1,0 +1,119 @@
+---
+title: AI Middleware
+description: Lamatic AI as a Gen AI middleware solution - easy to implement and deploy
+---
+
+# AI Middleware
+
+![AI Middleware Architecture](./img/ai-middleware.png)
+
+Lamatic AI serves as a powerful **Generative AI middleware** that simplifies the integration of AI capabilities into your applications. Acting as an intelligent layer between your applications and AI models, Lamatic abstracts away the complexities of GenAI engineering, making it easy to implement, deploy, and scale AI-powered features.
+
+<Callout>
+Lamatic AI middleware is designed with redundancy and scalability in mind. The architecture is divided into different layers that work together to provide a seamless experience. Even if our main system fails, it will not affect your deployed applications and APIs.
+</Callout>
+
+## Why Use Lamatic as Your AI Middleware?
+
+Traditional GenAI development requires significant engineering effort to handle:
+- Connecting and managing multiple AI models
+- Building prompt management systems
+- Implementing caching and optimization layers
+- Creating APIs and integration points
+- Managing data pipelines and vector databases
+- Handling authentication and request monitoring
+
+**Lamatic AI eliminates all of this complexity** by providing a fully managed middleware solution that handles these concerns out of the box.
+
+## Easy Implementation
+
+Implementing Lamatic AI as your middleware is straightforward and can be done in just a few steps:
+
+<Steps>
+    ### Create a Flow
+    Build your AI workflow by connecting required nodes in our visual flow builder. No complex coding required - just drag, drop, and connect.
+
+    ### Connect Your Data and Apps
+    Integrate your data sources, third-party applications, and custom data directly into your flow. Lamatic supports a wide range of integrations.
+
+    ### Connect AI Models
+    Add your model credentials and configure which AI models to use. Switch between models easily without changing your application code.
+
+    ### Deploy on Edge
+    Deploy your workflow to the edge with a single click. Your deployed flow is isolated from the Lamatic Studio platform, ensuring reliability and independence.
+
+    ### Integrate with Your Application
+    Trigger your AI flows using GraphQL API, widgets, or webhooks - choose the integration method that best fits your application architecture.
+</Steps>
+
+## Architecture Layers
+
+Lamatic AI middleware is built on a layered architecture that ensures reliability, scalability, and ease of use. For detailed information, see the [Architecture documentation](/docs/ai-middleware/architecture).
+
+### Integration Layer
+
+The integration layer provides multiple ways to connect your applications with Lamatic AI:
+
+- **GraphQL API** - User-specific Schema API that performs different operations with GraphQL object caching on the edge for faster responses
+- **Widgets** - Customizable pre-built components (like chat widgets) that you can drop into your applications
+- **Apps** - Connect third-party apps to trigger flows and receive responses directly within the application
+- **Webhooks** - Trigger flows asynchronously and receive responses in your application
+
+### Studio Layer
+
+The visual interface that allows non-technical users to configure, monitor, and maintain AI operations:
+
+- **Flow Management** - Manage complex flows with series of Agents collaborating to complete tasks
+- **Agents** - Use our library of agents or create your own with custom prompts
+- **Cache Control** - Control semantic and vector caching for optimal performance
+- **Experiments** - Set up A/B tests to evaluate the best models, prompts, and agents
+- **Logs & Analytics** - Monitor all incoming requests and analyze performance
+
+### Core Layer
+
+The execution engine that powers reliable AI operations:
+
+- **Request Monitoring** - Monitors and authenticates incoming requests
+- **Semantic Cache** - Intelligent caching based on query vectors
+- **Query Controls** - Maps the right data with object retrieval, JSON validation, and quality control
+- **Memory Management** - Context-aware memory for chatbots and conversational AI
+- **Model Relay** - Managed connections across multiple AI models
+- **A/B Testing Module** - Optimize across Agents, Rules, and Models
+
+### Managed Infrastructure
+
+Lamatic's fully managed infrastructure handles:
+- Edge-deployed functions for low-latency responses
+- Auto-scaling cluster nodes based on demand
+- Vector database with ETL pipelines
+- Data transformation and vectorization for RAG use cases
+
+## Key Benefits
+
+### 🚀 Rapid Deployment
+Deploy AI capabilities in hours, not weeks. The visual flow builder and pre-built components accelerate development.
+
+### 🔒 Enterprise Security
+Your data can be hosted on-premise or in a private cloud, ensuring complete security and compliance with your organization's requirements.
+
+### 📈 Scalability
+Auto-scaling infrastructure handles traffic spikes automatically. Edge deployment ensures low latency globally.
+
+### 🔄 Model Flexibility
+Switch between AI models without changing your application code. Test different models and choose the best one for each use case.
+
+### 💰 Cost Optimization
+Built-in caching, request optimization, and cost prediction tools help you manage and reduce AI operational costs.
+
+### 🛠️ No Vendor Lock-in
+Your deployed flows are isolated and independent. Even if you stop using Lamatic Studio, your deployed applications continue to work.
+
+## Privacy and On-Premise Hosting
+
+Lamatic can be customized to host your organization's private data on-premise or on a private cloud. This ensures that sensitive information is not shared with any third party and remains completely secure while still leveraging Lamatic's powerful middleware capabilities.
+
+## Getting Started
+
+Ready to implement Lamatic AI as your middleware? Check out our [Quickstart guide](/docs/get-started) to get up and running in minutes, or explore our [Templates](/docs/templates) to see pre-built solutions for common use cases.
+
+For a deeper dive into how Lamatic works under the hood, see the [Architecture documentation](/docs/ai-middleware/architecture).

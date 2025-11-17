@@ -413,8 +413,8 @@ export default function TemplateGallery() {
 
               <div className="relative z-0">
                 {/* Header */}
-                <div className="flex items-start justify-between mb-0">
-                  <div className="flex-1 mb-4">
+                <div className="flex items-center justify-between mb-0">
+                  <div className="flex-1 mb-8">
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                       AgentKit
                     </h2>
@@ -422,7 +422,7 @@ export default function TemplateGallery() {
                       Opensource Full Stack Agentic Apps in minutes built by the community.
                     </p>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-shrink-0 ml-4">
                     <IconGithub className="w-5 h-5 text-gray-600 dark:text-gray-400" />
                     <Button
                       variant="default"

@@ -502,7 +502,7 @@ const permanentRedirects = [
   ["/docs/nodes/image-gen-node", "/docs/nodes/ai/generate-image-node"],
   ["/docs/nodes/multimodel-node", "/docs/nodes/ai/multimodal-node"],
   ["/docs/nodes/rag-node", "/docs/nodes/ai/rag-node"],
-  ["docs/nodes/supervisor-node", "/docs/nodes/ai/supervisor-node"],
+  ["/docs/nodes/supervisor-node", "/docs/nodes/ai/supervisor-node"],
   ["/docs/nodes/agent-classifier-node", "/docs/nodes/ai/classifier-node"],
   ["/docs/integrations/notion", "/docs/nodes/apps/notion-node"],
   ["/docs/integrations/twilio", "/integrations/apps-data-sources/twilio"],

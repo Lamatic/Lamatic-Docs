@@ -681,7 +681,7 @@ export default function TemplateGallery() {
                   {agentKitTemplates.map((template) => (
                     <div
                       key={template.id}
-                      className="flex-shrink-0 w-[280px] overflow-visible"
+                      className="flex-shrink-0 w-[400px] overflow-visible"
                       style={{ overflow: "visible" }}
                     >
                       <TemplateCard template={template} />

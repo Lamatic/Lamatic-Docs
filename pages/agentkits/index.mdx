@@ -1,11 +1,13 @@
 ---
-title: "Lamatic.ai - Build Intelligent AI Agents"
+title: "AgentKits"
 description: "Deploy powerful AI agents with pre-built kits, seamless integrations, and enterprise-grade security. From customer support to workflow automation - build the future of AI-powered business."
 ---
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import AgentsKitsIndex from "@/components/AgentsKitsIndex";
 import AgentKitsCategories from "@/components/AgentKitsCategories";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 
 # AgentKits
@@ -15,9 +17,8 @@ Deploy powerful AI agents with pre-built kits, seamless integrations, and enterp
 Build powerful AI agents without the complexity. Our platform handles the infrastructure, security, and scaling so you can focus on what matters - delivering value to your customers.
 <FeaturesSection/>
 
-
-## Explore Agent Categories
-Choose the right type of AI agent for your needs. Each category is designed for specific use cases and business challenges.
-<AgentKitsCategories />
+<Button asChild className="mt-5">
+  <Link href="/templates">View All AgentKits</Link>
+</Button>
 
 

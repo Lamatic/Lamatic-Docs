@@ -183,11 +183,10 @@ export default function TemplateDetail() {
     : [];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Back Navigation */}
       <div className="mb-6">
         <Link 
-          asChild={isAgentkitRoute}
           href={isAgentkitRoute ? "/agentkits" : "/templates"} 
           className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors"
         >

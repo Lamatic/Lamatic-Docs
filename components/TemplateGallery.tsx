@@ -401,7 +401,7 @@ export default function TemplateGallery() {
       <div className="w-full">
           {/* Featured AgentKit Section */}
           {agentKitTemplates.length > 0 && (
-            <div className="mb-8 relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-2xl p-6 border border-pink-100 dark:border-pink-900/30">
+            <div className="mb-8 relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-2xl p-4 border border-pink-100 dark:border-pink-900/30">
               {/* Dotted pattern background */}
               <div
                 className="absolute inset-0 rounded-2xl opacity-30"
@@ -413,11 +413,14 @@ export default function TemplateGallery() {
 
               <div className="relative z-0">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-0">
-                  <div className="flex items-center gap-2">
-                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                <div className="flex items-start justify-between mb-0">
+                  <div className="flex-1 mb-4">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                       AgentKit
                     </h2>
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
+                      Opensource Full Stack Agentic Apps in minutes built by the community.
+                    </p>
                   </div>
                   <div className="flex items-center gap-2">
                     <IconGithub className="w-5 h-5 text-gray-600 dark:text-gray-400" />
@@ -432,9 +435,9 @@ export default function TemplateGallery() {
                 </div>
 
                 {/* Description */}
-                <p className="text-sm text-gray-700 dark:text-gray-300 mb-6">
+                {/* <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
                   Opensource Full Stack Agentic Apps in minutes built by the community.
-                </p>
+                </p> */}
 
                 {/* Carousel */}
                 <div className="relative">
@@ -442,7 +445,7 @@ export default function TemplateGallery() {
                     ref={agentKitCarouselRef}
                     className="flex gap-4 overflow-x-auto scroll-smooth pb-4 hide-scrollbar"
                   >
-                    {agentKitTemplates.map((template) => (
+                    {agentKitTemplates.slice(0, 4).map((template) => (
                       <div
                         key={template.id}
                         className="flex-shrink-0 w-[280px]"
@@ -453,7 +456,7 @@ export default function TemplateGallery() {
                   </div>
 
                   {/* Navigation arrows */}
-                  {agentKitTemplates.length > 3 && (
+                  {agentKitTemplates.length > 4 && (
                     <>
                       <button
                         onClick={() => scrollAgentKitCarousel("left")}

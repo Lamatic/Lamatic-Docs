@@ -183,7 +183,7 @@ export default function TemplateDetail() {
     : [];
 
   return (
-    <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="mx-auto py-8">
       {/* Back Navigation */}
       <div className="mb-6">
         <Link 

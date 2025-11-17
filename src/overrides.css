@@ -329,6 +329,35 @@ body:has([href*="/templates/"]) main > div {
   grid-template-columns: 1fr !important;
 }
 
+/* For agentkits detail pages specifically - hide sidebar and TOC */
+html[data-pathname*="/agentkits/"] .nextra-toc,
+html[data-pathname*="/agentkits/"] .nextra-sidebar-container,
+body:has([href*="/agentkits/"]) .nextra-toc,
+body:has([href*="/agentkits/"]) .nextra-sidebar-container {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+html[data-pathname*="/agentkits/"] aside:has(.nextra-toc),
+body:has([href*="/agentkits/"]) aside:has(.nextra-toc) {
+  display: none !important;
+  width: 0 !important;
+  min-width: 0 !important;
+}
+
+html[data-pathname*="/agentkits/"] main > div,
+body:has([href*="/agentkits/"]) main > div {
+  grid-template-columns: 1fr !important;
+  max-width: 100% !important;
+}
+
+/* Force full width for agentkits pages */
+html[data-pathname*="/agentkits/"] main,
+body:has([href*="/agentkits/"]) main {
+  max-width: 100% !important;
+}
+
 /* Hide scrollbar for carousel */
 .hide-scrollbar {
   scrollbar-width: none; /* Firefox */

@@ -402,7 +402,7 @@ export default async function handler(
 
   try {
     // Fetch templates from external API
-    const response = await fetch('https://launch-three.lamatic.ai/api/public-templates');
+    const response = await fetch('https://studio.lamatic.ai/api/public-templates');
     // const response = await fetch('https://studio.lamatic.ai/api/templates-public');
     // api/public-templates/
     

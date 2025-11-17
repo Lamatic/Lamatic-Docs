@@ -233,51 +233,115 @@ export default function TemplateGallery() {
   if (loading) {
     return (
       <div className="mb-8">
-        <div className="mb-6">
-          <div className="relative max-w-md mb-4">
+        {/* Header with search */}
+        <div className="mb-2 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">Templates</h2>
+          </div>
+          <div className="relative w-full max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
             <div className="w-full pl-10 pr-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-100 dark:bg-gray-800 animate-pulse h-10"></div>
           </div>
-          <div className="flex flex-wrap gap-2">
+        </div>
+
+        {/* Main Content Area */}
+        <div className="w-full">
+          {/* Featured AgentKit Section Skeleton */}
+          <div className="mb-8 relative bg-gradient-to-br from-pink-50 to-rose-50 dark:from-pink-950/20 dark:to-rose-950/20 rounded-2xl p-4 border border-pink-100 dark:border-pink-900/30 animate-pulse">
+            {/* Dotted pattern background */}
+            <div
+              className="absolute inset-0 rounded-2xl opacity-30"
+              style={{
+                backgroundImage: `radial-gradient(circle, #ec4899 1px, transparent 1px)`,
+                backgroundSize: "20px 20px",
+              }}
+            />
+
+            <div className="relative z-0">
+              {/* Header Skeleton */}
+              <div className="flex items-center justify-between mb-0">
+                <div className="flex-1 mb-8">
+                  <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded w-32 mb-2"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                </div>
+                <div className="flex items-center gap-2 flex-shrink-0 ml-4">
+                  <div className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  <div className="h-8 w-20 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                </div>
+              </div>
+
+              {/* Carousel Skeleton */}
+              <div className="relative">
+                <div className="flex gap-4 overflow-hidden">
+                  {Array.from({ length: 4 }).map((_, index) => (
+                    <div
+                      key={index}
+                      className="flex-shrink-0 w-[280px] p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800"
+                    >
+                      {/* Icons row skeleton */}
+                      <div className="flex items-center gap-1.5 mb-3">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                          <div key={i} className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                        ))}
+                      </div>
+                      {/* Title skeleton */}
+                      <div className="flex items-center gap-2 mb-2">
+                        <div className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+                        <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-24"></div>
+                      </div>
+                      {/* Description skeleton */}
+                      <div className="space-y-1">
+                        <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+                        <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Horizontal Filters Section Skeleton */}
+          <div className="mb-8 space-y-4">
+            {/* Tags Skeleton */}
+            <div>
+              <div className="flex flex-wrap gap-2">
+                {Array.from({ length: 8 }).map((_, index) => (
+                  <div
+                    key={index}
+                    className="px-3 py-1.5 text-xs bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 animate-pulse h-8 w-20"
+                  ></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Templates Grid Skeleton */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
-                className="px-3 py-1 text-sm bg-gray-100 dark:bg-gray-800 rounded-full border border-gray-200 dark:border-gray-700 animate-pulse h-8 w-16"
-              ></div>
-            ))}
-          </div>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div
-              key={index}
-              className="p-6 rounded-2xl border border-gray-200 dark:border-gray-700 animate-pulse"
-            >
-              {/* Preview Image Placeholder */}
-              <div className="mb-4 rounded-lg bg-gray-200 dark:bg-gray-700 h-32"></div>
-
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-gray-100 dark:bg-gray-800 rounded-lg w-10 h-10"></div>
-                <div className="flex-1">
-                  <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded mb-2"></div>
-                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-20"></div>
+                className="p-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 animate-pulse"
+              >
+                {/* Icons row skeleton */}
+                <div className="flex items-center gap-1.5 mb-3">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div key={i} className="w-5 h-5 bg-gray-200 dark:bg-gray-700 rounded"></div>
+                  ))}
+                </div>
+                {/* Title skeleton */}
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-6 h-6 bg-gray-200 dark:bg-gray-700 rounded-lg"></div>
+                  <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-24"></div>
+                </div>
+                {/* Description skeleton */}
+                <div className="space-y-1">
+                  <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-full"></div>
+                  <div className="h-3 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
                 </div>
               </div>
-              <div className="space-y-2 mb-4">
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
-              </div>
-              <div className="space-y-2 mb-4">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="flex items-center gap-2">
-                    <div className="w-4 h-4 bg-gray-200 dark:bg-gray-700 rounded"></div>
-                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-24"></div>
-                  </div>
-                ))}
-              </div>
-              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded"></div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );

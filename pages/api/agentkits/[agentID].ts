@@ -80,6 +80,8 @@ interface Template {
   compatibleSources?: any;
   config?: string;
   v0Link?: string | null;
+  template_link?: string | null;
+  agent_link?: string | null;
 }
 
 // Icon mapping based on template name/description
@@ -262,7 +264,9 @@ const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
     datasource: externalTemplate.datasource,
     compatibleSources: externalTemplate.compatibleSources,
     config: externalTemplate.config,
-    v0Link: externalTemplate.v0Link
+    v0Link: externalTemplate.v0Link,
+    template_link: externalTemplate.template_link || null,
+    agent_link: externalTemplate.agent_link || null
   };
 };
 

@@ -439,7 +439,9 @@ export default async function handler(
             integrations: [],
             slug: template.slug || null,
             isPro: template.isPro || false,
-            isAgentkit: template.isAgentkit || false
+            isAgentkit: template.isAgentkit || false,
+            template_link: template.template_link || null,
+            agent_link: template.agent_link || null,
           };
         }
       });

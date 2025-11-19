@@ -53,6 +53,10 @@
     "title": "Nodes",
     "type": "doc"
   },
+  "node-assistant": {
+    "title": "Node Assistant",
+    "type": "doc"
+  },
   "ide": {
     "title": "IDE",
     "type": "doc"

@@ -85,6 +85,10 @@
     "title": "Version Control",
     "type": "doc"
   },
+  "environment": {
+    "title": "Environment",
+    "type": "doc"
+  },
   "templates": {
     "title": "Templates",
     "type": "doc"

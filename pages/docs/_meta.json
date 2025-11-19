@@ -53,6 +53,10 @@
     "title": "Nodes",
     "type": "doc"
   },
+  "node-assistant": {
+    "title": "Node Assistant",
+    "type": "doc"
+  },
   "ide": {
     "title": "IDE",
     "type": "doc"
@@ -85,12 +89,20 @@
     "title": "Version Control",
     "type": "doc"
   },
+  "environment": {
+    "title": "Environment",
+    "type": "doc"
+  },
   "templates": {
     "title": "Templates",
     "type": "doc"
   },
   "sdk": {
     "title": "SDK",
+    "type": "doc"
+  },
+  "vibe-build": {
+    "title": "Vibe Build",
     "type": "doc"
   },
 

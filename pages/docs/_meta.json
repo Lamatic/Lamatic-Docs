@@ -97,6 +97,10 @@
     "title": "SDK",
     "type": "doc"
   },
+  "vibe-build": {
+    "title": "Vibe Build",
+    "type": "doc"
+  },
 
   "-- deploy": {
     "type": "separator",

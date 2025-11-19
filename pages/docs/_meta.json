@@ -105,6 +105,7 @@
     "title": "Vibe Build",
     "type": "doc"
   },
+ 
 
   "-- deploy": {
     "type": "separator",
@@ -147,6 +148,10 @@
   "-- references": {
     "type": "separator",
     "title": "References"
+  },
+  "n8n-migration": {
+    "title": "n8n Migration",
+    "type": "doc"
   },
 
   "api-ref": {

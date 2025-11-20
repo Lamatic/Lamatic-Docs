@@ -473,7 +473,6 @@ const permanentRedirects = [
 ["/docs/nodes/code-node","/docs/nodes/logic/code-node"],
 ["/docs/nodes/condition-node","/docs/nodes/logic/condition-node"],
 ["/docs/nodes/variables-node","/docs/nodes/logic/variable-node"],
-["/docs/nodes/wait-node","/docs/nodes/data/vectorize-node"],
 ["/docs/nodes/extract-from-file-node","/docs/nodes/data/extract-from-file-node"],
 ["/docs/nodes/ai/multimodel-node","/docs/nodes/ai/multimodal-node"],
 ["/incident/557243","/incident"],

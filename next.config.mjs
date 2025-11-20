@@ -181,6 +181,8 @@ const nonPermanentRedirects = [
 ];
 
 const permanentRedirects = [
+  ["/terms", "https://lamatic.ai/docs/terms-and-conditions"],
+  ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
   ["/hub/:path*", "https://hub.lamatic.ai/:path*"],
   ["/support", "https://support.lamatic.ai/"],
   ["/changelog", "https://product.lamatic.ai/changelog"],
@@ -544,7 +546,7 @@ const rewrites = [
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
     [
-      "/:path((?!docs|blog|guides|integrations|agentkits|templates|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors|security).*)",
+      "/:path((?!docs|blog|guides|integrations|agentkits|templates|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors).*)",
       "https://get.lamatic.ai/:path*",
     ],
 ];

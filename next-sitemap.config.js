@@ -6,7 +6,7 @@ module.exports = {
     generateRobotsTxt: true,
     changefreq: 'daily',
     additionalPaths: async (config) => [{
-        loc: '/',
+        loc: '/public',
         priority: 1,
         changefreq: 'daily',
         lastmod: new Date().toISOString()

@@ -552,7 +552,6 @@ const permanentRedirects = [
 ["/docs/integrations/firecrawl?ref=blog.lamatic.ai","/integrations/apps-data-sources/firecrawl"],
 ["/docs/test","/docs/tests/flow-testing"],
 ["/docs/Trash/logs/Retry","/docs/node-logic"],
-["/webhook/abc123","/docs/sdk"],
 ["/incident/559061","/incident"],
 ["/incident/550212","/incident"],
 ["/incident/535623","/incident"],

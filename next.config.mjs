@@ -181,6 +181,8 @@ const nonPermanentRedirects = [
 ];
 
 const permanentRedirects = [
+  ["/terms", "https://lamatic.ai/docs/terms-and-conditions"],
+  ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
   ["/hub/:path*", "https://hub.lamatic.ai/:path*"],
   ["/support", "https://support.lamatic.ai/"],
   ["/changelog", "https://product.lamatic.ai/changelog"],

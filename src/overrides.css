@@ -331,9 +331,7 @@ body:has([href*="/templates/"]) main > div {
 
 /* For agentkits detail pages specifically - hide sidebar and TOC */
 html[data-pathname*="/agentkits/"] .nextra-toc,
-html[data-pathname*="/agentkits/"] .nextra-sidebar-container,
-body:has([href*="/agentkits/"]) .nextra-toc,
-body:has([href*="/agentkits/"]) .nextra-sidebar-container {
+html[data-pathname*="/agentkits/"] .nextra-sidebar-container {
   display: none !important;
   width: 0 !important;
   min-width: 0 !important;

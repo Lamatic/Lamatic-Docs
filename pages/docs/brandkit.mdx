@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button"
 import { ColorCard } from "@/components/BrandKitCard"
 import BasicCarousel from "@/components/ScreenshotCarousel"
-
+import  DownloadBrandkitButton from "@/components/BrandKitDownload"
 
 # Brand Kit
+
+### Resources for maintaining a unified and accurate Lamatic brand presence.
+
+<DownloadBrandkitButton/>
 
 ## Brand Colors
 
@@ -14,6 +18,7 @@ import BasicCarousel from "@/components/ScreenshotCarousel"
   <ColorCard hex="#000000" rgb="0, 0, 0" name="Black" />
 </div>
 
+<br/><br/>
 ## Logo
 
 <div className="mb-10 space-y-6">
@@ -107,7 +112,7 @@ import BasicCarousel from "@/components/ScreenshotCarousel"
 
 
 
-
+<br/>
 ### Logo Color Usage
 
 <div className="space-y-3">
@@ -152,79 +157,97 @@ import BasicCarousel from "@/components/ScreenshotCarousel"
 </div>
 
 </div>
-
+<br/>
 ### Logo Misuse
 
 
 <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
   {/* Card 1 */}
-<div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
-  <img
-    src="/images/brandkit/misuse0.png"
-    alt="Don't add gradients"
-    className="w-full h-full object-cover"
-  />
-
-</div>
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse0.png"
+        alt="Don't stretch logo"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    Don’t apply any visual effects (shadow, glow, etc.) to any of
+our logo
+  </div>
 
   {/* Card 2 */}
-<div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
-  <img
-    src="/images/brandkit/misuse1.png"
-    alt="Don't add gradients"
-    className="w-full h-full object-cover"
-  />
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse1.png"
+        alt="Don't add gradients"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    Don’t rotate our logo.
+  </div>
+
+  {/* Card 3 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse2.png"
+        alt="Don't recolor logo"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    Don’t add gradients to our logo.
+  </div>
+
+  {/* Card 4 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse3.png"
+        alt="Don't rotate logo"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    Don’t scale disproportionately.
+  </div>
+
+  {/* Card 5 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse4.png"
+        alt="Don't add effects"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    Don’t add red in the iconmark in the combination mark.
+  </div>
+
+  {/* Card 6 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse5.png"
+        alt="Don't use wrong color"
+        className="w-full h-full object-cover"
+      />
+    </div>
+   Don’t add any color.
+  </div>
 
 </div>
 
-
-
-<div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
-  <img
-    src="/images/brandkit/misuse2.png"
-    alt="Don't add gradients"
-    className="w-full h-full object-cover"
-  />
-
-</div>
-
-<div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
-  <img
-    src="/images/brandkit/misuse3.png"
-    alt="Don't add gradients"
-    className="w-full h-full object-cover"
-  />
-
-</div>
-
-<div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
-  <img
-    src="/images/brandkit/misuse4.png"
-    alt="Don't add gradients"
-    className="w-full h-full object-cover"
-  />
-
-</div>
-<div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
-  <img
-    src="/images/brandkit/misuse5.png"
-    alt="Don't add gradients"
-    className="w-full h-full object-cover"
-  />
-
-</div>
-
-</div>
-
+<br/><br/>
 ## Screenshots
 
 Lamatic.ai product screenshots are essential for accurate media representation and are available for use by the press. These images must not be edited in any way that misrepresents the product’s interface, capabilities, or behavior. It is important to preserve the context and integrity of all screenshots, ensuring they reflect the Lamatic.ai product truthfully and do not imply unauthorized partnerships or endorsements. Always use high-resolution versions to maintain clarity and quality in any published material.
 <BasicCarousel/>
-
+<br/><br/>
 ## Brand Typography
 
 <div className="space-y-3">
+<br/>
   ### Primary typeface
 Our primary typeface is Geist. It embodies readability, simplicity, and functionality, making it an ideal choice for beth digital and print applications.
 <br/>
@@ -264,7 +287,7 @@ As our primary typeface, assign it to all text within our communications materi
     <span className="text-[64px] sm:text-[80px] font-bold leading-none pb-2">Aa</span>
   </div>
 </div>
-
+<br/>
 ### Best Practice
 
 This is our typography hierarchy, guiding how we use type to create clear and consistent communication true to our brand.

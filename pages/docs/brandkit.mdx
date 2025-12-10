@@ -28,36 +28,77 @@ import BasicCarousel from "@/components/ScreenshotCarousel"
     us.
   </div>
 
-  {/* TWO LARGE LOGO CARDS BELOW */}
+   {/* TWO LARGE LOGO CARDS BELOW */}
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
 
     {/* Card 1 */}
     <div className="flex justify-center">
       <div
-        className="rounded-2xl border border-gray-200 shadow-sm p-8 w-full h-56 flex items-center justify-center"
+        className="group relative rounded-2xl border border-gray-200 shadow-sm p-8 w-full h-56 flex items-center justify-center"
         style={{ backgroundColor: "#FDF4F4" }}
       >
         <img
-          src="/images/brandkit/misuse2.png"
+          src="/images/brandkitMain/logos/lamatic-logo.svg"
           alt="Lamatic logo"
           className="h-20 object-contain"
         />
+
+        {/* Hover-only Download button */}
+        <a
+          href="/images/brandkitMain/logos/lamatic-logo.svg"
+          download
+          className="
+            absolute bottom-4 right-4
+            flex items-center gap-1.5
+            bg-white/95 backdrop-blur-sm
+            border border-black text-black
+            px-3 py-1.5 text-xs font-medium
+            rounded-lg shadow
+            opacity-0 translate-y-2
+            group-hover:opacity-100 group-hover:translate-y-0
+            transition-all duration-200
+          "
+        >
+          Download
+        </a>
       </div>
     </div>
 
     {/* Card 2 */}
     <div className="flex justify-center">
       <div
-        className="rounded-2xl border border-gray-200 shadow-sm p-8 w-full h-56 flex items-center justify-center"
+        className="group relative rounded-2xl border border-gray-200 shadow-sm p-8 w-full h-56 flex items-center justify-center"
         style={{ backgroundColor: "#FDF4F4" }}
       >
         <img
-          src="/images/brandkit/misuse3.png"
+          src="/images/brandkitMain/logos/logo.svg"
           alt="Lamatic logo alt"
           className="h-20 object-contain"
         />
+
+        {/* Hover-only Download button */}
+        <a
+          href="/images/brandkitMain/logos/logo.svg"
+          download
+          className="
+            absolute bottom-4 right-4
+            flex items-center gap-1.5
+            bg-white/95 backdrop-blur-sm
+            border border-black text-black
+            px-3 py-1.5 text-xs font-medium
+            rounded-lg shadow
+            opacity-0 translate-y-2
+            group-hover:opacity-100 group-hover:translate-y-0
+            transition-all duration-200
+          "
+        >
+          Download
+        </a>
       </div>
     </div>
+
+
+
 
   </div>
 

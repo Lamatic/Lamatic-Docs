@@ -47,7 +47,7 @@ const config: DocsThemeConfig = {
     extraContent: (
       <>
         <Button size="xs" asChild className="whitespace-nowrap w-[70px]">
-          <Link href={"https://lamatic.ai"}>Sign Up</Link>
+          <Link href={"https://studio.lamatic.ai/signup"}>Sign Up</Link>
         </Button>
       </>
     ),

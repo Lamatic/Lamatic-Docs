@@ -1,18 +1,21 @@
 const DownloadBrandkitButton = () => {
   return (
-    <div className="w-full flex justify-center mt-8">
-  <a
-    href="/images/brandkitMain.zip"
-    download
-    className="
-      inline-flex items-center gap-2
-      bg-[#F33736] text-white font-semibold
-      px-5 py-3 rounded-xl 
-      shadow-sm
-      transition transform duration-200
-      hover:opacity-90 hover:-translate-y-0.5
-    "
-  >
+    <div className="w-full flex  mt-8">
+<a
+  href="/images/brandkitMain.zip"
+  download
+  className="
+    inline-flex items-center gap-2
+    bg-black text-white font-semibold
+    px-5 py-3 rounded-xl
+    shadow-sm
+    transition transform duration-200
+    hover:opacity-90 hover:-translate-y-0.5
+
+    dark:bg-white dark:text-black dark:shadow-zinc-800/50
+  "
+>
+
     Download Brandkit
     <svg
       xmlns="http://www.w3.org/2000/svg"

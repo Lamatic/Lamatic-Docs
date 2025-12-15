@@ -2,12 +2,12 @@ const DownloadBrandkitButton = () => {
   return (
     <div className="w-full flex  mt-8">
 <a
-  href="/images/brandkitMain.zip"
+  href="/images/Lamatic Brand Kit.zip"
   download
   className="
     inline-flex items-center gap-2
     bg-black text-white font-semibold
-    px-5 py-3 rounded-xl
+    px-5 py-3 rounded-4x
     shadow-sm
     transition transform duration-200
     hover:opacity-90 hover:-translate-y-0.5
@@ -16,7 +16,7 @@ const DownloadBrandkitButton = () => {
   "
 >
 
-    Download Brandkit
+    Download Brand kit
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className="h-5 w-5"

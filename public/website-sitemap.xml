@@ -46,28 +46,31 @@
         <loc>https://lamatic.ai/request-demo</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/n8n</loc>
+        <loc>https://lamatic.ai/compare/n8n</loc>
     </url>
     <url>
         <loc>https://lamatic.ai/launch-week</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/zapier</loc>
+        <loc>https://lamatic.ai/compare/zapier</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/vellum</loc>
+        <loc>https://lamatic.ai/compare/vellum</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/llamaindex</loc>
+        <loc>https://lamatic.ai/compare/llamaindex</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/langflow</loc>
+        <loc>https://lamatic.ai/compare/langflow</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/langchain</loc>
+        <loc>https://lamatic.ai/compare/langchain</loc>
     </url>
     <url>
-        <loc>https://lamatic.ai/comparison/dify</loc>
+        <loc>https://lamatic.ai/compare/dify</loc>
+    </url>
+    <url>
+        <loc>https://lamatic.ai/test</loc>
     </url>
     <url>
         <loc>https://lamatic.ai/case-studies/84000</loc>

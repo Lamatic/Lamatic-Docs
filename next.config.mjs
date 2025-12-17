@@ -189,6 +189,7 @@ const permanentRedirects = [
   ["/slack", "https://lamatic.ai/docs/slack"],
   ["/privacy", "https://lamatic.ai/docs/legal/privacy-policy"],
   ["/about", "https://lamatic.ai/about-us"],
+  ["/comparison/:path*", "https://lamatic.ai/compare/:path*"],
   ["/docs/Test", "https://lamatic.ai/docs/tests"],
   [
     "/docs/studio/Project/Settings/keys",

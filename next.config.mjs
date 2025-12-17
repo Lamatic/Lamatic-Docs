@@ -140,10 +140,10 @@ const nonPermanentRedirects = [
   ["/issues", "https://github.com/Lamatic/docs/issues"],
   ["/get-a-demo", "/docs/demo"],
   // ["/security", "/docs/data-security-privacy"],
-  ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
+  ["/idea", "https://github.com/Lamatic/docs/discussions/new"],
   [
     "/new-idea",
-    "https://github.com/Lamatic/docs/discussions/new?category=ideas",
+    "https://github.com/Lamatic/docs/discussions/new/choose"
   ],
   ["/ideas", "https://github.com/Lamatic/docs/discussions/categories/ideas"],
   [

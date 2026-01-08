@@ -191,6 +191,7 @@ const permanentRedirects = [
   ["/about", "https://lamatic.ai/about-us"],
   ["/comparison/:path*", "https://lamatic.ai/compare/:path*"],
   ["/docs/Test", "https://lamatic.ai/docs/tests"],
+  ["/docs/ide/prompt_ide","/docs/ide/prompt-ide"],
   [
     "/docs/studio/Project/Settings/keys",
     "https://lamatic.ai/docs/studio/project#api-keys",

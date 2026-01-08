@@ -1,37 +1,96 @@
 # Contributing to Lamatic Docs
 
-Thank you for your interest in contributing to Lamatic Docs! We welcome contributions from the community and are grateful for any help you can provide.
+Thank you for your interest in improving Lamatic Docs! Follow the steps below to get set up, make changes, and submit a pull request.
 
-## Getting Started
 
-1. Fork the repository on GitHub.
-2. Clone your fork locally.
-3. Create a new branch for your contribution.
-4. Make your changes and commit them with a clear, descriptive commit message.
-5. Push your changes to your fork on GitHub.
-6. Submit a pull request to the main repository.
+## Prerequisites
 
-## Reporting Issues
+- Git installed and authenticated with GitHub.
+- Node.js and pnpm (if you plan to build/test docs locally).
+- A GitHub account with a fork of this repo.
 
-If you encounter any bugs or have feature requests, please:
+## 1) Fork and clone
 
-1. Check the existing issues to avoid duplicates.
-2. Create a new issue with a clear title and detailed description.
-3. Include steps to reproduce the problem if reporting a bug.
+1. Fork [Lamatic Docs](https://github.com/Lamatic/Lamatic-Docs/fork) on GitHub.
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/<your-username>/Lamatic-Docs.git
+   cd Lamatic-Docs
+   ```
+3. Add the upstream remote:
+   ```bash
+   git remote add upstream https://github.com/Lamatic/Lamatic-Docs.git
+   git fetch upstream
+   ```
 
-## Pull Request Process
+## 2) Create a feature branch
 
-1. Ensure your code adheres to the project's coding standards.
-2. Update the README.md with details of changes, if applicable.
-3. Self-review your code to catch any potential issues or improvements.
-4. Build and test your changes locally to ensure they work as expected.
-5. Create a pull request with a clear title and description of your changes.
-6. Your pull request will be reviewed by maintainers, who may request changes or provide feedback.
-7. Address any feedback or requested changes promptly.
-8. Once approved, a maintainer will merge your pull request.
+1. Sync with upstream main:
+   ```bash
+   git checkout main
+   git pull upstream main
+   ```
+2. Create a descriptive branch:
+   ```bash
+   git checkout -b docs/fix-typo-in-getting-started
+   ```
 
-## Questions?
+## 3) Make your changes
 
-If you have any questions or need further clarification, please don't hesitate to ask in the issue tracker or contact the maintainers directly.
+- Edit content in `pages/` or related config files.
+- If adding images/diagrams, place them in an appropriate `public/` or `assets/` folder and reference them with relative paths.
+- Keep changes focused; smaller PRs are easier to review.
 
-Thank you for contributing to Lamatic Docs!
+## 4) Preview/test locally (optional but recommended)
+
+```bash
+npm install
+npm run dev
+```
+
+Open the printed localhost URL to verify your changes look correct. Stop the dev server when done.
+
+## 5) Commit with a clear message
+
+```bash
+git status
+git add <files>
+git commit -m "docs: clarify contributing steps"
+```
+
+## 6) Push and open a pull request
+
+1. Push your branch to your fork:
+   ```bash
+   git push origin docs/fix-typo-in-getting-started
+   ```
+2. In GitHub, open a Pull Request (PR) from your branch to `Lamatic/Lamatic-Docs:main`.
+3. In the PR description, include:
+   - What changed and why.
+   - Screenshots/diagrams if visual changes.
+   - How you tested (or note if not tested).
+
+## 7) Review cycle
+
+- Maintainers will review and may request changes.
+- Update your branch as needed:
+  ```bash
+  git pull --rebase upstream main
+  git push -f origin docs/fix-typo-in-getting-started
+  ```
+- Once approved, a maintainer merges the PR.
+
+## Reporting issues
+
+If you find a bug or want to request a feature:
+
+1. Search existing issues to avoid duplicates.
+2. Open a new issue with:
+   - Clear title.
+   - Steps to reproduce (if a bug).
+   - Expected vs actual behavior.
+   - Screenshots or links when helpful.
+
+## Need help?
+
+Ask in the issue tracker. Include links, screenshots, and commands you ran so maintainers can assist quickly.

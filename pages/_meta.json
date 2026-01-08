@@ -25,6 +25,7 @@
     "title": "Templates",
     "type": "page",
     "theme": {
+      "sidebar": false,
       "layout": "full"
     },
     "display": "hidden"

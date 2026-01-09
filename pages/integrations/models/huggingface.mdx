@@ -35,10 +35,13 @@ Hugging Face is a leading platform for building, hosting, and deploying state-of
 ### Step 2: Prepare Your Model Endpoint
 
 #### Option A: Public Model Endpoint
-1. Browse the [Hugging Face Hub] and find the public model you wish to use.
-2. Copy the model name (e.g., `bert-base-uncased`).
-3. The public inference API endpoint is:  
-   `https://router.huggingface.co/`
+1. Browse the [Hugging Face Hub] and find the open source model you wish to use.
+2. Click the **Use this model** dropdown, then under the **Inference** section, click **Inference Providers**.
+3. Select the inference provider you want to use.
+4. Copy the model name.
+![Huggingface Setup](./img/huggingface_endpoint2.gif)
+5. The public inference API endpoint is:  
+   `https://router.huggingface.co`
 
 #### Option B: Self-Hosted (Dedicated) Inference Endpoint
 1. Go to [Hugging Face Inference Endpoints].
@@ -58,7 +61,7 @@ Hugging Face is a leading platform for building, hosting, and deploying state-of
 3. Select **HuggingFace** from the provider list.
 4. Enter the following depending on your setup:
     - **Public model:**  
-      - Paste the public inference API URL or the model name.
+      - Paste the public inference API URL and the model name.
       - Paste your Hugging Face access token.
     - **Self-hosted endpoint:**  
       - Paste your dedicated endpoint Base URL.
@@ -87,7 +90,7 @@ For advanced options, see [Custom Model Integration].
 
 ## Available Configuration Options
 
-- **Model URL or Name:** The public model name, public API endpoint URL, or self-hosted endpoint Base URL
+- **Model URL and Name:** The public model name, public API endpoint URL, or self-hosted endpoint Base URL
 - **Access Token:** Your Hugging Face access token (required for both public and private endpoints)
 
 ## Best Practices

@@ -1,6 +1,8 @@
-# *
+ *
 User-agent: *
 Allow: /
+Disallow: /docs/vulnerability-disclosure
+
 
 # Host
 Host: https://lamatic.ai

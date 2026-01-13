@@ -1,0 +1,79 @@
+---
+title: "Vibe Coding with Lamatic.ai"
+description: "How to integrate LLM-powered vibe coding tools like GitHub Copilot and Cursor within Lamatic.ai Docs for context-aware, intelligent development."
+---
+
+# Vibe Coding with Lamatic.ai
+
+Developers working on **Lamatic.ai Docs** can now supercharge productivity using AI‑assisted coding tools. This guide explains how to configure and use **Vibe Coding tools**—such as GitHub Copilot, Cursor, and Claude—for a deeply contextualized coding experience powered by the `llm.txt` file.
+
+## 1. Prerequisites
+
+* Node.js **18+** and Git installed
+* Access to the Lamatic.ai Docs repository
+* Any LLM‑based coding assistant installed:
+    * GitHub **Copilot** (extension enabled in VS Code)
+    * **Cursor** IDE (with Lamatic project workspace loaded)
+    * **Continue.dev** (community‑compatible setup)
+
+## 2. Understanding `llm.txt`
+
+The **`llm.txt`** file defines the directories and configuration files that AI tools should prioritize when offering suggestions. This ensures the assistant understands **Lamatic.ai’s architecture**, ensuring relevant and structured completions.
+
+The file includes:
+
+* /components/ — Core UI and React elements
+* /pages/docs/ — Lamatic documentation and integration guides
+* /next.config.mjs — Next.js configuration
+* /package.json — Node.js project manifest
+* /pyproject.toml — Python project configuration
+
+By guiding your LLM here, you prevent distractions from build artifacts or external modules.
+
+## 3. Setting Up Vibe Coding Tools
+
+### GitHub Copilot Setup
+
+1.  Ensure the **Copilot extension** is installed in VS Code.
+2.  **Context Note:** Copilot does **not** automatically read the `llm.txt` file. To ensure Copilot uses the project context:
+    * **Use `Attach Context`:** In the Copilot Chat pane, click the paperclip icon and manually attach the necessary component folders (e.g., `/components/`, `/pages/docs/`).
+    * **Use Tags:** Explicitly reference files in your prompts (e.g., `#file:components/Header.tsx`).
+3.  For specialized instruction, ensure `github.copilot.chat.codeGeneration.useInstructionFiles` is enabled to read any `.instructions.md` files you may create in the `.github` folder.
+
+### Cursor Integration
+
+1.  Open the Lamatic Docs root folder in **Cursor IDE**.
+2.  Cursor **automatically respects** the `llm.txt` file as its project context.
+3.  Use the in‑line prompt (`Cmd/Ctrl + K`) to generate or refactor code.
+    Example prompt:
+    > “Based on Lamatic’s `DocsNav` component, generate a collapsible section with AI‑powered section titles.”
+
+Cursor lets you connect custom AI APIs too—ideal for contributors using their own OpenAI or Anthropic credentials for Lamatic.ai development.
+
+## 4. Example Prompts and Best Practices
+
+| Scenario | Basic Prompt | Context‑Aware Prompt |
+|-----------|---------------|----------------------|
+| **Component Creation** | "Make a new button" | "Using Lamatic’s `Button.tsx` design from `/components/ui/`, create a `PrimaryBadge` variant matching Lamatic.ai styling." |
+| **Documentation Enhancement** | "Add integration doc" | "Following `/pages/docs/integrations`, create a doc titled `AI Automation Setup` demonstrating Lamatic.ai’s workflow configuration." |
+| **API Logic** | "Write API route" | "In reference to `pyproject.toml` dependencies, implement a Python FastAPI route for Lamatic.ai’s webhook ingestion." |
+
+**Pro Tip:** Include component or page paths in prompts (e.g., `components/ui/Button.tsx`)—LLMs use them as explicit context anchors.
+
+## 5. Troubleshooting
+
+| Issue | Possible Cause | Recommended Solution |
+|-------|----------------|----------------------|
+| **AI not responding contextually** | IDE not loading `llm.txt` | Restart your environment or reload the Lamatic Docs workspace. |
+| **Off‑theme code suggestions** | Outdated assistant cache | Clear Copilot/Cursor cache or reload Lamatic configuration. |
+| **Code format mismatches** | Local ESLint not running | Execute `npm run lint` or `npm run format`. |
+
+---
+
+### Why This Matters
+
+Lamatic.ai thrives on collaborative, intelligent documentation. By configuring context correctly and aligning Vibe Coding tools, your LLM assistant effectively “understands” Lamatic’s structure—making your prompts smarter, faster, and fully contextual.
+
+These improvements allow new contributors to **get productive immediately**, reducing setup friction and ensuring Lamatic.ai remains a pioneer in developer‑friendly AI documentation integration.
+
+---

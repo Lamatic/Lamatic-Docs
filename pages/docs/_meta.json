@@ -16,6 +16,10 @@
     "title": "Quickstart",
     "type": "doc"
   },
+  "glossary": {
+    "title": "Glossary",
+    "type": "doc"
+  },
   "ai-middleware": {
     "title": "AI Middleware",
     "type": "doc"

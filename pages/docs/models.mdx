@@ -2,9 +2,23 @@
 description: Models in Lamatic Studio
 ---
 
-# **Models in Generative AI Projects**
+# Models in Generative AI Projects
 
 Models are the fundamental building blocks of any Generative AI project. They serve as the cognitive engines that power agentic flows, enabling sophisticated decision-making and content generation. These models are the cornerstone of AI-driven applications, providing the intelligence and capabilities that make advanced functionalities possible. [Lamatic.ai](http://Lamatic.ai) offers seamless integration with a diverse array of models through built-in connections and efficient proxies, streamlining the development process for AI practitioners.
+
+## Prerequisites
+
+- A Lamatic Project in Studio
+- Basic understanding of [Flows](/docs/flows) and [Nodes](/docs/nodes)
+- API keys from model providers (OpenAI, Anthropic, etc.) if you want to use external models
+
+## Understanding Models
+
+**Models** are AI systems trained on vast amounts of data that can understand and generate content. In Lamatic, you configure models once in your Project, then use them across multiple Flows and Nodes.
+
+<Callout type="info">
+Think of models as "AI engines" - you set them up once, then your Flows can use them to generate text, analyze images, or process other types of content.
+</Callout>
 
 ---
 
@@ -64,3 +78,16 @@ Lamatic's flexible architecture allows you to incorporate multiple models, eithe
 Lamatic offers a convenient feature that allows you to establish default models for your entire project. When you drag a compatible node into the flow, these default models are automatically selected, streamlining your flow. If you decide to modify the default model settings, the changes will be reflected across all instances where the default option is selected. This functionality provides a quick and efficient method to switch between models on a project-wide scale, eliminating the need to manually update individual model selections throughout your flow.
 
 > ⚡ **Quick Tip**: Setting up default models allows you to quickly switch models project-wide without having to change them individually in each flow node.
+
+## Troubleshooting
+
+- **Model not appearing in node**: Make sure you've added credentials for that model provider in Studio > Models
+- **API key errors**: Verify your API key is correct and has sufficient credits/quota
+- **Model not responding**: Check your internet connection and the model provider's status page
+- **Default model not applying**: Ensure you've saved the default model settings in Project Settings
+
+## Next steps
+
+- **Learn about specific model types**: Explore [Model Integrations](/integrations) for detailed setup guides
+- **Use models in Flows**: Read about [AI Nodes](/docs/nodes) to see how to use models in your workflows
+- **Optimize model usage**: Check [Best Practices](/docs) for tips on choosing the right model for your use case

@@ -1,0 +1,149 @@
+---
+title: Glossary
+description: Common terms and concepts in Lamatic.ai explained in simple language
+---
+
+# Glossary
+
+This glossary explains common terms and concepts you'll encounter when using Lamatic.ai. Terms are explained in beginner-friendly language.
+
+## A
+
+### Agent
+An AI-powered component that can execute specific tasks independently or as part of a Flow. Agents are reusable and can be called via API endpoints after deployment. See [Agents](/docs/agents) for more details.
+
+### API Key
+A secret key used to authenticate requests to your Lamatic project. You include it in the `Authorization` header when making API calls. See [Authentication with API Keys](/docs/studio-keys) for more details.
+
+### API Request (Trigger)
+A trigger type that starts a Flow when an HTTP request is made to your project's endpoint. This allows external applications to trigger your workflows.
+
+## B
+
+### Batch Trigger
+A trigger type that processes multiple items at once. For example, if a database sync finds 100 new records, the Flow runs 100 times (once per record).
+
+## C
+
+### Chunking
+The process of breaking down large documents or data into smaller, manageable pieces. This is commonly used in RAG (Retrieval-Augmented Generation) workflows to make data easier to process and search.
+
+### Context
+In Lamatic, Context refers to your data storage system, including Vector Databases and Memory Store. This is where you store information that your AI applications can retrieve and use.
+
+## D
+
+### Deployment
+The process of making your Flow changes live and accessible. After deploying, your latest Flow configuration becomes active and can be triggered by integrations.
+
+## E
+
+### Embedding
+A numerical representation of text or data that captures its semantic meaning. Embeddings are used in vector databases to enable similarity searches. For example, "dog" and "puppy" would have similar embeddings even though they're different words.
+
+### Event Trigger
+A trigger type that starts a Flow when a single event occurs (e.g., a new Slack message, a webhook call). The Flow runs once per event.
+
+## F
+
+### Flow
+A sequence of connected Nodes that process data step-by-step. Flows are the core building blocks of Lamatic - think of them as recipes that define what happens when triggered. See [Flows](/docs/flows) for more details.
+
+## G
+
+### GraphQL
+A query language for APIs that allows you to request exactly the data you need. Lamatic uses GraphQL for triggering workflows and querying results. You don't need to know GraphQL to use Lamatic, but it's helpful for integrations.
+
+## I
+
+### Index
+The process of storing data (usually as embeddings) in a Vector Database so it can be quickly retrieved later. When you "index" a document, you're making it searchable.
+
+## L
+
+### LLM (Large Language Model)
+An AI model trained on vast amounts of text data that can understand and generate human-like text. Examples include GPT-4, Claude, and Gemini. Lamatic integrates with many LLM providers.
+
+## M
+
+### Memory Store
+A storage system that allows your AI applications to remember information across multiple interactions. Useful for chatbots and applications that need context from previous conversations.
+
+### Model
+In Lamatic, a Model refers to an AI model configuration (like GPT-4, Claude, Gemini) that you can use in your Nodes and Agents. You configure models in Studio under the Models section.
+
+## N
+
+### Node
+A single step in a Flow that performs a specific action. Nodes are the building blocks of Flows - each node takes input, processes it, and produces output for the next node. See [Nodes](/docs/nodes) for more details.
+
+**Node Categories:**
+- **Apps Nodes**: Connect to external services (Slack, PostgreSQL, etc.)
+- **AI Nodes**: Perform AI operations (text generation, RAG, etc.)
+- **Data Nodes**: Manipulate and transform data
+- **Logic Nodes**: Control flow execution (conditions, loops, code)
+
+## P
+
+### Payload
+The input data sent to a Flow when it's triggered. The payload structure must match what your Flow expects (defined by your trigger and nodes).
+
+### Project
+A container in Lamatic Studio that holds all your Flows, Agents, Models, and configurations. Each Project is isolated with its own settings, credentials, and deployments.
+
+### Project ID
+A unique identifier for your Project. You'll need this when making API calls to specify which project to use.
+
+### Project URL
+The GraphQL endpoint URL for your Project. This is where you send requests to trigger your Flows.
+
+## R
+
+### RAG (Retrieval-Augmented Generation)
+An AI technique that enhances LLM responses by retrieving relevant information from a knowledge base before generating a response. This makes AI responses more accurate and up-to-date. See [RAG Concept](/docs/concepts/rag) for more details.
+
+### Response Node
+The final node in a Flow that sends output back to the caller. This is what external systems receive when they trigger your Flow.
+
+## S
+
+### Schema
+A definition of the structure of data (what fields exist, their types, etc.). In Lamatic, you define schemas for Flow inputs and outputs to ensure data consistency.
+
+### Studio
+Lamatic's web interface where you build, test, and deploy your AI applications. Access it at [studio.lamatic.ai](https://studio.lamatic.ai).
+
+### Supervisor Agent
+An Agent type that orchestrates multiple other Agents, routing tasks and managing execution flow. Useful for complex multi-step AI workflows.
+
+## T
+
+### Template
+A pre-built Flow that you can use as a starting point. Templates help you get started quickly without building everything from scratch.
+
+### Trigger
+The starting point of a Flow - the event or request that initiates execution. Common triggers include API requests, webhooks, scheduled jobs, and app integrations (like Slack messages).
+
+## V
+
+### Vector Database
+A database that stores data as embeddings (vectors) and enables fast similarity searches. When you search a vector database, it finds items that are semantically similar to your query, not just exact matches.
+
+### Vectorize
+The process of converting text or data into embeddings (numerical vectors) that can be stored in a Vector Database.
+
+## W
+
+### Workflow
+Another term for Flow - a sequence of steps that process data.
+
+### Workflow ID
+A unique identifier for a specific Flow. You'll need this when triggering a Flow via API.
+
+---
+
+## Still have questions?
+
+- Check out our [Quickstart Guide](/docs/get-started) to get hands-on experience
+- Browse our [Guides](/guides) for step-by-step tutorials
+- Review our [Concepts](/docs/concepts) section for deeper explanations

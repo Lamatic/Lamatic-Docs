@@ -2,9 +2,21 @@
 description: Context in Lamatic Studio
 ---
 
-## **What's Context?**
+# Context in Lamatic
+
+## Prerequisites
+
+- Basic understanding of [Flows](/docs/flows) and [Nodes](/docs/nodes)
+- Understanding of [LLMs](/docs/models) (Large Language Models)
+- A Lamatic Project in Studio
+
+## What's Context?
 
 Context refers to additional information provided to a Large Language Model during text generation or chat interactions. This supplementary data enhances the LLM's understanding of the specific topic or task at hand, leading to more accurate and relevant outputs.
+
+<Callout type="info">
+**Simple analogy**: If an LLM is a student, context is the textbook or notes you give them. Without context, they can only rely on what they learned during training. With context, they can answer questions about your specific data, company, or use case.
+</Callout>
 
 ---
 
@@ -98,3 +110,26 @@ API calling involves retrieving real-time information from external sources to p
 Agent-based systems can utilize various tools to gather and process context. These tools may include web scrapers, database queries, or specialized algorithms that can analyze and summarize large amounts of data to provide relevant context to the LLM.
 
 > 🛠️ **Pro Tip**: Implement agent tools to enhance the breadth and depth of context provided to LLMs.
+
+## Choosing the Right Context Method
+
+| **Method** | **Best For** | **When to Use** |
+|------------|--------------|-----------------|
+| **Direct Prompt** | Small amounts of static data | Simple use cases, one-time context |
+| **Vector Database** | Large documents, semantic search | RAG applications, knowledge bases |
+| **Memories** | Long-term user preferences | Chatbots, personalized experiences |
+| **API Calling** | Real-time, dynamic data | Weather, stock prices, current events |
+| **Agent Tools** | Complex data processing | Multi-step context gathering |
+
+## Troubleshooting
+
+- **Context not being used**: Verify your Flow is passing context to the LLM node correctly
+- **Vector search not finding relevant data**: Check that your data was properly chunked and indexed
+- **Memory not persisting**: Ensure Memory Store is configured and enabled in your Flow
+- **Context too long**: Use chunking or vector search instead of including everything in the prompt
+
+## Next steps
+
+- **Learn about RAG**: Read [What is RAG?](/docs/concepts/rag) for detailed information on Retrieval-Augmented Generation
+- **Set up Vector Database**: Follow guides on [Data Storage](/docs/context) to index your documents
+- **Build a RAG application**: Check out [RAG Tutorials](/guides) for step-by-step examples

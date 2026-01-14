@@ -4,7 +4,23 @@ description: Quickly get your first project off the ground with Lamatic.
 
 # Quickstart Guide
 
-> This Guide will help you get started with Lamatic.ai and quickly build and deploy your first project.
+This guide helps you go from **zero → deployed Lamatic project** and test it end-to-end.
+
+## What you’ll learn
+
+- How to create a project and build your first Flow
+- How to test a Flow in Studio
+- How to deploy so your Flow is accessible from integrations (API / widget / apps)
+
+## Prerequisites
+
+- A Lamatic account: [lamatic.ai](https://lamatic.ai/)
+- Basic understanding: a **Flow** is a set of connected **Nodes** that run in order
+- Optional (recommended): pick a Template to move faster
+
+<Callout type="info">
+If you’re brand new, start with a template first. You can always customize it later.
+</Callout>
 
 <div
   style={{
@@ -32,26 +48,60 @@ description: Quickly get your first project off the ground with Lamatic.
 </div>
 
 <Steps>
-The quickest way to get started with Lamatic is using pre-built templates.
+The quickest way to get started is using a **pre-built template**, then editing it to fit your use case.
 
-### Create a new Flow
+### Create (or pick) a Project
 
-Start by creating a new flow in Lamatic Studio. This will be the foundation of your project where you can define the sequence of operations.
+1. Open Studio (you’ll land on your dashboard).
+2. Create a new Project (or open an existing one).
+
+> Tip: Each Project is isolated — it has its own settings, credentials, and deployments.
 
 ### Select a Template
 
-Choose a pre-built template that matches your project requirements. Templates provide a quick way to set up common flows without starting from scratch.
+1. Go to **Templates**.
+2. Pick a template that matches your goal (API, chatbot, RAG, automation).
+3. Add it to your Project.
 
-### Fill in the required fields for Flow Nodes
+If you prefer starting from scratch, you can create a new Flow directly from the **Flows** section.
 
-Populate the necessary fields for each node in your flow. These fields define the specific actions and data that each node will process.
+### Configure the Nodes (make it run)
+
+1. Open the Flow in the **Editor**.
+2. Click each Node and fill required fields (you’ll usually configure):
+   - Model/provider credentials (for AI Nodes)
+   - App connections (for Apps Nodes like Slack / Postgres)
+   - Inputs and payload fields (what your Flow consumes)
 
 ### Test the Flow
 
-Run tests to ensure that your flow works as expected. Testing helps identify and fix any issues before deployment.
+1. Click **Test** in the Editor.
+2. Provide sample inputs (if your trigger expects them).
+3. Verify outputs at the final node (Response) and check logs if anything fails.
 
 ### Deploy the Project
 
-Once your flow is tested and verified, deploy the project to make it live. Deployment moves your project from the development environment to production.
+Deployment makes your latest Flow changes available for integrations.
+
+1. Click **Deploy**.
+2. Wait for deployment to finish.
+3. Copy the integration details from Studio (endpoint / keys / ids) as needed.
 
 </Steps>
+
+## Common beginner mistakes (and how to avoid them)
+
+- **Forgetting to deploy**: If you updated keys, variables, or a Flow, deploy so changes take effect.
+- **Missing credentials**: Many nodes require a model/API connection. Check the node config panel for required fields.
+- **Payload mismatch**: Ensure your input payload matches what your trigger and nodes expect (field names + types).
+
+## What’s next?
+
+- Learn the core building blocks:
+  - [Flows](/docs/flows)
+  - [Nodes](/docs/nodes)
+  - [Agents](/docs/agents)
+- If you’re integrating into an app:
+  - [Authentication with API Keys](/docs/studio-keys)
+- Explore hands-on tutorials:
+  - [Guides](/guides)

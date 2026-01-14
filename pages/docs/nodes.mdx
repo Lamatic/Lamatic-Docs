@@ -9,6 +9,23 @@ import { NodesIndex } from "@/components/NodesIndex";
 
 Nodes are the fundamental building blocks of a flow in Lamatic. Each node serves a specific purpose, acting as a self-contained unit that processes input and produces output. This modular approach allows users to create complex flows by interconnecting various nodes.
 
+## What you’ll learn
+
+- What Nodes are and how they fit into a Flow
+- The main Node categories (Apps, AI, Data, Logic)
+- How to choose the right Node for your use case
+
+## Prerequisites
+
+- Basic understanding of [Flows](/docs/flows)
+
+## How to think about Nodes
+
+If a Flow is a “recipe”, then **Nodes are the steps**:
+- Each node has **inputs**
+- It performs one job
+- It produces **outputs** that the next node can use
+
 ## Node Categories
 
 Lamatic organizes nodes into four main categories, each with a unique function in building flows:
@@ -19,6 +36,28 @@ Lamatic organizes nodes into four main categories, each with a unique function i
 | **Data**     | Manipulate and transform data                   | Indexing, chunking, filtering                  | Data nodes provide tools for structuring, organizing, and processing information, ensuring data is in the right format for subsequent nodes.     |
 | **Logic**    | Control the flow of execution                   | Conditional statements, loops, custom code execution | Logic nodes allow for decision-making and branching, enabling dynamic, responsive flow based on specific conditions or criteria.           |
 
+## How to choose the right Node
+
+- **Need to talk to another tool/app?** Use an **Apps** node.
+- **Need an LLM or AI operation?** Use an **AI** node.
+- **Need to clean/transform/store/search data?** Use a **Data** node.
+- **Need conditions/branching/code?** Use a **Logic** node.
+
+<Callout type="info">
+Not sure what to pick? Start from your trigger and ask: “what’s the next step in my pipeline?” Then add the node that does only that step.
+</Callout>
+
 ## Here are the Nodes
 
 <NodesIndex/>
+
+## Troubleshooting
+
+- **Can’t find a node**: make sure you’re in the Flow Editor and click **Add Node**.
+- **Node requires credentials**: check the node config panel for required connections (models/apps).
+- **Output doesn’t match expectation**: run a test and inspect node outputs step-by-step.
+
+## Next steps
+
+- Learn how to build with Nodes in the [Flow Editor](/docs/flows/editor)
+- Browse common patterns in [Guides](/guides)

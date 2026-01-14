@@ -4,11 +4,29 @@ description: Flow builder in Lamatic.ai Studio
 
 # Lamatic Flows
 
-Flows are the core building blocks of Lamatic, enabling you to connect various modules (nodes) in a meaningful sequence to achieve your desired outcomes. This guide provides a comprehensive overview of understanding and creating flows in Lamatic.
+Flows are the core building blocks of Lamatic. A Flow connects multiple **Nodes** into a sequence so you can process data, call tools/models, and return a final output.
+
+## What you’ll learn
+
+- What a Flow is and when to use one
+- The key parts of a Flow (Trigger → Actions → Response)
+- How to create, test, share, and deploy a Flow
+
+## Prerequisites
+
+- A Lamatic Project in Studio
+- Basic understanding of [Nodes](/docs/nodes)
 
 ## What are Flows?
 
 Flows are sequences of interconnected nodes that process and transform data. They allow you to build complex automation and data-processing pipelines with ease.
+
+### When should I use a Flow?
+
+Use a Flow when you want to:
+- Trigger work from an event or request (API, widget, Slack, schedules, database sync)
+- Chain multiple steps (retrieve data → transform → call an LLM → store results)
+- Add reliability features (retries, logging, consistent outputs)
 
 ## Creating a Flow
 
@@ -45,6 +63,15 @@ Action nodes perform the main operations in your flow, processing data step-by-s
 ### Final Node (Response)
 
 The final step of your flow can send output to an external system, which is particularly useful for flows initiated by triggers like Chat or GraphQL API integrations.
+
+## Test and Debug
+
+Before deploying, test your Flow to catch configuration and payload issues early.
+
+- **Test**: run the entire Flow with sample input
+- **Debug**: inspect node-level outputs and logs when something fails
+
+See: [Flow Editor](/docs/flows/editor) and [Testing](/docs/tests)
 
 ## Share Flow
 ![Flow.png](./flows/img/share-flow.png)
@@ -87,3 +114,14 @@ This feature enhances workflow management, enabling better collaboration and eff
 - **Regular Optimization:** Periodically review and optimize flows to ensure they run efficiently.
 
 By mastering these elements, you’ll be equipped to build robust, efficient flows that streamline and automate complex workflows in Lamatic.
+
+## Troubleshooting
+
+- **My changes aren’t reflected**: Deploy your project so the latest Flow is active.
+- **A node fails**: Open logs, confirm required credentials/inputs are set, and re-run the test with a small payload.
+- **Payload missing fields**: Verify field names/types match what downstream nodes expect.
+
+## Next steps
+
+- Learn more about building blocks: [Nodes](/docs/nodes)
+- Learn about deployment: [Deployments](/docs/deployments)

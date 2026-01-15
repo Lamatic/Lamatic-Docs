@@ -1,4 +1,5 @@
 { 
   "react": "React",
-  "next": "Next.js"
+  "next": "Next.js",
+  "go": "Go"
 }

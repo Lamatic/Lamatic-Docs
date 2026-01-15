@@ -144,63 +144,6 @@ main();
   </Tab>
 </Tabs>
 
-## Executing Agents
-
-Another powerful feature of the SDK is the ability to execute agents.
-
-<Tabs items={['With API Key', 'With Access Token']}>
-  <Tab>
-```typescript
-import { Lamatic } from "lamatic";
-
-const lamatic = new Lamatic({
-  apiKey: "your-api-key",
-  projectId: "your-project-id",
-  endpoint: "your-endpoint",
-});
-
-async function main() {
-  const agentId = "your-agent-id";
-  // sample payload
-  const payload = {
-    prompt: "write a poem about robots"
-  }
-  try {
-    const response = await lamatic.executeAgent(agentId, payload);
-    console.log(response);
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-main();
-```
-  </Tab>
-  <Tab>
-```typescript
-import { Lamatic } from "lamatic";
-
-const lamatic = new Lamatic({
-  accessToken: "your-access-token",
-  projectId: "your-project-id",
-  endpoint: "your-endpoint",
-});
-
-async function main() {
-  const agentId = "your-agent-id";
-  // sample payload
-  const payload = {
-    prompt: "write a poem about robots",
-  };
-  const response = await lamatic.executeAgent(agentId, payload);
-  console.log(response);
-}
-
-main();
-```
-  </Tab>
-</Tabs>
-
 ### Handling Expired Access Tokens
 
 import { Callout } from 'nextra-theme-docs'
@@ -751,6 +694,12 @@ const lamatic = new Lamatic({
   endpoint: process.env.LAMATIC_ENDPOINT,
 });
 ```
+
+## Go SDK
+
+Lamatic also provides a Go SDK for integrating with Go applications. The Go SDK offers the same core functionality as the JavaScript/TypeScript SDK, with a Go-native API design that includes support for executing workflows and agents, status checking with polling, and both API key and access token authentication.
+
+For detailed information, installation instructions, code examples, and API reference, see the [Go SDK documentation](/docs/api-integration/sdk/go).
 
 ## Support
 

@@ -560,6 +560,8 @@ const permanentRedirects = [
 ["/docs/workflows/Nodes/Data/chunking","/docs/concepts/rag"],
 ["/docs/workflows/nodes/Helper/chunking","/docs/concepts/rag"],
 ["/docs/Trash/graphQL/Setup","/docs/interface/graphql#setting-up"],
+["/docs/sdk","/docs/api-integration/sdk"],
+["/docs/api","/docs/api-integration/api-key"],
 ];
 // Caution : Overriding /public messes with the assets
 const rewrites = [

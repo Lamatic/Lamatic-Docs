@@ -101,10 +101,7 @@
     "title": "Templates",
     "type": "doc"
   },
-  "sdk": {
-    "title": "SDK",
-    "type": "doc"
-  },
+ 
   "vibe-build": {
     "title": "Vibe Build",
     "type": "doc"
@@ -121,6 +118,10 @@
   },
   "jobs": {
     "title": "Jobs",
+    "type": "doc"
+  },
+  "api-integration": {
+    "title": "API Integration",
     "type": "doc"
   },
 

@@ -29,9 +29,21 @@ Initialize the SDK like this:
 import { Lamatic } from "lamatic";
 
 const lamatic = new Lamatic({
-  // Config
+  endpoint: "your-endpoint",      // Required: The Lamatic API endpoint
+  projectId: "your-project-id",   // Required: Your project ID
+  apiKey: "your-api-key",         // Required if not using accessToken
+  // OR
+  accessToken: "your-access-token" // Required if not using apiKey
 });
 ```
+
+<Callout type="warning">
+  The constructor will throw an error if:
+  - Configuration object is not provided
+  - `endpoint` is missing
+  - `projectId` is missing
+  - Neither `apiKey` nor `accessToken` is provided
+</Callout>
 
 ## Authentication
 
@@ -65,6 +77,15 @@ You must provide either an API key or an access token, but not both.
 ### How to obtain your API Key/Secret
 1. Navigate to Project Settings in your Lamatic dashboard
 2. Locate and copy your API Key/Secret from the credentials section
+
+## API Methods
+
+The Lamatic SDK provides the following methods:
+
+- `executeFlow(flowId: string, payload: Object): Promise<LamaticResponse>` - Execute a workflow
+- `executeAgent(agentId: string, payload: Object): Promise<LamaticResponse>` - Execute an agent
+- `checkStatus(requestId: string, pollInterval?: number, pollTimeout?: number): Promise<LamaticResponse>` - Check the status of a request with polling
+- `updateAccessToken(accessToken: string): void` - Update the access token for the SDK instance
 
 ## Executing Flow
 
@@ -259,14 +280,14 @@ console.log('Access Token (with expiry):', accessTokenWithExpiry);
 
 ## Response Structure
 
-The `executeFlow` and `executeAgent` method returns a promise that resolves to a `LamaticResponse` object with the following structure:
+The `executeFlow` and `executeAgent` methods return a promise that resolves to a `LamaticResponse` object with the following structure:
 
 ```typescript
 {
-  status: "success" | "error",  // Status of the workflow execution
-  result: object | null,        // The result data from the workflow (if successful)
-  message?: string,             // Error message (if status is "error")
-  statusCode?: number           // HTTP status code
+  status: "success" | "error" | "failed",  // Status of the workflow/agent execution
+  result: object | null,                   // The result data from the workflow/agent (if successful)
+  message?: string,                         // Error message (if status is "error" or "failed")
+  statusCode: number                        // HTTP status code
 }
 ```
 
@@ -291,7 +312,7 @@ async function runWorkflow() {
       console.log("Workflow executed successfully!");
       console.log("Result:", response.result);
       return response.result;
-    } else {
+    } else if (response.status === "error" || response.status === "failed") {
       console.error("Workflow execution failed:", response.message);
       return null;
     }
@@ -321,7 +342,7 @@ async function runAgent() {
       console.log("Agent executed successfully!");
       console.log("Result:", response.result);
       return response.result;
-    } else {
+    } else if (response.status === "error" || response.status === "failed") {
       console.error("Agent execution failed:", response.message);
       return null;
     }
@@ -331,6 +352,113 @@ async function runAgent() {
   }
 }
 ```
+
+## Checking Request Status
+
+The SDK provides a `checkStatus` method to check the status of a request with polling capability. This is useful for long-running workflows or agents that execute asynchronously.
+
+<Callout type="info">
+  Unlike `executeFlow` and `executeAgent`, the `checkStatus` method returns error responses instead of throwing exceptions. This allows you to handle errors without try-catch blocks, though you should still check the response status.
+</Callout>
+
+### Basic Usage
+
+```typescript
+const requestId = "your-request-id";
+const response = await lamatic.checkStatus(requestId);
+
+if (response.status === "success") {
+  console.log("Request completed:", response.result);
+} else if (response.status === "error" || response.status === "failed") {
+  console.error("Request failed:", response.message);
+}
+```
+
+### With Custom Polling Configuration
+
+The `checkStatus` method supports custom polling intervals and timeouts:
+
+```typescript
+// Check status with custom polling interval (15 seconds) and timeout (900 seconds = 15 minutes)
+const response = await lamatic.checkStatus(
+  requestId,
+  15,  // pollInterval in seconds (default: 15)
+  900  // pollTimeout in seconds (default: 900)
+);
+```
+
+### Complete Example
+
+```typescript
+import { Lamatic } from "lamatic";
+
+const lamatic = new Lamatic({
+  apiKey: "your-api-key",
+  projectId: "your-project-id",
+  endpoint: "your-endpoint",
+});
+
+async function executeAndCheckStatus() {
+  const flowId = "your-flow-id";
+  const payload = {
+    prompt: "Generate a long report",
+  };
+
+  try {
+    // Execute the flow
+    const executeResponse = await lamatic.executeFlow(flowId, payload);
+    
+    // If the response includes a requestId, you can check its status
+    if (executeResponse.result?.requestId) {
+      const requestId = executeResponse.result.requestId;
+      
+      // Poll for status with custom configuration
+      // Note: checkStatus returns error responses instead of throwing
+      const statusResponse = await lamatic.checkStatus(
+        requestId,
+        10,  // Check every 10 seconds
+        600  // Timeout after 10 minutes
+      );
+      
+      if (statusResponse.status === "success") {
+        console.log("Request completed:", statusResponse.result);
+      } else if (statusResponse.status === "error" || statusResponse.status === "failed") {
+        console.error("Request failed:", statusResponse.message);
+        console.error("Status code:", statusResponse.statusCode);
+      }
+    } else {
+      // Request completed immediately
+      console.log("Immediate result:", executeResponse.result);
+    }
+  } catch (error) {
+    // This catch block handles errors from executeFlow, not checkStatus
+    console.error("Error executing flow:", error);
+  }
+}
+
+executeAndCheckStatus();
+```
+
+### Status Response
+
+The `checkStatus` method returns a `LamaticResponse` object:
+
+```typescript
+{
+  status: "success" | "error" | "failed",  // Current status (never returns "in_progress" as it polls until completion)
+  result: object | null,                   // Result data (if completed)
+  message?: string,                         // Error message (if failed or timeout)
+  statusCode: number                        // HTTP status code (408 for timeout)
+}
+```
+
+The method will automatically poll until:
+- The status becomes `"success"`, `"error"`, or `"failed"` (returns immediately)
+- The timeout is reached (returns with `status: "error"`, `statusCode: 408`, and a timeout message)
+
+<Callout type="info">
+  If a timeout occurs, your request may still be executing in the background. You can check the status again after a few minutes using the same `requestId`. The timeout message will indicate this.
+</Callout>
 
 ## Updating Access Token
 
@@ -479,13 +607,13 @@ async function generateText(
     temperature: 0.7,
   };
 
-  const response = await lamatic.executeFlow<TextGenerationResult>(
+  const response = await lamatic.executeFlow(
     "text-gen-flow",
     payload
   );
 
   if (response.status === "success" && response.result) {
-    return response.result;
+    return response.result as TextGenerationResult;
   }
 
   return null;
@@ -515,10 +643,10 @@ async function analyzeImage(imageUrl: string): Promise<ImageAnalysisResult | nul
     analysisTypes: ["objects", "faces", "text"]
   };
   
-  const response = await lamatic.executeAgent<ImageAnalysisResult>("image-analysis-agent", payload);
+  const response = await lamatic.executeAgent("image-analysis-agent", payload);
   
   if (response.status === "success" && response.result) {
-    return response.result;
+    return response.result as ImageAnalysisResult;
   }
   
   return null;
@@ -528,15 +656,25 @@ async function analyzeImage(imageUrl: string): Promise<ImageAnalysisResult | nul
 ## Error Handling
 
 <Callout type="warning">
-  The SDK throws errors in case of configuration issues or network problems.
-  It's recommended to always wrap SDK calls in try-catch blocks.
+  The SDK has different error handling behaviors:
+  
+  - **`executeFlow` and `executeAgent`**: These methods throw exceptions for network errors, configuration issues, or parsing errors. They also return error responses in the `LamaticResponse` object for GraphQL errors. Always wrap these calls in try-catch blocks.
+  
+  - **`checkStatus`**: This method returns error responses instead of throwing exceptions (except in rare cases). Check the response status rather than relying on try-catch.
 </Callout>
 
 ### Workflow Execution Example
 ```typescript
 try {
   const response = await lamatic.executeFlow(flowId, payload);
-  // Process response
+  
+  // Check response status
+  if (response.status === "success") {
+    console.log("Success:", response.result);
+  } else if (response.status === "error" || response.status === "failed") {
+    console.error("Execution failed:", response.message);
+    console.error("Status code:", response.statusCode);
+  }
 } catch (error) {
   if (error instanceof Error) {
     // Log the error
@@ -547,6 +685,8 @@ try {
       // Handle timeout
     } else if (error.message.includes("network")) {
       // Handle network error
+    } else if (error.message.includes("required")) {
+      // Handle configuration errors
     }
   }
 }
@@ -556,7 +696,14 @@ try {
 ```typescript
 try {
   const response = await lamatic.executeAgent(agentId, payload);
-  // Process response
+  
+  // Check response status
+  if (response.status === "success") {
+    console.log("Success:", response.result);
+  } else if (response.status === "error" || response.status === "failed") {
+    console.error("Execution failed:", response.message);
+    console.error("Status code:", response.statusCode);
+  }
 } catch (error) {
   if (error instanceof Error) {
     // Log the error
@@ -567,7 +714,27 @@ try {
       // Handle timeout
     } else if (error.message.includes("network")) {
       // Handle network error
+    } else if (error.message.includes("required")) {
+      // Handle configuration errors
     }
+  }
+}
+```
+
+### Status Check Example
+```typescript
+// checkStatus returns error responses instead of throwing
+const response = await lamatic.checkStatus(requestId, 15, 900);
+
+if (response.status === "success") {
+  console.log("Request completed:", response.result);
+} else if (response.status === "error" || response.status === "failed") {
+  console.error("Request failed:", response.message);
+  console.error("Status code:", response.statusCode);
+  
+  // Handle timeout specifically
+  if (response.statusCode === 408) {
+    console.log("Request timed out. It may still be processing in the background.");
   }
 }
 ```

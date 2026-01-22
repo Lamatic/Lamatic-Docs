@@ -1,0 +1,184 @@
+---
+title: Cron Node
+description: The Cron Node is a trigger node that automatically runs flows on a scheduled basis using configurable time intervals.
+type: Apps
+order: 12
+---
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Cron Node
+
+<NodeOverview slug="cron-node" type="apps" />
+
+## Overview
+
+The Cron Node is a trigger node that automatically executes flows on a scheduled basis. This node enables you to run automated flows at regular intervals, such as every few hours, daily, weekly, or on custom schedules, making it ideal for periodic data processing, scheduled tasks, and automated maintenance operations.
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={false}
+  description="This node is a Trigger node that automatically runs flows on a scheduled basis using configurable time intervals."
+/>
+
+This node is a **Trigger** node that initiates flows based on predefined schedules, allowing you to automate recurring tasks and flows.
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Scheduled Execution**: Automates flow execution on a configurable schedule with predefined time intervals.
+2. **Flexible Scheduling Options**: Supports multiple scheduling intervals including hourly, daily, and weekly options.
+3. **Simple Configuration**: Easy-to-use dropdown interface for selecting sync schedules without requiring Cron expression knowledge.
+4. **Reliable Triggering**: Ensures consistent and timely execution of flows based on the configured schedule.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Automated flows**: Enables hands-free execution of flows at regular intervals, reducing manual intervention.
+2. **Time-based Automation**: Perfect for periodic data synchronization, scheduled reports, and routine maintenance tasks.
+3. **User-friendly Configuration**: Simple dropdown selection eliminates the need to write complex Cron expressions.
+4. **Consistent Execution**: Ensures flows run reliably at the specified intervals without manual triggers.
+
+</details>
+
+## Prerequisites
+
+Before using Cron Node, ensure the following:
+
+- **Flow Configuration**: A flow that you want to execute on a schedule.
+- **Understanding of Schedule Requirements**: Knowledge of how frequently your flow needs to run.
+
+## Setup
+
+### Step 1: Add Cron Node to Your Flow
+
+1. **Create or Open a Flow**: Navigate to your flow in Lamatic Studio.
+2. **Add Cron Node**: Drag the Cron Node to your flow canvas as the trigger node.
+3. **Configure Schedule**: Set up the sync schedule according to your requirements.
+
+### Step 2: Configure Sync Schedule
+
+The Cron Node provides a simple dropdown interface to select your desired execution frequency.
+
+## Configuration Reference
+
+### Trigger Configuration
+
+| **Parameter**     | **Description**                                                                                        | **Required** | **Options**                                                          |
+| ----------------- | ------------------------------------------------------------------------------------------------------ | ------------ | --------------------------------------------------------------------- |
+| **Name**          | Display name for the node                                                                              | ✅           | `App Cron`                                                            |
+| **Sync Schedule** | Frequency for running the flow, specified using predefined intervals                                  | ✅           | `Every 6 hours`, `Every 8 hours`, `Every 12 hours`, `Every day`, `Every 3 days`, `Every week` |
+
+### Configuration Details
+
+#### Sync Schedule
+
+The Sync Schedule setting determines how frequently your flow will be executed. Available options include:
+
+- **Every 6 hours**: Executes the flow every 6 hours
+- **Every 8 hours**: Executes the flow every 8 hours
+- **Every 12 hours**: Executes the flow every 12 hours
+- **Every day**: Executes the flow once per day
+- **Every 3 days**: Executes the flow once every 3 days
+- **Every week**: Executes the flow once per week
+
+<Callout type="info">
+The sync schedule determines when your flow will automatically trigger. Choose the interval that best matches your workflow requirements.
+</Callout>
+
+## Low-Code Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: cronNode
+  nodeName: Cron
+  values:
+    cronExpression: 0 */6 * * *
+  modes: {}
+  allConfigs:
+    Config A:
+      nodeName: Cron
+      cronExpression: 0 */6 * * *
+  schema:
+    sampleOutput: string
+```
+
+## Testing
+
+The Cron Node can be tested directly in the flow builder:
+
+1. **Configure the Node**: Set up your desired sync schedule.
+2. **Test Execution**: Use the "Test" button to manually trigger the flow and verify it executes correctly.
+3. **Monitor Status**: Check the node status indicator which shows "Ready to Test" when properly configured.
+
+<Callout type="info">
+When testing, the flow will execute immediately. In production, the flow will run automatically based on your configured schedule.
+</Callout>
+
+## Output
+
+### Trigger Output
+
+The Cron Node acts as a trigger and initiates the flow execution. The output will depend on the subsequent nodes in your flow.
+
+When the Cron Node triggers, it passes control to the next node in your workflow, allowing you to:
+
+- Process data on a schedule
+- Run periodic maintenance tasks
+- Automate recurring operations
+- Synchronize data at regular intervals
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                | **Solution**                                                                           |
+| -------------------------- | -------------------------------------------------------------------------------------- |
+| **Flow Not Executing**     | Verify that the sync schedule is correctly configured and the flow is deployed        |
+| **Incorrect Schedule**     | Check the selected sync schedule option matches your intended execution frequency     |
+| **Node Not Triggering**    | Ensure the Cron Node is properly connected as the trigger node in your flow            |
+| **Schedule Not Working**   | Verify the flow is deployed and active, as scheduled triggers only work on deployed flows |
+
+### Debugging
+
+- Check the flow logs to see when the Cron Node last triggered
+- Verify the node configuration shows the correct sync schedule
+- Ensure the flow is deployed (scheduled triggers require deployed flows)
+- Monitor the flow execution history to confirm scheduled runs
+- Check system time and timezone settings if schedules seem incorrect
+
+### Best Practices
+
+- Choose the appropriate sync schedule based on your actual needs to avoid unnecessary executions
+- Test your flow thoroughly before deploying to ensure it works correctly when triggered
+- Monitor flow execution logs to verify scheduled triggers are working as expected
+- Consider the execution time of your flow when selecting the schedule interval
+- Use descriptive names for your Cron Node to easily identify its purpose in complex flows
+
+## Example Use Cases
+
+### Scheduled Data Processing
+- **Daily Reports**: Generate and send daily reports automatically
+- **Data Synchronization**: Sync data between systems on a regular schedule
+- **Periodic Data Cleanup**: Run cleanup tasks at specified intervals
+
+### Automated Maintenance
+- **Database Maintenance**: Perform routine database maintenance tasks
+- **Cache Refresh**: Update cached data at regular intervals
+- **Backup Operations**: Automate backup processes on a schedule
+
+### Periodic Monitoring
+- **Health Checks**: Run system health checks at regular intervals
+- **Status Updates**: Update status information periodically
+- **Alert Generation**: Generate periodic alerts or notifications
+
+## Additional Resources
+
+- [Cron Expression Guide](https://crontab.guru/)
+

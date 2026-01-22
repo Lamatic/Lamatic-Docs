@@ -154,10 +154,6 @@
     "type": "separator",
     "title": "References"
   },
-  "n8n-migration": {
-    "title": "n8n Migration",
-    "type": "doc"
-  },
 
   "api-ref": {
     "title": "GraphQL API ↗",

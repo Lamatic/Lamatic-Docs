@@ -434,10 +434,10 @@ const permanentRedirects = [
 // ["/docs/Jobs","https:lamatic.ai/docs/jobs"],
 // ["/docs/Integrations","https:lamatic.ai/docs/integrations"],
 // ["/docs/Ide","https:lamatic.ai/docs/IDE"],
-["/docs/Logs","/docs/logs"],
-["/docs/Jobs","/docs/jobs"],
-["/docs/Integrations","/docs/integrations"],
-["/docs/Ide","/docs/IDE"],
+// ["/docs/Logs","/docs/logs"],
+// ["/docs/Jobs","/docs/jobs"],
+// ["/docs/Integrations","/docs/integrations"],
+// ["/docs/Ide","/docs/IDE"],
 ["/docs/graphql","/docs/interface/graphql"],
 // ["/docs/graphQL","https:lamatic.ai/docs/interface/graphQL"],
 ["/docs/graphQL","/docs/interface/graphQL"],
@@ -562,6 +562,8 @@ const permanentRedirects = [
 ["/docs/Trash/graphQL/Setup","/docs/interface/graphql#setting-up"],
 ["/docs/sdk","/docs/api-integration/sdk"],
 ["/docs/api","/docs/api-integration/api-key"],
+["/docs/nodes/data/vector-search-node","/docs/nodes/data/vectordb-node"],
+["/docs/interfaces","/docs/interface"],
 ];
 // Caution : Overriding /public messes with the assets
 const rewrites = [

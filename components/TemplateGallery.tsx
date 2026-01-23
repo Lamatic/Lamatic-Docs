@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { titleToSlug } from "@/lib/utils";
+import { useHorizontalScroll } from "@/lib/useHorizontalScroll";
 import {
   Card,
   CardContent,
@@ -214,6 +215,9 @@ export default function TemplateGallery() {
       behavior: "smooth",
     });
   };
+
+  // Enable horizontal scrolling with mouse wheel
+  useHorizontalScroll(agentKitCarouselRef, { speed: 1, smooth: true });
 
   // Update scroll position when user scrolls manually
   useEffect(() => {

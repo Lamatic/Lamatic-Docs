@@ -36,11 +36,13 @@ Scraper Node is a web scraping tool designed to transform entire websites into s
     
     2. **Selective Content Scraping**: Features options to scrape only the main content or include/exclude specific tags, providing control over the scraped data. 
     
-    3. **TLS Verification**: Includes an option to skip TLS verification, enabling compatibility with a wider range of websites. 
+    3. **Agent Workflows**: Submit and monitor agent tasks with three modes - Async Agent, Sync Agent, and Check Agent for intelligent web data extraction.
     
-    4. **Device Emulation**: Offers the ability to emulate mobile devices, ensuring accurate scraping of mobile-optimized pages. 
+    4. **TLS Verification**: Includes an option to skip TLS verification, enabling compatibility with a wider range of websites. 
     
-    5. **Adjustable Load Timing**: Allows users to set a custom wait time (in milliseconds) for pages to load, accommodating different website performance speeds.
+    5. **Device Emulation**: Offers the ability to emulate mobile devices, ensuring accurate scraping of mobile-optimized pages. 
+    
+    6. **Adjustable Load Timing**: Allows users to set a custom wait time (in milliseconds) for pages to load, accommodating different website performance speeds.
 </details> 
 
 <details>
@@ -86,6 +88,8 @@ Use the following format to set up your credentials:
 
 ## Configuration Reference
 
+### Scraper Configuration
+
 | **Parameter**           | **Description**                                                                     | **Example Value**             |
 |--------------------------|-------------------------------------------------------------------------------------|--------------------------------|
 | **Credential Name**      | Select previously saved credentials                                                | `my-firecrawl-creds`           |
@@ -95,7 +99,37 @@ Use the following format to set up your credentials:
 | **Include Tags**         | HTML tags to include in extraction                                                 | `p, h1, h2, article`           |
 | **Exclude Tags**         | HTML tags to exclude from extraction                                               | `nav, footer, aside`           |
 | **Emulate Mobile Device**| Simulate mobile browser access                                                     | `true`                         |
-| **Wait for Page Load**   | Time to wait for dynamic content (ms)                                              | `123`                          |                          |
+| **Wait for Page Load**   | Time to wait for dynamic content (ms)                                              | `123`                          |
+
+---
+
+### Agent Workflow Configuration
+
+The Scraper Node now supports agent workflows with three execution modes for intelligent web data extraction and task monitoring.
+
+#### Agent Modes
+
+1. **Async Agent**: Submit agent tasks asynchronously and receive a task ID for later status checking.
+2. **Sync Agent**: Execute agent tasks synchronously and receive results immediately upon completion.
+3. **Check Agent**: Check the status of a previously submitted async agent task.
+
+#### Agent Configuration (Async / Sync)
+
+| **Parameter**            | **Description**                                                         | **Example Value**                      |
+|--------------------------|-------------------------------------------------------------------------|----------------------------------------|
+| **Credential Name**      | Select previously saved credentials                                     | `my-firecrawl-creds`                   |
+| **Prompt**               | The prompt or instruction for the agent to execute                      | `"Extract all product prices from the page"` |
+| **URLs**           | List of URLs for the agent to process                                   | `[ "https://example.com/products" ]`   |
+| **Schema**         | JSON schema defining the expected output structure                      | `{"price": "string", "name": "string"}` |
+| **Mx Credit**         | Maximum credits to use for the agent task                               | `100`                                  |
+| **Strict URL Constraints**| Enforce strict URL matching rules                                       | `true`                                 |
+
+#### Check Agent Configuration
+
+| **Parameter**            | **Description**                                                         | **Example Value**                      |
+|--------------------------|-------------------------------------------------------------------------|----------------------------------------|
+| **Credential Name**      | Select previously saved credentials                                     | `my-firecrawl-creds`                   |
+| **Agent Task ID**        | The task ID returned from an Async Agent submission                     | `"8***************************7"`      |                          |
 
 ## Low-Code Example
 
@@ -119,6 +153,8 @@ nodes:
 
 ## Output
 
+### Scraper Output
+
 - `markdown`: A string containing the scraped content formatted as Markdown, if available.
 - `language`: A string indicating the detected language of the scraped content.
 - `referrer`: A string representing the referrer URL or source that led to the scraped page, if applicable.
@@ -128,8 +164,7 @@ nodes:
 - `url`: A string indicating the URL of the scraped resource, potentially processed or resolved.
 - `statusCode`: An integer reflecting the HTTP status code returned during the scrape operation.
 
-
-### Example output
+#### Example Scraper Output
 
 ```json
 {

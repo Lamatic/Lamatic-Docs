@@ -27,6 +27,7 @@ Firecrawl nodes can now be used directly inside sync or async nodes. You no long
 ### ✅ Key Functionalities
 - **Web Crawling**: Systematically browse and index websites, discovering and mapping their structure.
 - **Web Scraping**: Extract targeted content from specific web pages using customizable rules.
+- **Agent Workflows**: Submit and monitor agent tasks with three modes - Async Agent, Sync Agent, and Check Agent.
 - **Integration with Webhooks**: Receive real-time updates about crawling and scraping activities.
 - **Dynamic Content Handling**: Support for waiting on dynamic page loads and simulating mobile devices.
 
@@ -241,6 +242,36 @@ Use the following format to set up your credentials:
   ]
 }
 ```
+
+---
+
+### Agent Workflow Configuration
+
+Firecrawl now supports agent workflows with three execution modes for submitting and monitoring agent tasks.
+
+#### Agent Modes
+
+1. **Async Agent**: Submit agent tasks asynchronously and receive a task ID for later status checking.
+2. **Sync Agent**: Execute agent tasks synchronously and receive results immediately upon completion.
+3. **Check Agent**: Check the status of a previously submitted async agent task.
+
+#### Agent Configuration (Async / Sync)
+
+| **Parameter**            | **Description**                                                         | **Example Value**                      |
+|--------------------------|-------------------------------------------------------------------------|----------------------------------------|
+| **Credential Name**      | Select previously saved credentials                                     | `my-firecrawl-creds`                   |
+| **Prompt**               | The prompt or instruction for the agent to execute                      | `"Extract all product prices from the page"` |
+| **URLs**           | Optional list of URLs to limit the agent’s scope. You can provide this as an array of URLs or as a comma-separated list.                                   | `[ "https://example.com/products" ]`   |
+| **Schema**         | JSON schema defining the expected output structure                      | `{"price": "string", "name": "string"}` |
+| **Max Credit**         | Maximum credits to use for the agent task                               | `100`                                  |
+| **Strict URL Constraints**| Enforce strict URL matching rules                                       | `true`                                 |
+
+#### Check Agent Configuration
+
+| **Parameter**            | **Description**                                                         | **Example Value**                      |
+|--------------------------|-------------------------------------------------------------------------|----------------------------------------|
+| **Credential Name**      | Select previously saved credentials                                     | `my-firecrawl-creds`                   |
+| **Agent Job ID**        | The task ID returned from an Async Agent submission                     | `"8***************************7"`      |
 
 
 ### Troubleshooting

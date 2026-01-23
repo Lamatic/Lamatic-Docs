@@ -562,6 +562,8 @@ const permanentRedirects = [
 ["/docs/Trash/graphQL/Setup","/docs/interface/graphql#setting-up"],
 ["/docs/sdk","/docs/api-integration/sdk"],
 ["/docs/api","/docs/api-integration/api-key"],
+["/docs/nodes/data/vector-search-node","/docs/nodes/data/vectordb-node"],
+["/docs/interfaces","/docs/interface"],
 ];
 // Caution : Overriding /public messes with the assets
 const rewrites = [

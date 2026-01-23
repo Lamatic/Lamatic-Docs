@@ -35,7 +35,7 @@ The Classifier Node is a powerful AI component that enables users to automatical
   user intent from textual input and maps it to predefined intents. 4. **Automated
   Routing:** Routes data or user queries to the appropriate workflow based on classification
   results. 5. **LLM Integration:** Uses large language models to enhance classification
-  accuracy and contextual understanding.
+  accuracy and contextual understanding. 6. **Enhanced Classifier Editor:** Two-field editor (Name + Description) for better clarity, with inline editing enabled for both fields, making quick updates seamless.
 </details>
 
 <details>
@@ -75,8 +75,16 @@ The Classifier Node is a powerful AI component that enables users to automatical
 | ------------------------- | -------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | **Generative Model Name** | Select the model to generate text based on the prompt.                                                         | Gemini Model                 |
 | **Prompt Template**       | Define the instructions for generating the text output.Define the instructions for generating the text output. | Tell me something about Bali |
-| **Classifier**            | Add Classifier                                                                                                 | `Classifier 1`               |
+| **Classifier**            | Add Classifier with optional description. The two-field editor (Name + Description) supports inline editing for both fields, enabling quick and seamless updates. | `Classifier 1`               |
 | **System Prompt**         | System prompt to guide the LLM                                                                                 | You are Travel Planner       |
+
+### Classifier Editor
+
+Classifier nodes now support optional descriptions alongside names. The enhanced two-field editor provides:
+
+- **Name Field:** The classifier label used for identification and routing
+- **Description Field (Optional):** Additional context or details about the classifier
+- **Inline Editing:** Both fields support inline editing, allowing you to make quick updates directly in the editor without opening additional dialogs
 
 ## Low-Code Example
 

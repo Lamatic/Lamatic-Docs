@@ -1,0 +1,117 @@
+---
+description: This guide will help you build an AI-powered email summarization tool. The system processes email content, extracts key information, and generates concise summaries, allowing users to quickly understand important details without reading lengthy messages.
+title: Gmail AI Summarizer
+category: Beginner
+order: 12
+thumbnail: /images/tutorials/ai-email-summarizer.png
+---
+import { Accordion, AccordionItem } from "@nextui-org/react";
+import SectionRows  from '@/components/SectionRows'
+import { Callout } from 'nextra-theme-docs'
+import {buttonVariants, Button} from '@/components/ui/button'
+
+# Gmail AI Summarizer
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+        "Gmail",
+        "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Support",
+        "Operations"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  <Callout>
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=email-summariser" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=email-summariser" target="_blank">Add to Lamatic</a>
+  </Button>
+</Callout>
+</div>
+
+
+This guide will walk you through building an AI-powered email summarization tool. The system automatically processes incoming emails from Gmail, and generates concise summaries using a Large Language Model (LLM), allowing you to quickly understand important information.
+
+## What You'll Build
+
+A simple automation that triggers when a new email arrives in Gmail, processes the email content using an AI model, and generates a summary. This enables efficient email management by allowing users to quickly understand important details without reading lengthy messages.
+
+## Getting Started
+
+### 1. Project Setup
+
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+2. Navigate to the Projects and click **New Project** or select your desired project.
+3. You'll see different sections like Flows, Context, and Connections
+
+### 2. Creating a New Flow
+
+1. Navigate to Flows, select **New Flow**.
+2. Click **Create from scratch** to start with a blank canvas.
+
+### 3. Setting Up the Gmail Trigger
+
+1. Click "Choose a Trigger" or the **+** button.
+2. Search for and select **Gmail** under the App nodes.
+3. Configure the Gmail node:
+   - **Credentials**: Select your Gmail OAuth credentials (or create new ones).
+   - **Action**: Select **On New Email**.
+   
+   ![Gmail Trigger Configuration](/images/tutorials/gmail-trigger-config.png)
+
+### 4. Adding AI Text Generation
+
+1. Click the **+** icon below the Gmail node to add a new step.
+2. Choose **Generate Text** (Text LLM).
+3. Configure the AI model:
+   - **Model**: Select a model (e.g., Gemini 2.0 Flash, GPT-4o).
+   - **Prompt**: Enter a prompt to summarize the email. For example:
+     ```
+     Summarize this email content
+     ```
+   - **Input**: Insert the variable containing the email body. Click "Insert Variable" and select `message_text` from the Gmail node output.
+
+   ![AI Text Generation Configuration](/images/tutorials/gmail-text-gen-config.png)
+
+### 5. Final Flow Overview
+
+Your flow should look like this:
+1. **Gmail Trigger**: Listens for new emails.
+2. **Generate Text**: Summarizes the email content.
+
+![Flow Overview](/images/tutorials/gmail-summarizer-flow-overview.png)
+
+### 6. Test the Flow
+
+1. Click **Test** on the Gmail node to fetch a sample email.
+2. Click **Test** on the Generate Text node to see the summary generated from the sample email.
+
+### 7. Deployment
+
+1. Click the **Deploy** button in the top right corner.
+2. Your flow is now live! It will automatically summarize new emails as they arrive.
+
+### 8. What's Next?
+
+- **Send the Summary**: Add another node (e.g., Slack, Email, or Notion) to send the generated summary to your preferred channel.
+- **Filter Emails**: Add logic to only summarize emails from specific senders or with specific subjects.
+- **Experiment with Prompts**: Refine the prompt to extract specific action items or formatting.
+
+Now you have a working AI-powered email summarizer!

@@ -1,0 +1,179 @@
+---
+title: Webflow
+description: The Webflow integration in Lamatic automates content management and site operations with Webflow, enabling both trigger-based workflows and action-based operations for comprehensive Webflow integration.
+icon: /images/icons/apps/webflow.png
+---
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+# Webflow Integration
+
+<IntegrationOverviw slug="webflow" type="apps-data-sources" />
+
+## Overview
+
+The Webflow integration in Lamatic automates content management and site operations with Webflow. This integration enables both trigger-based workflows that respond to Webflow events and action-based operations for managing sites, collections, and pages.
+
+<Callout type="info">
+  This integration connects to your Webflow account to sync and manipulate content
+  for processing in Lamatic Flow.
+</Callout>
+
+## Features
+
+### ✅ Key Functionalities
+
+- **Event Trigger Support**: Responds to Webflow events for real-time processing.
+- **Action Operations**: Supports comprehensive Webflow operations including retrieving site information, managing collections, and accessing page data.
+- **Multiple Action Types**: Provides various actions like List Sites, Get Site Info, List Collections, Get Collection Details, Get Page Metadata, and Get Page DOM Content.
+- **Flexible Configuration**: Each action type has specific parameters tailored to its functionality.
+
+### ✅ Benefits
+
+- **Automated Workflows**: Enables automated content processing triggered by Webflow events.
+- **Content Management**: Easily manage and retrieve content from your Webflow CMS.
+- **Flexible Operations**: Provides multiple action types for diverse Webflow management needs.
+
+## Prerequisites
+
+Before setting up the Webflow integration, ensure you have the following:
+
+- **Webflow Account**: Access to a Webflow account with appropriate permissions.
+- **API Key**: A valid Webflow API Key. You can generate this in your Webflow workspace settings.
+
+## Setup
+
+### Step 1: Obtain Webflow Credentials
+
+To use the Webflow integration, you need to generate an API Key.
+
+1.  Log in to your Webflow account.
+2.  Navigate to your Site Settings or Workspace Settings to generate an API Token.
+3.  Please refer to the [Webflow API Documentation](https://help.webflow.com/hc/en-us/articles/33961356296723-Intro-to-Webflow-s-APIs#01JE6P4KVV7VXGA7YC4VJ6FGM1) for detailed instructions on how to obtain your API Key.
+
+### Step 2: Set Up Lamatic Flow
+
+#### 1. Add Webflow Node
+Drag the Webflow node to your flow canvas. You can use it as a Trigger or an Action depending on your workflow needs.
+
+#### 2. Configure Credentials
+1. Click on the node to open the configuration panel. 
+1. Select "Create New Credential" and enter your [Webflow API Key](https://help.webflow.com/hc/en-us/articles/33961356296723-Intro-to-Webflow-s-APIs#01JE6P4KVV7VXGA7YC4VJ6FGM1).
+
+
+#### 3. Select Action
+Choose the desired action from the "Action" dropdown menu. The available actions allow you to interact with Sites, Collections, and Pages.
+
+
+## Configuration Reference
+
+### Available Actions
+
+The Webflow integration supports the following actions:
+
+#### Site Operations
+- **List Webflow Sites**: Retrieve a list of all sites in your Webflow workspace.
+- **Get Site Information**: Get detailed metadata for a specific site.
+
+#### Collection Operations
+- **List Collections**: Retrieve a list of CMS collections for a specific site.
+- **Get Collection Details**: Get schema and details for a specific collection.
+- **List Collection Items**: Retrieve items within a specific collection.
+- **Get Collection Item**: Get details of a specific item within a collection.
+
+#### Page Operations
+- **List Pages**: Retrieve a list of pages for a specific site.
+- **Get Page Metadata**: Get metadata (title, SEO settings, etc.) for a specific page.
+- **Get Page DOM Content**: Retrieve the DOM content of a page for processing.
+
+### Action Configuration Parameters
+
+Below are the Action Configuration Parameters for each action.
+
+#### List Collection Items
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+| **Collection ID** | The unique identifier for the collection. | ✅ |
+| **CMS Locale ID** | Locale identifier for CMS content. | ❌ |
+| **Limit** | Limit the number of items returned. | ❌ |
+| **Offset** | Number of items to skip for pagination. | ❌ |
+| **Name Filter** | Filter items by name. | ❌ |
+| **Slug Filter** | Filter items by slug. | ❌ |
+| **Sort By** | Field to sort by. | ❌ |
+| **Sort Order** | Order of sorting (asc/desc). | ❌ |
+
+#### Get Collection Item
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+| **Collection ID** | The unique identifier for the collection. | ✅ |
+| **Item ID** | The unique identifier for the item. | ✅ |
+| **CMS Locale ID** | Locale identifier for CMS content. | ❌ |
+
+#### List Pages
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+| **Locale ID** | Locale identifier for the site. | ❌ |
+| **Limit** | Limit the number of pages returned. | ❌ |
+| **Offset** | Number of items to skip for pagination. | ❌ |
+
+#### Get Page Metadata
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+| **Page ID** | The unique identifier for the page. | ✅ |
+| **Locale ID** | Locale identifier for the site. | ❌ |
+
+#### Get Page DOM Content
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+| **Page ID** | The unique identifier for the page. | ✅ |
+| **Locale ID** | Locale identifier for the site. | ❌ |
+| **Limit** | Limit the content/elements returned. | ❌ |
+| **Offset** | Offset for content/elements. | ❌ |
+
+#### Get Collection Details
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+| **Collection ID** | The unique identifier for the collection. | ✅ |
+
+#### List Collections
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+
+#### Get Site Information
+
+| **Parameter** | **Description** | **Required** |
+|---------------|-----------------|--------------|
+| **Site ID** | The unique identifier for your Webflow site. | ✅ |
+
+#### List Webflow Sites
+
+No configuration parameters required.
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem** | **Solution** |
+|-------------|--------------|
+| **Authentication Failed** | Verify your Webflow API Key is valid and has not expired. Ensure it has the necessary permissions. |
+| **Resource Not Found** | Check that the Site ID, Page ID, or Collection ID is correct and exists in your Webflow account. |
+| **Permission Denied** | Ensure your API token has access to the specific site or workspace you are trying to access. |
+
+### Debugging
+
+- Check the "Logs" tab in the node configuration to see the raw response from Webflow.
+- Verify that your Webflow site is published if you are trying to access public content.

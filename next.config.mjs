@@ -595,7 +595,7 @@ const permanentRedirects = [
 ["/docs/playground/Code","/docs/ide/code-ide"],
 ["/docs/Models","/docs/models/benchmark"],
 ["/docs/integrations/Postgres_SQL","/integrations/apps-data-sources/postgres"],
-["/cdn-cgi/l/email-protection","/"],
+["/cdn-cgi/l/email-protection","/security"],
 ["/contact","/request-demo"],
 ["/docs/flows/Concepts/messages","/docs/concepts/vibe-coding-setup"],
 ["/docs/Trash/overview","/docs"],
@@ -609,7 +609,14 @@ const permanentRedirects = [
 ["/docs/workflows/Concepts/messages","/docs/concepts/vibe-coding-setup"],
 ["/docs/nodes/variable-node","/docs/nodes/logic/variable-node"],
 ["/docs/mcp/mcp","/docs/mcp-tools/mcp"],
-["/comparison/langchain","/compare/langchain"]
+["/comparison/langchain","/compare/langchain"],
+["/docs/IDE/Prompt","/docs/ide/prompt-ide"],
+["/integrations/sharepoint","/integrations/apps-data-sources/sharepoint"],
+["/docs/models/providers/azure/azure-ai-hub","/integrations/models/azure-ai-foundry"],
+["/Co-Founder","/about-us"],
+["/templates/agentkits/embed/agent-kit-embedded-chat","/agentkits"],
+["/comparison/langflow","/compare/langflow"],
+["/comparison/n8n","/compare/n8n"]
 
 
 ];

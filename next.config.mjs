@@ -564,6 +564,7 @@ const permanentRedirects = [
 ["/docs/api","/docs/api-integration/api-key"],
 ["/docs/nodes/data/vector-search-node","/docs/nodes/data/vectordb-node"],
 ["/docs/interfaces","/docs/interface"],
+["/docs/langfuse","/docs"]
 ];
 // Caution : Overriding /public messes with the assets
 const rewrites = [

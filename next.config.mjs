@@ -583,7 +583,7 @@ const permanentRedirects = [
 ["/docs/workflows/prompts","/docs/concepts/llm-prompting"],
 ["/careers/jobs","/docs/career"],
 ["/docs/IDE/1._Prompt_IDE","/docs/ide/prompt-ide"],
-["/docs/studio/Workspace","/docs/studio-overview#flow-workspace"],
+["/docs/studio/Workspace","/docs/studio-overview"],
 ["/start","/"],
 ["/docs/ide/prompt_ide","/docs/ide/prompt-ide"],
 ["/agentkits/lib/jobs-data.ts","/agentkits"],

@@ -12,29 +12,10 @@ import {buttonVariants, Button} from '@/components/ui/button'
 
 # Gmail AI Summarizer
 
-<div className="grid md:grid-cols-1 gap-2 mb-8">
-  <div className="">
-    <SectionRows 
-      section="Difficulty Level" 
-      chips={["Beginner"]} 
-    />
-    
-    <SectionRows 
-      section="Nodes" 
-      chips={[
-        "Gmail",
-        "Text LLM"
-      ]} 
-    />
-    
-    <SectionRows 
-      section="Tags" 
-      chips={[
-        "Support",
-        "Operations"
-      ]} 
-    />
-  </div>
+<div className="mt-4 mb-4">
+  <Callout type="info">
+    This use case can be implemented with Gmail and N8N integrations. We’re covering **Gmail integration** here; for **N8N integration**, see [AI Email Summarizer](/guides/tutorials/ai-email-summarizer).
+  </Callout>
 </div>
 
 <div className="mt-4 mb-4">

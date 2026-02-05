@@ -7,9 +7,13 @@
       "layout": "raw"
     }
   },
-  "docs": {
+  "slack": {
     "type": "page",
-    "title": "Docs"
+    "title": "Slack",
+    "theme": {
+      "layout": "full"
+    },
+    "href": "/docs/slack"
   },
   "guides": {
     "type": "page",

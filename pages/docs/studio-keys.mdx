@@ -130,6 +130,11 @@ Always implement proper error handling:
 - Check that the Project URL is correct
 - Ensure your project is deployed
 
+**Rate Limit Exceeded (429)**
+- Ensure you’re not exceeding the allowed number of requests for your plan
+- Check if multiple requests are being sent in parallel or in rapid succession
+- Implement request throttling or retries with exponential backoff
+
 **Workflow Execution Errors**
 - Verify the Workflow ID is correct
 - Check that payload structure matches workflow inputs

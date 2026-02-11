@@ -1,4 +1,5 @@
-import { getPagesUnderRoute } from "nextra/context";
+"use client";
+import { usePagesUnderRoute } from "@/lib/PageMapContext";
 import { type Page } from "nextra";
 import Link from "next/link";
 import { ExternalLinkIcon } from "lucide-react";
@@ -26,7 +27,7 @@ function flattenPages(pages) {
 
 export const AppsDataSourcesTable = () => {
   // Get all pages under /integrations/apps-data-sources
-  const allPages = getPagesUnderRoute("/integrations/apps-data-sources");
+  const allPages = usePagesUnderRoute("/integrations/apps-data-sources") ?? [];
   const pages = flattenPages(allPages).filter(
     (page) => 
       page.route !== "/integrations/apps-data-sources" && 

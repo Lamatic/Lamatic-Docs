@@ -1,4 +1,5 @@
-import { getPagesUnderRoute } from "nextra/context";
+"use client";
+import { usePagesUnderRoute } from "@/lib/PageMapContext";
 import { type Page } from "nextra";
 import Link from 'next/link';
 import { useState, useMemo } from 'react';
@@ -59,7 +60,7 @@ export const TutorialIndex = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   
-  const pages = getPagesUnderRoute("/guides/tutorials") as Array<
+  const pages = usePagesUnderRoute("/guides/tutorials") as Array<
     Page & { frontMatter: any }
   >;
 

@@ -1,0 +1,133 @@
+export default {
+  "index": {
+    "type": "page",
+    "title": "Lamatic.ai",
+    "display": "hidden",
+    "theme": {
+      "layout": "raw"
+    }
+  },
+  "slack": {
+    "type": "page",
+    "title": "Slack",
+    "theme": {
+      "layout": "full"
+    },
+    "href": "/docs/slack"
+  },
+  "guides": {
+    "type": "page",
+    "title": "Guides",
+    "display": "hidden"
+  },
+  "integrations": {
+    "type": "page",
+    "title": "Integrations",
+    "display": "hidden"
+  },
+  "templates": {
+    "title": "Templates",
+    "type": "page",
+    "theme": {
+      "sidebar": false,
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
+  "agentkits": {
+    "title": "AgentKits",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
+  "Changelog": {
+    "title": "Change Log",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "newWindow": true,
+    "href": "https://product.lamatic.ai/changelog"
+  },
+  "blog": {
+    "title": "Lamatic Labs",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "newWindow": true,
+    "href": "https://labs.lamatic.ai"
+  },
+  "support": {
+    "title": "Support",
+    "type": "page",
+    "display": "hidden"
+  },
+  "launch-week": {
+    "title": "Launch Week",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
+  "ambassadors": {
+    "title": "Lamatic Ambassadors",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
+
+  "security": {
+    "title": "Security",
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  },
+  "why": {
+    "title": "Why Lamatic.ai",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article",
+      "timestamp": false
+    }
+  },
+  "terms": {
+    "title": "Terms and Conditions",
+    "type": "page",
+    "display": "hidden"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "type": "page",
+    "display": "hidden"
+  },
+  "cookie-policy": {
+    "title": "Cookie Policy",
+    "type": "page",
+    "display": "hidden"
+  },
+  "about": {
+    "title": "About us",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "typesetting": "article",
+      "timestamp": false
+    }
+  },
+  "404": {
+    "type": "page",
+    "theme": {
+      "typesetting": "article",
+      "timestamp": false
+    }
+  }
+};

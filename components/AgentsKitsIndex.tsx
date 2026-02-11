@@ -1,7 +1,8 @@
+"use client";
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getPagesUnderRoute } from "nextra/context";
+import { usePagesUnderRoute } from "@/lib/PageMapContext";
 import { type Page } from "nextra";
 import {
   Card,
@@ -218,7 +219,7 @@ const AgentsKitsIndex = () => {
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
   // Get all pages under /templates/agentkits (including subfolders)
-  const allPages = getPagesUnderRoute("/templates/agentkits");
+  const allPages = usePagesUnderRoute("/templates/agentkits") ?? [];
   const pages = flattenPages(allPages).filter(
     (page) =>
       page.route !== "/templates/agentkits" &&

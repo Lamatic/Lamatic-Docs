@@ -16,6 +16,7 @@ export default FooterMenu;
 */
 
 
+"use client";
 // components/Footer.tsx
 import { useEffect, useState } from 'react';
 

@@ -1,5 +1,6 @@
 .next
 node_modules
+public/_pagefind
 .vercel
 
 .env.local

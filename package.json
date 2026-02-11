@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3333",
     "build": "next build",
-    "postbuild": "next-sitemap && echo 'Removing .next/cache to resolve Nextra caching bug' && rm -rf .next/cache",
+    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind && next-sitemap",
     "start": "next start -p 3333",
     "analyze": "cross-env ANALYZE=true next build"
   },
@@ -38,10 +38,10 @@
     "gpt3-tokenizer": "^1.1.5",
     "jsdom": "^24.1.0",
     "lucide-react": "^0.376.0",
-    "next": "^14.2.3",
+    "next": "^15.0.0",
     "next-sitemap": "^4.2.3",
-    "nextra": "^2.13.4",
-    "nextra-theme-docs": "^2.13.4",
+    "nextra": "^4.0.0",
+    "nextra-theme-docs": "^4.0.0",
     "openai-edge": "^1.2.2",
     "pnpm": "^9.1.2",
     "postcss": "^8.4.38",
@@ -62,7 +62,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^14.2.3",
+    "@next/bundle-analyzer": "^15.0.0",
+    "pagefind": "^1.4.0",
     "@types/node": "18.16.0",
     "cross-env": "^7.0.3",
     "typescript": "^5.4.5"

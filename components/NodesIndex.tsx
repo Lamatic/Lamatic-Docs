@@ -1,4 +1,5 @@
-import { getPagesUnderRoute } from "nextra/context";
+"use client";
+import { usePagesUnderRoute } from "@/lib/PageMapContext";
 import { type Page } from "nextra";
 import Link from "next/link";
 import { ArrowRightIcon,BotMessageSquare } from "lucide-react";
@@ -28,7 +29,7 @@ function flattenPages(pages) {
 
 export const NodesIndex = () => {
   // Get all pages under /docs/nodes (including subfolders)
-  const allPages = getPagesUnderRoute("/docs/nodes");
+  const allPages = usePagesUnderRoute("/docs/nodes") ?? [];
   const pages = flattenPages(allPages).filter(
     (page) => page.route !== "/nodes" && page.route !== "/docs/nodes"
   );

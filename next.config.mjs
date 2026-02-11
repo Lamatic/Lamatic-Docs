@@ -24,10 +24,8 @@ const cspHeader = `
   upgrade-insecure-requests;
   block-all-mixed-content;
 `;
-// nextra config
+// nextra config (Nextra 4: theme/themeConfig moved to app/layout.jsx Layout props)
 const withNextra = nextra({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.tsx",
   mdxOptions: {
     remarkPlugins: [remarkGfm],
   },

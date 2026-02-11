@@ -1,13 +1,14 @@
-import { getPagesUnderRoute } from "nextra/context";
+"use client";
+import { usePagesUnderRoute } from "@/lib/PageMapContext";
 import { type Page } from "nextra";
 import { Card, Cards } from "nextra-theme-docs";
 import { Video } from "lucide-react";
 
-export const VideoIndex = () => (
+export const VideoIndex = () => {
+  const pages = (usePagesUnderRoute("/guides/videos") ?? []) as Array<Page & { frontMatter: any }>;
+  return (
   <Cards num={2}>
-    {(
-      getPagesUnderRoute("/guides/videos") as Array<Page & { frontMatter: any }>
-    ).map((page, i) => (
+    {pages.map((page, i) => (
       <Card
         href={page.route}
         key={page.route}
@@ -19,4 +20,5 @@ export const VideoIndex = () => (
       </Card>
     ))}
   </Cards>
-);
+  );
+};

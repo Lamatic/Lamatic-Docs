@@ -1,0 +1,12 @@
+export default {
+  "index": {
+    "title": "Overview"
+  },
+  "*": {
+    "type": "page",
+    "theme": {
+      "layout": "full"
+    },
+    "display": "hidden"
+  }
+};

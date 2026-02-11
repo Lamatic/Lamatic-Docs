@@ -1,3 +1,5 @@
+"use client";
+import { useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import {
   MediaPlayer,
@@ -6,7 +8,6 @@ import {
   useMediaStore,
 } from "@vidstack/react";
 import { Play } from "lucide-react";
-import { useState, useRef } from "react";
 
 export const CloudflareVideo = ({
   videoId,

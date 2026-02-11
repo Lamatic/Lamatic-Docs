@@ -1,0 +1,5 @@
+export default {
+  "prompt-ide": "Prompt IDE",
+  "code-ide": "Code IDE",
+  "graphql-ide": "GraphQL IDE"
+};

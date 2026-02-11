@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Nextra theme (imported here so @layer base is in scope for PostCSS) */
+@import "nextra-theme-docs/style.css";
+
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -1,16 +1,15 @@
-import { getPagesUnderRoute } from "nextra/context";
+"use client";
+import { usePagesUnderRoute } from "@/lib/PageMapContext";
 import { type Page } from "nextra";
 import { Card, Cards } from "nextra-theme-docs";
 import { FileCode } from "lucide-react";
 
-export const CookbookIndex = () => (
+export const CookbookIndex = () => {
+  const pages = (usePagesUnderRoute("/guides/cookbook") ?? []) as Array<Page & { frontMatter: any }>;
+  return (
   <>
     {Object.entries(
-      (
-        getPagesUnderRoute("/guides/cookbook") as Array<
-          Page & { frontMatter: any }
-        >
-      )
+      pages
         .filter((page) => page.route !== "/cookbook")
         .reduce((acc, page) => {
           const category = page.frontMatter?.category || "Other";
@@ -24,13 +23,13 @@ export const CookbookIndex = () => (
         if (categoryB === "Other") return -1;
         return categoryA.localeCompare(categoryB);
       })
-      .map(([category, pages]) => (
+      .map(([category, categoryPages]) => (
         <div key={category}>
           <h3 className="nx-font-semibold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100 nx-mt-8 nx-text-2xl">
             {category}
           </h3>
           <Cards num={2}>
-            {pages.map((page) => (
+            {categoryPages.map((page) => (
               <Card
                 href={page.route}
                 key={page.route}
@@ -45,4 +44,5 @@ export const CookbookIndex = () => (
         </div>
       ))}
   </>
-);
+  );
+};

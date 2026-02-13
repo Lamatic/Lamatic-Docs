@@ -1,6 +1,6 @@
 ---
 title: Google Drive
-description: The Google Drive node in Lamatic automates fetching and synchronizing files from Google Drive. It supports various file types, including Google Docs, Slides, Word Documents, PDFs, and text files. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+description: The Google Drive node in Lamatic automates fetching and synchronizing files from Google Drive and supports action-based operations for creating, editing, and managing docs and folders. It supports various file types including Google Docs, Slides, Word Documents, PDFs, and text files for vectorization and indexing in RAG flows.
 icon: /images/icons/apps/drive.png
 ---
 
@@ -12,66 +12,79 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
 ## Overview
 
-The Google Drive node in Lamatic automates fetching and synchronizing files from Google Drive. It supports various file types, including Google Docs, Slides, Word Documents, PDFs, and text files. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+The Google Drive node in Lamatic is a file synchronization and management component that automates fetching and synchronizing files from Google Drive and supports action-based operations for creating, editing, and managing docs and folders. As a **Batch Trigger**, it supports various file types including Google Docs, Slides, Word Documents, PDFs, and text files for vectorization and indexing in RAG flows. As an **Action** node, it lets you create Google Docs, edit files, create folders, list files, move files, and get file metadata.
 
-<Callout type="warning" >
+<Callout type="warning">
 To use the Google Drive node, you need to create a separate flow to Implement RAG. You can integrate it into this distinct flow.
 </Callout>
 
 ## Features
 
-### ✅ Key Functionalities
+### Key Functionalities
 
-- **Batch Trigger**: Automates file fetching and synchronization on a schedule.
-- **File Type Support**: Handles Google Docs, Slides, Word Documents, PDFs, and text files.
+1. **Batch Trigger**: Automates file fetching and synchronization on a schedule using Cron expressions for regular execution.
+2. **Action Operations**: Create Google Docs, edit files (Markdown → DOCX), create folders, list files, move files, and get file metadata.
+3. **File Type Support**: Handles multiple file formats including Google Docs, Slides, Word Documents, PDFs, and text files.
+4. **Synchronization Modes**: Supports both incremental (process new/updated files only) and full-refresh (reprocess all files) modes.
+5. **Folder-based Processing**: Processes files from specified Google Drive folders with configurable access permissions.
 
-### ✅ Benefits
+### Benefits
 
-- Streamlines file collection from Google Drive.
-- Prepares files for vectorization and indexing to enhance RAG flows.
-
+1. **Streamlined File Collection**: Automates the process of collecting files from Google Drive, reducing manual effort and ensuring consistency.
+2. **RAG Flow Preparation**: Prepares files for vectorization and indexing to enhance Retrieval-Augmented Generation workflows.
+3. **Scheduled Synchronization**: Enables regular file updates through configurable scheduling, keeping data current.
+4. **Flexible Processing**: Supports both incremental and full synchronization modes to optimize processing efficiency.
+5. **Direct Drive Operations**: Create and edit Google Docs from Markdown, manage folders, list/move files, and fetch metadata from within flows.
 
 ## Prerequisites
 
-Before setting up the Google Drive node, ensure you have the following:
+Before using the Google Drive node, ensure the following:
 
-- Google Drive credentials for accessing the desired folder.
-- The target folder URL from Google Drive.
-- An understanding of Cron expressions for scheduling flows.
-
-
+- **Google Drive Credentials**: Valid Google authentication details for accessing the desired folder.
+- **Target Folder URL**: The specific Google Drive folder URL from which files will be fetched.
+- **Cron Expression Knowledge**: Understanding of Cron expressions for scheduling flows.
+- **RAG Flow Setup**: A separate flow configured for implementing Retrieval-Augmented Generation.
 
 ## Setup
 
-### Step 1: Set Up Lamatic Flow
+### Step 1: Set Up Google Drive Access
 
-1. **Create a Custom Flow** for Google Drive
-   1. Configure the Node
-2. **Use Pre-built Templates**: Start with our `Google Drive Template`
+1. **Create Google Drive Credentials**:
+   - Set up Google OAuth credentials for Drive API access
+   - Ensure proper permissions for the target folder
+   - Test folder accessibility and file permissions
 
-### Step 2: Configure Node in Lamatic
+2. **Identify Target Folder**:
+   - Copy the Google Drive folder URL
+   - Verify folder contains supported file types
+   - Ensure folder is accessible with provided credentials
 
-1. Add the Google Drive node to your flow.
-2. Provide necessary credentials and folder details.
-3. Schedule the flow using a Cron expression for regular execution.
+### Step 2: Configure Google Drive Credentials
 
-### Step 3: Testing
-```json
-{
-    "document_key": "your_filename", 
-    "content": "data or text that will be stored in the document"
-}
-```
+Use the following format to set up your credentials:
 
-1. `content`: Represents the data or text that will be stored in the document.
-1. `document_key`: Serves as the unique identifier for the document, used to locate or update the specific file Or Filename.
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-google-drive-creds`     |
+| **Google OAuth**      | Google authentication details for Drive access     | `Google Drive OAuth`        |
 
-For testing, you need to manually provide `content` and `document_key` as dummy data. Once deployed, these values will be automatically fetched from your configured Google Drive folder.
+### Step 3: Set Up Lamatic Flow
 
+1. **For Batch Trigger**: Create a custom flow for Google Drive:
+   - Configure the Google Drive node as trigger
+   - Set up scheduling parameters
+   - Define synchronization preferences
+
+2. **For Action Node**: Add the Google Drive node as an action in your flow:
+   - Set up Google Drive credentials
+   - Select the desired action (Create Google Doc, Edit File, Create Folder, List files, Move File, Get File Metadata)
+   - Configure action-specific parameters
+
+3. **Use Pre-built Templates**: Start with our `Google Drive Template` from the Lamatic Studio.
 
 ## Configuration Reference
 
-### Batch Trigger: Scheduled
+### Batch Trigger Configuration
 
 | **Parameter**     | **Description**                                                                                        | **Required** | **Example**                                          |
 | ----------------- | ------------------------------------------------------------------------------------------------------ | ------------ | ---------------------------------------------------- |
@@ -80,34 +93,96 @@ For testing, you need to manually provide `content` and `document_key` as dummy 
 | **Folder**        | The folder from which files will be fetched.                                                           | ✅           | `https://drive.google.com/drive/folders/{folder-id}` |
 | **Sync Mode**     | Specify either `incremental` (process new/updated files only) or `full-refresh` (reprocess all files). | ✅           | `incremental`                                        |
 | **Sync Schedule** | Frequency for running the flow, specified using a Cron expression.                                     | ✅           | `0 0 05 1/1 * ? * UTC`                               |
-| **Globs (Path Patterns)**        | Glob pattern for matching files                                                                             | ❌           | `**/*.pdf`, `**/*.docx`           |
+| **Globs (Path Patterns)** | Glob pattern for matching files.                                                                  | ❌           | `**/*.pdf`, `**/*.docx`                              |
 
 #### Supported File Types
 
 Only specific file types are currently supported for vectorization and indexing in Lamatic. Using unsupported formats may result in parsing errors during synchronization.
 
-##### ✅ Allowed File Extensions
+**Allowed File Extensions:** `.pdf`, `.txt`, `.docx`, `.pptx`, `.md`
 
-- `.pdf` — PDF Documents  
-- `.txt` — Plain Text Files  
-- `.docx` — Microsoft Word  
-- `.pptx` — Microsoft PowerPoint  
-- `.md` — Markdown Files
-
-To avoid sync issues, ensure your **glob patterns** are configured to include only these types.
-
-##### 🔍 Recommended Glob Pattern
+**Recommended Glob Pattern:**
 
 ```yaml
-    globs:
-    - "**/*.pdf"
-    - "**/*.txt"
-    - "**/*.docx"
-    - "**/*.pptx"
-    - "**/*.md"
+globs:
+  - "**/*.pdf"
+  - "**/*.txt"
+  - "**/*.docx"
+  - "**/*.pptx"
+  - "**/*.md"
 ```
 
-### Low-Code Example
+### Action Node Configuration
+
+Configure the Google Drive node as an action by selecting the desired action and providing the required parameters.
+
+| **Parameter**   | **Description**                                                | **Required** | **Example**                    |
+| --------------- | -------------------------------------------------------------- | ------------ | ------------------------------ |
+| **Credentials** | Google authentication details for Drive access                 | ✅           | `my-google-drive-credentials`  |
+| **Action**      | Action to perform (see available actions below)                | ✅           | `Create Google Doc`            |
+
+#### Available Actions
+
+##### 1. Create Google Doc
+
+Creates a new Google Doc. Markdown content is converted to DOCX and uploaded to Drive.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Document Title** | Name for the new DOCX file (Markdown content is converted to DOCX) | ✅ | `My Report` |
+| **Parent Folder** | Optional parent folder for the new doc. Leave empty for root | ❌ | `https://drive.google.com/drive/folders/{folder-id}` |
+| **Initial Content (Markdown)** | Optional initial content in Markdown. Converted to DOCX and uploaded to Drive | ❌ | `# Heading\n\nParagraph text` |
+
+##### 2. Edit File
+
+Updates an existing file. Markdown content is converted to DOCX; the existing file is replaced with the new DOCX.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Folder** | Folder containing the file to update | ✅ | `https://drive.google.com/drive/folders/{folder-id}` |
+| **File** | The file to update | ✅ | `report.docx` |
+| **Content (Markdown)** | Markdown content. Converted to DOCX; existing file is replaced | ✅ | `# Updated content` |
+
+##### 3. Create Folder
+
+Creates a new folder in Google Drive.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Folder Name** | Name for the new folder | ✅ | `Q1 Reports` |
+| **Parent Folder** | Optional parent folder. Leave empty for root | ❌ | `https://drive.google.com/drive/folders/{folder-id}` |
+
+##### 4. List files in Folder
+
+Lists files in a specified folder.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Folder** | Folder to list files in | ✅ | `https://drive.google.com/drive/folders/{folder-id}` |
+| **Page Size** | Max number of files to return (1–1000) | ❌ | `100` |
+
+##### 5. Move File
+
+Moves a file to a different folder.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Folder** | Folder containing the file to move | ✅ | `https://drive.google.com/drive/folders/{folder-id}` |
+| **File** | The file to move | ✅ | `document.docx` |
+| **Destination Folder** | The folder to move the file into | ✅ | `https://drive.google.com/drive/folders/{dest-folder-id}` |
+
+##### 6. Get File Metadata
+
+Fetches metadata for a specific file.
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Folder** | Folder containing the file | ✅ | `https://drive.google.com/drive/folders/{folder-id}` |
+| **File** | The file to get metadata for | ✅ | `report.docx` |
+
+## Low-Code Examples
+
+### Batch Trigger Example
 
 ```yaml
 triggerNode:
@@ -122,6 +197,66 @@ triggerNode:
     folderUrl: https://drive.google.com/drive/folders/YOUR_ID
 ```
 
+### Action Node Example
+
+```yaml
+- nodeId: googleDriveNode_1
+  nodeType: googleDriveNode
+  nodeName: Google Drive
+  values:
+    credentials: Google Drive OAuth
+    action: createGoogleDoc  # or editFile, createFolder, listFiles, moveFile, getFileMetadata
+    documentTitle: ''
+    parentFolder: ''
+    initialContentMarkdown: ''
+    folder: ''
+    file: ''
+    contentMarkdown: ''
+    folderName: ''
+    pageSize: 100
+    destinationFolder: ''
+  needs:
+    - triggerNode_1
+```
+
+## Testing
+
+For testing purposes, you need to manually provide `content` and `document_key` as dummy data. Once deployed, these values will be automatically fetched from your configured Google Drive folder.
+
+### Test Configuration
+
+```json
+{
+    "document_key": "test_document.pdf",
+    "content": "This is test content that will be processed for RAG flows"
+}
+```
+
+- **document_key**: Serves as the unique identifier for the document, used to locate or update the specific file or filename.
+- **content**: Represents the data or text that will be stored in the document.
+
+## Output
+
+### Batch Trigger Output
+
+- **document_key**: String identifier for the document (filename or unique key)
+- **content**: String containing the document content or text data
+- **metadata**: Additional file information (if available)
+  - `file_type`: Type of the processed file
+  - `last_modified`: Timestamp of last modification
+  - `file_size`: Size of the file in bytes
+
+### Action Node Output
+
+Action node output depends on the action performed:
+
+- **Create Google Doc**: Returns the new document ID and metadata (e.g., `id`, `name`, `webViewLink`).
+- **Edit File**: Returns updated file metadata.
+- **Create Folder**: Returns the new folder ID and metadata.
+- **List files in Folder**: Returns a list of files with `id`, `name`, `mimeType`, and related metadata; length limited by Page Size.
+- **Move File**: Returns updated file metadata including new parent folder.
+- **Get File Metadata**: Returns file metadata (e.g., `id`, `name`, `mimeType`, `size`, `createdTime`, `modifiedTime`).
+
 ## Troubleshooting
 
 ### Common Issues
@@ -129,12 +264,25 @@ triggerNode:
 | **Problem**                | **Solution**                                                                           |
 | -------------------------- | -------------------------------------------------------------------------------------- |
 | **Invalid Credentials**    | Verify that the correct Google Drive credentials are provided.                         |
-| **Folder Not Found**       | Ensure the folder URL is accurate and accessible.                                      |
-| **Sync Not Working**       | Check the Cron expression for correctness.                                             |
+| **Folder Not Found**       | Ensure the folder URL is accurate and accessible.                                       |
+| **Sync Not Working**       | Check the Cron expression for correctness.                                              |
 | **File Types Unsupported** | Confirm that the files in the folder are of supported types (Google Docs, PDFs, etc.). |
+| **Permission Errors**      | Verify Google Drive API access permissions and folder sharing settings.                |
+| **Scheduling Issues**      | Validate Cron expression syntax and timezone settings.                                  |
+| **Action Fails**           | For action node: verify Folder/File IDs or URLs, credentials scope, and required params. |
 
 ### Debugging
 
-- Check Lamatic Flow logs for error details.
+- Check Lamatic Flow logs for detailed error messages.
 - Verify Google Drive API access permissions.
-- Test the folder URL to ensure it’s valid and accessible.
+- Test the folder URL to ensure it's valid and accessible.
+- Validate Cron expression syntax using online Cron validators.
+- Monitor file processing logs for specific file errors.
+- Test with a small folder containing few files before scaling up.
+- Verify network connectivity and API rate limits.
+
+### Additional Resources
+
+- [Google Drive API Documentation](https://developers.google.com/drive/api)
+- [Cron Expression Generator](https://crontab.guru/)
+- [Google OAuth Setup Guide](https://developers.google.com/identity/protocols/oauth2)

@@ -29,15 +29,18 @@ This integration connects to your Slack workspace to automate communication and 
 
 - **Command Triggers**: Responds to specific Slack commands (e.g., `/ask`, `/help`, `/search`)
 - **Message Actions**: Sends messages to Slack channels, threads, and direct messages
-- **RAG Integration**: Supports question-answering using Retrieval-Augmented Generation
-- **Real-time Communication**: Enables instant AI-powered responses in Slack
+- **RAG Integration**: Supports question-answering using Retrieval-Augmented Generation for intelligent responses
+- **Real-time Communication**: Enables instant AI-powered responses in Slack for immediate user interaction
+- **Thread Support**: Handles threaded conversations and replies for organized communication
+- **Channel Management**: Supports multiple channel types and targeting for flexible message distribution
 
 ### ✅ Benefits
 
-- Automates Slack communications and workflows
-- Enables AI-powered responses and assistance
-- Streamlines internal processes and team collaboration
-- Provides instant access to knowledge and information
+- **Automated Communication**: Automates Slack communications and workflows, reducing manual effort and response times
+- **AI-Powered Responses**: Enables AI-powered responses and assistance for intelligent user interactions
+- **Streamlined Processes**: Streamlines internal processes and team collaboration through automated workflows
+- **Instant Access**: Provides instant access to knowledge and information through AI-powered Q&A capabilities
+- **Enhanced Collaboration**: Improves team collaboration by providing immediate responses and assistance
 
 ## Available Functionality
 
@@ -75,14 +78,23 @@ Before setting up the Slack integration, ensure you have:
 Ensure the Lamatic app has the necessary permissions to access channels and send messages.
 </Callout>
 
-### Step 2: Configure Slack Node
+### Step 2: Configure Slack Credentials
+
+Use the following format to set up your credentials:
+
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-slack-creds`            |
+| **Slack App**         | Slack app authentication details                    | `Slack App Credentials`     |
+
+### Step 3: Configure Slack Node
 
 1. **Add Slack Node**: Drag the Slack node to your flow
 2. **Enter Credentials**: Provide your Slack app credentials
 3. **Configure Command**: Set up the slash command (e.g., `/ask`)
 4. **Set Target Channel**: Specify the channel for responses
 
-### Step 3: Test and Deploy
+### Step 4: Test and Deploy
 
 1. **Test Command**: Verify the slash command works in Slack
 2. **Configure Response**: Set up immediate response messages

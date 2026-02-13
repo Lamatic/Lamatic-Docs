@@ -11,7 +11,13 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 <IntegrationOverviw slug="firecrawl" type="apps-data-sources" />
 
 ## Overview
-Firecrawl is a robust tool designed to transform websites into LLM-ready data by leveraging its **Crawler** and **Scraper** functionalities. Whether you need to map website structures or extract specific data, Firecrawl provides a seamless and customizable solution.
+
+Firecrawl is a robust tool designed to transform websites into LLM-ready data by leveraging its **Crawler** and **Scraper** functionalities.
+
+- **Crawler**: Automatically extracts data from websites by crawling web pages and following links. It recursively traverses sites (starting from a URL, using sitemaps when available), handles dynamic content rendered with JavaScript, and supports sync or async modes with webhook notifications.
+- **Scraper**: Extracts targeted content from specific web pages using customizable rules. It supports single-URL or batch scraping, main-content-only extraction, tag inclusion/exclusion, TLS verification options, device emulation, and adjustable page-load timing.
+
+Whether you need to map full site structures or extract specific data from pages, Firecrawl provides a seamless and customizable solution.
 
 <Callout type="warning" >
 Firecrawl nodes can now be used directly inside sync or async nodes. You no longer need to create a separate flow for crawling or scraping.
@@ -24,17 +30,31 @@ Firecrawl nodes can now be used directly inside sync or async nodes. You no long
 
 ## Features
 
-### ✅ Key Functionalities
-- **Web Crawling**: Systematically browse and index websites, discovering and mapping their structure.
-- **Web Scraping**: Extract targeted content from specific web pages using customizable rules.
-- **Agent Workflows**: Submit and monitor agent tasks with three modes - Async Agent, Sync Agent, and Check Agent.
-- **Integration with Webhooks**: Receive real-time updates about crawling and scraping activities.
-- **Dynamic Content Handling**: Support for waiting on dynamic page loads and simulating mobile devices.
+### Key Functionalities (Crawler + Scraper)
 
-### ✅ Benefits
-- Generate structured data for language models.
-- Customize inclusion and exclusion of website sections.
-- Handle both static and dynamic web content.
+**Crawler**
+- **Comprehensive Crawling**: Recursively traverses websites, identifies and accesses subpages, uses sitemaps when available, and follows links for thorough data collection.
+- **Dynamic Content Handling**: Manages JavaScript-rendered content for full extraction from accessible subpages.
+- **Sync & Async Modes**: Run crawls synchronously or asynchronously with webhook callbacks for completion, page, started, and failed events.
+
+**Scraper**
+- **Customizable URL Scraping**: Specify exact URLs to scrape for targeted data extraction.
+- **Selective Content**: Scrape only main content or include/exclude specific HTML tags.
+- **TLS Verification**: Option to skip TLS verification for broader website compatibility.
+- **Device Emulation**: Emulate mobile devices for mobile-optimized pages.
+- **Adjustable Load Timing**: Set wait time (ms) for dynamic content to load.
+
+**Shared**
+- **Agent Workflows**: Async Agent, Sync Agent, and Check Agent for intelligent web data extraction.
+- **Webhooks**: Real-time updates for crawl/scrape completion and events.
+
+### Benefits
+
+- **Reliability**: Handles proxies, rate limits, and anti-scraping measures for consistent extraction (Crawler).
+- **Efficiency**: Manages requests to minimize bandwidth and avoid detection (Crawler).
+- **Precision**: Targeted scraping with tag and scope control (Scraper).
+- **Flexibility**: Mobile emulation and TLS options for diverse sites (Scraper).
+- Generate structured, LLM-compatible data; customize inclusion/exclusion; handle static and dynamic content.
 
 ## Prerequisites
 
@@ -136,6 +156,17 @@ Use the following format to set up your credentials:
 }
 ```
 
+### Step 3: Set Up the Mode (Crawler)
+
+For the **Crawler**, choose **sync** or **async** mode. In **async** mode, configure a webhook endpoint to receive crawl results (create a Webhook flow/URL in Lamatic to receive crawl updates and results). Async options include:
+
+| **Parameter**          | **Description**                                                                 | **Example Value**                     |
+|------------------------|---------------------------------------------------------------------------------|---------------------------------------|
+| **Callback Webhook**   | URL to receive notifications about crawl completion                             | `https://example.com/webhook`         |
+| **Webhook Headers**    | Headers sent to the webhook                                                     | `{'Content-Type':application/json'}`  |
+| **Webhook Metadata**   | Metadata sent to the webhook                                                    | `{'status':'{{codeNode_540.status}}'}`|
+| **Webhook Events**     | Events to send: `completed`, `failed`, `page`, `started`                         | `["completed", "failed", "page", "started"]` |
+
 ### Crawler Configuration (Single)
 
 | **Parameter**            | **Description**                                                   | **Example Value**                 |
@@ -211,6 +242,100 @@ Use the following format to set up your credentials:
 | Webhook Metadata    | Metadata to be sent to the webhook                    | `{'status':'{{codeNode_540.status}}'}`     |
 | Webhook Events      | A multiselect list of events to be sent to the webhook| `["completed", "failed", "page", "started"]` |
 
+
+### Low-Code Examples
+
+#### Crawler Node
+
+```yaml
+nodes:
+  - nodeId: crawlerNode_880
+    nodeType: crawlerNode
+    nodeName: Crawler
+    values:
+      credentials: my-firecrawl-creds
+      url: https://example.com
+      crawlMode: async
+      webhook: https://example.com/webhook
+      webhookEvents: [completed, failed, page, started]
+      crawlSubPages: true
+      crawlLimit: 10
+      crawlDepth: 1
+      excludePath: []
+      includePath: []
+      maxDiscoveryDepth: 1
+      ignoreSitemap: false
+      allowBackwardLinks: false
+      allowExternalLinks: false
+      delay: 0
+    needs:
+      - triggerNode_1
+```
+
+#### Scraper Node
+
+```yaml
+nodes:
+  - nodeId: scraperNode_680
+    nodeType: scraperNode
+    nodeName: Scraper
+    values:
+      credentials: my-firecrawl-creds
+      url: https://example.com/page
+      onlyMainContent: false
+      skipTLsVerification: false
+      mobile: false
+      waitFor: 123
+      includeTags: []
+      excludeTags: []
+    needs:
+      - triggerNode_1
+```
+
+### Crawler Event Output (Async Mode)
+
+When using async crawler mode, the node can emit these events to your webhook:
+
+1. **Started**: When the crawl begins (job ID, URL).
+2. **Page**: For each crawled page (URL, extracted data).
+3. **Completed**: When the crawl finishes (summary, page count, errors).
+4. **Failed**: When the crawl fails (error message, job ID).
+
+**Example – Started:**
+```json
+{
+  "success": true,
+  "type": "crawl.started",
+  "id": "82***********************4",
+  "data": [],
+  "metadata": {}
+}
+```
+
+### Scraper Output Schema
+
+- **markdown**: Scraped content as Markdown.
+- **language**: Detected language of the content.
+- **referrer**: Referrer URL, if applicable.
+- **title**: Title of the scraped page.
+- **scrapeId**: Unique identifier for the scrape.
+- **sourceURL**: URL from which content was scraped.
+- **url**: Resolved URL of the resource.
+- **statusCode**: HTTP status code of the scrape.
+
+**Example:**
+```json
+{
+  "markdown": "# Page content...",
+  "language": "en",
+  "referrer": "",
+  "title": "Example Page",
+  "scrapeId": "uuid-here",
+  "sourceURL": "https://example.com/page",
+  "url": "https://example.com/page",
+  "statusCode": 200
+}
+```
 
 ### Map URL Configuration
 | **Parameter**         | **Description**                                                         | **Example Value**                 |

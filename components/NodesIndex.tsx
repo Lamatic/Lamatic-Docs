@@ -1,7 +1,14 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
 import Link from "next/link";
-import { ArrowRightIcon,BotMessageSquare } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
+
+type PageWithMeta = Page & {
+  frontMatter?: { type?: string; order?: number; title?: string; description?: string };
+  route?: string;
+  name?: string;
+  children?: PageWithMeta[];
+};
 
 const SECTION_DESCRIPTIONS: Record<string, string> = {
   AI: "AI nodes use machine learning models to process and analyze data, allowing for tasks such as sentiment analysis, text classification, or content generation.",
@@ -14,10 +21,10 @@ const SECTION_DESCRIPTIONS: Record<string, string> = {
 const SECTION_ORDER = ["AI", "Apps", "Data", "Logics"];
 
 // --- Helper to flatten all pages recursively ---
-function flattenPages(pages) {
-  let result = [];
+function flattenPages(pages: PageWithMeta[]): PageWithMeta[] {
+  let result: PageWithMeta[] = [];
   for (const page of pages) {
-    if (page.children) {
+    if (page.children?.length) {
       result = result.concat(flattenPages(page.children));
     } else {
       result.push(page);
@@ -27,14 +34,25 @@ function flattenPages(pages) {
 }
 
 export const NodesIndex = () => {
-  // Get all pages under /docs/nodes (including subfolders)
-  const allPages = getPagesUnderRoute("/docs/nodes");
-  const pages = flattenPages(allPages).filter(
+  // Get all pages under /docs/nodes (AI, Data, Logics — exclude Apps)
+  const nodesPages = getPagesUnderRoute("/docs/nodes");
+  const flattenedNodes = flattenPages(nodesPages).filter(
     (page) => page.route !== "/nodes" && page.route !== "/docs/nodes"
   );
 
-  // Group by type/category
-  const groupedPages = pages.reduce((acc, page) => {
+  // Apps section: fetch from integrations/apps-data-sources
+  const appsDataSourcesPages = getPagesUnderRoute(
+    "/integrations/apps-data-sources"
+  );
+  const appsPages = flattenPages(appsDataSourcesPages).filter(
+    (page) =>
+      page.route !== "/integrations/apps-data-sources" &&
+      page.route !== "/pages/integrations/apps-data-sources" &&
+      page.route?.includes("/integrations/apps-data-sources/")
+  );
+
+  // Group node pages by type (AI, Data, Logics only — no Apps from nodes)
+  const groupedPages = flattenedNodes.reduce((acc, page) => {
     let type = page.frontMatter?.type || "Other";
     if (type.toLowerCase() === "logic") type = "Logics";
     if (type.toLowerCase() === "logics") type = "Logics";
@@ -42,14 +60,24 @@ export const NodesIndex = () => {
     if (type.toLowerCase() === "apps") type = "Apps";
     if (type.toLowerCase() === "ai") type = "AI";
     if (type.toLowerCase() === "data") type = "Data";
+    // Skip Apps here; we use integration pages for Apps
+    if (type === "Apps") return acc;
     if (!acc[type]) acc[type] = [];
     acc[type].push(page);
     return acc;
-  }, {});
+  }, {} as Record<string, PageWithMeta[]>);
+
+  // Set Apps category from integrations/apps-data-sources
+  groupedPages["Apps"] = appsPages;
 
   // Sort within each category
   Object.keys(groupedPages).forEach((type) => {
     groupedPages[type].sort((a, b) => {
+      if (type === "Apps") {
+        const titleA = a.frontMatter?.title ?? a.name ?? "";
+        const titleB = b.frontMatter?.title ?? b.name ?? "";
+        return String(titleA).localeCompare(String(titleB));
+      }
       const orderA = a.frontMatter?.order ?? Infinity;
       const orderB = b.frontMatter?.order ?? Infinity;
       return orderA - orderB;

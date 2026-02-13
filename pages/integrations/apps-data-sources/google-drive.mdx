@@ -2,9 +2,11 @@
 title: Google Drive
 description: The Google Drive node in Lamatic automates fetching and synchronizing files from Google Drive and supports action-based operations for creating, editing, and managing docs and folders. It supports various file types including Google Docs, Slides, Word Documents, PDFs, and text files for vectorization and indexing in RAG flows.
 icon: /images/icons/apps/drive.png
+legacyNodeSlugs: ["google-drive-node"]
 ---
 
 import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
 
 # Google Drive Integration
 
@@ -13,6 +15,15 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 ## Overview
 
 The Google Drive node in Lamatic is a file synchronization and management component that automates fetching and synchronizing files from Google Drive and supports action-based operations for creating, editing, and managing docs and folders. As a **Batch Trigger**, it supports various file types including Google Docs, Slides, Word Documents, PDFs, and text files for vectorization and indexing in RAG flows. As an **Action** node, it lets you create Google Docs, edit files, create folders, list files, move files, and get file metadata.
+
+<NodeTypeInfo
+  batchTrigger={true}
+  eventTrigger={false}
+  action={true}
+  description="This node is a Batch Trigger node that automates file fetching and synchronization from Google Drive, and an Action node for creating, editing, and managing docs and folders."
+/>
+
+This node is a **Batch Trigger** node that streamlines file collection from Google Drive and prepares files for vectorization and indexing to enhance RAG flows. It also supports **Action** mode for direct operations on Google Drive (create doc, edit file, create folder, list files, move file, get file metadata).
 
 <Callout type="warning">
 To use the Google Drive node, you need to create a separate flow to Implement RAG. You can integrate it into this distinct flow.

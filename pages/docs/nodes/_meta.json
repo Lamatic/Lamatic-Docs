@@ -1,15 +1,6 @@
 {
-  "ai": {
-    "title": "AI",
-    "type":"doc"
-  },
-  
-  "data": {
-    "title": "Data",
-    "type":"doc"
-  },
-  "logic": {
-    "title": "Logic",
-    "type":"doc"
-  }
+  "ai": { "title": "AI", "type": "doc" },
+  "apps": { "title": "Apps", "href": "/integrations/apps-data-sources" },
+  "data": { "title": "Data", "type": "doc" },
+  "logic": { "title": "Logic", "type": "doc" }
 }

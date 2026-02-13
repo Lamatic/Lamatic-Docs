@@ -1,0 +1,18 @@
+{
+  "airtable": { "title": "Airtable", "type": "doc" },
+  "aws-s3": { "title": "AWS S3", "type": "doc" },
+  "firecrawl": { "title": "Firecrawl (Crawler / Scraper)", "type": "doc" },
+  "github": { "title": "GitHub", "type": "doc" },
+  "google-drive": { "title": "Google Drive", "type": "doc" },
+  "google-sheets": { "title": "Google Sheets", "type": "doc" },
+  "n8n": { "title": "n8n", "type": "doc" },
+  "notion": { "title": "Notion", "type": "doc" },
+  "onedrive": { "title": "OneDrive", "type": "doc" },
+  "postgres": { "title": "PostgreSQL", "type": "doc" },
+  "sharepoint": { "title": "SharePoint", "type": "doc" },
+  "slack": { "title": "Slack", "type": "doc" },
+  "teams": { "title": "Microsoft Teams", "type": "doc" },
+  "twilio": { "title": "Twilio", "type": "doc" },
+  "webflow": { "title": "Webflow", "type": "doc" },
+  "websearch": { "title": "Web Search", "type": "doc" }
+}

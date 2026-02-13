@@ -29,12 +29,18 @@ To use the AWS S3 node, you need to create a separate flow to Implement RAG. You
 
 - **Batch Trigger**: Automates file fetching and synchronization on a schedule or in real-time using S3 event notifications.
 - **File Type Support**: Handles text files, PDFs, Word Documents, and other compatible formats.
+- **Scheduled Processing**: Supports automated sync schedules with configurable intervals for regular file updates.
+- **Selective Filtering**: Use glob patterns to filter specific file types and paths for targeted file processing.
+- **Multiple Sync Modes**: Supports both incremental (new/updated files only) and full-refresh (all files) synchronization modes.
+- **Scalable Processing**: Scales efficiently with growing data volumes and large S3 buckets.
 
 ### ✅ Benefits
 
-- Streamlines file collection from Amazon S3 buckets.
-- Prepares files for vectorization and indexing to enhance RAG flows.
-- Scales efficiently with growing data volumes.
+- **Streamlined File Collection**: Automates the process of collecting files from Amazon S3 buckets, reducing manual effort and ensuring consistency.
+- **RAG Flow Preparation**: Prepares files for vectorization and indexing to enhance Retrieval-Augmented Generation workflows.
+- **Scalable Architecture**: Scales efficiently with growing data volumes and large S3 repositories.
+- **Flexible Configuration**: Supports various file types and configurable processing strategies.
+- **Cost-Effective**: Leverages AWS S3's cost-effective storage for large-scale document management.
 
 ---
 
@@ -161,11 +167,21 @@ If the connection fails, whitelist the following IPs: [https://www.cloudflare.co
       <br/>
       For more information on managing your access keys, please refer to the official [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html).
 
-### Step 2: Configure Node in Lamatic
+### Step 2: Configure S3 Credentials
+
+Use the following format to set up your credentials:
+
+| **Key Name**          | **Description**                                     | **Example Value**           |
+| --------------------- | --------------------------------------------------- | --------------------------- |
+| **Credential Name**   | Name to identify this set of credentials            | `my-s3-creds`               |
+| **AWS Access Key**    | AWS access key ID for authentication                | `AKIAIOSFODNN7EXAMPLE`      |
+| **AWS Secret Key**    | AWS secret access key for authentication            | `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` |
+
+### Step 3: Set Up Lamatic Flow
 
 1. Add the S3 node to your flow.
 2. Provide necessary credentials and bucket details.
-3. Configure sync settings and schedule.
+3. Configure sync settings, schedule, and file filters.
 
 ---
 
@@ -262,11 +278,23 @@ If the connection fails, whitelist the following IPs: [https://www.cloudflare.co
 
 ## Output
 
+### Batch Trigger Output
+
 | **Field**          | **Type** | **Additional Info**                                                                                |
 | ------------------ | -------- | -------------------------------------------------------------------------------------------------- |
-| **`document_key`** | `String` | Document Key                                                                                       |
-| **`content`**      | `String` | Content                                                                                            |
-| **`document_url`** | `String` | Use the `document_url` to extract data from the file node if your file contains unstructured data. |
+| **`document_key`** | `String` | Document key (filename).                                                                           |
+| **`content`**      | `String` | Extracted text content from the file.                                                             |
+| **`document_url`** | `String` | S3 URL of the processed file. Use `document_url` to extract data if your file contains unstructured data. |
+
+### Example Output
+
+```json
+{
+  "document_key": "example.pdf",
+  "content": "Extracted text content from the S3 file",
+  "document_url": "s3://bucket-name/example.pdf"
+}
+```
 
 ## Low-Code Example
 
@@ -297,6 +325,9 @@ values:
 | **Bucket Not Found**       | Confirm bucket name and region configuration.       |
 | **Sync Not Working**       | Check sync schedule settings and IAM permissions.   |
 | **File Types Unsupported** | Verify file formats are among supported types.      |
+| **Permission Denied**      | Ensure IAM policy includes required S3 permissions.  |
+| **Network Connectivity** | Check network access and firewall settings.            |
+| **Large File Issues**     | Verify file size limits and parsing strategy.         |
 
 ### Debugging
 
@@ -305,3 +336,37 @@ values:
 - Test bucket accessibility using AWS CLI or console.
 - Check Lamatic Flow logs for detailed error information.
 - If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+
+### Best Practices
+
+- Use `incremental` sync mode for better performance.
+- Implement specific glob patterns to avoid processing unnecessary files.
+- Schedule syncs during off-peak hours to minimize impact.
+- Use appropriate parsing strategies for different file types.
+- Regularly monitor sync logs for any issues.
+- Set appropriate `days_to_sync_if_history_is_full` to limit historical data.
+- Test with sample files before processing large buckets.
+- Ensure proper IAM permissions with least privilege principle.
+
+## Example Use Cases
+
+### Document Intelligence Workflows
+
+- **Business Documents**: Sync reports, contracts, and spreadsheets from S3 for automated processing.
+- **Data Archives**: Index historical documents and data files stored in S3.
+- **Compliance Documents**: Process audit trails and compliance-related content.
+- **Backup Files**: Automate processing of backup documents and files.
+
+### RAG Applications
+
+- **Semantic Search**: Enable natural language search across S3 documents.
+- **Question Answering**: Build AI assistants that can answer questions about stored documents.
+- **Document Summarization**: Automatically summarize lengthy reports and documents.
+- **Content Discovery**: Help users find relevant information across S3 repositories.
+
+## Additional Resources
+
+- [AWS S3 Documentation](https://docs.aws.amazon.com/s3/)
+- [AWS IAM Documentation](https://docs.aws.amazon.com/iam/)
+- [AWS CLI Setup Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [Cron Expression Guide](https://crontab.guru/)

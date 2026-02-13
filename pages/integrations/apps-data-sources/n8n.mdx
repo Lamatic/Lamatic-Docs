@@ -149,28 +149,52 @@ Ensure you have proper permissions to install community nodes in your N8N instan
 
 ## Low-Code Examples
 
-```js
-// Trigger Lamatic from N8N 
-triggerNode:
-  nodeId: triggerNode_1
-  nodeType: n8nTriggerNode
-  nodeName: N8N Trigger
-  values:
-    advance_schema: '{}'
-    credentials: your credential name
-    workflowId: your n8n workflow id which is linked to this node
+### Trigger Lamatic from N8N
 
-// Trigger N8N from Lamatic
+```yaml
+nodes:
+  - nodeId: triggerNode_1
+    nodeType: n8nTriggerNode
+    nodeName: N8N Trigger
+    values:
+      advance_schema: '{}'
+      credentials: your credential name
+      workflowId: your n8n workflow id which is linked to this node
+```
+
+### Trigger N8N from Lamatic
+
+```yaml
 nodes:
   - nodeId: n8nNode_716
     nodeType: n8nNode
     nodeName: N8N
     values:
       credentials: your credential name
-      workflowId:  your n8n workflow id which is linked to this node
+      workflowId: your n8n workflow id which is linked to this node
       webhookPath: Auto Fetched Non Configurable Webhook Path
     needs:
       - triggerNode_1
+```
+
+## Output Schema
+
+### N8N to Lamatic Trigger Output
+
+When N8N triggers a Lamatic flow, the output contains:
+
+```json
+{
+  "success": true,
+  "workflowId": "workflow-123",
+  "data": {
+    "input": "Data from N8N workflow",
+    "metadata": {
+      "source": "n8n",
+      "timestamp": "2024-01-01T00:00:00Z"
+    }
+  }
+}
 ```
 
 ## Troubleshooting

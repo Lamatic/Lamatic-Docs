@@ -25,6 +25,8 @@ This integration connects to your organization's SharePoint instance to sync doc
 - **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats
 - **Scheduled Processing**: Supports automated sync schedules with cron expressions
 - **Selective Filtering**: Use glob patterns to filter specific file types and paths
+- **Multiple Sync Modes**: Supports both incremental (new/modified files only) and full-refresh (all files) synchronization modes
+- **Search Scope Control**: Configurable search scope including accessible drives, shared items, or all files
 
 ### ✅ Benefits
 
@@ -55,6 +57,7 @@ Before setting up the SharePoint integration, ensure you have:
 - Appropriate permissions to access SharePoint sites and folders
 - Your organization's Tenant ID from Microsoft Entra Admin Center
 - Understanding of SharePoint site structure and file organization
+- **API Permissions**: Proper SharePoint API permissions for accessing selected sites and folders
 
 ## Setup
 
@@ -166,6 +169,57 @@ globs: "**/*", "!**/draft/**"
 - **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to
 - **`SHARED_ITEMS`**: Files shared with you by others
 - **`ALL`**: All accessible files (recommended)
+
+## Low-Code Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: sharepointBusinessNode
+  nodeName: SharePoint Business
+  values:
+    credentials: Microsoft 365
+    site_url: https://company.sharepoint.com/sites/documents
+    folder_path: .
+    globs: ["**/*.pdf", "**/*.docx"]
+    sync_mode: incremental
+    sync_schedule: "0 2 * * *"
+    search_scope: ALL
+    parsing_strategy: fast
+    days_to_sync_if_history_full: 30
+    start_date: "2024-01-01T00:00:00.000000Z"
+```
+
+## Output Schema
+
+### Batch Trigger Output
+
+- **document_key**: String identifier for the document (filename)
+- **content**: String containing the extracted text content from the document
+- **metadata**: Additional information about the document
+  - `file_type`: Type of the processed file
+  - `file_size`: Size of the file in bytes
+  - `last_modified`: Timestamp of last modification
+  - `site_url`: URL of the SharePoint site
+  - `folder_path`: Path within the site
+  - `parsing_strategy`: Strategy used for content extraction
+
+### Example Output
+
+```json
+{
+  "document_key": "document_name.pdf",
+  "content": "Extracted text content from the SharePoint document",
+  "metadata": {
+    "file_type": "pdf",
+    "file_size": 1024000,
+    "last_modified": "2024-01-01T00:00:00.000Z",
+    "site_url": "https://company.sharepoint.com/sites/documents",
+    "folder_path": "./TeamDocs",
+    "parsing_strategy": "fast"
+  }
+}
+```
 
 ## Usage Examples
 

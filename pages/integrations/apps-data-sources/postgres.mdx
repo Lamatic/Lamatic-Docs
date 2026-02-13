@@ -67,6 +67,17 @@ Before setting up the PostgreSQL integration, ensure you have:
 
 ### Step 1: Set Up PostgreSQL Credentials
 
+Please refer to the [Postgres Integration documentation](/integrations/apps-data-sources/postgres) for setup. Use the following format to set up your credentials:
+
+| **Key Name**        | **Description**                          | **Example Value**               |
+| ------------------- | ---------------------------------------- | ------------------------------- |
+| **Credential Name** | Name to identify this set of credentials | `my-postgres-creds`             |
+| **Host**            | PostgreSQL database host address         | `localhost` or `db.example.com` |
+| **Port**            | PostgreSQL database port number          | `5432`                          |
+| **Database**        | Name of the PostgreSQL database          | `myapp_production`              |
+| **Username**        | PostgreSQL database username             | `db_user`                       |
+| **Password**        | PostgreSQL database password             | `secure_password`               |
+
 Follow the steps below to properly configure a PostgreSQL connector with the required read-only access.
 
 #### Create a dedicated read-only Postgres user
@@ -175,6 +186,16 @@ sync_schedule: "0 9 * * 1-5"
 sync_schedule: "*/30 * * * *"
 ```
 
+### Action Configuration
+
+Configure the Postgres node as an action by selecting the desired action and providing the necessary parameters.
+
+| **Parameter**   | **Description**                                                | **Required** | **Example**                    |
+|-----------------|----------------------------------------------------------------|--------------|--------------------------------|
+| **Credentials** | Connection settings for your PostgreSQL database               | ✅           | `PostgreSQL Connection`        |
+| **Action**      | Action to perform (e.g., execute a query)                     | ✅           | `Run Query`                    |
+| **Query**       | SQL statement to be executed                                  | ✅           | `SELECT * FROM users;`         |
+
 ### Database Configuration
 
 #### Schema and Table Selection
@@ -226,6 +247,57 @@ sync_mode: "full-refresh" # Full refresh for materialized views
 sync_schedule: "0 6 * * *" # Daily at 6 AM
 ```
 
+### Low-Code Example (Batch Trigger)
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: postgresNode
+  nodeName: PostgreSQL
+  values:
+    credentials: PostgreSQL Connection
+    schema: public
+    table: users
+    sync_mode: incremental
+    sync_schedule: "0 0 * * *"
+```
+
+## Output Schema
+
+### Batch Trigger Output
+
+- **table_name**: String name of the processed table or view
+- **schema_name**: String name of the database schema
+- **data**: Array of objects containing row data
+- **metadata**: Additional sync information
+  - `total_rows`: Integer count of processed rows
+  - `sync_mode`: String indicating sync mode used
+  - `last_sync`: ISO timestamp of sync operation
+  - `columns`: Array of column names in the table
+  - `row_count`: Integer total number of rows in table
+
+### Example Output
+
+```json
+{
+  "table_name": "users",
+  "schema_name": "public",
+  "data": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "created_at": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "metadata": {
+    "total_rows": 2,
+    "sync_mode": "incremental",
+    "last_sync": "2024-01-01T12:00:00Z"
+  }
+}
+```
+
 ## Troubleshooting
 
 ### Common Issues
@@ -236,7 +308,9 @@ sync_schedule: "0 6 * * *" # Daily at 6 AM
 | **Table Not Found**     | Check schema and table names, ensure they exist in the database              |
 | **Permission Denied**   | Ensure your database user has appropriate read permissions                   |
 | **Sync Not Scheduled**  | Check cron expression format and ensure sync schedule is properly configured |
-| **Schema Access Error** | Verify you have access to the specified database schema                      |
+| **Schema Access Error**     | Verify you have access to the specified database schema                      |
+| **Large Table Performance** | Use incremental sync mode and consider materialized views for large datasets |
+| **Network Connectivity**    | Check firewall settings and whitelist Cloudflare IPs if connection fails     |
 
 ### Debugging Steps
 
@@ -255,6 +329,8 @@ sync_schedule: "0 6 * * *" # Daily at 6 AM
 - Implement appropriate database indexes for better sync performance
 - Regularly monitor sync logs for any issues
 - Consider using read replicas for sync operations to avoid impacting production
+- Test sync configurations with small datasets before full deployment
+- Implement proper error handling for database connection failures
 
 ## Example Use Cases
 
@@ -272,7 +348,8 @@ sync_schedule: "0 6 * * *" # Daily at 6 AM
 - **Data Summarization**: Automatically summarize large datasets and reports
 - **Content Discovery**: Help users find relevant information across database tables
 
-## Related Resources
+## Additional Resources
 
 - [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 - [Cron Expression Guide](https://crontab.guru/)
+- [PostgreSQL Connection Troubleshooting](https://www.postgresql.org/docs/current/runtime-config-connection.html)

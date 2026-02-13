@@ -199,6 +199,53 @@ nodes:
       - triggerNode
 ```
 
+## Output Schema
+
+### Event Trigger Output
+
+When triggered by a Notion event, the integration outputs data in this format:
+
+```json
+{
+  "page_id": "page_id_here",
+  "event_type": "page_updated",
+  "data": {
+    "title": "Page Title",
+    "content": "Page content",
+    "properties": {
+      "Status": "Active"
+    }
+  },
+  "metadata": {
+    "triggered_at": "2024-01-01T12:00:00Z",
+    "integration_id": "integration_123"
+  }
+}
+```
+
+### Action Node Output
+
+Output depends on the action performed:
+
+**New Page:**
+```json
+{
+  "id": "page_id_here",
+  "title": "New Page Title",
+  "created_time": "2024-01-01T12:00:00Z",
+  "last_edited_time": "2024-01-01T12:00:00Z"
+}
+```
+
+**Add Content to Page:**
+```json
+{
+  "page_id": "page_id_here",
+  "content_added": true,
+  "updated_time": "2024-01-01T12:00:00Z"
+}
+```
+
 ## Troubleshooting
 
 ### Common Issues

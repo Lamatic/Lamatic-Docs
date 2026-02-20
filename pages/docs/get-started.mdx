@@ -1,108 +1,67 @@
----
-description: Quickly get your first project off the ground with Lamatic.
----
-
 # Quickstart Guide
 
-This guide helps you go from **zero → deployed Lamatic project** and test it end-to-end.
+Welcome to Lamatic.ai! This guide will take you from a brand-new account to your first working AI Flow in under 10 minutes. 
 
-## What you’ll learn
+## 📋 What You'll Need (Prerequisites)
+Before we begin, ensure you have:
+1. **A Lamatic.ai Account:** [Sign up here](https://lamatic.ai/) if you haven't already.
+2. **Basic API Knowledge:** Helpful, but not strictly required for this visual builder.
 
-- How to create a project and build your first Flow
-- How to test a Flow in Studio
-- How to deploy so your Flow is accessible from integrations (API / widget / apps)
+---
 
-## Prerequisites
+## Step-by-Step Guide
 
-- A Lamatic account: [lamatic.ai](https://lamatic.ai/)
-- Basic understanding: a **Flow** is a set of connected **Nodes** that run in order
-- Optional (recommended): pick a Template to move faster
+### Step 1: Create Your First Project
+Your project is the workspace where your AI Agents and Flows live.
+1. Log into the Lamatic.ai Studio.
+2. Click the **+ New Project** button on your dashboard.
+3. Give your project a recognizable name (e.g., "Customer Support Bot") and click **Create**.
 
-<Callout type="info">
-If you’re brand new, start with a template first. You can always customize it later.
-</Callout>
+*(Insert Screenshot: New Project Modal)*
 
-<div
-  style={{
-    position: "relative",
-    paddingBottom: "calc(60.88541666666667% + 41px)",
-    height: 0,
-    width: "100%",
-  }}
->
-  <iframe
-    src="https://demo.arcade.software/KQ2XsuxLdpSK7r00BJEz?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true"
-    title="Lamatic.ai | Studio"
-    loading="lazy"
-    allowFullScreen
-    allow="clipboard-write"
-    style={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      colorScheme: "light",
-    }}
-  />
-</div>
+### Step 2: Choose a Template or Start Blank
+Templates are pre-built configurations designed for specific use cases.
+1. Navigate to the **Flows** tab on the left sidebar.
+2. Click **Create Flow**.
+3. For this guide, select the **"Basic Chat Assistant"** template to get a head start. 
 
-<Steps>
-The quickest way to get started is using a **pre-built template**, then editing it to fit your use case.
+*(Insert Screenshot: Template Selection Screen)*
 
-### Create (or pick) a Project
+### Step 3: Configure Your AI Node
+Nodes are the building blocks of your Flow. The LLM Node is the "brain."
+1. Click on the **Generate Text (LLM)** node in your visual editor.
+2. In the right-hand properties panel, select your preferred model (e.g., GPT-4o or Claude 3).
+3. Review the default system prompt and adjust it if necessary.
 
-1. Open Studio (you’ll land on your dashboard).
-2. Create a new Project (or open an existing one).
+*(Insert Screenshot: Node Configuration Panel)*
 
-> Tip: Each Project is isolated — it has its own settings, credentials, and deployments.
+### Step 4: Test Your Flow in the Studio
+Always test your logic before deploying it to production.
+1. Click the **Test** or **Run** button in the top right corner.
+2. Enter a sample input in the chat interface (e.g., "Hello, what can you do?").
+3. Verify that the AI responds correctly based on your configuration.
 
-### Select a Template
+### Step 5: Get Your API Keys
+To connect this Flow to your actual app or website, you need your keys.
+1. Go to **Settings > API Keys**.
+2. Click **Generate New Key**.
+3. **Important:** Copy this key immediately and store it securely. You will not be able to see it again!
 
-1. Go to **Templates**.
-2. Pick a template that matches your goal (API, chatbot, RAG, automation).
-3. Add it to your Project.
+*(Insert Screenshot: API Key Generation)*
 
-If you prefer starting from scratch, you can create a new Flow directly from the **Flows** section.
+---
 
-### Configure the Nodes (make it run)
+## 🛑 Troubleshooting Common Mistakes
 
-1. Open the Flow in the **Editor**.
-2. Click each Node and fill required fields (you’ll usually configure):
-   - Model/provider credentials (for AI Nodes)
-   - App connections (for Apps Nodes like Slack / Postgres)
-   - Inputs and payload fields (what your Flow consumes)
+* **"Invalid API Key" Error:** Double-check that you copied the entire key and haven't accidentally included any spaces at the beginning or end.
+* **Flow isn't responding:** Ensure all your nodes are properly connected in the visual editor. An unconnected node will break the chain.
+* **Model access denied:** Make sure your billing is set up if you are using premium models that aren't included in the free tier.
 
-### Test the Flow
+---
 
-1. Click **Test** in the Editor.
-2. Provide sample inputs (if your trigger expects them).
-3. Verify outputs at the final node (Response) and check logs if anything fails.
+## 🚀 What's Next?
 
-### Deploy the Project
-
-Deployment makes your latest Flow changes available for integrations.
-
-1. Click **Deploy**.
-2. Wait for deployment to finish.
-3. Copy the integration details from Studio (endpoint / keys / ids) as needed.
-
-</Steps>
-
-## Common beginner mistakes (and how to avoid them)
-
-- **Saving the flow**: Always save your Flow before deploying, or your latest changes won’t take effect.
-- **Forgetting to deploy**: If you updated keys, variables, or a Flow, deploy so changes take effect.
-- **Missing credentials**: Many nodes require a model/API connection. Check the node config panel for required fields.
-- **Payload mismatch**: Ensure your input payload matches what your trigger and nodes expect (field names + types).
-
-## What’s next?
-
-- Learn the core building blocks:
-  - [Flows](/docs/flows)
-  - [Nodes](/docs/nodes)
-  - [Agents](/docs/agents)
-- If you’re integrating into an app:
-  - [Authentication with API Keys](/docs/studio-keys)
-- Explore hands-on tutorials:
-  - [Guides](/guides)
+Now that you have a basic flow running, deepen your knowledge:
+* [Understand Core Concepts: Agents vs. Flows](/docs/agents)
+* [Learn how to add custom data with RAG](/docs/concepts/rag)
+* [Explore all available Integrations](/docs/integrations)

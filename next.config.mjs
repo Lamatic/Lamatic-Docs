@@ -337,7 +337,6 @@ const permanentRedirects = [
 ["/docs/vector stores/mapping","/docs/context/vectordb"],
 ["/docs/vector stores/Vector Stores","/docs/context/vectordb"],
 ["/docs/workflows/nodes/Logic/api","/docs/flows/nodes"],
-["/docs/playground/GraphiQL","/docs/ide/graphql_ide"],
 ["/docs/workflows/Nodes/Flow/code","/docs/flows/nodes"],
 ["/docs/workflows/nodes/Logic/search-web","/docs/integrations/websearch"],
 ["/docs/workflows/Concepts/prompts","/docs/ide/prompt-ide"],
@@ -643,7 +642,11 @@ const permanentRedirects = [
 ["/Co-Founder","/about-us"],
 ["/templates/agentkits/embed/agent-kit-embedded-chat","/agentkits"],
 ["/comparison/langflow","/compare/langflow"],
-["/comparison/n8n","/compare/n8n"]
+["/comparison/n8n","/compare/n8n"],
+  ["/docs/sdk/next","/docs/api-integration/sdk/next"],
+["/docs/deployment","/docs/deployments"],
+["/comparison/dify","/compare/dify"],
+["/docs/playground/GraphiQL","/docs/interface/graphql"]
 
 
 ];

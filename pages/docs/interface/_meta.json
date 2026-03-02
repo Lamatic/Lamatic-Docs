@@ -1,18 +1,5 @@
 {
-    "graphql": {
-        "title": "GraphQL",
-        "type": "doc"
-    },
-    "mailhook": {
-        "title": "Mailhook",
-        "type": "doc"
-    },
-    "webhooks": {
-        "title": "Webhooks",
-        "type": "doc"
-    },
-    "widgets": {
-        "title": "Widgets",
-        "type": "doc"
-    }
+  "graphql": "REST / GraphQL Reference",
+  "webhooks": "Webhooks",
+  "widgets": "Widgets (Chat, Search)"
 }

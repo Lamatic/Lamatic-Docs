@@ -1,0 +1,71 @@
+---
+title: Error Codes
+description: Reference for error codes, HTTP status codes, and how to fix common API and Flow failures.
+---
+
+# Error Reference
+
+Use this page to diagnose failed requests and Flow runs. When the API or a Flow returns an error, check the HTTP status code and the error body for the code and message below.
+
+## HTTP status codes
+
+| Code | Meaning | What to do |
+|------|--------|------------|
+| **200** | Success (check `data` / `errors` in body) | GraphQL can return 200 with partial errors; inspect `response.data` and `response.errors`. |
+| **400** | Bad Request — invalid query, variables, or payload | Ensure the query is valid GraphQL and variables match the schema. Check payload shape against your Flow's input schema. |
+| **401** | Unauthorized — missing or invalid API key | Verify `Authorization: Bearer <YOUR_API_KEY>` and that the key is active in Studio → Settings → API Keys. Redeploy after creating a new key if required. |
+| **403** | Forbidden — no permission for this project or Flow | Confirm `x-project-id` matches the project that owns the Flow and that your key has access. |
+| **404** | Not found — project, Flow, or endpoint missing | Confirm the project URL (endpoint), project ID, and workflow/Flow ID. Ensure the Flow is deployed. |
+| **429** | Too many requests — rate limit exceeded | See [Limits & Quotas](/docs/limits). Implement backoff and respect limits. |
+| **500** | Server error | Retry; if it persists, check [Platform Status](https://status.lamatic.ai) and contact support. |
+
+## Common errors and fixes
+
+### Authentication (401)
+
+- **Cause:** Wrong or missing API key, or key not yet active.
+- **Fix:** Use the exact key from Studio → Settings → API Keys. Format: `Authorization: Bearer <YOUR_API_KEY>`. After creating a new key, redeploy the project if your docs require it.
+
+### Project / Flow not found (404)
+
+- **Cause:** Wrong endpoint, project ID, or workflow/Flow ID; or Flow not deployed.
+- **Fix:** Get the project URL and project ID from project settings. Get the workflow/Flow ID from the Flow's Connect or API panel. Deploy the Flow and use the ID of the deployed Flow.
+
+### Payload / variable mismatch (400 or GraphQL errors)
+
+- **Cause:** The `payload` or variables don't match the Flow's input schema (field names or types).
+- **Fix:** Open the Flow in the Editor and check the trigger/input node schema. Align your request payload with that schema.
+
+### Rate limit exceeded (429)
+
+- **Cause:** Too many requests in a short period.
+- **Fix:** See [Limits & Quotas](/docs/limits). Add retries with exponential backoff and respect the documented limits.
+
+## GraphQL errors in the response body
+
+When the HTTP status is 200 but the response contains an `errors` array, the error shape is typically:
+
+```json
+{
+  "errors": [
+    {
+      "message": "Human-readable message",
+      "extensions": { "code": "ERROR_CODE" }
+    }
+  ]
+}
+```
+
+Document specific `ERROR_CODE` values here as you define them in your API. For now, use the `message` and the HTTP status code table above to narrow down the cause.
+
+## Flow execution failures
+
+If the request succeeds but the Flow run fails (e.g. a node errors):
+
+- Check **Logs** in Studio for the run's trace and the failing node.
+- Use the **Feedback API** or **Reports** if you're capturing run outcomes.
+- See the node's documentation for required config (e.g. model credentials, input shape).
+
+---
+
+*This reference will be expanded as we add stable error codes. If you hit an error not listed here, check [Limits & Quotas](/docs/limits) and [Support](https://support.lamatic.ai) or community Slack.*

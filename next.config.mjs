@@ -157,6 +157,8 @@ const nonPermanentRedirects = [
   ],
   ["/gh-discussions", "https://github.com/Lamatic/docs/discussions"],
   ["/docs/analytics", "/docs/analytics/overview"],
+  ["/docs/all-nodes", "/docs/nodes"],
+  ["/docs/all-integrations", "/integrations"],
   [
     "/docs/nodes/data-nodes/search-node",
     "https://lamatic.ai/docs/interface/Widgets/search",

@@ -3,66 +3,36 @@
     "type": "separator",
     "title": "Switcher"
   },
+
   "index": {
-    "title": "Overview",
+    "title": "What is Lamatic?",
     "type": "doc"
   },
-  "why-lamatic": {
-    "title": "Why Lamatic.ai",
-    "type": "doc"
-  },
-  "demo": "Request a Demo",
   "get-started": {
-    "title": "Quickstart",
+    "title": "Quickstart (5 min)",
+    "type": "doc"
+  },
+  "concepts": {
+    "title": "Core Concepts",
     "type": "doc"
   },
   "glossary": {
     "title": "Glossary",
     "type": "doc"
   },
-  "ai-middleware": {
-    "title": "AI Middleware",
-    "type": "doc"
-  },
-
-  "-- Studio": {
-    "type": "separator",
-    "title": "🎨 Studio"
-  },
-  "studio-overview": "Overview",
-  "studio-project": "Project",
-  "studio-tags": "Tags",
-  "studio-keys": "Keys",
-  "studio-role-based-access": "Role-Based Access",
-  "studio-variables-and-secrets": "Variables & Secrets",
+  "why-lamatic": { "title": "Why Lamatic", "type": "doc", "display": "hidden" },
+  "demo": { "title": "Request a Demo", "type": "doc", "display": "hidden" },
 
   "-- Build": {
     "type": "separator",
-    "title": "🛠️ Build"
+    "title": "BUILD"
   },
-  "Changelog": {
-    "title": "Changelog",
-    "type": "page"
-  },
-  "blog": {
-    "title": "Blog",
-    "type": "page"
-  },
-
   "flows": {
     "title": "Flows",
     "type": "doc"
   },
   "nodes": {
     "title": "Nodes",
-    "type": "doc"
-  },
-  "node-assistant": {
-    "title": "Node Assistant",
-    "type": "doc"
-  },
-  "ide": {
-    "title": "IDE",
     "type": "doc"
   },
   "agents": {
@@ -77,147 +47,159 @@
     "title": "Data",
     "type": "doc"
   },
-  "interface": {
-    "title": "Interface",
+  "ide": {
+    "title": "IDE",
     "type": "doc"
   },
-  "mcp-tools": {
-    "title": "MCP/Tools",
+  "node-assistant": {
+    "title": "Node Assistant",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "mcp-tools": { "title": "MCP/Tools", "type": "doc", "display": "hidden" },
+  "tests": { "title": "Test", "type": "doc", "display": "hidden" },
+  "templates": { "title": "Templates", "type": "doc", "display": "hidden" },
+  "vibe-build": { "title": "Vibe Build", "type": "doc", "display": "hidden" },
+
+  "-- Deploy": {
+    "type": "separator",
+    "title": "DEPLOY"
+  },
+  "deployments": {
+    "title": "Deployments",
     "type": "doc"
   },
-  "tests": {
-    "title": "Test",
+  "environment": {
+    "title": "Environment & Variables",
     "type": "doc"
   },
   "version-control": {
     "title": "Version Control",
     "type": "doc"
   },
-  "environment": {
-    "title": "Environment",
-    "type": "doc"
-  },
-  "templates": {
-    "title": "Templates",
-    "type": "doc"
-  },
- 
-  "vibe-build": {
-    "title": "Vibe Build",
-    "type": "doc"
-  },
- 
-
-  "-- deploy": {
-    "type": "separator",
-    "title": "🚀 Deploy"
-  },
-  "deployments": {
-    "title": "Deployments",
-    "type": "doc"
-  },
   "jobs": {
-    "title": "Jobs",
+    "title": "Jobs & Scheduling",
+    "type": "doc"
+  },
+  "studio-variables-and-secrets": {
+    "title": "Variables & Secrets",
+    "type": "doc",
+    "display": "hidden"
+  },
+
+  "-- Integrate": {
+    "type": "separator",
+    "title": "INTEGRATE"
+  },
+  "api-overview": {
+    "title": "API Overview",
+    "type": "doc"
+  },
+  "interface": {
+    "title": "GraphQL, Webhooks & Widgets",
     "type": "doc"
   },
   "api-integration": {
-    "title": "API Integration",
+    "title": "SDK",
     "type": "doc"
   },
 
-  "-- optimize": {
+  "-- Monitor": {
     "type": "separator",
-    "title": "🧩 Optimize"
+    "title": "MONITOR"
   },
-
   "logs": {
     "title": "Logs",
     "type": "doc"
   },
-
   "reports": {
     "title": "Reports",
-    "type": "doc"
-  },
-  "node-logic": {
-    "title": "Node Logic",
     "type": "doc"
   },
   "feedback-api": {
     "title": "Feedback API",
     "type": "doc"
   },
+  "node-logic": { "title": "Node Logic", "type": "doc", "display": "hidden" },
 
- 
-
-  "-- references": {
+  "-- Reference": {
     "type": "separator",
-    "title": "References"
+    "title": "REFERENCE"
   },
-
-  "api-ref": {
-    "title": "GraphQL API ↗",
-    "href": "https://graphql.org/learn/",
-    "newWindow": true
+  "nodes-ref": {
+    "title": "All Nodes (A–Z)",
+    "href": "/docs/nodes",
+    "newWindow": false
   },
-  "Langfuse": {
-    "title": "Langfuse ↗",
-    "href": "https://langfuse.com/docs",
-    "newWindow": true
+  "integrations-ref": {
+    "title": "All Integrations (A–Z)",
+    "href": "/integrations",
+    "newWindow": false
   },
+  "config-schema": {
+    "title": "Config Schema",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "error-reference": {
+    "title": "Error Codes",
+    "type": "doc"
+  },
+  "all-nodes": { "title": "All Nodes (A–Z)", "type": "doc", "display": "hidden" },
+  "all-integrations": { "title": "All Integrations (A–Z)", "type": "doc", "display": "hidden" },
   "cloudflare": {
     "title": "Cloudflare Workers ↗",
     "href": "https://workers.cloudflare.com/",
-    "newWindow": true
+    "newWindow": true,
+    "display": "hidden"
   },
   "Posthog": {
     "title": "PostHog ↗",
     "href": "https://posthog.com/docs",
-    "newWindow": true
+    "newWindow": true,
+    "display": "hidden"
   },
   "weaviate-ref": {
     "title": "Weaviate Reference ↗",
     "href": "https://weaviate.io/developers/weaviate/introduction",
-    "newWindow": true
+    "newWindow": true,
+    "display": "hidden"
   },
   "roadmap-ref": {
     "title": "Roadmap ↗",
     "href": "https://product.lamatic.ai/roadmap",
-    "newWindow": true
-  },
-  "-- more": {
-    "type": "separator",
-    "title": "More"
-  },
-  "concepts": {
-    "title": "Concepts",
-    "type": "doc"
-  },
-  "legal": {
-    "title": "Legal",
-    "type": "doc"
-  },
-  "partners": {
-    "title": "Lamatic.ai Partners",
-    "type": "doc"
+    "newWindow": true,
+    "display": "hidden"
   },
   "status": {
     "title": "Platform Status ↗",
     "href": "https://status.lamatic.ai",
-    "newWindow": true
+    "newWindow": true,
+    "display": "hidden"
+  },
+
+  "legal": { "title": "Legal", "type": "doc", "display": "hidden" },
+  "partners": { "title": "Partners", "type": "doc", "display": "hidden" },
+  "brandkit": { "title": "Brandkit", "type": "doc", "display": "hidden" },
+  "career": { "title": "Career", "type": "doc", "display": "hidden" },
+  "hacktoberfest": {
+    "title": "Hacktoberfest",
+    "type": "doc",
+    "display": "hidden"
   },
   "contributing": {
     "title": "Contributing",
-    "type": "doc"
+    "type": "doc",
+    "display": "hidden"
   },
   "security": {
     "title": "Security",
     "href": "https://lamatic.ai/security",
-    "type": "doc"
-  },
-  "Trash": {
-    "title": "Privacy Policy",
-    "type": "page",
+    "type": "doc",
     "display": "hidden"
-  }
+  },
+  "Trash": { "title": "Privacy Policy", "type": "page", "display": "hidden" },
+  "report-issue": { "title": "Confidential Reporting", "type": "doc", "display": "hidden" },
+  "vulnerability-disclosure": { "title": "Vulnerability Disclosure", "type": "doc", "display": "hidden" },
+  "slack": { "title": "Community and Support", "type": "doc", "display": "hidden" }
 }

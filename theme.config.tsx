@@ -68,7 +68,7 @@ const config: DocsThemeConfig = {
               { title: "Integrations", path: "/integrations", Icon: Blocks },
               { title: "Templates", path: "/templates", Icon: LayoutTemplate },
               { title: "Guides", path: "/guides", Icon: GraduationCap },
-              { title: "Company", path: "/company", Icon: Building2 },
+              // { title: "Company", path: "/company", Icon: Building2 },
               { title: "Book a demo", path: "/docs/demo", Icon: Phone },
               {
                 title: "Roadmap",

@@ -8,6 +8,7 @@ const legalLinks = [
 ];
 
 const companyLinks = [
+  { label: "Community and Support", href: "/docs/slack" },
   { label: "Partners", href: "/company/partners" },
   { label: "Brandkit", href: "/company/brandkit" },
   { label: "Career", href: "/company/career" },
@@ -57,7 +58,7 @@ export default function DocsFooter() {
         </div>
         <div className="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-800">
           <p className="text-xs text-gray-500 dark:text-neutral-500">
-            © {new Date().getFullYear()} Lamatic. Documentation for developers.
+            © {new Date().getFullYear()} Lamatic. 
           </p>
         </div>
       </div>

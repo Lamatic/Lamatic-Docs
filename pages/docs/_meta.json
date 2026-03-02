@@ -138,7 +138,8 @@
   },
   "config-schema": {
     "title": "Config Schema",
-    "type": "doc"
+    "type": "doc",
+    "display": "hidden"
   },
   "error-reference": {
     "title": "Error Codes",

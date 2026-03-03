@@ -1,6 +1,6 @@
 {
   "graphql": "REST / GraphQL Reference",
   "webhooks": "Webhooks",
-  "widgets": "Widgets (Chat, Search)",
+  "widgets": "Widgets",
   "mailhook": "Mailhook"
 }

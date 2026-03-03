@@ -91,6 +91,11 @@
     "type": "separator",
     "title": "INTEGRATE"
   },
+  
+  "flow-integration": {
+    "title": "Flow Integration",
+    "type": "doc"
+  },
   "api-overview": {
     "title": "API Overview",
     "type": "doc"

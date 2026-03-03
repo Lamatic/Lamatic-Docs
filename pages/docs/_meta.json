@@ -92,12 +92,12 @@
     "title": "INTEGRATE"
   },
   
-  "flow-integration": {
-    "title": "Flow Integration",
-    "type": "doc"
-  },
   "api-overview": {
     "title": "API Overview",
+    "type": "doc"
+  },
+  "flow-integration": {
+    "title": "Flow Integration",
     "type": "doc"
   },
   "interface": {
@@ -105,7 +105,7 @@
     "type": "doc"
   },
   "api-integration": {
-    "title": "SDK",
+    "title": "SDK & Integration Guide",
     "type": "doc"
   },
 

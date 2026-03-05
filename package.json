@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "npx next dev -p 3333",
     "dev:mac": "ulimit -n 10240 && npx next dev -p 3333",
-    "prebuild": "rm -rf .next/cache",
     "build": "npx next build",
     "postbuild": "next-sitemap && node scripts/generate-pages-sitemap.js && (if [ -z \"$VERCEL\" ]; then echo 'Removing .next/cache to resolve Nextra caching bug'; rm -rf .next/cache; fi)",
     "start": "npx next start -p 3333",

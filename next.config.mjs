@@ -4,10 +4,6 @@ import NextBundleAnalyzer from "@next/bundle-analyzer";
 const withBundleAnalyzer = NextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
-
-const isGitHubPages = process.env.GITHUB_PAGES === "true";
-const githubPagesBasePath = process.env.NEXT_PUBLIC_PAGES_BASE_PATH || "";
-
 /**
  * CSP headers
  * img-src https to allow loading images from SSO providers
@@ -39,11 +35,6 @@ const withNextra = nextra({
 });
 // next config
 const nextraConfig = withNextra({
-  ...(isGitHubPages && {
-    output: "export",
-    basePath: githubPagesBasePath,
-    assetPrefix: githubPagesBasePath ? `${githubPagesBasePath}/` : "/",
-  }),
   // assetPrefix:'/docs/',
   experimental: {
     scrollRestoration: true,
@@ -67,7 +58,6 @@ const nextraConfig = withNextra({
   },
   transpilePackages: ["react-tweet", "react-syntax-highlighter", "geist"],
   images: {
-    unoptimized: isGitHubPages,
     remotePatterns: [
       {
         protocol: "https",
@@ -78,7 +68,6 @@ const nextraConfig = withNextra({
     ],
   },
   headers() {
-    if (isGitHubPages) return [];
     return [
       {
         source: "/:path*",
@@ -132,7 +121,6 @@ const nextraConfig = withNextra({
     })),
   ],
   rewrites: async () => {
-    if (isGitHubPages) return { beforeFiles: [], fallback: [] };
     return {
       beforeFiles: rewrites.map(([source, destination]) => ({
         source,

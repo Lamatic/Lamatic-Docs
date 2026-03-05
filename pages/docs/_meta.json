@@ -91,7 +91,7 @@
     "type": "separator",
     "title": "INTEGRATE"
   },
-  
+
   "api-overview": {
     "title": "API Overview",
     "type": "doc"
@@ -150,8 +150,16 @@
     "title": "Error Codes",
     "type": "doc"
   },
-  "all-nodes": { "title": "All Nodes (A–Z)", "type": "doc", "display": "hidden" },
-  "all-integrations": { "title": "All Integrations (A–Z)", "type": "doc", "display": "hidden" },
+  "all-nodes": {
+    "title": "All Nodes",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "all-integrations": {
+    "title": "All Integrations",
+    "type": "doc",
+    "display": "hidden"
+  },
   "cloudflare": {
     "title": "Cloudflare Workers ↗",
     "href": "https://workers.cloudflare.com/",
@@ -204,7 +212,19 @@
     "display": "hidden"
   },
   "Trash": { "title": "Privacy Policy", "type": "page", "display": "hidden" },
-  "report-issue": { "title": "Confidential Reporting", "type": "doc", "display": "hidden" },
-  "vulnerability-disclosure": { "title": "Vulnerability Disclosure", "type": "doc", "display": "hidden" },
-  "slack": { "title": "Community and Support", "type": "doc", "display": "hidden" }
+  "report-issue": {
+    "title": "Confidential Reporting",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "vulnerability-disclosure": {
+    "title": "Vulnerability Disclosure",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "slack": {
+    "title": "Community and Support",
+    "type": "doc",
+    "display": "hidden"
+  }
 }

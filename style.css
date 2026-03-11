@@ -82,6 +82,11 @@
   /*  @apply bg-background text-foreground !important;*/
   /*}*/
 
+  /* Docs footer: reduce gap above footer so it sits closer to content */
+  .lamatic-docs-footer {
+    margin-top: 1.5rem !important; /* 24px - consistent top spacing */
+  }
+
   h1 {
     /* @apply tracking-tight font-mono leading-none; */
     @apply font-mono;

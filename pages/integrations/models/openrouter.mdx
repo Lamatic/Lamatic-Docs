@@ -1,0 +1,134 @@
+---
+title: OpenRouter
+description: OpenRouter is a unified gateway to many of the best commercial and open-source language models, giving you a single API to access, compare, and route across providers.
+icon: /images/icons/models/openrouter.png
+---
+
+[OpenRouter website]: https://openrouter.ai/
+[OpenRouter API keys]: https://openrouter.ai/keys
+[OpenRouter docs]: https://openrouter.ai/docs
+[OpenRouter pricing]: https://openrouter.ai/pricing
+[OpenRouter models]: https://openrouter.ai/models
+
+[Lamatic.ai Studio]: https://studio.lamatic.ai
+[Lamatic support]: https://lamatic.ai/docs/slack
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+
+
+# OpenRouter
+<IntegrationOverviw slug="openrouter" type="models" />
+
+OpenRouter is a unified gateway to many of the best commercial and open‑source language models, accessible through a single API. It lets you experiment with and deploy models from different providers using consistent authentication, request formats, and tooling.
+
+<Callout type="info">Provider Slug: `openrouter`</Callout>
+
+
+## Setup
+
+
+### Step 1: Create OpenRouter Account
+1. Visit the [OpenRouter website][OpenRouter website]
+2. Sign up for a new account or log in to your existing account
+3. Complete any required verification steps
+
+### Step 2: Generate API Key
+1. Go to the **API Keys** section in your OpenRouter dashboard
+2. Click **Create API Key** (or similar action)
+3. Give your API key a descriptive name so you can recognize it later
+4. Copy the generated API key (you won't be able to see it again)
+
+*OpenRouter API Key Configuration in Lamatic Studio*
+
+### Step 3: Configure in Lamatic
+1. Open your [Lamatic.ai Studio]
+2. Navigate to the **Models** section
+3. Click **Add** on the OpenRouter card
+4. Enter a **Credential Name** (any friendly name)
+5. Ensure **Provider** is set to `openrouter`
+6. Paste your OpenRouter **API Key** in the designated field
+7. (Optional) Add **Custom Models** using specific OpenRouter model IDs you want to expose
+8. Click **Test & Save** to validate and store your credentials
+
+## Key Features
+
+- **Unified API**: Access many top models (commercial and open-source) through a single, consistent API
+- **Model Marketplace**: Browse and compare models from multiple providers in one place
+- **Routing & Fallbacks**: Route traffic across models or configure fallbacks for better reliability
+- **Flexible Pricing**: Choose models that match your performance and budget needs
+- **Fast Experimentation**: Quickly switch models without changing your application code
+- **Developer Friendly**: Simple REST API with clear documentation and examples
+- **Observability**: Centralized view into usage, latency, and model behavior
+
+## Available Models
+
+OpenRouter gives you access to models from multiple providers (including popular commercial and open‑source options). Within Lamatic, you can:
+
+- **Use Default Models**: Select common, well-supported OpenRouter models for chat, completion, or tools
+- **Add Custom Models**: Paste specific model IDs from OpenRouter into the **Custom Models** section
+- **Mix Providers**: Choose models from different providers while keeping the same Lamatic workflow
+
+Check the [OpenRouter models][OpenRouter models] page for the latest list of available models, capabilities, and pricing.
+
+## Configuration Options
+
+- **API Key**: Your OpenRouter API key used for all requests
+- **Model Selection**: Choose which OpenRouter model IDs to expose and use from Lamatic
+- **Custom Models**: Optionally define additional model IDs for specialized use cases
+- **Custom Parameters**: Configure temperature, max_tokens, top_p, and other generation parameters
+- **Streaming**: Enable streaming responses for low-latency interactions
+- **System Prompts**: Define behavior, tone, and constraints for the model
+- **Tool / Function Calling**: Use models that support tool or function calling for structured outputs
+
+## Best Practices
+
+- **API Key Security**: Keep your OpenRouter API keys secret and never share them publicly
+- **Model Selection**: Start with stable, recommended models before experimenting with niche ones
+- **Cost Management**: Compare per‑token prices across models and monitor usage regularly
+- **Latency Considerations**: Choose models and regions that minimize latency for your users
+- **Rate Limiting**: Respect OpenRouter's rate limits and implement retry with exponential backoff
+- **Prompt Design**: Standardize prompts so you can fairly compare models across providers
+- **Logging & Monitoring**: Track which models you use, along with cost and performance over time
+
+## Troubleshooting
+
+**Invalid API Key:**
+- Verify your API key is correct and has not been revoked
+- Ensure you copied the entire key with no extra spaces
+- Confirm your OpenRouter account is active and in good standing
+
+**Rate Limit Exceeded:**
+- Implement exponential backoff and retries in your integration
+- Reduce request frequency or batch requests when possible
+- Review and adjust your plan or limits in the OpenRouter dashboard
+
+**Model Not Available or Disabled:**
+- Check the [OpenRouter models][OpenRouter models] page for status and availability
+- Confirm that the model ID is typed correctly in Lamatic
+- If a model is deprecated or disabled, switch to a recommended alternative model
+
+**Authentication Errors:**
+- Ensure your API key is being sent in the correct header format expected by OpenRouter
+- Verify you're using the correct base URL and endpoints as shown in the [OpenRouter docs][OpenRouter docs]
+- Regenerate the key if you suspect it may have been compromised
+
+**Unexpected Responses or Errors:**
+- Inspect the raw response from OpenRouter for additional error details
+- Try the same request directly against OpenRouter to isolate whether the issue is upstream or in Lamatic
+- Verify that your model supports any advanced features you are using (tools, streaming, etc.)
+
+## Important Notes
+
+- Keep your API keys secure and rotate them periodically
+- Check provider's pricing before scaling up usage: [OpenRouter pricing][OpenRouter pricing]
+- Some models may have additional terms, safety policies, or access requirements
+- Test each new model with your prompts before rolling it out to production
+- Use Lamatic's **Test & Save** flow whenever you update credentials or add models
+
+## Additional Resources
+
+- [OpenRouter Documentation][OpenRouter docs]
+- [Model & Pricing Information][OpenRouter models]
+- [OpenRouter website][OpenRouter website]
+
+Need help? Contact [Lamatic support]

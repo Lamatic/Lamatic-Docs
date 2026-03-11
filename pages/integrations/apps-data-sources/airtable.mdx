@@ -2,6 +2,7 @@
 title: Airtable
 description: The Airtable integration in Lamatic automates data synchronization and manipulation with Airtable bases, enabling both trigger-based workflows and action-based operations for comprehensive Airtable integration.
 icon: /images/icons/apps/airtable.png
+legacyNodeSlugs: ["airtable-node"]
 ---
 
 import { IntegrationOverviw } from "@/components/IntegrationOverviw"
@@ -244,6 +245,65 @@ nodes:
     modes: {}
     needs:
       - triggerNode_1
+```
+
+## Output Schema
+
+### Event Trigger Output
+
+When triggered by an Airtable automation, the integration outputs data in the following format:
+
+```json
+{
+  "base_id": "appXXXXXXXXXXXXXX",
+  "table_id": "tblXXXXXXXXXXXXXX",
+  "record_id": "recXXXXXXXXXXXXXX",
+  "event_type": "record_created",
+  "data": {
+    "Name": "John Doe",
+    "Email": "john@example.com",
+    "Status": "Active",
+    "Created": "2024-01-01T00:00:00Z"
+  },
+  "metadata": {
+    "triggered_at": "2024-01-01T12:00:00Z",
+    "automation_id": "automation_123"
+  }
+}
+```
+
+### Action Node Output
+
+Action output depends on the action performed:
+
+**Create Record Output:**
+```json
+{
+  "id": "recXXXXXXXXXXXXXX",
+  "fields": {
+    "Name": "John Doe",
+    "Email": "john@example.com",
+    "Status": "Active"
+  },
+  "createdTime": "2024-01-01T12:00:00Z"
+}
+```
+
+**List Records Output:**
+```json
+{
+  "records": [
+    {
+      "id": "recXXXXXXXXXXXXXX",
+      "fields": {
+        "Name": "John Doe",
+        "Email": "john@example.com"
+      },
+      "createdTime": "2024-01-01T12:00:00Z"
+    }
+  ],
+  "offset": "itrXXXXXXXXXXXXXX"
+}
 ```
 
 ## Troubleshooting

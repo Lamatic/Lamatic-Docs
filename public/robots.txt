@@ -7,3 +7,4 @@ Host: https://lamatic.ai
 
 # Sitemaps
 Sitemap: https://lamatic.ai/sitemap.xml
+Sitemap: https://lamatic.ai/sitemap-pages.xml

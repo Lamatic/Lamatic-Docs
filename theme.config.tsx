@@ -17,6 +17,8 @@ import { Frame } from "./components/Frame";
 import { COOKBOOK_ROUTE_MAPPING } from "./lib/cookbook_route_mapping";
 import { GeistSans } from "geist/font/sans";
 import FooterMenu from "./components/FooterMenu";
+import DocsFooter from "./components/DocsFooter";
+import FooterWrapper from "./components/FooterWrapper";
 import Link from "next/link";
 import {
   SquareGanttChart,
@@ -26,7 +28,8 @@ import {
   GraduationCap,
   Blocks,
   BotMessageSquare,
-  LayoutTemplate
+  LayoutTemplate,
+  Building2,
 } from "lucide-react";
 import {
   AvailabilityBanner,
@@ -47,7 +50,7 @@ const config: DocsThemeConfig = {
     extraContent: (
       <>
         <Button size="xs" asChild className="whitespace-nowrap w-[70px]">
-          <Link href={"https://lamatic.ai"}>Sign Up</Link>
+          <Link href={"https://studio.lamatic.ai/signup"}>Sign Up</Link>
         </Button>
       </>
     ),
@@ -65,6 +68,7 @@ const config: DocsThemeConfig = {
               { title: "Integrations", path: "/integrations", Icon: Blocks },
               { title: "Templates", path: "/templates", Icon: LayoutTemplate },
               { title: "Guides", path: "/guides", Icon: GraduationCap },
+              // { title: "Company", path: "/company", Icon: Building2 },
               { title: "Book a demo", path: "/docs/demo", Icon: Phone },
               {
                 title: "Roadmap",
@@ -121,7 +125,7 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",
   footer: {
-    component: <FooterMenu />,
+    component: <FooterWrapper />,
   },
   useNextSeoProps() {
     const { asPath } = useRouter();

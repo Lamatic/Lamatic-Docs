@@ -31,6 +31,8 @@ The Lamatic.ai Condition Node is a versatile component designed to introduce con
   2. **Event Triggering:** Define conditions that react to real-time events, ensuring dynamic responses. 
   3. **Dynamic Input Handling:** Incorporate variables and real-time data to create adaptive flows. 
   4. **Multi-Step Optimization:** Streamline lengthy flows by dynamically adjusting based on the outcomes of each step.
+  5. **Multiple Condition Execution:** Enable flexible multi-value matching with the "Allow Multiple Condition Execution" option for advanced workflow routing.
+  6. **Enhanced Output Support:** Supports both string and array outputs for condition evaluation, maintaining backward compatibility with existing flows.
 </details>
 
 <details>
@@ -89,18 +91,24 @@ The Lamatic.ai Condition Node is a versatile component designed to introduce con
    - Use the **Add Condition** button to define additional conditions if needed.
    - Combine multiple conditions using logical operators like `AND` or `OR` to create more complex logic.
 
-5. **Define Outcome Paths**:
+5. **Enable Multiple Condition Execution (Optional)**:
+
+   - Toggle the **Allow Multiple Condition Execution** option to enable flexible multi-value matching.
+   - When enabled, the node can execute multiple condition paths simultaneously if multiple conditions evaluate to `true`, allowing for more flexible workflow routing.
+   - This feature is particularly useful when you need to handle scenarios where input values match multiple conditions at once.
+
+6. **Define Outcome Paths**:
 
    - Configure the paths for **Condition 1** and **Else**:
      - **Condition 1**: The path the workflow will follow if the condition evaluates to `true`.
      - **Else**: The fallback path if the condition evaluates to `false`.
    - Select the additional nodes into these paths to define subsequent actions.
 
-6. **Test the Configuration**:
+7. **Test the Configuration**:
 
    - Use the **Test** option at the bottom right to simulate your workflow and verify that the Condition Node behaves as expected.
 
-7. **Save and Deploy**:
+8. **Save and Deploy**:
    - Once configured, click **Save** to store the changes.
    - Click **Deploy** to activate the workflow with the configured Condition Node.
 
@@ -133,13 +141,23 @@ The Lamatic.ai Condition Node is a versatile component designed to introduce con
 ```
 
 ## Output 
-- `condition`: A string indicating the evaluated outcome or state determined by the condition node.
+- `condition`: The evaluated outcome or state determined by the condition node. Can be either:
+  - **String**: A single condition label when one condition matches (default behavior, maintains backward compatibility).
+  - **Array**: Multiple condition labels when "Allow Multiple Condition Execution" is enabled and multiple conditions evaluate to `true`.
 
 ### Example Output
 
+**Single Condition (String Output):**
 ```json
 {
     "condition": "Else"
+}
+```
+
+**Multiple Conditions (Array Output):**
+```json
+{
+    "condition": ["Condition 1", "Condition 2"]
 }
 ```
 

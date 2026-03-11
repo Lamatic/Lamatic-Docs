@@ -402,7 +402,7 @@ export default async function handler(
 
   try {
     // Fetch templates from external API
-    const response = await fetch('https://launch-three.lamatic.ai/api/public-templates');
+    const response = await fetch('https://studio.lamatic.ai/api/public-templates');
     // const response = await fetch('https://studio.lamatic.ai/api/templates-public');
     // api/public-templates/
     
@@ -439,7 +439,9 @@ export default async function handler(
             integrations: [],
             slug: template.slug || null,
             isPro: template.isPro || false,
-            isAgentkit: template.isAgentkit || false
+            isAgentkit: template.isAgentkit || false,
+            template_link: template.template_link || null,
+            agent_link: template.agent_link || null,
           };
         }
       });

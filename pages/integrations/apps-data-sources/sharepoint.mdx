@@ -2,6 +2,7 @@
 title: SharePoint
 description: The SharePoint integration in Lamatic automates document syncing and processing from Microsoft SharePoint sites. It supports various file types and provides secure integration with Lamatic Flow for automated document intelligence and RAG workflows.
 icon: /images/icons/apps/sharepoint.png
+legacyNodeSlugs: ["sharepoint-business-node"]
 ---
 import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
@@ -25,6 +26,8 @@ This integration connects to your organization's SharePoint instance to sync doc
 - **File Type Support**: Handles PDFs, Word documents, Excel files, and other compatible formats
 - **Scheduled Processing**: Supports automated sync schedules with cron expressions
 - **Selective Filtering**: Use glob patterns to filter specific file types and paths
+- **Multiple Sync Modes**: Supports both incremental (new/modified files only) and full-refresh (all files) synchronization modes
+- **Search Scope Control**: Configurable search scope including accessible drives, shared items, or all files
 
 ### ✅ Benefits
 
@@ -55,6 +58,7 @@ Before setting up the SharePoint integration, ensure you have:
 - Appropriate permissions to access SharePoint sites and folders
 - Your organization's Tenant ID from Microsoft Entra Admin Center
 - Understanding of SharePoint site structure and file organization
+- **API Permissions**: Proper SharePoint API permissions for accessing selected sites and folders
 
 ## Setup
 
@@ -166,6 +170,113 @@ globs: "**/*", "!**/draft/**"
 - **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to
 - **`SHARED_ITEMS`**: Files shared with you by others
 - **`ALL`**: All accessible files (recommended)
+
+### Action Node Configuration
+
+The SharePoint node can also be used as an **Action** node to create, update, and delete folders and files in a SharePoint document library.
+
+| **Parameter**   | **Description**                                      | **Required** | **Example**                 |
+| --------------- | ---------------------------------------------------- | ------------ | --------------------------- |
+| **Credentials** | Microsoft 365 credentials for SharePoint access     | ✅           | `Microsoft 365`             |
+| **Action**      | Action to perform (see available actions below)     | ✅           | `Create Folder`             |
+
+#### Available Actions
+
+##### 1. Create Folder
+
+Creates a new folder inside a SharePoint document library.
+
+| **Parameter**        | **Description**                                                | **Required** | **Example**                           |
+|----------------------|----------------------------------------------------------------|--------------|---------------------------------------|
+| **Document Library** | Target document library where the folder will be created       | ✅           | `Shared Documents`                    |
+| **Folder Name**      | Name of the new folder                                         | ✅           | `Q1 Reports`                          |
+| **Parent Folder**    | Optional parent folder path (leave empty for library root)     | ❌           | `/Departments/Finance`                |
+
+##### 2. Delete Folder
+
+Deletes an existing folder from a SharePoint document library.
+
+| **Parameter** | **Description**                              | **Required** | **Example**                |
+|--------------|----------------------------------------------|--------------|----------------------------|
+| **Folder**   | Folder path or identifier to delete          | ✅           | `/Departments/Finance/Q1`  |
+
+##### 3. Create File
+
+Creates a new file in a SharePoint folder.
+
+| **Parameter**   | **Description**                                        | **Required** | **Example**                         |
+|-----------------|--------------------------------------------------------|--------------|-------------------------------------|
+| **Folder**      | Target folder path where the file will be created      | ✅           | `/Departments/Finance/Q1`           |
+| **File Name**   | Name of the new file (including extension)             | ✅           | `report-q1.docx`                    |
+| **File Content**| Content of the file to create                          | ✅           | `Quarterly report content here...`  |
+
+##### 4. Update File
+
+Updates the content of an existing file in SharePoint.
+
+| **Parameter**   | **Description**                              | **Required** | **Example**                         |
+|-----------------|----------------------------------------------|--------------|-------------------------------------|
+| **File Content**| New content to write into the file           | ✅           | `Updated report content...`         |
+| **File**        | File path or identifier to update            | ✅           | `/Departments/Finance/Q1/report-q1.docx` |
+
+##### 5. Delete File
+
+Deletes an existing file from SharePoint.
+
+| **Parameter** | **Description**                     | **Required** | **Example**                         |
+|--------------|-------------------------------------|--------------|-------------------------------------|
+| **File**     | File path or identifier to delete   | ✅           | `/Departments/Finance/Q1/report-q1.docx` |
+
+## Low-Code Example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: sharepointBusinessNode
+  nodeName: SharePoint Business
+  values:
+    credentials: Microsoft 365
+    site_url: https://company.sharepoint.com/sites/documents
+    folder_path: .
+    globs: ["**/*.pdf", "**/*.docx"]
+    sync_mode: incremental
+    sync_schedule: "0 2 * * *"
+    search_scope: ALL
+    parsing_strategy: fast
+    days_to_sync_if_history_full: 30
+    start_date: "2024-01-01T00:00:00.000000Z"
+```
+
+## Output Schema
+
+### Batch Trigger Output
+
+- **document_key**: String identifier for the document (filename)
+- **content**: String containing the extracted text content from the document
+- **metadata**: Additional information about the document
+  - `file_type`: Type of the processed file
+  - `file_size`: Size of the file in bytes
+  - `last_modified`: Timestamp of last modification
+  - `site_url`: URL of the SharePoint site
+  - `folder_path`: Path within the site
+  - `parsing_strategy`: Strategy used for content extraction
+
+### Example Output
+
+```json
+{
+  "document_key": "document_name.pdf",
+  "content": "Extracted text content from the SharePoint document",
+  "metadata": {
+    "file_type": "pdf",
+    "file_size": 1024000,
+    "last_modified": "2024-01-01T00:00:00.000Z",
+    "site_url": "https://company.sharepoint.com/sites/documents",
+    "folder_path": "./TeamDocs",
+    "parsing_strategy": "fast"
+  }
+}
+```
 
 ## Usage Examples
 

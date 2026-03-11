@@ -1,0 +1,406 @@
+import { Button } from "@/components/ui/button.tsx"
+import { ColorCard } from "@/components/brandkit-card.tsx"
+import BasicCarousel from "@/components/ScreenshotCarousel.tsx"
+import  DownloadBrandkitButton from "@/components/brandkitDownload.tsx"
+
+# Brand Kit
+
+### Resources for maintaining a unified and accurate Lamatic brand presence.
+
+<DownloadBrandkitButton/>
+
+## Brand Colors
+
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+  <ColorCard hex="#F33736" rgb="253, 55, 54" name="Brand Red" />
+  <ColorCard hex="#E3E3E3" rgb="227, 227, 227" name="Light Grey" />
+  <ColorCard hex="#FFFFFF" rgb="255, 255, 255" name="White" />
+  <ColorCard hex="#000000" rgb="0, 0, 0" name="Black" />
+</div>
+
+<br/><br/>
+## Logo
+
+<div className="mb-10 space-y-6">
+
+  {/* TEXT ON TOP */}
+  <div className="space-y-3 max-w-2xl">
+    This is our logo. It captures the spirit
+    of what we do. It is often the first
+    encounter people have of us, and
+    encapsulates the power of our
+    product and the mission that drives
+    us.
+  </div>
+
+
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+
+ 
+    <div className="flex justify-center">
+      <div
+        className="group relative rounded-2xl border border-gray-200 shadow-sm p-8 w-full h-56 flex items-center justify-center"
+        style={{ backgroundColor: "#FDF4F4" }}
+      >
+<img
+  src="/images/brandkitMain/logos/lamatic-logo.svg"
+  alt="Lamatic logo"
+  className="h-12 object-contain"
+/>
+
+        {/* Hover-only Download button */}
+        <a
+          href="/images/brandkitMain/logos/lamatic-logo.svg"
+          download
+          className="
+            absolute bottom-4 right-4
+            flex items-center gap-1.5
+            bg-white/95 backdrop-blur-sm
+            border border-black text-black
+            px-3 py-1.5 text-xs font-medium
+            rounded-lg shadow
+            opacity-0 translate-y-2
+            group-hover:opacity-100 group-hover:translate-y-0
+            transition-all duration-200
+          "
+        >
+          Download
+        </a>
+      </div>
+    </div>
+
+    {/* Card 2 */}
+    <div className="flex justify-center">
+      <div
+        className="group relative rounded-2xl border border-gray-200 shadow-sm p-8 w-full h-56 flex items-center justify-center"
+        style={{ backgroundColor: "#FDF4F4" }}
+      >
+<img
+  src="/images/brandkitMain/logos/logo.svg"
+  alt="Lamatic logo alt"
+  className="h-12 object-contain"
+/>
+
+        {/* Hover-only Download button */}
+        <a
+          href="/images/brandkitMain/logos/logo.svg"
+          download
+          className="
+            absolute bottom-4 right-4
+            flex items-center gap-1.5
+            bg-white/95 backdrop-blur-sm
+            border border-black text-black
+            px-3 py-1.5 text-xs font-medium
+            rounded-lg shadow
+            opacity-0 translate-y-2
+            group-hover:opacity-100 group-hover:translate-y-0
+            transition-all duration-200
+          "
+        >
+          Download
+        </a>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+</div>
+
+
+
+
+<br/>
+### Logo Color Usage
+
+<div className="space-y-3">
+  Always ensure our logo remains legible on any
+  background color, maintaining clarity and visual
+  impact.
+</div>
+
+{/* Add margin before cards */}
+<div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+<div className="rounded-2xl  border border-gray-200 bg-white overflow-hidden w-70 h-50">
+  <img
+    src="/images/brandkit/LamaticLogo.png"
+    alt="Logo Usage"
+    className="w-full h-full mt-0 block object-fill"
+  />
+</div>
+
+<div className="rounded-2xl border border-gray-200 bg-white overflow-hidden w-70 h-50">
+  <img
+    src="/images/brandkit/Lamatic.png"
+    alt="Logo Usage"
+    className="w-full block mt-0 block h-full object-fill"
+  />
+</div>
+
+<div className="rounded-2xl  border border-gray-200 bg-white overflow-hidden w-70 h-50">
+  <img
+    src="/images/brandkit/LamaticRed.png"
+    alt="Logo Usage"
+    className="w-full h-full mt-0 block object-fill"
+  />
+</div>
+
+<div className="rounded-2xl border border-gray-200 bg-white overflow-hidden w-70 h-50">
+  <img
+    src="/images/brandkit/LamaticLogoGradient.png"
+    alt="Logo Usage"
+    className="w-full h-full mt-0 block object-fill"
+  />
+</div>
+
+</div>
+<br/>
+### Logo Misuse
+
+
+<div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+
+  {/* Card 1 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse0.png"
+        alt="Don't stretch logo"
+        className="w-full h-full mt-0 block object-cover"
+      />
+    </div>
+    Don’t apply any visual effects (shadow, glow, etc.) to any of
+our logo
+  </div>
+
+  {/* Card 2 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse1.png"
+        alt="Don't add gradients"
+        className="w-full h-full mt-0 block object-cover"
+      />
+    </div>
+    Don’t rotate our logo.
+  </div>
+
+  {/* Card 3 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse2.png"
+        alt="Don't recolor logo"
+        className="w-full h-full mt-0 block object-cover"
+      />
+    </div>
+    Don’t add gradients to our logo.
+  </div>
+
+  {/* Card 4 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse3.png"
+        alt="Don't rotate logo"
+        className="w-full h-full mt-0 block object-cover"
+      />
+    </div>
+    Don’t scale disproportionately.
+  </div>
+
+  {/* Card 5 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse4.png"
+        alt="Don't add effects"
+        className="w-full h-full mt-0 block object-cover"
+      />
+    </div>
+    Don’t add red in the iconmark in the combination mark.
+  </div>
+
+  {/* Card 6 */}
+  <div className="flex flex-col gap-3">
+    <div className="rounded-2xl border border-gray-200 shadow-sm bg-white overflow-hidden h-40">
+      <img
+        src="/images/brandkit/misuse5.png"
+        alt="Don't use wrong color"
+        className="w-full h-full mt-0 block object-cover"
+      />
+    </div>
+   Don’t add any color.
+  </div>
+
+</div>
+
+<br/><br/>
+## Screenshots
+
+Lamatic.ai product screenshots are essential for accurate media representation and are available for use by the press. These images must not be edited in any way that misrepresents the product’s interface, capabilities, or behavior. It is important to preserve the context and integrity of all screenshots, ensuring they reflect the Lamatic.ai product truthfully and do not imply unauthorized partnerships or endorsements. Always use high-resolution versions to maintain clarity and quality in any published material.
+<BasicCarousel/>
+<br/><br/>
+## Brand Typography
+
+<div className="space-y-3">
+<br/>
+  ### Primary typeface
+Our primary typeface is Geist. It embodies readability, simplicity, and functionality, making it an ideal choice for both digital and print applications.
+<br/>
+
+As our primary typeface, assign it to all text within our communications material
+</div>
+
+{/* Bigger Typeface Preview Card */}
+{/* Typeface Preview Card (shorter) */}
+<div className="mt-6 rounded-2xl bg-[#F33736] text-white w-full max-w-4xl mx-auto flex flex-col justify-between px-8 py-6 h-[360px]">
+
+  <div className="grid grid-cols-3 gap-6 w-full">
+
+    {/* Alphabet + numerals (top left) */}
+    <div className="col-span-2 space-y-1 text-sm leading-tight">
+      abcdefghijklmnopqrstuvwxyz  
+      <br />
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ  
+      <br />
+      1234567890!@#$%^&*
+    </div>
+
+    {/* Weights (right side, big + stepped) */}
+    <div className="flex flex-col items-start justify-start space-y-3">
+      <span className="font-extralight text-base">Extralight</span>
+      <span className="font-light text-lg">Light</span>
+      <span className="font-normal text-xl">Regular</span>
+      <span className="font-medium text-2xl">Medium</span>
+      <span className="font-semibold text-3xl">Semibold</span>
+      <span className="font-bold text-4xl">Bold</span>
+    </div>
+
+  </div>
+
+  {/* Big Aa bottom-left */}
+  <div className="mt-4">
+    <span className="text-[64px] sm:text-[80px] font-bold leading-none pb-2">Aa</span>
+  </div>
+</div>
+<br/>
+### Best Practice
+
+This is our typography hierarchy, guiding how we use type to create clear and consistent communication true to our brand.
+
+<div className="mt-10 rounded-2xl bg-[#FDF4F4] w-full max-w-5xl mx-auto p-10 space-y-10">
+
+  {/* ROW: Heading 1 */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    {/* LEFT */}
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Heading 1</div>
+      <div>56 Medium</div>
+    </div>
+
+    {/* RIGHT */}
+    <div className="md:col-span-2 text-[56px] font-medium leading-tight text-black">
+      All you need to<br /><br />build GenAI Apps
+    </div>
+
+  </div>
+
+  {/* ROW: Heading 2 */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Heading 2</div>
+      <div>48 Regular</div>
+    </div>
+
+    <div className="md:col-span-2 text-[48px] font-normal leading-tight text-black">
+      Ship Agentic AI Apps<br /> <br />Today!
+    </div>
+
+  </div>
+
+  {/* ROW: Heading 3 */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Heading 3</div>
+      <div>36 Regular</div>
+    </div>
+
+    <div className="md:col-span-2 text-[36px] font-normal leading-tight text-black">
+      Reduce Back and Forth
+    </div>
+
+  </div>
+
+  {/* ROW: Heading 4 */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Heading 4</div>
+      <div>14 Semibold</div>
+    </div>
+
+    <div className="md:col-span-2 text-[14px] font-semibold tracking-[0.5em] uppercase text-black">
+      Collaborate
+    </div>
+
+  </div>
+
+  {/* ROW: Body Big */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Body Big</div>
+      <div>20 Light</div>
+    </div>
+
+    <div className="md:col-span-2 text-[20px] font-light max-w-2xl leading-relaxed text-black">
+      A managed PaaS with a low-code visual builder, VectorDB,
+      and integrations to apps and models for building, testing,
+      and deploying high-performance GenAI apps on edge.
+    </div>
+
+  </div>
+
+  {/* ROW: Body Small */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Body Small</div>
+      <div>14 Light</div>
+    </div>
+
+    <div className="md:col-span-2 text-[14px] font-light max-w-2xl leading-relaxed text-black">
+      A managed PaaS with a low-code visual builder, VectorDB, and integrations
+      to apps and models for building, testing, and deploying high-performance GenAI apps on edge.
+    </div>
+
+  </div>
+
+  {/* ROW: Button text */}
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+    <div className="space-y-1 text-gray-800 text-sm">
+      <div className="font-semibold">Button text</div>
+      <div>16 Semibold</div>
+    </div>
+
+    <div className="md:col-span-2">
+      <button
+        type="button"
+        className="inline-flex items-center rounded-2xl bg-[#F33736] px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition"
+      >
+        Sign up
+      </button>
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,7 +1,12 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowRightIcon, BotMessageSquare, Database, Zap, Settings } from "lucide-react";
+
+const PopularAppsRow = dynamic(() => import("@/components/PopularAppsRow").then(mod => ({ default: mod.PopularAppsRow })), {
+  ssr: false
+});
 
 const SECTION_DESCRIPTIONS: Record<string, string> = {
   "apps-data-sources": "Connect to external applications and data sources to fetch, sync, and manage data within your flows.",
@@ -18,8 +23,8 @@ const SECTION_ICONS: Record<string, any> = {
 };
 
 // --- Helper to flatten all pages recursively ---
-function flattenPages(pages) {
-  let result = [];
+function flattenPages(pages: any[]): Array<Page & { frontMatter?: any }> {
+  let result: Array<Page & { frontMatter?: any }> = [];
   for (const page of pages) {
     if (page.children) {
       result = result.concat(flattenPages(page.children));
@@ -32,13 +37,20 @@ function flattenPages(pages) {
 
 export const IntegrationsIndex = () => {
   // Get all pages under /integrations (including subfolders)
-  const allPages = getPagesUnderRoute("/integrations");
-  const pages = flattenPages(allPages).filter(
+  let allPages;
+  try {
+    allPages = getPagesUnderRoute("/integrations");
+  } catch (error) {
+    console.error("Error getting pages under /integrations:", error);
+    allPages = [];
+  }
+  
+  const pages = flattenPages(allPages || []).filter(
     (page) => page.route !== "/integrations" && page.route !== "/pages/integrations"
-  );
+  ) as Array<Page & { frontMatter?: any }>;
 
   // Group by type/category
-  const groupedPages = pages.reduce((acc, page) => {
+  const groupedPages = pages.reduce((acc: Record<string, Array<Page & { frontMatter?: any }>>, page) => {
     // Extract category from the route path
     const routeParts = page.route.split('/');
     let category = "other";
@@ -66,8 +78,13 @@ export const IntegrationsIndex = () => {
     });
   });
 
+  // Get popular apps (first 8 apps from apps-data-sources category, sorted by order)
+  const popularApps = groupedPages["apps-data-sources"]?.slice(0, 8) || [];
+
   return (
     <div className="space-y-12">
+      {/* Popular Apps Section */}
+      {popularApps.length > 0 && <PopularAppsRow apps={popularApps} />}
       {SECTION_ORDER.map((category) => {
         const categoryPages = groupedPages[category];
         if (!categoryPages || categoryPages.length === 0) return null;

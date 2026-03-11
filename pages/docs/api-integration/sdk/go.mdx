@@ -1,0 +1,383 @@
+---
+title: Go
+description: Integrate the Lamatic SDK with Go applications to execute flows and agents.
+---
+
+# Using Lamatic SDK with Go
+
+This guide demonstrates how to integrate the Lamatic Go SDK with your Go applications to execute flows and agents.
+
+<Callout type="info">
+  This is a **community-built** Go SDK for the Lamatic AI platform. The SDK is maintained under the [Lamatic organization](https://github.com/Lamatic/lamatic-sdk-go) on GitHub.
+</Callout>
+
+## Installation
+
+Install the Lamatic Go SDK using Go modules:
+
+```bash
+go get github.com/Lamatic/lamatic-sdk-go
+```
+
+Or if you're using the community version:
+
+```bash
+go get github.com/AasheeshLikePanner/lamatic-sdk-go
+```
+
+## Getting Started
+
+To use the Lamatic Go SDK, you'll need:
+
+- An API key or access token
+- Your project ID
+- The Lamatic API endpoint
+
+## Basic Setup
+
+Import the SDK in your Go code:
+
+```go
+import (
+    "context"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+```
+
+## Authentication
+
+The SDK supports two authentication methods:
+
+<Tabs items={['API Key', 'Access Token']}>
+  <Tab>
+```go
+package main
+
+import (
+    "context"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+
+func main() {
+    apiKey := "your-api-key"
+    client, err := lamatic.NewClient(lamatic.Config{
+        Endpoint:  "your-endpoint",
+        ProjectID: "your-project-id",
+        APIKey:    &apiKey,
+    })
+    if err != nil {
+        panic(err)
+    }
+    
+    // Use client...
+}
+```
+  </Tab>
+  <Tab>
+```go
+package main
+
+import (
+    "context"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+
+func main() {
+    accessToken := "your-access-token"
+    client, err := lamatic.NewClient(lamatic.Config{
+        Endpoint:    "your-endpoint",
+        ProjectID:   "your-project-id",
+        AccessToken: &accessToken,
+    })
+    if err != nil {
+        panic(err)
+    }
+    
+    // Use client...
+}
+```
+  </Tab>
+</Tabs>
+
+## Executing Flows
+
+Execute a workflow using the `ExecuteFlow` method:
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+
+func main() {
+    ctx := context.Background()
+    apiKey := "your-api-key"
+    
+    client, err := lamatic.NewClient(lamatic.Config{
+        Endpoint:  "your-endpoint",
+        ProjectID: "your-project-id",
+        APIKey:    &apiKey,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create client: %v", err)
+    }
+
+    flowId := "your-flow-id"
+    payload := map[string]interface{}{
+        "prompt": "Hello, AI!",
+    }
+
+    resp, err := client.ExecuteFlow(ctx, flowId, payload)
+    if err != nil {
+        log.Fatalf("Error executing flow: %v", err)
+    }
+
+    if resp.Status == lamatic.StatusSuccess {
+        fmt.Printf("Result: %v\n", resp.Result)
+    } else {
+        fmt.Printf("Failed: %s\n", resp.Message)
+    }
+}
+```
+
+
+## Checking Request Status
+
+For long-running workflows or agents, you can check the status using `CheckStatus`:
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+    "time"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+
+func main() {
+    ctx := context.Background()
+    apiKey := "your-api-key"
+    
+    client, err := lamatic.NewClient(lamatic.Config{
+        Endpoint:  "your-endpoint",
+        ProjectID: "your-project-id",
+        APIKey:    &apiKey,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create client: %v", err)
+    }
+
+    requestId := "your-request-id"
+    
+    // Check status with polling interval of 2 seconds and timeout of 30 seconds
+    status, err := client.CheckStatus(ctx, requestId, 2*time.Second, 30*time.Second)
+    if err != nil {
+        log.Fatalf("Error checking status: %v", err)
+    }
+
+    if status.Status == lamatic.StatusSuccess {
+        fmt.Printf("Request completed: %+v\n", status.Result)
+    } else {
+        fmt.Printf("Request failed: %s\n", status.Message)
+    }
+}
+```
+
+## Updating Access Token
+
+If you're using access token authentication and need to update the token:
+
+```go
+// Update the access token
+newToken := "new-access-token"
+err := client.UpdateAccessToken(newToken)
+if err != nil {
+    log.Fatalf("Failed to update access token: %v", err)
+}
+```
+
+## Response Structure
+
+The `ExecuteFlow` and `ExecuteAgent` methods return a response with the following structure:
+
+```go
+type Response struct {
+    Status  string      // "success", "error", or "failed"
+    Result  interface{} // The result data from the workflow/agent (if successful)
+    Message string      // Error message (if status is "error" or "failed")
+}
+```
+
+## Error Handling
+
+Always handle errors properly:
+
+```go
+resp, err := client.ExecuteFlow(ctx, flowId, payload)
+if err != nil {
+    // Handle network errors, configuration errors, etc.
+    log.Fatalf("Error: %v", err)
+}
+
+// Check response status
+if resp.Status == lamatic.StatusSuccess {
+    // Handle success
+    fmt.Printf("Success: %v\n", resp.Result)
+} else if resp.Status == lamatic.StatusError || resp.Status == lamatic.StatusFailed {
+    // Handle execution errors
+    fmt.Printf("Execution failed: %s\n", resp.Message)
+}
+```
+
+## Environment Variables
+
+For better security, use environment variables:
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "os"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+
+func main() {
+    apiKey := os.Getenv("LAMATIC_API_KEY")
+    projectID := os.Getenv("LAMATIC_PROJECT_ID")
+    endpoint := os.Getenv("LAMATIC_ENDPOINT")
+
+    client, err := lamatic.NewClient(lamatic.Config{
+        Endpoint:  endpoint,
+        ProjectID: projectID,
+        APIKey:    &apiKey,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create client: %v", err)
+    }
+
+    // Use client...
+}
+```
+
+## Complete Example
+
+Here's a complete example that demonstrates executing a flow with proper error handling:
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+    "os"
+    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
+)
+
+func main() {
+    ctx := context.Background()
+
+    // Get credentials from environment variables
+    apiKey := os.Getenv("LAMATIC_API_KEY")
+    if apiKey == "" {
+        log.Fatal("LAMATIC_API_KEY environment variable is not set")
+    }
+
+    projectID := os.Getenv("LAMATIC_PROJECT_ID")
+    if projectID == "" {
+        log.Fatal("LAMATIC_PROJECT_ID environment variable is not set")
+    }
+
+    endpoint := os.Getenv("LAMATIC_ENDPOINT")
+    if endpoint == "" {
+        log.Fatal("LAMATIC_ENDPOINT environment variable is not set")
+    }
+
+    // Create client
+    client, err := lamatic.NewClient(lamatic.Config{
+        Endpoint:  endpoint,
+        ProjectID: projectID,
+        APIKey:    &apiKey,
+    })
+    if err != nil {
+        log.Fatalf("Failed to create client: %v", err)
+    }
+
+    // Execute flow
+    flowId := os.Getenv("LAMATIC_FLOW_ID")
+    payload := map[string]interface{}{
+        "prompt": "Generate a creative story about AI",
+    }
+
+    resp, err := client.ExecuteFlow(ctx, flowId, payload)
+    if err != nil {
+        log.Fatalf("Error executing flow: %v", err)
+    }
+
+    // Handle response
+    if resp.Status == lamatic.StatusSuccess {
+        fmt.Printf("Flow executed successfully!\n")
+        fmt.Printf("Result: %+v\n", resp.Result)
+    } else {
+        fmt.Printf("Flow execution failed: %s\n", resp.Message)
+    }
+}
+```
+
+## Project Structure
+
+The Go SDK follows standard Go project structure:
+
+```
+lamatic-sdk-go/
+├── go.mod
+├── README.md
+├── LICENSE
+├── internal/
+│   └── client/
+│       └── client.go          # Internal HTTP client
+├── pkg/
+│   └── lamatic/
+│       ├── lamatic.go         # Public SDK API
+│       └── lamatic_test.go    # Unit tests
+└── examples/
+    ├── api_key/
+    │   └── main.go            # Example: API Key auth
+    ├── access_token/
+    │   └── main.go            # Example: Access Token auth
+    ├── access_token_expiry/
+    │   └── main.go            # Example: Handling token expiry
+    └── token_generation/
+        └── main.go            # Example: Server-side JWT generation
+```
+
+## Features
+
+The Go SDK provides the following features:
+
+- ✅ Execute Workflows (Flows)
+- ✅ Execute Agents
+- ✅ Job Polling with `CheckStatus`
+- ✅ Support for API Key and Access Token (JWT) authentication
+- ✅ Proper internal/pkg separation for Go best practices
+- ✅ Context support for cancellation and timeouts
+
+## Resources
+
+- **GitHub Repository**: [github.com/Lamatic/lamatic-sdk-go](https://github.com/Lamatic/lamatic-sdk-go)
+- **Documentation**: Check the repository README for the latest updates
+- **Examples**: See the `examples/` directory in the repository for more usage examples
+
+## Support
+
+For help and support with the Go SDK:
+- Open an issue on [GitHub](https://github.com/Lamatic/lamatic-sdk-go/issues)
+- Contact [support@lamatic.ai](mailto:support@lamatic.ai)

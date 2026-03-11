@@ -1,0 +1,37 @@
+---
+title: API Keys
+description: To ensure secure access to our platform, Lamatic.ai employs API keys for authentication.
+---
+# Authentication with API Keys
+
+To ensure secure access to our platform, Lamatic.ai employs API keys for authentication. When triggering flows via GraphQL, you'll need to include your API key in the request headers. This key serves as a unique identifier, granting you authorized access to our services while maintaining the integrity and confidentiality of your data.
+
+![img_2.png](./img/api.png)
+
+## How to Get the API Key
+
+Follow these steps to create and retrieve your API key:
+
+1. **Navigate to Studio**: Open your Lamatic.ai Studio
+2. **Go to Settings**: Click on **Settings** in the navigation menu
+3. **Access API Keys**: Select **API Keys** from the settings options
+4. **Create New Key**: Click the **Create a New API Key** button
+5. **Copy Your Key**: Once created, copy your API key immediately (you won't be able to see it again)
+
+<Callout type="warning">
+**Important**: Store your API key securely. If you lose it, you'll need to create a new one. After creating a new API key, make sure to redeploy your project for the changes to take effect.
+</Callout>
+
+### Using the API Key
+
+Include your API key in the `Authorization` header of all GraphQL requests using the Bearer token format:
+
+```js
+Authorization: Bearer your_api_key
+```
+
+By including the API key in the `Authorization` header, our platform can verify your identity and grant you access to trigger the desired flow.
+
+## Next Steps
+
+Now that you have your API key, you're ready to integrate Lamatic.ai into your application. Check out our [Integration Guide](/docs/api-integration/integration-guide) for step-by-step instructions and code examples in JavaScript, Python, and cURL.

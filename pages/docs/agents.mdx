@@ -8,10 +8,14 @@ description: "Agents in Lamatic.ai Studio"
 
 Agents are AI-powered components in Lamatic that handle different types of tasks, such as generating text, processing structured data, and orchestrating multi-agent flow. This guide introduces the different agent types and how they function within the Lamatic ecosystem.
 
+## Prerequisites
+
+- Basic understanding of [Flows](/docs/flows) and [Nodes](/docs/nodes)
+- A Lamatic Project in Studio
+
 ## What are Agents?
 
-Agents serve as specialized AI entities that execute specific tasks based on input and predefined logic. They can work independently or as part of a larger workflow inside **Flows**.
-Eventually post deployment, you can interact with these agents via **API Endpoints** in a flow or execute them directly as well.
+Agents are specialized AI entities that execute specific tasks based on input and predefined logic. They can work independently or as part of a larger workflow inside **Flows**. After deployment, you can interact with these agents via **API Endpoints** in a flow or execute them directly.
 
 ## Types of Agents
 
@@ -59,3 +63,19 @@ A **Multi-Modal Agent** processes and generates outputs across different data ty
 - **Test & Iterate:** Experiment with different configurations for the best results.
 
 By leveraging these agent types effectively, you can build powerful AI-driven applications inside Lamatic.ai. 🚀
+
+## Troubleshooting
+
+- **Agent not responding**: Check that the agent is deployed and the project is active
+- **Unexpected output format**: Verify the agent type matches your use case (e.g., use JSON Agent if you need structured output)
+- **Memory issues**: Review memory configuration if the agent isn't retaining context between calls
+
+## Next steps
+
+- Learn how to create agents: [Getting Started with Agents](/docs/agents/getting-started)
+- Explore specific agent types:
+  - [Supervisor Agent](/docs/agents/supervisor-agent)
+  - [Text Agent](/docs/agents/text-agent)
+  - [JSON Agent](/docs/agents/json-agent)
+  - [Multi-Modal Agent](/docs/agents/multi-modal-agent)
+- Integrate agents into your application: [Authentication with API Keys](/docs/studio-keys)

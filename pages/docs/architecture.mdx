@@ -1,6 +1,6 @@
 ---
 title: Architecture
-description: How does lamatic works?
+description: How does Lamatic work?
 ---
 
 # Architecture
@@ -9,7 +9,7 @@ Lamatic was designed with redundancy and scalability in mind. The architecture i
 It is designed such that even if our main system fails, it will not affect your deployed applications and APIs.
 </Callout>
 
-![Lamatic Architecture](../img/ai-middleware.png)
+![Lamatic Architecture](./concepts/img/ai-middleware.png)
 
 ## Execution Steps
 These following steps highlight the typical execution of steps involved in building and deploying project on Lamatic.ai
@@ -21,8 +21,8 @@ These following steps highlight the typical execution of steps involved in build
     ### Connect models
     Add model credentials to your flow.
     ### Deploy the flow on Edge
-    Triggering deployment compiles the  whole  workflow and deploys it on the edge. This is a locked in state of your project which is isolated from lamatic studio and platform.
-    ### Trigger the Flow with GrapgQL  API, widgets or webhooks
+    Triggering deployment compiles the whole workflow and deploys it on the edge. This is a locked in state of your project which is isolated from lamatic studio and platform.
+    ### Trigger the Flow with GraphQL API, widgets or webhooks
     Integrate with method of your choice to trigger the flow.
 </Steps>
 ### Privacy and on premise hosting
@@ -33,7 +33,7 @@ These following steps highlight the typical execution of steps involved in build
 
 
 ## Layers
-![Architecture diagram](../img/arch-diagram.jpg)
+![Architecture diagram](./concepts/img/arch-diagram.jpg)
 
 Different parts of lamatic could be easily understood through the following different layers -
 
@@ -72,7 +72,7 @@ Lamatic's managed infrastructure hosts everything required for a performant appl
 Hosted vector database that includes ETL pipeline to integrate data from third party sources and transform them into vectors for use in RAG use cases.
 ### Core
 
-Here’s the text with the main headings converted to bold:
+Here's the text with the main headings converted to bold:
 
 This holds all the code logic that enables the reliable execution of our GraphQL API.
 
@@ -91,7 +91,7 @@ This holds all the code logic that enables the reliable execution of our GraphQL
 
 Integration with third-party models and APIs.
 
-## Architecture  Diagram
+## Architecture Diagram
 We have this interactive Miro board that explains the architecture of Lamatic.ai in detail and is continuously updated. Please feel free to check it out and drop any comments.
 
 <iframe width="768" height="496" src="https://miro.com/app/live-embed/uXjVKlDyfYc=/?focusWidget=3458764598245708486&embedMode=view_only_without_ui&embedId=792982201736" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>

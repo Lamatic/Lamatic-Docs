@@ -12,6 +12,10 @@
     "title": "Quickstart (5 min)",
     "type": "doc"
   },
+  "architecture": {
+    "title": "Architecture",
+    "type": "doc"
+  },
   "concepts": {
     "title": "Core Concepts",
     "type": "doc"

@@ -101,22 +101,13 @@ export const LaunchWeekTimeline: React.FC<LaunchWeekTimelineProps> = ({
         {/* Header */}
         <div className="flex items-start justify-center mb-12">
           <div className="flex-1">
-            <h2 className="font-extrabold text-black mb-2 text-6xl md:text-7xl lg:text-9xl">
+            <h2 className="font-extrabold text-black mb-4 text-4xl md:text-5xl lg:text-6xl">
               Your Launch Week Roadmap
             </h2>
-            <p className="text-lg md:text-md text-gray-700">
+            <p className="text-base md:text-lg text-gray-700">
               Follow the daily drops — new reveals unlock as the week unfolds.
             </p>
           </div>
-          {/* Lightbulb Icon */}
-          {/* <div className="hidden lg:block ml-8">
-            <div className="relative">
-              <Lightbulb className="w-24 h-24 text-purple-500" strokeWidth={1.5} />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 border-2 border-yellow-400 rounded-full animate-pulse"></div>
-              </div>
-            </div>
-          </div> */}
         </div>
 
         {/* Horizontal Day Cards */}

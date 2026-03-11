@@ -58,26 +58,27 @@ export const DayCard: React.FC<DayCardProps> = ({
   return (
     <div
       className={cn(
-        "flex flex-col bg-white border border-gray-200 rounded-lg p-3 shadow-sm min-h-[220px]",
+        "flex flex-col bg-white border border-gray-200 rounded-lg p-4 shadow-sm min-h-[200px]",
         comingSoon && "opacity-75",
         className
       )}
     >
+      {/* Day and Date */}
+      <div className="mb-4">
+        <p className="text-sm text-gray-500 mb-1">Day {day.day}</p>
+        <p className="text-xs text-red-500 font-medium">Coming {formattedDate}</p>
+      </div>
+
       {/* Title */}
-      <p className="mt-6 text-gray-500">Day {day.day}</p>
-      <h3 className="text-xl text-black mb-2">
-        {day.day === 1 ? "Launch Kickoff" : day.title}
+      <h3 className="text-lg font-bold text-black mb-2">
+        {day.title}
       </h3>
 
-      {/* {day.description && (
-       <p className="text-sm text-gray-600 mb-4">{day.description}</p>
-      )} */}
-
-      {/* Features List (only for Day 1) */}
-      {features.length > 0 && (
-        <ul className="space-y-2 mb-6 flex-1">
+      {/* Features List (only for Day 1 when not coming soon) */}
+      {features.length > 0 && !comingSoon && (
+        <ul className="space-y-1 flex-1">
           {features.map((feature, index) => (
-            <li key={index} className="flex items-center text-gray-700">
+            <li key={index} className="flex items-center text-sm text-gray-700">
               <span className="text-red-500 mr-2 font-bold">+</span>
               <span>{feature}</span>
             </li>
@@ -85,21 +86,17 @@ export const DayCard: React.FC<DayCardProps> = ({
         </ul>
       )}
 
-      {/* Coming Soon or Learn More Button */}
-      <div className="mt-auto bg-gray-100 py-2 rounded-lg">
-        {comingSoon ? (
-          <p className="text-sm text-red-500">Coming {formattedDate}</p>
-        ) : day.day === 1 && day.links && day.links.length > 0 ? (
+      {/* Learn More Button (only for Day 1 when not coming soon) */}
+      {!comingSoon && day.day === 1 && day.links && day.links.length > 0 && (
+        <div className="mt-auto">
           <a
             href={day.links[0].url}
             className="inline-block bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold transition-colors"
           >
             Learn More
           </a>
-        ) : day.day > 1 ? (
-          <p className="text-sm font-[700] text-red-700">Coming {formattedDate}</p>
-        ) : null}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

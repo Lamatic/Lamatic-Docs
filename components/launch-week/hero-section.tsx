@@ -2,9 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Rocket } from "lucide-react";
+import { Rocket, Calendar } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
+import Script from "next/script";
 
 interface HeroSectionProps {
   className?: string;
@@ -54,136 +55,136 @@ export const LaunchWeekHero: React.FC<HeroSectionProps> = ({ className }) => {
   }, []);
 
   return (
-    <div className={cn("relative overflow-hidden py-16 md:py-24", className)}>
-      {/* Background Grid Lines */}
-      {/* {mounted && (
-        <div
-          className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:50px_50px] pointer-events-none"
-          aria-hidden="true"
-        />
-      )} */}
-
+    <div className={cn("relative overflow-hidden py-20 md:py-32 lg:py-40", className)}>
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[450px]">
-  
-
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Decorative Images - Positioned around center content */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         {/* Rocket Image - Top Left */}
         <div
-          className="absolute top-0 left-0 lg:left-8 z-10 floating-element drop-shadow-2xl"
-          style={{ 
-            animationDuration: "4s", 
-            animationDelay: "0s", 
+        className="absolute top-0 left-0 floating-element drop-shadow-2xl pointer-events-auto"
+        style={{ 
+          animationDuration: "4s", 
+          animationDelay: "0s", 
           filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.3)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
         }}
         >
-          <Image
-            src="/images/launch/lamatic-rocket.png"
-            alt="Build Faster Rocket"
-            width={180}
-            height={180}
-            className="w-29 h-29 md:w-36 md:h-36 lg:w-43 lg:h-43 object-contain"
-            priority
-          />
+        <Image
+          src="/images/launch/lamatic-rocket.png"
+          alt="Build Faster Rocket"
+          width={180}
+          height={180}
+          className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain"
+          priority
+        />
         </div>
 
-        {/* POWERED BY CREATIVITY - Bottom Right */}
+        {/* Robot - Bottom Left */}
         <div
-          className="absolute bottom-[0] right-0 lg:left-20 z-10 floating-element drop-shadow-2xl"
-          style={{ 
-            animationDuration: "3s", 
-            animationDelay: "0.5s",
-            filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.3)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
-          }}
+        className="absolute bottom-0 left-0 floating-element drop-shadow-2xl pointer-events-auto"
+        style={{ 
+          animationDuration: "3s", 
+          animationDelay: "0.5s",
+          filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.3)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
+        }}
         >
-          <Image
-            src="/images/launch/robot.png"
-            alt="Powered by Creativity"
-            width={180}
-            height={180}
-            className="w-18 h-18 md:w-25 md:h-25 lg:w-32 lg:h-32 object-contain"
-            priority
-          />
-        </div>
-        <div
-          className="absolute top-10 right-0 lg:right-20 z-10 floating-element drop-shadow-2xl"
-          style={{ 
-            animationDuration: "2s", 
-            animationDelay: "0.2s",
-            filter: "drop-shadow(0 0 15px rgba(239, 68, 68, 0.4)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.25))"
-          }}
-        >
-          <Image
-            src="/images/launch/lamatic-bolt.png"
-            alt="Build Faster Rocket"
-            width={180}
-            height={180}
-            className="w-29 h-29 md:w-36 md:h-36 lg:w-43 lg:h-43 object-contain"
-            priority
-          />
+        <Image
+          src="/images/launch/robot.png"
+          alt="Robot"
+          width={180}
+          height={180}
+          className="w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 object-contain"
+          priority
+        />
         </div>
 
-        {/* POWERED BY CREATIVITY - Bottom Right */}
+        {/* Bolt - Top Right */}
         <div
-          className="absolute bottom-5 right-30 lg:right-8 z-10 floating-element drop-shadow-2xl"
-          style={{ 
-            animationDuration: "4s", 
-            animationDelay: "0.8s",
-            filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.35)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
-          }}
+        className="absolute top-0 right-0 floating-element drop-shadow-2xl pointer-events-auto"
+        style={{ 
+          animationDuration: "2s", 
+          animationDelay: "0.2s",
+          filter: "drop-shadow(0 0 15px rgba(239, 68, 68, 0.4)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.25))"
+        }}
         >
-          <Image
-            src="/images/launch/lamatic-power.png"
-            alt="Powered by Creativity"
-            width={180}
-            height={180}
-            className="w-22 h-22 md:w-29 md:h-29 lg:w-36 lg:h-36 object-contain"
-            priority
-          />
+        <Image
+          src="/images/launch/lamatic-bolt.png"
+          alt="Bolt"
+          width={180}
+          height={180}
+          className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-contain"
+          priority
+        />
         </div>
 
-        {/* Center Aligned Main Content */}
-        <div className="max-w-4xl mx-auto text-center pt-16 md:pt-16">
-          {/* Banner */}
-          <div className="mb-8">
-            <div className="inline-block px-5 py-2 border border-gray-200 rounded-lg text-md font-normal text-gray-700 bg-white">
-              Launch Week:
-              <span className="text-red-500 ml-2">November 17-21, 2025</span>
-            </div>
+        {/* Power - Bottom Right */}
+        <div
+        className="absolute bottom-0 right-0 floating-element drop-shadow-2xl pointer-events-auto"
+        style={{ 
+          animationDuration: "4s", 
+          animationDelay: "0.8s",
+          filter: "drop-shadow(0 0 12px rgba(239, 68, 68, 0.35)) drop-shadow(0 6px 24px rgba(0, 0, 0, 0.2))"
+        }}
+        >
+        <Image
+          src="/images/launch/lamatic-power.png"
+          alt="Power"
+          width={180}
+          height={180}
+          className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 object-contain"
+          priority
+        />
+        </div>
+      </div>
+
+      {/* Center Content */}
+      <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8 md:gap-10 lg:gap-12 py-12">
+        {/* Banner */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-full text-sm font-normal text-gray-700 bg-gray-50">
+        <span className="text-lg">🚀</span>
+        <span>Launch Week 3 • Nov 17-21, 2025</span>
+        </div>
+
+        {/* Main Heading */}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-extrabold text-black leading-[1.05] tracking-tight">
+        The Next Evolution<br />of Software
+        </h1>
+
+        {/* Supporting Text */}
+        <p className="text-base md:text-lg lg:text-xl text-gray-600 max-w-3xl leading-relaxed">
+        Transitioning Software 2.0 → 3.0, where we empower everyone to turn domain expertise into Reliable Agents.
+        Join us for 5 days of major product unveilings, smarter agents, and exciting rewards.
+        </p>
+
+        {/* Countdown Timer */}
+        <div className="flex items-center justify-center gap-3 md:gap-4 lg:gap-6">
+        {[
+          { value: timeLeft.days, label: "Days" },
+          { value: timeLeft.hours, label: "Hours" },
+          { value: timeLeft.minutes, label: "Minutes" },
+          { value: timeLeft.seconds, label: "Seconds" }
+        ].map((item, index) => (
+          <div key={index} className="bg-white rounded-2xl shadow-lg px-4 py-3 md:px-6 md:py-4 lg:px-8 lg:py-6 min-w-[70px] md:min-w-[90px] lg:min-w-[100px]">
+          <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-black">
+            {String(item.value).padStart(2, "0")}
           </div>
-
-          {/* Main Heading */}
-          <h1 className="text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-black mb-2 leading-tight">
-            Launch Week #3
-          </h1>
-          <h2 className="text-[8rem] md:text-[12 rem] lg:text-[16rem] font-extrabold text-black mb-2 leading-tight">
-            The Next Evolution of Software
-          </h2>
-
-          {/* Supporting Text */}
-          <p className="text-lg md:text-xl text-gray-700 mb-12 mx-auto ">
-            Celebrating creativity, innovation, and the community that makes
-            Lamatic come alive.
-          </p>
-
-            {/* CTA Button */}
-            <div className="my-10 flex items-center justify-center relative z-50">
-              <div className="flex-1">
-              <div className="t-signup"></div>
-              </div>
-              </div>
-
-          {/* Countdown Timer */}
-          <div className="text-md md:text-md text-gray-600">
-            <Rocket className="w-4 h-4 text-gray-600 inline-block mr-2" />
-            Launches in
-            <span className="text-red-500 ml-1 font-semibold">
-              {String(timeLeft.days).padStart(1, "0")} days,{" "}
-              {String(timeLeft.hours).padStart(2, "0")}: 
-              {String(timeLeft.minutes).padStart(2, "0")}:
-              {String(timeLeft.seconds).padStart(2, "0")}
-            </span>
+          <div className="text-xs md:text-sm text-gray-500 mt-1">{item.label}</div>
           </div>
+        ))}
         </div>
+
+        {/* CTA Button */}
+        <a
+        href="https://luma.com/event/evt-ajOnQrFHv18GQp5"
+        className="luma-checkout--button bg-black hover:bg-gray-800 text-white font-bold text-base md:text-lg px-8 py-4 md:px-10 md:py-5 rounded-full transition-colors inline-flex items-center gap-3"
+        data-luma-action="checkout"
+        data-luma-event-id="evt-ajOnQrFHv18GQp5"
+        >
+        <Calendar className="w-5 h-5 md:w-6 md:h-6" />
+        <span>Get Notified</span>
+        </a>
+        <Script id="luma-checkout" src="https://embed.lu.ma/checkout-button.js" />
+      </div>
       </div>
     </div>
   );

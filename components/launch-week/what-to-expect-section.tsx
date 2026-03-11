@@ -16,16 +16,19 @@ export const WhatToExpectSection: React.FC<WhatToExpectSectionProps> = ({
       icon: Zap,
       text: "Major product unveilings with smarter agents and new UI",
       color: "text-black",
+      link: "https://product.lamatic.ai",
     },
     {
       icon: Users,
       text: "Community partnerships, AMAs, and creator spotlights",
       color: "text-black",
+      link: "https://lu.ma/lamatic",
     },
     {
       icon: Gift,
       text: "Exciting rewards, bonuses, and early access upgrades",
       color: "text-black",
+      link: "https://lamatic.ai/rewards",
     },
   ];
 
@@ -46,18 +49,13 @@ export const WhatToExpectSection: React.FC<WhatToExpectSectionProps> = ({
         {/* Header */}
         <div className="flex items-start justify-between mb-12">
           <div className="flex-1">
-            <h2 className="font-extrabold text-black mb-2 text-5xl md:text-7xl lg:text-9xl">
+            <h2 className="font-extrabold text-black mb-4 text-4xl md:text-5xl lg:text-6xl">
               What to Expect This Week
             </h2>
-            <p className="text-lg md:text-md text-gray-700 ">
-              From bold product drops to community moments here's what's waiting
-              for you at Launch Week 3.
+            <p className="text-base md:text-lg text-gray-700">
+              From bold product drops to community moments here's what's waiting for you at Launch Week 3.
             </p>
           </div>
-          {/* Lightning Bolt Icon */}
-          {/* <div className="hidden lg:block ml-8">
-            <Zap className="w-24 h-24 text-pink-500" strokeWidth={1.5} />
-          </div> */}
         </div>
 
         {/* Feature Cards */}
@@ -67,7 +65,7 @@ export const WhatToExpectSection: React.FC<WhatToExpectSectionProps> = ({
             return (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-lg p-6"
+                className="bg-white border border-gray-200 rounded-lg p-6 transition-all duration-300 hover:shadow-lg hover:border-gray-300 hover:-translate-y-1"
               >
                 <div className="flex items-start gap-4">
                   <div>
@@ -79,6 +77,12 @@ export const WhatToExpectSection: React.FC<WhatToExpectSectionProps> = ({
                     <p className="text-gray-800 text-base leading-relaxed">
                       {feature.text}
                     </p>
+                    <a
+                      href={feature.link}
+                      className="inline-block underline mt-4 text-sm font-medium text-black hover:text-gray-600 transition-colors duration-200"
+                    >
+                      Checkout ↗
+                    </a>
                   </div>
                 </div>
               </div>

@@ -16,6 +16,10 @@
     "title": "Core Concepts",
     "type": "doc"
   },
+  "architecture": {
+    "title": "Architecture",
+    "type": "doc"
+  },
   "glossary": {
     "title": "Glossary",
     "type": "doc"

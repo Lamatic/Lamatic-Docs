@@ -76,7 +76,7 @@ import { lamaticClient } from './utils'
 function Page() {
 const executeAgent = async () => {
     const response = await lamaticClient.executeAgent(process.env.LAMATIC_AGENT_ID, {
-        topic: 'learning more about lamatic ai',
+      topic: 'learning more about Lamatic AI',
     })
     console.log(response)
 }

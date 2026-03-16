@@ -1,6 +1,6 @@
 import { getPagesUnderRoute } from "nextra/context";
 import { type Page } from "nextra";
-import { Card, Cards } from "nextra-theme-docs";
+import { Cards } from "nextra/components";
 import { FileCode } from "lucide-react";
 
 export const CookbookIndex = () => (
@@ -29,9 +29,9 @@ export const CookbookIndex = () => (
           <h3 className="nx-font-semibold nx-tracking-tight nx-text-slate-900 dark:nx-text-slate-100 nx-mt-8 nx-text-2xl">
             {category}
           </h3>
-          <Cards num={2}>
+          <Cards.Cards num={2}>
             {pages.map((page) => (
-              <Card
+              <Cards.Card
                 href={page.route}
                 key={page.route}
                 title={page.meta?.title || page.frontMatter?.title || page.name}
@@ -39,7 +39,7 @@ export const CookbookIndex = () => (
                 arrow
               >
                 {""}
-              </Card>
+              </Cards.Card>
             ))}
           </Cards>
         </div>

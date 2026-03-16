@@ -1,4 +1,4 @@
-{
+export default {
     "graphql": {
         "title": "GraphQL",
         "type": "doc"

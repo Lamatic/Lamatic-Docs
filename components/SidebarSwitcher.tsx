@@ -65,33 +65,51 @@ export function SidebarSwitcher() {
   const { asPath } = useRouter();
 
   useEffect(() => {
-    // Find all separator elements in sidebar that contain "Switcher" text
-    const findAndReplace = () => {
+    setTarget(null);
+
+    const findTarget = () => {
+      // First try: find a "Switcher" separator <li> and use it
       const sidebarItems = document.querySelectorAll(
         ".nextra-sidebar-container li"
       );
       for (const li of sidebarItems) {
-        const text = li.textContent?.trim();
-        if (text === "Switcher") {
-          // Clear the original text and use this element as portal target
+        if (li.textContent?.trim() === "Switcher") {
           li.innerHTML = "";
           li.style.padding = "0";
           li.style.margin = "0";
           setTarget(li);
-          return;
+          return true;
         }
       }
+
+      // Fallback: insert into the sidebar scroll area
+      const scrollArea = document.querySelector(
+        ".nextra-sidebar-container .nextra-scrollbar"
+      );
+      if (scrollArea) {
+        // Check if we already injected a container
+        let container = scrollArea.querySelector("#switcher-portal");
+        if (!container) {
+          container = document.createElement("div");
+          container.id = "switcher-portal";
+          // Insert at the top of the inner transform wrapper
+          const inner = scrollArea.firstElementChild || scrollArea;
+          inner.insertBefore(container, inner.firstChild);
+        }
+        setTarget(container);
+        return true;
+      }
+      return false;
     };
 
-    // Try immediately and also after a delay for SSR hydration
-    findAndReplace();
-    const timer = setTimeout(findAndReplace, 500);
-    const timer2 = setTimeout(findAndReplace, 1500);
+    if (findTarget()) return;
 
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(timer2);
-    };
+    // Watch for sidebar to appear
+    const observer = new MutationObserver(() => {
+      if (findTarget()) observer.disconnect();
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    return () => observer.disconnect();
   }, [asPath]);
 
   if (!target) return null;

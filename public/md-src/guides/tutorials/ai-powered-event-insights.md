@@ -1,0 +1,128 @@
+# AI Powered Event Insights
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+         "Extract From File",
+         "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Analysis",
+        "Operations"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=event-insights" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=event-insights" target="_blank">Add to Lamatic</a>
+  </Button>
+</div>
+
+This guide will walk you through building an AI-powered event data processing system. The workflow collects event data, passes it to a text generation node, and enables users to ask questions to receive AI-generated insights. This system allows for efficient event analysis and real-time information retrieval.
+
+## What You'll Build
+
+A simple API that processes event data, passes it to a text generation node, and enables users to ask questions for AI-generated insights. This API enhances event analysis by providing quick and accurate responses, enabling seamless integration with automation and decision-making flow.
+
+## Getting Started
+
+### 1. Project Setup
+
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
+
+### 2. Creating a New Flow
+
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set url and question as parameter in input schema
+   - Set response type to "Real-time"
+   - Click on save
+
+### 4. File Extract Node Addition
+
+![building-chatbot.png](./img/ai-invoice-summarizer/extract-file.png)
+
+1. In the Next Node, select **Extract From File Node**
+   1. Enter the File URL.
+   1. Select Format as  per your requirement.
+
+### 5. Adding AI Text Generation
+
+1. Click the + icon to add a new node.
+2. Choose **Generate Text**.
+   ![Node Text Gen](./img/ai-invoice-summarizer/text-gen.png)
+3. Configure the AI model:
+   - Select your "Open AI" credentials
+   - Choose "gpt-4-turbo" as your Model
+4. Click on "+" under Prompts section.
+5. Set up your prompt:
+
+```
+
+Use this data from an event and answer the question.
+Data:{{extractFromFileNode_813.output.files}}
+Question:{{triggerNode_1.output.question}}
+
+```
+
+- You can add variables using the "insert Variable" button
+
+### 6. Configuring the response
+
+1. Click the API response node.
+2. Add Output Variables by clicking the + icon.
+3. Select variable from your Generate Text Node.
+
+### 7. Test the flow
+
+1. Click on 'API Request' trigger node.
+2. Click on Configure test.
+   ![building-chatbot.png](./img/ai-event-insights/testing.png)
+3. Fill sample value in 'url','question' and click on test.
+
+### 8. Deployment
+
+1. Click the Deploy button.
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
+2. Your API is now ready to be integrated into Node.js or Python applications.
+3. Your flow will run on Lamatic's global edge network for fast, scalable performance.
+
+### 9. What's Next?
+
+- Experiment with different prompts
+- Try other AI models
+- Add more processing steps to your flow
+- Integrate the API into your applications
+
+### 10. Tips
+
+- Save your tests for reuse across different scenarios
+- Use consistent JSON structures for better maintainability
+- Test thoroughly before deployment
+
+Now you have a working AI-powered API! You can expand on this foundation to build more complex applications using Lamatic.ai's features.

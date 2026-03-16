@@ -1,0 +1,44 @@
+# Templates in Lamatic
+
+![img_13.png](./img/template.png)
+
+
+Templates in Lamatic provide a streamlined way to create flows using pre-configured node sets, reducing the need for manual setup. This guide covers key processes for using templates effectively.
+
+## Creating a New Flow from a Template
+
+
+To create a flow using a template in Lamatic Studio:
+
+- Start a new flow in the Studio interface.
+- Navigate to the **Template Selection** menu.
+- Choose a template from the available options.
+- Complete all required fields within the template.
+- Test the flow thoroughly to ensure it works as expected.
+- Once verified, deploy your flow.
+
+
+## Sharing Templates
+
+### Sharing Within Your Team
+
+To share templates with team members:
+
+- Click the **Export** button in the left sidebar.
+- Select **Share with Team**.
+- Shared templates will appear under **Team Templates** for organization members.
+
+### Publishing Templates to the Lamatic Hub
+
+To contribute to the Lamatic community by publishing templates:
+
+**Important:** Avoid sharing sensitive information like API keys or private URLs, especially within code nodes.
+<br/>
+
+- Click the **Export** button in the left sidebar.
+- Choose **Publish Flow**.
+- Complete all required information for your template.
+- Submit the template for review by the Lamatic team.
+- Once approved, your template will be available on the Hub, credited to you as the creator.
+
+Following these steps enables efficient creation, sharing, and publication of templates, enhancing your workflow and contributing to the Lamatic community.

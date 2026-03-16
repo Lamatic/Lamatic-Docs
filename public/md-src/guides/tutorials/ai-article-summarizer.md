@@ -1,0 +1,134 @@
+# AI powered Article Summarizer
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Beginner"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+        "Scraper", 
+        "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Content",
+        "Support",
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=article-summariser" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=article-summariser" target="_blank">Add to Lamatic</a>
+  </Button>
+</div>
+
+
+This guide will help you build an AI-powered article summarization system. The workflow processes article URLs provided by users, extracts content using the Firecrawl scraper node, and generates a concise summary using an LLM node. This system enables efficient data extraction and quick information retrieval, making it easier to digest lengthy articles.
+
+## What You'll Build
+
+A simple API that processes article URLs provided by users, extracts content using the Firecrawl scraper node, and generates a concise summary using an LLM node. This API enables seamless data extraction, making it easier to quickly understand and analyze lengthy articles for a wide range of applications.
+
+## Getting Started
+
+### 1. Project Setup
+
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
+
+### 2. Creating a New Flow
+
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set url as parameter in input schema
+   - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
+
+### 4. Scraping the data using Firecrawl
+
+1. Click the + icon to add a new node
+2. Select the Scraper node
+   ![Node Text Gen Config](./img/ai-article-summarizer/scraper-node.png)
+3. Select the credentials
+4. Add 'url' as parameter
+
+### 5. Adding AI Text Generation
+
+1. Click the + icon to add a new node
+2. Choose "Generate Text"
+   ![Node Text Gen Config](./img/ai-article-summarizer/text-llm.png)
+3. Configure the AI model:
+   - Select your "Open AI" credentials
+   - Choose "gpt-4-turbo" as your Model
+4. Click on "+" under Prompts section.
+5. Set up your prompt:
+
+   ```
+   I will provide you with a markdown file containing an article.
+   Extract the key points and generate a detailed yet concise summary, capturing the main ideas, arguments, and insights presented in the article.
+   Ensure the summary is well-structured and easy to understand.
+   Markdown Content: {{scraperNode_520.output.markdown}}
+
+   ```
+
+- You can add variables using the "insert Variable" button
+  ![Node Text Gen Config](./img/ai-article-summarizer/text-llm-node-1.png)
+
+### 5. Configuring the response
+
+1. Click the API response node
+   ![Node Text Gen Config](./img/ai-article-summarizer/api-response-node.png)
+2. Add Output Variables by clicking the + icon
+3. Select variable from your Generate Text Node
+
+### 7. Test the flow
+
+1. Click on 'API Request' trigger node
+2. Click on Configure test
+   ![Node Text Gen Config](./img/ai-article-summarizer/testing.png)
+3. Fill sample value in 'url' and click on test
+
+### 8. Deployment
+
+1. Click the Deploy button
+   ![Flow Deploy](./img/ai-review-responder/deploy.png)
+2. Add the purpose and description of your project
+3. Your API is now ready to be integrated into Node.js or Python applications
+4. Your flow will run on Lamatic's global edge network for fast, scalable performance
+
+### 9. What's Next?
+
+- Experiment with different prompts
+- Try other AI models
+- Add more processing steps to your flow
+- Integrate the API into your applications
+
+### 10. Tips
+
+- Save your tests for reuse across different scenarios
+- Use consistent JSON structures for better maintainability
+- Test thoroughly before deployment
+
+Now you have a working AI-powered API! You can expand on this foundation to build more complex applications using Lamatic.ai's features.

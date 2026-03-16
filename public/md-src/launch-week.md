@@ -1,0 +1,78 @@
+<style>{`
+  #docs-feedback {
+    display: none !important;
+  }
+`}</style>
+
+<>
+  <ForceLightTheme />
+  <div className="mx-auto px-4 sm:px-6 lg:px-0">
+    <LaunchWeekHero />
+
+    <WhatToExpectSection />
+
+    <LaunchWeekTimeline
+      days={[
+        {
+          day: 1,
+          date: "17 November 2025",
+          title: "Launch Week Kick Off + Reveal",
+          description:
+            "Official launch and announcement video. Introducing UI + Dark Mode, New Flow Builder, Prompt IDE, and Tags. Transform how you build and deploy AI agents with our enhanced platform.",
+          badge: "New",
+          links: [
+            { type: "watch", label: "Watch Announcement", url: "#" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 2,
+          date: "18 November 2025",
+          title: "Power Features",
+          description:
+            "Unlock advanced capabilities with Fallback, Retry & A/B Testing, Parallel processing, and Model Logic. Influencer showcase and product walkthroughs demonstrate real-world applications.",
+          links: [
+            { type: "article", label: "Learn More", url: "/docs" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 3,
+          date: "19 November 2025",
+          title: "Product Hunt Launch",
+          description:
+            "Product Hunt launch featuring AI Assistant, Version Control & Git Integrations. Ambassadors go live and user stories showcase the power of Lamatic in production environments.",
+          links: [
+            { type: "article", label: "Product Hunt", url: "#" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 4,
+          date: "20 November 2025",
+          title: "AgentKit Drop",
+          description:
+            "Introducing AgentKit and Templates to accelerate your development. Product Hunt launch continues with an AMA session where you can ask questions and get expert guidance.",
+          links: [
+            { type: "article", label: "AgentKit", url: "/templates" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+        {
+          day: 5,
+          date: "21 November 2025",
+          title: "Finale & Integrations",
+          description:
+            "Final day featuring New Integrations, Tools, and Knowledge Stacks. Join us for the recap, leaderboard announcements, shoutouts, and exclusive swags for our community.",
+          links: [
+            { type: "article", label: "View Integrations", url: "/integrations" },
+            { type: "documentation", label: "Documentation", url: "/docs" },
+          ],
+        },
+      ]}
+    />
+
+    <LaunchWeekGame />
+    <LaunchWeekCTA />
+  </div>
+</>

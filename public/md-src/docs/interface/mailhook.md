@@ -1,0 +1,64 @@
+# Mailhook
+
+Mailhook is a **trigger node** that lets you start a flow when an email is received. Any email sent to the mailhook address triggers the flow, with its metadata and content included in the payload for processing.
+
+Use mailhooks in [Lamatic.ai](https://lamatic.ai) to build email-driven automations e.g. support ticket routing, inbox parsing, or notifications without polling or manual steps.
+
+## Mailhook overview
+
+- **Trigger node**: The mailhook acts as the entry point of your flow; when an email arrives, the flow runs.
+- **Unique email address**: Each mailhook has a dedicated inbound email address. Messages to this address start the flow.
+- **Rich payload**: Every triggered run receives the full email in the payload: metadata (from, to, subject, date, etc.) and body content, so downstream nodes can process it.
+
+## Setting up a Mailhook
+
+1. **Create or open a flow**  
+   In your Lamatic dashboard, create a new flow or open an existing one.
+
+2. **Add the Mailhook node**  
+   In the nodes panel, search for **Mailhook** (or "mail hook") and add it as the trigger node for your flow.
+
+3. **Get your mailhook address**  
+   After adding the node, copy the unique email address shown for this mailhook. This is the address that will trigger the flow.
+
+4. **Build your flow**  
+   Add nodes after the mailhook to process the payload—e.g. parse subject/body, call an LLM, send replies, or update external systems.
+
+5. **Deploy the flow**  
+   Deploy the flow so the mailhook is active. Incoming emails to the mailhook address will then trigger runs.
+
+## Payload schema
+
+When an email triggers the flow, the mailhook node passes a payload with the following structure. Use it in later nodes or your trigger node’s output reference) to drive logic, extract data, or generate responses.
+
+| Field        | Type   | Description                                      |
+| ------------ | ------ | ------------------------------------------------ |
+| `webhookId`  | string | Unique identifier for the mailhook.              |
+| `to`         | string | Recipient address (the mailhook inbox).          |
+| `from`       | string | Sender email address.                            |
+| `subject`    | string | Email subject line.                              |
+| `text`       | string | Plain-text body of the email.                    |
+| `html`       | string | HTML body of the email (if present).             |
+| `attachments`| array  | List of attachments (e.g. files) on the email.   |
+
+Example payload:
+
+```json
+{
+  "webhookId": "string",
+  "to": "string",
+  "from": "string",
+  "subject": "string",
+  "text": "string",
+  "html": "string",
+  "attachments": []
+}
+```
+
+## Using your Mailhook
+
+- **Share the address**: Send the mailhook email address to users, systems, or forms that should trigger the flow (e.g. `<random_id>@lamatic.dev`).
+- **Monitor runs**: Check the flow **Logs** in the dashboard to see triggered runs, inspect payloads, and debug.
+- **Iterate**: Adjust parsing, prompts, or integrations in the flow and redeploy; the same mailhook address keeps working.
+
+Mailhooks give you a simple, event-driven way to turn incoming email into automated workflows on Lamatic.

@@ -1,0 +1,19 @@
+# Benchmarks
+
+At the core of any powerful gen AI application is a large language model that can understand and generate human-like text. On Lamatic.ai, you have the flexibility to integrate and leverage LLMs from a variety of leading providers.
+But with so many options available, how do you choose the right model for your use case? Lamatic.ai provides a robust benchmarking capability to objectively evaluate and compare model performance.
+
+## Recommended Benchmarks
+
+### [Artificial Analaysis](https://artificialanalysis.ai/#summary)
+<div className="relative w-full h-[1000px] overflow-hidden">
+    <iframe
+        className="absolute top-0 left-0 w-full h-full overflow-x-hidden"
+        src="https://artificialanalysis.ai/embed/llm-performance-leaderboard"
+        allowFullScreen
+    ></iframe>
+</div>
+
+## Choosing Wisely
+With objective benchmarking data, rich model insights, and built-in experimentation capabilities, Lamatic.ai empowers you to make highly informed decisions when selecting LLM models.
+Thoroughly vetting model performance allows you to optimize for the criteria that matter most - quality, capability fit, cost efficiency, safety, and more. The right model choice is critical for delivering intelligent and delightful user experiences.

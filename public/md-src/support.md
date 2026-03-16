@@ -1,0 +1,14 @@
+# Support at Lamatic.ai
+
+## Public channels (preferred)
+
+- [documentation](/docs)
+- [Public Q&A](https://release.lamatic.ai/) on GitHub Discussions.
+- [Feature Requests](https://release.lamatic.ai/) on GitHub Discussions.
+- [Bug reports](https://release.lamatic.ai/) on GitHub Issues.
+
+## Community channels
+
+- [Slack](/slack):
+
+## Private channels

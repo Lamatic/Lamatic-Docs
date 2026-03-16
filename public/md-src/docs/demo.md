@@ -1,0 +1,42 @@
+# Request a Demo
+
+
+
+<iframe width="100%" height="700px" src="https://lamatic.fillout.com/demo-request" title="lamatic.ai" allow="clipboard-write" webkitallowfullscreen="true" mozallowfullscreen="true" allowFullScreen></iframe>
+
+[//]: # (## Try the Sandbox)
+
+[//]: # (<Steps>)
+
+[//]: # ()
+[//]: # (### View a Project Demo Using Lamatic)
+
+[//]: # ()
+[//]: # ()
+[//]: # (<Button asChild className="mt-3" variant="cta">)
+
+[//]: # (  <a)
+
+[//]: # (    href="https://sanbox.lamatic.ai")
+
+[//]: # (    target="_blank")
+
+[//]: # (    rel="noopener")
+
+[//]: # (  >)
+
+[//]: # (    Open Sandbox)
+
+[//]: # (  </a>)
+
+[//]: # (</Button>)
+
+[//]: # ()
+[//]: # (### Login with these credentials)
+
+[//]: # (    - Email - sandbox@lamatic.ai)
+
+[//]: # (    - Password - Sandbox@lamatic)
+
+[//]: # ()
+[//]: # (</Steps>)

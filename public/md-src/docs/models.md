@@ -1,0 +1,87 @@
+# Models in Generative AI Projects
+
+Models are the fundamental building blocks of any Generative AI project. They serve as the cognitive engines that power agentic flows, enabling sophisticated decision-making and content generation. These models are the cornerstone of AI-driven applications, providing the intelligence and capabilities that make advanced functionalities possible. [Lamatic.ai](http://Lamatic.ai) offers seamless integration with a diverse array of models through built-in connections and efficient proxies, streamlining the development process for AI practitioners.
+
+## Prerequisites
+
+- A Lamatic Project in Studio
+- Basic understanding of [Flows](/docs/flows) and [Nodes](/docs/nodes)
+- API keys from model providers (OpenAI, Anthropic, etc.) if you want to use external models
+
+## Understanding Models
+
+**Models** are AI systems trained on vast amounts of data that can understand and generate content. In Lamatic, you configure models once in your Project, then use them across multiple Flows and Nodes.
+
+Think of models as "AI engines" - you set them up once, then your Flows can use them to generate text, analyze images, or process other types of content.
+
+---
+
+## **Model Types**
+
+| **Model Type**     | **Description**                                                                                                                                       | **Availability** |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
+| **Text**           | Sophisticated text generation based on input prompts, capable of producing coherent and contextually relevant content                                  | ✅                |
+| **Chat**           | Interactive text generation that considers both the initial prompt and the ongoing conversation history, enabling dynamic and context-aware responses | ✅                |
+| **Multimodal**     | Advanced text generation with comprehensive understanding capabilities, including the ability to process and interpret images, documents, and more     | ✅                |
+| **Image Generation** | Creation of visual content based on textual descriptions, allowing for the production of unique and customized images                                | ✅                |
+| **Audio Transcript** | Accurate conversion of spoken language into written text, facilitating the transcription of audio content                                           | 🚧               |
+| **Audio Generation**  | Transformation of written text into natural-sounding speech, enabling voice synthesis for various applications                                     | 🚧               |
+| **Video**             | Production of video content from textual prompts, allowing for the creation of dynamic visual narratives                                           | ❌                |
+
+---
+
+## **Providers**
+
+Models are typically offered by providers, which are companies or organizations responsible for the development, training, and hosting of these AI models. These providers invest significant resources in creating and maintaining state-of-the-art models that can be leveraged by developers and businesses. For open-source models, the provider may be the organization or company that hosts and maintains the model infrastructure, even if they didn't originally develop the model.
+### Available Providers
+
+<div className="relative w-full h-[1100px] overflow-hidden">
+    <iframe
+        className="absolute top-0 left-0 w-full h-full overflow-x-hidden"
+        src="https://airtable.com/embed/app3p6bgbAipAiEOX/shrpj5NrkMJARowJU"
+        allowFullScreen
+    ></iframe>
+</div>
+
+> 💡 **Note**: You can explore a variety of providers to find the models that best suit your specific project requirements using [Benchmarks](/ ).
+
+---
+
+## **Adding a New Provider → Model**
+
+To incorporate a model into your flow, the first step is to add the necessary API credentials for that specific model. Lamatic employs robust encryption methods to securely store these API keys, ensuring that they are only accessed when a request is made. As a security measure, you have the flexibility to delete these credentials at any time. Additionally, it's considered a best practice to regularly rotate these credentials to maintain optimal security. Lamatic allows you to add and manage different sets of credentials for various providers, giving you granular control over your model access.
+
+> 💡 **Tip**: Enhance your usage monitoring by setting up separate API credentials for Development and Production environments within Lamatic. This practice allows for more effective tracking and management of resource utilization across different stages of your project.
+
+**Steps to Add New Provider Credentials:**
+
+1. Acquire the required API keys from the respective model provider (refer to the comprehensive Guide for detailed instructions).
+2. Navigate to the provider selection interface within the Lamatic platform.
+3. Input the model details and credentials, then initiate the testing process to ensure proper configuration.
+
+---
+
+## **Using Models in a Flow**
+
+Lamatic's flexible architecture allows you to incorporate multiple models, either of the same type or different types, within a single flow. To integrate a model into your flow, begin by dragging a compatible node (such as a Text LLM node) into the flow builder interface. Once placed, you can select the desired model from the list of available options, which are populated based on the credentials you've added for various providers.
+
+---
+
+## **Model Defaults**
+
+Lamatic offers a convenient feature that allows you to establish default models for your entire project. When you drag a compatible node into the flow, these default models are automatically selected, streamlining your flow. If you decide to modify the default model settings, the changes will be reflected across all instances where the default option is selected. This functionality provides a quick and efficient method to switch between models on a project-wide scale, eliminating the need to manually update individual model selections throughout your flow.
+
+> ⚡ **Quick Tip**: Setting up default models allows you to quickly switch models project-wide without having to change them individually in each flow node.
+
+## Troubleshooting
+
+- **Model not appearing in node**: Make sure you've added credentials for that model provider in Studio > Models
+- **API key errors**: Verify your API key is correct and has sufficient credits/quota
+- **Model not responding**: Check your internet connection and the model provider's status page
+- **Default model not applying**: Ensure you've saved the default model settings in Project Settings
+
+## Next steps
+
+- **Learn about specific model types**: Explore [Model Integrations](/integrations) for detailed setup guides
+- **Use models in Flows**: Read about [AI Nodes](/docs/nodes) to see how to use models in your workflows
+- **Optimize model usage**: Check [Best Practices](/docs/models/model-logic#best-practices) for tips on choosing the right model for your use case

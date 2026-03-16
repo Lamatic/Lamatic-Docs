@@ -1,0 +1,9 @@
+# Guides
+
+The guides section is work-in-progress. We want to collect all end-to-end
+  examples of how to use Lamatic.ai here including Tutorials, videos and other
+  external resources.
+
+## Tutorials
+
+<TutorialIndex />

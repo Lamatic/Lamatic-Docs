@@ -1,0 +1,54 @@
+# Lamatic.ai Partners
+
+The Lamatic.ai Partner Program is designed to collaborate with innovative companies, developers, and organizations to build and enhance AI-driven solutions. By partnering with us, you gain access to cutting-edge technology, resources, and a community that drives AI automation forward.
+
+<Button variant="destructive" className="mt-3" href="#become-a-partner" size="sm" asChild>
+<a href="#become-a-partner">Become a Partner</a>
+</Button>
+
+## Benefits of Partnering with Lamatic.ai
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-8">
+  <BenefitCard 
+    icon="🔮"
+    title="Exclusive Preview Access"
+    description="Get exclusive previews of upcoming updates and innovations, giving you a competitive edge and more time to integrate new features."
+  />
+  
+  <BenefitCard 
+    icon="📣"
+    title="Joint Marketing Power"
+    description="Amplify your reach through joint marketing campaigns, events, and case studies to build credibility and attract new clients."
+  />
+  
+  <BenefitCard 
+    icon="🛠️"
+    title="Premium Technical Support"
+    description="Access dedicated technical support, training materials, and documentation to ensure smooth implementation and operation."
+  />
+  
+  <BenefitCard 
+    icon="💰"
+    title="Financial Incentives"
+    description="Benefit from referral programs, shared revenue models, and exclusive discounts that boost your bottom line."
+  />
+  
+  <BenefitCard 
+    icon="🤖"
+    title="AI Integration Expertise"
+    description="Work closely with our team to integrate and optimize AI-driven solutions for your specific use cases and client needs."
+  />
+</div>
+
+## Our Current Partners
+<PartnersGrid/>
+
+## Become a Partner
+
+Interested in joining our Partner Program? Fill out the form below, and our team will get in touch.
+
+<iframe 
+  className="airtable-embed" 
+  src="https://airtable.com/embed/app7b9wDyU73T6rN2/paggY2zrbHQhFamVL/form" 
+  width="100%" 
+  height="650">
+</iframe>

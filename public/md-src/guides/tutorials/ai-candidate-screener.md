@@ -1,0 +1,164 @@
+# AI Candidate Screener
+
+<div className="grid md:grid-cols-1 gap-2 mb-8">
+  <div className="">
+    <SectionRows 
+      section="Difficulty Level" 
+      chips={["Intermediate"]} 
+    />
+    
+    <SectionRows 
+      section="Nodes" 
+      chips={[
+        "Scraper", 
+        "Classifier Agent",
+        "Text LLM"
+      ]} 
+    />
+    
+    <SectionRows 
+      section="Tags" 
+      chips={[
+        "Operations"
+      ]} 
+    />
+  </div>
+</div>
+
+<div className="mt-4 mb-4">
+  Try out this flow yourself at Lamatic.ai. Sign up for free and start building your own AI workflows.
+  <Button variant="destructive" className="mt-3" href="https://studio.lamatic.ai/_?templateSlug=candidate-screener" size="sm" asChild>
+    <a href="https://studio.lamatic.ai/_?templateSlug=candidate-screener" target="_blank">Add to Lamatic</a>
+  </Button>
+</div>
+
+This guide will help you build an AI-powered GitHub profile screening system using Lamatic.ai's flow builder. The system can automatically analyze candidates' GitHub repositories, match their experience and skills against job requirements, and generate personalized email responses - either congratulating qualified candidates for advancing to the next round or providing constructive feedback to those who didn't meet the criteria.
+
+## What you'll Build
+
+- You'll utilize Lamatic.ai Studio.
+- AI-Powered GitHub Profile Screening System
+
+## Getting Started
+
+### 1. Project Setup
+
+1. Sign up at [Lamatic.ai](https://lamatic.ai/) and log in.
+1. Navigate to the Projects and click **New Project** or select your desired project.
+1. You'll see different sections like Flows, Context, and Connections
+   ![flow.png](./img/ai-review-responder/flow.png)
+
+### 2. Creating a New Flow
+
+1. Navigate to Flows, select New Flow.
+2. Click **Create from scratch** as starting point.
+   ![Flow selection](./img/ai-review-responder/flow-start.png)
+
+### 3. Setting Up Your API
+
+1. Click "Choose a Trigger"
+2. Select "API Request" under the interface options
+   ![Flow API](./img/ai-review-responder/flow-step2.png)
+3. Configure your API:
+   - Add your Input Schema
+   - Set url as parameter in input schema
+   - Set response type to "Real-time"
+     ![Flow API Schema](./img/ai-article-summarizer/api-schema.png)
+   - Click on save
+
+### 4. Scraping the data using Firecrawl
+
+1. Click the + icon to add a new node
+2. Select the Scraper node
+   ![Node Text Gen Config](./img/ai-article-summarizer/scraper-node.png)
+3. Select the credentials
+4. Add 'url' as parameter
+
+### 5. Set the API Response Params
+
+1. In the API Response Node, Update the api response
+1. Pass the scraped Markdown and HTML in the response by using the variable selector to set the response for the scraped node.
+1. Turn on the flow from the top switch and Deploy the project
+
+### 6. Create a new flow to use Scraper Node
+
+1. Create a new flow and select API Request Node as trigger node
+1. Set the input params in our case email, aboutYou and githubUrl.
+1. Search for Execute Flow Node and Add it
+1. Select the flow which we previously created
+  
+1. Pass the candidate's githubUrl as the url param for that flow
+1. Search for Agent Classifier Node and Add it and Add you AI Provider Credentials
+1. Set up the prompt with your JD and Candidate Info
+   Write a prompt as per your needs by mentioning your JD and the candidate's GitHub info, which we obtained by using the execute flow node calling the scraper flow that we previously created.
+
+   Sample Prompt:
+
+   ```js
+       The candidate has filled the about you and why you section for a job recruitment with job description as follows To recruit the best candidates for the Next.js developer’s role, it is vital to adequately list the required experience and duties. The expectations for the given position may vary, as they may be expanded depending on the role, in other words, entry-level, mid-level, or senior Next.js developer’s position. Thus, a precise enumeration of job responsibilities and qualifications will help ensure that the applicants meet the job requirements for the Next.js developer role to a greater extent.
+       As a Next.JS developer, your responsibilities will be:
+       Creating high-performance web applications and maintaining them.
+       Designing server-side rendered React applications and implementing optimized client-side rendering.
+       Effective integration with APIs and various databases.
+       Write clean and efficient code.
+       Coordinate activities with cross-functional teams for efficient user experiences.
+       Possesses problem-solving skills and a deep understanding of JavaScript and React framework.
+       Scraping the github of candidate we got : {{flowNode_802.output.flowOutput.markdown}}
+       The candidate has also filled following details about himself :{{triggerNode_1.output.aboutYou}}
+       Based on this details and job description classify whether the candidate is potential candidate or not at the moment
+   ```
+
+
+
+1. Edit Classes for Agent Classifier and a Text Generate Node on both.
+1. Select Credential for Text Generate and write Prompt based on classification
+   **Sample prompt for Potential Candidate:**
+
+   ```js
+       Generate a personalzied email for {{triggerNode_1.output.email}} telling him that he alligs with our jd and we liked his github Profile
+       As a Next.JS developer, your responsibilities will be:
+       Creating high-performance web applications and maintaining them.
+       Designing server-side rendered React applications and implementing optimized client-side rendering.
+       Effective integration with APIs and various databases.
+       Write clean and efficient code.
+       Coordinate activities with cross-functional teams for efficient user experiences.
+       Possesses problem-solving skills and a deep understanding of JavaScript and React framework.
+   ```
+
+
+
+   **Sample prompt for Not Potential Candidate:**
+
+   ```js
+   Generate an email for candidate sharing him insights where he lacks based on our jd:
+   The candidate has filled the about you and why you section for a job recruitment with job description as follows To recruit the best candidates for the Next.js developer’s role, it is vital to adequately list the required experience and duties. The expectations for the given position may vary, as they may be expanded depending on the role, in other words, entry-level, mid-level, or senior Next.js developer’s position. Thus, a precise enumeration of job responsibilities and qualifications will help ensure that the applicants meet the job requirements for the Next.js developer role to a greater extent.
+   As a Next.JS developer, your responsibilities will be:
+   Creating high-performance web applications and maintaining them.
+   Designing server-side rendered React applications and implementing optimized client-side rendering.
+   Effective integration with APIs and various databases.
+   Write clean and efficient code.
+   Coordinate activities with cross-functional teams for efficient user experiences.
+   Possesses problem-solving skills and a deep understanding of JavaScript and React framework.
+   His github: {{flowNode_318.output.flowOutput.markdown}} and {{flowNode_318.output.flowOutput.html}}
+   ```
+
+1. Add API Node on Both Classification Branches
+1. Fill the API endpoint where you have business logic for sending mail & Set the body as per your API Config
+
+
+   ```JSON
+    {
+        "email": {{triggerNode_1.output.email}},
+        "content":{{LLMNode_195.output.generatedResponse}}
+    }
+   ```
+
+1. Finally in API Response Node set the Response Params
+1. Click on Test
+
+### 7. Test the Flow
+
+Fill in Sample Input & Click on Test Again and Wait For Flow To Run
+
+
+By completing this guide, you’ll gain hands-on experience in leveraging Lamatic.ai's flow builder to automate recruitment flow, improve efficiency, and deliver tailored communication to candidates.

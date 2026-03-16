@@ -1,0 +1,88 @@
+# Overview
+
+> Lamatic is a collaborative Agentic AI Development Platform that helps cross-functional teams collaboratively develop, monitor, and optimize their GenAI applications.
+
+<div className="inline-flex flex-col gap-2">
+  <a className="inline-block" href="https://www.producthunt.com/posts/lamatic-ai?embed=true&utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-lamatic-ai" target="_blank" rel="noopener noreferrer">
+    <img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=574320&theme=light&period=daily" alt="Lamatic.ai - Build AI agents in low-code & deploy on edge | Product Hunt" width="200" height="54" />
+  </a>
+  <a className="inline-block" href="https://www.producthunt.com/posts/lamatic-ai?embed=true&utm_source=badge-top-post-topic-badge&utm_medium=badge&utm_souce=badge-lamatic-ai" target="_blank" rel="noopener noreferrer">
+    <img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-topic-badge.svg?post_id=574320&theme=light&period=weekly&topic_id=237" alt="Lamatic.ai - Build AI agents in low-code & deploy on edge | Product Hunt" width="200" height="54" />
+  </a>
+  <a className="inline-block w-[175px]" href="https://aitools.inc/tools/lamatic-ai?utm_source=embed-badge-lamatic-ai&utm_medium=embed&utm_campaign=embed-badge-featured" target="_blank" rel="noopener noreferrer">
+    <img src="https://aitools.inc/tools/lamatic-ai/embeds/v1/featured-badge.svg?theme=light" alt="Lamatic.ai | AI Tools" className="w-full" height="54" />
+  </a>
+  <a className="inline-block" href="https://aitoptools.com/tool/lamatic-ai/" target="_blank" title="Lamatic.ai" rel="noopener noreferrer">
+    <img src="https://aitoptools.com/wp-content/uploads/2024/01/promote-embed.png" alt="Lamatic.ai" width="200" height="54" />
+  </a>
+</div>
+---
+
+<iframe width="100%" height="500px" src="https://player.vimeo.com/video/1068719282?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Lamatic Genesis Release - 1.0.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+
+## Core Platform Features
+
+### 🛠️ Build
+Tools to help you build AI applications and iterate faster.
+
+- [Flows](/docs/flows) \- Build agents, processes, and automations with custom flows using no-code and low-code interfaces.
+- [Nodes](/docs/nodes) \- Core components and functions for building flows.
+- [IDE](/docs/ide) \- Integrated Development Environment for coding and debugging prompts, JS and API Requests.
+- [Agents](/docs/agents) \- Create and configure AI agents for your applications.
+- [Models](/docs/models) \- Find and connect with the best model for your use case.
+- [Data](/docs/context) \- Add custom context to your flows and agents using VectorDB and memories.
+- [Interface](/docs/interface) \- Embed AI components like search and chat in your application with a few lines of code.
+- [MCP/Tools](/docs/mcp-tools) \- Core components and functions for agent creation.
+- [Tests](/docs/tests) \- Tools to test and debug your flow and application in development and before Deployments.
+- [Version Control](/docs/version-control) \- Manage versions and collaborate on your flows.
+- [Templates](/docs/templates) \- Get started quickly with pre-built templates.
+
+### 🚀 Deploy
+Deploy and manage your AI applications.
+
+- [Deployments](/docs/deployments) \- Deploy and manage your agents and flows on the edge.
+- [Jobs](/docs/jobs) \- Monitor and configure scheduled processes.
+
+### 🧩 Optimize
+Monitor, analyze and optimize your AI applications.
+
+- [Logs](/docs/logs) \- See real-time request logs and traces.
+- [Reports](/docs/reports) \- Analyze your projects with intuitive charts and queries.
+- [SDK](/docs/sdk) \- Integrate and interact with your flows programmatically.
+
+
+## Get Started
+
+<Cards num={3}>
+    <Card href="/docs/get-started" title="Quickstart" image arrow>
+        {/*![Quickstart icon (rocket)]()*/}
+    </Card>
+    <Card href="/docs/demo" title="Demo" image arrow>
+        {/*![Interactive demo]()*/}
+    </Card>
+    <Card href="/docs/templates" title="Templates" image arrow>
+        {/*![Quickstart icon (rocket)]()*/}
+    </Card>
+</Cards>
+
+
+## Updates
+
+Lamatic evolves quickly, check out the [changelog](/changelog) for the latest updates.
+
+Subscribe to the **mailing list** to get notified about new major features:
+
+<iframe
+    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa"
+    data-test-id="beehiiv-embed"
+    width="100%"
+    height="320"
+    scrolling="no"
+    style={{ borderRadius: '4px', border: '2px solid #e5e7eb', margin: '0', backgroundColor: 'transparent' }}>
+</iframe>
+
+## Get in Touch
+
+Join our [Slack](/slack), provide feedback, report bugs, or request features via [Feature board](https://product.lamatic.ai/).
+
+Learn more about ways to get in touch on our [Support](https://support.lamatic.ai) page.

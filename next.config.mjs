@@ -91,6 +91,19 @@ const nextraConfig = withNextra({
         ],
       },
       {
+        source: "/md-src/:path*.md",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/markdown; charset=utf-8",
+          },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600",
+          },
+        ],
+      },
+      {
         source: "/blog/:path*",
         headers: [
           { key: "x-forwarded-proto", value: "https" },
@@ -122,10 +135,17 @@ const nextraConfig = withNextra({
   ],
   rewrites: async () => {
     return {
-      beforeFiles: rewrites.map(([source, destination]) => ({
-        source,
-        destination,
-      })),
+      beforeFiles: [
+        // Serve .md versions of docs pages from static md-src files
+        {
+          source: "/:path*.md",
+          destination: "/md-src/:path*.md",
+        },
+        ...rewrites.map(([source, destination]) => ({
+          source,
+          destination,
+        })),
+      ],
       fallback: [
         // These rewrites are checked after both pages/public files
         // and dynamic routes are checked

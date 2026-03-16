@@ -17,8 +17,6 @@ import { CloudflareVideo, Video } from "./components/Video";
 import { PageContributors } from "./components/PageContributors";
 import { Button } from "@/components/ui/button";
 import { CustomTOC } from "./components/CustomTOC";
-import { CopyPageMarkdown } from "./components/CopyPageMarkdown";
-
 const config: DocsThemeConfig = {
   logo: <Logo />,
   main: MainContentWrapper,
@@ -50,7 +48,6 @@ const config: DocsThemeConfig = {
       return (
         <>
           <AvailabilitySidebar frontMatter={frontMatter} />
-          <CopyPageMarkdown />
           <PageContributors />
         </>
       );

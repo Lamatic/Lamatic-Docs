@@ -91,19 +91,6 @@ const nextraConfig = withNextra({
         ],
       },
       {
-        source: "/md-src/:path*.md",
-        headers: [
-          {
-            key: "Content-Type",
-            value: "text/markdown; charset=utf-8",
-          },
-          {
-            key: "Cache-Control",
-            value: "public, max-age=3600",
-          },
-        ],
-      },
-      {
         source: "/blog/:path*",
         headers: [
           { key: "x-forwarded-proto", value: "https" },
@@ -136,10 +123,10 @@ const nextraConfig = withNextra({
   rewrites: async () => {
     return {
       beforeFiles: [
-        // Serve .md versions of docs pages from static md-src files
+        // Serve .md versions of docs pages dynamically from source MDX
         {
           source: "/:path*.md",
-          destination: "/md-src/:path*.md",
+          destination: "/api/md-src/:path*",
         },
         ...rewrites.map(([source, destination]) => ({
           source,

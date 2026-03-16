@@ -62,6 +62,7 @@ function SwitcherContent() {
 
 export function SidebarSwitcher() {
   const [target, setTarget] = useState<Element | null>(null);
+  const { asPath } = useRouter();
 
   useEffect(() => {
     // Find all separator elements in sidebar that contain "Switcher" text
@@ -91,7 +92,7 @@ export function SidebarSwitcher() {
       clearTimeout(timer);
       clearTimeout(timer2);
     };
-  }, []);
+  }, [asPath]);
 
   if (!target) return null;
   return createPortal(<SwitcherContent />, target);

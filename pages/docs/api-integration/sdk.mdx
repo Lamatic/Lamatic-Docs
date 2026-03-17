@@ -51,10 +51,10 @@ const lamatic = new Lamatic({
 
 The SDK supports two authentication methods:
 
-import { Tabs, Tab } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
 
 <Tabs items={['API Key', 'Access Token']}>
-  <Tab>
+  <Tabs.Tab>
 ```typescript
 const lamatic = new Lamatic({
   apiKey: "your-api-key",
@@ -62,8 +62,8 @@ const lamatic = new Lamatic({
   endpoint: "your-endpoint",
 });
 ```
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
 ```typescript
 const lamatic = new Lamatic({
   accessToken: "your-access-token",
@@ -71,7 +71,7 @@ const lamatic = new Lamatic({
   endpoint: "your-endpoint",
 });
 ```
-  </Tab>
+  </Tabs.Tab>
 </Tabs>
 
 You must provide either an API key or an access token, but not both.
@@ -94,7 +94,7 @@ The Lamatic SDK provides the following methods:
 One of the main functions of the SDK is to execute Flows that you've created on the Lamatic platform.
 
 <Tabs items={['With API Key', 'With Access Token']}>
-  <Tab>
+  <Tabs.Tab>
 ```typescript
 import { Lamatic } from "lamatic";
 
@@ -120,8 +120,8 @@ async function main() {
 
 main();
 ```
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
 ```typescript
 import { Lamatic } from "lamatic";
 
@@ -143,12 +143,12 @@ async function main() {
 
 main();
 ```
-  </Tab>
+  </Tabs.Tab>
 </Tabs>
 
 ### Handling Expired Access Tokens
 
-import { Callout } from 'nextra-theme-docs'
+import { Callout } from 'nextra/components'
 
 <Callout type="info">
   This example shows how to handle an expired access token by fetching a new one
@@ -432,7 +432,7 @@ lamatic.updateAccessToken("new-access-token");
 </Callout>
 
 <Tabs items={['Text Generation', 'Tweet Generation', 'Classification','Image Analysis']}>
-  <Tab>
+  <Tabs.Tab>
 ```typescript
 // Example for a text generation workflow
 const textGenPayload = {
@@ -444,8 +444,8 @@ const textGenPayload = {
   }
 };
 ```
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
 ```typescript
 // Example for a tweet generation agent
 const tweetPayload = {
@@ -455,8 +455,8 @@ const tweetPayload = {
   }
 };
 ```
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
 ```typescript
 // Example for a classification workflow
 const classifyPayload = {
@@ -464,8 +464,8 @@ const classifyPayload = {
   categories: ["technology", "science", "art"]
 };
 ```
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
 ```typescript
 // Example for an image analysis agent
 const imageAnalysisPayload = {
@@ -473,7 +473,7 @@ const imageAnalysisPayload = {
   analysisTypes: ["objects", "faces", "text"]
 };
 ```
-  </Tab>
+  </Tabs.Tab>
 </Tabs>
 
 ### Handling Responses

@@ -122,10 +122,17 @@ const nextraConfig = withNextra({
   ],
   rewrites: async () => {
     return {
-      beforeFiles: rewrites.map(([source, destination]) => ({
-        source,
-        destination,
-      })),
+      beforeFiles: [
+        // Serve .md versions of docs pages dynamically from source MDX
+        {
+          source: "/:path*.md",
+          destination: "/api/md-src/:path*",
+        },
+        ...rewrites.map(([source, destination]) => ({
+          source,
+          destination,
+        })),
+      ],
       fallback: [
         // These rewrites are checked after both pages/public files
         // and dynamic routes are checked

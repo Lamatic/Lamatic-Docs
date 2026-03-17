@@ -1,4 +1,4 @@
-{
+export default {
   "ai": { "title": "AI", "type": "doc" },
   "apps": { "title": "Apps", "href": "/integrations/apps-data-sources" },
   "data": { "title": "Data", "type": "doc" },

@@ -1,4 +1,5 @@
-import { getPagesUnderRoute } from "nextra/context";
+"use client";
+import { getPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import { Cards } from "nextra/components";
 import { Video } from "lucide-react";

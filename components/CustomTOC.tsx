@@ -1,14 +1,13 @@
-import { useRouter } from 'next/router';
+"use client";
+
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useConfig } from 'nextra-theme-docs';
 
 export function CustomTOC() {
-  const router = useRouter();
-  const { frontMatter } = useConfig();
+  const pathname = usePathname();
   const [headings, setHeadings] = useState<Array<{ id: string; text: string; level: number }>>([]);
   const [isClient, setIsClient] = useState(false);
 
-  // Set client flag to prevent hydration mismatch
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -16,7 +15,6 @@ export function CustomTOC() {
   useEffect(() => {
     if (!isClient) return;
 
-    // Function to extract headings from the current page
     const extractHeadings = () => {
       const article = document.querySelector('article');
       if (!article) return [];
@@ -37,14 +35,13 @@ export function CustomTOC() {
       return extractedHeadings;
     };
 
-    // Extract headings after a short delay to ensure the page is fully rendered
     const timer = setTimeout(() => {
       const extractedHeadings = extractHeadings();
       setHeadings(extractedHeadings);
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [router.asPath, isClient]); // Re-run when the path changes or client is ready
+  }, [pathname, isClient]);
 
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
@@ -53,7 +50,6 @@ export function CustomTOC() {
     }
   };
 
-  // Don't render anything on server-side to prevent hydration mismatch
   if (!isClient || headings.length === 0) {
     return null;
   }
@@ -61,12 +57,12 @@ export function CustomTOC() {
   return (
     <div className="nextra-toc">
       <div className="nextra-scrollbar">
-        <ul className="nx-mt-6 nx-text-sm">
+        <ul className="mt-6 text-sm">
           {headings.map((heading, index) => (
             <li
               key={index}
               style={{ paddingLeft: `${(heading.level - 1) * 16}px` }}
-              className="nx-mb-2"
+              className="mb-2"
             >
               <a
                 href={`#${heading.id}`}
@@ -74,7 +70,7 @@ export function CustomTOC() {
                   e.preventDefault();
                   scrollToHeading(heading.id);
                 }}
-                className="nx-text-gray-600 hover:nx-text-gray-900 dark:nx-text-gray-400 dark:hover:nx-text-gray-100"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
               >
                 {heading.text}
               </a>
@@ -84,4 +80,4 @@ export function CustomTOC() {
       </div>
     </div>
   );
-} 
+}

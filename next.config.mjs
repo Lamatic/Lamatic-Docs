@@ -1,4 +1,3 @@
-import remarkGfm from "remark-gfm";
 import nextra from "nextra";
 import NextBundleAnalyzer from "@next/bundle-analyzer";
 const withBundleAnalyzer = NextBundleAnalyzer({
@@ -24,15 +23,8 @@ const cspHeader = `
   upgrade-insecure-requests;
   block-all-mixed-content;
 `;
-// nextra config
-const withNextra = nextra({
-  theme: "nextra-theme-docs",
-  themeConfig: "./theme.config.tsx",
-  mdxOptions: {
-    remarkPlugins: [remarkGfm],
-  },
-  defaultShowCopyCode: true,
-});
+// nextra config - Nextra 4 (no theme/themeConfig, GFM included by default)
+const withNextra = nextra({});
 // next config
 const nextraConfig = withNextra({
   // assetPrefix:'/docs/',

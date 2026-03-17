@@ -1,4 +1,4 @@
-{
+export default {
   "studio-overview": "Overview",
   "studio-project": "Project",
   "studio-keys": "Keys",

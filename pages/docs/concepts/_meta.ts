@@ -1,4 +1,4 @@
-{
+export default {
   "ai-middleware": "AI Middleware",
   "studio": "Studio",
   "rag": "RAG Explained",

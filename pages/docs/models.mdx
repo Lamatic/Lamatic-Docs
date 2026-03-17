@@ -22,7 +22,7 @@ Think of models as "AI engines" - you set them up once, then your Flows can use 
 
 ---
 
-## **Model Types**
+## Model Types
 
 | **Model Type**     | **Description**                                                                                                                                       | **Availability** |
 |--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|------------------|
@@ -36,7 +36,7 @@ Think of models as "AI engines" - you set them up once, then your Flows can use 
 
 ---
 
-## **Providers**
+## Providers
 
 Models are typically offered by providers, which are companies or organizations responsible for the development, training, and hosting of these AI models. These providers invest significant resources in creating and maintaining state-of-the-art models that can be leveraged by developers and businesses. For open-source models, the provider may be the organization or company that hosts and maintains the model infrastructure, even if they didn't originally develop the model.
 ### Available Providers
@@ -53,27 +53,47 @@ Models are typically offered by providers, which are companies or organizations 
 
 ---
 
-## **Adding a New Provider → Model**
+## Adding a New Provider → Model
 
-To incorporate a model into your flow, the first step is to add the necessary API credentials for that specific model. Lamatic employs robust encryption methods to securely store these API keys, ensuring that they are only accessed when a request is made. As a security measure, you have the flexibility to delete these credentials at any time. Additionally, it's considered a best practice to regularly rotate these credentials to maintain optimal security. Lamatic allows you to add and manage different sets of credentials for various providers, giving you granular control over your model access.
+To use a model in your flow, you first add API credentials for that provider. Lamatic stores these keys securely and only uses them when making requests. You can delete or rotate credentials at any time, and you can maintain separate credentials per provider—or separate sets for Development and Production for better usage tracking.
 
-> 💡 **Tip**: Enhance your usage monitoring by setting up separate API credentials for Development and Production environments within Lamatic. This practice allows for more effective tracking and management of resource utilization across different stages of your project.
+> 💡 **Tip**: Set up separate API credentials for Development and Production in Lamatic for clearer monitoring and management of usage across stages.
 
-**Steps to Add New Provider Credentials:**
-
-1. Acquire the required API keys from the respective model provider (refer to the comprehensive Guide for detailed instructions).
-2. Navigate to the provider selection interface within the Lamatic platform.
-3. Input the model details and credentials, then initiate the testing process to ensure proper configuration.
+**High-level steps:** Get API keys from the provider → add and configure the model in Studio (see below) → test and save.
 
 ---
 
-## **Using Models in a Flow**
+## Setting Up a Model in Studio
+
+Configure your model credentials in Studio so they’re available to your flows.
+
+**Navigate to the Models page:**
+
+1. Go to **Studio**
+2. Open **Connections**
+3. Click on **Models**
+4. Click **Add Model** (or select an existing model to edit)
+
+![Add Model Credentials](./img/add-model-credentials.png)
+
+**Configure the model:**
+
+1. **Credential Name**: A human‑readable name for this model credential (e.g. "Prod OpenAI GPT‑4").
+2. **Provider**: Select the model provider (e.g. `openai`, `anthropic`, etc.).
+3. **API Key / Auth**: Paste the API key or other authentication secret required by the provider.
+4. **Custom Models (Optional)**: Add a custom model ID or configuration if you're using a non‑default model from that provider.
+
+You can **Save as Draft** (keep the configuration without using it in flows yet) or **Test & Save** to validate the credentials and make the model available to your flows.
+
+---
+
+## Using Models in a Flow
 
 Lamatic's flexible architecture allows you to incorporate multiple models, either of the same type or different types, within a single flow. To integrate a model into your flow, begin by dragging a compatible node (such as a Text LLM node) into the flow builder interface. Once placed, you can select the desired model from the list of available options, which are populated based on the credentials you've added for various providers.
 
 ---
 
-## **Model Defaults**
+## Model Defaults
 
 Lamatic offers a convenient feature that allows you to establish default models for your entire project. When you drag a compatible node into the flow, these default models are automatically selected, streamlining your flow. If you decide to modify the default model settings, the changes will be reflected across all instances where the default option is selected. This functionality provides a quick and efficient method to switch between models on a project-wide scale, eliminating the need to manually update individual model selections throughout your flow.
 
@@ -90,4 +110,4 @@ Lamatic offers a convenient feature that allows you to establish default models 
 
 - **Learn about specific model types**: Explore [Model Integrations](/integrations) for detailed setup guides
 - **Use models in Flows**: Read about [AI Nodes](/docs/nodes) to see how to use models in your workflows
-- **Optimize model usage**: Check [Best Practices](/docs/models/model-logic#best-practices) for tips on choosing the right model for your use case
+- **Optimize model usage**: Check [Best Practices](/docs/models/model-logic#best-practices) for tips on choosing the right model for your use caseUsing Models in a Flow

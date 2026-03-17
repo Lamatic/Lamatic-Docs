@@ -16,6 +16,15 @@ export default {
     "title": "Guides",
     "display": "hidden"
   },
+  "company": {
+    "type": "page",
+    "title": "Company",
+    "display": "hidden",
+    "theme": {
+      "sidebar": false,
+      "layout": "full"
+    }
+  },
   "integrations": {
     "type": "page",
     "title": "Integrations",

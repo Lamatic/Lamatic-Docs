@@ -3,7 +3,6 @@ description: Opportunities at Lamatic
 ---
 
 import { Tabs } from 'nextra/components'
-const Tab = Tabs.Tab
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 # Career at Lamatic
@@ -35,7 +34,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 
 <div className="career-tabs">
 <Tabs items={['Engineering', 'Design', 'Go-to-Market']}>
-  <Tab>
+  <Tabs.Tab>
     <Accordion type="single" collapsible>
       <AccordionItem value="founding-engineer">
         <AccordionTrigger className="career-accordion-trigger">Founding Engineer - Full Stack</AccordionTrigger>
@@ -97,8 +96,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
     <Accordion type="single" collapsible>
       <AccordionItem value="ai-ux-ui-designer">
         <AccordionTrigger className="career-accordion-trigger">AI/UX/UI Designer – Founding Role</AccordionTrigger>
@@ -138,8 +137,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
     <Accordion type="single" collapsible>
       
 
@@ -243,7 +242,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Tab>
+  </Tabs.Tab>
 </Tabs>
 </div>
 

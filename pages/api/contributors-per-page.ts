@@ -77,9 +77,15 @@ export default async function handler(
 
         if (!response.ok) {
           if (response.status === 403) {
-            throw new Error("GitHub API rate limit exceeded. Please try again later.");
+            // Rate limit or forbidden: return empty contributors so the page still loads
+            console.warn("GitHub API rate limit exceeded; returning empty contributors. Set GITHUB_ACCESS_TOKEN for higher limits.");
+            return res
+              .status(200)
+              .setHeader("Content-Type", "application/json")
+              .setHeader("Cache-Control", "public, max-age=300, s-maxage=300")
+              .json({ contributors: [] });
           } else if (response.status === 404) {
-            throw new Error("File not found or access denied.");
+            return res.status(200).setHeader("Cache-Control", "public, max-age=300").json({ contributors: [] });
           } else {
             throw new Error(`GitHub API responded with status: ${response.status}`);
           }
@@ -126,20 +132,20 @@ export default async function handler(
       .json({ contributors: contributors });
     } catch (error: unknown) {
       if ((error as any)?.name === 'AbortError') {
-        return res.status(504).json({
+        return res.status(200).setHeader("Cache-Control", "public, max-age=60").json({
           contributors: [],
           error: "Request timeout while fetching contributors"
         });
       }
-      console.error("Error fetching contributors:", error);
-      return res.status(500).json({
+      console.warn("Error fetching contributors:", error);
+      return res.status(200).setHeader("Cache-Control", "public, max-age=60").json({
         contributors: [],
         error: error instanceof Error ? error.message : "Internal Server Error"
       });
     }
   } catch (error) {
-    console.error("Error fetching contributors:", error);
-    return res.status(500).json({
+    console.warn("Error fetching contributors:", error);
+    return res.status(200).setHeader("Cache-Control", "public, max-age=60").json({
       contributors: [],
       error: error instanceof Error ? error.message : "Internal Server Error"
     });

@@ -1,6 +1,6 @@
 export default {
     "graphql": {
-        "title": "GraphQL",
+        "title": "REST / GraphQL Reference",
         "type": "doc"
     },
     "mailhook": {

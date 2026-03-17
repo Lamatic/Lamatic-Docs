@@ -171,6 +171,62 @@ globs: "**/*", "!**/draft/**"
 - **`SHARED_ITEMS`**: Files shared with you by others
 - **`ALL`**: All accessible files (recommended)
 
+### Action Node Configuration
+
+The SharePoint node can also be used as an **Action** node to create, update, and delete folders and files in a SharePoint document library.
+
+| **Parameter**   | **Description**                                      | **Required** | **Example**                 |
+| --------------- | ---------------------------------------------------- | ------------ | --------------------------- |
+| **Credentials** | Microsoft 365 credentials for SharePoint access     | ✅           | `Microsoft 365`             |
+| **Action**      | Action to perform (see available actions below)     | ✅           | `Create Folder`             |
+
+#### Available Actions
+
+##### 1. Create Folder
+
+Creates a new folder inside a SharePoint document library.
+
+| **Parameter**        | **Description**                                                | **Required** | **Example**                           |
+|----------------------|----------------------------------------------------------------|--------------|---------------------------------------|
+| **Document Library** | Target document library where the folder will be created       | ✅           | `Shared Documents`                    |
+| **Folder Name**      | Name of the new folder                                         | ✅           | `Q1 Reports`                          |
+| **Parent Folder**    | Optional parent folder path (leave empty for library root)     | ❌           | `/Departments/Finance`                |
+
+##### 2. Delete Folder
+
+Deletes an existing folder from a SharePoint document library.
+
+| **Parameter** | **Description**                              | **Required** | **Example**                |
+|--------------|----------------------------------------------|--------------|----------------------------|
+| **Folder**   | Folder path or identifier to delete          | ✅           | `/Departments/Finance/Q1`  |
+
+##### 3. Create File
+
+Creates a new file in a SharePoint folder.
+
+| **Parameter**   | **Description**                                        | **Required** | **Example**                         |
+|-----------------|--------------------------------------------------------|--------------|-------------------------------------|
+| **Folder**      | Target folder path where the file will be created      | ✅           | `/Departments/Finance/Q1`           |
+| **File Name**   | Name of the new file (including extension)             | ✅           | `report-q1.docx`                    |
+| **File Content**| Content of the file to create                          | ✅           | `Quarterly report content here...`  |
+
+##### 4. Update File
+
+Updates the content of an existing file in SharePoint.
+
+| **Parameter**   | **Description**                              | **Required** | **Example**                         |
+|-----------------|----------------------------------------------|--------------|-------------------------------------|
+| **File Content**| New content to write into the file           | ✅           | `Updated report content...`         |
+| **File**        | File path or identifier to update            | ✅           | `/Departments/Finance/Q1/report-q1.docx` |
+
+##### 5. Delete File
+
+Deletes an existing file from SharePoint.
+
+| **Parameter** | **Description**                     | **Required** | **Example**                         |
+|--------------|-------------------------------------|--------------|-------------------------------------|
+| **File**     | File path or identifier to delete   | ✅           | `/Departments/Finance/Q1/report-q1.docx` |
+
 ## Low-Code Example
 
 ```yaml

@@ -48,6 +48,13 @@ function Analytics() {
     hsPageView(pathname)
   }, [pathname])
 
+  // Sync pathname to html for CSS selectors (e.g. embed/agentkit overrides)
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.dataset.pathname = pathname ?? ''
+    }
+  }, [pathname])
+
   return null
 }
 

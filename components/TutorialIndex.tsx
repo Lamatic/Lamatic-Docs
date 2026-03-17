@@ -1,5 +1,5 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import Link from 'next/link';
 import { useState, useMemo } from 'react';
@@ -60,11 +60,11 @@ export const TutorialIndex = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   
-  const pages = getPagesUnderRoute("/guides/tutorials") as Array<
+  const pages = useGetPagesUnderRoute("/guides/tutorials") as Array<
     Page & { frontMatter: any }
   >;
 
-  const filteredPages = pages.filter((page) => page.route !== "/tutorials");
+  const filteredPages = pages.filter((page) => page.route !== "/tutorials" && page.route !== "/guides/tutorials");
   const categoryOrder = ["Beginner", "Intermediate", "Advanced", "Other"];
 
   // Group pages by category

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -33,11 +33,11 @@ const items = [
 ];
 
 function SwitcherContent() {
-  const { asPath } = useRouter();
+  const pathname = usePathname() ?? "";
   return (
     <div className="hidden md:block pb-4">
       {items.map((item) =>
-        asPath.startsWith(item.path) ? (
+        pathname.startsWith(item.path) ? (
           <div
             key={item.path}
             className="group mb-3 flex flex-row items-center gap-3 text-blue-700 dark:text-blue-400"
@@ -62,7 +62,7 @@ function SwitcherContent() {
 
 export function SidebarSwitcher() {
   const [target, setTarget] = useState<Element | null>(null);
-  const { asPath } = useRouter();
+  const pathname = usePathname() ?? "";
 
   useEffect(() => {
     setTarget(null);
@@ -110,7 +110,7 @@ export function SidebarSwitcher() {
     });
     observer.observe(document.body, { childList: true, subtree: true });
     return () => observer.disconnect();
-  }, [asPath]);
+  }, [pathname]);
 
   if (!target) return null;
   return createPortal(<SwitcherContent />, target);

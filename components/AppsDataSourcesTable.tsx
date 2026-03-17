@@ -1,5 +1,5 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import Link from "next/link";
 import { ExternalLinkIcon } from "lucide-react";
@@ -26,8 +26,7 @@ function flattenPages(pages) {
 }
 
 export const AppsDataSourcesTable = () => {
-  // Get all pages under /integrations/apps-data-sources
-  const allPages = getPagesUnderRoute("/integrations/apps-data-sources");
+  const allPages = useGetPagesUnderRoute("/integrations/apps-data-sources");
   const pages = flattenPages(allPages).filter(
     (page) => 
       page.route !== "/integrations/apps-data-sources" && 

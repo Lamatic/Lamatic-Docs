@@ -1,14 +1,14 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import { Cards } from "nextra/components";
 import { Video } from "lucide-react";
 
-export const VideoIndex = () => (
+export const VideoIndex = () => {
+  const pages = useGetPagesUnderRoute("/guides/videos") as Array<Page & { frontMatter: any }>;
+  return (
   <Cards.Cards num={2}>
-    {(
-      getPagesUnderRoute("/guides/videos") as Array<Page & { frontMatter: any }>
-    ).map((page, i) => (
+    {pages.map((page, i) => (
       <Cards.Card
         href={page.route}
         key={page.route}
@@ -20,4 +20,5 @@ export const VideoIndex = () => (
       </Cards.Card>
     ))}
   </Cards>
-);
+  );
+};

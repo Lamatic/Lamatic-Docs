@@ -1,5 +1,5 @@
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
-import { Head } from 'nextra/components'
+import { Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style-prefixed.css'
 import '../style.css'
@@ -8,6 +8,7 @@ import 'vidstack/styles/base.css'
 import { Providers } from './providers'
 import { Logo } from '@/components/logo'
 import { Button } from '@/components/ui/button'
+import { TOCExtraContent } from '@/components/TOCExtraContent'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -44,6 +45,7 @@ const navbar = (
     logo={logo}
     projectLink="https://github.com/lamatic/docs"
   >
+    <Search placeholder="Search..." />
     {navbarExtra}
   </Navbar>
 )
@@ -63,19 +65,19 @@ export default async function RootLayout({
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/public/apple-touch-icon.png"
+          href="/apple-touch-icon.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/public/favicon-32x32.png"
+          href="/favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/public/favicon-16x16.png"
+          href="/favicon-16x16.png"
         />
       </Head>
       <body>
@@ -84,8 +86,9 @@ export default async function RootLayout({
             pageMap={await getPageMap()}
             docsRepositoryBase="https://github.com/lamatic/docs/tree/main"
             editLink="Edit this page on GitHub"
-            feedback={{ labels: 'feedback', content: 'Question? Give us feedback' }}
+            feedback={{ labels: 'feedback', content: 'Question? Give us feedback', link: 'https://product.lamatic.ai/' }}
             sidebar={{ defaultMenuCollapseLevel: 1, toggleButton: true }}
+            toc={{ extraContent: <TOCExtraContent /> }}
             navbar={navbar}
             footer={footer}
           >

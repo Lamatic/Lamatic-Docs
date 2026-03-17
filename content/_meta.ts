@@ -41,17 +41,11 @@ export default {
   "Changelog": {
     "title": "Change Log",
     "type": "page",
-    "theme": {
-      "layout": "full"
-    },
     "href": "https://product.lamatic.ai/changelog"
   },
   "blog": {
     "title": "\uD83E\uDDEALamatic Labs",
     "type": "page",
-    "theme": {
-      "layout": "full"
-    },
     "href": "https://labs.lamatic.ai"
   },
   "support": {
@@ -79,43 +73,13 @@ export default {
   "security": {
     "title": "Security",
     "type": "page",
-    "theme": {
-      "layout": "full"
-    },
+    "href": "https://lamatic.ai/security",
     "display": "hidden"
-  },
-  "why": {
-    "title": "Why Lamatic.ai",
-    "type": "page",
-    "display": "hidden",
-    "theme": {
-      "typesetting": "article",
-      "timestamp": false
-    }
   },
   "terms": {
     "title": "Terms and Conditions",
     "type": "page",
     "display": "hidden"
-  },
-  "privacy": {
-    "title": "Privacy Policy",
-    "type": "page",
-    "display": "hidden"
-  },
-  "cookie-policy": {
-    "title": "Cookie Policy",
-    "type": "page",
-    "display": "hidden"
-  },
-  "about": {
-    "title": "About us",
-    "type": "page",
-    "display": "hidden",
-    "theme": {
-      "typesetting": "article",
-      "timestamp": false
-    }
   },
   "404": {
     "type": "page",

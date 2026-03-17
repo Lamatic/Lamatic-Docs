@@ -1,5 +1,5 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import Link from "next/link";
 import { useMemo, useEffect, useState } from "react";
@@ -126,7 +126,7 @@ export const NodeOverview = ({ slug, type }: NodeOverviewProps) => {
   const [error, setError] = useState<string | null>(null);
   const [isClient, setIsClient] = useState(false);
 
-  const pages = getPagesUnderRoute("/docs/nodes") as Array<
+  const pages = useGetPagesUnderRoute("/docs/nodes") as Array<
     Page & { frontMatter: any }
   >;
 

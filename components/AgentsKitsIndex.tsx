@@ -2,7 +2,7 @@
 import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import {
   Card,
@@ -218,12 +218,11 @@ const AgentsKitsIndex = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
 
-  // Get all pages under /templates/agentkits (including subfolders)
-  const allPages = getPagesUnderRoute("/templates/agentkits");
+  const allPages = useGetPagesUnderRoute("/agentkits");
   const pages = flattenPages(allPages).filter(
     (page) =>
-      page.route !== "/templates/agentkits" &&
-      page.route !== "/templates/agentkits/index"
+      page.route !== "/agentkits" &&
+      page.route !== "/agentkits/index"
   );
 
   // Group by type/category from route path or frontmatter

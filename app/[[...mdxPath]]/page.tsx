@@ -1,5 +1,7 @@
+import { Suspense } from 'react'
 import { generateStaticParamsFor, importPage } from 'nextra/pages'
 import { useMDXComponents as getMDXComponents } from '../../mdx-components'
+import { MainContentWrapper } from '@/components/MainContentWrapper'
 
 export const generateStaticParams = generateStaticParamsFor('mdxPath')
 
@@ -20,8 +22,12 @@ export default async function Page(props: {
   const result = await importPage(params.mdxPath)
   const { default: MDXContent, toc, metadata } = result
   return (
-    <Wrapper toc={toc} metadata={metadata}>
-      <MDXContent {...props} params={params} />
-    </Wrapper>
+    <Suspense fallback={null}>
+      <MainContentWrapper>
+        <Wrapper toc={toc} metadata={metadata}>
+          <MDXContent {...props} params={params} />
+        </Wrapper>
+      </MainContentWrapper>
+    </Suspense>
   )
 }

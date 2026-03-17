@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
 import ReactMarkdown from "react-markdown";
@@ -112,18 +112,19 @@ const getTypeColor = (category: string) => {
 };
 
 export default function TemplateDetail() {
+  const pathname = usePathname() ?? "";
+  const isAgentkitRoute = pathname.includes("/agentkits/");
+  const segment = pathname.split("/").filter(Boolean).pop() ?? "";
+  const templateID = pathname.includes("/templates/") ? segment : undefined;
+  const agentID = isAgentkitRoute ? segment : undefined;
+  const id = isAgentkitRoute ? agentID : templateID;
   const router = useRouter();
-  const { templateID, agentID } = router.query;
   const [template, setTemplate] = useState<Template | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [readmeContent, setReadmeContent] = useState<string | null>(null);
   const [readmeLoading, setReadmeLoading] = useState(false);
   const [readmeError, setReadmeError] = useState<string | null>(null);
-
-  // Determine if we're on agentkits route or templates route
-  const isAgentkitRoute = router.pathname.includes("/agentkits/");
-  const id = isAgentkitRoute ? agentID : templateID;
 
   useEffect(() => {
     if (!id) return;

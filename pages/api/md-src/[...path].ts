@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import path from "path";
 
+const CONTENT_DIR = path.resolve(process.cwd(), "content");
 const PAGES_DIR = path.resolve(process.cwd(), "pages");
 const SKIP_FILES = new Set(["_app", "_document", "_meta", "404", "500"]);
 const SKIP_DIRS = new Set(["api"]);
@@ -38,27 +39,25 @@ function cleanContent(content: string): string {
 
 /**
  * Try to find a source file for the given page path segments.
- * e.g. ["docs", "get-started"] -> pages/docs/get-started.mdx or .md
- *      ["docs"]                -> pages/docs/index.mdx or pages/docs.mdx
+ * Prefer content/ (Nextra 4), then fall back to pages/.
+ * e.g. ["docs", "get-started"] -> content/docs/get-started.mdx or pages/docs/get-started.mdx
  */
 function findSourceFile(segments: string[]): string | null {
   const joined = segments.join("/");
 
-  // Check if any segment is in skip lists
   if (segments.some((s) => SKIP_FILES.has(s) || SKIP_DIRS.has(s))) {
     return null;
   }
 
-  // Try direct file match first: pages/<joined>.mdx / .md
-  for (const ext of [".mdx", ".md"]) {
-    const candidate = path.join(PAGES_DIR, joined + ext);
-    if (fs.existsSync(candidate)) return candidate;
-  }
-
-  // Try index file: pages/<joined>/index.mdx / .md
-  for (const ext of [".mdx", ".md"]) {
-    const candidate = path.join(PAGES_DIR, joined, "index" + ext);
-    if (fs.existsSync(candidate)) return candidate;
+  for (const baseDir of [CONTENT_DIR, PAGES_DIR]) {
+    for (const ext of [".mdx", ".md"]) {
+      const candidate = path.join(baseDir, joined + ext);
+      if (fs.existsSync(candidate)) return candidate;
+    }
+    for (const ext of [".mdx", ".md"]) {
+      const candidate = path.join(baseDir, joined, "index" + ext);
+      if (fs.existsSync(candidate)) return candidate;
+    }
   }
 
   return null;

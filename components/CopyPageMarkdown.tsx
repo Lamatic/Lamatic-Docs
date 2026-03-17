@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { usePathname, useSearchParams } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 import { Check, Copy, ExternalLink, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
@@ -17,13 +19,15 @@ const AI_APPS = [
 ];
 
 export function CopyPageMarkdown() {
-  const router = useRouter();
+  const pathname = usePathname() ?? "";
+  const searchParams = useSearchParams();
   const [copied, setCopied] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [markdown, setMarkdown] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const pagePath = router.asPath.split(/[?#]/)[0].replace(/\/+$/, "");
+  const search = searchParams.toString();
+  const pagePath = (pathname + (search ? `?${search}` : "")).split(/[#]/)[0].replace(/\/+$/, "");
   const mdUrl = `${pagePath}.md`;
   const pageUrl = `https://lamatic.ai${pagePath}`;
 

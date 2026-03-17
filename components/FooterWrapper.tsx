@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { usePathname } from "next/navigation";
 import DocsFooter from "./DocsFooter";
 
 const DOCS_FOOTER_PATHS = [
@@ -15,8 +17,7 @@ const DOCS_FOOTER_PATHS = [
  * integrations, guides, templates, and agentkits routes.
  */
 export default function FooterWrapper() {
-  const router = useRouter();
-  const pathname = router?.pathname ?? "";
+  const pathname = usePathname() ?? "";
 
   const showFooter = DOCS_FOOTER_PATHS.some((path) => pathname.startsWith(path));
   if (showFooter) {

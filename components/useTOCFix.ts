@@ -1,12 +1,13 @@
-import { useRouter } from 'next/router';
+"use client";
+
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 export function useTOCFix() {
-  const router = useRouter();
+  const pathname = usePathname() ?? "";
   const lastPath = useRef<string>('');
   const [isClient, setIsClient] = useState(false);
 
-  // Set client flag to prevent hydration mismatch
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -14,7 +15,7 @@ export function useTOCFix() {
   useEffect(() => {
     if (!isClient) return;
     
-    const currentPath = router.asPath.split('#')[0];
+    const currentPath = pathname.split('#')[0];
     
     // Only run if the path has actually changed
     if (lastPath.current !== currentPath) {
@@ -56,5 +57,5 @@ export function useTOCFix() {
       setTimeout(fixTOCLinks, 100);
       setTimeout(fixTOCLinks, 500); // Double-check after a longer delay
     }
-  }, [router.asPath, isClient]);
+  }, [pathname, isClient]);
 } 

@@ -1,5 +1,5 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import Link from "next/link";
 import dynamic from "next/dynamic";
@@ -37,15 +37,7 @@ function flattenPages(pages: any[]): Array<Page & { frontMatter?: any }> {
 }
 
 export const IntegrationsIndex = () => {
-  // Get all pages under /integrations (including subfolders)
-  let allPages;
-  try {
-    allPages = getPagesUnderRoute("/integrations");
-  } catch (error) {
-    console.error("Error getting pages under /integrations:", error);
-    allPages = [];
-  }
-  
+  const allPages = useGetPagesUnderRoute("/integrations");
   const pages = flattenPages(allPages || []).filter(
     (page) => page.route !== "/integrations" && page.route !== "/pages/integrations"
   ) as Array<Page & { frontMatter?: any }>;

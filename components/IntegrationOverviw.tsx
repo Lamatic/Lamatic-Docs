@@ -1,5 +1,5 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import Link from "next/link";
 import { useMemo, useEffect, useState } from "react";
@@ -123,7 +123,7 @@ export const IntegrationOverviw = ({ slug, type }: IntegrationOverviwProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const pages = getPagesUnderRoute(`/integrations/${type}`) as Array<
+  const pages = useGetPagesUnderRoute(`/integrations/${type}`) as Array<
     Page & { frontMatter: any }
   >;
 

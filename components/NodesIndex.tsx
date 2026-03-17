@@ -1,5 +1,5 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import Link from "next/link";
 import { ArrowRightIcon } from "lucide-react";
@@ -35,14 +35,12 @@ function flattenPages(pages: PageWithMeta[]): PageWithMeta[] {
 }
 
 export const NodesIndex = () => {
-  // Get all pages under /docs/nodes (AI, Data, Logics — exclude Apps)
-  const nodesPages = getPagesUnderRoute("/docs/nodes");
+  const nodesPages = useGetPagesUnderRoute("/docs/nodes");
   const flattenedNodes = flattenPages(nodesPages).filter(
     (page) => page.route !== "/nodes" && page.route !== "/docs/nodes"
   );
 
-  // Apps section: fetch from integrations/apps-data-sources
-  const appsDataSourcesPages = getPagesUnderRoute(
+  const appsDataSourcesPages = useGetPagesUnderRoute(
     "/integrations/apps-data-sources"
   );
   const appsPages = flattenPages(appsDataSourcesPages).filter(

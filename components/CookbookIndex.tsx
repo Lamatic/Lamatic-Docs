@@ -1,18 +1,17 @@
 "use client";
-import { getPagesUnderRoute } from "@/lib/nextra-compat";
+import { useGetPagesUnderRoute } from "@/lib/nextra-compat";
 import { type Page } from "nextra";
 import { Cards } from "nextra/components";
 import { FileCode } from "lucide-react";
 
-export const CookbookIndex = () => (
+export const CookbookIndex = () => {
+  const pages = (useGetPagesUnderRoute("/guides/cookbook") as Array<
+    Page & { frontMatter: any }
+  >).filter((page) => page.route !== "/cookbook" && page.route !== "/guides/cookbook");
+  return (
   <>
     {Object.entries(
-      (
-        getPagesUnderRoute("/guides/cookbook") as Array<
-          Page & { frontMatter: any }
-        >
-      )
-        .filter((page) => page.route !== "/cookbook")
+      pages
         .reduce((acc, page) => {
           const category = page.frontMatter?.category || "Other";
           if (!acc[category]) acc[category] = [];
@@ -46,4 +45,5 @@ export const CookbookIndex = () => (
         </div>
       ))}
   </>
-);
+  );
+};

@@ -62,11 +62,11 @@ Use Batch when you want faster processing (parallelism). Use Loop when you need 
 
 | **Parameter** | **Required** | **Description** | **Example Value** |
 | --- | --- | --- | --- |
-| **Iterate Over** | Yes\* | Select `List` or `Range`. If `List`, provide the list/array to iterate over. | `{{triggerNode_1.output.urls}}` or `Range` |
-| **Initial Value** | Range only\* | Starting value of the batch range. | `0` |
-| **End Value** | Range only\* | Ending value of the batch range (exclusive). | `10` |
-| **Increment** | Range only\* | Step size for each iteration. | `1` |
-| **Concurrency Limit** | Yes\* | Maximum number of parallel executions (min: 1, max: 50). | `10` |
+| **Iterate Over** | Yes | Select `List` or `Range`. If `List`, provide the list/array to iterate over. | `{{triggerNode_1.output.urls}}` or `Range` |
+| **Initial Value** | Yes | Starting value of the batch range. | `0` |
+| **End Value** | Yes | Ending value of the batch range (exclusive). | `10` |
+| **Increment** | Yes | Step size for each iteration. | `1` |
+| **Concurrency Limit** | Yes | Maximum number of parallel executions (min: 1, max: 50). | `10` |
 
 ## Low-Code Example
 

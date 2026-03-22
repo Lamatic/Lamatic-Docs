@@ -40,9 +40,9 @@ function SwitcherContent() {
         asPath.startsWith(item.path) ? (
           <div
             key={item.path}
-            className="group mb-3 flex flex-row items-center gap-3 text-blue-700 dark:text-blue-400"
+            className="group mb-3 flex flex-row items-center gap-3 text-red-700 dark:text-red-400"
           >
-            <item.Icon className="w-7 h-7 p-1 border rounded bg-blue-50 dark:bg-blue-900/30" />
+            <item.Icon className="w-7 h-7 p-1 border rounded bg-red-50 dark:bg-red-300" />
             {item.title}
           </div>
         ) : (

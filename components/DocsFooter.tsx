@@ -29,7 +29,7 @@ function LinkGroup({
 }) {
   return (
     <div className="flex flex-col gap-3">
-      <span className="text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-neutral-500">
+      <span className="text-xs font-medium uppercase tracking-wider text-gray-400 dark:text-neutral-500">
         {title}
       </span>
       <nav className="flex flex-col gap-2">
@@ -49,9 +49,10 @@ function LinkGroup({
 
 export default function DocsFooter() {
   return (
-    <footer className="lamatic-docs-footer border-t border-gray-200 dark:border-neutral-800 mt-6 pt-8">
-      <div className="nx-container nx-mx-auto nx-px-4 pb-10 nx-max-w-[90rem]">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
+    <footer className="lamatic-docs-footer w-full min-w-0 mt-2">
+      <div className="nx-container nx-mx-auto nx-px-4 pb-2 nx-max-w-[90rem] w-full min-w-0">
+        {/* Nextra’s footer wrapper is flex + justify-center, so the child shrink-wraps unless we take full width */}
+        <div className="grid w-full grid-cols-2 gap-8 sm:grid-cols-3">
           <LinkGroup title="Company" links={companyLinks} />
           <LinkGroup title="Legal" links={legalLinks} />
           <LinkGroup title="Security" links={securityLinks} />

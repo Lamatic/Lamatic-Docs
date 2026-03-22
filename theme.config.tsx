@@ -17,6 +17,8 @@ import { CloudflareVideo, Video } from "./components/Video";
 import { PageContributors } from "./components/PageContributors";
 import { Button } from "@/components/ui/button";
 import { CustomTOC } from "./components/CustomTOC";
+import FooterWrapper from "./components/FooterWrapper";
+
 const config: DocsThemeConfig = {
   logo: <Logo />,
   main: MainContentWrapper,
@@ -55,7 +57,8 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",
   footer: {
-    content: null,
+    // Pass the component (not <FooterWrapper />) so Nextra's renderComponent mounts it correctly
+    content: FooterWrapper,
   },
   head: () => {
     const { asPath, defaultLocale, locale } = useRouter();

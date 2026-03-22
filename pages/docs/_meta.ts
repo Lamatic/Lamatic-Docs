@@ -4,36 +4,27 @@ export default {
     title: "Switcher",
   },
   index: {
-    title: "Overview",
+    title: "What is Lamatic?",
     type: "doc",
   },
-  "why-lamatic": {
-    title: "Why Lamatic.ai",
-    type: "doc",
-  },
-  demo: "Request a Demo",
   "get-started": {
-    title: "Quickstart",
+    title: "Quickstart (5 min)",
     type: "doc",
   },
+  "architecture":{
+    title: "Architecture",
+    type: "doc",
+  },
+  
   glossary: {
     title: "Glossary",
     type: "doc",
   },
-  "ai-middleware": {
-    title: "AI Middleware",
+  concepts: {
+    title: "Concepts",
     type: "doc",
   },
-  "-- Studio": {
-    type: "separator",
-    title: "🎨 Studio",
-  },
-  "studio-overview": "Overview",
-  "studio-project": "Project",
-  "studio-tags": "Tags",
-  "studio-keys": "Keys",
-  "studio-role-based-access": "Role-Based Access",
-  "studio-variables-and-secrets": "Variables & Secrets",
+  
   "-- Build": {
     type: "separator",
     title: "🛠️ Build",
@@ -176,18 +167,6 @@ export default {
     type: "separator",
     title: "More",
   },
-  concepts: {
-    title: "Concepts",
-    type: "doc",
-  },
-  legal: {
-    title: "Legal",
-    type: "doc",
-  },
-  partners: {
-    title: "Lamatic.ai Partners",
-    type: "doc",
-  },
   status: {
     title: "Platform Status ↗",
     href: "https://status.lamatic.ai",
@@ -197,14 +176,89 @@ export default {
     title: "Contributing",
     type: "doc",
   },
-  security: {
-    title: "Security",
-    href: "https://lamatic.ai/security",
-    type: "doc",
-  },
   Trash: {
     title: "Privacy Policy",
     type: "page",
     display: "hidden",
   },
+  "vulnerability-disclosure": {
+    "title": "Vulnerability Disclosure",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "report-issue":{
+    "title": "Confidential Reporting",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "privacy-policy":{
+    "title": "Privacy Policy",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "cookie-policy":{
+    "title": "Cookie Policy",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "data-deletion-policy":{
+    "title": "Data Deletion Policy",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "terms-of-service":{
+    "title": "Terms of Service",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "hacktoberfest":{
+    "title": "Hacktoberfest",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "career":{
+    "title": "Career",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "brandkit":{
+    "title": "Brandkit",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "partners":{
+    "title": "Partners",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "security":{
+    "title": "Security",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "slack":{
+    "title": "Slack",
+    "type": "doc",
+    "display": "hidden"
+  },
+  legal: {
+    "title": "Legal",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "config-schema":{
+    "title": "Config Schema",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "demo":{
+    "title": "Request a Demo",
+    "type": "doc",
+    "display": "hidden"
+  },
+  "why-lamatic":{
+    "title": "Why Lamatic.ai",
+    "type": "doc",
+    "display": "hidden"
+  }
 };

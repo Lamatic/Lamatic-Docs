@@ -5,6 +5,7 @@ export default {
   "github": { "title": "GitHub", "type": "doc" },
   "google-drive": { "title": "Google Drive", "type": "doc" },
   "google-sheets": { "title": "Google Sheets", "type": "doc" },
+  "mysql": { "title": "MySQL", "type": "doc" },
   "n8n": { "title": "n8n", "type": "doc" },
   "notion": { "title": "Notion", "type": "doc" },
   "onedrive": { "title": "OneDrive", "type": "doc" },

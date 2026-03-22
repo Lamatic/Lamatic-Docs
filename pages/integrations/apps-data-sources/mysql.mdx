@@ -1,0 +1,297 @@
+---
+title: MySQL
+description: The MySQL node in Lamatic connects to MySQL databases for replicating and querying data. It supports Action mode for running queries and Batch Trigger mode for syncing table data with configurable incremental or full-refresh sync, SSL, and SSH tunneling.
+icon: /images/icons/apps/mysql.png
+legacyNodeSlugs: ["mysql-node"]
+---
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
+
+# MySQL Integration
+
+<IntegrationOverviw slug="mysql" type="apps-data-sources" />
+
+## Overview
+
+The MySQL node in Lamatic connects to your MySQL database for both **scheduled replication** and **on-demand queries**. As a **Batch Trigger**, it syncs data from a selected table on a schedule using incremental or full-refresh modes—ideal for keeping embeddings or downstream systems up to date. As an **Action** node, it lets you run custom SQL queries from within your flows.
+
+<NodeTypeInfo
+  batchTrigger={true}
+  eventTrigger={false}
+  action={true}
+  description="This node is a Batch Trigger for syncing table data on a schedule and an Action node for running SQL queries."
+/>
+
+- **Batch Trigger**: Sync data from a MySQL table on a schedule. Use **Full Refresh** to clear and re-embed all content, or **Incremental** to re-embed only updated records (deleted rows are not removed from the destination).
+- **Action**: Run SQL queries against your MySQL database from any flow.
+
+## Features
+
+### Key Functionalities
+
+1. **Batch Trigger**: Sync a table on a configurable schedule (e.g., every 24 hours, every 3 days, weekly) with incremental or full-refresh modes.
+2. **Action**: Execute custom SQL queries (SELECT, and other read/write operations as allowed by your credentials).
+3. **Connection Security**: Support for SSL (multiple modes) and SSH tunneling for connecting through a bastion host.
+4. **Cursor-based Incremental Sync**: Use a cursor column (e.g., `updated_at` or an auto-increment ID) to replicate only new or changed rows.
+
+### Benefits
+
+1. **Scheduled Data Sync**: Keep vector stores or other systems in sync with MySQL without manual exports.
+2. **Flexible Sync Modes**: Full refresh for complete reloads or incremental for efficient updates.
+3. **Secure Connectivity**: SSL and SSH tunnel options for locked-down or cloud-hosted MySQL instances.
+4. **Query from Flows**: Run arbitrary queries as part of your automation.
+
+## Prerequisites
+
+Before using the MySQL node, ensure the following:
+
+- **MySQL server** accessible from Lamatic (or via SSH bastion).
+- **Database user** with appropriate permissions (see [Quick Start](#quick-start) for a dedicated read-only user).
+- **Binary logging** enabled if you use CDC-based replication (see [Enable binary logging](#step-2-enable-binary-logging-on-your-mysql-server)).
+- For **SSH tunnel**: A bastion host and SSH key or password.
+
+## Quick Start
+
+Here is an outline of the minimum required steps to configure a MySQL connector:
+
+1. Create a dedicated read-only MySQL user with permissions for replicating data.
+2. (Optional) Enable binary logging if using CDC-based replication.
+3. Create a new MySQL source in Lamatic using your credentials and desired sync mode.
+4. (Lamatic Cloud only) Allow inbound traffic from Lamatic IPs if required.
+
+Once this is complete, you can select MySQL as a source for syncing data or as an action for running queries.
+
+### Step 1: Create a dedicated read-only MySQL user
+
+These steps create a dedicated read-only user for replicating data. Alternatively, you can use an existing MySQL user with sufficient privileges.
+
+Create a new user:
+
+```sql
+CREATE USER <user_name> IDENTIFIED BY 'your_password_here';
+```
+
+Grant read-only and replication-related permissions:
+
+```sql
+GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO <user_name>;
+```
+
+If you use **standard** replication (non-CDC), only the `SELECT` permission is required.
+
+### Step 2: Enable binary logging on your MySQL server
+
+You must enable binary logging for MySQL replication when using CDC. Many cloud providers (AWS RDS, GCP Cloud SQL, etc.) offer one-click options for enabling the binlog.
+
+If you are self-hosting MySQL, add the following to your server configuration:
+
+| **Parameter** | **Description** |
+|---------------|-----------------|
+| `server-id` | Unique value per server/replication client (1–4294967295). Must be non-zero. |
+| `log_bin` | Base name of the binlog file sequence. |
+| `binlog_format` | Must be set to `ROW`. |
+| `binlog_row_image` | Must be set to `FULL` (how row images are written to the binary log). |
+| `binlog_expire_logs_seconds` | Seconds before automatic binlog removal. Recommended: `864000` (10 days) to allow recovery from sync failures or pauses. |
+
+Example configuration:
+
+```ini
+server-id                  = 223344
+log_bin                    = mysql-bin
+binlog_format              = ROW
+binlog_row_image           = FULL
+binlog_expire_logs_seconds  = 864000
+```
+
+<Callout type="info">
+**Amazon RDS**: RDS uses `binlog retention hours` instead of `binlog_expire_logs_seconds` (default 0). Increase retention via the [AWS RDS documentation](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/mysql-binlog.html).
+</Callout>
+
+## Setup
+
+### Step 1: Configure MySQL credentials in Lamatic
+
+In the **Integrate MySQL** dialog, provide the following:
+
+| **Field** | **Description** | **Required** | **Example** |
+|-----------|-----------------|--------------|-------------|
+| **Credential Name** | Name to identify this set of credentials | ✅ | `my-mysql-prod` |
+| **Host (IPv4 compatible)** | MySQL server hostname or IP | ✅ | `mysql.example.com` |
+| **Port** | MySQL server port | ✅ | `3306` |
+| **Username** | Database username | ✅ | `replication_user` |
+| **Password** | Database password | ✅ | — |
+| **Database** | Database name to connect to | ✅ | `myapp` |
+| **SSL Mode** | How to use SSL (see [SSL Modes](#ssl-modes)) | ✅ | `preferred` or `required` |
+
+### SSL Modes
+
+You can connect with SSL or use an SSH tunnel for an extra layer of security.
+
+| **Mode** | **Description** |
+|----------|-----------------|
+| **preferred** | Use encryption when the source supports it; allow unencrypted only when the source does not. On Lamatic Cloud, this mode may require an SSH tunnel. |
+| **required** | Always require encryption. Connection fails if the source does not support encryption. This is the default. |
+| **verify_ca** | Always require encryption and verify that the source has a valid SSL certificate. |
+| **verify_identity** | Always require encryption and verify the identity of the source. |
+
+### Connection via SSH tunnel
+
+You can connect to MySQL through an **SSH tunnel** (bastion/jump server). Lamatic connects to the bastion, and the bastion connects to the MySQL server.
+
+1. In the MySQL source configuration, open the **SSH tunnel** dropdown and choose:
+   - **SSH Key Authentication** — use a private key for the SSH tunnel.
+   - **Password Authentication** — use a password for the SSH tunnel.
+
+2. **SSH Tunnel Jump Server Host**: Hostname or IP of the bastion server.
+
+3. **SSH Connection Port**: Port on the bastion (default `22`).
+
+4. **SSH Login Username**: Operating system username on the bastion (not the MySQL username).
+
+5. **Authentication**:
+   - **SSH Key**: Paste the **SSH Private Key** used to connect to the bastion.
+   - **Password**: Enter the OS user password for the bastion (not the MySQL password).
+
+#### Generating a private key for SSH tunneling
+
+The connector expects an **RSA key in PEM format**. Generate it with:
+
+```bash
+ssh-keygen -t rsa -m PEM -f myuser_rsa
+```
+
+This creates a private key in PEM format. Add the corresponding **public** key to the bastion’s `authorized_keys` for the user Lamatic will use. Paste the **private** key into the Lamatic connector configuration.
+
+## Configuration Reference
+
+### Batch Trigger configuration
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Name** | Display name for the node | ✅ | `MySQL Sync` |
+| **Credentials** | MySQL credentials (host, port, user, password, database, SSL mode) | ✅ | `my-mysql-prod` |
+| **Table** | Table to sync | ✅ | `products` |
+| **Sync Mode** | `incremental` — only new/updated rows (does not remove records for deleted rows). `full-refresh` — clear destination and re-embed all rows. | ✅ | `incremental` |
+| **Cursor Field** | Column used to track which records to replicate in incremental sync (e.g., `updated_at`, auto-increment ID). Only rows where this value is greater than the last sync are fetched. | Conditional (for incremental) | `updated_at` |
+| **Sync Schedule** | How often to run the sync (e.g., every 24 hours, every 3 days, every week) | ✅ | `Every 24 hours` |
+
+#### What is a Cursor?
+
+A **cursor** is a tracker used during incremental synchronization so that only newly updated or inserted records are sent from the source to the destination in each sync run.
+
+**How incremental sync works**
+
+- Incremental sync runs on a schedule like a loop. Each run replicates only records that were inserted or updated in the source since the previous run; already-replicated records are skipped.
+- This is more efficient than **full refresh**, which copies the entire table on every run.
+
+**How the cursor works**
+
+- The system must track what has already been replicated. The cursor is that pointer: it stores the latest value seen in the previous sync.
+- On the next run, the connector includes this cursor value in the query so that only rows after that value are fetched (e.g., `WHERE cursor_column > last_cursor_value`).
+
+**Example**
+
+- If your table has an `updated_at` column, you can use it as the cursor field. After a sync, the cursor keeps the **largest** `updated_at` among replicated rows. On the next run, the connector selects only rows where `updated_at` is greater than (or in some cases greater than or equal to) that stored value.
+
+**Choosing a cursor field**
+
+- The cursor field does not have to be a timestamp. It should **increase over time** (be monotonically increasing)—for example, an auto-incrementing ID also works.
+
+For more on this pattern, see [Incremental data synchronization between Postgres databases](/integrations/apps-data-sources/postgres#sync-modes).
+
+### Action node configuration
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Credentials** | MySQL credentials | ✅ | `my-mysql-prod` |
+| **Query** | SQL query to run (e.g., SELECT, or other statements allowed by your user) | ✅ | `SELECT * FROM products WHERE id = ?` |
+
+As an **Action**, the node runs the query you provide and returns the result set (or affected rows) as output.
+
+## Low-Code Examples
+
+### Batch Trigger example
+
+```yaml
+triggerNode:
+  nodeId: triggerNode_1
+  nodeType: mysqlNode
+  nodeName: MySQL
+  values:
+    credentials: MySQL
+    table: ''
+    syncMode: incremental
+    cursorField: ''
+    cronExpression: 0 0 00 1/1 * ? * UTC
+  modes: {}
+  allConfigs:
+    Config A:
+      nodeName: MySQL
+      credentials: MySQL
+      table: ''
+      syncMode: incremental
+      cursorField: ''
+      cronExpression: 0 0 00 1/1 * ? * UTC
+      id: triggerNode_1
+  schema:
+    queryResult: object
+    status: string
+```
+
+### Action node example
+
+```yaml
+nodes:
+  - nodeId: mysqlNode_749
+    nodeType: mysqlNode
+    nodeName: MySQL
+    values:
+      query: select * from employees
+      action: runQuery
+      credentials: MySQL
+    modes: {}
+    needs:
+      - triggerNode_1
+    allConfigs:
+      Config A:
+        id: mysqlNode_749
+        query: select * from employees
+        action: runQuery
+        nodeName: MySQL
+        credentials: MySQL
+    schema:
+      queryResult: object
+      status: string
+    logic: []
+```
+
+## Output
+
+### Batch Trigger output
+
+- **Records**: Array of row objects from the synced table (or cursor-defined subset for incremental).
+- **Metadata**: Sync metadata (e.g., last cursor value, row count) when available.
+
+### Action node output
+
+- **Rows**: Result set of the executed query (for SELECT).
+- **Affected rows / result**: For non-SELECT statements, depends on the connector implementation (e.g., row count or success flag).
+
+## Troubleshooting
+
+### Common issues
+
+| **Problem** | **Solution** |
+|-------------|---------------|
+| **Connection refused** | Check host, port, and firewall. For cloud MySQL, allow Lamatic IPs. |
+| **SSL handshake failed** | Try a different SSL mode (e.g., `preferred` or `required`) or verify server certificate. |
+| **Access denied** | Verify username, password, and granted privileges (e.g., SELECT, REPLICATION CLIENT). |
+| **SSH tunnel failed** | Confirm bastion host, port, SSH user, and key/password. Ensure the public key is in `authorized_keys` on the bastion. |
+| **Incremental sync not updating** | Ensure **Cursor Field** is set and that the column is populated and increasing over time. |
+| **Binlog not found (CDC)** | Enable binary logging and set `binlog_format=ROW`, `binlog_row_image=FULL`. |
+
+### Additional resources
+
+- [MySQL documentation](https://dev.mysql.com/doc/)
+- [MySQL binary logging](https://dev.mysql.com/doc/refman/8.0/en/binary-logging.html)

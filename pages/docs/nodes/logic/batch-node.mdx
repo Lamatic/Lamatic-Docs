@@ -1,0 +1,129 @@
+---
+title: Batch Node
+description: The Batch Node iterates over a list or a range and runs each iteration in parallel with a configurable concurrency limit.
+type: Logic
+order: 7
+---
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Batch Node
+
+<NodeOverview slug="batch-node" type="logic" />
+
+## Overview
+
+The Batch Node is similar to the Loop (for loop) Node: it iterates over a **List** or a **Range**. The key difference is that Batch runs iterations **in parallel**, and you can control throughput using a **Concurrency Limit**.
+
+<NodeTypeInfo 
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that iterates over a list or range and executes iterations in parallel with a configurable concurrency limit."
+/>
+
+<Callout type="info">
+Use Batch when you want faster processing (parallelism). Use Loop when you need strict ordering or sequential dependencies between iterations.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+  1. **Range-based batching:** Iterate over numeric ranges using initial, end, and increment values.
+  2. **List-based batching:** Iterate over arrays/collections for flexible parallel processing.
+  3. **Concurrency control:** Cap parallel executions with a concurrency limit (1–50) to protect rate limits and downstream systems.
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+  1. **Higher throughput:** Process items faster by running multiple iterations at once.
+  2. **Safer scaling:** Control load using concurrency limits instead of “all at once”.
+  3. **Flexible iteration:** Works with both structured lists and numeric ranges.
+</details>
+
+## What Can You Build?
+
+1. **Parallel web/page processing:** Run multiple scrapes or fetches concurrently.
+2. **Fan-out API calls:** Enrich many records by calling a third-party API with controlled concurrency.
+3. **Batch content generation:** Generate summaries/embeddings for many inputs in parallel while staying under model or token rate limits.
+
+## Setup
+
+1. Add the **Batch Node** to your flow.
+1. Choose **Iterate Over** as `List` or `Range`.
+1. Configure the required fields (marked with *).
+1. Set a **Concurrency Limit** based on your downstream limits (API rate limits, model throughput, etc.).
+1. Deploy the project.
+
+## Configuration Reference
+
+| **Parameter** | **Required** | **Description** | **Example Value** |
+| --- | --- | --- | --- |
+| **Iterate Over** | Yes | Select `List` or `Range`. If `List`, provide the list/array to iterate over. | `{{triggerNode_1.output.urls}}` or `Range` |
+| **Initial Value** | Yes | Starting value of the batch range. | `0` |
+| **End Value** | Yes | Ending value of the batch range (exclusive). | `10` |
+| **Increment** | Yes | Step size for each iteration. | `1` |
+| **Concurrency Limit** | Yes | Maximum number of parallel executions (min: 1, max: 50). | `10` |
+
+## Low-Code Example
+
+### Iterate over a list (parallel)
+
+```yaml
+nodes:
+  - nodeId: batchNode_692
+    nodeType: batchNode
+    nodeName: Batch
+    values:
+      endValue: 10
+      increment: 1
+      connectedTo: batchEndNode_757
+      iterateOver: list
+      initialValue: '1'
+      iteratorValue: '[]'
+      concurrencyLimit: '2'
+    modes: {}
+```
+
+### Iterate over a range (parallel)
+
+```yaml
+nodes:
+  - nodeId: batchNode_692
+    nodeType: batchNode
+    nodeName: Batch
+    values:
+      endValue: 10
+      increment: 1
+      connectedTo: batchEndNode_757
+      iterateOver: range
+      initialValue: '1'
+      iteratorValue: '[]'
+      concurrencyLimit: '2'
+    modes: {}
+```
+
+## Output
+
+The output from the Batch Node is an array containing the outcome of each iteration.
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem** | **Solution** |
+| --- | --- |
+| **Rate limit / 429 errors** | Lower **Concurrency Limit** and/or add retry/backoff downstream. |
+| **Downstream overload (timeouts, failures)** | Reduce concurrency, or batch into smaller lists/ranges. |
+| **Unexpected iteration values** | Double-check `Initial Value`, `End Value` (exclusive), and `Increment` (step). |
+
+### Debugging Tips
+
+- Start with a low concurrency (e.g., `2–5`) and increase gradually.
+- Use flow logs to identify which iteration(s) fail and why.
+- If you’re batching API calls, align concurrency with the API’s published limits.
+
+By leveraging the Lamatic.ai Batch Node, you can process lists and ranges quickly while keeping resource usage controlled.

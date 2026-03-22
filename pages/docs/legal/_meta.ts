@@ -1,0 +1,6 @@
+export default {
+    "terms-of-service": "Terms of Service",
+    "privacy-policy": "Privacy Policy",
+    "cookie-policy": "Cookie Policy",
+    "data-deletion-policy": "Data Deletion Policy"
+}

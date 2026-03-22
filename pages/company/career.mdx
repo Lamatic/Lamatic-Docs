@@ -3,17 +3,15 @@ title: Career at Lamatic
 description: Opportunities at Lamatic
 ---
 
-import { Tabs, Tab } from 'nextra-theme-docs'
+import { Tabs } from 'nextra/components'
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion'
 
 # Career at Lamatic
 
-### **Company Overview:**
-
+### Company Overview:
 [Lamatic.ai](http://lamatic.ai/) is a forward-thinking AI application development and deployment platform, known for its integration of Large Language Models (LLMs) into real-time data applications. We emphasize a collaborative approach with a simple GraphQL API and an intuitive dashboard, empowering users to deploy custom AI applications efficiently. Our platform significantly reduces development time and costs in the AI technology sector.
 
-## **Benefits:**
-
+## Benefits:
 - Work in a leading AI application development platform.
 - Learning and mentorship from founders of multiple Tech Companies.
 - Exposure to cutting-edge technologies and the chance to work on innovative projects.
@@ -35,7 +33,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
 
 <div className="career-tabs">
 <Tabs items={['Engineering', 'Design', 'Go-to-Market']}>
-  <Tab>
+  <Tabs.Tab>
     <Accordion type="single" collapsible>
       <AccordionItem value="founding-engineer">
         <AccordionTrigger className="career-accordion-trigger">Founding Engineer - Full Stack</AccordionTrigger>
@@ -97,8 +95,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
     <Accordion type="single" collapsible>
       <AccordionItem value="ai-ux-ui-designer">
         <AccordionTrigger className="career-accordion-trigger">AI/UX/UI Designer – Founding Role</AccordionTrigger>
@@ -138,8 +136,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Tab>
-  <Tab>
+  </Tabs.Tab>
+  <Tabs.Tab>
     <Accordion type="single" collapsible>
       
 
@@ -243,7 +241,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  </Tab>
+  </Tabs.Tab>
 </Tabs>
 </div>
 

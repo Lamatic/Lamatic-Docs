@@ -4,20 +4,17 @@ description: The Supervisor Agent in Lamatic.ai orchestrates multi-agent flow by
 order : 4
 ---
 
-# **Supervisor Agent**
-
+# Supervisor Agent
 The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to manage and coordinate multi-agent flow. It serves as the central hub, collecting input, maintaining structured memory, and orchestrating the execution of sub-agents based on predefined logic. This ensures an efficient, iterative process for dynamic AI-powered applications such as structured decision-making systems and task automation.
 
 ![Agent Creation Flow Editor](./img/supervisor-agent.png)
 
-## **Why Use the Supervisor Agent?**
-
+## Why Use the Supervisor Agent?
 - **Orchestrate Complex AI Flow:** Manage multiple agents dynamically, ensuring structured execution.
 - **Maintain Context and Memory:** Retain past interactions to improve continuity in multi-step tasks.
 - **Enable Adaptive Execution:** Define agent paths, loop conditions, and AI-generated decision trees.
 
-## **Key Features**
-
+## Key Features
 <details>
 <summary>**Core Functionalities**</summary>
 
@@ -39,10 +36,8 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 </details>
 
 
-## **How to Use the Supervisor Agent?**
-
-### **Creating a Supervisor Agent via Flow Editor**
-
+## How to Use the Supervisor Agent?
+### Creating a Supervisor Agent via Flow Editor
 1. **Add an Agent Node** - Select **Supervisor Agent** from the node list.  
 2. **Define Agent Paths** - Set up branches for different sub-agents.  
 3. **Configure Prompt Templates** - Customize how the agent interacts with users and sub-agents.  
@@ -50,16 +45,14 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 5. **Set Loop & Stop Conditions** - Define execution limits to prevent infinite loops.  
 6. **Deploy & Connect** - Integrate the agent into the flow and execute the workflow.  
 
-### **Creating a Supervisor Agent via Agent Dashboard**
-
+### Creating a Supervisor Agent via Agent Dashboard
 1. **Navigate to the Agents Page** - Click "New Agent."  
 2. **Select Supervisor Agent** - Choose it from the available agent types.  
 3. **Configure Agent Settings** - Adjust memory, iteration limits, and agent paths.  
 4. **Deploy the Agent** - Save and activate it in your workflow.  
 
 
-## **Configuration Options**
-
+## Configuration Options
 | **Parameter**        | **Description**                                             | **Example Value** |
 |----------------------|-------------------------------------------------------------|-------------------|
 | **Prompts**         | Set system, user, and assistant prompts.                     | `System Prompt, User Prompt` |
@@ -122,8 +115,7 @@ You can save the configuration of any agent by clicking on the `Load Save Config
 This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
 
 
-## **Low-Code Example**
-
+## Low-Code Example
 ```yaml
 nodes:
   - nodeId: agentNode_960

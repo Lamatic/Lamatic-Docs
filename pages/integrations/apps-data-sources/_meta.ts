@@ -1,4 +1,4 @@
-{
+export default {
   "airtable": { "title": "Airtable", "type": "doc" },
   "aws-s3": { "title": "AWS S3", "type": "doc" },
   "firecrawl": { "title": "Firecrawl (Crawler / Scraper)", "type": "doc" },

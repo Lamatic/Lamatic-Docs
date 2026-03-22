@@ -22,26 +22,22 @@ When configuring a model node, you can add logic to control how the model execut
 
 ---
 
-## **1. Fallback**
-
+## 1. Fallback
 Fallback logic enables automatic failover to a backup model configuration when the primary model times out or fails. This ensures your workflow continues executing even if the primary model encounters issues.
 
-### **When to Use Fallback**
-
+### When to Use Fallback
 - When you need high availability and reliability
 - When working with models that may have variable response times
 - When you want to ensure your workflow doesn't fail due to model unavailability
 
-### **Configuration**
-
+### Configuration
 When you select **Fallback**, you can configure:
 
 - **Config A (Primary Model)** - The primary model configuration that will be attempted first
 - **Config B (Fallback Model)** - The backup model configuration used if Config A fails or times out
 - **Timeout** - The maximum time to wait for Config A before switching to Config B
 
-### **How It Works**
-
+### How It Works
 1. The system attempts to execute **Config A** (your primary model configuration)
 2. If Config A times out (based on your timeout setting) or fails, the system automatically switches to **Config B**
 3. The result from the successful configuration (either A or B) is used to continue the workflow
@@ -50,25 +46,21 @@ When you select **Fallback**, you can configure:
 
 ---
 
-## **2. Retry**
-
+## 2. Retry
 Retry logic automatically retries model execution when it fails, helping you handle transient errors and network issues gracefully.
 
-### **When to Use Retry**
-
+### When to Use Retry
 - When dealing with intermittent network issues or API rate limits
 - When you want to automatically recover from temporary failures
 - When working with models that may occasionally timeout
 
-### **Configuration**
-
+### Configuration
 When you select **Retry**, you can configure:
 
 - **Max Retry Attempts** - The maximum number of times to retry the model execution (e.g., 3, 5, 10)
 - **Delay** - The time to wait between retry attempts (e.g., 1 second, 5 seconds)
 
-### **How It Works**
-
+### How It Works
 1. The system attempts to execute the model
 2. If the execution fails, it waits for the specified **Delay** period
 3. The system retries the execution
@@ -80,26 +72,22 @@ When you select **Retry**, you can configure:
 
 ---
 
-## **3. Parallel Execution**
-
+## 3. Parallel Execution
 Parallel logic executes two model configurations simultaneously, allowing you to compare results or combine outputs from different models.
 
-### **When to Use Parallel**
-
+### When to Use Parallel
 - When you want to compare outputs from different models
 - When you need to combine results from multiple model configurations
 - When you want to improve performance by running models concurrently
 
-### **Configuration**
-
+### Configuration
 When you select **Parallel**, you can configure:
 
 - **Config A** - The first model configuration to execute
 - **Config B** - The second model configuration to execute
 - Both configurations execute simultaneously
 
-### **How It Works**
-
+### How It Works
 1. Both **Config A** and **Config B** start executing at the same time
 2. The system waits for both configurations to complete
 3. You can access results from both configurations in subsequent nodes
@@ -109,18 +97,15 @@ When you select **Parallel**, you can configure:
 
 ---
 
-## **4. A/B Testing**
-
+## 4. A/B Testing
 A/B Testing logic allows you to split traffic between two model configurations with configurable percentages, enabling you to test and compare different model setups.
 
-### **When to Use A/B Testing**
-
+### When to Use A/B Testing
 - When you want to compare the performance of different model configurations
 - When testing new models or prompts against existing ones
 - When you need to gradually roll out new model configurations
 
-### **Configuration**
-
+### Configuration
 When you select **A/B Test**, you can configure:
 
 - **Config A** - The first model configuration
@@ -130,8 +115,7 @@ When you select **A/B Test**, you can configure:
   - **Config B Percentage** - e.g., 60% of requests go to Config B
   - Percentages must total 100%
 
-### **How It Works**
-
+### How It Works
 1. For each execution, the system randomly selects Config A or Config B based on the configured percentages
 2. If Config A is set to 40% and Config B to 60%:
    - Approximately 40% of executions use Config A
@@ -143,8 +127,7 @@ When you select **A/B Test**, you can configure:
 
 ---
 
-## **Adding Model Logic to a Node**
-
+## Adding Model Logic to a Node
 To add logic to a model node:
 
 1. Select the model node in your flow
@@ -164,8 +147,7 @@ To add logic to a model node:
 
 ---
 
-## **Best Practices**
-
+## Best Practices
 - **Fallback**: Always configure a reliable backup model that's faster or more stable than your primary
 - **Retry**: Set reasonable retry limits and delays to avoid excessive API calls and costs
 - **Go Back**: Implement safeguards to prevent infinite loops (e.g., iteration counters)
@@ -174,8 +156,7 @@ To add logic to a model node:
 
 ---
 
-## **Related Resources**
-
+## Related Resources
 - [Model Config](./model-config.mdx) - Learn about configuring model parameters
 - [Custom Model Integration](./custom-model-integration.mdx) - Add and manage custom models
 - [Node Configuration](/docs/flows/node-config) - General node configuration guide

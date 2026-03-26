@@ -103,6 +103,16 @@ export type TemplatesResponse = {
   categories: Category[];
 };
 
+type TemplateAnalysis = {
+  nodesUsed: Array<{ name: string; label: string }>;
+  nodeCount: number;
+  description: string;
+};
+
+const CACHE_TTL_MS = 5 * 60 * 1000;
+let templatesCache: { data: TemplatesResponse; expiresAt: number } | null = null;
+let inFlightRequest: Promise<TemplatesResponse> | null = null;
+
 // Icon mapping based on template name/description
 const getIconForTemplate = (template: ExternalTemplate): string => {
   const name = (template.name || '').toLowerCase();
@@ -219,33 +229,52 @@ const extractNodesUsed = (template: ExternalTemplate): Array<{name: string; labe
   return [];
 };
 
-// Determine complexity based on nodes used and description
-const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' | 'advanced' => {
+const getTemplateAnalysis = (template: ExternalTemplate): TemplateAnalysis => {
+  const description = template.description || template.meta?.description || '';
   const nodesUsed = extractNodesUsed(template);
-  const nodeCount = nodesUsed.length;
-  const description = (template.description || template.meta?.description || '').toLowerCase();
-  
-  // Try to get node count from nodes array first (most direct)
-  let finalNodeCount = nodeCount;
+
+  // Prefer direct node count from API payload.
   if (template.nodes && Array.isArray(template.nodes)) {
-    finalNodeCount = template.nodes.length;
-  } else {
-    // Try to get node count from config if available
-    try {
-      if (template.config) {
-        const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
-        if (config && config.nodes && Array.isArray(config.nodes)) {
-          finalNodeCount = config.nodes.length;
-        }
-      }
-    } catch (e) {
-      // Use nodeCount from nodesUsed
-    }
+    return {
+      nodesUsed,
+      nodeCount: template.nodes.length,
+      description
+    };
   }
-  
-  if (finalNodeCount <= 3 && !description.includes('complex')) {
+
+  // Fallback: try config node count once.
+  try {
+    if (template.config) {
+      const config = typeof template.config === 'string' ? JSON.parse(template.config) : template.config;
+      if (config && config.nodes && Array.isArray(config.nodes)) {
+        return {
+          nodesUsed,
+          nodeCount: config.nodes.length,
+          description
+        };
+      }
+    }
+  } catch (e) {
+    // Ignore config parse errors and fallback to nodesUsed length.
+  }
+
+  return {
+    nodesUsed,
+    nodeCount: nodesUsed.length,
+    description
+  };
+};
+
+// Determine complexity based on nodes used and description
+const getComplexity = (
+  nodeCount: number,
+  description: string
+): 'beginner' | 'intermediate' | 'advanced' => {
+  const descriptionLower = description.toLowerCase();
+
+  if (nodeCount <= 3 && !descriptionLower.includes('complex')) {
     return 'beginner';
-  } else if (finalNodeCount <= 6) {
+  } else if (nodeCount <= 6) {
     return 'intermediate';
   } else {
     return 'advanced';
@@ -253,10 +282,11 @@ const getComplexity = (template: ExternalTemplate): 'beginner' | 'intermediate' 
 };
 
 // Extract features from nodes used and description
-const getFeatures = (template: ExternalTemplate): string[] => {
+const getFeatures = (
+  nodes: Array<{ name: string; label: string }>,
+  description: string
+): string[] => {
   const features: string[] = [];
-  const nodes = extractNodesUsed(template);
-  const description = template.description || template.meta?.description || '';
   
   // Add features based on nodes used
   nodes.forEach(node => {
@@ -353,13 +383,14 @@ const generateId = (template: ExternalTemplate): string => {
 // Transform external template to internal format
 const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
   const icon = getIconForTemplate(externalTemplate);
-  const nodesUsed = extractNodesUsed(externalTemplate);
+  const analysis = getTemplateAnalysis(externalTemplate);
+  const nodesUsed = analysis.nodesUsed;
   
   // Get tags from root level or meta.tags
   const tags = externalTemplate.tags || externalTemplate.meta?.tags || [];
   
   // Get description from root or meta
-  const description = externalTemplate.description || externalTemplate.meta?.description || 'No description available';
+  const description = analysis.description || 'No description available';
   
   // Get demoUrl from root or meta.deployUrl
   const demoUrl = externalTemplate.demoUrl || externalTemplate.meta?.deployUrl || null;
@@ -374,19 +405,28 @@ const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
     tags,
     icon,
     iconColor: getIconColor(icon),
-    features: getFeatures(externalTemplate),
+    features: getFeatures(nodesUsed, description),
     category: mapCategory(externalTemplate.category),
-    complexity: getComplexity(externalTemplate),
+    complexity: getComplexity(analysis.nodeCount, description),
     useCases: [], // Could be extracted from description if needed
     integrations: nodesUsed.map(node => node.label),
     previewImage: externalTemplate.preview_image || undefined,
-    maker: externalTemplate.maker || (externalTemplate.meta?.author ? {
-      name: externalTemplate.meta.author.name,
-      link: externalTemplate.meta.author.email ? `mailto:${externalTemplate.meta.author.email}` : undefined
-    } : undefined),
+    maker: externalTemplate.maker
+      ? {
+          name: externalTemplate.maker.name,
+          link: externalTemplate.maker.link || undefined
+        }
+      : externalTemplate.meta?.author
+        ? {
+            name: externalTemplate.meta.author.name,
+            link: externalTemplate.meta.author.email
+              ? `mailto:${externalTemplate.meta.author.email}`
+              : undefined
+          }
+        : undefined,
     nodesUsed: nodesUsed.length > 0 ? nodesUsed : undefined,
-    slug: externalTemplate.slug || null,
-    demoUrl,
+    slug: externalTemplate.slug || undefined,
+    demoUrl: demoUrl || undefined,
     isPro: externalTemplate.isPro || false,
     isAgentkit: externalTemplate.isAgentkit || false
   };
@@ -401,72 +441,86 @@ export default async function handler(
   }
 
   try {
-    // Fetch templates from external API
-    const response = await fetch('https://studio.lamatic.ai/api/public-templates');
-    // const response = await fetch('https://studio.lamatic.ai/api/templates-public');
-    // api/public-templates/
-    
-    if (!response.ok) {
-      throw new Error(`External API responded with status: ${response.status}`);
+    const now = Date.now();
+    if (templatesCache && templatesCache.expiresAt > now) {
+      res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=300');
+      return res.status(200).json(templatesCache.data);
     }
-    
-    const externalData: ExternalTemplatesResponse = await response.json();
-    
-    // Handle response with success wrapper
-    const templatesArray = externalData.templates || [];
-    
-    // Transform external templates to internal format with error handling
-    const templates: Template[] = templatesArray
-      .filter(template => template && template.name) // Filter out invalid templates (require at least a name)
-      .map(template => {
-        try {
-          return transformTemplate(template);
-        } catch (err) {
-          console.error('Error transforming template:', template.id || template.slug || template.name, err);
-          // Return a minimal valid template to prevent breaking the entire response
-          const fallbackId = generateId(template);
-          return {
-            id: fallbackId,
-            title: template.name || template.meta?.name || 'Untitled Template',
-            description: template.description || template.meta?.description || 'No description available',
-            tags: template.tags || template.meta?.tags || [],
-            icon: 'Workflow',
-            iconColor: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400',
-            features: [],
-            category: mapCategory(template.category),
-            complexity: 'beginner',
-            useCases: [],
-            integrations: [],
-            slug: template.slug || null,
-            isPro: template.isPro || false,
-            isAgentkit: template.isAgentkit || false,
-            template_link: template.template_link || null,
-            agent_link: template.agent_link || null,
-          };
+
+    if (!inFlightRequest) {
+      inFlightRequest = (async () => {
+        // Fetch templates from external API
+        const response = await fetch('https://studio.lamatic.ai/api/public-templates');
+
+        if (!response.ok) {
+          throw new Error(`External API responded with status: ${response.status}`);
         }
+
+        const externalData: ExternalTemplatesResponse = await response.json();
+
+        // Handle response with success wrapper
+        const templatesArray = externalData.templates || [];
+
+        // Transform external templates to internal format with error handling
+        const templates: Template[] = templatesArray
+          .filter(template => template && template.name) // Filter out invalid templates (require at least a name)
+          .map(template => {
+            try {
+              return transformTemplate(template);
+            } catch (err) {
+              console.error('Error transforming template:', template.id || template.slug || template.name, err);
+              // Return a minimal valid template to prevent breaking the entire response
+              const fallbackId = generateId(template);
+              return {
+                id: fallbackId,
+                title: template.name || template.meta?.name || 'Untitled Template',
+                description: template.description || template.meta?.description || 'No description available',
+                tags: template.tags || template.meta?.tags || [],
+                icon: 'Workflow',
+                iconColor: 'bg-gray-100 dark:bg-gray-900/20 text-gray-600 dark:text-gray-400',
+                features: [],
+                category: mapCategory(template.category),
+                complexity: 'beginner',
+                useCases: [],
+                integrations: [],
+                slug: template.slug || undefined,
+                isPro: template.isPro || false,
+                isAgentkit: template.isAgentkit || false,
+              };
+            }
+          });
+
+        templates.sort((a, b) => a.title.localeCompare(b.title, undefined, { sensitivity: 'base' }));
+
+        // Create categories based on available templates
+        const categoryMap = new Map<string, number>();
+        templates.forEach(template => {
+          const count = categoryMap.get(template.category) || 0;
+          categoryMap.set(template.category, count + 1);
+        });
+
+        const categories: Category[] = [
+          { id: 'all', label: 'All', count: templates.length },
+          ...Array.from(categoryMap.entries()).map(([id, count]) => ({
+            id,
+            label: id.charAt(0).toUpperCase() + id.slice(1),
+            count
+          }))
+        ];
+
+        const result: TemplatesResponse = {
+          templates,
+          categories
+        };
+        templatesCache = { data: result, expiresAt: Date.now() + CACHE_TTL_MS };
+        return result;
+      })().finally(() => {
+        inFlightRequest = null;
       });
-    
-    // Create categories based on available templates
-    const categoryMap = new Map<string, number>();
-    templates.forEach(template => {
-      const count = categoryMap.get(template.category) || 0;
-      categoryMap.set(template.category, count + 1);
-    });
-    
-    const categories: Category[] = [
-      { id: 'all', label: 'All', count: templates.length },
-      ...Array.from(categoryMap.entries()).map(([id, count]) => ({
-        id,
-        label: id.charAt(0).toUpperCase() + id.slice(1),
-        count
-      }))
-    ];
-    
-    const result: TemplatesResponse = {
-      templates,
-      categories
-    };
-    
+    }
+
+    const result = await inFlightRequest;
+    res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=300');
     res.status(200).json(result);
   } catch (error) {
     console.error('Error fetching templates from external API:', error);

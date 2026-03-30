@@ -5,39 +5,48 @@ import { titleToSlug } from '@/lib/utils';
 interface ExternalTemplate {
   name: string;
   description: string | null;
-  category: string;
-  preview_image: string;
-  config: string;
-  organization_id: string;
-  user_id: string;
-  created_at: string;
-  id: string;
+  category?: string;
+  preview_image?: string | null;
+  config?: string;
+  organization_id?: string;
+  user_id?: string;
+  created_at?: string;
+  id?: string;
   slug: string | null;
-  tags: string[];
-  preview_link: string | null;
-  maker: {
+  tags?: string[];
+  preview_link?: string | null;
+  template_link?: string | null;
+  agent_link?: string | null;
+  maker?: {
     link: string | null;
     name: string;
   };
   inputs: any;
   testInput: any;
-  nodesUsed: Array<{
+  nodesUsed?: Array<{
     name: string;
     label: string;
   }>;
   ux: any;
   datasource: any;
   compatibleSources: any;
-  demoUrl: string | null;
-  allMandatory: boolean;
+  demoUrl?: string | null;
+  allMandatory?: boolean;
   about: any;
   features: any;
   integrations: any;
-  isPro: boolean;
+  isPro?: boolean;
   isAgentkit?: boolean;
-  agentkit_config: any;
-  v0Link: string | null;
-  hideVibe: boolean;
+  agentkit_config?: any;
+  v0Link?: string | null;
+  hideVibe?: boolean;
+  meta?: {
+    name?: string;
+    description?: string;
+    tags?: string[];
+    deployUrl?: string;
+    author?: { name: string; email: string };
+  };
 }
 
 interface ExternalTemplatesResponse {
@@ -86,9 +95,9 @@ interface Template {
 
 // Icon mapping based on template name/description
 const getIconForTemplate = (template: ExternalTemplate): string => {
-  const name = template.name.toLowerCase();
-  const description = (template.description || '').toLowerCase();
-  const tags = template.tags.map(tag => tag.toLowerCase());
+  const name = (template.name || template.meta?.name || '').toLowerCase();
+  const description = (template.description || template.meta?.description || '').toLowerCase();
+  const tags = (template.tags || template.meta?.tags || []).map((tag) => tag.toLowerCase());
   
   if (name.includes('chat') || name.includes('support') || name.includes('assistant')) {
     return 'MessageSquare';
@@ -223,26 +232,36 @@ const getFeatures = (template: ExternalTemplate): string[] => {
 };
 
 // Map external category to internal category
-const mapCategory = (externalCategory: string): string => {
+const mapCategory = (externalCategory?: string): string => {
+  if (!externalCategory) {
+    return 'public';
+  }
   const categoryMap: Record<string, string> = {
     'Public': 'public',
     'Private': 'private',
     'Enterprise': 'enterprise',
     'Community': 'community'
   };
-  
+
   return categoryMap[externalCategory] || 'public';
 };
 
 // Transform external template to internal format
 const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
   const icon = getIconForTemplate(externalTemplate);
-  
+  const id =
+    externalTemplate.id ||
+    externalTemplate.slug ||
+    titleToSlug(externalTemplate.name || externalTemplate.meta?.name || 'untitled');
+
   return {
-    id: externalTemplate.id,
-    title: externalTemplate.name,
-    description: externalTemplate.description || 'No description available',
-    tags: externalTemplate.tags || [],
+    id,
+    title: externalTemplate.name || externalTemplate.meta?.name || 'Untitled Agent Kit',
+    description:
+      externalTemplate.description ||
+      externalTemplate.meta?.description ||
+      'No description available',
+    tags: externalTemplate.tags || externalTemplate.meta?.tags || [],
     icon,
     iconColor: getIconColor(icon),
     features: getFeatures(externalTemplate),
@@ -250,12 +269,17 @@ const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
     complexity: getComplexity(externalTemplate),
     useCases: [], // Could be extracted from description if needed
     integrations: externalTemplate.nodesUsed?.map(node => node.label) || [],
-    previewImage: externalTemplate.preview_image,
-    maker: externalTemplate.maker,
+    previewImage: externalTemplate.preview_image || undefined,
+    maker: externalTemplate.maker || (externalTemplate.meta?.author ? {
+      name: externalTemplate.meta.author.name,
+      link: externalTemplate.meta.author.email
+        ? `mailto:${externalTemplate.meta.author.email}`
+        : undefined,
+    } : undefined),
     nodesUsed: externalTemplate.nodesUsed,
-    slug: externalTemplate.slug,
-    demoUrl: externalTemplate.demoUrl,
-    isPro: externalTemplate.isPro,
+    slug: externalTemplate.slug || undefined,
+    demoUrl: externalTemplate.demoUrl || externalTemplate.meta?.deployUrl || undefined,
+    isPro: externalTemplate.isPro || false,
     isAgentkit: externalTemplate.isAgentkit || false,
     about: externalTemplate.about,
     inputs: externalTemplate.inputs,
@@ -285,11 +309,13 @@ export default async function handler(
   }
 
   try {
-    // Fetch templates from external API
-    const response = await fetch('https://launch-three.lamatic.ai/api/public-templates');
-    
+    // Same public endpoint as templates-public and /api/templates/[templateID].
+    const response = await fetch('https://studio.lamatic.ai/api/public-templates');
+
     if (!response.ok) {
-      throw new Error(`External API responded with status: ${response.status}`);
+      return res.status(response.status).json({
+        error: `External API responded with status: ${response.status}`,
+      });
     }
     
     const externalData: ExternalTemplatesResponse = await response.json();

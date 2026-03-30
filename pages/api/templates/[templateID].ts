@@ -38,6 +38,8 @@ interface ExternalTemplate {
   agentkit_config?: any;
   v0Link?: string | null;
   hideVibe?: boolean;
+  template_link?: string | null;
+  agent_link?: string | null;
   meta?: {
     name?: string;
     description?: string;
@@ -334,7 +336,7 @@ const transformTemplate = (externalTemplate: ExternalTemplate): Template => {
       link: externalTemplate.meta.author.email ? `mailto:${externalTemplate.meta.author.email}` : undefined
     } : undefined),
     nodesUsed: nodesUsed.length > 0 ? nodesUsed : undefined,
-    slug: externalTemplate.slug || null,
+    slug: externalTemplate.slug || undefined,
     demoUrl,
     isPro: externalTemplate.isPro || false,
     isAgentkit: externalTemplate.isAgentkit || false,
@@ -366,11 +368,13 @@ export default async function handler(
   }
 
   try {
-    // Fetch templates from external API
-    const response = await fetch('https://launch-three.lamatic.ai/api/public-templates');
+    // Use the same public endpoint as templates-public API.
+    const response = await fetch('https://studio.lamatic.ai/api/public-templates');
     
     if (!response.ok) {
-      throw new Error(`External API responded with status: ${response.status}`);
+      return res.status(response.status).json({
+        error: `External API responded with status: ${response.status}`
+      });
     }
     
     const externalData: ExternalTemplatesResponse = await response.json();

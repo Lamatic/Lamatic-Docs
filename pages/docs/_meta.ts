@@ -146,10 +146,10 @@ export default {
     title: "Reports",
     type: "doc",
   },
-  "langfuse-integration": {
-    title: "Langfuse Integration",
-    type: "doc",
-  },
+  // "langfuse-integration": {
+  //   title: "Langfuse Integration",
+  //   type: "doc",
+  // },
   "feedback-api": {
     title: "Feedback API",
     type: "doc",

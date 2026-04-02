@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Users, ExternalLink } from 'lucide-react';
+import { Users } from 'lucide-react';
 import { useRouter } from 'next/router';
 import { GitHubContributor, ContributorsResponse } from '@/types/contributors';
 import { urlPathToGitHubPath } from '@/lib/utils';
@@ -52,13 +51,14 @@ export const PageContributors: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col space-y-2 text-sm w-full pt-2">
-        <div className="flex items-center gap-2 font-semibold">
-          <Users className="w-4 h-4" />
-          <span>Contributors</span>
-        </div>
-        <div className="flex justify-center py-2">
-          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary"></div>
+      <div className="w-full pt-2">
+        <div className="grid grid-cols-4 gap-2 pb-1">
+          {Array.from({ length: 6 }).map((_, idx) => (
+            <div
+              key={idx}
+              className="h-7 w-7 rounded-full bg-muted/60 animate-pulse shrink-0"
+            />
+          ))}
         </div>
       </div>
     );
@@ -69,26 +69,26 @@ export const PageContributors: React.FC = () => {
     return null;
   }
 
-  // Show top 6 contributors in a compact format
-  const visibleContributors = contributors.slice(0, 6);
+  // Keep this compact to avoid distracting from docs content.
+  const visibleContributors = contributors.slice(0, 10);
 
   return (
-    <div className="flex flex-col space-y-2 text-sm w-full pt-2">
-      <div className="flex items-center gap-2 font-semibold">
-        <Users className="w-4 h-4 flex-shrink-0" />
+    <div className="w-full pt-2">
+      <div className="mb-2 flex items-center gap-2 font-semibold">
+        <Users className="h-4 w-4 flex-shrink-0" />
         <span>Contributors</span>
       </div>
-
-      <div className="flex flex-col space-y-2">
+      <div className="grid grid-cols-4 gap-1 pb-1 overflow-visible">
         {visibleContributors.map((contributor) => (
           <a
             key={contributor.id}
             href={contributor.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 group hover:bg-accent/50 p-1 rounded transition-colors min-w-0"
+            aria-label={contributor.login}
+            className="group relative shrink-0 rounded-full overflow-visible !opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
-            <Avatar className="w-6 h-6 flex-shrink-0">
+            <Avatar className="w-10 h-10 ring-1 ring-border/40 hover:ring-primary/30 transition-colors">
               <AvatarImage
                 src={contributor.avatar_url}
                 alt={`${contributor.login}'s avatar`}
@@ -97,19 +97,14 @@ export const PageContributors: React.FC = () => {
                 {contributor.login.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
-            <span className="text-xs flex-1 truncate min-w-0">{contributor.login}</span>
-            {/* <Badge variant="secondary" className="text-xs flex-shrink-0 whitespace-nowrap">
-              {`${contributor.contributions} ${contributor.contributions === 1 ? 'commit' : 'commits'}`}
-            </Badge> */}
-            <ExternalLink className="w-3 h-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+            <span
+              role="tooltip"
+              className="pointer-events-none absolute bottom-full left-1/2 z-[999] mb-2 hidden -translate-x-1/2 whitespace-nowrap rounded-md border border-border bg-popover px-2 py-1 text-[11px] font-medium text-popover-foreground group-hover:block group-focus-visible:block"
+            >
+              {contributor.login}
+            </span>
           </a>
         ))}
-
-        {contributors.length > 6 && (
-          <div className="text-xs text-muted-foreground pt-1">
-            +{contributors.length - 6} more
-          </div>
-        )}
       </div>
     </div>
   );

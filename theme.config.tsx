@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  DocsThemeConfig,
-  Tabs,
-  Tab,
-  useConfig,
-  Steps,
-  Card,
-  Cards,
-  Callout,
-} from "nextra-theme-docs";
+import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
+import { Cards, Steps, Tabs, Callout } from "nextra/components";
 
 import { Logo } from "@/components/logo";
 import { useRouter } from "next/router";
@@ -16,18 +8,7 @@ import { MainContentWrapper } from "./components/MainContentWrapper";
 import { Frame } from "./components/Frame";
 import { COOKBOOK_ROUTE_MAPPING } from "./lib/cookbook_route_mapping";
 import { GeistSans } from "geist/font/sans";
-import FooterMenu from "./components/FooterMenu";
 import Link from "next/link";
-import {
-  SquareGanttChart,
-  LibraryBig,
-  Phone,
-  Slack,
-  GraduationCap,
-  Blocks,
-  BotMessageSquare,
-  LayoutTemplate
-} from "lucide-react";
 import {
   AvailabilityBanner,
   AvailabilitySidebar,
@@ -36,6 +17,7 @@ import { CloudflareVideo, Video } from "./components/Video";
 import { PageContributors } from "./components/PageContributors";
 import { Button } from "@/components/ui/button";
 import { CustomTOC } from "./components/CustomTOC";
+import FooterWrapper from "./components/FooterWrapper";
 
 const config: DocsThemeConfig = {
   logo: <Logo />,
@@ -55,57 +37,11 @@ const config: DocsThemeConfig = {
   sidebar: {
     defaultMenuCollapseLevel: 1,
     toggleButton: true,
-    titleComponent: ({ type, title, route }) => {
-      const { asPath } = useRouter();
-      if (type === "separator" && title === "Switcher") {
-        return (
-          <div className="-mx-2 hidden md:block">
-            {[
-              { title: "Docs", path: "/docs", Icon: LibraryBig },
-              { title: "Integrations", path: "/integrations", Icon: Blocks },
-              { title: "Templates", path: "/templates", Icon: LayoutTemplate },
-              { title: "Guides", path: "/guides", Icon: GraduationCap },
-              { title: "Book a demo", path: "/docs/demo", Icon: Phone },
-              {
-                title: "Roadmap",
-                path: "https://product.lamatic.ai/",
-                Icon: SquareGanttChart,
-              },
-              {
-                title: "Community and Support",
-                path: "/docs/slack",
-                Icon: Slack,
-              },
-            ].map((item) =>
-              asPath.startsWith(item.path) ? (
-                <div
-                  key={item.path}
-                  className="group mb-3 flex flex-row items-center gap-3 nx-text-primary-800 dark:nx-text-primary-600"
-                >
-                  <item.Icon className="w-7 h-7 p-1 border rounded nx-bg-primary-100 dark:nx-bg-primary-400/10" />
-                  {item.title}
-                </div>
-              ) : (
-                <Link
-                  href={item.path}
-                  key={item.path}
-                  className="group mb-3 flex flex-row items-center gap-3 text-gray-500 hover:text-primary/100"
-                >
-                  <item.Icon className="w-7 h-7 p-1 border rounded group-hover:bg-border/30" />
-                  {item.title}
-                </Link>
-              )
-            )}
-          </div>
-        );
-      }
-      return title;
-    },
   },
 
   feedback: { useLink: () => "https://product.lamatic.ai/" },
   editLink: {
-    text: "Edit this page on GitHub",
+    content: "Edit this page on GitHub",
   },
   toc: {
     backToTop: true,
@@ -121,38 +57,8 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",
   footer: {
-    component: <FooterMenu />,
-  },
-  useNextSeoProps() {
-    const { asPath } = useRouter();
-    const cookbook = COOKBOOK_ROUTE_MAPPING.find(
-      (cookbook) => cookbook.path === asPath
-    );
-    const canonical: string | undefined = cookbook?.canonicalPath
-      ? "https://lamatic.ai" + cookbook.canonicalPath
-      : undefined;
-
-    return {
-      titleTemplate:
-        asPath === "/"
-          ? "lamatic.ai"
-          : asPath.startsWith("/blog/")
-          ? "%s - lamatic.ai Blog"
-          : asPath.startsWith("/guides/")
-          ? "%s - Lamatic.ai Guides"
-          : asPath.startsWith("/integrations/")
-          ? "%s - Lamatic.ai Integrations"
-          : asPath.startsWith("/ambassadors")
-          ? "%s - Lamatic.ai Ambassador"
-          : asPath.startsWith("/templates/")
-          ? "%s - Lamatic.ai Agent Kits"
-          : asPath.startsWith("/security/")
-          ? "%s - Lamatic.ai Security"
-          : asPath.startsWith("/launch-week/")
-          ? "%s - Lamatic.ai Launch Week"
-          : "%s - Lamatic.ai Docs",
-      canonical,
-    };
+    // Pass the component (not <FooterWrapper />) so Nextra's renderComponent mounts it correctly
+    content: FooterWrapper,
   },
   head: () => {
     const { asPath, defaultLocale, locale } = useRouter();
@@ -184,6 +90,32 @@ const config: DocsThemeConfig = {
         )}&section=${encodeURIComponent(section)}`;
 
     const video = frontMatter.ogVideo ? frontMatter.ogVideo : null;
+
+    const cookbook = COOKBOOK_ROUTE_MAPPING.find(
+      (cookbook) => cookbook.path === asPath
+    );
+    const canonical: string | undefined = cookbook?.canonicalPath
+      ? "https://lamatic.ai" + cookbook.canonicalPath
+      : undefined;
+
+    const titleTemplate =
+      asPath === "/"
+        ? "lamatic.ai"
+        : asPath.startsWith("/blog/")
+        ? "%s - lamatic.ai Blog"
+        : asPath.startsWith("/guides/")
+        ? "%s - Lamatic.ai Guides"
+        : asPath.startsWith("/integrations/")
+        ? "%s - Lamatic.ai Integrations"
+        : asPath.startsWith("/ambassadors")
+        ? "%s - Lamatic.ai Ambassador"
+        : asPath.startsWith("/templates/")
+        ? "%s - Lamatic.ai Agent Kits"
+        : asPath.startsWith("/security/")
+        ? "%s - Lamatic.ai Security"
+        : asPath.startsWith("/launch-week/")
+        ? "%s - Lamatic.ai Launch Week"
+        : "%s - Lamatic.ai Docs";
 
     return (
       <>
@@ -226,15 +158,17 @@ const config: DocsThemeConfig = {
           sizes="16x16"
           href="/public/favicon-16x16.png"
         />
+        {canonical && <link rel="canonical" href={canonical} />}
+        <title>{titleTemplate.replace("%s", title)}</title>
       </>
     );
   },
   components: {
     Frame,
     Tabs,
-    Tab,
+    Tab: Tabs.Tab,
     Steps,
-    Card,
+    Card: Cards.Card,
     Cards,
     AvailabilityBanner,
     Callout,

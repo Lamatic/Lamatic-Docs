@@ -1,11 +1,16 @@
+---
+title: Mapping and Ingesting Data
+description: Learn how to map your data into a Weaviate schema and ingest it into Lamatic’s vector store for search and retrieval.
+---
+
 # **Mapping and Ingesting Data into Weaviate**
 
+# Mapping and Ingesting Data into Weaviate
 To build powerful generative AI applications on [Lamatic.ai](http://lamatic.ai/), you need a way to load your data into the Weaviate vector store in a structured, vectorized format. [Lamatic.ai](http://lamatic.ai/) provides flexible data mapping tools to make this process seamless.
 
 ---
 
-## **Defining a Data Schema**
-
+## Defining a Data Schema
 Your first step is to define a schema that maps your data objects and their properties into Weaviate's data model. This schema acts as the structure for how objects will be stored and queried in the vector database.
 
 Your Vector Store schema can be defined automatically when you index the first object inside a Vector Store. You can construct a schema by adding various keys (e.g. Article, Product, etc.), properties/fields, and mapping values to automatically define data types.
@@ -14,14 +19,12 @@ Your Vector Store schema can be defined automatically when you index the first o
 
 ---
 
-### **Primary Keys**
-
+### Primary Keys
 To avoid duplication of Vector Objects, you can set up primary keys. In the index node, add all the fields you would like to act as unique identifiers as an array and choose between **skip** or **overwrite**. This will automatically maintain consistent, unique vector objects.
 
 ---
 
-## **Mapping and Vectorization**
-
+## Mapping and Vectorization
 With your data source connected, you can visually map the fields from the source to your defined Weaviate schema. This mapping configuration determines how data gets extracted and transformed before loading.
 
 A key part of the mapping step is generating vector embeddings to capture semantic representations of text, images, or other data modalities. [Lamatic.ai](http://lamatic.ai/) lets you connect different embedding models from providers like Hugging Face, Anthropic, Cohere, and more.
@@ -30,16 +33,14 @@ These embeddings power the vector search and similarity capabilities in Weaviate
 
 ---
 
-## **Incremental Updates**
-
+## Incremental Updates
 After your initial data load, you'll likely have changes or additions to your data over time. [Lamatic.ai](http://lamatic.ai/) supports incremental updates and merges with Weaviate using change data capture, data distribution, or event sourcing patterns.
 
 You can set up continuous data pipelines that automatically detect new data, apply your mapping logic, and load it into the vector database—keeping it up-to-date with a canonical, unified view across all your data sources.
 
 ---
 
-## **Optimized Vectorization at Scale**
-
+## Optimized Vectorization at Scale
 Under the hood, [Lamatic.ai](http://lamatic.ai/) automatically optimizes and parallelizes the vectorization and data mapping workloads. This serves to accelerate the data preparation and loading process at scale.
 
 With [Lamatic.ai](http://lamatic.ai/)'s visual data mapping tools integrated with the fully-managed Weaviate service, you can spend less time on data wrangling and more time building innovative vector search experiences.

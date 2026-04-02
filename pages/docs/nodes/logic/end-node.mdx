@@ -1,0 +1,101 @@
+---
+title: End Node
+description: The End Node stops flow execution immediately and returns control to the Final Trigger Response node.
+type: Logic
+order: 8
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# End Node
+
+<NodeOverview slug="end-node" type="logic" />
+
+## Overview
+
+The End Node is used to **stop the execution of a flow immediately**. When the flow reaches this node, Lamatic **skips any nodes that would execute after it** and routes execution directly to the **Final Trigger Response** node.
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that immediately ends flow execution and jumps to the Final Trigger Response node."
+/>
+
+<Callout type="info">
+Place an End Node on any branch where you want to stop early (for example, after a validation failure or a “no-op” condition). Any nodes connected after the End Node won’t run.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+  1. **Immediate termination:** Stops the current execution path as soon as it’s reached.
+  2. **Skip downstream execution:** Prevents any nodes after the End Node from running.
+  3. **Predictable exit point:** Routes execution to the Final Trigger Response node to finish the run cleanly.
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+  1. **Cost control:** Avoid unnecessary model calls, API requests, or processing once a result is already decided.
+  2. **Cleaner flow logic:** Replace complex branching workarounds with a clear “stop here” node.
+  3. **Safer automation:** Prevent side effects (writes, sends, deletes) when a condition indicates execution should halt.
+</details>
+
+## What Can You Build?
+
+1. **Guard rails / validation gates:** End the flow when required inputs are missing or invalid.
+2. **Early return logic:** Return a response when a cached result exists, without running the rest of the pipeline.
+3. **Conditional short-circuiting:** Stop non-relevant branches (for example, when a user is not eligible for a path).
+
+## Setup
+
+1. Add the **End Node** to the point in your flow where execution should stop.
+1. Connect your branch/path into the End Node.
+1. Ensure your flow has a **Final Trigger Response** node to produce the final output.
+1. Deploy the project.
+
+## Configuration Reference
+
+The End Node does not require configuration. Its behavior is defined by its position in the flow.
+
+## Low-Code Example
+
+### Stop execution on a condition
+
+```yaml
+nodes:
+  - nodeId: endNode_192
+    nodeType: endNode
+    nodeName: End
+    values: {}
+    modes: {}
+    needs:
+      - triggerNode_1
+    allConfigs:
+      Config A:
+        nodeName: End
+    schema: {}
+```
+
+## Output
+
+The End Node does not transform data. Its purpose is to **terminate execution** and pass control to the Final Trigger Response node.
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem** | **Solution** |
+| --- | --- |
+| **Nodes after End Node still run** | Ensure the path actually reaches the End Node (check connections and branch conditions). |
+| **No final response is returned** | Confirm your flow includes a **Final Trigger Response** node and it is reachable after termination. |
+| **End Node placed but flow doesn’t stop** | Verify you’re not executing a different branch/path that bypasses the End Node. |
+
+### Debugging Tips
+
+- Use flow logs to confirm the End Node is reached on the expected path.
+- If you have multiple branches, add End Nodes only where you want early termination—other branches will continue unless they also end.

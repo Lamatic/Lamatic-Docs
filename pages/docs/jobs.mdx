@@ -1,9 +1,9 @@
 ---
+title: Jobs
 description: Lamatic Studio
 ---
 
-# **Automated Data Synchronization and Scheduled Processes in Flows**
-
+# Automated Data Synchronization and Scheduled Processes in Flows
 ![img_8.png](./img/jobs.png)
 
 Explore the automated data synchronization and scheduled process configuration within the flows. Our system provides a comprehensive view of these automated operations, allowing you to monitor and manage your data flows efficiently.
@@ -12,14 +12,12 @@ Jobs are automatically generated when you configure a **Batch Trigger** node wit
 
 ---
 
-## **Connections**
-
+## Connections
 Each Job is uniquely represented as a distinct setup, identified by its corresponding flow name. This organization allows for easy management and customization of your data processes. You have the flexibility to activate or deactivate these jobs directly, and then deploy the project to implement these changes across your system.
 
 ---
 
-### **Job History**
-
+### Job History
 Access a comprehensive historical record of all job executions. This feature provides valuable insights into the performance and consistency of your data operations over time.
 
 - **Size**: The total volume of all records processed in batch requests, giving you an overview of the data throughput.
@@ -31,8 +29,7 @@ Access a comprehensive historical record of all job executions. This feature pro
 
 ---
 
-### **Config**
-
+### Config
 Configure the settings for your job to align with your specific requirements and operational needs.
 
 - **Schedule Type**: This parameter determines the triggering mechanism for your data synchronizations, allowing you to set up the most suitable timing for your operations.
@@ -50,8 +47,7 @@ Configure the settings for your job to align with your specific requirements and
 
 ---
 
-### **Force Sync**
-
+### Force Sync
 For situations requiring immediate action, you can manually initiate a job using the **force sync** option. This feature instantly triggers the job execution, allowing you to run data synchronizations on-demand outside of the scheduled times.
 
 > ⚠️ **Note**: When operating in **Incremental Sync Mode** (which only loads new and updated records), force syncing will not process records from failed requests. This limitation is in place to maintain data integrity and prevent potential duplications.

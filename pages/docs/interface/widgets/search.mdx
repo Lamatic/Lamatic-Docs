@@ -1,3 +1,8 @@
+---
+title: Search Widget
+description: Embed Lamatic’s search widget on your site to deliver AI-powered, context-aware search results from your content.
+---
+
 # Search Widget
 
 Integrate our powerful search widget into your website using the search nodes. This widget leverages AI driven search technology to provide more accurate and relevant search results by understanding the context and meaning of the queries rather than just matching keywords. Now, you can offer this advanced search functionality directly on your site.
@@ -21,40 +26,43 @@ To use the Search Widget, you need to whitelist the domains where you will deplo
 ![chatwidget.webp](./img/search-config.png)
 Click the Configure button in the search widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
 
+
+
 ## 🛠 General Configuration
 
-#### 1. **Search Placeholder**
+#### 1. Search Placeholder
 - **Field:** `Search Placeholder`
 - **Description:** The placeholder text that appears in the search bar before a user types.
 - **Example:** `Search our knowledge base…`
 
-#### 2. **Search Debounce (ms)**
+#### 2. Search Debounce (ms)
 - **Field:** `Search Debounce (ms)`
 - **Description:** Controls the delay (in milliseconds) before triggering a search after typing stops.
 - **Recommended Value:** `200`
 
-#### 3. **Link Target**
+#### 3. Link Target
 - **Field:** `Link Target`
 - **Options:**
   - `Same Tab`
   - `New Tab` (Recommended)
 - **Effect:** Determines how links from the search results open.
 
-#### 4. **Toggle Options**
+#### 4. Toggle Options
 - `Show Navigation Helper Text` — Enables arrow key navigation tips.
 - `Show Escape Helper Text` — Displays `esc to close` text.
 - `Show Lamatic Banner` — Shows the "Powered by Lamatic.ai" badge.
+
 
 ---
 
 #### 🎨 Appearance Configuration
 
-##### 1. **Primary Color**
+##### 1. Primary Color
 - **Field:** `Primary Color`
 - **Purpose:** Sets the highlight color used for active items, selected results, and other primary UI elements.
 - **Example Value:** `#007bff` (Blue)
 
-##### 2. **Secondary Color**
+##### 2. Secondary Color
 - **Field:** `Secondary Color`
 - **Purpose:** Sets the text and icon color for secondary UI elements.
 - **Example Value:** `#666` (Dark Gray)
@@ -64,6 +72,12 @@ Click the Configure button in the search widget to customize settings such as th
 - Tabs include: `All`, `Documentation`, `API`, `Pricing`.
 
 ---
+
+### 3. Select an Ask flow to run
+- **Field:** Ask flow (dropdown in search widget node config)
+- **Description:** Select an Ask flow to run alongside the search widget. When configured, the Ask widget is available from the search widget’s dropdown menu, so users can use both search and Ask in the same interface.
+- **Effect:** Enables the Ask widget to run alongside the search widget from the search widget node config dropdown.
+
 
 #### ✅ Saving Your Settings
 - After configuring your widget, click **Save** (top-right) to apply changes.

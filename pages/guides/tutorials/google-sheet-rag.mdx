@@ -7,7 +7,7 @@ order: 15
 ---
 import { Accordion, AccordionItem } from "@nextui-org/react";
 import SectionRows  from '@/components/SectionRows'
-import { Callout } from 'nextra-theme-docs'
+import { Callout } from 'nextra/components'
 import {buttonVariants, Button} from '@/components/ui/button'
 
 # Getting started with google sheets
@@ -91,9 +91,8 @@ This guide will help you build an AI-powered system that fetches data from a Goo
 5. Set up your prompt:
 
    ```
-     summarise this user data i got from the google sheet in form of a json
+     Summarize this user data from the Google Sheet in the form of JSON:
      {{triggerNode_1.output}}
-
    ```
   ![text-llm](./img/google-sheet-llm/text-llm2.png)
 

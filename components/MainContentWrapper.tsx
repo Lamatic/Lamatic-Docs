@@ -14,6 +14,7 @@ import { NotebookBanner } from "./NotebookBanner";
 import { ProductUpdateSignup } from "./productUpdateSignup";
 import { COOKBOOK_ROUTE_MAPPING } from "@/lib/cookbook_route_mapping";
 import { TOCFix } from "./TOCFix";
+import { CopyPageMarkdown } from "./CopyPageMarkdown";
 
 const pathsWithoutFooterWidgets = ["/imprint", "/blog"];
 
@@ -26,6 +27,9 @@ export const MainContentWrapper = (props) => {
   return (
     <>
       <TOCFix />
+      <div className="flex justify-end -mb-8 relative z-10">
+        <CopyPageMarkdown />
+      </div>
       {cookbook ? (
         <NotebookBanner src={cookbook.ipynbPath} className="mb-4" />
       ) : null}

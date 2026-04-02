@@ -1,4 +1,5 @@
 ---
+title: Contributing
 description: Contributing to Lamatic.ai Documentation
 ---
 
@@ -9,6 +10,17 @@ import { Contributors } from '@/components/Contributors'
 <Contributors />
 
 We're thrilled that you're interested in contributing to the Lamatic.ai documentation! Your efforts help improve the experience for all users of our platform. This guide will walk you through the process of contributing.
+
+## Documentation style guide
+
+When writing or editing docs, follow these principles so the docs stay clear and consistent:
+
+- **Second person, active voice.** Write "Click Deploy" not "The Deploy button should be clicked."
+- **Outcome-first.** Lead with what the reader can do or when to use a feature, not a list of capabilities. Example: "Use the JSON Agent when you need structured JSON from an LLM" rather than "The JSON Agent has customizable schemas and multi-model support."
+- **One idea per sentence.** Avoid long chains of clauses; use full stops instead of em-dashes or commas when in doubt.
+- **Use callouts for important notes.** Use the `<Callout type="warning" title="Title">` (or `type="info"`, `type="error"`) component for gotchas, tips, and prerequisites. Example: **Save before you deploy** — changes after the last save won't appear in the deployed Flow.
+- **Standardize placeholders.** In code examples, use angle brackets for values the user must replace: `<YOUR_API_KEY>`, `<PROJECT_ID>`, `<FLOW_ID>`, `<PROJECT_ENDPOINT>`. Add a short "Prerequisites" or "Replace these values" line before the snippet.
+- **Terminology.** Use **Flow** and **Node** (capitalized) as the product terms. Avoid "workflow" when you mean Flow unless the UI uses it. Keep terms consistent with the [Glossary](/docs/glossary).
 
 ## Getting Started
 

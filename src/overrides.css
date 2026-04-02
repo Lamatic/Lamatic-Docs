@@ -372,3 +372,10 @@ body:has([href*="/agentkits/"]) main {
 .nextra-toc > .nextra-scrollbar {
   box-shadow: none !important;
 }
+
+/* Remove Nextra's default shadow under "On This Page" title */
+.nextra-toc p {
+  --tw-shadow: 0 0 #0000 !important;
+  --tw-shadow-colored: 0 0 #0000 !important;
+  box-shadow: none !important;
+}

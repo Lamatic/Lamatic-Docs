@@ -365,3 +365,10 @@ body:has([href*="/agentkits/"]) main {
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+/* Keep TOC flat: remove panel shadow */
+.nextra-toc,
+.nextra-toc > div,
+.nextra-toc > .nextra-scrollbar {
+  box-shadow: none !important;
+}

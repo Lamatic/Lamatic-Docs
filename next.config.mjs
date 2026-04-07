@@ -91,6 +91,14 @@ const nextraConfig = withNextra({
         ],
       },
       {
+        source: "/images/:path*",
+        headers: [
+          { key: "Access-Control-Allow-Origin", value: "*" },
+          { key: "Access-Control-Allow-Methods", value: "GET, HEAD, OPTIONS" },
+          { key: "Access-Control-Allow-Headers", value: "Content-Type" },
+        ],
+      },
+      {
         source: "/blog/:path*",
         headers: [
           { key: "x-forwarded-proto", value: "https" },

@@ -1,8 +1,8 @@
 export default {
-  "studio-overview": "Overview",
-  "studio-project": "Project",
-  "studio-keys": "Keys",
-  "studio-tags": "Tags",
-  "studio-role-based-access": "Role-Based Access",
-  "studio-variables-and-secrets": "Variables & Secrets"
+  "studio-overview": "Studio Overview",
+  "studio-project": "Create a Project",
+  "studio-keys": "Add API Keys",
+  "studio-variables-and-secrets": "Configure Variables & Secrets",
+  "studio-role-based-access": "Set Up Roles & Access",
+  "studio-tags": "Add Tags",
 }

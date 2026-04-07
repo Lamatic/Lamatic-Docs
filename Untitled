@@ -1,0 +1,132 @@
+▸ What is Lamatic?           ← single page, no children
+
+▸ Quickstart                 ← single page, 5 min, no children
+
+▸ Core Concepts              ← understand before you build
+  ├── Flows & Nodes
+  ├── Agents
+  ├── AI Middleware
+  ├── RAG
+  ├── LLM Prompting
+  └── Vibe Coding
+
+▸ Set Up Your Workspace      ← get your environment ready
+  ├── Studio Overview
+  ├── Create a Project
+  ├── Add API Keys
+  ├── Configure Variables & Secrets
+  ├── Set Up Roles & Access
+  ├── Add Tags
+  └── IDE
+      ├── Prompt IDE
+      ├── Code IDE
+      └── GraphQL IDE
+
+▸ Build Your First Flow      ← the main loop — most time is spent here
+  ├── Flow Editor
+  ├── Add Variables
+  ├── Configure a Flow (YAML)
+  ├── Use the Flow AI Assistant
+  ├── Add Sticky Notes
+  └── Test & Debug
+      ├── Flow Testing
+      ├── Flow Debugging
+      ├── Prompt Testing
+      └── Code Testing
+
+▸ Add Nodes                  ← [non-clickable] power up your flow
+  ├── How Nodes Work
+  ├── Node AI Assistant
+  ├── AI Nodes                  ← [non-clickable]
+  │   ├── Generate Text
+  │   ├── Generate JSON
+  │   ├── Generate Image
+  │   ├── Classify Input
+  │   ├── Multimodal
+  │   ├── RAG
+  │   ├── Supervise Agents
+  │   └── Call MCP Tools
+  ├── Data Nodes                ← [non-clickable]
+  │   ├── Call an API
+  │   ├── Vectorize Content
+  │   ├── Chunk Documents
+  │   ├── Query VectorDB
+  │   ├── Extract from File
+  │   ├── Hybrid Search
+  │   ├── Keyword Search
+  │   ├── Vector Search
+  │   ├── Add to Memory
+  │   └── Retrieve from Memory
+  └── Logic Nodes               ← [non-clickable]
+      ├── Branch
+      ├── Run Code
+      ├── Condition
+      ├── Execute Another Flow
+      ├── Loop
+      ├── Batch Process
+      ├── Set Variable
+      ├── Wait
+      └── End Flow
+
+▸ Connect a Model            ← choose your AI brain
+  ├── Model Overview & Benchmarks
+  ├── Add a Custom Model
+  ├── Configure Model Behavior
+  └── Model Routing Logic
+
+▸ Build Agents               ← [non-clickable] autonomous reasoning systems
+  ├── What are Agents?
+  ├── Text Agent
+  ├── JSON Agent
+  ├── Multi-Modal Agent
+  ├── Multi-Agent Systems (Supervisor)
+  └── MCP & Tools
+      ├── Connect MCP
+      └── Configure Tools
+
+▸ Add Memory & Data          ← give your agents context
+  ├── Memory Store
+  ├── Vector Store
+  └── Ingest & Map Data
+
+▸ Expose to the World       ← connect inputs and outputs
+  ├── Chat Widget
+  ├── Search Widget
+  ├── Ask Widget
+  ├── Webhooks
+  ├── Mailhook
+  └── GraphQL / REST API
+
+▸ Vibe Build                ← single page, AI-assisted building
+
+▸ Deploy                    ← ship it
+  ├── Deployment Overview
+  ├── Set Environment Variables
+  ├── Enable Caching
+  ├── Version Control
+  └── Schedule Jobs
+
+▸ Monitor & Improve         ← keep it healthy
+  ├── Logs
+  ├── Reports
+  ├── Connect Langfuse
+  └── Feedback API
+
+▸ Integrate via API & SDK   ← embed in your product
+  ├── API Overview
+  ├── Flow Integration
+  ├── Integration Guide
+  ├── Manage API Keys
+  └── SDKs
+      ├── React
+      ├── Next.js
+      └── Go
+
+▸ Reference                 ← look things up
+  ├── All Nodes (A–Z)
+  ├── All Integrations (A–Z)
+  ├── Templates
+  ├── Glossary
+  ├── Architecture
+  ├── Error Codes
+  └── Contributing

@@ -1,10 +1,10 @@
 export default {
-    "mcp":{
-        "title": "MCP",
-        "type": "doc"
-    },
-    "tools":{
-        "title": "Tools",
-        "type": "doc"
-    }
-}
+  mcp: {
+    title: "Connect MCP",
+    type: "doc",
+  },
+  tools: {
+    title: "Configure Tools",
+    type: "doc",
+  },
+};

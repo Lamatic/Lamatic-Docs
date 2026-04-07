@@ -1,7 +1,21 @@
 export default {
+  "flows-nodes": {
+    title: "Flows & Nodes",
+    href: "/docs/flows",
+    newWindow: false,
+  },
+  agents: {
+    title: "Agents",
+    href: "/docs/agents",
+    newWindow: false,
+  },
   "ai-middleware": "AI Middleware",
-  "studio": "Studio",
-  "rag": "RAG Explained",
-  "llm-prompting": "LLM Prompting Techniques",
-  "vibe-coding-setup": "Vibe Coding"
+  rag: "RAG",
+  "llm-prompting": "LLM Prompting",
+  "vibe-coding-setup": "Vibe Coding",
+  studio: {
+    title: "Studio",
+    type: "doc",
+    display: "hidden",
+  },
 }

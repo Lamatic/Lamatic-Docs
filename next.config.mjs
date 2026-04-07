@@ -81,10 +81,6 @@ const nextraConfig = withNextra({
             value: "nosniff",
           },
           {
-            key: "Referrer-Policy",
-            value: "strict-origin-when-cross-origin",
-          },
-          {
             key: "Permissions-Policy",
             value: "autoplay=*, fullscreen=*, microphone=*",
           },

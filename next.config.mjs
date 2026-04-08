@@ -84,10 +84,7 @@ const nextraConfig = withNextra({
             key: "Permissions-Policy",
             value: "autoplay=*, fullscreen=*, microphone=*",
           },
-          { key: "Access-Control-Allow-Origin", value: "*" },
-          { key: "Access-Control-Allow-Methods", value: "GET,POST,PUT,DELETE,OPTIONS" },
-          { key: "Access-Control-Allow-Headers", value: "Content-Type,Authorization" },
-        ],
+       ],
       },
       {
         source: "/images/:path*",

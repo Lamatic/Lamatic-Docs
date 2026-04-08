@@ -85,6 +85,11 @@ export const DocsSupport = () => {
             <Calendar className="h-4 w-4 ml-3" />
           </a>
         </Button>
+        <Button variant="outline" size="sm" asChild>
+          <a href="https://github.com/Lamatic/Lamatic-Docs" target="_blank" rel="noopener noreferrer">
+            <span>Contribute to Lamatic docs</span>
+          </a>
+        </Button>
       </div>
     </div>
   );

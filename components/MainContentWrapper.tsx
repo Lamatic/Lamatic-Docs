@@ -7,6 +7,7 @@ import {
   MessageSquareHeart,
   ThumbsDown,
   ThumbsUp,
+  Code,
 } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import { Background } from "./Background";
@@ -87,7 +88,8 @@ export const DocsSupport = () => {
         </Button>
         <Button variant="outline" size="sm" asChild>
           <a href="https://github.com/Lamatic/Lamatic-Docs" target="_blank" rel="noopener noreferrer">
-            <span>Contribute to Lamatic docs</span>
+            <span>Contribute to docs</span>
+            <Code className="h-4 w-4 ml-3" />
           </a>
         </Button>
       </div>

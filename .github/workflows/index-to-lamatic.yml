@@ -3,21 +3,80 @@ name: Send File Changes
 on:
   push:
     branches:
-      - main  # Adjust to your branch as necessary
-    paths: 
-      - '**.mdx'  # Only trigger for changes in .mdx files
+      - main
+    paths:
+      - '**.mdx'
 
 jobs:
   send-changes:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: Send File Changes to Webhook
-      uses: Lamatic/Index-to-lamatic@v1.6
-      with:
-        webhook_url: ${{ secrets.WEBHOOK_URL }}
-        webhook_key: ${{ secrets.WEBHOOK_KEY }}
-        github_ref: ${{ github.ref }}
-        file_type: "mdx"
-        mode: "incremental"  # or "full-refresh"
-        verbose: "true"  # or "false"
+      - name: Send File Changes to Webhook
+        uses: Lamatic/Index-to-lamatic@v1.6
+        with:
+          webhook_url: ${{ secrets.WEBHOOK_URL }}
+          webhook_key: ${{ secrets.WEBHOOK_KEY }}
+          github_ref: ${{ github.ref }}
+          file_type: "mdx"
+          mode: "incremental"
+          verbose: "true"
+
+  # NEW — FAQ generation, calls the same webhook per file sequentially
+  generate-faqs:
+    runs-on: ubuntu-latest
+    if: >-
+      ${{
+        !contains(github.event.head_commit.message || '', 'docs(faq):')
+        && !contains(github.event.head_commit.message || '', 'faq/')
+      }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get changed MDX files
+        id: changed
+        run: |
+          FILES=$(git diff --name-only --diff-filter=ACM HEAD~1 HEAD -- '**.mdx' | tr '\n' ' ')
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          COUNT=$(echo "$FILES" | wc -w | tr -d ' ')
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "Changed MDX files ($COUNT): $FILES"
+
+      - name: Send each changed doc to FAQ flow
+        if: steps.changed.outputs.count != '0'
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
+        run: |
+          FILES="${{ steps.changed.outputs.files }}"
+          TOTAL=$(echo "$FILES" | wc -w | tr -d ' ')
+          CURRENT=0
+
+          for FILE in $FILES; do
+            CURRENT=$((CURRENT + 1))
+            echo "=== Processing file $CURRENT/$TOTAL: $FILE ==="
+
+            CONTENT=$(cat "$FILE")
+
+            PAYLOAD=$(jq -n \
+              --arg path "$FILE" \
+              --arg content "$CONTENT" \
+              '{path: $path, content: $content}')
+
+            HTTP_STATUS=$(curl -s -o /tmp/response.json -w "%{http_code}" \
+              -X POST "$WEBHOOK_URL" \
+              -H "Content-Type: application/json" \
+              -H "Authorization: Bearer $WEBHOOK_KEY" \
+              -d "$PAYLOAD")
+
+            echo "Response status: $HTTP_STATUS"
+            cat /tmp/response.json
+            echo ""
+
+            if [ "$CURRENT" -lt "$TOTAL" ]; then
+              echo "Waiting 30s before next file..."
+              sleep 30
+            fi
+          done

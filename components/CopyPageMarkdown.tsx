@@ -7,7 +7,7 @@ const AI_APPS = [
   {
     name: "ChatGPT",
     url: (markdown: string, pageUrl: string) =>
-      `https://chatgpt.com/?q=${encodeURIComponent(`Use this documentation page from ${pageUrl} as context:\n\n${markdown}`)}`,
+      `https://chatgpt.com/?prompt=${encodeURIComponent(`Use this documentation page from ${pageUrl} as context:\n\n${markdown}`)}`,
   },
   {
     name: "Claude",
@@ -64,6 +64,12 @@ export function CopyPageMarkdown() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleOpenInClaude = async () => {
+    const md = await fetchMarkdown();
+    const url = AI_APPS.find(app => app.name === "Claude")!.url(md, pageUrl);
+    window.open(url, "_blank");
+  };
+
   const handleOpenInAI = async (
     urlFn: (markdown: string, pageUrl: string) => string
   ) => {
@@ -78,20 +84,11 @@ export function CopyPageMarkdown() {
       <Button
         variant="outline"
         size="sm"
-        onClick={handleCopy}
+        onClick={handleOpenInClaude}
         className="text-xs gap-1.5 rounded-r-none border-r-0"
       >
-        {copied ? (
-          <>
-            <Check className="h-3.5 w-3.5" />
-            Copied!
-          </>
-        ) : (
-          <>
-            <Copy className="h-3.5 w-3.5" />
-            Copy page
-          </>
-        )}
+        <ExternalLink className="h-3.5 w-3.5" />
+        Open in Claude
       </Button>
       <div className="relative">
         <Button
@@ -104,7 +101,18 @@ export function CopyPageMarkdown() {
         </Button>
         {isOpen && (
           <div className="absolute right-0 top-full mt-1 z-50 w-44 rounded-md border bg-white dark:bg-neutral-900 dark:border-neutral-700 shadow-md">
-            {AI_APPS.map((app) => (
+            <button
+              onClick={handleCopy}
+              className="flex items-center gap-2 w-full px-3 py-2 text-xs hover:bg-gray-100 dark:hover:bg-neutral-800 text-left"
+            >
+              {copied ? (
+                <Check className="h-3 w-3" />
+              ) : (
+                <Copy className="h-3 w-3" />
+              )}
+              {copied ? "Copied!" : "Copy page"}
+            </button>
+            {AI_APPS.filter(app => app.name !== "Claude").map((app) => (
               <button
                 key={app.name}
                 onClick={() => handleOpenInAI(app.url)}

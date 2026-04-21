@@ -88,7 +88,7 @@ export default {
     type: "separator",
     title: "Add Nodes",
   },
-  nodes: {
+  "how-node-works": {
     title: "How Nodes Work",
     type: "doc",
   },
@@ -96,37 +96,127 @@ export default {
     title: "Node AI Assistant",
     type: "doc",
   },
+  "ai-nodes": {
+    title: "AI Nodes",
+    type: "doc",
+  },
+  "data-nodes": {
+    title: "Data Nodes",
+    type: "doc",
+  },
+  "logic-nodes": {
+    title: "Logic Nodes",
+    type: "doc",
+  },
   "-- Connect a Model": {
     type: "separator",
     title: "Connect a Model",
   },
-  models: {
+  "model-overview-benchmarks": {
     title: "Model Overview & Benchmarks",
-    type: "doc",
+    href: "/docs/models/benchmark",
+    newWindow: false,
+  },
+  "add-custom-model": {
+    title: "Add a Custom Model",
+    href: "/docs/models/custom-model-integration",
+    newWindow: false,
+  },
+  "configure-model-behavior": {
+    title: "Configure Model Behavior",
+    href: "/docs/models/model-config",
+    newWindow: false,
+  },
+  "model-routing-logic": {
+    title: "Model Routing Logic",
+    href: "/docs/models/model-logic",
+    newWindow: false,
   },
   "-- Build Agents": {
     type: "separator",
     title: "Build Agents",
   },
-  agents: {
+  "what-are-agents": {
     title: "What are Agents?",
+    href: "/docs/agents/getting-started",
+    newWindow: false,
+  },
+  "text-agent": {
+    title: "Text Agent",
+    href: "/docs/agents/text-agent",
+    newWindow: false,
+  },
+  "json-agent": {
+    title: "JSON Agent",
+    href: "/docs/agents/json-agent",
+    newWindow: false,
+  },
+  "multi-modal-agent": {
+    title: "Multi-Modal Agent",
+    href: "/docs/agents/multi-modal-agent",
+    newWindow: false,
+  },
+  "multi-agent-systems-supervisor": {
+    title: "Multi-Agent Systems (Supervisor)",
+    href: "/docs/agents/supervisor-agent",
+    newWindow: false,
+  },
+  "mcp-tools": {
+    title: "MCP & Tools",
     type: "doc",
   },
   "-- Add Memory & Data": {
     type: "separator",
     title: "Add Memory & Data",
   },
-  context: {
-    title: "Memory Store & Vector DB",
-    type: "doc",
+  "memory-store": {
+    title: "Memory Store",
+    href: "/docs/context/memory-store",
+    newWindow: false,
+  },
+  "vector-store": {
+    title: "Vector Store",
+    href: "/docs/context/vectordb",
+    newWindow: false,
+  },
+  "ingest-map-data": {
+    title: "Ingest & Map Data",
+    href: "/docs/context/vectordb/adding-data",
+    newWindow: false,
   },
   "-- Expose to the World": {
     type: "separator",
     title: "Expose to the World",
   },
-  interface: {
-    title: "Expose to the World",
-    type: "doc",
+  "chat-widget": {
+    title: "Chat Widget",
+    href: "/docs/interface/widgets/chat",
+    newWindow: false,
+  },
+  "search-widget": {
+    title: "Search Widget",
+    href: "/docs/interface/widgets/search",
+    newWindow: false,
+  },
+  "ask-widget": {
+    title: "Ask Widget",
+    href: "/docs/interface/widgets/ask-widget",
+    newWindow: false,
+  },
+  webhooks: {
+    title: "Webhooks",
+    href: "/docs/interface/webhooks",
+    newWindow: false,
+  },
+  mailhook: {
+    title: "Mailhook",
+    href: "/docs/interface/mailhook",
+    newWindow: false,
+  },
+  graphql: {
+    title: "GraphQL / REST API",
+    href: "/docs/interface/graphql",
+    newWindow: false,
   },
   "-- Vibe Build": {
     type: "separator",
@@ -192,7 +282,17 @@ export default {
     title: "Flow Integration",
     type: "doc",
   },
-  "api-integration": {
+  "integration-guide": {
+    title: "Integration Guide",
+    href: "/docs/api-integration/integration-guide",
+    newWindow: false,
+  },
+  "manage-api-keys": {
+    title: "Manage API Keys",
+    href: "/docs/api-integration/api-key",
+    newWindow: false,
+  },
+  sdks: {
     title: "SDKs",
     type: "doc",
   },
@@ -201,12 +301,12 @@ export default {
     title: "Reference",
   },
   "nodes-ref": {
-    "title": "All Nodes (A-Z)",
+    "title": "All Nodes (A–Z)",
     "href": "/docs/nodes",
     "newWindow": false
   },
   "integrations-ref": {
-    "title": "All Integrations (A-Z)",
+    "title": "All Integrations (A–Z)",
     "href": "/integrations",
     "newWindow": false
   },
@@ -229,6 +329,41 @@ export default {
   contributing: {
     title: "Contributing",
     type: "doc",
+  },
+  agents: {
+    title: "Agents",
+    type: "doc",
+    display: "hidden",
+  },
+  "api-integration": {
+    title: "api-integration",
+    type: "doc",
+    display: "hidden",
+  },
+  context: {
+    title: "Context",
+    type: "doc",
+    display: "hidden",
+  },
+  flows: {
+    title: "Flows",
+    type: "doc",
+    display: "hidden",
+  },
+  interface: {
+    title: "Interfaces",
+    type: "doc",
+    display: "hidden",
+  },
+  models: {
+    title: "Models",
+    type: "doc",
+    display: "hidden",
+  },
+  nodes: {
+    title: "Nodes",
+    type: "doc",
+    display: "hidden",
   },
 
   "vulnerability-disclosure": {

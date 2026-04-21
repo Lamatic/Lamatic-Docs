@@ -80,7 +80,7 @@
   ├── JSON Agent
   ├── Multi-Modal Agent
   ├── Multi-Agent Systems (Supervisor)
-  └── MCP & Tools
+  └── MCP & Tools [Dropdown]
       ├── Connect MCP
       └── Configure Tools
 
@@ -117,7 +117,7 @@
   ├── Flow Integration
   ├── Integration Guide
   ├── Manage API Keys
-  └── SDKs
+  └── SDKs [Dropdown]
       ├── React
       ├── Next.js
       └── Go

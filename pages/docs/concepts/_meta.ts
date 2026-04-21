@@ -11,5 +11,6 @@ export default {
   },
   "ai-middleware": "AI Middleware",
   rag: "RAG",
-  "llm-prompting": "LLM Prompting"
+  "llm-prompting": "LLM Prompting",
+  "vibe-coding-setup": "Vibe Coding"
 }

@@ -30,27 +30,33 @@ export default {
   },
   "studio-overview": {
     title: "Studio Overview",
-    type: "doc",
+    href: "/docs/workspace-setup/studio-overview",
+    newWindow: false,
   },
   "studio-project": {
     title: "Create a Project",
-    type: "doc",
+    href: "/docs/workspace-setup/studio-project",
+    newWindow: false,
   },
   "studio-keys": {
     title: "Add API Keys",
-    type: "doc",
+    href: "/docs/workspace-setup/studio-keys",
+    newWindow: false,
   },
   "studio-variables-and-secrets": {
     title: "Configure Variables & Secrets",
-    type: "doc",
+    href: "/docs/workspace-setup/studio-variables-and-secrets",
+    newWindow: false,
   },
   "studio-role-based-access": {
     title: "Set Up Roles & Access",
-    type: "doc",
+    href: "/docs/workspace-setup/studio-role-based-access",
+    newWindow: false,
   },
   "studio-tags": {
     title: "Add Tags",
-    type: "doc",
+    href: "/docs/workspace-setup/studio-tags",
+    newWindow: false,
   },
   ide: {
     title: "IDE",
@@ -62,27 +68,33 @@ export default {
   },
   "flow-editor": {
     title: "Flow Editor",
-    type: "doc",
+    href: "/docs/build-first-flow/flow-editor",
+    newWindow: false,
   },
   "add-variables": {
     title: "Add Variables",
-    type: "doc",
+    href: "/docs/build-first-flow/add-variables",
+    newWindow: false,
   },
   "configure-flow-yaml": {
     title: "Configure a Flow (YAML)",
-    type: "doc",
+    href: "/docs/build-first-flow/configure-flow-yaml",
+    newWindow: false,
   },
   "flow-ai-assistant": {
     title: "Use the Flow AI Assistant",
-    type: "doc",
+    href: "/docs/build-first-flow/flow-ai-assistant",
+    newWindow: false,
   },
   "add-sticky-notes": {
     title: "Add Sticky Notes",
-    type: "doc",
+    href: "/docs/build-first-flow/add-sticky-notes",
+    newWindow: false,
   },
   tests: {
     title: "Test & Debug",
-    type: "doc",
+    href: "/docs/build-first-flow/tests",
+    newWindow: false,
   },
   "-- Add Nodes": {
     type: "separator",
@@ -232,23 +244,28 @@ export default {
   },
   deployments: {
     title: "Deployment Overview",
-    type: "doc",
+    href: "/docs/deploy-section/deployments",
+    newWindow: false,
   },
   environment: {
     title: "Set Environment Variables",
-    type: "doc",
+    href: "/docs/deploy-section/environment",
+    newWindow: false,
   },
   cache: {
     title: "Enable Caching",
-    type: "doc",
+    href: "/docs/deploy-section/cache",
+    newWindow: false,
   },
   "version-control": {
     title: "Version Control",
-    type: "doc",
+    href: "/docs/deploy-section/version-control",
+    newWindow: false,
   },
   jobs: {
     title: "Schedule Jobs",
-    type: "doc",
+    href: "/docs/deploy-section/jobs",
+    newWindow: false,
   },
   "-- Monitor & Improve": {
     type: "separator",
@@ -256,19 +273,23 @@ export default {
   },
   logs: {
     title: "Logs",
-    type: "doc",
+    href: "/docs/monitor-improve/logs",
+    newWindow: false,
   },
   reports: {
     title: "Reports",
-    type: "doc",
+    href: "/docs/monitor-improve/reports",
+    newWindow: false,
   },
   "langfuse-integration": {
     title: "Connect Langfuse",
-    type: "doc",
+    href: "/docs/monitor-improve/langfuse-integration",
+    newWindow: false,
   },
   "feedback-api": {
     title: "Feedback API",
-    type: "doc",
+    href: "/docs/monitor-improve/feedback-api",
+    newWindow: false,
   },
   "-- Integrate via API & SDK": {
     type: "separator",
@@ -276,11 +297,13 @@ export default {
   },
   "api-overview": {
     title: "API Overview",
-    type: "doc",
+    href: "/docs/integrate-api-sdk/api-overview",
+    newWindow: false,
   },
   "flow-integration": {
     title: "Flow Integration",
-    type: "doc",
+    href: "/docs/integrate-api-sdk/flow-integration",
+    newWindow: false,
   },
   "integration-guide": {
     title: "Integration Guide",
@@ -362,6 +385,31 @@ export default {
   },
   nodes: {
     title: "Nodes",
+    type: "doc",
+    display: "hidden",
+  },
+  "workspace-setup": {
+    title: "workspace-setup",
+    type: "doc",
+    display: "hidden",
+  },
+  "build-first-flow": {
+    title: "build-first-flow",
+    type: "doc",
+    display: "hidden",
+  },
+  "deploy-section": {
+    title: "deploy-section",
+    type: "doc",
+    display: "hidden",
+  },
+  "monitor-improve": {
+    title: "monitor-improve",
+    type: "doc",
+    display: "hidden",
+  },
+  "integrate-api-sdk": {
+    title: "integrate-api-sdk",
     type: "doc",
     display: "hidden",
   },

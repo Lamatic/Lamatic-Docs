@@ -20,7 +20,7 @@ Once you've developed your flow along with testing and deployment, you can integ
 
 In the flow editor, use **Connect to your project** to open a modal that shows integration options for the current flow (e.g. your agent or workflow). The modal includes:
 
-![Connect to your project - Vibe Code Prompt](./img/flow-connect-vibe-prompt.png)
+![Connect to your project - Vibe Code Prompt](../img/flow-connect-vibe-prompt.png)
 
 - **Open API Playground** — Test the API interactively.
 - **View Docs** — Link to full documentation.
@@ -52,7 +52,7 @@ You can optionally add your own integration idea or requirement in the text area
 
 The **API** tab shows the main operations and code examples for calling your flow from code.
 
-![Connect to your project - API tab](./img/flow-connect-api.png)
+![Connect to your project - API tab](../img/flow-connect-api.png)
 
 ### executeWorkflow
 
@@ -115,7 +115,7 @@ axios(options)
   .catch(error => console.error('Error:', error.response?.data || error.message));
 ```
 
-Replace `<FLOW_ID>`, `<PROJECT_ID>`, and the endpoint with the values from the Connect modal. Get your API key from **Studio → Settings → API Keys** or the **Get API Key** link in the modal. See [API Overview](/docs/api-overview) and [API Keys](/docs/api-integration/api-key) for more.
+Replace `<FLOW_ID>`, `<PROJECT_ID>`, and the endpoint with the values from the Connect modal. Get your API key from **Studio → Settings → API Keys** or the **Get API Key** link in the modal. See [API Overview](/docs/integrate-api-sdk/api-overview) and [API Keys](/docs/api-integration/api-key) for more.
 
 ### submitFeedback
 
@@ -147,7 +147,7 @@ curl -X POST "https://<project>.lamatic.dev/graphql" \
 
 The **App Frameworks** tab provides framework-specific setup (e.g. **Next.js**). It typically includes:
 
-![Connect to your project - App Frameworks](./img/flow-connect-app-frameworks.png)
+![Connect to your project - App Frameworks](../img/flow-connect-app-frameworks.png)
 
 1. **Install the package** — e.g. `npm i lamatic`.
 2. **Add files to your app** — e.g. `.env.local`, a page component, and a `utils` (or similar) file.
@@ -170,4 +170,4 @@ Replace `your-project-api-key` with your actual API key from **Get API Key** in 
 
 - Copy the generated **page** and **utils** snippets from the App Frameworks tab into your app.
 - Ensure the payload you send matches your flow’s input schema (e.g. required fields like `symbol`).
-- For more API details, see [API Overview](/docs/api-overview) and [Integration Guide](/docs/api-integration/integration-guide).
+- For more API details, see [API Overview](/docs/integrate-api-sdk/api-overview) and [Integration Guide](/docs/api-integration/integration-guide).

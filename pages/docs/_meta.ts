@@ -11,9 +11,9 @@ export default {
     title: "Quickstart",
     type: "doc",
   },
-  "-- Concepts": {
+  "-- Core Concepts": {
     type: "separator",
-    title: "Concepts",
+    title: "Core Concepts",
   },
   concepts: {
     title: "Core Concepts",
@@ -60,8 +60,24 @@ export default {
     type: "separator",
     title: "Build Your First Flow",
   },
-  flows: {
+  "flow-editor": {
     title: "Flow Editor",
+    type: "doc",
+  },
+  "add-variables": {
+    title: "Add Variables",
+    type: "doc",
+  },
+  "configure-flow-yaml": {
+    title: "Configure a Flow (YAML)",
+    type: "doc",
+  },
+  "flow-ai-assistant": {
+    title: "Use the Flow AI Assistant",
+    type: "doc",
+  },
+  "add-sticky-notes": {
+    title: "Add Sticky Notes",
     type: "doc",
   },
   tests: {

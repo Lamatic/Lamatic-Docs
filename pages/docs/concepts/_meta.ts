@@ -1,4 +1,9 @@
 export default {
+  index: {
+    title: "Core Concepts",
+    type: "doc",
+    display: "hidden",
+  },
   "flows-nodes": {
     title: "Flows & Nodes",
     href: "/docs/flows",

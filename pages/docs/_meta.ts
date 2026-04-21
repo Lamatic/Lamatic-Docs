@@ -368,11 +368,6 @@ export default {
     type: "doc",
     display: "hidden",
   },
-  flows: {
-    title: "Flows",
-    type: "doc",
-    display: "hidden",
-  },
   interface: {
     title: "Interfaces",
     type: "doc",

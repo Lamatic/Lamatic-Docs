@@ -49,6 +49,8 @@ function SwitcherContent() {
           <Link
             href={item.path}
             key={item.path}
+            target={(item.title === "Templates" || item.title === "Roadmap") ? "_blank" : undefined} 
+            rel={(item.title === "Templates" || item.title === "Roadmap") ? "noopener noreferrer" : undefined}
             className="group mb-3 flex flex-row items-center gap-3 text-gray-500 hover:text-gray-900 dark:hover:text-gray-200"
           >
             <item.Icon className="w-7 h-7 p-1 border rounded group-hover:bg-gray-100 dark:group-hover:bg-gray-800" />

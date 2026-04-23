@@ -84,12 +84,17 @@ export function useTOCFix() {
           });
         });
 
-        // Populate linkMap from all current TOC anchors (works whether links are
-        // already patched to "/page#id" or still raw "#id" on first run)
+        // Populate linkMap and stamp data-toc-level for CSS nesting.
+        // Works whether links are already patched ("/page#id") or still raw ("#id").
         tocContainer.querySelectorAll('a[href*="#"]').forEach((link) => {
           const href = link.getAttribute('href') ?? '';
           const id = href.substring(href.lastIndexOf('#') + 1);
-          if (id) linkMap.set(id, link as HTMLAnchorElement);
+          if (!id) return;
+          linkMap.set(id, link as HTMLAnchorElement);
+          const headingEl = document.getElementById(id);
+          if (headingEl) {
+            (link as HTMLElement).setAttribute('data-toc-level', headingEl.tagName.charAt(1));
+          }
         });
 
         if (headings.length === 0) return;

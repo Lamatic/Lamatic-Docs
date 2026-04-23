@@ -1,4 +1,7 @@
 export default {
+  index: {
+    display: "hidden",
+  },
   branch: {
     title: "Branch",
     href: "/docs/nodes/logic/branch-node",

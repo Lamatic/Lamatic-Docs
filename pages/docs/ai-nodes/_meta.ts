@@ -1,4 +1,7 @@
 export default {
+  index: {
+    display: "hidden",
+  },
   "generate-text": {
     title: "Generate Text",
     href: "/docs/nodes/ai/generate-text-node",

@@ -1,4 +1,7 @@
 export default {
+  index: {
+    display: "hidden",
+  },
   "call-api": {
     title: "Call an API",
     href: "/docs/nodes/data/api-node",

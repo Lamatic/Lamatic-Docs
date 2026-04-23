@@ -121,7 +121,7 @@ const nextraConfig = withNextra({
     ...permanentRedirects.map(([source, destination]) => ({
       source,
       destination,
-      permanent: false,
+      permanent: true,
     })),
   ],
   rewrites: async () => {
@@ -232,7 +232,6 @@ const permanentRedirects = [
   ["/docs/feedback-api", "/docs/monitor-improve/feedback-api"],
   ["/docs/api-overview", "/docs/integrate-api-sdk/api-overview"],
   ["/docs/flow-integration", "/docs/integrate-api-sdk/flow-integration"],
-  ["/docs/sdks", "/docs/sdks"],
 ["/docs/integrations/Apps","/integrations/apps-data-sources"],
 ["/docs/workflows/nodes/agents/RAG","/docs/flows/nodes"],
 ["/docs/integrations/credentials","/integrations/adding-integration"],

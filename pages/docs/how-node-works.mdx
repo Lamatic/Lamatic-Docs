@@ -1,5 +1,84 @@
 ---
 title: How Node Works?
+description: Understand how nodes process input, run logic, and pass output through a Lamatic flow.
 ---
 
-# How Nodes Work
+Nodes are the core units of execution in a Lamatic Flow. Each node receives input, performs one focused task, and passes output to the next step.
+
+## What a node does
+
+A node is a reusable processing block in a flow. Depending on the node type, it can:
+
+- call an AI model
+- transform or enrich data
+- branch execution based on conditions
+- connect to external apps and APIs
+- return a final response
+
+You combine multiple nodes to build end-to-end automations.
+
+## Node lifecycle in a flow
+
+In most flows, a node follows this sequence:
+
+1. **Receive input** from the trigger or previous node.
+2. **Read configuration** (prompts, model settings, mappings, credentials, etc.).
+3. **Execute logic** (AI inference, data operation, condition check, API call).
+4. **Produce structured output** for downstream nodes.
+5. **Emit logs/state** so you can inspect runs during testing and debugging.
+
+This lifecycle repeats as data moves from one node to another.
+
+## Inputs and outputs
+
+Every node has:
+
+- **Input fields**: values it expects to run correctly
+- **Output fields**: values it makes available to downstream nodes
+
+When connecting nodes, make sure the output shape of the upstream node matches what the next node expects.
+
+## Common node categories
+
+- **AI Nodes**: Generate, classify, reason, and use tools.
+- **Data Nodes**: Ingest, retrieve, search, and transform context.
+- **Logic Nodes**: Control branching, loops, conditions, and execution order.
+
+Use the section docs for detailed configuration:
+
+- [AI Nodes](/docs/ai-nodes)
+- [Data Nodes](/docs/data-nodes)
+- [Logic Nodes](/docs/logic-nodes)
+
+## Ordering and flow control
+
+Node order defines how your data pipeline behaves:
+
+- Use **sequential chains** for step-by-step transformations.
+- Use **branching** when you need parallel or conditional paths.
+- Use **loop/condition nodes** for dynamic execution decisions.
+
+Keep each node focused on one responsibility to make debugging and reuse easier.
+
+## Test and debug node behavior
+
+Before deploying a flow:
+
+- run test payloads through the full flow
+- inspect node-level logs and outputs
+- validate field mappings between nodes
+- check credentials and environment variables for external integrations
+
+Useful references:
+
+- [Flow Editor](/docs/build-first-flow/flow-editor)
+- [Test & Debug](/docs/build-first-flow/tests)
+- [Logs](/docs/monitor-improve/logs)
+
+## Best practices
+
+- **Name nodes clearly** so intent is obvious.
+- **Keep nodes modular** instead of combining too much logic in one node.
+- **Validate data contracts** between connected nodes.
+- **Test with realistic payloads** and edge cases before production.
+- **Add observability early** using logs and reports.

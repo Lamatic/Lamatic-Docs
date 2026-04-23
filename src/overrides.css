@@ -92,11 +92,16 @@ svg .edgeLabel {
   pointer-events: auto !important;
   user-select: text;
   opacity: 0.6;
-  border-left: 2px solid transparent;
-  padding-left: 8px;
-  margin-left: -10px;
-  transition: color 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+  display: block;
+  padding: 2px 0 2px 4px;
+  transition: color 0.2s ease, opacity 0.2s ease;
 }
+
+/* Nesting: indent h3, h4, h5 under h2 */
+.nextra-toc a[data-toc-level="3"] { padding-left: 14px; }
+.nextra-toc a[data-toc-level="4"] { padding-left: 24px; }
+.nextra-toc a[data-toc-level="5"] { padding-left: 34px; }
+.nextra-toc a[data-toc-level="6"] { padding-left: 44px; }
 
 /* Force TOC links to be updated on page change */
 .nextra-toc a[href^="#"] {
@@ -126,6 +131,17 @@ svg .edgeLabel {
 .nextra-toc li {
   margin: 0;
   padding: 0;
+  border-left: 2px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+/* Active item: red left border matching the nav sidebar accent */
+.nextra-toc li:has(a.toc-active) {
+  border-left-color: hsl(0deg 72% 50%);
+}
+
+html[class~="dark"] .nextra-toc li:has(a.toc-active) {
+  border-left-color: hsl(0deg 72% 65%);
 }
 
 /* Fix smooth scrolling for anchor links */
@@ -381,17 +397,20 @@ body:has([href*="/agentkits/"]) main {
   --tw-shadow: 0 0 #0000 !important;
   --tw-shadow-colored: 0 0 #0000 !important;
   box-shadow: none !important;
+  margin-bottom: 0.75rem !important;
 }
+
+/* TOC active color — defined as a variable so one declaration handles both modes */
+:root { --toc-active-color: hsl(0, 72%, 50%); }
+html[class~="dark"] { --toc-active-color: hsl(0, 72%, 50%); }
 
 /* Active TOC item — scroll-spy highlight */
 .nextra-toc a.toc-active {
   opacity: 1 !important;
-  color: hsl(var(--foreground)) !important;
+  color: var(--toc-active-color) !important;
   font-weight: 600;
-  border-left-color: hsl(var(--foreground)) !important;
 }
 
-html[class~="dark"] .nextra-toc a.toc-active {
-  color: hsl(var(--foreground)) !important;
-  opacity: 1 !important;
+.nextra-toc li:has(a.toc-active) {
+  border-left-color: var(--toc-active-color) !important;
 }

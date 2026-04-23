@@ -93,8 +93,7 @@ export default {
   },
   tests: {
     title: "Test & Debug",
-    href: "/docs/build-first-flow/tests",
-    newWindow: false,
+    type: "doc",
   },
   "-- Add Nodes": {
     type: "separator",

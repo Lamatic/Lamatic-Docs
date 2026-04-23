@@ -55,7 +55,7 @@ const config: DocsThemeConfig = {
       );
     },
   },
-  docsRepositoryBase: "https://github.com/lamatic/docs/tree/main",
+  docsRepositoryBase: "https://github.com/lamatic/docs",
   footer: {
     // Pass the component (not <FooterWrapper />) so Nextra's renderComponent mounts it correctly
     content: FooterWrapper,

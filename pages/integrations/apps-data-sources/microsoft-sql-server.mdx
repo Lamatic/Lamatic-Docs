@@ -1,0 +1,116 @@
+---
+title: Microsoft SQL Server
+description: The Microsoft SQL Server node in Lamatic lets you connect to SQL Server and run on-demand SQL queries as an Action node.
+legacyNodeSlugs: ["microsoft-sql-server-node", "mssql-node"]
+icon: /images/icons/apps/mssql.png
+---
+
+import { IntegrationOverviw } from "@/components/IntegrationOverviw"
+import { NodeTypeInfo } from "@/components/NodeTypeInfo"
+
+# Microsoft SQL Server Integration
+
+<IntegrationOverviw slug="microsoft-sql-server" type="apps-data-sources" />
+
+## Overview
+
+The Microsoft SQL Server node in Lamatic connects to your SQL Server database and runs SQL statements from your flows. This integration supports **Action mode only** and does not support Trigger or Batch Trigger modes.
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node for running SQL queries against Microsoft SQL Server."
+/>
+
+- **Action**: Execute SQL queries against Microsoft SQL Server from within your flow.
+- **No Trigger support**: This integration does not provide Event Trigger or Batch Trigger capabilities.
+
+## Features
+
+### Key Functionalities
+
+1. **Action-only execution**: Run SQL queries whenever the flow reaches this node.
+2. **Credential-based connection**: Reuse saved SQL Server credentials across nodes and flows.
+3. **Configurable SSL mode**: Choose the right encryption and certificate verification level for your environment.
+
+### Benefits
+
+1. **Simple database operations in flows**: Query data without leaving Lamatic.
+2. **Reusable credentials**: Configure once and reference credentials in multiple action nodes.
+3. **Flexible security posture**: Pick SSL mode based on internal, staging, or production requirements.
+
+## Prerequisites
+
+Before using the Microsoft SQL Server node, ensure the following:
+
+- A reachable Microsoft SQL Server host.
+- A database user with permission to run the SQL queries you plan to execute.
+- Network/firewall settings that allow access from your Lamatic environment.
+- SSL certificates available if you plan to use certificate verification modes.
+
+## Setup
+
+### Step 1: Configure Microsoft SQL Server credentials in Lamatic
+
+In the **Integrate Microsoft SQL Server** dialog, provide the following:
+
+| **Field** | **Description** | **Required** | **Example** |
+|-----------|-----------------|--------------|-------------|
+| **Credential Name** | Name to identify this SQL Server connection | ✅ | `mssql-prod` |
+| **Host** | SQL Server hostname or IP address | ✅ | `sqlserver.example.com` |
+| **Port** | SQL Server port | ✅ | `1433` |
+| **Username** | Database username | ✅ | `lamatic_user` |
+| **Password** | Database user password | ✅ | — |
+| **Database** | Database name to connect to | ✅ | `appdb` |
+| **SSL Mode** | SSL connection mode (see [SSL connection modes](#ssl-connection-modes)) | ✅ | `require` |
+
+### SSL connection modes
+
+| **Mode** | **Description** |
+|----------|-----------------|
+| **disable** | No encryption. |
+| **require** | Always require encryption, but do not verify the server certificate (use for self-signed certs on internal servers). |
+| **verify-ca** | Always require encryption and verify the server certificate against an uploaded CA. |
+| **verify-full** | The most secure mode. Require encryption, verify the CA, and verify the hostname matches the certificate. |
+
+## Configuration Reference
+
+### Action node configuration
+
+Use the Microsoft SQL Server node as an **Action** with the following fields:
+
+| **Parameter** | **Description** | **Required** | **Example** |
+|---------------|-----------------|--------------|-------------|
+| **Credential** | Saved Microsoft SQL Server credential | ✅ | `mssql-prod` |
+| **Action** | Operation to run | ✅ | `run query` |
+| **Query** | SQL query to execute | ✅ | `SELECT TOP 10 * FROM users` |
+
+## How to use
+
+1. Add a **Microsoft SQL Server** node to your flow.
+2. Select your **Credential**.
+3. Set **Action** to **run query**.
+4. Enter your **Query**.
+5. Run the flow and inspect node output.
+
+## Output
+
+- **Rows**: Query result set for `SELECT` queries.
+- **Execution result**: Status or affected-row metadata for non-SELECT queries (depends on query type).
+
+## Troubleshooting
+
+### Common issues
+
+| **Problem** | **Solution** |
+|-------------|---------------|
+| **Connection failed** | Verify host, port, database, and network/firewall access. |
+| **Login failed for user** | Recheck username/password and SQL Server user permissions. |
+| **SSL error** | Use the correct SSL mode and ensure CA/certificate settings are valid for your environment. |
+| **Query execution error** | Validate SQL syntax and confirm the user has required table/schema permissions. |
+
+### Additional resources
+
+- [Microsoft SQL Server documentation](https://learn.microsoft.com/sql/sql-server/)
+- [Microsoft SQL Server security and encryption](https://learn.microsoft.com/sql/database-engine/configure-windows/configure-sql-server-encryption)

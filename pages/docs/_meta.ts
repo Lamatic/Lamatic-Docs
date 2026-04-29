@@ -8,192 +8,406 @@ export default {
     type: "doc",
   },
   "get-started": {
-    title: "Quickstart (5 min)",
+    title: "Quickstart",
+    type: "doc",
+  },
+  "-- Core Concepts": {
+    type: "separator",
+    title: "Core Concepts",
+  },
+  concepts: {
+    title: "Core Concepts",
+    type: "doc",
+  },
+  // "vibe-coding-setup": {
+  //   title: "Vibe Coding",
+  //   href: "/docs/concepts/vibe-coding-setup",
+  //   newWindow: false,
+  // },
+  "-- Set Up Your Workspace": {
+    type: "separator",
+    title: "Set Up Your Workspace",
+  },
+  "studio-overview": {
+    title: "Studio Overview",
+    href: "/docs/workspace-setup/studio-overview",
+    newWindow: false,
+  },
+  "studio-project": {
+    title: "Create a Project",
+    href: "/docs/workspace-setup/studio-project",
+    newWindow: false,
+  },
+  "studio-keys": {
+    title: "Add API Keys",
+    href: "/docs/workspace-setup/studio-keys",
+    newWindow: false,
+  },
+  "studio-variables-and-secrets": {
+    title: "Configure Variables & Secrets",
+    href: "/docs/workspace-setup/studio-variables-and-secrets",
+    newWindow: false,
+  },
+  "studio-role-based-access": {
+    title: "Set Up Roles & Access",
+    href: "/docs/workspace-setup/studio-role-based-access",
+    newWindow: false,
+  },
+  "studio-tags": {
+    title: "Add Tags",
+    href: "/docs/workspace-setup/studio-tags",
+    newWindow: false,
+  },
+  ide: {
+    title: "IDE",
+    type: "doc",
+  },
+  "-- Build Your First Flow": {
+    type: "separator",
+    title: "Build Your First Flow",
+  },
+  "flow-editor": {
+    title: "Flow Editor",
+    href: "/docs/build-first-flow/flow-editor",
+    newWindow: false,
+  },
+  "add-variables": {
+    title: "Add Variables",
+    href: "/docs/build-first-flow/add-variables",
+    newWindow: false,
+  },
+  "configure-flow-yaml": {
+    title: "Configure a Flow (YAML)",
+    href: "/docs/build-first-flow/configure-flow-yaml",
+    newWindow: false,
+  },
+  "flow-ai-assistant": {
+    title: "Use the Flow AI Assistant",
+    href: "/docs/build-first-flow/flow-ai-assistant",
+    newWindow: false,
+  },
+  "add-sticky-notes": {
+    title: "Add Sticky Notes",
+    href: "/docs/build-first-flow/add-sticky-notes",
+    newWindow: false,
+  },
+  tests: {
+    title: "Test & Debug",
+    type: "doc",
+  },
+  "-- Add Nodes": {
+    type: "separator",
+    title: "Add Nodes",
+  },
+  "how-node-works": {
+    title: "How Nodes Work",
+    type: "doc",
+  },
+  "node-assistant": {
+    title: "Node AI Assistant",
+    type: "doc",
+  },
+  "ai-nodes": {
+    title: "AI Nodes",
+    type: "doc",
+  },
+  "data-nodes": {
+    title: "Data Nodes",
+    type: "doc",
+  },
+  "logic-nodes": {
+    title: "Logic Nodes",
+    type: "doc",
+  },
+  "-- Connect a Model": {
+    type: "separator",
+    title: "Connect a Model",
+  },
+  "model-overview-benchmarks": {
+    title: "Model Overview & Benchmarks",
+    href: "/docs/models/benchmark",
+    newWindow: false,
+  },
+  "add-custom-model": {
+    title: "Add a Custom Model",
+    href: "/docs/models/custom-model-integration",
+    newWindow: false,
+  },
+  "configure-model-behavior": {
+    title: "Configure Model Behavior",
+    href: "/docs/models/model-config",
+    newWindow: false,
+  },
+  "model-routing-logic": {
+    title: "Model Routing Logic",
+    href: "/docs/models/model-logic",
+    newWindow: false,
+  },
+  "-- Build Agents": {
+    type: "separator",
+    title: "Build Agents",
+  },
+  "what-are-agents": {
+    title: "What are Agents?",
+    href: "/docs/agents/getting-started",
+    newWindow: false,
+  },
+  "text-agent": {
+    title: "Text Agent",
+    href: "/docs/agents/text-agent",
+    newWindow: false,
+  },
+  "json-agent": {
+    title: "JSON Agent",
+    href: "/docs/agents/json-agent",
+    newWindow: false,
+  },
+  "multi-modal-agent": {
+    title: "Multi-Modal Agent",
+    href: "/docs/agents/multi-modal-agent",
+    newWindow: false,
+  },
+  "multi-agent-systems-supervisor": {
+    title: "Multi-Agent Systems (Supervisor)",
+    href: "/docs/agents/supervisor-agent",
+    newWindow: false,
+  },
+  "mcp-tools": {
+    title: "MCP & Tools",
+    type: "doc",
+  },
+  "-- Add Memory & Data": {
+    type: "separator",
+    title: "Add Memory & Data",
+  },
+  "memory-store": {
+    title: "Memory Store",
+    href: "/docs/context/memory-store",
+    newWindow: false,
+  },
+  "vector-store": {
+    title: "Vector Store",
+    href: "/docs/context/vectordb",
+    newWindow: false,
+  },
+  "ingest-map-data": {
+    title: "Ingest & Map Data",
+    href: "/docs/context/vectordb/adding-data",
+    newWindow: false,
+  },
+  "-- Expose to the World": {
+    type: "separator",
+    title: "Expose to the World",
+  },
+  "chat-widget": {
+    title: "Chat Widget",
+    href: "/docs/interface/widgets/chat",
+    newWindow: false,
+  },
+  "search-widget": {
+    title: "Search Widget",
+    href: "/docs/interface/widgets/search",
+    newWindow: false,
+  },
+  "ask-widget": {
+    title: "Ask Widget",
+    href: "/docs/interface/widgets/ask-widget",
+    newWindow: false,
+  },
+  webhooks: {
+    title: "Webhooks",
+    href: "/docs/interface/webhooks",
+    newWindow: false,
+  },
+  mailhook: {
+    title: "Mailhook",
+    href: "/docs/interface/mailhook",
+    newWindow: false,
+  },
+  graphql: {
+    title: "GraphQL / REST API",
+    href: "/docs/interface/graphql",
+    newWindow: false,
+  },
+  "-- Vibe Build": {
+    type: "separator",
+    title: "Vibe Build",
+  },
+  "vibe-build": {
+    title: "Vibe Build",
+    type: "doc",
+  },
+  "-- Deploy": {
+    type: "separator",
+    title: "Deploy",
+  },
+  deployments: {
+    title: "Deployment Overview",
+    href: "/docs/deploy-section/deployments",
+    newWindow: false,
+  },
+  environment: {
+    title: "Set Environment Variables",
+    href: "/docs/deploy-section/environment",
+    newWindow: false,
+  },
+  cache: {
+    title: "Enable Caching",
+    href: "/docs/deploy-section/cache",
+    newWindow: false,
+  },
+  "version-control": {
+    title: "Version Control",
+    href: "/docs/deploy-section/version-control",
+    newWindow: false,
+  },
+  jobs: {
+    title: "Schedule Jobs",
+    href: "/docs/deploy-section/jobs",
+    newWindow: false,
+  },
+  "-- Monitor & Improve": {
+    type: "separator",
+    title: "Monitor & Improve",
+  },
+  logs: {
+    title: "Logs",
+    href: "/docs/monitor-improve/logs",
+    newWindow: false,
+  },
+  reports: {
+    title: "Reports",
+    href: "/docs/monitor-improve/reports",
+    newWindow: false,
+  },
+  "langfuse-integration": {
+    title: "Connect Langfuse",
+    href: "/docs/monitor-improve/langfuse-integration",
+    newWindow: false,
+  },
+  "feedback-api": {
+    title: "Feedback API",
+    href: "/docs/monitor-improve/feedback-api",
+    newWindow: false,
+  },
+  "-- Integrate via API & SDK": {
+    type: "separator",
+    title: "Integrate via API & SDK",
+  },
+  "api-overview": {
+    title: "API Overview",
+    href: "/docs/integrate-api-sdk/api-overview",
+    newWindow: false,
+  },
+  "flow-integration": {
+    title: "Flow Integration",
+    href: "/docs/integrate-api-sdk/flow-integration",
+    newWindow: false,
+  },
+  "integration-guide": {
+    title: "Integration Guide",
+    href: "/docs/api-integration/integration-guide",
+    newWindow: false,
+  },
+  "manage-api-keys": {
+    title: "Manage API Keys",
+    href: "/docs/api-integration/api-key",
+    newWindow: false,
+  },
+  sdks: {
+    title: "SDKs",
+    type: "doc",
+  },
+  "-- Reference": {
+    type: "separator",
+    title: "Reference",
+  },
+  "nodes-ref": {
+    "title": "All Nodes (A–Z)",
+    "href": "/docs/nodes",
+    "newWindow": false
+  },
+  "integrations-ref": {
+    "title": "All Integrations (A–Z)",
+    "href": "/integrations",
+    "newWindow": false
+  },
+  templates: {
+    title: "Templates",
+    type: "doc",
+  },
+  glossary: {
+    title: "Glossary",
     type: "doc",
   },
   architecture: {
     title: "Architecture",
     type: "doc",
   },
-
-  glossary: {
-    title: "Glossary",
+  "error-reference": {
+    title: "Error Codes",
     type: "doc",
   },
-  concepts: {
-    title: "Concepts",
-    type: "doc",
-  },
-
-  BUILD: {
-    type: "separator",
-    title: "BUILD",
-  },
-  Changelog: {
-    title: "Changelog",
-    type: "page",
-  },
-  blog: {
-    title: "Blog",
-    type: "page",
-  },
-  flows: {
-    title: "Flows",
-    type: "doc",
-  },
-  nodes: {
-    title: "Nodes",
+  contributing: {
+    title: "Contributing",
     type: "doc",
   },
   agents: {
     title: "Agents",
     type: "doc",
+    display: "hidden",
+  },
+  "api-integration": {
+    title: "api-integration",
+    type: "doc",
+    display: "hidden",
+  },
+  context: {
+    title: "Context",
+    type: "doc",
+    display: "hidden",
+  },
+  interface: {
+    title: "Interfaces",
+    type: "doc",
+    display: "hidden",
   },
   models: {
     title: "Models",
     type: "doc",
+    display: "hidden",
   },
-  // "data":{
-  //   title: "Data",
-  //   type: "doc",
-  // },
-  context: {
-    title: "Data",
+  nodes: {
+    title: "Nodes",
     type: "doc",
+    display: "hidden",
   },
-  ide: {
-    title: "IDE",
+  "workspace-setup": {
+    title: "workspace-setup",
     type: "doc",
+    display: "hidden",
   },
-  "mcp-tools": {
-    title: "MCP/Tools",
+  "build-first-flow": {
+    title: "build-first-flow",
     type: "doc",
+    display: "hidden",
   },
-  tests: {
-    title: "Test",
+  "deploy-section": {
+    title: "deploy-section",
     type: "doc",
+    display: "hidden",
   },
-  "vibe-build": {
-    title: "Vibe Build",
+  "monitor-improve": {
+    title: "monitor-improve",
     type: "doc",
+    display: "hidden",
+  },
+  "integrate-api-sdk": {
+    title: "integrate-api-sdk",
+    type: "doc",
+    display: "hidden",
   },
 
-  // interface: {
-  //   title: "Interface",
-  //   type: "doc",
-  // },
-
-  // templates: {
-  //   title: "Templates",
-  //   type: "doc",
-  // },
-
-  DEPLOY: {
-    type: "separator",
-    title: "DEPLOY",
-  },
-  deployments: {
-    title: "Deployments",
-    type: "doc",
-  },
-  environment: {
-    title: "Environment & Variables",
-    type: "doc",
-  },
-  "version-control": {
-    title: "Version Control",
-    type: "doc",
-  },
-  jobs: {
-    title: "Jobs & Scheduling",
-    type: "doc",
-  },
-  //
-
-  // ===================
-  INTEGRATE: {
-    type: "separator",
-    title: "INTEGRATE",
-  },
-  "api-overview": {
-    title: "API Overview",
-    type: "doc",
-  },
-  "flow-integration": {
-    title: "Flow Integration",
-    type: "doc",
-  },
-
-  interface: {
-    title: "GraphQL, Webhooks & Widgets",
-    type: "doc",
-  },
-  "api-integration": {
-    title: "SDK",
-    type: "doc",
-  },
-  // ===================
-  MONITOR: {
-    type: "separator",
-    title: "MONITOR",
-  },
-
-  logs: {
-    title: "Logs",
-    type: "doc",
-  },
-  reports: {
-    title: "Reports",
-    type: "doc",
-  },
-  // "langfuse-integration": {
-  //   title: "Langfuse Integration",
-  //   type: "doc",
-  // },
-  "feedback-api": {
-    title: "Feedback API",
-    type: "doc",
-  },
-  "REFERENCES": {
-    type: "separator",
-    title: "REFERENCES",
-  },
-  
-  contributing: {
-    title: "Contributing",
-    type: "doc",
-  },
-  "nodes-ref": {
-    "title": "All Nodes (A-Z)",
-    "href": "/docs/nodes",
-    "newWindow": false
-  },
-  "integrations-ref": {
-    "title": "All Integrations (A-Z)",
-    "href": "/integrations",
-    "newWindow": false
-  },
-
-  // "roadmap-ref": {
-  //   title: "Roadmap ↗",
-  //   href: "https://product.lamatic.ai/roadmap",
-  //   newWindow: true,
-  // },
-  // "-- more": {
-  //   type: "separator",
-  //   title: "More",
-  // },
-  // status: {
-  //   title: "Platform Status ↗",
-  //   href: "https://status.lamatic.ai",
-  //   newWindow: true,
-  // },
-  
-  // Trash: {
-  //   title: "Privacy Policy",
-  //   type: "page",
-  //   display: "hidden",
-  // },
   "vulnerability-disclosure": {
     title: "Vulnerability Disclosure",
     type: "doc",

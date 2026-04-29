@@ -11,24 +11,24 @@ export default {
     "title": "Generate Image",
     "type": "doc"
   },
-  "multimodel-node": {
+  "multimodal-node": {
     "title": "Multimodal",
     "type": "doc"
   },
   "classifier-node": {
-    "title": "Classifier Node",
+    "title": "Classify Input",
     "type": "doc"
   },
   "rag-node": {
-    "title": "RAG Node",
+    "title": "RAG",
     "type": "doc"
   },
   "supervisor-node": {
-    "title": "Supervisor Node",
+    "title": "Supervise Agents",
     "type": "doc"
   },
   "mcp-node": {
-    "title": "MCP Node",
+    "title": "Call MCP Tools",
     "type": "doc"
   }
 }

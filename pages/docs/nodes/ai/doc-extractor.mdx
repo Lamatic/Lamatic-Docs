@@ -1,0 +1,134 @@
+---
+title: Doc Extractor Node
+description: The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text.
+type: AI
+order: 7
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Doc Extractor Node
+
+<NodeOverview slug="doc-extractor" type="ai" />
+
+## Overview
+
+The Doc Extractor node extracts content from a document URL (PDF or image), sends it to a selected LLM, and applies prompt-based instructions during extraction. You can control both the extraction behavior and the final response shape so downstream nodes receive output in the format you need.
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that reads document content, applies LLM-guided extraction prompts, and returns structured output."
+/>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **LLM-Guided Extraction**: Select an LLM model to interpret document content and extract relevant information intelligently.
+2. **Instruction-Driven Parsing**: Provide extraction instructions with a custom prompt so the model returns only the fields and structure you need.
+3. **Document URL Input**: Use a direct PDF/image URL or pass a URL dynamically from an upstream node.
+4. **Configurable Output Format**: Return output as `markdown`, `json`, or `plain text` based on your workflow requirements.
+5. **Page Handling Control**: Choose whether to join multi-page documents into a single response.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **Flexible Automation**: Adapt extraction logic for invoices, reports, forms, receipts, and other document types.
+2. **Consistent Downstream Processing**: Standardized output format simplifies chaining into parser, logic, and storage nodes.
+3. **Reduced Manual Parsing**: Replace brittle OCR-only pipelines with prompt-guided extraction.
+4. **Reusable Configuration**: Keep prompts and model settings reusable across multiple flows.
+
+</details>
+
+## What can I build?
+
+1. Invoice and receipt data extraction pipelines
+2. Resume and profile parsing automations
+3. Contract or policy document summarization workflows
+4. Document-to-JSON enrichment pipelines for databases and APIs
+
+## Setup
+
+### Select the Doc Extractor Node
+
+1. Add the Doc Extractor node to your flow.
+2. Select the LLM model for extraction.
+3. Enter a document URL (PDF or image), or map it from an upstream node.
+4. Add extraction instructions and optional custom extraction prompt.
+5. Select the output format and page-join behavior.
+6. Run and validate the output in node logs or downstream nodes.
+
+## Configuration Reference
+
+| Parameter | Description | Required | Example |
+| --- | --- | --- | --- |
+| LLM Model | Model used to extract and structure document content. | Yes | Gemini 2.5 Flast Lite |
+| Prompt | Instructions that define what to extract and how to structure it. | Yes | Extract invoice number, vendor, line items, totals, and due date. |
+| Document URL | URL of the document (PDF or image). Accepts direct URL or variable input from upstream node. | Yes | `{{trigger.document_url}}` |
+| Custom Extraction Prompt | Overrides the default OCR prompt sent to the Gemini model. Leave empty to use the built-in prompt. | No | Focus on tabular data and preserve numeric precision. |
+| Output Format | Output response format: `markdown`, `json`, or `plain text`. | Yes | json |
+| Join Pages | If `true`, combines all pages into one extraction output. If `false`, keeps page-level granularity. | Yes | true |
+
+## Prompting Tips
+
+- Be explicit about required fields, output keys, and formatting rules.
+- For JSON output, list expected keys and types to reduce malformed responses.
+- Add fallback instructions for missing values (for example: `"null"` when field not found).
+- If precision matters (amounts, IDs, dates), explicitly tell the model to avoid normalization.
+
+## Low-Code Example
+
+```yaml
+nodeName: Doc Extractor
+documentUrl: '{{triggerNode_1.output.url}}'
+customPrompt: ''
+mistralIncludeAnnotations: false
+mistralTableFormat: markdown
+outputFormat: markdown
+joinPages: true
+schema: ''
+ocrModelName:
+  - configName: configA
+    type: ocr/document
+    provider_name: gemini
+    credential_name: MODEL_CRED_NAME
+    credentialId: 1f2d5b1e-9e8e-4b82-9996-70e351f8f720
+    model_name: gemini/gemini-2.5-flash-lite
+    params: {}
+prompts:
+  - id: ID
+    role: user
+    content:""
+
+```
+
+## Output
+
+The node returns extracted content in the format you selected:
+
+- **`markdown`**: Useful for human-readable summaries and reports.
+- **`json`**: Best for structured automation and downstream programmatic parsing.
+- **`plain text`**: Lightweight output for quick processing or logging.
+
+## Troubleshooting
+
+### Common Issues
+
+| Problem | Solution |
+| --- | --- |
+| Document URL not accessible | Verify URL is public/reachable and points to a valid PDF or image file. |
+| Missing fields in output | Tighten extraction instructions and add explicit required keys in your prompt. |
+| Output format mismatch | Confirm `Output Format` selection and ensure prompt aligns with that format. |
+| Weak OCR quality | Use a clearer source document and add a `Custom Extraction Prompt` emphasizing OCR precision. |
+
+### Debugging
+
+1. Test with a known sample document before production input.
+2. Start with JSON output for easier validation.
+3. Check node logs to compare prompt, model response, and final parsed output.

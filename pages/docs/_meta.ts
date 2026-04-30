@@ -24,6 +24,10 @@ export default {
     title: "Concepts",
     type: "doc",
   },
+  studio: {
+    title: "Studio",
+    type: "doc",
+  },
 
   BUILD: {
     type: "separator",

@@ -45,7 +45,7 @@ export const lamaticClient = new Lamatic({
 ### Using the Client in a Next.js Component
 Now, you can use the Lamatic client in your Next.js components to execute flows or agents.
 
-<Tabs items={['Flow', 'Agent']}>
+<Tabs items={['Flow']}>
 <Tab>
 ```tsx
 // app.tsx
@@ -62,27 +62,6 @@ export default async function Page() {
   return (
     <div>
       <button onClick={executeFlow}>Execute Flow</button>
-    </div>
-  )
-}
-```
-</Tab>
-<Tab>
-```tsx
-// app.tsx
-import { lamaticClient } from './utils'
-
-export default async function Page() {
-  const executeAgent = async () => {
-    const response = await lamaticClient.executeAgent(process.env.LAMATIC_AGENT_ID, {
-      topic: 'learning more about Lamatic AI',
-    })
-    console.log(response)
-  }
-
-  return (
-    <div>
-      <button onClick={executeAgent}>Execute Agent</button>
     </div>
   )
 }

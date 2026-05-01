@@ -28,7 +28,7 @@ export const MainContentWrapper = (props) => {
   return (
     <>
       <TOCFix />
-      <div className="flex justify-end -mb-8 relative z-10">
+      <div className="flex justify-end mb-2 relative z-10">
         <CopyPageMarkdown />
       </div>
       {cookbook ? (

@@ -45,7 +45,7 @@ export const lamaticClient = new Lamatic({
 ### Using the Client in a React Component
 Now, you can use the Lamatic client in your React components to execute flows or agents.
 
-<Tabs items={['Flow', 'Agent']}>
+<Tabs items={['Flow']}>
 <Tab>
 ```tsx
 // App.tsx
@@ -62,28 +62,6 @@ const executeFlow = async () => {
 return (
     <div>
         <button onClick={executeFlow}>Execute Flow</button>
-    </div>
-)
-}
-export default Page
-```
-</Tab>
-<Tab>
-```tsx
-// App.tsx
-import { lamaticClient } from './utils'
-
-function Page() {
-const executeAgent = async () => {
-    const response = await lamaticClient.executeAgent(process.env.LAMATIC_AGENT_ID, {
-      topic: 'learning more about Lamatic AI',
-    })
-    console.log(response)
-}
-
-return (
-    <div>
-        <button onClick={executeAgent}>Execute Agent</button>
     </div>
 )
 }

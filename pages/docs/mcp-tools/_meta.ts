@@ -6,5 +6,9 @@ export default {
     "tools":{
         "title": "Tools",
         "type": "doc"
+    },
+    "docs-mcp":{
+        "title": "Docs MCP",
+        "type": "doc"
     }
 }

@@ -73,6 +73,10 @@ export default {
     title: "MCP/Tools",
     type: "doc",
   },
+  "docs-mcp": {
+    title: "Docs MCP",
+    type: "doc",
+  },
   tests: {
     title: "Test",
     type: "doc",

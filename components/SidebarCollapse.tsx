@@ -84,7 +84,7 @@ function setup(): boolean {
 
   // Sections that are visually styled like collapsible groups (ALL-CAPS) but
   // should always remain expanded.
-  const NON_COLLAPSIBLE = new Set(['REFERENCES']);
+  const NON_COLLAPSIBLE = new Set(['MORE']);
 
   groups.forEach(({ sep, title, items }) => {
     // Only collapse ALL-CAPS section headers (BUILD, DEPLOY, INTEGRATE, MONITOR…)

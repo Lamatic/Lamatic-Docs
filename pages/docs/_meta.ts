@@ -158,9 +158,9 @@ export default {
     title: "Feedback API",
     type: "doc",
   },
-  "REFERENCES": {
+  "MORE": {
     type: "separator",
-    title: "REFERENCES",
+    title: "MORE",
   },
 
   "docs-mcp": {

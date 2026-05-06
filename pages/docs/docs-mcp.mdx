@@ -1,0 +1,148 @@
+---
+title: Lamatic Docs MCP
+description: Query Lamatic.ai documentation instantly using AI — powered by RAG and Model Context Protocol.
+---
+
+import { Callout, Cards, Card } from 'nextra/components'
+
+# Lamatic Docs MCP
+
+> Query Lamatic.ai documentation instantly from any AI assistant — no searching, no tab switching, just answers.
+
+---
+
+## What is the Docs MCP?
+
+The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation.
+
+
+It is powered by a RAG pipeline built entirely on Lamatic:
+- **Firecrawl** scrapes the docs
+- **Chunking + Vectorize** indexes them into a VectorDB
+- **RAG Node** answers questions semantically
+- **Next.js + Vercel** exposes the MCP endpoint publicly
+
+<Callout type="info">
+  The MCP is free to use. No API key or account required.
+</Callout>
+
+---
+
+## Connect
+
+Add this to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "lamatic-docs": {
+      "url": "https://docmcp.lamatic.ai/api/mcp"
+    }
+  }
+}
+```
+
+### Claude Desktop
+
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`  
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "lamatic-docs": {
+      "url": "https://docmcp.lamatic.ai/api/mcp"
+    }
+  }
+}
+```
+
+Restart Claude Desktop after saving. You should see a 🔌 tools icon in the chat input.
+
+### Cursor / Windsurf / Cline
+
+Add the same config to your MCP settings. Most clients support the `url` field directly for HTTP-based MCP servers.
+
+
+## Available Tools
+
+### `query_docs`
+
+Ask any question about Lamatic.ai documentation. Uses RAG to search across all indexed docs and return a precise answer with references.
+
+**Input:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | string | ✅ | The question to ask |
+
+**Example:**
+
+```json
+{
+  "name": "query_docs",
+  "arguments": {
+    "text": "How do I set up a RAG node in Lamatic?"
+  }
+}
+```
+
+---
+
+## How It Works
+
+```
+Your Question
+      ↓
+MCP Client (Claude / Cursor)
+      ↓
+docmcp.lamatic.ai/mcp/api
+      ↓
+Lamatic RAG Flow
+      ↓
+VectorDB (indexed Lamatic docs)
+      ↓
+Answer
+```
+
+The entire pipeline is built on Lamatic:
+
+1. **Indexing Flow** — scrapes `lamatic.ai/docs` using Firecrawl, chunks content, vectorizes and stores in VectorDB
+2. **Query Flow** — takes your question, runs semantic search, generates answer
+3. **MCP Server** — Next.js API route deployed on Vercel, calls the query flow via GraphQL
+
+---
+
+## Supported Clients
+
+| Client | Supported |
+|--------|-----------|
+| Claude Desktop | ✅ |
+| Cursor | ✅ |
+| Windsurf | ✅ |
+| Cline | ✅ |
+| Any HTTP MCP client | ✅ |
+
+---
+
+## Source Code
+
+The MCP is open source. You can view, fork, and contribute on GitHub:
+
+[github.com/Lamatic/Lamatic-MCP-Docs](https://github.com/Lamatic/Lamatic-MCP-Docs)
+
+{/*
+<Callout type="tip">
+  Want to build your own Docs MCP for your company? See the [Docs MCP setup guide](/docs/mcp-tools/docs-mcp) — fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
+</Callout>
+*/}
+
+---
+
+## Feedback
+
+Found an issue or want to suggest an improvement?
+
+- [Open an issue on GitHub](https://github.com/Lamatic/Lamatic-MCP-Docs/issues)
+- [Join Lamatic Slack](https://lamatic.ai/slack)
+- [Feature board](https://product.lamatic.ai/)

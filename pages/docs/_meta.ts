@@ -163,6 +163,11 @@ export default {
     title: "Glossary",
     type: "doc",
   },
+  "nodes-ref": {
+    "title": "All Nodes (A-Z)",
+    "href": "/docs/nodes",
+    "newWindow": false
+  },
   "docs-mcp": {
     title: "Docs MCP",
     type: "doc",
@@ -170,16 +175,6 @@ export default {
   contributing: {
     title: "Contributing",
     type: "doc",
-  },
-  "nodes-ref": {
-    "title": "All Nodes (A-Z)",
-    "href": "/docs/nodes",
-    "newWindow": false
-  },
-  "integrations-ref": {
-    "title": "All Integrations (A-Z)",
-    "href": "/integrations",
-    "newWindow": false
   },
 
   // "roadmap-ref": {

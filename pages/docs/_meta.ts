@@ -16,10 +16,7 @@ export default {
     type: "doc",
   },
 
-  glossary: {
-    title: "Glossary",
-    type: "doc",
-  },
+  
   concepts: {
     title: "Concepts",
     type: "doc",
@@ -158,11 +155,14 @@ export default {
     title: "Feedback API",
     type: "doc",
   },
-  "REFERENCES": {
+  "MORE": {
     type: "separator",
-    title: "REFERENCES",
+    title: "MORE",
   },
-
+  glossary: {
+    title: "Glossary",
+    type: "doc",
+  },
   "docs-mcp": {
     title: "Docs MCP",
     type: "doc",

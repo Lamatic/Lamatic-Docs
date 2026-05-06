@@ -16,10 +16,7 @@ export default {
     type: "doc",
   },
 
-  glossary: {
-    title: "Glossary",
-    type: "doc",
-  },
+  
   concepts: {
     title: "Concepts",
     type: "doc",
@@ -162,13 +159,8 @@ export default {
     type: "separator",
     title: "MORE",
   },
-
-  "docs-mcp": {
-    title: "Docs MCP",
-    type: "doc",
-  },
-  contributing: {
-    title: "Contributing",
+  glossary: {
+    title: "Glossary",
     type: "doc",
   },
   "nodes-ref": {
@@ -176,10 +168,13 @@ export default {
     "href": "/docs/nodes",
     "newWindow": false
   },
-  "integrations-ref": {
-    "title": "All Integrations (A-Z)",
-    "href": "/integrations",
-    "newWindow": false
+  "docs-mcp": {
+    title: "Docs MCP",
+    type: "doc",
+  },
+  contributing: {
+    title: "Contributing",
+    type: "doc",
   },
 
   // "roadmap-ref": {

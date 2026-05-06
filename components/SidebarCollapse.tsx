@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-const STORAGE_KEY = 'sidebar-collapsed-v1';
+// Stores titles of sections the user has expanded.
+// Default state (no entry) = collapsed.
+const STORAGE_KEY = 'sidebar-expanded-v1';
 
 function loadState(): Set<string> {
   try {
@@ -53,7 +55,7 @@ function setup(): boolean {
   }
   if (!topUl) return false;
 
-  const collapsed = loadState();
+  const expanded = loadState();
   const children = Array.from(topUl.children) as HTMLElement[];
 
   // Walk children and bucket them into groups: [separator → items[]]
@@ -80,15 +82,20 @@ function setup(): boolean {
 
   if (groups.length === 0) return false;
 
+  // Sections that are visually styled like collapsible groups (ALL-CAPS) but
+  // should always remain expanded.
+  const NON_COLLAPSIBLE = new Set(['REFERENCES']);
+
   groups.forEach(({ sep, title, items }) => {
     // Only collapse ALL-CAPS section headers (BUILD, DEPLOY, INTEGRATE, MONITOR…)
     // Skip mixed-case separators like "Switcher" which are not section groups.
     if (title !== title.toUpperCase()) return;
+    if (NON_COLLAPSIBLE.has(title)) return;
 
     if (sep.dataset.collapseReady) return;
     sep.dataset.collapseReady = '1';
 
-    const isCollapsed = collapsed.has(title);
+    const isCollapsed = !expanded.has(title);
 
     // Wrap all items in plain <div> containers so we don't disturb
     // Nextra's ul>li CSS selectors on the items themselves.
@@ -112,16 +119,16 @@ function setup(): boolean {
 
     sep.style.cursor = 'pointer';
     sep.addEventListener('click', () => {
-      const nowCollapsed = collapsed.has(title);
-      nowCollapsed ? collapsed.delete(title) : collapsed.add(title);
-      saveState(collapsed);
+      const wasExpanded = expanded.has(title);
+      wasExpanded ? expanded.delete(title) : expanded.add(title);
+      saveState(expanded);
 
-      const next = !nowCollapsed;
+      const nextCollapsed = wasExpanded;
       // Match Nextra's Collapse component: 500ms open, 300ms close, ease-in-out
-      wrapperDiv.style.transition = `grid-template-rows ${next ? '300ms' : '500ms'} cubic-bezier(0.4,0,0.2,1)`;
-      wrapperDiv.style.gridTemplateRows = next ? '0fr' : '1fr';
+      wrapperDiv.style.transition = `grid-template-rows ${nextCollapsed ? '300ms' : '500ms'} cubic-bezier(0.4,0,0.2,1)`;
+      wrapperDiv.style.gridTemplateRows = nextCollapsed ? '0fr' : '1fr';
       const chevron = sep.querySelector('[data-chevron]') as HTMLElement | null;
-      if (chevron) chevron.style.transform = next ? 'rotate(-90deg)' : 'rotate(0deg)';
+      if (chevron) chevron.style.transform = nextCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
     });
   });
 

@@ -73,10 +73,6 @@ export default {
     title: "MCP/Tools",
     type: "doc",
   },
-  "docs-mcp": {
-    title: "Docs MCP",
-    type: "doc",
-  },
   tests: {
     title: "Test",
     type: "doc",
@@ -85,14 +81,14 @@ export default {
     title: "Vibe Build",
     type: "doc",
   },
+  templates: {
+    title: "Templates",
+    href: "/docs/templates",
+    newWindow: false,
+  },
 
   // interface: {
   //   title: "Interface",
-  //   type: "doc",
-  // },
-
-  // templates: {
-  //   title: "Templates",
   //   type: "doc",
   // },
 
@@ -166,7 +162,11 @@ export default {
     type: "separator",
     title: "REFERENCES",
   },
-  
+
+  "docs-mcp": {
+    title: "Docs MCP",
+    type: "doc",
+  },
   contributing: {
     title: "Contributing",
     type: "doc",

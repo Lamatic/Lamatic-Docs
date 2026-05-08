@@ -16,10 +16,7 @@ export default {
     type: "doc",
   },
 
-  glossary: {
-    title: "Glossary",
-    type: "doc",
-  },
+  
   concepts: {
     title: "Concepts",
     type: "doc",
@@ -81,14 +78,14 @@ export default {
     title: "Vibe Build",
     type: "doc",
   },
+  templates: {
+    title: "Templates",
+    href: "/docs/templates",
+    newWindow: false,
+  },
 
   // interface: {
   //   title: "Interface",
-  //   type: "doc",
-  // },
-
-  // templates: {
-  //   title: "Templates",
   //   type: "doc",
   // },
 
@@ -158,13 +155,12 @@ export default {
     title: "Feedback API",
     type: "doc",
   },
-  "REFERENCES": {
+  "MORE": {
     type: "separator",
-    title: "REFERENCES",
+    title: "MORE",
   },
-  
-  contributing: {
-    title: "Contributing",
+  glossary: {
+    title: "Glossary",
     type: "doc",
   },
   "nodes-ref": {
@@ -172,10 +168,13 @@ export default {
     "href": "/docs/nodes",
     "newWindow": false
   },
-  "integrations-ref": {
-    "title": "All Integrations (A-Z)",
-    "href": "/integrations",
-    "newWindow": false
+  "docs-mcp": {
+    title: "Docs MCP",
+    type: "doc",
+  },
+  contributing: {
+    title: "Contributing",
+    type: "doc",
   },
 
   // "roadmap-ref": {

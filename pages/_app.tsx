@@ -11,6 +11,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import ChatbotScript from "@/components/ChatbotScript";
 import { SidebarSwitcher } from "@/components/SidebarSwitcher";
+import { SidebarCollapse } from "@/components/SidebarCollapse";
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -72,6 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
           ></iframe>
         </noscript>
         <Component {...pageProps} />
+        <SidebarCollapse />
         <SidebarSwitcher />
         <ChatbotScript />
       </PostHogProvider>

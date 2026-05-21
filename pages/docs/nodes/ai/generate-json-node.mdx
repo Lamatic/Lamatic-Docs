@@ -61,6 +61,39 @@ The Generate JSON Node is a specialized AI component that generates structured J
 1. Build interactive tools that convert conversational inputs into structured JSON for use in various applications.
 1. Design flow for content generation that require consistency in data formatting across different platforms.
 
+## Prompt Examples
+
+### Structured Data Generator
+
+Extracts key information from a user input and returns it as structured JSON.
+
+**System Prompt**
+```
+You are a data extraction assistant.
+Read the input and return only a valid JSON object.
+Do not add any explanation or extra text outside the JSON.
+```
+
+**User Prompt**
+```
+Extract the following details from this text and return as JSON:
+{{triggerNode_1.message}}
+```
+
+**Output Schema Example**
+```json
+{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "email": { "type": "string" },
+    "issue": { "type": "string" }
+  }
+}
+```
+
+>  Define your schema fields clearly so the LLM knows exactly what to extract. Add more fields to the schema as needed.
+
 ## Setup
 
 ### Select the JSON Generate Node

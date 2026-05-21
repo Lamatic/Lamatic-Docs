@@ -53,6 +53,64 @@ The Doc Extractor node extracts content from a document URL (PDF or image), send
 3. Contract or policy document summarization workflows
 4. Document-to-JSON enrichment pipelines for databases and APIs
 
+## Prompt Examples
+
+### Invoice Data Extractor
+
+Extracts key fields from an invoice PDF.
+
+**Document URL**
+```
+{{triggerNode_1.document_url}}
+```
+
+**System Prompt**
+```
+Extract the following fields from this invoice:
+- Invoice number
+- Vendor name
+- Invoice date
+- Due date
+- Line items (description, quantity, unit price)
+- Total amount
+
+Return as JSON. Use null for any field not found in the document.
+```
+
+**Settings**
+- Output Format: `JSON`
+- Join Pages: `On`
+
+---
+
+### Resume Parser
+
+Extracts candidate details from a resume PDF.
+
+**Document URL**
+```
+{{triggerNode_1.document_url}}
+```
+
+**System Prompt**
+```
+Extract the following details from this resume:
+- Full name
+- Email address
+- Phone number
+- Current job title
+- Years of experience
+- Top 5 skills
+
+Return as JSON. Use null for any field not found.
+```
+
+**Settings**
+- Output Format: `JSON`
+- Join Pages: `On`
+
+> Use `JSON` output format when passing data to downstream nodes. Switch to `Markdown` only for human-readable reports.
+
 ## Setup
 
 ### Select the Doc Extractor Node

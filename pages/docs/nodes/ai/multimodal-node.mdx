@@ -59,6 +59,57 @@ The Multimodal Node is an advanced AI component that can process and analyze mul
 1. Build interactive applications where user actions on images are analyzed to generate contextual feedback.
 1. Design systems that maintain consistent tone and style across generated content based on previous interactions.
 
+## Prompt Examples
+
+### Image Analyser
+
+Analyses an uploaded image and returns a detailed description.
+
+**System Prompt**
+```
+You are an image analysis assistant.
+Describe the content of the image in detail.
+Include objects, colors, layout, and any visible text.
+```
+
+**User Prompt**
+```
+Analyse this image and describe what you see:
+{{triggerNode_1.image_url}}
+```
+
+**Attachments**
+```
+{{triggerNode_1.image_url}}
+```
+
+---
+
+### Product Image Reviewer
+
+Reviews a product image and returns quality feedback.
+
+**System Prompt**
+```
+You are a product image quality reviewer.
+Look at the image and evaluate it on: background clarity,
+lighting, product visibility, and overall quality.
+Return a short assessment with improvement suggestions if needed.
+```
+
+**User Prompt**
+```
+Review this product image:
+{{triggerNode_1.image_url}}
+```
+
+**Attachments**
+```
+{{triggerNode_1.image_url}}
+```
+
+> Always pass the image URL in both the Attachments field and the User Prompt so the model has full context.
+
 ## Setup
 
 ### Select the Multimodal Text Node

@@ -62,6 +62,53 @@ The node allows users to configure parameters such as the embedding model, gener
 1. Build educational tools that generate tailored learning content and explanations by leveraging context from a vector database.
 1. Design content creation platforms that use RAG to produce more relevant and concise articles or reports based on user input.
 
+## Prompt Examples
+
+### Knowledge Base Q&A
+
+Answers user questions using content from your vector database.
+
+**System Prompt**
+```
+You are a helpful assistant. Answer the user's question using only
+the context retrieved from the knowledge base.
+If the answer is not in the context, say "I don't have that information."
+Do not make up answers.
+```
+
+**Search Query**
+```
+{{triggerNode_1.question}}
+```
+
+**Settings**
+- No. of References: `5`
+- Certainty: `0.7`
+
+---
+
+### Product Documentation Assistant
+
+Helps users find answers from your product docs.
+
+**System Prompt**
+```
+You are a product support assistant. Use the retrieved documentation
+to answer the user's question clearly and concisely.
+Always reference the relevant section when possible.
+```
+
+**Search Query**
+```
+{{triggerNode_1.user_query}}
+```
+
+**Settings**
+- No. of References: `3`
+- Certainty: `0.75`
+
+> Increase Certainty closer to 1.0 for more precise matches. Lower it (e.g. 0.5) to return broader results when your knowledge base is small.
+
 ## Setup
 
 ### Select the RAG Node

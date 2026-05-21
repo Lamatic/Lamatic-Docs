@@ -58,6 +58,38 @@ The Classifier Node is a powerful AI component that enables users to automatical
 
 1. Build intelligent document categorization systems for large-scale data management.
 
+## Prompt Examples
+
+### Support Ticket Router
+
+The LLM reads the input and routes the flow down the matching branch.
+
+**System Prompt**
+```
+You are a support ticket classifier. 
+Analyze the user's message and route it to the correct department.
+Use the description of each classifier to make your decision.
+Only pick one classifier. Do not explain your choice.
+```
+
+**User Prompt**
+```
+Classify this support message and route it to the right department:
+{{triggerNode_1.message}}
+```
+
+**Classifiers**
+
+| Name | Description |
+|---|---|
+| `Billing` | Payment issues, invoices, failed charges |
+| `Technical` | Bugs, errors, integration problems |
+
+Each classifier becomes a **branch in your flow** — add the next nodes
+(e.g. send to Slack, trigger an email) inside each branch.
+
+> The Description field helps the LLM decide which branch to pick on ambiguous inputs.
+
 ## Setup
 
 ### Select the Classifier Node

@@ -177,7 +177,6 @@ const nonPermanentRedirects = [
   ["/docs/report-issue", "/company/report-issue"],
   ["/docs/vulnerability-disclosure", "/company/vulnerability-disclosure"],
   ["/company", "https://lamatic.ai"],
-  ["/security", "https://lamatic.ai/security"],
   ["/support", "/docs/slack"],
   [
     "/docs/nodes/data-nodes/search-node",

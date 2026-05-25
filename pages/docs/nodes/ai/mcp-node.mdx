@@ -67,6 +67,51 @@ The MCP Node enables seamless integration with external data sources, APIs, and 
 5. **Real-time Monitoring Systems** - Access live data feeds for monitoring and alerts
 6. **Custom Tool Integration** - Use specialized tools and functions provided by MCP servers
 
+## Prompt Examples
+
+### GitHub User Lookup
+
+Fetches GitHub user details using the GitHub MCP server.
+
+**Query**
+```
+{{triggerNode_1.user_query}}
+```
+
+**Prompt (optional)**
+```
+You are a GitHub assistant. Use the available tools to fetch the
+requested information and return a clear, concise summary.
+Only use information returned by the tools. Do not make up details.
+```
+
+**Selected Tools**
+- Select credentials first to load available tools, then enable the tools relevant to your use case (e.g. `get_user`, `list_issues`)
+
+---
+
+### Slack Notification Sender
+
+Sends a message to a Slack channel based on flow output.
+
+**Query**
+```
+Send a message to the #{{triggerNode_1.channel}} channel:
+{{triggerNode_1.message}}
+```
+
+**Prompt (optional)**
+```
+You are a Slack assistant.
+Use the available tools to send the message to the correct channel.
+Confirm once the message has been sent successfully.
+```
+
+**Selected Tools**
+- Select credentials first, then enable the `send_message` tool
+
+> Selected Tools only appear after you select your MCP Server credentials. Connect your MCP Server first before configuring this node.
+
 ## Setup
 
 ### Configure MCP Server

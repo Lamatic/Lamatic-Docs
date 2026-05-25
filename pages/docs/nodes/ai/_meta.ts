@@ -11,10 +11,6 @@ export default {
     "title": "Generate Image",
     "type": "doc"
   },
-  "multimodel-node": {
-    "title": "Multimodal",
-    "type": "doc"
-  },
   "classifier-node": {
     "title": "Classifier Node",
     "type": "doc"

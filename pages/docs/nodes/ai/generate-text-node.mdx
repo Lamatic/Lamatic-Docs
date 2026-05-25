@@ -58,6 +58,50 @@ The Generate Text node allows users to programmatically generate text outputs by
 1. Automated report generation systems for business intelligence and data analysis.
 1. Customizable email and message drafting tools for improved communication efficiency.
 
+## Prompt Examples
+
+### Summarize
+
+Condenses a long piece of text into a short, clear summary.
+
+**System Prompt**
+```
+You are a summarization assistant.
+Summarize the given text in 3-5 sentences.
+Be concise and keep only the most important points.
+Do not add any information that is not in the original text.
+```
+
+**User Prompt**
+```
+Summarize the following text:
+{{triggerNode_1.content}}
+```
+
+> Note: To make the summary shorter or longer, update the sentence count in the System Prompt.
+
+---
+
+### Score Generator
+
+Evaluates an input and returns a score with a short reason.
+
+**System Prompt**
+```
+You are a scoring assistant.
+Read the input and give it a score from 1 to 10 based on quality and relevance.
+Return the score followed by a one-line reason.
+Format: Score: X/10 — Reason: <your reason>
+```
+
+**User Prompt**
+```
+Score the following response:
+{{triggerNode_1.response}}
+```
+
+> Update the scoring criteria in the System Prompt to match your use case (e.g. clarity, tone, accuracy).
+
 ## Setup
 
 ### Select the Text LLM Node

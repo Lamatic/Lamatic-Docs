@@ -52,6 +52,58 @@ The **Supervisor Node** is an advanced AI component that provides oversight and 
 - Automated AI systems that require iterative questioning to refine responses.
 - Intelligent customer support agents that engage in structured dialogues.
 
+## Prompt Examples
+
+### Research + Writer Agent
+
+Coordinates a Research agent and a Writer agent to produce final content.
+Each agent becomes a branch in your flow, add the relevant nodes inside each.
+
+**System Prompt**
+```
+You are a supervisor coordinating two agents: Research and Writer.
+First, send the task to the Research agent to gather information on the topic.
+Then pass that research to the Writer agent to produce a clear, structured response.
+Stop once the Writer has completed the response.
+```
+
+**Agent Paths**
+
+| Name | Description |
+|---|---|
+| `Research` | Searches and retrieves relevant information on the given topic |
+| `Writer` | Takes the research and writes a clear, structured response |
+
+**Settings**
+- Max Iterations: `5`
+- Stop Word: `DONE`
+
+---
+
+### Customer Support Triage
+
+Collects the user's issue and routes to the right agent.
+
+**System Prompt**
+```
+You are a customer support supervisor.
+Ask the user to describe their issue, then route to the correct agent:
+Billing for payment issues, Technical for product problems.
+Stop once the issue is resolved.
+```
+
+**Agent Paths**
+
+| Name | Description |
+|---|---|
+| `Billing` | Handles payment, invoice, and subscription issues |
+| `Technical` | Handles bugs, errors, and product problems |
+
+**Settings**
+- Max Iterations: `5`
+- Stop Word: `RESOLVED`
+
+> The Supervisor loops through agents until the Stop Word appears in the response or Max Iterations is reached. Always set both to avoid infinite loops.
 
 ## Setup
 

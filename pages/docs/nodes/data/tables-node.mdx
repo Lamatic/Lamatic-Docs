@@ -14,12 +14,15 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
 ## Overview
 
-The Tables Node is a structured data management component that performs various operations on relational data tables, including querying, inserting, updating, and deleting records. This node provides full CRUD control over your Lamatic Data Tables directly within a flow.
+The Tables Node is a structured data management component that performs various operations on relational data tables, including querying, inserting, updating, and deleting records. This node provides full CRUD control over your Lamatic Data Tables directly within a flow.  
 
+The Tables Node uses **SQLite** as its underlying database engine.
+
+![extract-file.png](../img/file/tables.webp)
 
 <NodeTypeInfo
   batchTrigger={false}
-  eventTrigger={true}
+  eventTrigger={false}
   action={true}
   description="This node is an **Action** node that performs read and write operations on structured data tables for data management and manipulation."
 />

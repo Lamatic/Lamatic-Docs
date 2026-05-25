@@ -1,0 +1,333 @@
+---
+title: Tables Node
+description: The Tables Node performs various operations on structured data tables including querying, inserting, updating, and deleting records.
+type: Data
+order: 9
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Tables Node
+
+<NodeOverview slug="tables-node" type="data" />
+
+## Overview
+
+The Tables Node is a structured data management component that performs various operations on relational data tables, including querying, inserting, updating, and deleting records. This node provides full CRUD control over your Lamatic Data Tables directly within a flow.  
+
+The Tables Node uses **SQLite** as its underlying database engine.
+
+![extract-file.png](../img/file/tables.webp)
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an **Action** node that performs read and write operations on structured data tables for data management and manipulation."
+/>
+
+## Features
+
+<details>
+  <summary>Key Functionalities</summary>
+
+1. **Multi-Action Capability**: Choose between Select, Insert, Update, Delete, or raw SQL Query operations.
+2. **Visual Where Clause Builder**: Add filter conditions without writing SQL using the condition builder.
+3. **Flexible Column Selection**: Choose all columns (`SELECT *`) or limit to specific fields.
+4. **Sorting & Pagination**: Control result order with Order By, and paginate using Limit and Offset.
+5. **Raw SQL Support**: Run custom SQL queries directly for advanced use cases.
+
+</details>
+
+<details>
+  <summary>Benefits</summary>
+
+1. **Simplicity**: Manage structured data without leaving the flow editor.
+2. **Control**: Fine-tune reads and writes with filters, ordering, and pagination.
+3. **Flexibility**: Use the visual builder for common operations or raw SQL for complex queries.
+4. **Integration**: Combine with AI nodes to build data-driven pipelines and automations.
+
+</details>
+
+## What Can You Build?
+
+- Store user inputs or API responses into a table from a flow.
+- Query records to personalise AI responses with real data.
+- Update or delete table records based on flow logic or conditions.
+- Build admin-style data workflows with full CRUD capability.
+
+---
+
+## Setup
+
+### 1. Select Action
+
+Retrieves rows from a table based on optional column selection, filters, ordering, and pagination.
+
+#### Configuration Reference
+
+| **Parameter**    | **Description**                                                   | **Required** | **Example Value**   |
+| ---------------- | ----------------------------------------------------------------- | ------------ | ------------------- |
+| **Action**       | The action to perform on the table.                                                  | Yes          | `Select`            |
+| **Table**        | The target table to query.                                        | Yes          | `users`             |
+| **Columns**      | Columns to return. Defaults to all (`SELECT *`).                  | No           | `id, name, email`   |
+| **Where Clause** | Filter conditions to narrow results. Add one or more conditions.  | No           | `status = 'active'` |
+| **Order By**     | Column(s) to sort results by, with direction (ASC/DESC).          | No           | `created_at DESC`   |
+| **Limit**        | Maximum number of rows to return. Defaults to `10`.               | No           | `10`                |
+| **Offset**       | Number of rows to skip before returning results. Defaults to `0`. | No           | `0`                 |
+
+#### Low-Code Example
+
+```yaml
+nodeName: Tables
+action: select
+tableName: Tables
+columns:
+  - id
+  - created_at
+data: '{}'
+where:
+  conjunction: AND
+  conditions:
+    - column: id
+      operator: '='
+      value: '1'
+orderBy:
+  - column: ''
+    order: ASC
+limit: '10'
+offset: '0'
+query: SELECT * FROM your_table WHERE id = ?
+```
+
+#### Output
+
+- `rows`: An array of records matching the query criteria.
+- `count`: The number of records returned.
+
+##### Example Output
+
+```json
+{
+  "rows": [
+    { "id": 1, "name": "Alice", "email": "alice@example.com" },
+    { "id": 2, "name": "Bob", "email": "bob@example.com" }
+  ],
+  "count": 2
+}
+```
+
+### 2. Insert Action
+
+Inserts one or more new records into the specified table.
+
+#### Configuration Reference
+
+| **Parameter** | **Description**                                          | **Required** | **Example Value**               |
+| ------------- | -------------------------------------------------------- | ------------ | ------------------------------- |
+| **Action**    | Set to `Insert`.                                         | Yes          | `Insert`                        |
+| **Data**      | The record(s) to insert. Accepts a JSON object or array. | Yes          | `{{triggerNode_1.output.body}}` |
+| **Table**     | The target table to insert into.                         | Yes          | `users`                         |
+
+#### Low-Code Example
+
+```yaml
+nodeName: Tables
+action: insert
+tableName: Tables
+columns:
+  - id
+  - created_at
+data: '{"id": "{{triggerNode_1.output.id}}"}'
+where:
+  conjunction: AND
+  conditions:
+    - column: id
+      operator: '='
+      value: '1'
+orderBy:
+  - column: ''
+    order: ASC
+limit: '10'
+offset: '0'
+query: SELECT * FROM your_table WHERE id = ?
+```
+
+#### Output
+
+- `insertedCount`: Number of records successfully inserted.
+- `message`: A status message summarising the operation.
+
+##### Example Output
+
+```json
+{
+  "insertedCount": 1,
+  "message": "Record inserted successfully"
+}
+```
+
+### 3. Update Action
+
+Updates existing records in a table that match the specified where clause.
+
+#### Configuration Reference
+
+| **Parameter**    | **Description**                                         | **Required** | **Example Value**               |
+| ---------------- | ------------------------------------------------------- | ------------ | ------------------------------- |
+| **Action**       | Set to `Update`.                                        | Yes          | `Update`                        |
+| **Data**         | The fields and values to update. Accepts a JSON object. | Yes          | `{{triggerNode_1.output.body}}` |
+| **Table**        | The target table to update.                             | Yes          | `users`                         |
+| **Where Clause** | Filter conditions to identify which records to update.  | Yes          | `id = 1`                        |
+
+#### Low-Code Example
+
+```yaml
+nodeName: Tables
+action: update
+tableName: Tables
+columns:
+  - id
+  - created_at
+data: '{"id": "{{triggerNode_1.output.id}}"}'
+where:
+  conjunction: AND
+  conditions:
+    - column: id
+      operator: '='
+      value: '1'
+orderBy:
+  - column: ''
+    order: ASC
+limit: '10'
+offset: '0'
+query: SELECT * FROM your_table WHERE id = ?
+```
+
+#### Output
+
+- `updatedCount`: Number of records successfully updated.
+- `message`: A status message summarising the operation.
+
+##### Example Output
+
+```json
+{
+  "updatedCount": 1,
+  "message": "Record updated successfully"
+}
+```
+
+### 4. Delete Action
+
+Deletes records from a table that match the specified where clause.
+
+#### Configuration Reference
+
+| **Parameter**    | **Description**                                        | **Required** | **Example Value** |
+| ---------------- | ------------------------------------------------------ | ------------ | ----------------- |
+| **Action**       | Set to `Delete`.                                       | Yes          | `Delete`          |
+| **Table**        | The target table to delete records from.               | Yes          | `users`           |
+| **Where Clause** | Filter conditions to identify which records to delete. | Yes          | `id = 1`          |
+
+#### Low-Code Example
+
+```yaml
+nodeName: Tables
+action: delete
+tableName: Tables
+columns:
+  - id
+  - created_at
+data: '{{triggerNode_1.output.sampleInput}}'
+where:
+  conjunction: AND
+  conditions:
+    - column: id
+      operator: '='
+      value: '1'
+orderBy:
+  - column: ''
+    order: ASC
+limit: '10'
+offset: '0'
+query: SELECT * FROM your_table WHERE id = ?
+```
+
+#### Output
+
+- `deletedCount`: Number of records successfully deleted.
+- `message`: A status message summarising the operation.
+
+##### Example Output
+
+```json
+{
+  "deletedCount": 1,
+  "message": "Record deleted successfully"
+}
+```
+
+### 5. Query Action
+
+Executes a raw SQL query for advanced or complex operations not covered by the visual builder.
+
+#### Configuration Reference
+
+| **Parameter** | **Description**                                                      | **Required** | **Example Value**                       |
+| ------------- | -------------------------------------------------------------------- | ------------ | --------------------------------------- |
+| **Action**    | Set to `Query`.                                                      | Yes          | `Query`                                 |
+| **SQL Query** | A raw SQL statement to execute. Use `?` as a placeholder for values. | Yes          | `SELECT * FROM your_table WHERE id = ?` |
+
+#### Low-Code Example
+
+```yaml
+nodeName: Tables
+action: query
+tableName: Tables
+columns:
+  - id
+  - created_at
+data: '{{triggerNode_1.output.sampleInput}}'
+where:
+  conjunction: AND
+  conditions:
+    - column: id
+      operator: '='
+      value: '1'
+orderBy:
+  - column: ''
+    order: ASC
+limit: '10'
+offset: '0'
+query: SELECT * FROM your_table WHERE id = 1
+```
+
+#### Output
+
+- `rows`: An array of records returned by the query.
+- `count`: The number of records returned.
+
+##### Example Output
+
+```json
+{
+  "rows": [
+    { "id": 1, "name": "Alice", "email": "alice@example.com" }
+  ],
+  "count": 1
+}
+```
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                   | **Solution**                                                                    |
+| ----------------------------- | ------------------------------------------------------------------------------- |
+| **No table appears in list**  | Click the refresh icon next to the Table field to reload available tables.      |
+| **Where Clause not working**  | Ensure a table is selected first — conditions can only be added after selection. |
+| **Insert fails with no data** | Verify the `Data` field contains a valid JSON object or array.                  |
+| **Query returns no results**  | Check your SQL syntax and confirm the table name and column names are correct.  |
+| **Columns field greyed out**  | Select a table first — column selection is only available after table selection. |

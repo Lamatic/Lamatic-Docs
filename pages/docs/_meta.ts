@@ -172,6 +172,14 @@ export default {
     title: "Docs MCP",
     type: "doc",
   },
+  "graph-mcp": {
+    title: "Graph MCP",
+    type: "doc",
+  },
+  "dev-mcp": {
+    title: "Dev MCP",
+    type: "doc",
+  },
   contributing: {
     title: "Contributing",
     type: "doc",

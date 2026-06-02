@@ -1,0 +1,149 @@
+---
+title: Graph MCP
+description: Execute your deployed Lamatic flows via AI agents using natural language.
+---
+
+import { Callout, Tabs } from 'nextra/components'
+
+# Graph MCP
+
+> Execute your deployed Lamatic flows via AI agents using natural language.
+
+---
+
+## What is it?
+
+**Lamatic Graph MCP** is an [Model Context Protocol](https://modelcontextprotocol.io) server that turns your deployed Lamatic flows into AI-callable tools. Connect Claude, GitHub Copilot, or Cursor — your flows become tools your AI can call directly using natural language.
+
+---
+
+## Installation
+
+```bash
+# Run directly via npx (recommended)
+npx @lamatic/graph-mcp
+
+# Or install globally
+npm install -g @lamatic/graph-mcp
+
+# Or install as a dependency
+npm install @lamatic/graph-mcp
+```
+
+---
+
+## Setup
+
+### Claude Code
+
+```bash
+claude mcp add lamatic-graph -- npx -y @lamatic/graph-mcp
+```
+
+### VS Code
+
+Add to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "lamatic-graph": {
+      "command": "npx",
+      "args": ["-y", "@lamatic/graph-mcp"],
+      "type": "stdio"
+    }
+  }
+}
+```
+
+### Claude Desktop / Cursor
+
+Add to your MCP config file:
+
+```json
+{
+  "mcpServers": {
+    "lamatic-graph": {
+      "command": "npx",
+      "args": ["-y", "@lamatic/graph-mcp"]
+    }
+  }
+}
+```
+
+---
+
+## Authentication
+
+Graph MCP requires two API keys: an **org-level key** and a **project-level key**.
+
+Run the `graph_auth_login` tool:
+
+```
+authenticate with orgApiKey lt-org-xxx, projectApiKey lt-mmup-xxx and orgId your-org-id
+```
+
+<Callout type="info">
+  Your credentials are stored locally at `~/.lamatic/config.json`.
+</Callout>
+
+---
+
+## Tools
+
+| Tool | Description |
+|------|-------------|
+| `graph_auth_login` | Authenticate with Lamatic |
+| `graph_load_project_flows` | Load all active flows with input schemas |
+| `graph_execute_flow` | Execute a deployed flow with a payload |
+| `graph_refresh_flows` | Refresh the list of active flows |
+
+---
+
+## Supported Flow Triggers
+
+Graph MCP can execute flows with the following trigger types:
+
+| Trigger | Supported |
+|---------|-----------|
+| API Request | ✅ |
+| Chat Widget | ✅ |
+| Search Widget | ✅ |
+| Webhook | ✅ |
+
+---
+
+## How It Works
+
+1. Connect your MCP client with **org API key + project API key + org ID**
+2. Run `graph_load_project_flows` to see all active flows and their input fields
+3. Run `graph_execute_flow` with the flow ID and matching payload
+4. The AI maps your natural language to the right flow and payload automatically
+
+---
+
+## Example Usage
+
+```
+show me all flows for project fcd1aa1d-...
+```
+
+```
+run the Changelog flow with sampleInput "hello world"
+```
+
+```
+execute the RAG flow and ask it "what is Lamatic?"
+```
+
+```
+refresh my flows
+```
+
+---
+
+## Links
+
+- [GitHub repository](https://github.com/Lamatic/GraphMCP-Lamatic)
+- [npm package](https://www.npmjs.com/package/@lamatic/graph-mcp)
+- [Dev MCP](/docs/dev-mcp) — Manage Lamatic projects via AI

@@ -9,7 +9,7 @@ description: Model Logic allows you to wrap and extend your model node's behavio
 
 Model Logic provides powerful ways to wrap and extend your model node's behavior, enabling advanced control mechanisms for error handling, branching, experimentation, and performance optimization. These logic options help you build more robust, reliable, and flexible AI workflows.
 
-> 💡 **Tip**: Model Logic is useful for error handling, branching, and experimentation. Add logic to your model nodes to enhance reliability and control flow execution.
+> **Tip**: Model Logic is useful for error handling, branching, and experimentation. Add logic to your model nodes to enhance reliability and control flow execution.
 
 ## Overview
 
@@ -42,7 +42,7 @@ When you select **Fallback**, you can configure:
 2. If Config A times out (based on your timeout setting) or fails, the system automatically switches to **Config B**
 3. The result from the successful configuration (either A or B) is used to continue the workflow
 
-> ⚠️ **Note**: Make sure Config B uses a different model or configuration that's more reliable or faster, even if potentially less optimal.
+> **Note**: Make sure Config B uses a different model or configuration that's more reliable or faster, even if potentially less optimal.
 
 ---
 
@@ -68,7 +68,7 @@ When you select **Retry**, you can configure:
    - The execution succeeds, or
    - The maximum number of retry attempts is reached
 
-> 💡 **Best Practice**: Set appropriate delay values to avoid overwhelming the model API and to respect rate limits.
+> **Best Practice**: Set appropriate delay values to avoid overwhelming the model API and to respect rate limits.
 
 ---
 
@@ -93,7 +93,7 @@ When you select **Parallel**, you can configure:
 3. You can access results from both configurations in subsequent nodes
 4. Results are typically available as separate outputs or can be combined based on your workflow logic
 
-> 💡 **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple models, as they run concurrently rather than sequentially.
+> **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple models, as they run concurrently rather than sequentially.
 
 ---
 
@@ -123,7 +123,7 @@ When you select **A/B Test**, you can configure:
 3. Results from both configurations can be tracked and compared
 4. The system maintains the traffic split distribution over time
 
-> 📊 **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
+> **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
 
 ---
 
@@ -143,7 +143,7 @@ To add logic to a model node:
 7. Configure the selected logic type with the appropriate settings
 8. Save your configuration
 
-> 💡 **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability.
+> **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability.
 
 ---
 

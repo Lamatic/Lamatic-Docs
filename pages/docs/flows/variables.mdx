@@ -16,19 +16,19 @@ This setup allows for creating logical chains, where the output from one node ac
 
 > **Note**: You can only access variables logically connected to a node within the flow, preserving data integrity and preventing unintended interactions.
 
-# Working with the Variable Selector
+## Working with the Variable Selector
 ![img_2.png](./img_2.png)
 
 The Variable Selector simplifies selecting and implementing variables in your workflow. Here’s how to use it:
 
-## Method 1: Using the "Add Variables" Button
+### Method 1: Using the "Add Variables" Button
 
 1. Find the "➕ Add Variables" button.
 2. Click to open the variable selection menu.
 3. Browse the available nodes and their variables.
 4. Select a variable to add it to your current node.
 
-## Method 2: Using Curly Braces Notation
+### Method 2: Using Curly Braces Notation
 
 1. In an input field, type two opening curly braces: `{{`.
 2. This triggers the variable selection menu.
@@ -37,12 +37,12 @@ The Variable Selector simplifies selecting and implementing variables in your wo
 
 The Variable Selector only displays nodes logically connected above the current node. After selecting a node, you can choose the specific variable from that node.
 
-### Limitations to Be Aware Of
+#### Limitations to Be Aware Of
 
 - **Code Node Output**: New structures in custom code node schemas may not appear immediately. You may need to manually select nested variables.
 - **Custom Webhook Schema**: Webhook schema variables may require a refresh or manual input due to varying structures.
 
-# Understanding Variable Schema
+## Understanding Variable Schema
 
 Variable schemas define the structure of node output variables. They can be:
 
@@ -54,7 +54,7 @@ To view variables for a node:
 1. Select the node in your workflow.
 2. Review the list of variables and their structures.
 
-## Accessing Nested Values
+### Accessing Nested Values
 
 To access a nested value:
 
@@ -64,7 +64,7 @@ To access a nested value:
 
 Example: `nodeOutput.nestedValue`
 
-# Manipulating Lists (Arrays)
+## Manipulating Lists (Arrays)
 
 Lists, or arrays, are collections of items sharing the same schema. Common operations on lists include:
 
@@ -76,7 +76,7 @@ Lists, or arrays, are collections of items sharing the same schema. Common opera
 
 > **Note**: Indexing starts at 0, so the first item is at position 0.
 
-# Configuring Output in Code Nodes
+## Configuring Output in Code Nodes
 
 With code nodes, you can set up a custom output schema as follows:
 
@@ -84,7 +84,7 @@ With code nodes, you can set up a custom output schema as follows:
 2. Assign your desired output value to the `output` variable.
 3. Structure your output using objects, arrays, or primitives.
 
-### Example
+#### Example
 
 ```javascript
 // Define an initial object

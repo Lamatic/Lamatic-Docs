@@ -217,11 +217,11 @@ nodes:
 
 ## Output
 
-#### `files`
+### `files`
 
 - An array of objects, each representing a file and its extracted content along with associated metadata.
 
-#### `metadata`
+### `metadata`
 
 - A nested object containing descriptive attributes of the file.
 
@@ -233,15 +233,15 @@ nodes:
   - **`size`**: The file size in bytes, or `null` if not available.
   - **`file_id`**: A unique identifier for the file within the processing context.
 
-#### `data`
+### `data`
 
 - An array of strings containing the extracted content from the file.
 
-#### `additional_fields`
+### `additional_fields`
 
 - A nested object containing supplementary data or metadata about file processing.
 
-#### `raw`
+### `raw`
 
 - An array of objects providing unprocessed or detailed extraction data.
 
@@ -258,23 +258,23 @@ nodes:
     - **`trapped`**: Related to PDF trapping status.
     - **`encryption`**: Indicates the file's encryption status, or `null` if not encrypted.
 
-#### `file_path`
+### `file_path`
 
 - A string specifying the temporary or local file path used during processing.
 
-#### `page_count`
+### `page_count`
 
 - An integer indicating the total number of pages in the file.
 
-#### `page`
+### `page`
 
 - An integer specifying the page number of the extracted content.
 
-#### `toc_items`
+### `toc_items`
 
 - An array containing the table of contents items.
 
-#### `tables`
+### `tables`
 
 - An array of objects describing tables extracted from the file.
 
@@ -282,19 +282,19 @@ nodes:
   - **`rows`**: The number of rows in a table.
   - **`columns`**: The number of columns in a table.
 
-#### `images`
+### `images`
 
 - An array of image data extracted from the file.
 
-#### `graphics`
+### `graphics`
 
 - An array of graphic elements extracted from the file.
 
-#### `text`
+### `text`
 
 - A string containing the raw text content extracted from a specific page or section.
 
-#### `words`
+### `words`
 
 - An array of individual words extracted from the text.
 

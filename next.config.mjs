@@ -673,7 +673,9 @@ const permanentRedirects = [
   ["/docs/sdk/next","/docs/api-integration/sdk/next"],
 ["/docs/deployment","/docs/deployments"],
 ["/comparison/dify","/compare/dify"],
-["/docs/playground/GraphiQL","/docs/interface/graphql"]
+["/docs/playground/GraphiQL","/docs/interface/graphql"],
+["/docs/mcp-tools/mcp","/docs/mcp"],
+["/docs/graph-mcp","/docs/mcp/graph-mcp"]
 
 
 ];

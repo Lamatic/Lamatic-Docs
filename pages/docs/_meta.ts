@@ -67,7 +67,7 @@ export default {
     type: "doc",
   },
   "mcp-tools": {
-    title: "MCP/Tools",
+    title: "Tools",
     type: "doc",
   },
   tests: {
@@ -133,6 +133,10 @@ export default {
     title: "SDK",
     type: "doc",
   },
+  mcp: {
+    title: "MCP",
+    type: "doc",
+  },
   // ===================
   MONITOR: {
     type: "separator",
@@ -172,13 +176,10 @@ export default {
     title: "Docs MCP",
     type: "doc",
   },
-  "graph-mcp": {
-    title: "Graph MCP",
-    type: "doc",
-  },
   "dev-mcp": {
     title: "Dev MCP",
     type: "doc",
+    display: "hidden",
   },
   contributing: {
     title: "Contributing",

@@ -2,7 +2,7 @@
 
 > Lamatic.ai is a managed platform for building, deploying, and monitoring AI-powered applications. Use this index to navigate the docs; the full text of every page is available at /llms-full.txt.
 
-> Full text: https://lamatic.ai/docs/llms-full.txt
+> Full text: https://lamatic.ai/llms-full.txt
 
 ## Getting Started
 

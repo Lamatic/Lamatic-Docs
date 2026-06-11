@@ -698,7 +698,7 @@ const rewrites = [
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
     [
-      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors).*)",
+      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|llms.txt|llms-full.txt|ambassadors).*)",
       "https://get.lamatic.ai/:path*",
     ],
 ];

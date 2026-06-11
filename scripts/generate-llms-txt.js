@@ -16,11 +16,11 @@ const path = require("path");
 const SITE_URL = "https://lamatic.ai";
 const ROOT = path.join(__dirname, "..");
 const DOCS_DIR = path.join(ROOT, "pages", "docs");
-// Served at /docs/llms.txt — root-level paths are rewritten away to get.lamatic.ai
-// by the catch-all in next.config.mjs, so we publish under /docs/ instead.
-const OUTPUT_DIR = path.join(ROOT, "public", "docs");
-const LLMS_URL_PATH = "/docs/llms.txt";
-const LLMS_FULL_URL_PATH = "/docs/llms-full.txt";
+// Served at /llms.txt — next.config.mjs adds an explicit rewrite + catch-all
+// exclusion so root-level access reaches this app instead of get.lamatic.ai.
+const OUTPUT_DIR = path.join(ROOT, "public");
+const LLMS_URL_PATH = "/llms.txt";
+const LLMS_FULL_URL_PATH = "/llms-full.txt";
 
 /** Parse simple YAML-ish frontmatter at the top of a file. */
 function parseFrontmatter(raw) {

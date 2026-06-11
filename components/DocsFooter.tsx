@@ -63,13 +63,13 @@ export default function DocsFooter() {
           </p>
           <div className="flex gap-4 text-xs text-gray-500 dark:text-neutral-500">
             <Link
-              href="/docs/llms.txt"
+              href="/llms.txt"
               className="no-underline transition-colors hover:text-gray-900 dark:hover:text-neutral-100"
             >
               llms.txt
             </Link>
             <Link
-              href="/docs/llms-full.txt"
+              href="/llms-full.txt"
               className="no-underline transition-colors hover:text-gray-900 dark:hover:text-neutral-100"
             >
               llms-full.txt

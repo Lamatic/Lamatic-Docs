@@ -67,7 +67,7 @@ export default {
     type: "doc",
   },
   "mcp-tools": {
-    title: "MCP/Tools",
+    title: "Tools",
     type: "doc",
   },
   tests: {
@@ -116,10 +116,6 @@ export default {
     type: "separator",
     title: "INTEGRATE",
   },
-  "api-overview": {
-    title: "API Overview",
-    type: "doc",
-  },
   "flow-integration": {
     title: "Flow Integration",
     type: "doc",
@@ -130,7 +126,15 @@ export default {
     type: "doc",
   },
   "api-integration": {
+    title: "API Integration",
+    type: "doc",
+  },
+  sdk: {
     title: "SDK",
+    type: "doc",
+  },
+  mcp: {
+    title: "MCP",
     type: "doc",
   },
   // ===================
@@ -172,13 +176,10 @@ export default {
     title: "Docs MCP",
     type: "doc",
   },
-  "graph-mcp": {
-    title: "Graph MCP",
-    type: "doc",
-  },
   "dev-mcp": {
     title: "Dev MCP",
     type: "doc",
+    display: "hidden",
   },
   contributing: {
     title: "Contributing",

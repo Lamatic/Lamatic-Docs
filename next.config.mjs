@@ -673,7 +673,15 @@ const permanentRedirects = [
   ["/docs/sdk/next","/docs/api-integration/sdk/next"],
 ["/docs/deployment","/docs/deployments"],
 ["/comparison/dify","/compare/dify"],
-["/docs/playground/GraphiQL","/docs/interface/graphql"]
+["/docs/playground/GraphiQL","/docs/interface/graphql"],
+["/docs/mcp-tools/mcp","/docs/mcp/mcp-node"],
+["/docs/graph-mcp","/docs/mcp/graph-mcp"],
+["/docs/api-overview","/docs/api-integration"],
+["/docs/api-integration/sdk","/docs/sdk"],
+["/docs/api-integration/sdk/go","/docs/sdk/go"],
+["/docs/api-integration/sdk/next","/docs/sdk/next"],
+["/docs/api-integration/sdk/react","/docs/sdk/react"],
+["/docs/api-integration/integration-guide","/docs/sdk/integration-guide"]
 
 
 ];
@@ -696,7 +704,7 @@ const rewrites = [
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
     [
-      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors).*)",
+      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|llms.txt|llms-full.txt|ambassadors).*)",
       "https://get.lamatic.ai/:path*",
     ],
 ];

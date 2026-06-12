@@ -57,10 +57,24 @@ export default function DocsFooter() {
           <LinkGroup title="Legal" links={legalLinks} />
           <LinkGroup title="Security" links={securityLinks} />
         </div>
-        <div className="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-800">
+        <div className="mt-8 pt-6 border-t border-gray-200 dark:border-neutral-800 flex flex-wrap items-center justify-between gap-2">
           <p className="text-xs text-gray-500 dark:text-neutral-500">
-            © {new Date().getFullYear()} Lamatic. 
+            © {new Date().getFullYear()} Lamatic.
           </p>
+          <div className="flex gap-4 text-xs text-gray-500 dark:text-neutral-500">
+            <Link
+              href="/llms.txt"
+              className="no-underline transition-colors hover:text-gray-900 dark:hover:text-neutral-100"
+            >
+              llms.txt
+            </Link>
+            <Link
+              href="/llms-full.txt"
+              className="no-underline transition-colors hover:text-gray-900 dark:hover:text-neutral-100"
+            >
+              llms-full.txt
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -1,5 +1,10 @@
 export default {
-  "integration-guide": "Integration Guide",
-  "api-key": "API Keys",
-  "sdk": "SDK (JS/TS, React, Next.js, Go)"
-}
+  index: {
+    title: "API Overview",
+    type: "doc",
+  },
+  "api-key": {
+    title: "API Keys",
+    type: "doc",
+  },
+};

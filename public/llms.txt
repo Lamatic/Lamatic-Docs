@@ -7,7 +7,6 @@
 ## Getting Started
 
 - [Agents](https://lamatic.ai/docs/agents): Agents in Lamatic.ai Studio
-- [API Overview](https://lamatic.ai/docs/api-overview): How to integrate with Lamatic programmatically — GraphQL, REST-style usage, and when to use the SDK.
 - [Architecture](https://lamatic.ai/docs/architecture): How does Lamatic work?
 - [Context](https://lamatic.ai/docs/context): Context in Lamatic Studio
 - [Contributing](https://lamatic.ai/docs/contributing): Contributing to Lamatic.ai Documentation
@@ -149,15 +148,20 @@
 
 ## Api Integration
 
-- [API Keys](https://lamatic.ai/docs/api-integration/api-key): To ensure secure access to our platform, Lamatic.ai employs API keys for authentication.
-- [Integration Guide](https://lamatic.ai/docs/api-integration/integration-guide): A comprehensive guide for integrating Lamatic.ai into your application using GraphQL API endpoints.
-- [SDK & Integration Guide](https://lamatic.ai/docs/api-integration/sdk): A powerful tool in Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
-- [Go](https://lamatic.ai/docs/api-integration/sdk/go): Integrate the Lamatic SDK with Go applications to execute flows and agents.
-- [Next.js](https://lamatic.ai/docs/api-integration/sdk/next): Integrate the Lamatic SDK with Next.js applications to execute flows.
-- [React SDK](https://lamatic.ai/docs/api-integration/sdk/react): Integrate the Lamatic SDK with React applications to execute flows.
+- [API Keys](https://lamatic.ai/docs/api-integration/api-key): Lamatic.ai uses API keys to authenticate access. There are two types — Project API Keys for triggering deployed flows, and Enterprise API Keys for managing your organization.
+- [API Overview](https://lamatic.ai/docs/api-integration): How to integrate with Lamatic programmatically — GraphQL, REST-style usage, and when to use the SDK.
 
 ## Mcp
 
 - [Graph MCP](https://lamatic.ai/docs/mcp/graph-mcp): Execute your deployed Lamatic flows via AI agents using natural language.
-- [Model Context Protocol (MCP)](https://lamatic.ai/docs/mcp): Model Context Protocol (MCP) is a standardized protocol that enables AI models to securely access external data sources and tools through a structured interface.
+- [MCP Overview](https://lamatic.ai/docs/mcp): Overview of Lamatic's Model Context Protocol (MCP) offerings — MCP Node for consuming external MCP servers, and Graph MCP for exposing your flows as tools.
+- [MCP Node](https://lamatic.ai/docs/mcp/mcp-node): Connect Lamatic flows to external MCP servers — securely access third-party data sources and tools through the Model Context Protocol.
+
+## Sdk
+
+- [Go](https://lamatic.ai/docs/sdk/go): Integrate the Lamatic SDK with Go applications to execute flows and agents.
+- [SDK & Integration Guide](https://lamatic.ai/docs/sdk): A powerful tool in Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
+- [Integration Guide](https://lamatic.ai/docs/sdk/integration-guide): A comprehensive guide for integrating Lamatic.ai into your application using GraphQL API endpoints.
+- [Next.js](https://lamatic.ai/docs/sdk/next): Integrate the Lamatic SDK with Next.js applications to execute flows.
+- [React SDK](https://lamatic.ai/docs/sdk/react): Integrate the Lamatic SDK with React applications to execute flows.
 

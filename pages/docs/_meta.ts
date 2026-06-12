@@ -116,10 +116,6 @@ export default {
     type: "separator",
     title: "INTEGRATE",
   },
-  "api-overview": {
-    title: "API Overview",
-    type: "doc",
-  },
   "flow-integration": {
     title: "Flow Integration",
     type: "doc",
@@ -130,6 +126,10 @@ export default {
     type: "doc",
   },
   "api-integration": {
+    title: "API Integration",
+    type: "doc",
+  },
+  sdk: {
     title: "SDK",
     type: "doc",
   },

@@ -115,7 +115,7 @@ axios(options)
   .catch(error => console.error('Error:', error.response?.data || error.message));
 ```
 
-Replace `<FLOW_ID>`, `<PROJECT_ID>`, and the endpoint with the values from the Connect modal. Get your API key from **Studio → Settings → API Keys** or the **Get API Key** link in the modal. See [API Overview](/docs/api-overview) and [API Keys](/docs/api-integration/api-key) for more.
+Replace `<FLOW_ID>`, `<PROJECT_ID>`, and the endpoint with the values from the Connect modal. Get your API key from **Studio → Settings → API Keys** or the **Get API Key** link in the modal. See [API Overview](/docs/api-integration) and [API Keys](/docs/api-integration/api-key) for more.
 
 ### submitFeedback
 
@@ -169,4 +169,4 @@ Replace `your-project-api-key` with your actual API key from **Get API Key** in 
 
 - Copy the generated **page** and **utils** snippets from the App Frameworks tab into your app.
 - Ensure the payload you send matches your flow’s input schema (e.g. required fields like `symbol`).
-- For more API details, see [API Overview](/docs/api-overview) and [Integration Guide](/docs/api-integration/integration-guide).
+- For more API details, see [API Overview](/docs/api-integration) and [Integration Guide](/docs/sdk/integration-guide).

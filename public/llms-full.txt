@@ -1075,7 +1075,7 @@ Source: https://lamatic.ai/docs/flow-integration
 
 Once you've developed your flow along with testing and deployment, you can integrate it into your application. Lamatic provides a **Connect to your project** experience in the Studio that gives you instructions to execute flows based on your trigger and implementation methods.
 
-If your application, API, or webhook receiver is behind a firewall, review [IP Allowlisting](/docs/whitelist-ip) before going live.
+If your application, API, or webhook receiver is behind a firewall, review [IP Allowlisting](/docs/ips) before going live.
 
 ## Integration checklist
 
@@ -1833,6 +1833,151 @@ The widget solution allows for quick integration of Generative AI features into 
 
 ---
 
+# IP Allowlisting
+
+Source: https://lamatic.ai/docs/ips
+
+# IP Allowlisting
+
+Use this page when your database, API, webhook receiver, or self-hosted tool is protected by a firewall, IP allowlist, private network rule, or reverse proxy policy.
+
+Lamatic can connect to external systems through more than one network path depending on the feature you use. In practice, most teams should allowlist the Lamatic static IPs below and also include the published Cloudflare IP ranges when traffic originates from edge workers.
+
+<Callout type="info">
+  Always keep your allowlist as narrow as possible. Only allow the Lamatic IPs and network ranges required for the features you use.
+</Callout>
+
+## When you need to allowlist IPs
+
+You may need to update your firewall or network policy when:
+
+- Lamatic connects to your **database** such as PostgreSQL, MySQL, or Microsoft SQL Server
+- Lamatic sends requests to your **internal APIs** or external applications
+- Lamatic calls your **webhook endpoints**
+- Your self-hosted tools such as **n8n**, **Firecrawl**, or similar services only accept traffic from approved source IPs
+- Your cloud services use **security groups**, **network ACLs**, or **IP-based access policies**
+
+## Why there are multiple IP groups
+
+Lamatic uses different infrastructure paths for different workloads:
+
+- **Global IPs** cover core Lamatic platform traffic used for general external connectivity
+- **Data ETL IPs** are dedicated static egress IPs for data sync and connector workloads
+- **Cloudflare worker IP ranges** are relevant for Lamatic edge and worker-based traffic because Lamatic runs on Cloudflare-backed infrastructure
+
+If you are unsure which path applies to your setup, allowlist all IPs on this page first, verify connectivity, and then narrow the policy if needed.
+
+## Lamatic IPs to allowlist
+
+### Global
+
+Allowlist these IPs for general Lamatic outbound connectivity:
+
+- `68.183.131.192`
+- `167.99.227.79`
+
+### Data ETL
+
+Allowlist these IPs for database sync, ETL, and connector workloads:
+
+| Environment | IP address |
+| --- | --- |
+| Pro | `138.197.51.144` |
+| Enterprise | `138.197.234.83` |
+
+## Cloudflare worker IP ranges
+
+Lamatic edge traffic can also originate from Cloudflare worker infrastructure. If your target system uses strict IP-based rules, include the current Cloudflare IP ranges in addition to the Lamatic static IPs above.
+
+### IPv4 ranges
+
+- `103.21.244.0/22`
+- `103.22.200.0/22`
+- `103.31.4.0/22`
+- `104.16.0.0/12`
+- `108.162.192.0/18`
+- `131.0.72.0/22`
+- `141.101.64.0/18`
+- `162.158.0.0/15`
+- `172.64.0.0/13`
+- `173.245.48.0/20`
+- `188.114.96.0/20`
+- `190.93.240.0/20`
+- `197.234.240.0/22`
+- `198.41.128.0/17`
+
+### IPv6 ranges
+
+- `2400:cb00::/32`
+- `2405:8100::/32`
+- `2405:b500::/32`
+- `2606:4700::/32`
+- `2803:f800::/32`
+- `2c0f:f248::/32`
+- `2a06:98c0::/29`
+
+<Callout type="warning">
+  Cloudflare can update these ranges over time. Before finalizing a production firewall policy, verify the latest published ranges at <a href="https://www.cloudflare.com/ips/" target="_blank" rel="noreferrer">cloudflare.com/ips</a>.
+</Callout>
+
+## Which IPs to use by scenario
+
+| Scenario | Allowlist |
+| --- | --- |
+| PostgreSQL, MySQL, Microsoft SQL Server, or other database connectors | Lamatic **Global** IPs and **Data ETL** IPs |
+| Outbound API calls from flows or the API Node | Lamatic **Global** IPs and **Cloudflare worker IP ranges** |
+| Incoming webhook receivers exposed behind your firewall | Lamatic **Global** IPs and **Cloudflare worker IP ranges** |
+| Self-hosted integrations such as n8n or Firecrawl | Lamatic **Global** IPs, **Data ETL** IPs if used, and **Cloudflare worker IP ranges** |
+| Unsure which feature path applies | Allowlist **all IPs and ranges on this page** first, then narrow after testing |
+
+## Recommended setup steps
+
+1. Identify every Lamatic feature that will reach your system, such as a database sync, webhook trigger, API node call, or self-hosted integration.
+2. Add the required IPs and ranges from this page to your firewall, reverse proxy, security group, or network ACL.
+3. Confirm the target port is open for the required protocol, such as `443`, `5432`, `3306`, or `1433`.
+4. Keep TLS or SSL enabled where supported. IP allowlisting should complement transport security, not replace it.
+5. Test the connection from Lamatic again.
+6. Review logs on both sides to confirm the request is reaching your service.
+
+## Additional guidance
+
+### For databases
+
+- Prefer a dedicated read-only user where possible
+- Restrict access to the minimum set of schemas, tables, and ports required
+- If your database is behind a bastion or SSH tunnel, update those network rules as well
+
+### For webhooks and APIs
+
+- Make sure your WAF, API gateway, or reverse proxy trusts the same IPs
+- If you use rate limiting or bot protection, create an allow rule for Lamatic traffic
+- Verify that your endpoint accepts HTTPS requests and returns the expected status codes
+
+### For self-hosted services
+
+- Apply allowlist rules at every layer that can block traffic, including load balancers, ingress controllers, host firewalls, and cloud security groups
+- Re-test after infrastructure changes, certificate rotations, or firewall updates
+
+## Troubleshooting checklist
+
+- Confirm the host, port, and DNS record are correct
+- Check whether the block is happening at the firewall, proxy, VPN, or database level
+- Verify SSL or TLS settings independently from the IP allowlist
+- If connectivity still fails, temporarily allow all IPs from this page together to rule out a missing source range
+
+## Related docs
+
+- [API Keys](/docs/api-integration/api-key)
+- [Flow Integration](/docs/flow-integration)
+- [Webhooks](/docs/interface/webhooks)
+- [API Node](/docs/nodes/data/api-node)
+- [PostgreSQL](/integrations/apps-data-sources/postgres)
+- [MySQL](/integrations/apps-data-sources/mysql)
+- [Microsoft SQL Server](/integrations/apps-data-sources/microsoft-sql-server)
+
+
+---
+
 # Jobs
 
 Source: https://lamatic.ai/docs/jobs
@@ -2380,151 +2525,6 @@ After selecting a template or shortcut, Lamatic opens the Flow Editor preloaded 
 1. Test the agent in the inline console before hitting **Deploy**.
 
 Once deployed, the green `Project Deployed` badge in the header confirms the latest version is live. You can redeploy as you iterate—the Vibe Build entry point is always a click away for starting additional agents.
-
-
----
-
-# IP Allowlisting
-
-Source: https://lamatic.ai/docs/whitelist-ip
-
-# IP Allowlisting
-
-Use this page when your database, API, webhook receiver, or self-hosted tool is protected by a firewall, IP allowlist, private network rule, or reverse proxy policy.
-
-Lamatic can connect to external systems through more than one network path depending on the feature you use. In practice, most teams should allowlist the Lamatic static IPs below and also include the published Cloudflare IP ranges when traffic originates from edge workers.
-
-<Callout type="info">
-  Always keep your allowlist as narrow as possible. Only allow the Lamatic IPs and network ranges required for the features you use.
-</Callout>
-
-## When you need to allowlist IPs
-
-You may need to update your firewall or network policy when:
-
-- Lamatic connects to your **database** such as PostgreSQL, MySQL, or Microsoft SQL Server
-- Lamatic sends requests to your **internal APIs** or external applications
-- Lamatic calls your **webhook endpoints**
-- Your self-hosted tools such as **n8n**, **Firecrawl**, or similar services only accept traffic from approved source IPs
-- Your cloud services use **security groups**, **network ACLs**, or **IP-based access policies**
-
-## Why there are multiple IP groups
-
-Lamatic uses different infrastructure paths for different workloads:
-
-- **Global IPs** cover core Lamatic platform traffic used for general external connectivity
-- **Data ETL IPs** are dedicated static egress IPs for data sync and connector workloads
-- **Cloudflare worker IP ranges** are relevant for Lamatic edge and worker-based traffic because Lamatic runs on Cloudflare-backed infrastructure
-
-If you are unsure which path applies to your setup, allowlist all IPs on this page first, verify connectivity, and then narrow the policy if needed.
-
-## Lamatic IPs to allowlist
-
-### Global
-
-Allowlist these IPs for general Lamatic outbound connectivity:
-
-- `68.183.131.192`
-- `167.99.227.79`
-
-### Data ETL
-
-Allowlist these IPs for database sync, ETL, and connector workloads:
-
-| Environment | IP address |
-| --- | --- |
-| Pro | `138.197.51.144` |
-| Enterprise | `138.197.234.83` |
-
-## Cloudflare worker IP ranges
-
-Lamatic edge traffic can also originate from Cloudflare worker infrastructure. If your target system uses strict IP-based rules, include the current Cloudflare IP ranges in addition to the Lamatic static IPs above.
-
-### IPv4 ranges
-
-- `103.21.244.0/22`
-- `103.22.200.0/22`
-- `103.31.4.0/22`
-- `104.16.0.0/12`
-- `108.162.192.0/18`
-- `131.0.72.0/22`
-- `141.101.64.0/18`
-- `162.158.0.0/15`
-- `172.64.0.0/13`
-- `173.245.48.0/20`
-- `188.114.96.0/20`
-- `190.93.240.0/20`
-- `197.234.240.0/22`
-- `198.41.128.0/17`
-
-### IPv6 ranges
-
-- `2400:cb00::/32`
-- `2405:8100::/32`
-- `2405:b500::/32`
-- `2606:4700::/32`
-- `2803:f800::/32`
-- `2c0f:f248::/32`
-- `2a06:98c0::/29`
-
-<Callout type="warning">
-  Cloudflare can update these ranges over time. Before finalizing a production firewall policy, verify the latest published ranges at <a href="https://www.cloudflare.com/ips/" target="_blank" rel="noreferrer">cloudflare.com/ips</a>.
-</Callout>
-
-## Which IPs to use by scenario
-
-| Scenario | Allowlist |
-| --- | --- |
-| PostgreSQL, MySQL, Microsoft SQL Server, or other database connectors | Lamatic **Global** IPs and **Data ETL** IPs |
-| Outbound API calls from flows or the API Node | Lamatic **Global** IPs and **Cloudflare worker IP ranges** |
-| Incoming webhook receivers exposed behind your firewall | Lamatic **Global** IPs and **Cloudflare worker IP ranges** |
-| Self-hosted integrations such as n8n or Firecrawl | Lamatic **Global** IPs, **Data ETL** IPs if used, and **Cloudflare worker IP ranges** |
-| Unsure which feature path applies | Allowlist **all IPs and ranges on this page** first, then narrow after testing |
-
-## Recommended setup steps
-
-1. Identify every Lamatic feature that will reach your system, such as a database sync, webhook trigger, API node call, or self-hosted integration.
-2. Add the required IPs and ranges from this page to your firewall, reverse proxy, security group, or network ACL.
-3. Confirm the target port is open for the required protocol, such as `443`, `5432`, `3306`, or `1433`.
-4. Keep TLS or SSL enabled where supported. IP allowlisting should complement transport security, not replace it.
-5. Test the connection from Lamatic again.
-6. Review logs on both sides to confirm the request is reaching your service.
-
-## Additional guidance
-
-### For databases
-
-- Prefer a dedicated read-only user where possible
-- Restrict access to the minimum set of schemas, tables, and ports required
-- If your database is behind a bastion or SSH tunnel, update those network rules as well
-
-### For webhooks and APIs
-
-- Make sure your WAF, API gateway, or reverse proxy trusts the same IPs
-- If you use rate limiting or bot protection, create an allow rule for Lamatic traffic
-- Verify that your endpoint accepts HTTPS requests and returns the expected status codes
-
-### For self-hosted services
-
-- Apply allowlist rules at every layer that can block traffic, including load balancers, ingress controllers, host firewalls, and cloud security groups
-- Re-test after infrastructure changes, certificate rotations, or firewall updates
-
-## Troubleshooting checklist
-
-- Confirm the host, port, and DNS record are correct
-- Check whether the block is happening at the firewall, proxy, VPN, or database level
-- Verify SSL or TLS settings independently from the IP allowlist
-- If connectivity still fails, temporarily allow all IPs from this page together to rule out a missing source range
-
-## Related docs
-
-- [API Keys](/docs/api-integration/api-key)
-- [Flow Integration](/docs/flow-integration)
-- [Webhooks](/docs/interface/webhooks)
-- [API Node](/docs/nodes/data/api-node)
-- [PostgreSQL](/integrations/apps-data-sources/postgres)
-- [MySQL](/integrations/apps-data-sources/mysql)
-- [Microsoft SQL Server](/integrations/apps-data-sources/microsoft-sql-server)
 
 
 ---
@@ -6459,7 +6459,7 @@ The Lamatic.ai API Node enables users to integrate external REST APIs effortless
 
 <Callout type="info">
   If the target API is protected by a firewall, security group, or IP allowlist,
-  review [IP Allowlisting](/docs/whitelist-ip) before testing the node.
+  review [IP Allowlisting](/docs/ips) before testing the node.
 </Callout>
 
 ## Setup
@@ -12116,7 +12116,7 @@ Webhooks facilitate seamless communication between systems in Lamatic. Here’s 
 
 <Callout type="info">
   If your webhook receiver is protected by a firewall or IP-based access policy,
-  see [IP Allowlisting](/docs/whitelist-ip) before enabling production traffic.
+  see [IP Allowlisting](/docs/ips) before enabling production traffic.
 </Callout>
 
 ## Setting Up Webhooks
@@ -12828,7 +12828,7 @@ By including the API key in the `Authorization` header, our platform can verify 
 
 ## Network and firewall configuration
 
-If your application environment, API gateway, or webhook receiver uses IP-based access controls, review [IP Allowlisting](/docs/whitelist-ip) to allow Lamatic traffic before moving to production.
+If your application environment, API gateway, or webhook receiver uses IP-based access controls, review [IP Allowlisting](/docs/ips) to allow Lamatic traffic before moving to production.
 
 ### Next Steps
 

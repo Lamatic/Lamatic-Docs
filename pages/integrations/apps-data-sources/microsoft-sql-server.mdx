@@ -49,6 +49,8 @@ Before using the Microsoft SQL Server node, ensure the following:
 - Network/firewall settings that allow access from your Lamatic environment.
 - SSL certificates available if you plan to use certificate verification modes.
 
+If the server is protected by IP-based network rules, review [IP Allowlisting](/docs/whitelist-ip) before connecting.
+
 ## Setup
 
 ### Step 1: Configure Microsoft SQL Server credentials in Lamatic
@@ -105,7 +107,7 @@ Use the Microsoft SQL Server node as an **Action** with the following fields:
 
 | **Problem** | **Solution** |
 |-------------|---------------|
-| **Connection failed** | Verify host, port, database, and network/firewall access. |
+| **Connection failed** | Verify host, port, database, and network/firewall access. See [IP Allowlisting](/docs/whitelist-ip). |
 | **Login failed for user** | Recheck username/password and SQL Server user permissions. |
 | **SSL error** | Use the correct SSL mode and ensure CA/certificate settings are valid for your environment. |
 | **Query execution error** | Validate SQL syntax and confirm the user has required table/schema permissions. |

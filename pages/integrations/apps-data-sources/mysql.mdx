@@ -62,6 +62,8 @@ Here is an outline of the minimum required steps to configure a MySQL connector:
 
 Once this is complete, you can select MySQL as a source for syncing data or as an action for running queries.
 
+If your MySQL instance is protected by network rules, review [IP Allowlisting](/docs/whitelist-ip) before testing the connection.
+
 ### Step 1: Create a dedicated read-only MySQL user
 
 These steps create a dedicated read-only user for replicating data. Alternatively, you can use an existing MySQL user with sufficient privileges.
@@ -284,7 +286,7 @@ nodes:
 
 | **Problem** | **Solution** |
 |-------------|---------------|
-| **Connection refused** | Check host, port, and firewall. For cloud MySQL, allow Lamatic IPs. |
+| **Connection refused** | Check host, port, and firewall settings. See [IP Allowlisting](/docs/whitelist-ip). |
 | **SSL handshake failed** | Try a different SSL mode (e.g., `preferred` or `required`) or verify server certificate. |
 | **Access denied** | Verify username, password, and granted privileges (e.g., SELECT, REPLICATION CLIENT). |
 | **SSH tunnel failed** | Confirm bastion host, port, SSH user, and key/password. Ensure the public key is in `authorized_keys` on the bastion. |

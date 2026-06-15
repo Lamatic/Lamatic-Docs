@@ -120,6 +120,10 @@ export default {
     title: "Flow Integration",
     type: "doc",
   },
+  "whitelist-ip": {
+    title: "IP Allowlisting",
+    type: "doc",
+  },
 
   interface: {
     title: "GraphQL, Webhooks & Widgets",

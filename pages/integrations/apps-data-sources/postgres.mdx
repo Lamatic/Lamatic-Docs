@@ -117,8 +117,8 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA <schema_name> GRANT SELECT ON TABLES TO <user
 
 <Callout type="warning">
   **Important:** Your database user must have permissions to access the relevant
-  schemas and tables. If the connection fails, you may need to whitelist Ips:
-  `34.60.178.119`, `35.188.95.166` and `104.197.162.200`
+  schemas and tables. If your database is behind a firewall or IP allowlist,
+  see [IP Allowlisting](/docs/ips).
 </Callout>
 
 
@@ -311,7 +311,7 @@ triggerNode:
 | **Sync Not Scheduled**  | Check cron expression format and ensure sync schedule is properly configured |
 | **Schema Access Error**     | Verify you have access to the specified database schema                      |
 | **Large Table Performance** | Use incremental sync mode and consider materialized views for large datasets |
-| **Network Connectivity**    | Check firewall settings and whitelist Cloudflare IPs if connection fails     |
+| **Network Connectivity**    | Check firewall settings and review [IP Allowlisting](/docs/ips)     |
 
 ### Debugging Steps
 
@@ -320,7 +320,7 @@ triggerNode:
 3. **Validate Schema/Table**: Confirm the schema and table exist and are accessible
 4. **Test Permissions**: Verify your user has read permissions on the target objects
 5. **Check Sync Logs**: Review Lamatic Flow logs for detailed error information
-6. If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+6. If the connection fails, review [IP Allowlisting](/docs/ips) and confirm the required Lamatic and Cloudflare ranges are allowed.
 
 ### Best Practices
 

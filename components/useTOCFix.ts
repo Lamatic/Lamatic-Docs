@@ -6,6 +6,7 @@ export function useTOCFix() {
   const lastPath = useRef<string>('');
   const [isClient, setIsClient] = useState(false);
   const cleanupRef = useRef<(() => void) | null>(null);
+  const timeoutRef = useRef<number[]>([]);
 
   useEffect(() => {
     setIsClient(true);
@@ -15,6 +16,10 @@ export function useTOCFix() {
     if (!isClient) return;
 
     const currentPath = router.asPath.split('#')[0];
+    const clearPendingTimeouts = () => {
+      timeoutRef.current.forEach(timeout => window.clearTimeout(timeout));
+      timeoutRef.current = [];
+    };
 
     if (lastPath.current !== currentPath) {
       lastPath.current = currentPath;
@@ -60,32 +65,32 @@ export function useTOCFix() {
           setActiveHeading(activeId);
         };
 
-        // Fix TOC link hrefs and add smooth-scroll handlers (only unpatched links)
-        const tocLinks = tocContainer.querySelectorAll('a[href^="#"]');
+        const linkCleanupFns: Array<() => void> = [];
+        const tocLinks = tocContainer.querySelectorAll('a[href*="#"]');
         tocLinks.forEach((link) => {
           const href = link.getAttribute('href');
-          if (!href?.startsWith('#')) return;
+          if (!href?.includes('#')) return;
 
-          const newLink = link.cloneNode(true) as HTMLAnchorElement;
-          link.parentNode?.replaceChild(newLink, link);
-          newLink.setAttribute('href', `${currentPath}${href}`);
+          const targetId = href.substring(href.lastIndexOf('#') + 1);
+          if (!targetId) return;
 
-          const targetId = href.substring(1);
+          link.setAttribute('href', `${currentPath}#${targetId}`);
 
-          newLink.addEventListener('click', (e) => {
+          const handleClick = (e: Event) => {
             e.preventDefault();
             const el = document.getElementById(targetId);
             if (el) {
               el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              // Smooth scroll doesn't always emit a final scroll event at the
-              // settled position, so force a check after animation completes.
               setTimeout(updateActive, 600);
             }
+          };
+
+          link.addEventListener('click', handleClick);
+          linkCleanupFns.push(() => {
+            link.removeEventListener('click', handleClick);
           });
         });
 
-        // Populate linkMap and stamp data-toc-level for CSS nesting.
-        // Works whether links are already patched ("/page#id") or still raw ("#id").
         tocContainer.querySelectorAll('a[href*="#"]').forEach((link) => {
           const href = link.getAttribute('href') ?? '';
           const id = href.substring(href.lastIndexOf('#') + 1);
@@ -112,16 +117,21 @@ export function useTOCFix() {
         cleanupRef.current = () => {
           window.removeEventListener('scroll', onScroll);
           if (rafId !== null) cancelAnimationFrame(rafId);
+          linkCleanupFns.forEach(cleanup => cleanup());
         };
 
         updateActive();
       };
 
-      setTimeout(setupTOC, 100);
-      setTimeout(setupTOC, 500);
+      clearPendingTimeouts();
+      timeoutRef.current = [
+        window.setTimeout(setupTOC, 100),
+        window.setTimeout(setupTOC, 500),
+      ];
     }
 
     return () => {
+      clearPendingTimeouts();
       cleanupRef.current?.();
       cleanupRef.current = null;
     };

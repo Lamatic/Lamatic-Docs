@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import {
   SquareGanttChart,
@@ -62,39 +62,22 @@ function SwitcherContent() {
   );
 }
 
+const SWITCHER_PORTAL_ID = "sidebar-switcher-portal";
+
 export function SidebarSwitcher() {
   const [target, setTarget] = useState<Element | null>(null);
   const { asPath } = useRouter();
 
   useEffect(() => {
-    setTarget(null);
-
     const findTarget = () => {
-      // First try: find a "Switcher" separator <li> and use it
-      const sidebarItems = document.querySelectorAll(
-        ".nextra-sidebar-container li"
-      );
-      for (const li of sidebarItems) {
-        if (li.textContent?.trim() === "Switcher") {
-          li.innerHTML = "";
-          li.style.padding = "0";
-          li.style.margin = "0";
-          setTarget(li);
-          return true;
-        }
-      }
-
-      // Fallback: insert into the sidebar scroll area
       const scrollArea = document.querySelector(
         ".nextra-sidebar-container .nextra-scrollbar"
       );
       if (scrollArea) {
-        // Check if we already injected a container
-        let container = scrollArea.querySelector("#switcher-portal");
+        let container = scrollArea.querySelector(`#${SWITCHER_PORTAL_ID}`);
         if (!container) {
           container = document.createElement("div");
-          container.id = "switcher-portal";
-          // Insert at the top of the inner transform wrapper
+          container.id = SWITCHER_PORTAL_ID;
           const inner = scrollArea.firstElementChild || scrollArea;
           inner.insertBefore(container, inner.firstChild);
         }

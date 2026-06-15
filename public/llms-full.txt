@@ -70,7 +70,7 @@ A **Multi-Modal Agent** processes and generates outputs across different data ty
 - **Use Memory Wisely:** Enable memory retention for agents that need contextual awareness.
 - **Test & Iterate:** Experiment with different configurations for the best results.
 
-By leveraging these agent types effectively, you can build powerful AI-driven applications inside Lamatic.ai. 🚀
+By leveraging these agent types effectively, you can build powerful AI-driven applications inside Lamatic.ai.
 
 ## Troubleshooting
 
@@ -122,7 +122,6 @@ These following steps highlight the typical execution of steps involved in build
     The green shaded area is where the private  information of organisation is stored and processed. Lamatic can be customized
     to host this data on premise or on a private cloud. This ensures that the data is not shared with any third party and is
     completely secure.
-
 
 ## Layers
 ![Architecture diagram](./concepts/img/arch-diagram.jpg)
@@ -177,8 +176,6 @@ This holds all the code logic that enables the reliable execution of our GraphQL
 - **A/B Module** - Perform optimization across Agents, Rules, and Models.
 - **Model Relay** - Managed connections across multiple models.
 
-
-
 ### Model Integration
 
 Integration with third-party models and APIs.
@@ -218,7 +215,7 @@ Context refers to additional information provided to a Large Language Model duri
 2. **Limited Access**: Some information may not be publicly available, and thus, not included in the model's training data.
 3. **Private Information**: Certain data may be part of confidential interactions with the AI system.
 
-> ⚠️ **Note**: LLMs operate within these limitations, which can affect the quality and relevance of their outputs.
+> **Note**: LLMs operate within these limitations, which can affect the quality and relevance of their outputs.
 
 ---
 
@@ -227,15 +224,13 @@ Context refers to additional information provided to a Large Language Model duri
 - **Reduced Hallucinations**: By narrowing the scope, LLMs are less likely to generate false or irrelevant information.
 - **Enhanced Efficiency**: Context allows LLMs to focus on specific information, leading to faster and more precise responses.
 
-> 💡 **Tip**: Providing context results in higher quality outputs with fewer iterations and less training.
+> **Tip**: Providing context results in higher quality outputs with fewer iterations and less training.
 
 ---
 
 ## Methods of Providing Context
 ### Direct Prompt Inclusion
 The simplest method involves incorporating relevant information directly into the prompt. However, this approach has limitations due to LLMs' context limits.
-
-
 
 ### Retrieval using Vector Databases
 Vector databases are a powerful solution for context-related challenges in AI. They store and retrieve information based on semantic meaning, allowing for more nuanced and relevant context retrieval.
@@ -245,20 +240,17 @@ Vector databases are a powerful solution for context-related challenges in AI. T
 #### Understanding Vectors and Vector Databases
 Vectors in this context are mathematical representations of words, phrases, or entire documents. They capture semantic meaning, allowing for comparison and retrieval based on similarity rather than exact matching. Vector databases efficiently store and query these high-dimensional vectors, enabling rapid retrieval of relevant context.
 
-> 📊 **Quick Fact**: Vectors enable semantic searches, making them highly effective for contextual queries.
-
+> **Quick Fact**: Vectors enable semantic searches, making them highly effective for contextual queries.
 
 #### When to Use Vector Databases
 Vector databases are particularly useful when dealing with large amounts of unstructured data, such as documents, articles, or product descriptions. They excel in scenarios where semantic similarity is more important than exact keyword matching, making them ideal for providing relevant context to LLMs.
 
-> 📝 **Best Practice**: Use vector databases for unstructured data retrieval when accuracy based on meaning is essential.
-
-
+> **Best Practice**: Use vector databases for unstructured data retrieval when accuracy based on meaning is essential.
 
 #### Lamatic's Built-in Vector Database Powered by Weaviate
 Lamatic integrates **Weaviate**, a powerful vector database, to provide efficient and accurate context retrieval. This integration allows users to leverage the benefits of vector-based search and retrieval without the need for complex setup or management.
 
-> ⚙️ **Pro Tip**: Take advantage of Lamatic’s Weaviate-powered system for easy and precise context management.
+> **Pro Tip**: Take advantage of Lamatic’s Weaviate-powered system for easy and precise context management.
 
 ---
 
@@ -268,13 +260,12 @@ Memory systems offer another approach to providing context, particularly useful 
 #### When to Use Memories
 Memories are particularly valuable in scenarios requiring long-term context retention, such as ongoing customer support interactions, personalized tutoring, or any application where user preferences and history play a crucial role in generating appropriate responses.
 
-> 🔄 **Pro Tip**: Use memories for long-term user preferences and ongoing conversations.
-
+> **Pro Tip**: Use memories for long-term user preferences and ongoing conversations.
 
 #### Lamatic's Built-in Memories Powered by mem0 ( Beta )
 Lamatic incorporates **mem0**, a cutting-edge memory system, to enhance its context-awareness capabilities. This feature allows the platform to remember and utilize important information across multiple interactions, leading to more personalized and contextually relevant outputs.
 
-> 💡 **Tip**: Leverage mem0 for enhanced personalization and context awareness over time.
+> **Tip**: Leverage mem0 for enhanced personalization and context awareness over time.
 
 ---
 
@@ -282,14 +273,14 @@ Lamatic incorporates **mem0**, a cutting-edge memory system, to enhance its cont
 ### API Calling
 API calling involves retrieving real-time information from external sources to provide up-to-date context. This method is particularly useful when dealing with dynamic data such as weather information, stock prices, or current events.
 
-> 🔗 **Quick Note**: Use API calls to fetch real-time data for the most current context.
+> **Quick Note**: Use API calls to fetch real-time data for the most current context.
 
 ---
 
 ### Tools in Agents
 Agent-based systems can utilize various tools to gather and process context. These tools may include web scrapers, database queries, or specialized algorithms that can analyze and summarize large amounts of data to provide relevant context to the LLM.
 
-> 🛠️ **Pro Tip**: Implement agent tools to enhance the breadth and depth of context provided to LLMs.
+> **Pro Tip**: Implement agent tools to enhance the breadth and depth of context provided to LLMs.
 
 ## Choosing the Right Context Method
 
@@ -446,13 +437,13 @@ When writing or editing docs, follow these principles so the docs stay clear and
 
 When contributing or reporting issues, it's helpful to categorize them. Here are the main types of issues you might encounter or want to report:
 
-1. **🐛 Bug**: An error, flaw, or fault in the documentation that produces an incorrect or unexpected result. This could include broken links, incorrect information, or formatting issues.
+1. **Bug**: An error, flaw, or fault in the documentation that produces an incorrect or unexpected result. This could include broken links, incorrect information, or formatting issues.
 
-2. **🚀 Feature Request**: A suggestion for a new addition to the documentation. This could be a request for documentation on a new feature of Lamatic.ai or a proposal for a new section in the existing docs.
+2. **Feature Request**: A suggestion for a new addition to the documentation. This could be a request for documentation on a new feature of Lamatic.ai or a proposal for a new section in the existing docs.
 
-3. **📈 Improvement**: A suggestion to enhance existing documentation. This could involve clarifying explanations, adding more examples, or restructuring content for better readability.
+3. **Improvement**: A suggestion to enhance existing documentation. This could involve clarifying explanations, adding more examples, or restructuring content for better readability.
 
-4. **✏️ Typo**: A small error in the text, such as a misspelling or grammatical mistake.
+4. **Typo**: A small error in the text, such as a misspelling or grammatical mistake.
 
 When creating an issue or pull request, please prefix your title with the appropriate issue type in square brackets or assign appropriate labels. For example:
 
@@ -488,8 +479,7 @@ Edge deployment is an innovative approach to running applications and services t
 
 ![Edge Locations](https://miro.medium.com/v2/resize:fit:1400/0*ppjQ6XBDcjcI7w2o.png)
 
-> 🌩️ **Built on Cloudflare**: Our cutting-edge infrastructure leverages Enterprise-grade Cloudflare Workers for optimal performance and reliability. For organizations requiring on-premise solutions or custom network deployments tailored to specific needs, we invite you to reach out to our dedicated team at [hello@lamatic.ai](mailto:hello@lamatic.ai). We're here to provide personalized solutions that align with your unique requirements.
-
+> **Built on Cloudflare**: Our cutting-edge infrastructure leverages Enterprise-grade Cloudflare Workers for optimal performance and reliability. For organizations requiring on-premise solutions or custom network deployments tailored to specific needs, we invite you to reach out to our dedicated team at [hello@lamatic.ai](mailto:hello@lamatic.ai). We're here to provide personalized solutions that align with your unique requirements.
 
 ---
 
@@ -509,7 +499,7 @@ Whether you're a forward-thinking global enterprise aiming to harness the full p
 2. **Transformation**: The LowCode Configuration undergoes a sophisticated transpilation process, converting it into a highly optimized TypeScript bundle. This bundle is enriched with essential resources, including your specified Model parameters and secure App Credentials, ensuring a complete package for deployment.
 3. **Distribution**: The final step involves the seamless deployment of the TypeScript bundle across our expansive, distributed Edge network. This strategic distribution ensures that your application is readily available at numerous points of presence worldwide, primed for high performance and low latency.
 
-> 💡 **Note**: While our advanced systems typically complete this intricate deployment process in less than a minute, please note that during periods of high deployment volume across our platform, the process might require additional time. Rest assured, we're continuously optimizing our systems to maintain the fastest possible deployment times without compromising on quality or security.
+> **Note**: While our advanced systems typically complete this intricate deployment process in less than a minute, please note that during periods of high deployment volume across our platform, the process might require additional time. Rest assured, we're continuously optimizing our systems to maintain the fastest possible deployment times without compromising on quality or security.
 
 ---
 
@@ -1358,8 +1348,6 @@ The **Share Flow** feature in Lamatic.ai allows users to collaborate, distribute
 
 This feature enhances workflow management, enabling better collaboration and efficiency in building AI-powered solutions.
 
-
-
 ## Best Practices
 
 - **Clear Goal:** Design each flow with a specific objective.
@@ -1717,7 +1705,6 @@ Lamatic offers three specialized IDEs to cater to different aspects of flow deve
 2. Code IDE
 3. GraphQL IDE
 
-
 ## Current Capabilities
 
 | **Capability** | **Prompt IDE** | **Code IDE** | **GraphQL IDE** |
@@ -1738,7 +1725,6 @@ Source: https://lamatic.ai/docs
 # Overview
 
 > Lamatic is a collaborative Agentic AI Development Platform that helps cross-functional teams collaboratively develop, monitor, and optimize their GenAI applications.
-
 
 ---
 
@@ -1774,7 +1760,6 @@ Monitor, analyze and optimize your AI applications.
 - [Reports](/docs/reports) — Analyze your projects with intuitive charts and queries.
 - [API & SDK](/docs/sdk) — Integrate and interact with your Flows programmatically.
 
-
 ## Get Started
 
 <Cards num={3}>
@@ -1788,7 +1773,6 @@ Monitor, analyze and optimize your AI applications.
         {/*![Quickstart icon (rocket)]()*/}
     </Card>
 </Cards>
-
 
 ## Updates
 
@@ -1822,8 +1806,6 @@ Source: https://lamatic.ai/docs/interface
 After your project is deployed and your flows are passing tests, these interfaces are the ways you plug Lamatic into real products and channels.
 
 Interfaces provide various options to seamlessly integrate and embed AI features into your application. These interfaces offer flexibility and power, allowing you to harness the full potential of AI within your project. Once your project is deployed, you can easily access the automatically generated setup documentation. This documentation is conveniently located within the flow or at the top bar of your project, ensuring you have all the necessary information at your fingertips.
-
-
 
 ## Methods
 ### GraphQL API
@@ -1875,7 +1857,7 @@ Access a comprehensive historical record of all job executions. This feature pro
 - **Records loaded**: The number of records successfully processed and loaded as individual requests, showing the efficiency of your data loading mechanism.
 - **Time**: The duration required to complete the job execution, helping you monitor and optimize performance.
 
-> ⚠️ **Important**: The job time differs from the complete execution time of the entire batch. The total execution duration depends on the completion of all requests within the batch, which may vary based on complexity and volume.
+> **Important**: The job time differs from the complete execution time of the entire batch. The total execution duration depends on the completion of all requests within the batch, which may vary based on complexity and volume.
 
 ---
 
@@ -1900,7 +1882,7 @@ Configure the settings for your job to align with your specific requirements and
 ### Force Sync
 For situations requiring immediate action, you can manually initiate a job using the **force sync** option. This feature instantly triggers the job execution, allowing you to run data synchronizations on-demand outside of the scheduled times.
 
-> ⚠️ **Note**: When operating in **Incremental Sync Mode** (which only loads new and updated records), force syncing will not process records from failed requests. This limitation is in place to maintain data integrity and prevent potential duplications.
+> **Note**: When operating in **Incremental Sync Mode** (which only loads new and updated records), force syncing will not process records from failed requests. This limitation is in place to maintain data integrity and prevent potential duplications.
 
 To address records in failed requests, you should adjust the Sync Mode to **Full Refresh** and execute a complete synchronization. It's crucial to ensure that a **primary key attribute** is properly configured in the Index Node setup to facilitate accurate record matching and updating during this process.
 
@@ -1957,7 +1939,7 @@ To efficiently manage and analyze your log data, the system provides powerful se
 
 ![logs.png](./img/logs-filter.png)
 
-> 🔍 **Note**: The comprehensive search capability ensures that you can locate even the most specific details within your log data.
+> **Note**: The comprehensive search capability ensures that you can locate even the most specific details within your log data.
 
 - **Search**: Offers deep, query-level results, allowing you to find any keyword in request inputs, outputs, or within individual node inputs and outputs.
 - **Date Range**: The Date Range filter allows users to focus on logs generated within a specific time period.
@@ -2024,7 +2006,7 @@ Models are typically offered by providers, which are companies or organizations 
     ></iframe>
 </div>
 
-> 💡 **Note**: You can explore a variety of providers to find the models that best suit your specific project requirements using [Benchmarks](/ ).
+> **Note**: You can explore a variety of providers to find the models that best suit your specific project requirements using [Benchmarks](/ ).
 
 ---
 
@@ -2032,7 +2014,7 @@ Models are typically offered by providers, which are companies or organizations 
 
 To use a model in your flow, you first add API credentials for that provider. Lamatic stores these keys securely and only uses them when making requests. You can delete or rotate credentials at any time, and you can maintain separate credentials per provider—or separate sets for Development and Production for better usage tracking.
 
-> 💡 **Tip**: Set up separate API credentials for Development and Production in Lamatic for clearer monitoring and management of usage across stages.
+> **Tip**: Set up separate API credentials for Development and Production in Lamatic for clearer monitoring and management of usage across stages.
 
 **High-level steps:** Get API keys from the provider → add and configure the model in Studio (see below) → test and save.
 
@@ -2072,7 +2054,7 @@ Lamatic's flexible architecture allows you to incorporate multiple models, eithe
 
 Lamatic offers a convenient feature that allows you to establish default models for your entire project. When you drag a compatible node into the flow, these default models are automatically selected, streamlining your flow. If you decide to modify the default model settings, the changes will be reflected across all instances where the default option is selected. This functionality provides a quick and efficient method to switch between models on a project-wide scale, eliminating the need to manually update individual model selections throughout your flow.
 
-> ⚡ **Quick Tip**: Setting up default models allows you to quickly switch models project-wide without having to change them individually in each flow node.
+> **Quick Tip**: Setting up default models allows you to quickly switch models project-wide without having to change them individually in each flow node.
 
 ## Troubleshooting
 
@@ -2217,7 +2199,7 @@ Use this dashboard to:
 
 ---
 
-> ℹ️ **Tip:** Use filters (`Time Range`, `Flows`) to narrow down the insights for specific scenarios.
+> **Tip:** Use filters (`Time Range`, `Flows`) to narrow down the insights for specific scenarios.
 
 
 ---
@@ -2230,11 +2212,9 @@ Source: https://lamatic.ai/docs/templates
 
 ![img_13.png](./img/template.png)
 
-
 Templates in Lamatic provide a streamlined way to create flows using pre-configured node sets, reducing the need for manual setup. This guide covers key processes for using templates effectively.
 
 ## Creating a New Flow from a Template
-
 
 To create a flow using a template in Lamatic Studio:
 
@@ -2244,7 +2224,6 @@ To create a flow using a template in Lamatic Studio:
 - Complete all required fields within the template.
 - Test the flow thoroughly to ensure it works as expected.
 - Once verified, deploy your flow.
-
 
 ## Sharing Templates
 
@@ -3192,7 +3171,6 @@ curl -X POST "$PROJECT_URL" \
   </Tabs.Tab>
 </Tabs>
 
-
 ### Understanding the Response
 
 The response structure can be configured in the **Schema** of the GraphQL Response node in your workflow. The response will follow this structure:
@@ -3228,7 +3206,7 @@ Source: https://lamatic.ai/docs/studio/studio-overview
 
 Studio is your comprehensive platform for managing, building, and deploying all your **GenAI** projects. This powerful tool allows seamless collaboration, enabling you to invite team members and work together efficiently throughout the project lifecycle.
 
-> 💡 **Tip**: Ready to unlock the full potential of Studio? Head over to: [studio.lamatic.ai](https://studio.lamatic.ai)
+> **Tip**: Ready to unlock the full potential of Studio? Head over to: [studio.lamatic.ai](https://studio.lamatic.ai)
 
 ## Prerequisites
 
@@ -3315,7 +3293,7 @@ Studio offers flexible theme options to match your working environment and prefe
 
 Your theme preference is saved automatically and will persist across sessions.
 
-> 🎨 **Pro Tip**: Use **System** theme to automatically adapt to your environment, or choose a specific theme for consistent visual experience regardless of your device settings.
+> **Pro Tip**: Use **System** theme to automatically adapt to your environment, or choose a specific theme for consistent visual experience regardless of your device settings.
 
 ---
 
@@ -3328,7 +3306,7 @@ Studio allows you to create flexible **Projects** tailored to your organization'
 - **Custom roles**: Assign specific permissions through **Member Roles** to control access and responsibilities.
 - **Transparency**: All members within a Project have full access to all projects within it.
 
-> ⚙️ **Pro Tip**: Customize your Projects to fit your organization's flow, enhancing both collaboration and security.
+> **Pro Tip**: Customize your Projects to fit your organization's flow, enhancing both collaboration and security.
 
 ---
 
@@ -3341,7 +3319,7 @@ Expanding your Projects is easy:
 2. **Onboarding**: If your invitee isn't registered with Lamatic.ai, they will receive an email guiding them through the signup process.
 3. **Manage Membership**: Add or remove members as needed to keep your team up to date.
 
-> 🚀 **Quick Start**: Inviting new collaborators is seamless, ensuring smooth onboarding for team growth.
+> **Quick Start**: Inviting new collaborators is seamless, ensuring smooth onboarding for team growth.
 
 ---
 
@@ -3352,7 +3330,7 @@ Studio simplifies billing by offering a centralized dashboard for viewing and ma
 - **Flexible Plans**: Different projects in the same Project can run on separate plans, but billing is consolidated for simplicity.
 - **Clear Overview**: Get a comprehensive picture of your overall investment across projects.
 
-> 💼 **Pro Tip**: Take advantage of Studio's flexible billing model to customize financial plans for each project while keeping the process streamlined.
+> **Pro Tip**: Take advantage of Studio's flexible billing model to customize financial plans for each project while keeping the process streamlined.
 
 ## Troubleshooting
 
@@ -3387,7 +3365,7 @@ In the context of Studio, a project represents an individual **GenAI** applicati
 
 The Home View in Studio offers an intuitive and comprehensive overview of your project and along with Onboarding Guide. This interactive project plan view provides a visual representation of all the features and integrations currently in use within your project.
 
-> 📊 **Insight**: At a glance, you can assess the complexity, scope, and capabilities of your GenAI application, making it easier to manage and strategize your development efforts.
+> **Insight**: At a glance, you can assess the complexity, scope, and capabilities of your GenAI application, making it easier to manage and strategize your development efforts.
 
 ---
 
@@ -3399,7 +3377,7 @@ Studio provides a set of versatile resources that can be leveraged across variou
 3. **VectorDB**: Implement vector databases for efficient storage and retrieval of high-dimensional data, crucial for many AI applications.
 4. **Test Cases**: Develop and manage a suite of test cases to ensure the reliability and performance of your GenAI application.
 
-> 🔧 **Pro Tip**: These resources can be easily integrated and reused across various features, saving time and boosting efficiency.
+> **Pro Tip**: These resources can be easily integrated and reused across various features, saving time and boosting efficiency.
 
 ---
 
@@ -3426,7 +3404,7 @@ Once enabled, your flows will be retried automatically from the last successfull
 - **Max Retries**: Specify the maximum number of retry attempts for a failed flow. The default value is `1`.
 - **Retry Delay (in seconds)**: Set the delay between retry attempts in seconds. The default value is `1` second.
 
-> 🔄 **Pro Tip**: Smart Retries can significantly improve the reliability of your flows by automatically handling transient failures and network issues. Adjust the retry delay based on your flow's requirements and the expected recovery time of external services.
+> **Pro Tip**: Smart Retries can significantly improve the reliability of your flows by automatically handling transient failures and network issues. Adjust the retry delay based on your flow's requirements and the expected recovery time of external services.
 
 After configuring these settings, click the **Save Changes** button to apply your changes to the project.
 
@@ -3443,8 +3421,7 @@ As of now, the following developer integrations are available for your Studio pr
 1. **[Langfuse (Beta)](/docs/reports/langfuse-integration)**: Advanced LLM observability and analytics to track, debug, and improve GenAI performance.
 2. **GitHub**: Connect a repository to commit workflow updates for seamless version control and team collaboration.
 
-
-> 🛠️ **Developer Note**: These integrations can help you keep your GenAI project optimized and data-driven.
+> **Developer Note**: These integrations can help you keep your GenAI project optimized and data-driven.
 
 ---
 
@@ -3470,7 +3447,7 @@ With Variables and Secrets you can Safeguard your API keys and credentials with 
 </Callout>
 ---
 
-> 🔒 **Security Tip**: Maintain granular control over project access, ensuring security while facilitating authorized integration.
+> **Security Tip**: Maintain granular control over project access, ensuring security while facilitating authorized integration.
 
 
 ---
@@ -3655,7 +3632,7 @@ Standardized tags across your organization ensure consistent categorization, mak
 4. **Add tags** by typing tag names and pressing Enter, or select from existing tags.
 5. **Save** your changes.
 
-> 💡 **Tip**: Use consistent naming conventions for tags across your project to maximize their effectiveness for filtering and organization.
+> **Tip**: Use consistent naming conventions for tags across your project to maximize their effectiveness for filtering and organization.
 
 ## Filtering Flows by Tags
 
@@ -3691,8 +3668,7 @@ Consider organizing tags into categories:
 - **Limit tag count**: Avoid over-tagging flows; 2-5 relevant tags per flow is usually sufficient.
 - **Document conventions**: Share your tagging conventions with your team to ensure consistency.
 
-
-> 🚀 **Quick Start**: Start tagging your flows today! Even a simple tagging system with 3-5 common tags can significantly improve your workflow management and accessibility.
+> **Quick Start**: Start tagging your flows today! Even a simple tagging system with 3-5 common tags can significantly improve your workflow management and accessibility.
 
 
 ---
@@ -4036,7 +4012,6 @@ Source: https://lamatic.ai/docs/flows/flow-config
 
 # Flow Config (YAML Format)
 
-
 ![img_6.png](./img/flow-config.png)
 
 At Lamatic.ai, we’ve enhanced our Flow Configuration to use YAML syntax, enabling a clear and organized way to define GenAI flow. This new structure supports both Low Code and No Code flexibility, allowing users to design and implement flows that meet specific needs efficiently. The YAML configuration is composed of `triggerNode`, `nodes`, and `responseNode`, each playing a distinct role in the workflow setup.
@@ -4357,7 +4332,6 @@ Source: https://lamatic.ai/docs/flows/sticky-notes
    - Use different colors to classify notes (e.g., **yellow for reminders, blue for important updates**).
    - Keep track of changes or comments without needing external documentation.
 
-
 Sticky Notes add a **new layer of flexibility** to Lamatic flow, making it easier than ever to manage and organize complex automation flows.
 
 
@@ -4471,15 +4445,11 @@ Source: https://lamatic.ai/docs/nodes/ai/classifier-node
 
 # Classifier Node
 
-
-
 ## Overview
 
 The Classifier Node is a powerful AI component that enables users to automatically categorize and classify data based on predefined criteria or machine learning models. This node is essential for applications requiring intelligent data sorting, sentiment analysis, content moderation, and automated decision-making processes.
 
 ![classifier.png](../img/classifier/classifier.png)
-
-
 
 ## Features
 
@@ -4673,13 +4643,9 @@ Source: https://lamatic.ai/docs/nodes/ai/doc-extractor
 
 # Doc Extractor Node
 
-
-
 ## Overview
 
 The Doc Extractor node extracts content from a document URL (PDF or image), sends it to a selected LLM, and applies prompt-based instructions during extraction. You can control both the extraction behavior and the final response shape so downstream nodes receive output in the format you need.
-
-
 
 ## Features
 
@@ -4858,15 +4824,11 @@ Source: https://lamatic.ai/docs/nodes/ai/generate-image-node
 
 # Generate Image Node
 
-
-
 ## Overview
 
 The Generate Image Node is a powerful AI component that creates images from text descriptions using advanced image generation models. This node enables users to generate custom visuals for various applications including content creation, design prototyping, and creative workflows.
 
 ![image-gen.png](../img/imggen/imggen.webp)
-
-
 
 ## Features
 
@@ -4982,15 +4944,11 @@ Source: https://lamatic.ai/docs/nodes/ai/generate-json-node
 
 # Generate JSON Node
 
-
-
 ## Overview
 
 The Generate JSON Node is a specialized AI component that generates structured JSON data based on user input and predefined schemas. This node is particularly useful for applications requiring consistent data structures, API integrations, and automated data formatting.
 
 ![json-gen.png](../img/json/json.webp)
-
-
 
 ## Features
 
@@ -5187,15 +5145,11 @@ Source: https://lamatic.ai/docs/nodes/ai/generate-text-node
 
 # Generate Text Node
 
-
-
 ## Overview
 
 The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs. These text outputs can be further processed within each flow. This node is particularly useful for applications requiring dynamic text creation, such as chatbots, content creation, and automated report generation.
 
 ![text-gen.png](../img/text-gen/text-llm.webp)
-
-
 
 ## Features
 
@@ -5388,16 +5342,11 @@ Source: https://lamatic.ai/docs/nodes/ai/mcp-node
 
 # MCP Node
 
-
-
 ## Overview
 
 The MCP Node enables seamless integration with external data sources, APIs, and tools through the Model Context Protocol (MCP). This node allows AI models to securely access external resources, retrieve real-time data, and execute specific functions in a structured manner. It's particularly useful for applications requiring dynamic data access, real-time information retrieval, and integration with third-party services.
 
-
 ![image-gen.png](../img/mcp/mcp.png)
-
-
 
 ## Features
 
@@ -5628,7 +5577,6 @@ nodes:
 
 - The response generated by the MCP node, which includes the result of the MCP function execution processed through the AI model.
 
-
 ## Troubleshooting
 
 ### Common Issues
@@ -5656,15 +5604,11 @@ Source: https://lamatic.ai/docs/nodes/ai/multimodal-node
 
 # Multimodal Node
 
-
-
 ## Overview
 
 The Multimodal Node is an advanced AI component that can process and analyze multiple types of data including text, images, and audio using various AI models. This node enables complex multimodal workflows where different types of input data need to be processed together.
 
 ![Multimodal.png](../img/multimodal/multimodal.webp)
-
-
 
 ## Features
 
@@ -5871,13 +5815,9 @@ Source: https://lamatic.ai/docs/nodes/ai/rag-node
 
 # RAG Node
 
-
-
 ## Overview
 
 The RAG (Retrieval-Augmented Generation) Node is a sophisticated AI component that combines information retrieval with text generation. It first retrieves relevant information from a knowledge base or vector database, then uses that context to generate more accurate and informed responses.
-
-
 
 The RAG Node generates more relevant responses from a Language Learning Model (LLM) by using Retrieval Augmented Generation (RAG). This approach incorporates additional context retrieved from a vector database to improve the accuracy and relevance of the generated text.
 
@@ -6136,15 +6076,11 @@ Source: https://lamatic.ai/docs/nodes/ai/supervisor-node
 
 # Supervisor Node
 
-
-
 ## Overview
 
 The **Supervisor Node** is an advanced AI component that provides oversight and management capabilities for workflow execution. It can monitor the performance of other nodes, make decisions about workflow routing, and ensure quality control throughout the process.
 
 ![Supervisor Node](../img/supervisor/supervisor-node.webp)
-
-
 
 ## Features
 
@@ -6165,7 +6101,6 @@ The **Supervisor Node** is an advanced AI component that provides oversight and 
   4. **User-Centric Design**: Provides a visual representation of multi-agent execution paths.
 
 </details>
-
 
 ## What Can I Build?
 
@@ -6331,14 +6266,10 @@ Source: https://lamatic.ai/docs/nodes/data/api-node
 
 # API Node
 
-
-
 ## Overview
 
 The Lamatic.ai API Node enables users to integrate external REST APIs effortlessly into their flow.
 ![api.png](../img/api/api-node.webp)
-
-
 
 ## Features
 
@@ -6458,14 +6389,11 @@ Source: https://lamatic.ai/docs/nodes/data/chunking-node
 
 # Chunking Node
 
-
 ## Overview
 
 The Chunking Node is a data processing component that breaks down large text documents into smaller, manageable chunks. This is essential for processing large documents with AI models that have token limits, enabling efficient text analysis and processing.
 
 ![chunking.png](../img/chunk/chunk.webp)
-
-
 
 ## Features
 
@@ -6567,15 +6495,11 @@ Source: https://lamatic.ai/docs/nodes/data/extract-from-file-node
 
 # Extract from File Node
 
-
-
 ## Overview
 
 The Extract from File Node is a powerful data extraction component that can process and extract content from various file formats including PDFs, Word documents, text files, and more. This node enables users to convert unstructured file content into structured data for further processing.
 
 ![extract-file.png](../img/file/extract.webp)
-
-
 
 ## Features
 
@@ -6911,15 +6835,11 @@ Source: https://lamatic.ai/docs/nodes/data/hybrid-search-node
 
 # Hybrid Search Node
 
-
 ## Overview
 
 The Hybrid Search Node is an advanced search component that combines multiple search strategies including semantic search, keyword search, and other retrieval methods to provide comprehensive and accurate results from vector databases.
 
-
 ![hybrid-search.png](../img/hybrid/hybrid.webp)
-
-
 
 ## Features
 
@@ -7028,7 +6948,6 @@ nodes:
   - **`data`**: A string containing the content or information retrieved for the search result.
   - **`score`** (duplicate at the top level): Same as the one inside `_additional`.
 
-
 ### Example Output
 
 ```json
@@ -7068,15 +6987,11 @@ Source: https://lamatic.ai/docs/nodes/data/keyword-search-node
 
 # Keyword Search Node
 
-
-
 ## Overview
 
 The Keyword Search Node is a search component that performs text-based searches using specific keywords and phrases. This node enables users to find relevant content based on exact keyword matches and text patterns.
 
 ![keyword-search.png](../img/keyword/keyword.webp)
-
-
 
 ## Features
 
@@ -7192,15 +7107,11 @@ Source: https://lamatic.ai/docs/nodes/data/memory-add-node
 
 # Memory Add Node
 
-
-
 ## Overview
 
 The Memory Add Node is a data storage component that stores and manages information in memory for use across workflow executions. This node enables persistent data storage and retrieval within workflows.
 
 ![memory-add.png](../img/mem-add/mem-add.webp)
-
-
 
 ## Features
 
@@ -7335,15 +7246,11 @@ Source: https://lamatic.ai/docs/nodes/data/memory-retrieve-node
 
 # Memory Retrieve Node
 
-
-
 ## Overview
 
 The Memory Retrieve Node is a data retrieval component that fetches stored information from memory for use in current workflow executions. This node enables access to previously stored data and context.
 
 ![memory-retrieve.png](../img/memory-retrieve/mem-ret.webp)
-
-
 
 ## Features
 
@@ -7513,9 +7420,7 @@ In the respective AI Node, add memories under Memories inside Additional Propert
 
 Source: https://lamatic.ai/docs/nodes/data/tables-node
 
-# Tables Node
-
-
+# Tables Node(Beta)
 
 ## Overview
 
@@ -7524,8 +7429,6 @@ The Tables Node is a structured data management component that performs various 
 The Tables Node uses **SQLite** as its underlying database engine.
 
 ![extract-file.png](../img/file/tables.webp)
-
-
 
 ## Features
 
@@ -7841,15 +7744,11 @@ Source: https://lamatic.ai/docs/nodes/data/vector-search-node
 
 # Keyword Search Node
 
-
-
 ## Overview
 
 The Keyword Search Node is a search component that performs text-based searches using specific keywords and phrases. This node enables users to find relevant content based on exact keyword matches and text patterns.
 
 ![keyword-search.png](../img/keyword/keyword.webp)
-
-
 
 ## Features
 
@@ -7965,15 +7864,11 @@ Source: https://lamatic.ai/docs/nodes/data/vectordb-node
 
 # VectorDB Node
 
-
-
 ## Overview
 
 The VectorDB Node is a comprehensive vector database management component that performs various operations including insertion, deletion, updating, and management of vector data. This node provides full control over vector database operations.
 
 ![vector-actions.png](../img/vector/vector-actions.webp)
-
-
 
 ## Features
 
@@ -8199,13 +8094,9 @@ Source: https://lamatic.ai/docs/nodes/data/vectorize-node
 
 # Vectorize Node
 
-
-
 ## Overview
 
 The Vectorize Node is a data transformation component that converts text data into vector embeddings. These embeddings enable semantic search, similarity comparisons, and other AI-powered applications that require numerical representations of text.
-
-
 
 ## Features
 
@@ -8278,7 +8169,6 @@ The Vectorize Node is a data transformation component that converts text data in
       provider_name: openai
 ```
 
-
 ## Output
 
 - `vectors`: An array of arrays, each containing numerical values representing the vectorized form of the input data.
@@ -8323,13 +8213,9 @@ Source: https://lamatic.ai/docs/nodes/logic/batch-node
 
 # Batch Node
 
-
-
 ## Overview
 
 The Batch Node is similar to the Loop (for loop) Node: it iterates over a **List** or a **Range**. The key difference is that Batch runs iterations **in parallel**, and you can control throughput using a **Concurrency Limit**.
-
-
 
 <Callout type="info">
 Use Batch when you want faster processing (parallelism). Use Loop when you need strict ordering or sequential dependencies between iterations.
@@ -8446,14 +8332,11 @@ Source: https://lamatic.ai/docs/nodes/logic/branch-node
 
 # Branch Node
 
-
 ## Overview
 
 The Branch Node is a workflow control component that creates multiple execution paths based on conditions or data routing logic. This node enables complex workflow branching and parallel processing of different data streams.
 
 ![branch.png](../img/branch/branch.webp)
-
-
 
 ## Features
 
@@ -8598,16 +8481,11 @@ Source: https://lamatic.ai/docs/nodes/logic/code-node
 
 # Code Node 
 
-
-
 ## Overview
 
 The Code Node is a programming component that allows users to execute custom JavaScript code within workflows. This node enables custom data processing, logic implementation, and integration with external systems through code.
 
 ![code.png](../img/code/code.webp)
-
-
-
 
 <Callout type="info">
  We will expand support to include additional programming languages.
@@ -8715,14 +8593,11 @@ Source: https://lamatic.ai/docs/nodes/logic/condition-node
 
 # Condition Node 
 
-
 ## Overview
 
 The Lamatic.ai Condition Node is a versatile component designed to introduce condition logic into your flow. Think of it as the decision-maker for your applications. By evaluating variables and triggers, it determines the next steps in your workflow, enabling a more dynamic and responsive system. Whether you're automating processes, managing data flows, or creating complex logic, this node is the foundation for smarter decision-making.
 
 ![execute.png](../img/condition/condition.webp)
-
-
 
 ## Features
 
@@ -8888,13 +8763,9 @@ Source: https://lamatic.ai/docs/nodes/logic/end-node
 
 # End Node
 
-
-
 ## Overview
 
 The End Node is used to **stop the execution of a flow immediately**. When the flow reaches this node, Lamatic **skips any nodes that would execute after it** and routes execution directly to the **Final Trigger Response** node.
-
-
 
 <Callout type="info">
 Place an End Node on any branch where you want to stop early (for example, after a validation failure or a “no-op” condition). Any nodes connected after the End Node won’t run.
@@ -8982,15 +8853,11 @@ Source: https://lamatic.ai/docs/nodes/logic/execute-flow
 
 # Execute Flow Node
 
-
-
 ## Overview
 
 The Execute Flow Node is a workflow orchestration component that allows users to call and execute other workflows from within a current workflow. This node enables modular workflow design and reusability of workflow components.
 
 ![execute-flow.png](../img/execute/execute.webp)
-
-
 
 ## Features
 
@@ -9153,16 +9020,11 @@ Source: https://lamatic.ai/docs/nodes/logic/loop-node
 
 # Loop Node
 
-
-
 ## Overview
 
 The Loop Node is a control flow component that enables iterative processing of data by repeating operations on collections or arrays. This node is essential for processing large datasets and implementing repetitive logic in workflows.
 
 ![loop.png](../img/loop-node/loop.webp)
-
-
-
 
 ## Features
 
@@ -9306,7 +9168,6 @@ This feature allows for iterating over results dynamically by replacing the inde
 
 {{forLoopEndNode_271.output.loopOutput[0].hybridSearchNode_299.output.searchResults}}
 
-
 for (let i = 0; i < recipeIngredientsFinal.length; i++) {
   recipeIngredientsFinal[i].ingredientId={{forLoopEndNode_271.output.loopOutput[i].hybridSearchNode_299.output.searchResults[0].ingredientId}}
   //Replace index with whatever index you want
@@ -9352,17 +9213,11 @@ Source: https://lamatic.ai/docs/nodes/logic/variable-node
 
 # Variable Node
 
-
-
 ## Overview
 
 The Variable Node is a data management component that allows users to define and manage variables for storing and manipulating data within workflows. This node enables dynamic data handling and state management across workflow executions.
 
 ![variable.png](../img/variable/variable.png)
-
-
-
-
 
 You can map variables in the Variable Node using a simple interface. Each variable can be assigned a type (e.g., string, number) and a value, which can be a static value or a reference to another node's output.
 
@@ -9501,17 +9356,11 @@ Source: https://lamatic.ai/docs/nodes/logic/wait-node
 
 # Wait Node
 
-
-
 ## Overview
 
 The Wait Node is a timing control component that introduces delays in workflow execution. This node is useful for rate limiting, scheduling, and ensuring proper timing between workflow steps.
 
 ![wait.png](../img/wait/wait-node.webp)
-
-
-
-
 
 ## Features
 
@@ -9801,7 +9650,7 @@ Source: https://lamatic.ai/docs/nodes/node-logic
 ![img_8.png](./img/node-logic.png)
 Node Logic provides powerful ways to wrap and extend your node's behavior, enabling advanced control mechanisms for flow control, conditional routing, and iterative processing. These logic options help you build more dynamic, responsive, and flexible workflows.
 
-> 💡 **Tip**: Node Logic is useful for flow control, conditional routing, and iterative refinement. Add logic to your nodes to enhance workflow flexibility and enable dynamic execution paths.
+> **Tip**: Node Logic is useful for flow control, conditional routing, and iterative refinement. Add logic to your nodes to enhance workflow flexibility and enable dynamic execution paths.
 
 ## Overview
 
@@ -9839,7 +9688,7 @@ When you select **Fallback**, you can configure:
 2. If Config A times out (based on your timeout setting) or fails, the system automatically switches to **Config B**
 3. The result from the successful configuration (either A or B) is used to continue the workflow
 
-> ⚠️ **Note**: Make sure Config B uses a different node or configuration that's more reliable or faster, even if potentially less optimal.
+> **Note**: Make sure Config B uses a different node or configuration that's more reliable or faster, even if potentially less optimal.
 
 ---
 
@@ -9869,7 +9718,7 @@ When you select **Retry**, you can configure:
    - The execution succeeds, or
    - The maximum number of retry attempts is reached
 
-> 💡 **Best Practice**: Set appropriate delay values to avoid overwhelming the node API and to respect rate limits.
+> **Best Practice**: Set appropriate delay values to avoid overwhelming the node API and to respect rate limits.
 
 ---
 
@@ -9900,7 +9749,7 @@ When you select **Go Back**, you can configure:
 4. The target node re-executes with the updated context
 5. If the condition is not met, execution continues to the next node in the flow
 
-> ⚠️ **Warning**: Be careful to avoid infinite loops. Ensure your conditions can eventually be false, or set maximum iteration limits.
+> **Warning**: Be careful to avoid infinite loops. Ensure your conditions can eventually be false, or set maximum iteration limits.
 
 ### Example Use Cases
 
@@ -9936,7 +9785,7 @@ When you select **Parallel**, you can configure:
 3. You can access results from both configurations in subsequent Logics
 4. Results are typically available as separate outputs or can be combined based on your workflow logic
 
-> 💡 **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple Logic, as they run concurrently rather than sequentially.
+> **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple Logic, as they run concurrently rather than sequentially.
 
 ---
 
@@ -9970,7 +9819,7 @@ When you select **A/B Test**, you can configure:
 3. Results from both configurations can be tracked and compared
 4. The system maintains the traffic split distribution over time
 
-> 📊 **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
+> **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
 
 ---
 
@@ -9992,7 +9841,7 @@ To add logic to a node:
 7. Configure the selected logic type with the appropriate settings
 8. Save your configuration
 
-> 💡 **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability, or Go Back with conditional checks for sophisticated flow control.
+> **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability, or Go Back with conditional checks for sophisticated flow control.
 
 ---
 
@@ -10179,14 +10028,12 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 
 ![Multi Modal Agent](./img/multi-modal-agent.png)
 
-
 ## Why Use the Multi Modal Agent?
 - **AI-Generated Visuals:** Automatically generate images using state-of-the-art models.  
 - **AI Text Generation:** Generate text outputs based on custom prompts.
 - **Customizable Prompts:** Define prompts to create images tailored to specific needs.  
 - **Workflow Integration:** Seamlessly connect content generation to automated processes.  
 - **Flexible Model Selection:** Choose from multiple AI models for diverse visual outputs.  
-
 
 ## Key Features
 <details>
@@ -10209,13 +10056,11 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 
 </details>
 
-
 ## What Can I Build?
 - **Automated Social Media Content Creation** – Generate visuals for social media, marketing, and branding.
 - **Personalized Image Recommendations** – Create custom images based on user preferences.
 - **Dynamic Visual Content Generation** – Produce images for e-commerce, advertising, and design.
 - **Interactive Applications** – Develop tools for image-based user interactions and feedback.
-
 
 ## How to Use the Multi Modal Agent?
 ### Creating an Multi Modal Agent via Flow Editor
@@ -10230,7 +10075,6 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 2. **Choose Multi Modal Agent** – Select from available agent types.  
 3. **Configure Model & Prompts** – Set up AI credentials and parameters.  
 4. **Deploy & Integrate** – Save and start using the agent in your application.  
-
 
 ## Configuration Options
 | **Parameter**             | **Description**                                                                                                | **Example Value** |
@@ -10248,7 +10092,6 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 
 You can save the configuration of any agent by clicking on the `Load Save Config` button and selecting `Save as New`. 
 This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
-
 
 ## Low-Code Example
 ```yaml
@@ -10326,7 +10169,6 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 
 </details>
 
-
 ## How to Use the Supervisor Agent?
 ### Creating a Supervisor Agent via Flow Editor
 1. **Add an Agent Node** - Select **Supervisor Agent** from the node list.  
@@ -10341,7 +10183,6 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 2. **Select Supervisor Agent** - Choose it from the available agent types.  
 3. **Configure Agent Settings** - Adjust memory, iteration limits, and agent paths.  
 4. **Deploy the Agent** - Save and activate it in your workflow.  
-
 
 ## Configuration Options
 | **Parameter**        | **Description**                                             | **Example Value** |
@@ -10404,7 +10245,6 @@ By properly configuring your agent paths, you enable the Supervisor Agent to eff
 
 You can save the configuration of any agent by clicking on the `Load Save Config` button and selecting `Save as New`. 
 This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
-
 
 ## Low-Code Example
 ```yaml
@@ -10500,13 +10340,11 @@ Source: https://lamatic.ai/docs/agents/text-agent
 The **Text Agent** is a generative AI agent that enables users to programmatically create text-based outputs using prompts and selected LLMs. It is ideal for applications requiring dynamic content generation, such as chatbots, content creation, automated reporting, and structured AI responses.
 ![Text Agent](./img/text-agent.png)
 
-
 ## Why Use the Text Agent?
 - **AI-Powered Content Generation:** Automate text creation for various use cases.
 - **Customizable AI Responses:** Define system and user prompts for precise output.
 - **Flexible Model Selection:** Choose from different LLM providers based on your needs.
 - **Seamless Integration:** Connect with flow for automated processing.
-
 
 ## Key Features
 <details>
@@ -10529,13 +10367,11 @@ The **Text Agent** is a generative AI agent that enables users to programmatical
 
 </details>
 
-
 ## What Can I Build?
 - **Automated Content Generation** – AI-powered writing for blogs, social media, and marketing.  
 - **Chatbots & Virtual Assistants** – Dynamic, context-aware conversational agents.  
 - **Automated Reports & Summaries** – AI-driven data analysis and business intelligence reporting.  
 - **Email & Message Drafting** – Smart communication tools for efficiency and personalization.  
-
 
 ## How to Use the Text Agent?
 ### Creating a Text Agent via Flow Editor
@@ -10550,7 +10386,6 @@ The **Text Agent** is a generative AI agent that enables users to programmatical
 2. **Choose Text Agent** – Select from available agent types.  
 3. **Configure Model & Prompts** – Set up LLM credentials and prompt templates.  
 4. **Deploy & Integrate** – Save and start using the agent in your application.  
-
 
 ## Configuration Options
 | **Parameter**             | **Description**                                                                                                | **Example Value** |
@@ -10592,7 +10427,6 @@ This will save the configuration of the agent and you can use it later by clicki
 
 ### `generatedResponse`
 - A string containing the text output generated by the model based on the input prompt.
-
 
 ### Example Output
 
@@ -10794,7 +10628,7 @@ Source: https://lamatic.ai/docs/models/model-logic
 
 Model Logic provides powerful ways to wrap and extend your model node's behavior, enabling advanced control mechanisms for error handling, branching, experimentation, and performance optimization. These logic options help you build more robust, reliable, and flexible AI workflows.
 
-> 💡 **Tip**: Model Logic is useful for error handling, branching, and experimentation. Add logic to your model nodes to enhance reliability and control flow execution.
+> **Tip**: Model Logic is useful for error handling, branching, and experimentation. Add logic to your model nodes to enhance reliability and control flow execution.
 
 ## Overview
 
@@ -10827,7 +10661,7 @@ When you select **Fallback**, you can configure:
 2. If Config A times out (based on your timeout setting) or fails, the system automatically switches to **Config B**
 3. The result from the successful configuration (either A or B) is used to continue the workflow
 
-> ⚠️ **Note**: Make sure Config B uses a different model or configuration that's more reliable or faster, even if potentially less optimal.
+> **Note**: Make sure Config B uses a different model or configuration that's more reliable or faster, even if potentially less optimal.
 
 ---
 
@@ -10853,7 +10687,7 @@ When you select **Retry**, you can configure:
    - The execution succeeds, or
    - The maximum number of retry attempts is reached
 
-> 💡 **Best Practice**: Set appropriate delay values to avoid overwhelming the model API and to respect rate limits.
+> **Best Practice**: Set appropriate delay values to avoid overwhelming the model API and to respect rate limits.
 
 ---
 
@@ -10878,7 +10712,7 @@ When you select **Parallel**, you can configure:
 3. You can access results from both configurations in subsequent nodes
 4. Results are typically available as separate outputs or can be combined based on your workflow logic
 
-> 💡 **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple models, as they run concurrently rather than sequentially.
+> **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple models, as they run concurrently rather than sequentially.
 
 ---
 
@@ -10908,7 +10742,7 @@ When you select **A/B Test**, you can configure:
 3. Results from both configurations can be tracked and compared
 4. The system maintains the traffic split distribution over time
 
-> 📊 **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
+> **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
 
 ---
 
@@ -10928,7 +10762,7 @@ To add logic to a model node:
 7. Configure the selected logic type with the appropriate settings
 8. Save your configuration
 
-> 💡 **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability.
+> **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability.
 
 ---
 
@@ -10970,7 +10804,6 @@ Lamatic's Memory Store is designed to store and manage contextual information ef
 1. Enterprise Knowledge Management: Retain historical context for collaborative applications.
 1. Developer Customization: Enable developers to define custom schemas for specific use cases.
 
-
 ## Implementation 
 1. **Initialize the Memory Store:** Go to Context and select Create New Memory Store.
 1. **Define a Unique Identifier:** Use a User ID, Session ID, or another unique key to link stored information.
@@ -10998,7 +10831,7 @@ At the core of many generative AI applications is the ability to store, search, 
 
 The real power comes from Weaviate's ability to store high-dimensional vector embeddings generated from embedding models. These embeddings capture semantic representations, enabling complex filtering, searching, and nearest neighbor queries based on conceptual similarity.
 
-> 💡 **Key Insight**: Weaviate's ability to store vector embeddings makes it perfect for AI use cases involving search and retrieval based on meaning, not just keywords.
+> **Key Insight**: Weaviate's ability to store vector embeddings makes it perfect for AI use cases involving search and retrieval based on meaning, not just keywords.
 
 ---
 
@@ -11010,7 +10843,7 @@ On Lamatic.ai, you can provision a fully managed Weaviate instance with just a f
 3. Select Vector Store and Provide name of the Store
 4. Click on the Create Button to create new Vector Store
 
-> ⚙️ **Pro Tip**: Quickly deploy a Weaviate instance and start storing vectors in minutes, without worrying about infrastructure management.
+> **Pro Tip**: Quickly deploy a Weaviate instance and start storing vectors in minutes, without worrying about infrastructure management.
 
 ---
 
@@ -11020,7 +10853,7 @@ A key capability is the ability to automatically vectorize your data as it gets 
 - **Pre-trained embeddings**: For common data types like text, images, and audio.
 - **Custom embeddings**: Connect your own custom embedding model for specialized needs.
 
-> 🚀 **Quick Tip**: Easily vectorize your data using either pre-trained or custom embeddings, tailored to your specific use case.
+> **Quick Tip**: Easily vectorize your data using either pre-trained or custom embeddings, tailored to your specific use case.
 
 ---
 
@@ -11034,7 +10867,7 @@ With your data vectorized, you can use Weaviate's **GraphQL** interface to run p
 - Clustering and classification of multimedia data
 - Query understanding and intent matching for conversational AI
 
-> 🔍 **Did You Know?**: Lamatic.ai provides a visual query builder and templates, so you can build these queries without dealing with raw GraphQL syntax.
+> **Did You Know?**: Lamatic.ai provides a visual query builder and templates, so you can build these queries without dealing with raw GraphQL syntax.
 
 ---
 
@@ -11050,7 +10883,6 @@ One of the key features of the Vector Explorer is its ability to run sample sear
 
 The similarity scores are particularly useful for understanding the semantic relationships between your vector objects. By analyzing these scores, you can fine-tune your vector representations, improve your search algorithms, and ultimately enhance the overall performance of your AI applications that rely on this vector data.score.
 
-
 ### Delete record
 You can also remove the records by clicking the delete button.
 ![img.png](./img/inbuild.webp)
@@ -11060,7 +10892,7 @@ Weaviate is a distributed, cloud-native database that can scale horizontally by 
 
 - **Modular storage backend**: Start with localized storage and seamlessly migrate to remote object stores as your data grows to petabyte scales.
 
-> ⚡ **Scale Effortlessly**: As your data grows, Lamatic.ai automatically scales your vector storage infrastructure to meet demand.
+> **Scale Effortlessly**: As your data grows, Lamatic.ai automatically scales your vector storage infrastructure to meet demand.
 
 ---
 
@@ -11082,7 +10914,7 @@ Your first step is to define a schema that maps your data objects and their prop
 
 Your Vector Store schema can be defined automatically when you index the first object inside a Vector Store. You can construct a schema by adding various keys (e.g. Article, Product, etc.), properties/fields, and mapping values to automatically define data types.
 
-> 💡 **Tip**: Weaviate supports rich data types like text, numeric, geolocations, dates, and even pre-calculated crossRef vectors from embedding models. This flexibility allows you to map almost any structured or unstructured data source.
+> **Tip**: Weaviate supports rich data types like text, numeric, geolocations, dates, and even pre-calculated crossRef vectors from embedding models. This flexibility allows you to map almost any structured or unstructured data source.
 
 ---
 
@@ -11112,7 +10944,7 @@ Under the hood, [Lamatic.ai](http://lamatic.ai/) automatically optimizes and par
 
 With [Lamatic.ai](http://lamatic.ai/)'s visual data mapping tools integrated with the fully-managed Weaviate service, you can spend less time on data wrangling and more time building innovative vector search experiences.
 
-> 🚀 **Quick Start**: Let us handle the mapping complexities while you focus on creating transformative generative AI apps!
+> **Quick Start**: Let us handle the mapping complexities while you focus on creating transformative generative AI apps!
 
 
 ---
@@ -11167,7 +10999,7 @@ The **Code Assistant** is an AI-powered helper that guides you through writing e
 
 The Code Assistant makes JavaScript development more accessible, helping both beginners and experienced developers write high-quality, efficient code in their flows.
 
-> 🚀 **Quick Start**: Start with a basic understanding of JavaScript. The Code IDE offers syntax highlighting, auto-completion, and error checking to assist you in writing efficient code.
+> **Quick Start**: Start with a basic understanding of JavaScript. The Code IDE offers syntax highlighting, auto-completion, and error checking to assist you in writing efficient code.
 
 ## Other Resources:
 - [MDN JavaScript Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide) - A high-level overview of fundamental JavaScript concepts.
@@ -11194,7 +11026,7 @@ The **GraphQL IDE**, powered by GraphiQL, is a powerful tool for interacting wit
 - Query result viewer with collapsible fields for easy navigation
 - History of recent queries for quick reference and reuse
 
-> 💼 **Pro Tip**: Start by exploring your schema in the documentation panel and use auto-completion for faster query writing. The IDE validates your syntax as you type.
+> **Pro Tip**: Start by exploring your schema in the documentation panel and use auto-completion for faster query writing. The IDE validates your syntax as you type.
 
 ## Other Resources:
 - [GraphQL Official Documentation](https://graphql.org/learn/) - A comprehensive guide to GraphQL concepts and best practices.
@@ -11259,7 +11091,6 @@ The Prompt Assistant makes prompt engineering more accessible, helping both begi
 To make your prompts more dynamic and context-aware, you can **insert variables** directly into your prompts. Variables allow you to personalize responses or integrate real-time data into the prompt text.
 ![img_1.png](./img/prompt-var2.png)
 
-
 1. Click **Insert Variable** to add dynamic placeholders.
 2. Choose the data source:
    - **Project**: Use data specific to your project context.
@@ -11291,7 +11122,7 @@ This feature ensures a structured and contextually relevant prompt design, impro
 - Implement variable placeholders for personalized content.
 - Test and iterate on prompts within the IDE for optimal results.
 
-> 💡 **Tip**: To start building custom prompts, explore our example prompts and templates. The IDE provides syntax highlighting and real-time preview to help you craft effective prompts.
+> **Tip**: To start building custom prompts, explore our example prompts and templates. The IDE provides syntax highlighting and real-time preview to help you craft effective prompts.
 
 ## Reusing Saved Prompts in LLM Nodes
 
@@ -11424,7 +11255,6 @@ To integrate tools into your flow, follow these steps:
 2. Choose either **Generate Text Node** or **Multimodal Node**, then navigate to node config.  
 3. Select the desired tools. You can add multiple tools as needed.  
 
-
 ## Troubleshooting
 
 ### Common Issues
@@ -11494,7 +11324,7 @@ With Flow Debugging you can:
 3. Enter your test input data (as JSON or plain text).
 4. Hit **Run Test** to simulate execution.
 
-<Callout emoji="💡">
+<Callout>
 Each test run executes the full flow using your provided input, showing node-by-node progress and output.
 </Callout>
 
@@ -11548,10 +11378,9 @@ Lamatic.ai allows you to validate your entire flow from start to finish before d
 - **Progress Tracking:** Observe nzode-level progress during execution.
 - **Output Review:** View the final output generated at the end of the flow.
 
-<Callout emoji="💡">
+<Callout>
 Each test run executes the full flow using your provided input, showing node-by-node progress and output.
 </Callout>
-
 
 ## Trigger-Specific Testing Approaches
 
@@ -11724,7 +11553,6 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
         "workflowId": "YOUR_WORKFLOW_ID",
         "topic": "topic"
       };
-
 
       const options = {
         method: 'POST',
@@ -12027,7 +11855,6 @@ If the request is successful, the response will follow this structure:
 ##### In-Progress Status
 If the request is still being processed, the response will be:
 
-
 ```json
   {
     "data": {
@@ -12120,7 +11947,6 @@ Mailhooks give you a simple, event-driven way to turn incoming email into automa
 Source: https://lamatic.ai/docs/interface/webhooks
 
 # Webhook Integration Guide
-
 
 Webhooks are user-defined HTTP callbacks that trigger events in external systems. They allow you to automate flow by sending real-time notifications when specific events occur.
 
@@ -12229,7 +12055,7 @@ Click the Configure button in the Ask Trigger node to customize the widget: sugg
 
 ---
 
-### 🎨 Appearance Configuration
+#### Appearance Configuration
 
 ![Ask Widget Configuration - Appearance](./img/ask-widget-config-appearance.png)
 
@@ -12356,7 +12182,6 @@ To use the Chat Widget, you need to whitelist the domains where you will deploy 
 
 ### 2. Configure the Chat Widget
 
-
 Click the Configure button in the chat widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
 
 #### 1. General Settings
@@ -12409,10 +12234,9 @@ A live preview panel is available on the right side to visualize real-time chang
 
 ---
 
-#### ✅ Final Step
+#### Final Step
 
 After customizing, don't forget to click **Save** to apply your changes.
-
 
 ### 3. Include the CDN Script and Configure the Widget
 
@@ -12646,8 +12470,6 @@ To use the Search Widget, you need to whitelist the domains where you will deplo
 ![chatwidget.webp](./img/search-config.png)
 Click the Configure button in the search widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
 
-
-
 ## General Configuration
 
 ### 1. Search Placeholder
@@ -12671,7 +12493,6 @@ Click the Configure button in the search widget to customize settings such as th
 - `Show Navigation Helper Text` — Enables arrow key navigation tips.
 - `Show Escape Helper Text` — Displays `esc to close` text.
 - `Show Lamatic Banner` — Shows the "Powered by Lamatic.ai" badge.
-
 
 ---
 
@@ -12698,10 +12519,8 @@ Click the Configure button in the search widget to customize settings such as th
 - **Description:** Select an Ask flow to run alongside the search widget. When configured, the Ask widget is available from the search widget’s dropdown menu, so users can use both search and Ask in the same interface.
 - **Effect:** Enables the Ask widget to run alongside the search widget from the search widget node config dropdown.
 
-
 ### Saving Your Settings
 - After configuring your widget, click **Save** (top-right) to apply changes.
-
 
 ### 2. Include the CDN Script and Configure the Widget
 
@@ -12785,12 +12604,9 @@ Source: https://lamatic.ai/docs/reports/langfuse-integration
 
 At Lamatic.ai, we understand the critical role that Large Language Models (LLMs) play in powering our cutting-edge GenAI applications. To ensure optimal performance, transparency, and cost-effectiveness, we've integrated Langfuse, a powerful tracing and optimization tool specifically designed for LLM interactions.
 
-
 ![Langfuse](/assets/langfuse.png)
 
 ## What is Langfuse?
-
-
 
 Langfuse is a state-of-the-art solution that provides deep insights into your LLM interactions, enabling you to monitor, analyze, and optimize the performance and cost of your GenAI applications. With Langfuse, you can unlock a new level of visibility and control over your LLM usage, empowering you to make informed decisions and continuously improve your flows.
 
@@ -12950,7 +12766,7 @@ The response includes `status` (e.g. `success`) and `result` (your Flow's output
 
 Source: https://lamatic.ai/docs/mcp/graph-mcp
 
-# Graph MCP
+# Graph MCP (Beta)
 
 > Execute your deployed Lamatic flows via AI agents using natural language.
 
@@ -13451,7 +13267,6 @@ func main() {
 }
 ```
 
-
 ## Checking Request Status
 
 For long-running workflows or agents, you can check the status using `CheckStatus`:
@@ -13743,7 +13558,6 @@ const lamatic = new Lamatic({
 
 The SDK supports two authentication methods:
 
-
 <Tabs items={['API Key', 'Access Token']}>
   <Tabs.Tab>
 ```typescript
@@ -13836,7 +13650,6 @@ main();
 </Tabs>
 
 ### Handling Expired Access Tokens
-
 
 <Callout type="info">
   This example shows how to handle an expired access token by fetching a new one

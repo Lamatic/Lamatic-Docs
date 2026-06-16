@@ -8,10 +8,10 @@
 
 - [Agents](https://lamatic.ai/docs/agents): Agents in Lamatic.ai Studio
 - [Architecture](https://lamatic.ai/docs/architecture): How does Lamatic work?
+- [CLI](https://lamatic.ai/docs/cli): The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
 - [Context](https://lamatic.ai/docs/context): Context in Lamatic Studio
 - [Contributing](https://lamatic.ai/docs/contributing): Contributing to Lamatic.ai Documentation
 - [Edge Deployment](https://lamatic.ai/docs/deployments): Edge Deployment in Lamatic.ai
-- [Lamatic Docs MCP](https://lamatic.ai/docs/docs-mcp): Query Lamatic.ai documentation instantly using AI — powered by RAG and Model Context Protocol.
 - [Environments](https://lamatic.ai/docs/environment): Create and manage different environments for your flows using branching and merging in Lamatic AI.
 - [Error Codes](https://lamatic.ai/docs/error-reference): Reference for error codes, HTTP status codes, and how to fix common API and Flow failures.
 - [Feedback API](https://lamatic.ai/docs/feedback-api): Collect feedback from any flows, specifically GraphQL APIs, to improve your AI applications.
@@ -153,8 +153,9 @@
 
 ## Mcp
 
+- [Lamatic Docs MCP](https://lamatic.ai/docs/mcp/docs-mcp): Query Lamatic.ai documentation instantly using AI — powered by RAG and Model Context Protocol.
 - [Graph MCP](https://lamatic.ai/docs/mcp/graph-mcp): Execute your deployed Lamatic flows via AI agents using natural language.
-- [MCP Overview](https://lamatic.ai/docs/mcp): Overview of Lamatic's Model Context Protocol (MCP) offerings — MCP Node for consuming external MCP servers, and Graph MCP for exposing your flows as tools.
+- [MCP Overview](https://lamatic.ai/docs/mcp): Overview of Lamatic's Model Context Protocol (MCP) offerings — MCP Node for consuming external servers, Graph MCP for exposing your flows, and Docs MCP for querying Lamatic documentation from any AI assistant.
 - [MCP Node](https://lamatic.ai/docs/mcp/mcp-node): Connect Lamatic flows to external MCP servers — securely access third-party data sources and tools through the Model Context Protocol.
 
 ## Sdk

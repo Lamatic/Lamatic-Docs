@@ -191,6 +191,221 @@ We have this interactive Miro board that explains the architecture of Lamatic.ai
 
 ---
 
+# CLI
+
+Source: https://lamatic.ai/docs/cli
+
+# CLI
+
+`@lamatic/cli` is the official command-line interface for managing your Lamatic organization — create projects, manage flows, trigger deployments, configure contexts and integrations, all from the terminal.
+
+---
+
+## Installation
+
+Install globally to use the `lamatic` command anywhere:
+
+```bash
+npm install -g @lamatic/cli
+```
+
+Or run on demand without installing:
+
+```bash
+npx @lamatic/cli <command>
+```
+
+---
+
+## Authentication
+
+Authenticate once with your API key, organization ID, and user ID. Credentials are cached locally so subsequent commands don't require re-entering them.
+
+```bash
+lamatic auth login \
+  --api-key <YOUR_API_KEY> \
+  --org-id <YOUR_ORG_ID> \
+  --user-id <YOUR_USER_ID>
+```
+
+| Command | Description |
+|---|---|
+| `lamatic auth login` | Authenticate with your API key |
+| `lamatic auth status` | Check current auth status |
+| `lamatic auth logout` | Logout and clear credentials |
+
+---
+
+## Help
+
+```bash
+lamatic --help
+lamatic <command> --help
+```
+
+---
+
+## Commands
+
+### Projects
+
+| Command | Description |
+|---|---|
+| `lamatic init <name>` | Create a new Lamatic project |
+| `lamatic project list` | List all projects in your org |
+| `lamatic project get` | Fetch and download a project locally |
+| `lamatic project delete` | Delete a project |
+
+```bash
+# Create a new project
+lamatic init my-project --scratch
+
+# List all projects
+lamatic project list
+
+# Download an existing project locally
+lamatic project get --project-id <PROJECT_ID>
+
+# Delete a project
+lamatic project delete --project-id <PROJECT_ID>
+```
+
+### Flows
+
+| Command | Description |
+|---|---|
+| `lamatic flows create` | Create a new flow in a project |
+| `lamatic flows list` | List all flows in a project |
+| `lamatic flows rename` | Rename a flow |
+| `lamatic flows delete` | Delete a flow |
+| `lamatic flows status` | Update flow status (active/inactive) |
+
+```bash
+# Create a flow
+lamatic flows create --project-id <PROJECT_ID> --name "My Flow"
+
+# List all flows
+lamatic flows list --project-id <PROJECT_ID>
+
+# Rename a flow
+lamatic flows rename --project-id <PROJECT_ID> --flow-id <FLOW_ID> --name "New Name"
+
+# Delete a flow
+lamatic flows delete --project-id <PROJECT_ID> --flow-id <FLOW_ID>
+
+# Update flow status
+lamatic flows status --project-id <PROJECT_ID> --flow-id <FLOW_ID> --status active
+```
+
+### Deployments
+
+| Command | Description |
+|---|---|
+| `lamatic deploy` | Trigger a deployment for a project |
+| `lamatic deployments list` | List all deployments |
+| `lamatic deployments get` | Get details of a specific deployment |
+
+```bash
+# Trigger a deployment
+lamatic deploy --project-id <PROJECT_ID>
+
+# List all deployments
+lamatic deployments list --project-id <PROJECT_ID>
+
+# Get deployment details
+lamatic deployments get --project-id <PROJECT_ID> --deployment-id <DEPLOYMENT_ID>
+```
+
+### Contexts
+
+| Command | Description |
+|---|---|
+| `lamatic contexts list` | List all contexts in a project |
+| `lamatic contexts create` | Create a new context (vector or memory) |
+| `lamatic contexts delete` | Delete a context |
+
+```bash
+# List contexts
+lamatic contexts list --project-id <PROJECT_ID>
+
+# Create a context
+lamatic contexts create --project-id <PROJECT_ID> --name "my-context" --type vector
+
+# Delete a context
+lamatic contexts delete --project-id <PROJECT_ID> --context-id <CONTEXT_ID>
+```
+
+### Models
+
+| Command | Description |
+|---|---|
+| `lamatic models list` | List all model credentials |
+| `lamatic models add` | Add a new model credential |
+
+```bash
+# List model credentials
+lamatic models list --project-id <PROJECT_ID>
+
+# Add a model credential
+lamatic models add --project-id <PROJECT_ID>
+```
+
+### Integrations
+
+| Command | Description |
+|---|---|
+| `lamatic integrations list` | List all integration credentials |
+| `lamatic integrations add` | Add a new integration |
+
+```bash
+# List integrations
+lamatic integrations list --project-id <PROJECT_ID>
+
+# Add an integration
+lamatic integrations add --project-id <PROJECT_ID>
+```
+
+---
+
+## Example Workflow
+
+A typical end-to-end flow — log in, create a project, add a flow, deploy, and verify:
+
+```bash
+# 1. Login
+lamatic auth login --api-key <key> --org-id <org_id> --user-id <user_id>
+
+# 2. Create a new project
+lamatic init my-project --scratch
+
+# 3. List your projects to grab the project ID
+lamatic project list
+
+# 4. Create a flow inside the project
+lamatic flows create --project-id <PROJECT_ID> --name "My Flow"
+
+# 5. Deploy the project
+lamatic deploy --project-id <PROJECT_ID>
+
+# 6. Check deployment status
+lamatic deployments list --project-id <PROJECT_ID>
+
+# 7. Download an existing project locally
+lamatic project get --project-id <PROJECT_ID>
+```
+
+---
+
+## Links
+
+- [npm package](https://www.npmjs.com/package/@lamatic/cli)
+- [API Keys](/docs/api-integration/api-key) — where to find the credentials this CLI uses
+- [SDK](/docs/sdk) — programmatic access from your application code
+- [Graph MCP](/docs/mcp/graph-mcp) — execute deployed flows from any AI assistant
+
+
+---
+
 # Context
 
 Source: https://lamatic.ai/docs/context
@@ -262,7 +477,7 @@ Lamatic integrates **Weaviate**, a powerful vector database, to provide efficien
 
 ---
 
-### Memories (Beta)
+### Memories
 Memory systems offer another approach to providing context, particularly useful for maintaining continuity in conversations and personalizing interactions over time.
 
 #### When to Use Memories
@@ -271,7 +486,7 @@ Memories are particularly valuable in scenarios requiring long-term context rete
 > 🔄 **Pro Tip**: Use memories for long-term user preferences and ongoing conversations.
 
 
-#### Lamatic's Built-in Memories Powered by mem0 ( Beta )
+#### Lamatic's Built-in Memories Powered by mem0
 Lamatic incorporates **mem0**, a cutting-edge memory system, to enhance its context-awareness capabilities. This feature allows the platform to remember and utilize important information across multiple interactions, leading to more personalized and contextually relevant outputs.
 
 > 💡 **Tip**: Leverage mem0 for enhanced personalization and context awareness over time.
@@ -515,153 +730,6 @@ Whether you're a forward-thinking global enterprise aiming to harness the full p
 
 ## Deployment Logs
 To provide you with full transparency and control over your deployment process, we offer detailed deployment logs. These logs allow you to monitor the entire build process, providing a step-by-step breakdown of each stage. This feature is invaluable for troubleshooting, as it allows you to quickly identify and address any errors or issues that may arise during the build and deployment phases, ensuring smooth and efficient application launches.
-
-
----
-
-# Lamatic Docs MCP
-
-Source: https://lamatic.ai/docs/docs-mcp
-
-# Lamatic Docs MCP
-
-> Query Lamatic.ai documentation instantly from any AI assistant — no searching, no tab switching, just answers.
-
----
-
-## What is the Docs MCP?
-
-The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation.
-
-It is powered by a RAG pipeline built entirely on Lamatic:
-- **Firecrawl** scrapes the docs
-- **Chunking + Vectorize** indexes them into a VectorDB
-- **RAG Node** answers questions semantically
-- **Next.js + Vercel** exposes the MCP endpoint publicly
-
-<Callout type="info">
-  The MCP is free to use. No API key or account required.
-</Callout>
-
----
-
-## Connect
-
-Add this to your MCP client config:
-
-```json
-{
-  "mcpServers": {
-    "lamatic-docs": {
-      "url": "https://docmcp.lamatic.ai/api/mcp"
-    }
-  }
-}
-```
-
-### Claude Desktop
-
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`  
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "lamatic-docs": {
-      "url": "https://docmcp.lamatic.ai/api/mcp"
-    }
-  }
-}
-```
-
-Restart Claude Desktop after saving. You should see a 🔌 tools icon in the chat input.
-
-### Cursor / Windsurf / Cline
-
-Add the same config to your MCP settings. Most clients support the `url` field directly for HTTP-based MCP servers.
-
-## Available Tools
-
-### `query_docs`
-
-Ask any question about Lamatic.ai documentation. Uses RAG to search across all indexed docs and return a precise answer with references.
-
-**Input:**
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `text` | string | ✅ | The question to ask |
-
-**Example:**
-
-```json
-{
-  "name": "query_docs",
-  "arguments": {
-    "text": "How do I set up a RAG node in Lamatic?"
-  }
-}
-```
-
----
-
-## How It Works
-
-```
-Your Question
-      ↓
-MCP Client (Claude / Cursor)
-      ↓
-docmcp.lamatic.ai/mcp/api
-      ↓
-Lamatic RAG Flow
-      ↓
-VectorDB (indexed Lamatic docs)
-      ↓
-Answer
-```
-
-The entire pipeline is built on Lamatic:
-
-1. **Indexing Flow** — scrapes `lamatic.ai/docs` using Firecrawl, chunks content, vectorizes and stores in VectorDB
-2. **Query Flow** — takes your question, runs semantic search, generates answer
-3. **MCP Server** — Next.js API route deployed on Vercel, calls the query flow via GraphQL
-
----
-
-## Supported Clients
-
-| Client | Supported |
-|--------|-----------|
-| Claude Desktop | ✅ |
-| Cursor | ✅ |
-| Windsurf | ✅ |
-| Cline | ✅ |
-| Any HTTP MCP client | ✅ |
-
----
-
-## Source Code
-
-The MCP is open source. You can view, fork, and contribute on GitHub:
-
-[github.com/Lamatic/Lamatic-MCP-Docs](https://github.com/Lamatic/Lamatic-MCP-Docs)
-
-{/*
-<Callout type="tip">
-  Want to build your own Docs MCP for your company? See the [Docs MCP setup guide](/docs/mcp-tools/docs-mcp) — fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
-</Callout>
-*/}
-
----
-
-## Feedback
-
-Found an issue or want to suggest an improvement?
-
-- [Open an issue on GitHub](https://github.com/Lamatic/Lamatic-MCP-Docs/issues)
-- [Join Lamatic Slack](https://lamatic.ai/slack)
-- [Feature board](https://product.lamatic.ai/)
 
 
 ---
@@ -7513,7 +7581,7 @@ In the respective AI Node, add memories under Memories inside Additional Propert
 
 Source: https://lamatic.ai/docs/nodes/data/tables-node
 
-# Tables Node
+# Tables Node(Beta)
 
 
 
@@ -12946,11 +13014,158 @@ The response includes `status` (e.g. `success`) and `result` (your Flow's output
 
 ---
 
+# Lamatic Docs MCP
+
+Source: https://lamatic.ai/docs/mcp/docs-mcp
+
+# Lamatic Docs MCP
+
+> Query Lamatic.ai documentation instantly from any AI assistant — no searching, no tab switching, just answers.
+
+---
+
+## What is the Docs MCP?
+
+The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation.
+
+It is powered by a RAG pipeline built entirely on Lamatic:
+- **Firecrawl** scrapes the docs
+- **Chunking + Vectorize** indexes them into a VectorDB
+- **RAG Node** answers questions semantically
+- **Next.js + Vercel** exposes the MCP endpoint publicly
+
+<Callout type="info">
+  The MCP is free to use. No API key or account required.
+</Callout>
+
+---
+
+## Connect
+
+Add this to your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "lamatic-docs": {
+      "url": "https://docmcp.lamatic.ai/api/mcp"
+    }
+  }
+}
+```
+
+### Claude Desktop
+
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`  
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
+
+```json
+{
+  "mcpServers": {
+    "lamatic-docs": {
+      "url": "https://docmcp.lamatic.ai/api/mcp"
+    }
+  }
+}
+```
+
+Restart Claude Desktop after saving. You should see a 🔌 tools icon in the chat input.
+
+### Cursor / Windsurf / Cline
+
+Add the same config to your MCP settings. Most clients support the `url` field directly for HTTP-based MCP servers.
+
+## Available Tools
+
+### `query_docs`
+
+Ask any question about Lamatic.ai documentation. Uses RAG to search across all indexed docs and return a precise answer with references.
+
+**Input:**
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `text` | string | ✅ | The question to ask |
+
+**Example:**
+
+```json
+{
+  "name": "query_docs",
+  "arguments": {
+    "text": "How do I set up a RAG node in Lamatic?"
+  }
+}
+```
+
+---
+
+## How It Works
+
+```
+Your Question
+      ↓
+MCP Client (Claude / Cursor)
+      ↓
+docmcp.lamatic.ai/mcp/api
+      ↓
+Lamatic RAG Flow
+      ↓
+VectorDB (indexed Lamatic docs)
+      ↓
+Answer
+```
+
+The entire pipeline is built on Lamatic:
+
+1. **Indexing Flow** — scrapes `lamatic.ai/docs` using Firecrawl, chunks content, vectorizes and stores in VectorDB
+2. **Query Flow** — takes your question, runs semantic search, generates answer
+3. **MCP Server** — Next.js API route deployed on Vercel, calls the query flow via GraphQL
+
+---
+
+## Supported Clients
+
+| Client | Supported |
+|--------|-----------|
+| Claude Desktop | ✅ |
+| Cursor | ✅ |
+| Windsurf | ✅ |
+| Cline | ✅ |
+| Any HTTP MCP client | ✅ |
+
+---
+
+## Source Code
+
+The MCP is open source. You can view, fork, and contribute on GitHub:
+
+[github.com/Lamatic/Lamatic-MCP-Docs](https://github.com/Lamatic/Lamatic-MCP-Docs)
+
+{/*
+<Callout type="tip">
+  Want to build your own Docs MCP for your company? See the [Docs MCP setup guide](/docs/mcp-tools/docs-mcp) — fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
+</Callout>
+*/}
+
+---
+
+## Feedback
+
+Found an issue or want to suggest an improvement?
+
+- [Open an issue on GitHub](https://github.com/Lamatic/Lamatic-MCP-Docs/issues)
+- [Join Lamatic Slack](https://lamatic.ai/slack)
+- [Feature board](https://product.lamatic.ai/)
+
+
+---
+
 # Graph MCP
 
 Source: https://lamatic.ai/docs/mcp/graph-mcp
 
-# Graph MCP
+# Graph MCP (Beta)
 
 > Execute your deployed Lamatic flows via AI agents using natural language.
 
@@ -13104,11 +13319,11 @@ Source: https://lamatic.ai/docs/mcp
 
 [Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI assistants to external systems — data sources, APIs, tools, and services — through a single uniform interface.
 
-Lamatic supports MCP in **two directions**, depending on whether your flow needs to *consume* an MCP server or *act as* one.
+Lamatic ships **three MCP-related products**, each solving a different direction of the protocol.
 
 ---
 
-## The two MCPs
+## The three MCPs
 
 ### MCP Node — consume external MCP servers
 
@@ -13122,19 +13337,25 @@ The [MCP Node](/docs/mcp/mcp-node) lets a Lamatic flow connect to an existing MC
 
 **Use it when:** you want an external AI assistant to drive your Lamatic flows — for example, a developer using Cursor to trigger a flow that generates a report.
 
+### Docs MCP — query Lamatic docs from any AI assistant
+
+[Docs MCP](/docs/mcp/docs-mcp) is a hosted MCP server maintained by Lamatic. It indexes [lamatic.ai/docs](https://lamatic.ai/docs) into a RAG pipeline and exposes a `query_docs` tool so any MCP client can ask natural-language questions about Lamatic and get answers with references — no setup, no API key.
+
+**Use it when:** you want your AI assistant to answer questions about Lamatic itself — its nodes, agents, integrations, error messages — instead of searching the docs manually.
+
 ---
 
 ## When to use which
 
-| | MCP Node | Graph MCP |
-|---|---|---|
-| **Direction** | Lamatic flow → external MCP server | External MCP client → Lamatic flow |
-| **Role** | Client / consumer | Server / provider |
-| **What you provide** | The URL of an external MCP server | A deployed flow with an API trigger |
-| **What you get** | External tools available inside the flow | Your flow callable from any MCP client |
-| **Typical caller** | AI nodes in your flow | Claude Desktop, Cursor, VS Code, custom agents |
-| **Auth model** | Headers / API keys you configure on the node | Org API key + Project API key |
-| **Setup location** | Studio → MCP/Tools → MCP | `npx @lamatic/graph-mcp` in the client's config |
+|                      | MCP Node                                       | Graph MCP                                      | Docs MCP                                                     |
+| -------------------- | ---------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
+| **Direction**        | Lamatic flow → external MCP server             | External MCP client → Lamatic flow             | External MCP client → Lamatic's hosted docs server           |
+| **Role**             | Client / consumer                              | Server / provider                              | Server / provider (hosted by Lamatic)                        |
+| **What you provide** | The URL of an external MCP server              | A deployed flow with an API trigger            | Nothing — it's hosted                                        |
+| **What you get**     | External tools available inside the flow       | Your flow callable from any MCP client         | A `query_docs` tool that answers questions about Lamatic     |
+| **Typical caller**   | AI nodes in your flow                          | Claude Desktop, Cursor, VS Code, custom agents | Claude Desktop, Cursor, anyone reading the docs              |
+| **Auth model**       | Headers / API keys you configure on the node   | Org API key + Project API key                  | None — free to use                                           |
+| **Setup location**   | Studio → MCP/Tools → MCP                       | `npx @lamatic/graph-mcp` in the client's config | Add `https://docmcp.lamatic.ai/api/mcp` to your client config |
 
 ---
 
@@ -13142,14 +13363,14 @@ The [MCP Node](/docs/mcp/mcp-node) lets a Lamatic flow connect to an existing MC
 
 - *"I want my flow to use tools from an external service via MCP."* → [MCP Node](/docs/mcp/mcp-node)
 - *"I want Claude/Cursor to call my Lamatic flow."* → [Graph MCP](/docs/mcp/graph-mcp)
-- *Both.* → Use them together — a flow that consumes external MCP tools can itself be exposed via Graph MCP.
+- *"I want my AI assistant to answer questions about Lamatic itself."* → [Docs MCP](/docs/mcp/docs-mcp)
+- *Combine them.* → A flow that consumes external MCP tools (MCP Node) can itself be exposed via Graph MCP, while you use Docs MCP to ask your assistant about Lamatic as you build.
 
 ---
 
 ## Related
 
 - [Generate Text Node](/docs/nodes/ai/generate-text-node) — can integrate MCP tools loaded by the MCP Node
-- [Docs MCP](/docs/docs-mcp) — Lamatic's hosted MCP server for querying these docs from any AI assistant
 
 
 ---

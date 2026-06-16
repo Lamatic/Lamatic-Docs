@@ -1,6 +1,6 @@
 ---
 title: API Overview
-description: How to integrate with Lamatic programmatically — GraphQL, REST-style usage, and when to use the SDK.
+description: How to integrate with Lamatic programmatically. GraphQL, REST-style usage, and when to use the SDK.
 ---
 
 # API Overview
@@ -11,9 +11,9 @@ Lamatic exposes a **GraphQL API** as the primary way to run Flows from your app,
 
 Most developer tools use REST (`POST /api/v1/flows/{id}/execute`). Lamatic uses **GraphQL** because:
 
-- **Dynamic schemas** — The shape of inputs and outputs depends on how your Flow is configured. GraphQL lets you request exactly the fields you need and matches the response to your Flow's schema.
-- **Single endpoint** — One URL per project; the operation and variables are in the request body.
-- **Strong typing** — Queries and responses align with your Flow's input/output definitions.
+- **Dynamic schemas**: The shape of inputs and outputs depends on how your Flow is configured. GraphQL lets you request exactly the fields you need and matches the response to your Flow's schema.
+- **Single endpoint**: One URL per project; the operation and variables are in the request body.
+- **Strong typing**: Queries and responses align with your Flow's input/output definitions.
 
 If you're used to REST, you can think of "execute a Flow" as a single mutation: `executeWorkflow(workflowId, payload)`.
 
@@ -58,7 +58,7 @@ The response includes `status` (e.g. `success`) and `result` (your Flow's output
 
 ## Next steps
 
-- [Integration Guide](/docs/sdk/integration-guide) — Step-by-step setup and examples in JavaScript, Python, and cURL.
-- [GraphQL](/docs/interface/graphql) — Full request/response shapes, async flows, and schema.
-- [Error Codes](/docs/error-reference) — Diagnose failed requests.
-- [Limits & Quotas](/docs/limits) — Rate limits and payload size.
+- [Integration Guide](/docs/sdk/integration-guide): Step-by-step setup and examples in JavaScript, Python, and cURL.
+- [GraphQL](/docs/interface/graphql): Full request/response shapes, async flows, and schema.
+- [Error Codes](/docs/error-reference): Diagnose failed requests.
+- [Limits & Quotas](/docs/limits): Rate limits and payload size.

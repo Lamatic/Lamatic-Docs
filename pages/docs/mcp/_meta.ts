@@ -11,4 +11,8 @@ export default {
     title: "Graph MCP",
     type: "doc",
   },
+  "docs-mcp": {
+    title: "Docs MCP",
+    type: "doc",
+  },
 };

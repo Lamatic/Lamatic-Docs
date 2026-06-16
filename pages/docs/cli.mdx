@@ -1,0 +1,214 @@
+---
+title: Lamatic CLI (Beta)
+description: The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
+---
+
+import { Callout } from "nextra/components";
+
+# CLI
+
+`@lamatic/cli` is the official command-line interface for managing your Lamatic organization. Create projects, manage flows, trigger deployments, and configure contexts and integrations, all from the terminal.
+
+---
+
+## Installation
+
+Install globally to use the `lamatic` command anywhere:
+
+```bash
+npm install -g @lamatic/cli
+```
+
+Or run on demand without installing:
+
+```bash
+npx @lamatic/cli <command>
+```
+
+---
+
+## Authentication
+
+Authenticate once with your API key, organization ID, and user ID. Credentials are cached locally so subsequent commands don't require re-entering them.
+
+```bash
+lamatic auth login \
+  --api-key <YOUR_API_KEY> \
+  --org-id <YOUR_ORG_ID> \
+  --user-id <YOUR_USER_ID>
+```
+
+| Command | Description |
+|---|---|
+| `lamatic auth login` | Authenticate with your API key |
+| `lamatic auth status` | Check current auth status |
+| `lamatic auth logout` | Logout and clear credentials |
+
+---
+
+## Help
+
+```bash
+lamatic --help
+lamatic <command> --help
+```
+
+---
+
+## Commands
+
+### Projects
+
+| Command | Description |
+|---|---|
+| `lamatic init <name>` | Create a new Lamatic project |
+| `lamatic project list` | List all projects in your org |
+| `lamatic project get` | Fetch and download a project locally |
+| `lamatic project delete` | Delete a project |
+
+```bash
+# Create a new project
+lamatic init my-project --scratch
+
+# List all projects
+lamatic project list
+
+# Download an existing project locally
+lamatic project get --project-id <PROJECT_ID>
+
+# Delete a project
+lamatic project delete --project-id <PROJECT_ID>
+```
+
+### Flows
+
+| Command | Description |
+|---|---|
+| `lamatic flows create` | Create a new flow in a project |
+| `lamatic flows list` | List all flows in a project |
+| `lamatic flows rename` | Rename a flow |
+| `lamatic flows delete` | Delete a flow |
+| `lamatic flows status` | Update flow status (active/inactive) |
+
+```bash
+# Create a flow
+lamatic flows create --project-id <PROJECT_ID> --name "My Flow"
+
+# List all flows
+lamatic flows list --project-id <PROJECT_ID>
+
+# Rename a flow
+lamatic flows rename --project-id <PROJECT_ID> --flow-id <FLOW_ID> --name "New Name"
+
+# Delete a flow
+lamatic flows delete --project-id <PROJECT_ID> --flow-id <FLOW_ID>
+
+# Update flow status
+lamatic flows status --project-id <PROJECT_ID> --flow-id <FLOW_ID> --status active
+```
+
+### Deployments
+
+| Command | Description |
+|---|---|
+| `lamatic deploy` | Trigger a deployment for a project |
+| `lamatic deployments list` | List all deployments |
+| `lamatic deployments get` | Get details of a specific deployment |
+
+```bash
+# Trigger a deployment
+lamatic deploy --project-id <PROJECT_ID>
+
+# List all deployments
+lamatic deployments list --project-id <PROJECT_ID>
+
+# Get deployment details
+lamatic deployments get --project-id <PROJECT_ID> --deployment-id <DEPLOYMENT_ID>
+```
+
+### Contexts
+
+| Command | Description |
+|---|---|
+| `lamatic contexts list` | List all contexts in a project |
+| `lamatic contexts create` | Create a new context (vector or memory) |
+| `lamatic contexts delete` | Delete a context |
+
+```bash
+# List contexts
+lamatic contexts list --project-id <PROJECT_ID>
+
+# Create a context
+lamatic contexts create --project-id <PROJECT_ID> --name "my-context" --type vector
+
+# Delete a context
+lamatic contexts delete --project-id <PROJECT_ID> --context-id <CONTEXT_ID>
+```
+
+### Models
+
+| Command | Description |
+|---|---|
+| `lamatic models list` | List all model credentials |
+| `lamatic models add` | Add a new model credential |
+
+```bash
+# List model credentials
+lamatic models list --project-id <PROJECT_ID>
+
+# Add a model credential
+lamatic models add --project-id <PROJECT_ID>
+```
+
+### Integrations
+
+| Command | Description |
+|---|---|
+| `lamatic integrations list` | List all integration credentials |
+| `lamatic integrations add` | Add a new integration |
+
+```bash
+# List integrations
+lamatic integrations list --project-id <PROJECT_ID>
+
+# Add an integration
+lamatic integrations add --project-id <PROJECT_ID>
+```
+
+---
+
+## Example Workflow
+
+A typical end-to-end flow: log in, create a project, add a flow, deploy, and verify.
+
+```bash
+# 1. Login
+lamatic auth login --api-key <key> --org-id <org_id> --user-id <user_id>
+
+# 2. Create a new project
+lamatic init my-project --scratch
+
+# 3. List your projects to grab the project ID
+lamatic project list
+
+# 4. Create a flow inside the project
+lamatic flows create --project-id <PROJECT_ID> --name "My Flow"
+
+# 5. Deploy the project
+lamatic deploy --project-id <PROJECT_ID>
+
+# 6. Check deployment status
+lamatic deployments list --project-id <PROJECT_ID>
+
+# 7. Download an existing project locally
+lamatic project get --project-id <PROJECT_ID>
+```
+
+---
+
+## Links
+
+- [npm package](https://www.npmjs.com/package/@lamatic/cli)
+- [API Keys](/docs/api-integration/api-key): where to find the credentials this CLI uses
+- [SDK](/docs/sdk): programmatic access from your application code
+- [Graph MCP](/docs/mcp/graph-mcp): execute deployed flows from any AI assistant

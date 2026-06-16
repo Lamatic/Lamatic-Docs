@@ -141,6 +141,10 @@ export default {
     title: "MCP",
     type: "doc",
   },
+  ips: {
+    title: "IP Allowlisting",
+    type: "doc",
+  },
   // ===================
   MONITOR: {
     type: "separator",

@@ -155,6 +155,7 @@ const nonPermanentRedirects = [
   ["/new-issue", "https://github.com/Lamatic/docs/issues/new/choose"],
   ["/issues", "https://github.com/Lamatic/docs/issues"],
   ["/get-a-demo", "/docs/demo"],
+  ["/docs/whitelist-ip", "/docs/ips"],
   // ["/security", "/docs/data-security-privacy"],
   ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
   [

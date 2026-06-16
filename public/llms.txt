@@ -22,6 +22,7 @@
 - [IDE](https://lamatic.ai/docs/ide): IDE Inside lamatic.ai studio
 - [Overview](https://lamatic.ai/docs): Lamatic is a collaborative GenOps platform. It helps cross-functional product teams build and deploy GenAI faster and better.
 - [Interfaces](https://lamatic.ai/docs/interface): Connect to Lamatic platform using Interfaces
+- [IP Allowlisting](https://lamatic.ai/docs/ips): IP addresses and network guidance to allowlist Lamatic in customer firewalls for databases, apps, webhooks, API calls, and external systems.
 - [Jobs](https://lamatic.ai/docs/jobs): Lamatic Studio
 - [Logs](https://lamatic.ai/docs/logs): Logs in Lamatic.ai
 - [Models](https://lamatic.ai/docs/models): Models in Lamatic Studio

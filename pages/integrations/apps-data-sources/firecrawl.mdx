@@ -67,7 +67,7 @@ Before using Firecrawl, ensure the following:
 - A webhook endpoint for receiving notifications (required for the crawler).
 
 <Callout type="warning">  
-For Self Hosting,If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+For self-hosted deployments, if the connection fails, review [IP Allowlisting](/docs/ips) and allow the required Lamatic and Cloudflare ranges.
 </Callout>
 
 ## Setup
@@ -418,4 +418,4 @@ Firecrawl now supports agent workflows with three execution modes for submitting
 
 - Check **Firecrawl logs** for detailed error information.
 - Test the **webhook endpoint** to confirm it is receiving updates.
-- If the connection fails, whitelist the following IPs: [https://www.cloudflare.com/ips/](https://www.cloudflare.com/ips/)
+- If the connection fails, review [IP Allowlisting](/docs/ips) and confirm the required Lamatic and Cloudflare ranges are allowed.

@@ -25,7 +25,7 @@ Access a comprehensive historical record of all job executions. This feature pro
 - **Records loaded**: The number of records successfully processed and loaded as individual requests, showing the efficiency of your data loading mechanism.
 - **Time**: The duration required to complete the job execution, helping you monitor and optimize performance.
 
-> ⚠️ **Important**: The job time differs from the complete execution time of the entire batch. The total execution duration depends on the completion of all requests within the batch, which may vary based on complexity and volume.
+> **Important**: The job time differs from the complete execution time of the entire batch. The total execution duration depends on the completion of all requests within the batch, which may vary based on complexity and volume.
 
 ---
 
@@ -50,6 +50,6 @@ Configure the settings for your job to align with your specific requirements and
 ### Force Sync
 For situations requiring immediate action, you can manually initiate a job using the **force sync** option. This feature instantly triggers the job execution, allowing you to run data synchronizations on-demand outside of the scheduled times.
 
-> ⚠️ **Note**: When operating in **Incremental Sync Mode** (which only loads new and updated records), force syncing will not process records from failed requests. This limitation is in place to maintain data integrity and prevent potential duplications.
+> **Note**: When operating in **Incremental Sync Mode** (which only loads new and updated records), force syncing will not process records from failed requests. This limitation is in place to maintain data integrity and prevent potential duplications.
 
 To address records in failed requests, you should adjust the Sync Mode to **Full Refresh** and execute a complete synchronization. It's crucial to ensure that a **primary key attribute** is properly configured in the Index Node setup to facilitate accurate record matching and updating during this process.

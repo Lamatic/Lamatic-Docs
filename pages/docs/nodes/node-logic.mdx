@@ -8,7 +8,7 @@ description: Node Logic allows you to wrap and extend your node's behavior with 
 ![img_8.png](./img/node-logic.png)
 Node Logic provides powerful ways to wrap and extend your node's behavior, enabling advanced control mechanisms for flow control, conditional routing, and iterative processing. These logic options help you build more dynamic, responsive, and flexible workflows.
 
-> 💡 **Tip**: Node Logic is useful for flow control, conditional routing, and iterative refinement. Add logic to your nodes to enhance workflow flexibility and enable dynamic execution paths.
+> **Tip**: Node Logic is useful for flow control, conditional routing, and iterative refinement. Add logic to your nodes to enhance workflow flexibility and enable dynamic execution paths.
 
 ## Overview
 
@@ -46,7 +46,7 @@ When you select **Fallback**, you can configure:
 2. If Config A times out (based on your timeout setting) or fails, the system automatically switches to **Config B**
 3. The result from the successful configuration (either A or B) is used to continue the workflow
 
-> ⚠️ **Note**: Make sure Config B uses a different node or configuration that's more reliable or faster, even if potentially less optimal.
+> **Note**: Make sure Config B uses a different node or configuration that's more reliable or faster, even if potentially less optimal.
 
 ---
 
@@ -76,7 +76,7 @@ When you select **Retry**, you can configure:
    - The execution succeeds, or
    - The maximum number of retry attempts is reached
 
-> 💡 **Best Practice**: Set appropriate delay values to avoid overwhelming the node API and to respect rate limits.
+> **Best Practice**: Set appropriate delay values to avoid overwhelming the node API and to respect rate limits.
 
 ---
 
@@ -107,7 +107,7 @@ When you select **Go Back**, you can configure:
 4. The target node re-executes with the updated context
 5. If the condition is not met, execution continues to the next node in the flow
 
-> ⚠️ **Warning**: Be careful to avoid infinite loops. Ensure your conditions can eventually be false, or set maximum iteration limits.
+> **Warning**: Be careful to avoid infinite loops. Ensure your conditions can eventually be false, or set maximum iteration limits.
 
 ### Example Use Cases
 
@@ -143,7 +143,7 @@ When you select **Parallel**, you can configure:
 3. You can access results from both configurations in subsequent Logics
 4. Results are typically available as separate outputs or can be combined based on your workflow logic
 
-> 💡 **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple Logic, as they run concurrently rather than sequentially.
+> **Tip**: Parallel execution can significantly reduce total execution time when you need results from multiple Logic, as they run concurrently rather than sequentially.
 
 ---
 
@@ -177,7 +177,7 @@ When you select **A/B Test**, you can configure:
 3. Results from both configurations can be tracked and compared
 4. The system maintains the traffic split distribution over time
 
-> 📊 **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
+> **Analytics**: Use the Logs and Reports tabs to analyze the performance and results of each configuration in your A/B test.
 
 ---
 
@@ -199,7 +199,7 @@ To add logic to a node:
 7. Configure the selected logic type with the appropriate settings
 8. Save your configuration
 
-> 💡 **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability, or Go Back with conditional checks for sophisticated flow control.
+> **Note**: You can combine multiple logic types on a single node for more complex behavior, such as using Retry with Fallback for maximum reliability, or Go Back with conditional checks for sophisticated flow control.
 
 ---
 

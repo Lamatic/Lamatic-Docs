@@ -410,11 +410,11 @@ const permanentRedirects = [
     ["/docs/nodes/apps/s3-node","/integrations/apps-data-sources/aws-s3"],
     ["/docs/nodes/apps/sharepoint-business-node","/integrations/apps-data-sources/sharepoint"],
     ["/docs/nodes/apps/slack-node","/integrations/apps-data-sources/slack"],
-    ["/docs/nodes/apps/smtp-node","/integrations/apps-data-sources"],
+    ["/docs/nodes/apps/smtp-node","/integrations/apps-data-sources/smtp"],
     ["/docs/nodes/apps/twilio-node","/integrations/apps-data-sources/twilio"],
     ["/docs/nodes/apps/web-search-node","/integrations/apps-data-sources/websearch"],
     ["/docs/nodes/apps/scraper-node","/integrations/apps-data-sources/firecrawl"],
-    ["/docs/nodes/apps/gmail-node","/integrations/apps-data-sources"],
+    ["/docs/nodes/apps/gmail-node","/integrations/apps-data-sources/gmail"],
     ["/docs/nodes/apps/cron-node","/integrations/apps-data-sources"],
 ["/docs/nodes/flow/query-database","/docs/flows/nodes"],
 ["/docs/vector_stores/vector_stores","/docs/context/vectordb"],
@@ -682,7 +682,8 @@ const permanentRedirects = [
 ["/docs/api-integration/sdk/next","/docs/sdk/next"],
 ["/docs/api-integration/sdk/react","/docs/sdk/react"],
 ["/docs/api-integration/integration-guide","/docs/sdk/integration-guide"],
-["/docs/docs-mcp","/docs/mcp/docs-mcp"]
+["/docs/docs-mcp","/docs/mcp/docs-mcp"],
+["/integrations/apps-data-sources/microsoft-sql-server","/integrations/apps-data-sources/mssql"]
 
 
 ];

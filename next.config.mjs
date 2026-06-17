@@ -682,7 +682,8 @@ const permanentRedirects = [
 ["/docs/api-integration/sdk/go","/docs/sdk/go"],
 ["/docs/api-integration/sdk/next","/docs/sdk/next"],
 ["/docs/api-integration/sdk/react","/docs/sdk/react"],
-["/docs/api-integration/integration-guide","/docs/sdk/integration-guide"]
+["/docs/api-integration/integration-guide","/docs/sdk/integration-guide"],
+["/docs/docs-mcp","/docs/mcp/docs-mcp"]
 
 
 ];

@@ -133,6 +133,10 @@ export default {
     title: "SDK",
     type: "doc",
   },
+  cli: {
+    title: "CLI",
+    type: "doc",
+  },
   mcp: {
     title: "MCP",
     type: "doc",
@@ -175,10 +179,6 @@ export default {
     "title": "All Nodes (A-Z)",
     "href": "/docs/nodes",
     "newWindow": false
-  },
-  "docs-mcp": {
-    title: "Docs MCP",
-    type: "doc",
   },
   "dev-mcp": {
     title: "Dev MCP",

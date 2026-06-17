@@ -155,6 +155,7 @@ const nonPermanentRedirects = [
   ["/new-issue", "https://github.com/Lamatic/docs/issues/new/choose"],
   ["/issues", "https://github.com/Lamatic/docs/issues"],
   ["/get-a-demo", "/docs/demo"],
+  ["/docs/whitelist-ip", "/docs/ips"],
   // ["/security", "/docs/data-security-privacy"],
   ["/idea", "https://github.com/Lamatic/docs/discussions/new?category=ideas"],
   [
@@ -706,7 +707,7 @@ const rewrites = [
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
     [
-      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|ambassadors).*)",
+      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|llms.txt|llms-full.txt|ambassadors).*)",
       "https://get.lamatic.ai/:path*",
     ],
 ];

@@ -18,7 +18,6 @@ const items = [
   { title: "Integrations", path: "/integrations", Icon: Blocks },
   { title: "Templates", path: "/templates", Icon: LayoutTemplate },
   { title: "Guides", path: "/guides", Icon: GraduationCap },
-  { title: "Book a demo", path: "/docs/demo", Icon: Phone },
   {
     title: "Roadmap",
     path: "https://product.lamatic.ai/",

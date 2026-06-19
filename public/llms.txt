@@ -6,164 +6,164 @@
 
 ## Getting Started
 
-- [Agents](https://lamatic.ai/docs/agents): Agents in Lamatic.ai Studio
-- [Architecture](https://lamatic.ai/docs/architecture): How does Lamatic work?
-- [CLI](https://lamatic.ai/docs/cli): The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
-- [Context](https://lamatic.ai/docs/context): Context in Lamatic Studio
-- [Contributing](https://lamatic.ai/docs/contributing): Contributing to Lamatic.ai Documentation
-- [Edge Deployment](https://lamatic.ai/docs/deployments): Edge Deployment in Lamatic.ai
-- [Environments](https://lamatic.ai/docs/environment): Create and manage different environments for your flows using branching and merging in Lamatic AI.
-- [Error Codes](https://lamatic.ai/docs/error-reference): Reference for error codes, HTTP status codes, and how to fix common API and Flow failures.
-- [Feedback API](https://lamatic.ai/docs/feedback-api): Collect feedback from any flows, specifically GraphQL APIs, to improve your AI applications.
-- [Flow Integration](https://lamatic.ai/docs/flow-integration): Integrate a developed flow into your application — Connect to your project, API, Vibe Code Prompt, and app frameworks.
-- [Flows](https://lamatic.ai/docs/flows): Flow builder in Lamatic.ai Studio
-- [Quickstart Guide](https://lamatic.ai/docs/get-started): Quickly get your first project off the ground with Lamatic.
-- [Glossary](https://lamatic.ai/docs/glossary): Common terms and concepts in Lamatic.ai explained in simple language
-- [IDE](https://lamatic.ai/docs/ide): IDE Inside lamatic.ai studio
-- [Overview](https://lamatic.ai/docs): Lamatic is a collaborative GenOps platform. It helps cross-functional product teams build and deploy GenAI faster and better.
-- [Interfaces](https://lamatic.ai/docs/interface): Connect to Lamatic platform using Interfaces
-- [IP Allowlisting](https://lamatic.ai/docs/ips): IP addresses and network guidance to allowlist Lamatic in customer firewalls for databases, apps, webhooks, API calls, and external systems.
-- [Jobs](https://lamatic.ai/docs/jobs): Lamatic Studio
-- [Logs](https://lamatic.ai/docs/logs): Logs in Lamatic.ai
-- [Models](https://lamatic.ai/docs/models): Models in Lamatic Studio
-- [Nodes](https://lamatic.ai/docs/nodes): Nodes are the fundamental building blocks of a flow in Lamatic. Each node serves a specific purpose, acting as a self-contained unit that processes input and produces output.
-- [Reports](https://lamatic.ai/docs/reports): Reporting in Lamatic Studio
-- [Templates](https://lamatic.ai/docs/templates): Templates in Lamatic.ai Studio
-- [Version Control](https://lamatic.ai/docs/version-control): Manage, preview, and duplicate previous versions of your flow in Lamatic AI.
-- [Vibe Build Overview](https://lamatic.ai/docs/vibe-build): Use the Vibe Build home to launch agents, pick templates, and connect data sources in Lamatic AI.
+- [Agents](https://lamatic.ai/docs/agents.md): Agents in Lamatic.ai Studio
+- [Architecture](https://lamatic.ai/docs/architecture.md): How does Lamatic work?
+- [Lamatic CLI (Beta)](https://lamatic.ai/docs/cli.md): The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
+- [Context](https://lamatic.ai/docs/context.md): Context in Lamatic Studio
+- [Contributing](https://lamatic.ai/docs/contributing.md): Contributing to Lamatic.ai Documentation
+- [Edge Deployment](https://lamatic.ai/docs/deployments.md): Edge Deployment in Lamatic.ai
+- [Environments](https://lamatic.ai/docs/environment.md): Create and manage different environments for your flows using branching and merging in Lamatic AI.
+- [Error Codes](https://lamatic.ai/docs/error-reference.md): Reference for error codes, HTTP status codes, and how to fix common API and Flow failures.
+- [Feedback API](https://lamatic.ai/docs/feedback-api.md): Collect feedback from any flows, specifically GraphQL APIs, to improve your AI applications.
+- [Flow Integration](https://lamatic.ai/docs/flow-integration.md): Integrate a developed flow into your application — Connect to your project, API, Vibe Code Prompt, and app frameworks.
+- [Flows](https://lamatic.ai/docs/flows.md): Flow builder in Lamatic.ai Studio
+- [Quickstart Guide](https://lamatic.ai/docs/get-started.md): Quickly get your first project off the ground with Lamatic.
+- [Glossary](https://lamatic.ai/docs/glossary.md): Common terms and concepts in Lamatic.ai explained in simple language
+- [IDE](https://lamatic.ai/docs/ide.md): IDE Inside lamatic.ai studio
+- [Overview](https://lamatic.ai/docs.md): Lamatic is a collaborative GenOps platform. It helps cross-functional product teams build and deploy GenAI faster and better.
+- [Interfaces](https://lamatic.ai/docs/interface.md): Connect to Lamatic platform using Interfaces
+- [IP Allowlisting](https://lamatic.ai/docs/ips.md): IP addresses and network guidance to allowlist Lamatic in customer firewalls for databases, apps, webhooks, API calls, and external systems.
+- [Jobs](https://lamatic.ai/docs/jobs.md): Lamatic Studio
+- [Logs](https://lamatic.ai/docs/logs.md): Logs in Lamatic.ai
+- [Models](https://lamatic.ai/docs/models.md): Models in Lamatic Studio
+- [Nodes](https://lamatic.ai/docs/nodes.md): Nodes are the fundamental building blocks of a flow in Lamatic. Each node serves a specific purpose, acting as a self-contained unit that processes input and produces output.
+- [Reports](https://lamatic.ai/docs/reports.md): Reporting in Lamatic Studio
+- [Templates](https://lamatic.ai/docs/templates.md): Templates in Lamatic.ai Studio
+- [Version Control](https://lamatic.ai/docs/version-control.md): Manage, preview, and duplicate previous versions of your flow in Lamatic AI.
+- [Vibe Build Overview](https://lamatic.ai/docs/vibe-build.md): Use the Vibe Build home to launch agents, pick templates, and connect data sources in Lamatic AI.
 
 ## Concepts
 
-- [AI Middleware](https://lamatic.ai/docs/concepts/ai-middleware): Lamatic AI as a GenAI middleware solution - easy to implement and deploy
-- [LLM Prompting Techniques](https://lamatic.ai/docs/concepts/llm-prompting): Learn effective prompting techniques to get the most out of Large Language Models with practical examples and best practices.
-- [What is Retrieval-Augmented Generation (RAG)?](https://lamatic.ai/docs/concepts/rag): Retrieval-Augmented Generation (RAG) is an AI framework that enhances the performance of Large Language Models (LLMs) by integrating external information retrieval mechanisms.
-- [Vibe Coding with Lamatic.ai](https://lamatic.ai/docs/concepts/vibe-coding-setup): How to integrate LLM-powered vibe coding tools like GitHub Copilot and Cursor within Lamatic.ai Docs for context-aware, intelligent development.
+- [AI Middleware](https://lamatic.ai/docs/concepts/ai-middleware.md): Lamatic AI as a GenAI middleware solution - easy to implement and deploy
+- [LLM Prompting Techniques](https://lamatic.ai/docs/concepts/llm-prompting.md): Learn effective prompting techniques to get the most out of Large Language Models with practical examples and best practices.
+- [What is Retrieval-Augmented Generation (RAG)?](https://lamatic.ai/docs/concepts/rag.md): Retrieval-Augmented Generation (RAG) is an AI framework that enhances the performance of Large Language Models (LLMs) by integrating external information retrieval mechanisms.
+- [Vibe Coding with Lamatic.ai](https://lamatic.ai/docs/concepts/vibe-coding-setup.md): How to integrate LLM-powered vibe coding tools like GitHub Copilot and Cursor within Lamatic.ai Docs for context-aware, intelligent development.
 
 ## Studio
 
-- [Authentication with API Keys](https://lamatic.ai/docs/studio/studio-keys): To ensure secure access to our platform, Lamatic.ai employs API keys for authentication.
-- [Studio Overview](https://lamatic.ai/docs/studio/studio-overview): Lamatic Studio -  Command and Control for Lamatic Projects
-- [Projects](https://lamatic.ai/docs/studio/studio-project): Projects in Lamatic Studio
-- [Role-Based Access](https://lamatic.ai/docs/studio/studio-role-based-access): Learn what each Lamatic.ai role can do, with organization and project permission tables for owners, admins, editors, developers, and viewers.
-- [Tags](https://lamatic.ai/docs/studio/studio-tags): Organize and filter flows using tags for better accessibility and management
-- [Variables & Secrets](https://lamatic.ai/docs/studio/studio-variables-and-secrets): Store and manage variables, API keys, and secrets securely in Lamatic and reference them across flows without exposing values.
+- [Authentication with API Keys](https://lamatic.ai/docs/studio/studio-keys.md): To ensure secure access to our platform, Lamatic.ai employs API keys for authentication.
+- [Studio Overview](https://lamatic.ai/docs/studio/studio-overview.md): Lamatic Studio -  Command and Control for Lamatic Projects
+- [Projects](https://lamatic.ai/docs/studio/studio-project.md): Projects in Lamatic Studio
+- [Role-Based Access](https://lamatic.ai/docs/studio/studio-role-based-access.md): Learn what each Lamatic.ai role can do, with organization and project permission tables for owners, admins, editors, developers, and viewers.
+- [Tags](https://lamatic.ai/docs/studio/studio-tags.md): Organize and filter flows using tags for better accessibility and management
+- [Variables & Secrets](https://lamatic.ai/docs/studio/studio-variables-and-secrets.md): Store and manage variables, API keys, and secrets securely in Lamatic and reference them across flows without exposing values.
 
 ## Flows
 
-- [Flow Editor](https://lamatic.ai/docs/flows/editor): Flow Editor in Lamatic Studio
-- [Flow AI Assistant](https://lamatic.ai/docs/flows/flow-assistant): Flow AI Assistant in Lamatic Studio
-- [Flow Config](https://lamatic.ai/docs/flows/flow-config): Flow Config
-- [Node Configuration](https://lamatic.ai/docs/flows/node-config): Node Configuration for node
-- [Nodes](https://lamatic.ai/docs/flows/nodes): Learn about nodes in Lamatic flows - the fundamental building blocks that process and transform data in your workflows.
-- [Sticky notes](https://lamatic.ai/docs/flows/sticky-notes): Sticky notes for enhanced workflow organization in Lamatic AI.
-- [Variables](https://lamatic.ai/docs/flows/variables): Variables in Lamatic Studio
+- [Flow Editor](https://lamatic.ai/docs/flows/editor.md): Flow Editor in Lamatic Studio
+- [Flow AI Assistant](https://lamatic.ai/docs/flows/flow-assistant.md): Flow AI Assistant in Lamatic Studio
+- [Flow Config](https://lamatic.ai/docs/flows/flow-config.md): Flow Config
+- [Node Configuration](https://lamatic.ai/docs/flows/node-config.md): Node Configuration for node
+- [Nodes](https://lamatic.ai/docs/flows/nodes.md): Learn about nodes in Lamatic flows - the fundamental building blocks that process and transform data in your workflows.
+- [Sticky notes](https://lamatic.ai/docs/flows/sticky-notes.md): Sticky notes for enhanced workflow organization in Lamatic AI.
+- [Variables](https://lamatic.ai/docs/flows/variables.md): Variables in Lamatic Studio
 
 ## Nodes
 
-- [Classifier Node](https://lamatic.ai/docs/nodes/ai/classifier-node): The Classifier Node allows users to categorize and classify data based on predefined criteria or machine learning models.
-- [Doc Extractor Node](https://lamatic.ai/docs/nodes/ai/doc-extractor): The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text.
-- [Generate Image Node](https://lamatic.ai/docs/nodes/ai/generate-image-node): The Generate Image Node allows users to create images using AI models based on text prompts and configuration parameters.
-- [Generate JSON Node](https://lamatic.ai/docs/nodes/ai/generate-json-node): The Generate JSON Node allows users to generate structured JSON data using AI models with predefined schemas.
-- [Generate Text Node](https://lamatic.ai/docs/nodes/ai/generate-text-node): The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs.
-- [MCP Node](https://lamatic.ai/docs/nodes/ai/mcp-node): The MCP Node allows users to connect to and interact with external data sources and tools through the Model Context Protocol (MCP).
-- [Multimodal Node](https://lamatic.ai/docs/nodes/ai/multimodal-node): The Multimodal Node allows users to process multiple types of data (text, images, audio) using AI models in a single workflow.
-- [RAG Node](https://lamatic.ai/docs/nodes/ai/rag-node): The RAG (Retrieval-Augmented Generation) Node combines information retrieval with text generation to provide contextually relevant responses.
-- [Supervisor Node](https://lamatic.ai/docs/nodes/ai/supervisor-node): The Supervisor Node monitors and manages the execution of other nodes in a workflow, providing oversight and control capabilities.
-- [API Node](https://lamatic.ai/docs/nodes/data/api-node): The Lamatic.ai API Node empowers users to external REST APIs seamlessly into their flow.
-- [Chunking Node](https://lamatic.ai/docs/nodes/data/chunking-node): The Chunking Node breaks down large text documents into smaller, manageable chunks for processing by AI models.
-- [Extract from File Node](https://lamatic.ai/docs/nodes/data/extract-from-file-node): The Extract from File Node extracts and processes data from various file formats including PDFs, Word documents, and text files.
-- [Hybrid Search Node](https://lamatic.ai/docs/nodes/data/hybrid-search-node): The Hybrid Search Node combines multiple search strategies to provide comprehensive and accurate search results from vector databases.
-- [Keyword Search Node](https://lamatic.ai/docs/nodes/data/keyword-search-node): The Keyword Search Node performs text-based searches using specific keywords and phrases to find relevant content.
-- [Memory Add Node](https://lamatic.ai/docs/nodes/data/memory-add-node): The Memory Add Node stores and manages data in memory for use across workflow executions.
-- [Memory Retrieve Node](https://lamatic.ai/docs/nodes/data/memory-retrieve-node): The Memory Retrieve Node retrieves stored data from memory for use in current workflow executions.
-- [Tables Node](https://lamatic.ai/docs/nodes/data/tables-node): The Tables Node performs various operations on structured data tables including querying, inserting, updating, and deleting records.
-- [Keyword Search Node](https://lamatic.ai/docs/nodes/data/vector-search-node): The Keyword Search Node performs text-based searches using specific keywords and phrases to find relevant content.
-- [VectorDB Node](https://lamatic.ai/docs/nodes/data/vectordb-node): The VectorDB Node performs various operations on vector databases including insertion, deletion, and management of vector data.
-- [Vectorize Node](https://lamatic.ai/docs/nodes/data/vectorize-node): The Vectorize Node converts text data into vector embeddings for use in semantic search and AI applications.
-- [Batch Node](https://lamatic.ai/docs/nodes/logic/batch-node): The Batch Node iterates over a list or a range and runs each iteration in parallel with a configurable concurrency limit.
-- [Branch Node](https://lamatic.ai/docs/nodes/logic/branch-node): The Branch Node creates multiple execution paths in a workflow based on conditions or data routing logic.
-- [Code Node](https://lamatic.ai/docs/nodes/logic/code-node): The Code Node allows users to execute custom JavaScript code within workflows for data processing and logic implementation.
-- [Condition Node](https://lamatic.ai/docs/nodes/logic/condition-node): The Lamatic.ai Condition Node allows users to integrate custom logic into their flow with ease.
-- [End Node](https://lamatic.ai/docs/nodes/logic/end-node): The End Node stops flow execution immediately and returns control to the Final Trigger Response node.
-- [Execute Flow Node](https://lamatic.ai/docs/nodes/logic/execute-flow): The Execute Flow Node allows users to call and execute other workflows from within a current workflow.
-- [Loop Node](https://lamatic.ai/docs/nodes/logic/loop-node): The Loop Node enables iterative processing of data by repeating operations on collections or arrays of data.
-- [Variable Node](https://lamatic.ai/docs/nodes/logic/variable-node): The Variable Node allows users to define and manage variables for storing and manipulating data within workflows.
-- [Wait Node](https://lamatic.ai/docs/nodes/logic/wait-node): The Wait Node introduces delays in workflow execution for timing control and rate limiting purposes.
-- [Node Assistant](https://lamatic.ai/docs/nodes/node-assistant): Node AI Assistant in Lamatic Studio - Get AI-powered assistance for configuring individual nodes
-- [Node Logic](https://lamatic.ai/docs/nodes/node-logic): Node Logic allows you to wrap and extend your node's behavior with advanced control mechanisms like conditional routing, iterative refinement, and dynamic flow control.
+- [Classifier Node](https://lamatic.ai/docs/nodes/ai/classifier-node.md): The Classifier Node allows users to categorize and classify data based on predefined criteria or machine learning models.
+- [Doc Extractor Node](https://lamatic.ai/docs/nodes/ai/doc-extractor.md): The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text.
+- [Generate Image Node](https://lamatic.ai/docs/nodes/ai/generate-image-node.md): The Generate Image Node allows users to create images using AI models based on text prompts and configuration parameters.
+- [Generate JSON Node](https://lamatic.ai/docs/nodes/ai/generate-json-node.md): The Generate JSON Node allows users to generate structured JSON data using AI models with predefined schemas.
+- [Generate Text Node](https://lamatic.ai/docs/nodes/ai/generate-text-node.md): The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs.
+- [MCP Node](https://lamatic.ai/docs/nodes/ai/mcp-node.md): The MCP Node allows users to connect to and interact with external data sources and tools through the Model Context Protocol (MCP).
+- [Multimodal Node](https://lamatic.ai/docs/nodes/ai/multimodal-node.md): The Multimodal Node allows users to process multiple types of data (text, images, audio) using AI models in a single workflow.
+- [RAG Node](https://lamatic.ai/docs/nodes/ai/rag-node.md): The RAG (Retrieval-Augmented Generation) Node combines information retrieval with text generation to provide contextually relevant responses.
+- [Supervisor Node](https://lamatic.ai/docs/nodes/ai/supervisor-node.md): The Supervisor Node monitors and manages the execution of other nodes in a workflow, providing oversight and control capabilities.
+- [API Node](https://lamatic.ai/docs/nodes/data/api-node.md): The Lamatic.ai API Node empowers users to external REST APIs seamlessly into their flow.
+- [Chunking Node](https://lamatic.ai/docs/nodes/data/chunking-node.md): The Chunking Node breaks down large text documents into smaller, manageable chunks for processing by AI models.
+- [Extract from File Node](https://lamatic.ai/docs/nodes/data/extract-from-file-node.md): The Extract from File Node extracts and processes data from various file formats including PDFs, Word documents, and text files.
+- [Hybrid Search Node](https://lamatic.ai/docs/nodes/data/hybrid-search-node.md): The Hybrid Search Node combines multiple search strategies to provide comprehensive and accurate search results from vector databases.
+- [Keyword Search Node](https://lamatic.ai/docs/nodes/data/keyword-search-node.md): The Keyword Search Node performs text-based searches using specific keywords and phrases to find relevant content.
+- [Memory Add Node](https://lamatic.ai/docs/nodes/data/memory-add-node.md): The Memory Add Node stores and manages data in memory for use across workflow executions.
+- [Memory Retrieve Node](https://lamatic.ai/docs/nodes/data/memory-retrieve-node.md): The Memory Retrieve Node retrieves stored data from memory for use in current workflow executions.
+- [Tables Node](https://lamatic.ai/docs/nodes/data/tables-node.md): The Tables Node performs various operations on structured data tables including querying, inserting, updating, and deleting records.
+- [Keyword Search Node](https://lamatic.ai/docs/nodes/data/vector-search-node.md): The Keyword Search Node performs text-based searches using specific keywords and phrases to find relevant content.
+- [VectorDB Node](https://lamatic.ai/docs/nodes/data/vectordb-node.md): The VectorDB Node performs various operations on vector databases including insertion, deletion, and management of vector data.
+- [Vectorize Node](https://lamatic.ai/docs/nodes/data/vectorize-node.md): The Vectorize Node converts text data into vector embeddings for use in semantic search and AI applications.
+- [Batch Node](https://lamatic.ai/docs/nodes/logic/batch-node.md): The Batch Node iterates over a list or a range and runs each iteration in parallel with a configurable concurrency limit.
+- [Branch Node](https://lamatic.ai/docs/nodes/logic/branch-node.md): The Branch Node creates multiple execution paths in a workflow based on conditions or data routing logic.
+- [Code Node](https://lamatic.ai/docs/nodes/logic/code-node.md): The Code Node allows users to execute custom JavaScript code within workflows for data processing and logic implementation.
+- [Condition Node](https://lamatic.ai/docs/nodes/logic/condition-node.md): The Lamatic.ai Condition Node allows users to integrate custom logic into their flow with ease.
+- [End Node](https://lamatic.ai/docs/nodes/logic/end-node.md): The End Node stops flow execution immediately and returns control to the Final Trigger Response node.
+- [Execute Flow Node](https://lamatic.ai/docs/nodes/logic/execute-flow.md): The Execute Flow Node allows users to call and execute other workflows from within a current workflow.
+- [Loop Node](https://lamatic.ai/docs/nodes/logic/loop-node.md): The Loop Node enables iterative processing of data by repeating operations on collections or arrays of data.
+- [Variable Node](https://lamatic.ai/docs/nodes/logic/variable-node.md): The Variable Node allows users to define and manage variables for storing and manipulating data within workflows.
+- [Wait Node](https://lamatic.ai/docs/nodes/logic/wait-node.md): The Wait Node introduces delays in workflow execution for timing control and rate limiting purposes.
+- [Node Assistant](https://lamatic.ai/docs/nodes/node-assistant.md): Node AI Assistant in Lamatic Studio - Get AI-powered assistance for configuring individual nodes
+- [Node Logic](https://lamatic.ai/docs/nodes/node-logic.md): Node Logic allows you to wrap and extend your node's behavior with advanced control mechanisms like conditional routing, iterative refinement, and dynamic flow control.
 
 ## Agents
 
-- [Getting Started with Agents](https://lamatic.ai/docs/agents/getting-started): Getting Started with Agents in Lamatic.ai
-- [JSON Agent](https://lamatic.ai/docs/agents/json-agent): Get structured JSON from an LLM with a schema. Use it when you need a fixed output shape for APIs, pipelines, or reports.
-- [Multi Modal Agent](https://lamatic.ai/docs/agents/multi-modal-agent): The Multi Modal Agent in Lamatic.ai generates images and text content programmatically using AI models like GPT-4-Turbo.
-- [Supervisor Agent](https://lamatic.ai/docs/agents/supervisor-agent): The Supervisor Agent in Lamatic.ai orchestrates multi-agent flow by collecting input, maintaining memory, and coordinating execution paths.
-- [Text Agent](https://lamatic.ai/docs/agents/text-agent): The Text Agent in Lamatic.ai generates dynamic text outputs using customizable prompts and LLM models.
+- [Getting Started with Agents](https://lamatic.ai/docs/agents/getting-started.md): Getting Started with Agents in Lamatic.ai
+- [JSON Agent](https://lamatic.ai/docs/agents/json-agent.md): Get structured JSON from an LLM with a schema. Use it when you need a fixed output shape for APIs, pipelines, or reports.
+- [Multi Modal Agent](https://lamatic.ai/docs/agents/multi-modal-agent.md): The Multi Modal Agent in Lamatic.ai generates images and text content programmatically using AI models like GPT-4-Turbo.
+- [Supervisor Agent](https://lamatic.ai/docs/agents/supervisor-agent.md): The Supervisor Agent in Lamatic.ai orchestrates multi-agent flow by collecting input, maintaining memory, and coordinating execution paths.
+- [Text Agent](https://lamatic.ai/docs/agents/text-agent.md): The Text Agent in Lamatic.ai generates dynamic text outputs using customizable prompts and LLM models.
 
 ## Models
 
-- [Benchmarks](https://lamatic.ai/docs/models/benchmark): Compare and evaluate LLM performance using recommended benchmarks to choose the right model for your Lamatic.ai use case.
-- [Custom Model Integration](https://lamatic.ai/docs/models/custom-model-integration): With Lamatic, you can define custom models per provider — this doc walks through how to add, override, and control model behavior across different AI backends.
-- [Model Config](https://lamatic.ai/docs/models/model-config): Model Config play a crucial role in fine-tuning the behavior of Large Language Models (LLMs). They help control aspects such as creativity, coherence, repetition, and response length, ensuring that the model generates outputs tailored to specific use cases.
-- [Model Logic](https://lamatic.ai/docs/models/model-logic): Model Logic allows you to wrap and extend your model node's behavior with advanced control mechanisms like fallback, retry, conditional routing, parallel execution, and A/B testing.
+- [Benchmarks](https://lamatic.ai/docs/models/benchmark.md): Compare and evaluate LLM performance using recommended benchmarks to choose the right model for your Lamatic.ai use case.
+- [Custom Model Integration](https://lamatic.ai/docs/models/custom-model-integration.md): With Lamatic, you can define custom models per provider — this doc walks through how to add, override, and control model behavior across different AI backends.
+- [Model Config](https://lamatic.ai/docs/models/model-config.md): Model Config play a crucial role in fine-tuning the behavior of Large Language Models (LLMs). They help control aspects such as creativity, coherence, repetition, and response length, ensuring that the model generates outputs tailored to specific use cases.
+- [Model Logic](https://lamatic.ai/docs/models/model-logic.md): Model Logic allows you to wrap and extend your model node's behavior with advanced control mechanisms like fallback, retry, conditional routing, parallel execution, and A/B testing.
 
 ## Data & Context
 
-- [Memory Store](https://lamatic.ai/docs/context/memory-store): Store and retrieve long-term contextual memory for your Lamatic.ai apps, scoped to users and sessions.
-- [Vector Store](https://lamatic.ai/docs/context/vectordb): Vector Store in Lamatic Studio
-- [Mapping and Ingesting Data](https://lamatic.ai/docs/context/vectordb/adding-data): Learn how to map your data into a Weaviate schema and ingest it into Lamatic’s vector store for search and retrieval.
+- [Memory Store](https://lamatic.ai/docs/context/memory-store.md): Store and retrieve long-term contextual memory for your Lamatic.ai apps, scoped to users and sessions.
+- [Vector Store](https://lamatic.ai/docs/context/vectordb.md): Vector Store in Lamatic Studio
+- [Mapping and Ingesting Data](https://lamatic.ai/docs/context/vectordb/adding-data.md): Learn how to map your data into a Weaviate schema and ingest it into Lamatic’s vector store for search and retrieval.
 
 ## IDE
 
-- [Code IDE](https://lamatic.ai/docs/ide/code-ide): Code IDE Inside Lamatic Studio
-- [GraphQL Playgrounds IDE](https://lamatic.ai/docs/ide/graphql-ide): Lamatic Studio
-- [Prompt IDE](https://lamatic.ai/docs/ide/prompt-ide): Prompt IDE Inside lamatic.ai studio
+- [Code IDE](https://lamatic.ai/docs/ide/code-ide.md): Code IDE Inside Lamatic Studio
+- [GraphQL Playgrounds IDE](https://lamatic.ai/docs/ide/graphql-ide.md): Lamatic Studio
+- [Prompt IDE](https://lamatic.ai/docs/ide/prompt-ide.md): Prompt IDE Inside lamatic.ai studio
 
 ## MCP & Tools
 
-- [Tools](https://lamatic.ai/docs/mcp-tools/tools): A tool is a powerful feature in the Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
+- [Tools](https://lamatic.ai/docs/mcp-tools/tools.md): A tool is a powerful feature in the Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
 
 ## Testing
 
-- [Code Testing](https://lamatic.ai/docs/tests/code-testing): Testing custom code logic inside Code Nodes
-- [Flow Debugging](https://lamatic.ai/docs/tests/flow-debugging): Node-level testing and debugging in Lamatic.ai
-- [Flow Testing](https://lamatic.ai/docs/tests/flow-testing): End-to-end testing for flows in Lamatic.ai
-- [Prompt Testing](https://lamatic.ai/docs/tests/prompt-testing): Testing AI prompt outputs within flow nodes
+- [Code Testing](https://lamatic.ai/docs/tests/code-testing.md): Testing custom code logic inside Code Nodes
+- [Flow Debugging](https://lamatic.ai/docs/tests/flow-debugging.md): Node-level testing and debugging in Lamatic.ai
+- [Flow Testing](https://lamatic.ai/docs/tests/flow-testing.md): End-to-end testing for flows in Lamatic.ai
+- [Prompt Testing](https://lamatic.ai/docs/tests/prompt-testing.md): Testing AI prompt outputs within flow nodes
 
 ## Deployments
 
-- [Caching](https://lamatic.ai/docs/deployments/cache): Cache Management in Lamatic.ai
+- [Caching](https://lamatic.ai/docs/deployments/cache.md): Cache Management in Lamatic.ai
 
 ## GraphQL, Webhooks & Widgets
 
-- [GraphQL API](https://lamatic.ai/docs/interface/graphql): Deployment using GraphQL
-- [Mailhook](https://lamatic.ai/docs/interface/mailhook): Email trigger node for flows—incoming emails trigger your flow with metadata and content in the payload.
-- [Webhooks](https://lamatic.ai/docs/interface/webhooks): Set up webhook triggers in Lamatic to run flows from external events with real-time HTTP callbacks.
-- [Ask Widget](https://lamatic.ai/docs/interface/widgets/ask-widget): Embed Lamatic’s Ask Widget on your site to let users ask questions and get AI-powered answers with suggested prompts.
-- [Chat Widget](https://lamatic.ai/docs/interface/widgets/chat): Embed Lamatic’s chat widget on your website to provide AI-powered, context-aware conversations through your flows.
-- [Search Widget](https://lamatic.ai/docs/interface/widgets/search): Embed Lamatic’s search widget on your site to deliver AI-powered, context-aware search results from your content.
+- [GraphQL API](https://lamatic.ai/docs/interface/graphql.md): Deployment using GraphQL
+- [Mailhook](https://lamatic.ai/docs/interface/mailhook.md): Email trigger node for flows—incoming emails trigger your flow with metadata and content in the payload.
+- [Webhooks](https://lamatic.ai/docs/interface/webhooks.md): Set up webhook triggers in Lamatic to run flows from external events with real-time HTTP callbacks.
+- [Ask Widget](https://lamatic.ai/docs/interface/widgets/ask-widget.md): Embed Lamatic’s Ask Widget on your site to let users ask questions and get AI-powered answers with suggested prompts.
+- [Chat Widget](https://lamatic.ai/docs/interface/widgets/chat.md): Embed Lamatic’s chat widget on your website to provide AI-powered, context-aware conversations through your flows.
+- [Search Widget](https://lamatic.ai/docs/interface/widgets/search.md): Embed Lamatic’s search widget on your site to deliver AI-powered, context-aware search results from your content.
 
 ## Reports
 
-- [Langfuse Integration](https://lamatic.ai/docs/reports/langfuse-integration): Connect Langfuse to Lamatic.ai to trace, analyze, and optimize LLM calls for performance, quality, and cost.
+- [Langfuse Integration](https://lamatic.ai/docs/reports/langfuse-integration.md): Connect Langfuse to Lamatic.ai to trace, analyze, and optimize LLM calls for performance, quality, and cost.
 
 ## Api Integration
 
-- [API Keys](https://lamatic.ai/docs/api-integration/api-key): Lamatic.ai uses API keys to authenticate access. There are two types — Project API Keys for triggering deployed flows, and Enterprise API Keys for managing your organization.
-- [API Overview](https://lamatic.ai/docs/api-integration): How to integrate with Lamatic programmatically — GraphQL, REST-style usage, and when to use the SDK.
+- [API Keys](https://lamatic.ai/docs/api-integration/api-key.md): Lamatic.ai uses API keys to authenticate access. There are two types - Project API Keys for triggering deployed flows, and Enterprise API Keys for managing your organization.
+- [API Overview](https://lamatic.ai/docs/api-integration.md): How to integrate with Lamatic programmatically. GraphQL, REST-style usage, and when to use the SDK.
 
 ## Mcp
 
-- [Lamatic Docs MCP](https://lamatic.ai/docs/mcp/docs-mcp): Query Lamatic.ai documentation instantly using AI — powered by RAG and Model Context Protocol.
-- [Graph MCP](https://lamatic.ai/docs/mcp/graph-mcp): Execute your deployed Lamatic flows via AI agents using natural language.
-- [MCP Overview](https://lamatic.ai/docs/mcp): Overview of Lamatic's Model Context Protocol (MCP) offerings — MCP Node for consuming external servers, Graph MCP for exposing your flows, and Docs MCP for querying Lamatic documentation from any AI assistant.
-- [MCP Node](https://lamatic.ai/docs/mcp/mcp-node): Connect Lamatic flows to external MCP servers — securely access third-party data sources and tools through the Model Context Protocol.
+- [Lamatic Docs MCP](https://lamatic.ai/docs/mcp/docs-mcp.md): Query Lamatic.ai documentation instantly using AI, powered by RAG and Model Context Protocol.
+- [Graph MCP](https://lamatic.ai/docs/mcp/graph-mcp.md): Execute your deployed Lamatic flows via AI agents using natural language.
+- [MCP Overview](https://lamatic.ai/docs/mcp.md): Overview of Lamatic's three MCP products. MCP Node consumes external servers, Graph MCP exposes your flows, and Docs MCP answers questions about Lamatic from any AI assistant.
+- [MCP Node](https://lamatic.ai/docs/mcp/mcp-node.md): Connect Lamatic flows to external MCP servers. Securely access third-party data sources and tools through the Model Context Protocol.
 
 ## Sdk
 
-- [Go](https://lamatic.ai/docs/sdk/go): Integrate the Lamatic SDK with Go applications to execute flows and agents.
-- [SDK & Integration Guide](https://lamatic.ai/docs/sdk): A powerful tool in Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
-- [Integration Guide](https://lamatic.ai/docs/sdk/integration-guide): A comprehensive guide for integrating Lamatic.ai into your application using GraphQL API endpoints.
-- [Next.js](https://lamatic.ai/docs/sdk/next): Integrate the Lamatic SDK with Next.js applications to execute flows.
-- [React SDK](https://lamatic.ai/docs/sdk/react): Integrate the Lamatic SDK with React applications to execute flows.
+- [Go](https://lamatic.ai/docs/sdk/go.md): Integrate the Lamatic SDK with Go applications to execute flows and agents.
+- [SDK & Integration Guide](https://lamatic.ai/docs/sdk.md): A powerful tool in Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
+- [Integration Guide](https://lamatic.ai/docs/sdk/integration-guide.md): A comprehensive guide for integrating Lamatic.ai into your application using GraphQL API endpoints.
+- [Next.js](https://lamatic.ai/docs/sdk/next.md): Integrate the Lamatic SDK with Next.js applications to execute flows.
+- [React SDK](https://lamatic.ai/docs/sdk/react.md): Integrate the Lamatic SDK with React applications to execute flows.
 

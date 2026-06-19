@@ -87,7 +87,13 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const raw = fs.readFileSync(sourcePath, "utf-8");
   const cleaned = cleanContent(raw);
 
+  // Prepend the llms.txt directive so AI agents that fetch the markdown
+  // version of any page can discover the full documentation index.
+  const llmsDirective =
+    "> For the complete documentation index, see [llms.txt](https://lamatic.ai/llms.txt).\n\n";
+  const body = llmsDirective + cleaned;
+
   res.setHeader("Content-Type", "text/markdown; charset=utf-8");
   res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600");
-  res.status(200).send(cleaned);
+  res.status(200).send(body);
 }

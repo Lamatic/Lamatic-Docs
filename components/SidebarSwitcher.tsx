@@ -7,7 +7,6 @@ import { createPortal } from "react-dom";
 import {
   SquareGanttChart,
   LibraryBig,
-  Phone,
   Slack,
   GraduationCap,
   Blocks,

@@ -1,82 +1,175 @@
 ---
-title: Overview
-description: Lamatic is a collaborative GenOps platform. It helps cross-functional product teams build and deploy GenAI faster and better.
+title: Lamatic Docs
+description: Build, deploy, and monitor AI applications and agents on Lamatic.ai.
 faq-tags: [security]
+---
+
+import {
+  Rocket,
+  LayoutTemplate,
+  Map,
+  Workflow,
+  Boxes,
+  Bot,
+  Cpu,
+  Database,
+  PanelsTopLeft,
+  CloudUpload,
+  CalendarClock,
+  Activity,
+  BarChart3,
+  Plug,
+  TerminalSquare,
+  Network,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+# Lamatic.ai Docs
+
+Build, deploy, and monitor production AI applications. Lamatic gives cross-functional teams a single platform to design **Flows**, run **Agents**, and ship them to the edge.
+
+<div className="my-6 flex flex-wrap gap-3">
+  <Button asChild size="lg">
+    <Link href="/docs/get-started">Get Started</Link>
+  </Button>
+  <Button asChild size="lg" variant="outline">
+    <Link href="/docs/templates">Browse Templates</Link>
+  </Button>
+</div>
 
 ---
 
-# Overview
-
-> Lamatic is a collaborative Agentic AI Development Platform that helps cross-functional teams collaboratively develop, monitor, and optimize their GenAI applications.
-
-
----
-
-<iframe width="100%" height="500px" src="https://player.vimeo.com/video/1068719282?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Lamatic Genesis Release - 1.0.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-
-## Core Platform Features
-
-### Build
-Tools to help you build AI applications and iterate faster.
-
-- [Flows](/docs/flows) — Build agents, processes, and automations with custom Flows using no-code and low-code interfaces.
-- [Nodes](/docs/nodes) — Core components and functions for building Flows.
-- [IDE](/docs/ide) — Integrated Development Environment for coding and debugging prompts, JS and API requests.
-- [Agents](/docs/agents) — Create and configure AI agents for your applications.
-- [Models](/docs/models) — Find and connect with the best model for your use case.
-- [Data](/docs/context) — Add custom context to your Flows and agents using VectorDB and memories.
-- [Interface](/docs/interface) — Embed AI components like search and chat in your application with a few lines of code.
-- [MCP/Tools](/docs/mcp-tools) — Core components and functions for agent creation.
-- [Tests](/docs/tests) — Tools to test and debug your Flow and application in development and before deployments.
-- [Version Control](/docs/version-control) — Manage versions and collaborate on your Flows.
-- [Templates](/docs/templates) — Get started quickly with pre-built templates.
-
-### Deploy
-Deploy and manage your AI applications.
-
-- [Deployments](/docs/deployments) — Deploy and manage your agents and Flows on the edge.
-- [Jobs](/docs/jobs) — Monitor and configure scheduled processes.
-
-### Optimize
-Monitor, analyze and optimize your AI applications.
-
-- [Logs](/docs/logs) — See real-time request logs and traces.
-- [Reports](/docs/reports) — Analyze your projects with intuitive charts and queries.
-- [API & SDK](/docs/sdk) — Integrate and interact with your Flows programmatically.
-
-
-## Get Started
+## Start here
 
 <Cards num={3}>
-    <Card href="/docs/get-started" title="Quickstart" image arrow>
-        {/*![Quickstart icon (rocket)]()*/}
-    </Card>
-    <Card href="/docs/api-integration" title="API Overview" image arrow>
-        {/*![API]()*/}
-    </Card>
-    <Card href="/docs/templates" title="Templates" image arrow>
-        {/*![Quickstart icon (rocket)]()*/}
-    </Card>
+  <Cards.Card
+    icon={<Rocket />}
+    title="Quickstart"
+    href="/docs/get-started"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<LayoutTemplate />}
+    title="Templates"
+    href="/docs/templates"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<Map />}
+    title="Architecture"
+    href="/docs/architecture"
+    arrow
+  >
+    {""}
+  </Cards.Card>
 </Cards>
 
+## What you can build
 
-## Updates
+Tools to design AI applications and iterate quickly.
 
-Lamatic evolves quickly, check out the [changelog](/changelog) for the latest updates.
+<Cards num={3}>
+  <Cards.Card icon={<Workflow />} title="Flows" href="/docs/flows" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Boxes />} title="Nodes" href="/docs/nodes" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Bot />} title="Agents" href="/docs/agents" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Cpu />} title="Models" href="/docs/models" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Database />} title="Data & Context" href="/docs/context" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<PanelsTopLeft />} title="Studio" href="/docs/studio" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
 
-Subscribe to the **mailing list** to get notified about new major features:
+## Deploy and monitor
+
+Ship to production, schedule recurring runs, and watch everything in real time.
+
+<Cards num={3}>
+  <Cards.Card
+    icon={<CloudUpload />}
+    title="Deployments"
+    href="/docs/deployments"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<CalendarClock />}
+    title="Jobs & Scheduling"
+    href="/docs/jobs"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Activity />} title="Logs" href="/docs/logs" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<BarChart3 />} title="Reports" href="/docs/reports" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
+
+## Connect with code
+
+Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
+
+<Cards num={3}>
+  <Cards.Card
+    icon={<Plug />}
+    title="API & SDK"
+    href="/docs/sdk"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<TerminalSquare />} title="CLI" href="/docs/cli" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Network />} title="MCP" href="/docs/mcp" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
+
+## See it in action
 
 <iframe
-    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa"
+  width="100%"
+  height="450px"
+  src="https://player.vimeo.com/video/1068719282?badge=0&autopause=0&player_id=0&app_id=58479"
+  title="Lamatic Genesis Release - 1.0.0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+  style={{ borderRadius: "8px", border: "1px solid rgb(229 231 235 / 0.4)" }}
+></iframe>
+
+## Stay updated
+
+Lamatic ships fast. The [changelog](/changelog) lists every release. Join our [Slack](/slack) for product chat, file requests on the [feature board](https://product.lamatic.ai/), or report bugs via [GitHub issues](https://github.com/Lamatic/docs/issues).
+
+<div className="mt-4 max-w-md">
+  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Get major-feature announcements in your inbox:</div>
+  <iframe
+    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa?slim=true"
     data-test-id="beehiiv-embed"
     width="100%"
-    height="320"
+    height="52"
+    frameBorder="0"
     scrolling="no"
-    style={{ borderRadius: '4px', border: '2px solid #e5e7eb', margin: '0', backgroundColor: 'transparent' }}>
-</iframe>
-
-## Get in Touch
-
-Join our [Slack](/slack), provide feedback, report bugs, or request features via [Feature board](https://product.lamatic.ai/).
-
-Learn more about ways to get in touch on our [Support](https://support.lamatic.ai) page.
+    style={{ margin: 0, borderRadius: "6px", backgroundColor: "transparent" }}
+  />
+</div>

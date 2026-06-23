@@ -4,26 +4,25 @@ description: Build, deploy, and monitor AI applications and agents on Lamatic.ai
 faq-tags: [security]
 ---
 
-import {
-  Rocket,
-  LayoutTemplate,
-  Map,
-  Workflow,
-  Boxes,
-  Bot,
-  Cpu,
-  Database,
-  PanelsTopLeft,
-  CloudUpload,
-  CalendarClock,
-  Activity,
-  BarChart3,
-  Plug,
-  TerminalSquare,
-  Network,
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import Image from "next/image";
+import flowsImage from "./flows/img/flow-editor.png";
+import nodesImage from "./flows/img/node.png";
+import agentsImage from "./img/agent.png";
+import modelsImage from "./img/add-model-credentials.png";
+import contextImage from "./context/img/context.png";
+import studioImage from "./studio/studio-img/studio-overview.png";
+import quickstartImage from "./img/vibe-build.png";
+import templatesImage from "./img/template.png";
+import architectureImage from "./concepts/img/arch-diagram.jpg";
+import deployImage from "./img/deploy.png";
+import jobsImage from "./img/jobs.png";
+import logsImage from "./img/log-view.webp";
+import reportsImage from "./img/reports-new.png";
+import apiImage from "./api-integration/img/api.png";
+import cliImage from "./img/flow-connect-vibe-prompt.png";
+import mcpImage from "./mcp-tools/img/mcp-overview.png";
 
 # Lamatic.ai Docs
 
@@ -42,107 +41,231 @@ Build, deploy, and monitor production AI applications. Lamatic gives cross-funct
 
 ## Start here
 
-<Cards num={3}>
-  <Cards.Card
-    icon={<Rocket />}
-    title="Quickstart"
+<div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-5 my-6">
+  <Link
     href="/docs/get-started"
-    arrow
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
   >
-    {""}
-  </Cards.Card>
-  <Cards.Card
-    icon={<LayoutTemplate />}
-    title="Templates"
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={quickstartImage} alt="Quickstart" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Quickstart</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Go from signup to your first deployed flow in five minutes.</div>
+    </div>
+  </Link>
+
+  <Link
     href="/docs/templates"
-    arrow
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
   >
-    {""}
-  </Cards.Card>
-  <Cards.Card
-    icon={<Map />}
-    title="Architecture"
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={templatesImage} alt="Templates" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Templates</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Start from a pre-built flow that matches your use case.</div>
+    </div>
+  </Link>
+
+  <Link
     href="/docs/architecture"
-    arrow
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
   >
-    {""}
-  </Cards.Card>
-</Cards>
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={architectureImage} alt="Architecture" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Architecture</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">See how flows, deployments, and the edge runtime fit together.</div>
+    </div>
+  </Link>
+</div>
 
-## What you can build
+## Learn the concepts
 
-Tools to design AI applications and iterate quickly.
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-5 my-6">
+  <Link
+    href="/docs/flows"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={flowsImage} alt="Flow editor" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Flows</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Build agents, processes, and automations with no-code and low-code interfaces.</div>
+    </div>
+  </Link>
 
-<Cards num={3}>
-  <Cards.Card icon={<Workflow />} title="Flows" href="/docs/flows" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Boxes />} title="Nodes" href="/docs/nodes" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Bot />} title="Agents" href="/docs/agents" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Cpu />} title="Models" href="/docs/models" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Database />} title="Data & Context" href="/docs/context" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<PanelsTopLeft />} title="Studio" href="/docs/studio" arrow>
-    {""}
-  </Cards.Card>
-</Cards>
+  <Link
+    href="/docs/nodes"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={nodesImage} alt="Node configuration" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Nodes</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">The building blocks of every flow: AI generation, data lookup, branching, integrations.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/agents"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={agentsImage} alt="Agents" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Agents</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Specialised AI nodes that reason, route, and orchestrate multi-step work.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/models"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={modelsImage} alt="Models" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Models</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Connect any LLM provider: OpenAI, Anthropic, Bedrock, Gemini, and more.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/context"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={contextImage} alt="Data and context" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Data & Context</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Vector and memory stores attached to your project for RAG and stateful agents.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/studio"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={studioImage} alt="Studio" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Studio</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">The collaborative editor where teams design, test, and deploy flows.</div>
+    </div>
+  </Link>
+</div>
 
 ## Deploy and monitor
 
 Ship to production, schedule recurring runs, and watch everything in real time.
 
-<Cards num={3}>
-  <Cards.Card
-    icon={<CloudUpload />}
-    title="Deployments"
+<div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+  <Link
     href="/docs/deployments"
-    arrow
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
   >
-    {""}
-  </Cards.Card>
-  <Cards.Card
-    icon={<CalendarClock />}
-    title="Jobs & Scheduling"
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={deployImage} alt="Deployments" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Deployments</h3>
+      <div className="mt-1 text-xs text-gray-600 dark:text-neutral-400">Deploy flows to the edge with one click.</div>
+    </div>
+  </Link>
+
+  <Link
     href="/docs/jobs"
-    arrow
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
   >
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Activity />} title="Logs" href="/docs/logs" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<BarChart3 />} title="Reports" href="/docs/reports" arrow>
-    {""}
-  </Cards.Card>
-</Cards>
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={jobsImage} alt="Jobs and scheduling" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Jobs & Scheduling</h3>
+      <div className="mt-1 text-xs text-gray-600 dark:text-neutral-400">Cron, queues, and recurring runs.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/logs"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={logsImage} alt="Logs" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Logs</h3>
+      <div className="mt-1 text-xs text-gray-600 dark:text-neutral-400">Real-time request logs and node-level traces.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/reports"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={reportsImage} alt="Reports" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-white">Reports</h3>
+      <div className="mt-1 text-xs text-gray-600 dark:text-neutral-400">Analyse usage with intuitive charts and queries.</div>
+    </div>
+  </Link>
+</div>
 
 ## Connect with code
 
 Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
 
-<Cards num={3}>
-  <Cards.Card
-    icon={<Plug />}
-    title="API & SDK"
+<div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-5 my-6">
+  <Link
     href="/docs/sdk"
-    arrow
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
   >
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<TerminalSquare />} title="CLI" href="/docs/cli" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Network />} title="MCP" href="/docs/mcp" arrow>
-    {""}
-  </Cards.Card>
-</Cards>
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={apiImage} alt="API and SDK" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">API & SDK</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Trigger flows from any backend with GraphQL or the official SDK.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/cli"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={cliImage} alt="CLI" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">CLI</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Manage projects, flows, and deployments from your terminal.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/mcp"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={mcpImage} alt="MCP" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-4">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">MCP</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Connect AI assistants to your flows via Model Context Protocol.</div>
+    </div>
+  </Link>
+</div>
 
 ## See it in action
 

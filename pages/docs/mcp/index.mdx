@@ -1,13 +1,17 @@
 ---
 title: MCP Overview
-description: Overview of Lamatic's Model Context Protocol (MCP) offerings. MCP Node consumes external servers, Graph MCP exposes your flows, and Docs MCP lets you query Lamatic documentation from any AI assistant.
+description: Overview of Lamatic's three MCP products. MCP Node consumes external servers, Graph MCP exposes your flows, and Docs MCP answers questions about Lamatic from any AI assistant.
 ---
 
 # MCP in Lamatic
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI assistants to external systems (data sources, APIs, tools, services) through a single uniform interface.
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI assistants to external systems, data sources, APIs, tools, and services through one uniform interface.
 
-Lamatic ships **three MCP-related products**, each solving a different direction of the protocol.
+Lamatic ships three MCP products, each covering a different direction of the protocol:
+
+- **[MCP Node](/docs/mcp/mcp-node)** lets your flow consume tools from any external MCP server.
+- **[Graph MCP](/docs/mcp/graph-mcp)** exposes your deployed flows as MCP tools that external AI assistants can call.
+- **[Docs MCP](/docs/mcp/docs-mcp)** is a hosted MCP server that answers questions about Lamatic itself.
 
 ---
 
@@ -15,47 +19,41 @@ Lamatic ships **three MCP-related products**, each solving a different direction
 
 ### MCP Node: consume external MCP servers
 
-The [MCP Node](/docs/mcp/mcp-node) lets a Lamatic flow connect to an existing MCP server and use its tools and data from inside your flow. You configure the server URL, headers, and protocol once; the node makes those tools available to any AI node downstream.
+The [MCP Node](/docs/mcp/mcp-node) connects your Lamatic flow to an existing MCP server. Configure the server's URL, headers, and protocol once, and any AI node downstream can call the tools that server exposes.
 
-**Use it when:** you want your flow to talk to a third-party MCP server (e.g. a weather API, a database, an internal tool catalog) and have the AI nodes inside the flow call those tools.
+**Use it when** you want your flow to call a third-party MCP server, such as a weather API, a database, or an internal tool catalog.
 
 ### Graph MCP: expose your flows as MCP tools
 
-[Graph MCP](/docs/mcp/graph-mcp) is the inverse. It turns your deployed Lamatic flows into MCP-callable tools so any MCP client (Claude Desktop, Cursor, VS Code, etc.) can invoke them with natural language.
+[Graph MCP](/docs/mcp/graph-mcp) runs in the opposite direction: it turns your deployed Lamatic flows into MCP-callable tools. Any MCP client (Claude Desktop, Cursor, VS Code, custom agents) can then invoke those flows with natural language.
 
-**Use it when:** you want an external AI assistant to drive your Lamatic flows. For example, a developer using Cursor to trigger a flow that generates a report.
+**Use it when** you want an external AI assistant to drive your flows. For example, a developer in Cursor triggering a flow that generates a weekly report.
 
 ### Docs MCP: query Lamatic docs from any AI assistant
 
-[Docs MCP](/docs/mcp/docs-mcp) is a hosted MCP server maintained by Lamatic. It indexes [lamatic.ai/docs](https://lamatic.ai/docs) into a RAG pipeline and exposes a `query_docs` tool so any MCP client can ask natural-language questions about Lamatic and get answers with references. No setup, no API key.
+[Docs MCP](/docs/mcp/docs-mcp) is a hosted MCP server that Lamatic maintains. It indexes [lamatic.ai/docs](https://lamatic.ai/docs) into a RAG pipeline and exposes a `query_docs` tool. Any MCP client can ask natural-language questions about Lamatic and get answers with references. No setup, no API key.
 
-**Use it when:** you want your AI assistant to answer questions about Lamatic itself (its nodes, agents, integrations, error messages) instead of searching the docs manually.
+**Use it when** you want your AI assistant to answer questions about Lamatic itself its nodes, agents, integrations and error messages, instead of you searching the docs manually.
 
 ---
 
 ## When to use which
 
-|                      | MCP Node                                       | Graph MCP                                      | Docs MCP                                                     |
-| -------------------- | ---------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------ |
-| **Direction**        | Lamatic flow → external MCP server             | External MCP client → Lamatic flow             | External MCP client → Lamatic's hosted docs server           |
-| **Role**             | Client / consumer                              | Server / provider                              | Server / provider (hosted by Lamatic)                        |
-| **What you provide** | The URL of an external MCP server              | A deployed flow with an API trigger            | Nothing (it's hosted)                                        |
-| **What you get**     | External tools available inside the flow       | Your flow callable from any MCP client         | A `query_docs` tool that answers questions about Lamatic     |
-| **Typical caller**   | AI nodes in your flow                          | Claude Desktop, Cursor, VS Code, custom agents | Claude Desktop, Cursor, anyone reading the docs              |
-| **Auth model**       | Headers / API keys you configure on the node   | Org API key + Project API key                  | None (free to use)                                           |
-| **Setup location**   | Studio → MCP/Tools → MCP                       | `npx @lamatic/graph-mcp` in the client's config | Add `https://docmcp.lamatic.ai/api/mcp` to your client config |
+|                      | MCP Node                                        | Graph MCP                                       | Docs MCP                                                      |
+| -------------------- | ----------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------- |
+| **Direction**        | Lamatic flow → external MCP server              | External MCP client → Lamatic flow              | External MCP client → Lamatic-hosted docs server              |
+| **Role**             | Client (consumer)                               | Server (provider)                               | Server (hosted by Lamatic)                                    |
+| **What you provide** | The URL of an external MCP server               | A deployed flow with an API trigger             | Nothing — it's hosted                                         |
+| **What you get**     | External tools available inside the flow        | Your flow callable from any MCP client          | A `query_docs` tool that answers questions about Lamatic      |
+| **Typical caller**   | AI nodes inside your flow                       | Claude Desktop, Cursor, VS Code, custom agents  | Claude Desktop, Cursor, anyone reading the docs               |
+| **Auth model**       | Headers and API keys you set on the node        | Org API key + Project API key                   | None (free to use)                                            |
+| **Setup location**   | Studio → MCP/Tools → MCP                        | `npx @lamatic/graph-mcp` in the client's config | Add `https://docmcp.lamatic.ai/api/mcp` to your client config |
 
 ---
 
 ## Quick chooser
 
-- *"I want my flow to use tools from an external service via MCP."* → [MCP Node](/docs/mcp/mcp-node)
-- *"I want Claude/Cursor to call my Lamatic flow."* → [Graph MCP](/docs/mcp/graph-mcp)
-- *"I want my AI assistant to answer questions about Lamatic itself."* → [Docs MCP](/docs/mcp/docs-mcp)
-- *Combine them.* → A flow that consumes external MCP tools (MCP Node) can itself be exposed via Graph MCP, while you use Docs MCP to ask your assistant about Lamatic as you build.
-
----
-
-## Related
-
-- [Generate Text Node](/docs/nodes/ai/generate-text-node): can integrate MCP tools loaded by the MCP Node
+- "I want my flow to use tools from an external service via MCP." → [MCP Node](/docs/mcp/mcp-node)
+- "I want Claude or Cursor to call my Lamatic flow." → [Graph MCP](/docs/mcp/graph-mcp)
+- "I want my AI assistant to answer questions about Lamatic itself." → [Docs MCP](/docs/mcp/docs-mcp)
+- All of the above. → A flow that consumes external MCP tools (MCP Node) can itself be exposed via Graph MCP, while you use Docs MCP to ask your assistant about Lamatic as you build.

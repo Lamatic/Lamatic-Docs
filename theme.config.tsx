@@ -119,6 +119,12 @@ const config: DocsThemeConfig = {
 
     return (
       <>
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href="/llms.txt"
+          title="llms.txt"
+        />
         <meta name="theme-color" content="#000" />
         <meta property="og:url" content={url} />
         <meta httpEquiv="Content-Language" content="en" />

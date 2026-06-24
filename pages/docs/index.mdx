@@ -37,6 +37,16 @@ import agentsImage from "./img/home/agents.png";
 import modelsImage from "./img/home/models.png";
 import contextImage from "./img/home/data and context.png";
 import studioImage from "./img/home/studio.png";
+import graphqlImage from "./img/home/graphql.png";
+import mcpIconImage from "./img/home/mcp.png";
+
+export const ApiIcon = () => (
+  <Image src={graphqlImage} alt="" width={24} height={24} className="object-contain" />
+);
+
+export const McpIcon = () => (
+  <Image src={mcpIconImage} alt="" width={24} height={24} className="object-contain" />
+);
 
 # Lamatic.ai Docs
 
@@ -195,13 +205,13 @@ Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
   <Cards.Card icon={<PythonIcon />} title="Python" href="/docs/sdk/integration-guide" arrow>
     {""}
   </Cards.Card>
-  <Cards.Card icon={<Plug />} title="API" href="/docs/api-integration" arrow>
+  <Cards.Card icon={<ApiIcon />} title="API" href="/docs/api-integration" arrow>
     {""}
   </Cards.Card>
   <Cards.Card icon={<TerminalSquare />} title="CLI" href="/docs/cli" arrow>
     {""}
   </Cards.Card>
-  <Cards.Card icon={<Network />} title="MCP" href="/docs/mcp" arrow>
+  <Cards.Card icon={<McpIcon />} title="MCP" href="/docs/mcp" arrow>
     {""}
   </Cards.Card>
 </Cards>

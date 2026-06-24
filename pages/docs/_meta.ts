@@ -97,6 +97,10 @@ export default {
     title: "Deployments",
     type: "doc",
   },
+  containers: {
+    title: "Containers (Beta)",
+    type: "doc",
+  },
   environment: {
     title: "Environment & Variables",
     type: "doc",
@@ -153,6 +157,10 @@ export default {
 
   logs: {
     title: "Logs",
+    type: "doc",
+  },
+  alerts: {
+    title: "Alerts",
     type: "doc",
   },
   reports: {

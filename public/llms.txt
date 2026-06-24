@@ -7,8 +7,10 @@
 ## Getting Started
 
 - [Agents](https://lamatic.ai/docs/agents): Agents in Lamatic.ai Studio
+- [Alerts](https://lamatic.ai/docs/alerts): Get notified the moment a deployed flow fails — by email and in-app — with a direct link to the failing log.
 - [Architecture](https://lamatic.ai/docs/architecture): How does Lamatic work?
-- [CLI](https://lamatic.ai/docs/cli): The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
+- [Lamatic CLI (Beta)](https://lamatic.ai/docs/cli): The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
+- [Containers (Beta)](https://lamatic.ai/docs/containers): Run your flows on a dedicated container runtime rather than the standard serverless edge — built for long-running workflows and sandboxed code execution.
 - [Context](https://lamatic.ai/docs/context): Context in Lamatic Studio
 - [Contributing](https://lamatic.ai/docs/contributing): Contributing to Lamatic.ai Documentation
 - [Edge Deployment](https://lamatic.ai/docs/deployments): Edge Deployment in Lamatic.ai
@@ -149,15 +151,15 @@
 
 ## Api Integration
 
-- [API Keys](https://lamatic.ai/docs/api-integration/api-key): Lamatic.ai uses API keys to authenticate access. There are two types — Project API Keys for triggering deployed flows, and Enterprise API Keys for managing your organization.
-- [API Overview](https://lamatic.ai/docs/api-integration): How to integrate with Lamatic programmatically — GraphQL, REST-style usage, and when to use the SDK.
+- [API Keys](https://lamatic.ai/docs/api-integration/api-key): Lamatic.ai uses API keys to authenticate access. There are two types - Project API Keys for triggering deployed flows, and Enterprise API Keys for managing your organization.
+- [API Overview](https://lamatic.ai/docs/api-integration): How to integrate with Lamatic programmatically. GraphQL, REST-style usage, and when to use the SDK.
 
 ## Mcp
 
-- [Lamatic Docs MCP](https://lamatic.ai/docs/mcp/docs-mcp): Query Lamatic.ai documentation instantly using AI — powered by RAG and Model Context Protocol.
+- [Lamatic Docs MCP](https://lamatic.ai/docs/mcp/docs-mcp): Query Lamatic.ai documentation instantly using AI, powered by RAG and Model Context Protocol.
 - [Graph MCP](https://lamatic.ai/docs/mcp/graph-mcp): Execute your deployed Lamatic flows via AI agents using natural language.
-- [MCP Overview](https://lamatic.ai/docs/mcp): Overview of Lamatic's Model Context Protocol (MCP) offerings — MCP Node for consuming external servers, Graph MCP for exposing your flows, and Docs MCP for querying Lamatic documentation from any AI assistant.
-- [MCP Node](https://lamatic.ai/docs/mcp/mcp-node): Connect Lamatic flows to external MCP servers — securely access third-party data sources and tools through the Model Context Protocol.
+- [MCP Overview](https://lamatic.ai/docs/mcp): Overview of Lamatic's Model Context Protocol (MCP) offerings. MCP Node consumes external servers, Graph MCP exposes your flows, and Docs MCP lets you query Lamatic documentation from any AI assistant.
+- [MCP Node](https://lamatic.ai/docs/mcp/mcp-node): Connect Lamatic flows to external MCP servers. Securely access third-party data sources and tools through the Model Context Protocol.
 
 ## Sdk
 

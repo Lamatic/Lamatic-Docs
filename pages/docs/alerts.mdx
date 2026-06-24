@@ -1,0 +1,52 @@
+---
+title: Alerts
+description: Get notified the moment a deployed flow fails — by email and in-app — with a direct link to the failing log.
+---
+
+# Error Alerts & Notifications
+
+Get notified the moment a deployed flow fails, by email and in-app, with a direct link to the failing log.
+
+## What it is
+
+Error alerts notify you as soon as a flow in a deployed project hits an error. Instead of keeping Logs open to watch for failures, Lamatic sends the alert to you directly.
+
+## What it does
+
+- **Email alerts**: includes the flow name, project, error message, and a "Check Log" link straight to the failing run.
+- **In-app alerts**: same error details, surfaced in the notification bell and stacked as they come in.
+- **Near real-time delivery**: alerts trigger per error within a 5-minute window.
+
+![Email alert preview](./img/alerts/notification%20mail.png)
+
+![In-app notification bell](./img/alerts/notification%20button.png)
+
+## Managing your notifications
+
+### Profile-level preferences
+
+Your profile page has dedicated controls to turn email and in-app notifications on or off, independent of any specific project.
+
+### Project-level settings
+
+Each project has its own **Notifications** page under **Settings**. From here you can:
+
+- Turn email and in-app alerts on or off for the whole project.
+- Control which team members receive alerts, per recipient and per channel.
+
+### Notification schedule (from the notification icon)
+
+Open the **notification bell** in the navbar to set a delivery schedule for each notification preference. The schedule controls when external-channel notifications (like email) are delivered.
+
+- Toggle specific days on or off, and set an allowed time range (**From** / **To**) for each day.
+- Outside the scheduled window, external-channel notifications pause.
+- **In-app and critical notifications are always delivered**, regardless of the schedule.
+
+This lets you, for example, mute email alerts overnight or on weekends while still catching critical issues in-app.
+
+This gives you full control over exactly who gets notified, how, and when, for every project.
+
+## Related
+
+- [Logs](/docs/logs) — full request and node-level traces for every flow run.
+- [Reports](/docs/reports) — usage and performance analytics for your projects.

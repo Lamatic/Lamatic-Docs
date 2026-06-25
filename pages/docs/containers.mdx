@@ -24,12 +24,11 @@ This is useful for flows that need more room to run than the default edge enviro
 
 ## Containers vs Edge
 
-|                          | Serverless Edge (default)                  | Containers (beta)                                       |
-| ------------------------ | ------------------------------------------ | ------------------------------------------------------- |
-| **Execution time**       | Short, optimised for latency               | Long, suited to multi-step or batch workloads           |
-| **Code-node isolation**  | Shared edge runtime                        | Dedicated container per project                         |
-| **Best for**             | Quick API calls and real-time responses    | Document processing, multi-agent chains, heavy compute  |
-| **Availability**         | All projects, default-on                   | Closed beta, opt-in per project and per flow            |
+|                    | Serverless Edge (default)               | Containers (beta)                                      |
+| ------------------ | --------------------------------------- | ------------------------------------------------------ |
+| **Execution time** | Short, optimised for latency            | Long, suited to multi-step or batch workloads          |
+| **Best for**       | Quick API calls and real-time responses | Document processing, multi-agent chains, heavy compute |
+| **Availability**   | All projects, default-on                | Closed beta, opt-in per project and per flow           |
 
 ## When to use Containers
 
@@ -42,15 +41,6 @@ Reach for container execution when your flow runs into the limits of the standar
 - **Polling or wait-based logic**: `setTimeout`, retry loops, or queue-draining patterns that would otherwise blow past edge timeouts.
 
 If your flow comfortably finishes in a few seconds on edge, you don't need Containers. Stay on the default runtime.
-
-## Sandbox and isolation
-
-The Containers runtime gives every container-enabled project its own isolated execution environment. The practical guarantees this provides:
-
-- **Project isolation**: a Code node running in one project cannot read the memory, environment variables, or file system of another project's container. Each container is dedicated to a single project.
-- **Resource isolation**: a runaway loop, infinite recursion, or memory leak inside one project can't degrade performance for other Lamatic users — it's contained to that project's runtime.
-
-This matters for enterprise workloads where multi-tenant edge isolation may not meet the team's security or compliance requirements.
 
 ## How it works
 

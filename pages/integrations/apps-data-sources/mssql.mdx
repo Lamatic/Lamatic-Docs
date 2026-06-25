@@ -1,7 +1,7 @@
 ---
 title: Microsoft SQL Server
 description: The Microsoft SQL Server node in Lamatic lets you connect to SQL Server and run on-demand SQL queries as an Action node.
-legacyNodeSlugs: ["microsoft-sql-server-node", "mssql-node"]
+legacyNodeSlugs: ["microsoft-sql-server-node", "microsoft-sql-server", "mssql-node"]
 icon: /images/icons/apps/mssql.png
 ---
 
@@ -10,21 +10,12 @@ import { NodeTypeInfo } from "@/components/NodeTypeInfo"
 
 # Microsoft SQL Server Integration
 
-<IntegrationOverviw slug="microsoft-sql-server" type="apps-data-sources" />
+<IntegrationOverviw slug="mssql" type="apps-data-sources" />
 
 ## Overview
 
 The Microsoft SQL Server node in Lamatic connects to your SQL Server database and runs SQL statements from your flows. This integration supports **Action mode only** and does not support Trigger or Batch Trigger modes.
 
-<NodeTypeInfo
-  batchTrigger={false}
-  eventTrigger={false}
-  action={true}
-  description="This node is an Action node for running SQL queries against Microsoft SQL Server."
-/>
-
-- **Action**: Execute SQL queries against Microsoft SQL Server from within your flow.
-- **No Trigger support**: This integration does not provide Event Trigger or Batch Trigger capabilities.
 
 ## Features
 

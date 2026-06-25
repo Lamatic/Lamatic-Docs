@@ -78,7 +78,9 @@ function fileToUrl(filePath) {
     .replace(/\\/g, "/")
     .replace(/\.mdx$/, "")
     .replace(/\/index$/, "");
-  return `${SITE_URL}/${rel}`;
+  // Append .md so agents fetching this link receive markdown
+  // (next.config.mjs rewrites /:path*.md to /api/md-src/:path*).
+  return `${SITE_URL}/${rel}.md`;
 }
 
 /** Map a docs file to the top-level section it lives under. */

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/mcp-discovery.json",
+  "name": "Lamatic.ai",
+  "description": "Discoverable Model Context Protocol servers maintained by Lamatic.",
+  "documentation": "https://lamatic.ai/docs/mcp",
+  "mcpServers": {
+    "lamatic-docs": {
+      "url": "https://docmcp.lamatic.ai/api/mcp",
+      "name": "Lamatic Docs MCP",
+      "description": "Query Lamatic documentation via natural language. Free, hosted, no API key required.",
+      "transport": "http",
+      "authentication": "none",
+      "docs": "https://lamatic.ai/docs/mcp/docs-mcp"
+    },
+    "lamatic-graph": {
+      "package": "@lamatic/graph-mcp",
+      "name": "Lamatic Graph MCP",
+      "description": "Execute deployed Lamatic flows as MCP tools from any client. Requires Lamatic org and project API keys.",
+      "transport": "stdio",
+      "authentication": "api-key",
+      "docs": "https://lamatic.ai/docs/mcp/graph-mcp"
+    }
+  }
+}

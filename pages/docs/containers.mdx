@@ -1,0 +1,72 @@
+---
+title: Containers (Beta)
+description: Run your flows on a dedicated container runtime rather than the standard serverless edge — built for long-running workflows and sandboxed code execution.
+---
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+
+# Containers (Beta)
+
+Run your flows on a dedicated container runtime rather than the standard serverless edge, which is built for long-running workflows and sandboxed code execution.
+
+## What it is
+
+Containers provide an alternative execution environment for Lamatic flows. Instead of running on the standard serverless edge, a container-enabled flow runs inside an isolated, dedicated runtime with its own compute and memory.
+
+This is useful for flows that need more room to run than the default edge environment allows.
+
+## What it does
+
+- **Longer execution windows**: container-backed flows can run well beyond typical edge execution limits, making them a fit for long-running or multi-step workflows.
+- **Sandboxed code execution**: Code nodes run in an isolated container environment, separate from the rest of your project.
+- **Same flow engine**: container execution uses the same underlying workflow engine as the standard runtime, so your flow logic doesn't change. Only where it runs does.
+
+## Containers vs Edge
+
+|                    | Serverless Edge (default)               | Containers (beta)                                      |
+| ------------------ | --------------------------------------- | ------------------------------------------------------ |
+| **Execution time** | Short, optimised for latency            | Long, suited to multi-step or batch workloads          |
+| **Best for**       | Quick API calls and real-time responses | Document processing, multi-agent chains, heavy compute |
+| **Availability**   | All projects, default-on                | Closed beta, opt-in per project and per flow           |
+
+## When to use Containers
+
+Reach for container execution when your flow runs into the limits of the standard serverless edge. Typical cases:
+
+- **Document-processing pipelines** that scrape, chunk, and embed hundreds of pages in a single run.
+- **Multi-agent workflows** that chain ten or more LLM calls before returning a result.
+- **Heavy Code-node workloads**: image processing, large-file transforms, custom ML inference, anything CPU- or memory-intensive.
+- **Long-running ingestion jobs** that periodically sync a data source (CRM, file storage, database).
+- **Polling or wait-based logic**: `setTimeout`, retry loops, or queue-draining patterns that would otherwise blow past edge timeouts.
+
+If your flow comfortably finishes in a few seconds on edge, you don't need Containers. Stay on the default runtime.
+
+## How it works
+
+Container execution is opt-in at both the project and flow level. A flow only runs in a container when both:
+
+1. The project has container execution enabled.
+2. The individual flow has container execution enabled.
+
+Flows that don't opt in continue to run on the standard serverless edge as usual, so enabling containers for a project doesn't change the behavior of existing flows.
+
+## Current status
+
+Containers is currently in **closed beta**. It's not yet available as a self-serve toggle in Studio.
+
+## Request beta access
+
+If you'd like to try container execution for your project, request access using the form below.
+
+<div className="my-6">
+  <Button asChild size="lg" variant="cta">
+    <Link
+      href="https://lamatic.fillout.com/beta-access?feature_tag=containers"
+      target="_blank"
+      rel="noopener"
+    >
+      Request beta access
+    </Link>
+  </Button>
+</div>

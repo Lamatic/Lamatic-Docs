@@ -91,6 +91,58 @@ By leveraging these agent types effectively, you can build powerful AI-driven ap
 
 ---
 
+# Alerts
+
+Source: https://lamatic.ai/docs/alerts
+
+# Error Alerts & Notifications
+
+Get notified the moment a deployed flow fails, by email and in-app, with a direct link to the failing log.
+
+## What it is
+
+Error alerts notify you as soon as a flow in a deployed project hits an error. Instead of keeping Logs open to watch for failures, Lamatic sends the alert to you directly.
+
+## What it does
+
+- **Email alerts**: includes the flow name, project, error message, and a "Check Log" link straight to the failing run.
+- **In-app alerts**: same error details, surfaced in the notification bell and stacked as they come in.
+- **Near real-time delivery**: alerts trigger per error within a 5-minute window.
+
+## Managing your notifications
+
+### Profile-level preferences
+
+Your profile page has dedicated controls to turn email and in-app notifications on or off, independent of any specific project.
+
+### Project-level settings
+
+Each project has its own **Notifications** page under **Settings**. From here you can:
+
+- Turn email and in-app alerts on or off for the whole project.
+- Control which team members receive alerts, per recipient and per channel.
+- Set a delivery **schedule** for each notification preference.
+
+### Notification schedule
+
+Each notification preference can have its own schedule, controlling when external-channel notifications (like email) are delivered.
+
+- Toggle specific days on or off, and set an allowed time range (**From** / **To**) for each day.
+- Outside the scheduled window, external-channel notifications pause.
+- **In-app and critical notifications are always delivered**, regardless of the schedule.
+
+This lets you, for example, mute email alerts overnight or on weekends while still catching critical issues in-app.
+
+This gives you full control over exactly who gets notified, how, and when, for every project.
+
+## Related
+
+- [Logs](/docs/logs) — full request and node-level traces for every flow run.
+- [Reports](/docs/reports) — usage and performance analytics for your projects.
+
+
+---
+
 # Architecture
 
 Source: https://lamatic.ai/docs/architecture.md
@@ -13494,19 +13546,19 @@ Lamatic ships three MCP products, each covering a different direction of the pro
 
 ## The three MCPs
 
-### MCP Node — consume external MCP servers
+### MCP Node: consume external MCP servers
 
 The [MCP Node](/docs/mcp/mcp-node) connects your Lamatic flow to an existing MCP server. Configure the server's URL, headers, and protocol once, and any AI node downstream can call the tools that server exposes.
 
 **Use it when** you want your flow to call a third-party MCP server, such as a weather API, a database, or an internal tool catalog.
 
-### Graph MCP — expose your flows as MCP tools
+### Graph MCP: expose your flows as MCP tools
 
 [Graph MCP](/docs/mcp/graph-mcp) runs in the opposite direction: it turns your deployed Lamatic flows into MCP-callable tools. Any MCP client (Claude Desktop, Cursor, VS Code, custom agents) can then invoke those flows with natural language.
 
 **Use it when** you want an external AI assistant to drive your flows. For example, a developer in Cursor triggering a flow that generates a weekly report.
 
-### Docs MCP — query Lamatic docs from any AI assistant
+### Docs MCP: query Lamatic docs from any AI assistant
 
 [Docs MCP](/docs/mcp/docs-mcp) is a hosted MCP server that Lamatic maintains. It indexes [lamatic.ai/docs](https://lamatic.ai/docs) into a RAG pipeline and exposes a `query_docs` tool. Any MCP client can ask natural-language questions about Lamatic and get answers with references. No setup, no API key.
 

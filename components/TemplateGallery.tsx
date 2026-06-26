@@ -121,6 +121,29 @@ const tagIconMap: Record<string, any> = {
 // AgentKit category mapping
 const agentKitCategories = ["Agentic", "Automation", "Embedded", "Assistant"];
 
+// Map an integration string to a Lucide icon
+const integrationIconFor = (integration: string) => {
+  const v = integration.toLowerCase();
+  if (v.includes("google")) return Globe;
+  if (v.includes("openai") || v.includes("llm")) return Brain;
+  if (v.includes("api") || v.includes("http")) return Code;
+  if (v.includes("database") || v.includes("db")) return Database;
+  if (v.includes("vector") || v.includes("rag")) return Search;
+  if (v.includes("workflow") || v.includes("automation")) return Workflow;
+  if (v.includes("chat") || v.includes("message")) return MessageSquare;
+  if (v.includes("image") || v.includes("vision")) return ImageIcon;
+  return Zap;
+};
+
+// Complexity pill colour
+const complexityClasses: Record<string, string> = {
+  beginner:
+    "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
+  intermediate:
+    "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
+  advanced: "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
+};
+
 export default function TemplateGallery() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -173,27 +196,41 @@ export default function TemplateGallery() {
   const agentKitTemplates = templates.filter((template) => template.isAgentkit);
   const regularTemplates = templates.filter((template) => !template.isAgentkit);
 
-  const filteredTemplates = templates.filter((template) => {
-    const matchesSearch =
-      template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      template.tags.some((tag) =>
-        tag.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+  const complexityRank: Record<string, number> = {
+    beginner: 0,
+    intermediate: 1,
+    advanced: 2,
+  };
 
-    const matchesTags =
-      selectedTags.length === 0 ||
-      selectedTags.some((selectedTag) =>
-        template.tags.some(
-          (tag) => tag.toLowerCase() === selectedTag.toLowerCase()
-        )
-      );
+  const filteredTemplates = templates
+    .filter((template) => {
+      const matchesSearch =
+        template.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        template.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        template.tags.some((tag) =>
+          tag.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
-    // Filter out AgentKit templates from regular grid (they're shown in featured section)
-    const isNotAgentKit = !template.isAgentkit;
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.some((selectedTag) =>
+          template.tags.some(
+            (tag) => tag.toLowerCase() === selectedTag.toLowerCase()
+          )
+        );
 
-    return matchesSearch && matchesTags && isNotAgentKit;
-  });
+      // Filter out AgentKit templates from regular grid (they're shown in featured section)
+      const isNotAgentKit = !template.isAgentkit;
+
+      return matchesSearch && matchesTags && isNotAgentKit;
+    })
+    .sort((a, b) => {
+      // Beginner-first ordering; unknown complexity sinks to the bottom.
+      const rankA = complexityRank[a.complexity ?? ""] ?? 3;
+      const rankB = complexityRank[b.complexity ?? ""] ?? 3;
+      if (rankA !== rankB) return rankA - rankB;
+      return a.title.localeCompare(b.title);
+    });
 
   const toggleTag = (tag: string) => {
     setSelectedTags((prev) =>
@@ -428,55 +465,8 @@ export default function TemplateGallery() {
             {template.integrations && template.integrations.length > 0 && (
               <div className="flex items-center gap-1.5 mb-3 flex-wrap">
                 {template.integrations.slice(0, 5).map((integration, idx) => {
-                  // Try to map integration names to icons
-                  const integrationLower = integration.toLowerCase();
-                  let IntegrationIcon = null;
-
-                  if (integrationLower.includes("google"))
-                    IntegrationIcon = Globe;
-                  else if (
-                    integrationLower.includes("openai") ||
-                    integrationLower.includes("llm")
-                  )
-                    IntegrationIcon = Brain;
-                  else if (
-                    integrationLower.includes("api") ||
-                    integrationLower.includes("http")
-                  )
-                    IntegrationIcon = Code;
-                  else if (
-                    integrationLower.includes("database") ||
-                    integrationLower.includes("db")
-                  )
-                    IntegrationIcon = Database;
-                  else if (
-                    integrationLower.includes("vector") ||
-                    integrationLower.includes("rag")
-                  )
-                    IntegrationIcon = Search;
-                  else if (
-                    integrationLower.includes("workflow") ||
-                    integrationLower.includes("automation")
-                  )
-                    IntegrationIcon = Workflow;
-                  else if (
-                    integrationLower.includes("chat") ||
-                    integrationLower.includes("message")
-                  )
-                    IntegrationIcon = MessageSquare;
-                  else if (
-                    integrationLower.includes("image") ||
-                    integrationLower.includes("vision")
-                  )
-                    IntegrationIcon = ImageIcon;
-                  else if (
-                    integrationLower.includes("infinity") ||
-                    integrationLower.includes("unlimited")
-                  )
-                    IntegrationIcon = Infinity;
-                  else IntegrationIcon = Zap;
-
-                  return IntegrationIcon ? (
+                  const IntegrationIcon = integrationIconFor(integration);
+                  return (
                     <div
                       key={idx}
                       className="w-5 h-5 flex items-center justify-center text-gray-600 dark:text-gray-400"
@@ -484,7 +474,7 @@ export default function TemplateGallery() {
                     >
                       <IntegrationIcon className="w-4 h-4" />
                     </div>
-                  ) : null;
+                  );
                 })}
                 {template.integrations.length > 5 && (
                   <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
@@ -513,95 +503,62 @@ export default function TemplateGallery() {
       );
     }
 
-    // Regular template card styling
+    // Regular template card styling — compact, icon-led, hover-accented
     return (
       <Link
         href={href}
-        className="group relative p-4 rounded-xl border border-gray-200 dark:border-gray-700 cursor-pointer hover:border-red-300 dark:hover:border-red-700 transition-all duration-200 block bg-white dark:bg-gray-800"
+        className="group relative p-3 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-red-400 dark:hover:border-red-600 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200 block bg-white dark:bg-gray-800"
       >
-        {/* Icons row at top */}
-        {/* {template.integrations && template.integrations.length > 0 && (
-          <div className="flex items-center gap-1.5 mb-3 flex-wrap">
-            {template.integrations.slice(0, 5).map((integration, idx) => {
-              // Try to map integration names to icons
-              const integrationLower = integration.toLowerCase();
-              let IntegrationIcon = null;
+        {/* Top row: branded icon + title + complexity pill */}
+        <div className="flex items-start gap-2.5 mb-1.5">
+          <div
+            className={`shrink-0 p-2 rounded-md ${template.iconColor} group-hover:scale-105 transition-transform`}
+          >
+            <IconComponent className="w-4 h-4" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-start justify-between gap-2">
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-1 group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors">
+                {template.title}
+              </h3>
+              {template.complexity && (
+                <span
+                  className={`shrink-0 text-[9px] uppercase tracking-wide font-semibold px-1.5 py-0.5 rounded-full ${
+                    complexityClasses[template.complexity] ?? ""
+                  }`}
+                >
+                  {template.complexity}
+                </span>
+              )}
+            </div>
+            <p className="mt-0.5 text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
+              {template.description}
+            </p>
+          </div>
+        </div>
 
-              if (integrationLower.includes("google")) IntegrationIcon = Globe;
-              else if (
-                integrationLower.includes("openai") ||
-                integrationLower.includes("llm")
-              )
-                IntegrationIcon = Brain;
-              else if (
-                integrationLower.includes("api") ||
-                integrationLower.includes("http")
-              )
-                IntegrationIcon = Code;
-              else if (
-                integrationLower.includes("database") ||
-                integrationLower.includes("db")
-              )
-                IntegrationIcon = Database;
-              else if (
-                integrationLower.includes("vector") ||
-                integrationLower.includes("rag")
-              )
-                IntegrationIcon = Search;
-              else if (
-                integrationLower.includes("workflow") ||
-                integrationLower.includes("automation")
-              )
-                IntegrationIcon = Workflow;
-              else if (
-                integrationLower.includes("chat") ||
-                integrationLower.includes("message")
-              )
-                IntegrationIcon = MessageSquare;
-              else if (
-                integrationLower.includes("image") ||
-                integrationLower.includes("vision")
-              )
-                IntegrationIcon = ImageIcon;
-              else if (
-                integrationLower.includes("infinity") ||
-                integrationLower.includes("unlimited")
-              )
-                IntegrationIcon = Infinity;
-              else IntegrationIcon = Zap;
-
-              return IntegrationIcon ? (
+        {/* Integration icons row at bottom */}
+        {template.integrations && template.integrations.length > 0 && (
+          <div className="flex items-center gap-1 mt-2 pt-2 border-t border-gray-100 dark:border-gray-700/60">
+            {template.integrations.slice(0, 6).map((integration, idx) => {
+              const IntegrationIcon = integrationIconFor(integration);
+              return (
                 <div
                   key={idx}
-                  className="w-5 h-5 flex items-center justify-center text-gray-600 dark:text-gray-400"
+                  className="w-4 h-4 flex items-center justify-center text-gray-500 dark:text-gray-400"
                   title={integration}
                 >
-                  <IntegrationIcon className="w-4 h-4" />
+                  <IntegrationIcon className="w-3.5 h-3.5" />
                 </div>
-              ) : null;
+              );
             })}
-            {template.integrations.length > 5 && (
-              <span className="text-xs text-gray-500 dark:text-gray-400 font-medium">
-                +{template.integrations.length - 5}
+            {template.integrations.length > 6 && (
+              <span className="text-[10px] text-gray-400 dark:text-gray-500 font-medium ml-0.5">
+                +{template.integrations.length - 6}
               </span>
             )}
           </div>
-        )} */}
-
-        {/* Title with icon */}
-        <div className="flex items-center gap-2 mb-2">
-          <div className={`p-1.5 rounded-lg ${template.iconColor}`}>
-            <IconComponent className="w-4 h-4" />
-          </div>
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white line-clamp-1">
-            {template.title}
-          </h3>
-        </div>
-
-        {/* Description */}
-        <p className="text-xs text-gray-600 dark:text-gray-400 line-clamp-2">
-          {template.description}
-        </p>
+        )}
       </Link>
     );
   };

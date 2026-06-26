@@ -1,82 +1,247 @@
 ---
-title: Overview
-description: Lamatic is a collaborative GenOps platform. It helps cross-functional product teams build and deploy GenAI faster and better.
+title: Lamatic Docs
+description: Build, deploy, and monitor AI applications and agents on Lamatic.ai.
 faq-tags: [security]
+---
+
+import {
+  Rocket,
+  LayoutTemplate,
+  Map,
+  CloudUpload,
+  CalendarClock,
+  Activity,
+  BarChart3,
+  Plug,
+  TerminalSquare,
+  Network,
+} from "lucide-react";
+
+export const JsIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#F7DF1E">
+    <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.756-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z" />
+  </svg>
+);
+
+export const PythonIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#3776AB">
+    <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13v5.34l-.05.64-.13.54-.21.46-.26.38-.3.32-.33.24-.35.2-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.36-.1.35-.07.32-.04.28-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.04-.05-1.23.06-1.23.16-1.04.24-.86.32-.71.36-.57.4-.45.42-.33.42-.24.4-.16.36-.09.32-.05.24-.02.16-.01h8.22v-.82H7.46V2.43l.02-.36.05-.34.11-.31.17-.29.25-.25.31-.24.38-.2.44-.17.51-.15.58-.13.64-.09.71-.07.77-.04.84-.01 1.27.04 1.07.14zM8.95 4.07l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08-.33.23zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.1-.32.05-.24.01-.16.01h-.13L15.46 18l-.69.06-.59.14-.5.21-.41.28-.33.32-.27.35-.2.36-.15.36-.1.35-.07.32-.04.28-.02.21V21.65H7.18v-.04l-.02-.13.01-.13v-3.59l.05-.64.13-.55.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.07.26-.04.21-.02H17.23l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" />
+  </svg>
+);
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import flowsImage from "./img/home/flows.png";
+import nodesImage from "./img/home/node.png";
+import agentsImage from "./img/home/agents.png";
+import modelsImage from "./img/home/models.png";
+import contextImage from "./img/home/data and context.png";
+import studioImage from "./img/home/studio.png";
+import graphqlImage from "./img/home/graphql.png";
+import mcpIconImage from "./img/home/mcp.png";
+
+export const ApiIcon = () => (
+  <Image src={graphqlImage} alt="" width={24} height={24} className="object-contain" />
+);
+
+export const McpIcon = () => (
+  <Image src={mcpIconImage} alt="" width={24} height={24} className="object-contain" />
+);
+
+# Lamatic.ai Docs
+
+Build, deploy, and monitor production AI applications. Lamatic gives cross-functional teams a single platform to design **Flows**, run **Agents**, and ship them to the edge.
 
 ---
 
-# Overview
-
-> Lamatic is a collaborative Agentic AI Development Platform that helps cross-functional teams collaboratively develop, monitor, and optimize their GenAI applications.
-
-
----
-
-<iframe width="100%" height="500px" src="https://player.vimeo.com/video/1068719282?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Lamatic Genesis Release - 1.0.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-
-## Core Platform Features
-
-### Build
-Tools to help you build AI applications and iterate faster.
-
-- [Flows](/docs/flows) — Build agents, processes, and automations with custom Flows using no-code and low-code interfaces.
-- [Nodes](/docs/nodes) — Core components and functions for building Flows.
-- [IDE](/docs/ide) — Integrated Development Environment for coding and debugging prompts, JS and API requests.
-- [Agents](/docs/agents) — Create and configure AI agents for your applications.
-- [Models](/docs/models) — Find and connect with the best model for your use case.
-- [Data](/docs/context) — Add custom context to your Flows and agents using VectorDB and memories.
-- [Interface](/docs/interface) — Embed AI components like search and chat in your application with a few lines of code.
-- [MCP/Tools](/docs/mcp-tools) — Core components and functions for agent creation.
-- [Tests](/docs/tests) — Tools to test and debug your Flow and application in development and before deployments.
-- [Version Control](/docs/version-control) — Manage versions and collaborate on your Flows.
-- [Templates](/docs/templates) — Get started quickly with pre-built templates.
-
-### Deploy
-Deploy and manage your AI applications.
-
-- [Deployments](/docs/deployments) — Deploy and manage your agents and Flows on the edge.
-- [Jobs](/docs/jobs) — Monitor and configure scheduled processes.
-
-### Optimize
-Monitor, analyze and optimize your AI applications.
-
-- [Logs](/docs/logs) — See real-time request logs and traces.
-- [Reports](/docs/reports) — Analyze your projects with intuitive charts and queries.
-- [API & SDK](/docs/sdk) — Integrate and interact with your Flows programmatically.
-
-
-## Get Started
+## Start here
 
 <Cards num={3}>
-    <Card href="/docs/get-started" title="Quickstart" image arrow>
-        {/*![Quickstart icon (rocket)]()*/}
-    </Card>
-    <Card href="/docs/api-integration" title="API Overview" image arrow>
-        {/*![API]()*/}
-    </Card>
-    <Card href="/docs/templates" title="Templates" image arrow>
-        {/*![Quickstart icon (rocket)]()*/}
-    </Card>
+  <Cards.Card
+    icon={<Rocket />}
+    title="Quickstart"
+    href="/docs/get-started"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<LayoutTemplate />}
+    title="Templates"
+    href="/templates"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<Map />}
+    title="Architecture"
+    href="/docs/architecture"
+    arrow
+  >
+    {""}
+  </Cards.Card>
 </Cards>
 
+## Learn the concepts
 
-## Updates
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-5 my-6">
+  <Link
+    href="/docs/flows"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={flowsImage} alt="Flow editor" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Flows</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Build agents, processes, and automations with no-code and low-code interfaces.</div>
+    </div>
+  </Link>
 
-Lamatic evolves quickly, check out the [changelog](/changelog) for the latest updates.
+  <Link
+    href="/docs/nodes"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={nodesImage} alt="Node configuration" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Nodes</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">The building blocks of every flow: AI generation, data lookup, branching, integrations.</div>
+    </div>
+  </Link>
 
-Subscribe to the **mailing list** to get notified about new major features:
+  <Link
+    href="/docs/agents"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={agentsImage} alt="Agents" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Agents</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Specialised AI nodes that reason, route, and orchestrate multi-step work.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/models"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={modelsImage} alt="Models" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Models</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Connect any LLM provider: OpenAI, Anthropic, Bedrock, Gemini, and more.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/context"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={contextImage} alt="Data and context" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Data & Context</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Vector and memory stores attached to your project for RAG and stateful agents.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/studio"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={studioImage} alt="Studio" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Studio</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">The collaborative editor where teams design, test, and deploy flows.</div>
+    </div>
+  </Link>
+</div>
+
+## Deploy and monitor
+
+Ship to production, schedule recurring runs, and watch everything in real time.
+
+<Cards num={3}>
+  <Cards.Card
+    icon={<CloudUpload />}
+    title="Deployments"
+    href="/docs/deployments"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<CalendarClock />}
+    title="Jobs & Scheduling"
+    href="/docs/jobs"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Activity />} title="Logs" href="/docs/logs" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<BarChart3 />} title="Reports" href="/docs/reports" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
+
+## Connect with code
+
+Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
+
+<Cards num={3}>
+  <Cards.Card icon={<JsIcon />} title="JavaScript" href="/docs/sdk" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<PythonIcon />} title="Python" href="/docs/sdk/integration-guide" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<ApiIcon />} title="API" href="/docs/api-integration" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<TerminalSquare />} title="CLI" href="/docs/cli" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<McpIcon />} title="MCP" href="/docs/mcp" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
+
+## See it in action
 
 <iframe
-    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa"
+  width="100%"
+  height="450px"
+  src="https://player.vimeo.com/video/1068719282?badge=0&autopause=0&player_id=0&app_id=58479"
+  title="Lamatic Genesis Release - 1.0.0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+  style={{ borderRadius: "8px", border: "1px solid rgb(229 231 235 / 0.4)" }}
+></iframe>
+
+## Stay updated
+
+Lamatic ships fast. The [changelog](/changelog) lists every release. Join our [Slack](/slack) for product chat, file requests on the [feature board](https://product.lamatic.ai/), or report bugs via [GitHub issues](https://github.com/Lamatic/docs/issues).
+
+<div className="mt-4 max-w-md">
+  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Get major-feature announcements in your inbox:</div>
+  <iframe
+    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa?slim=true"
     data-test-id="beehiiv-embed"
     width="100%"
-    height="320"
+    height="52"
+    frameBorder="0"
     scrolling="no"
-    style={{ borderRadius: '4px', border: '2px solid #e5e7eb', margin: '0', backgroundColor: 'transparent' }}>
-</iframe>
-
-## Get in Touch
-
-Join our [Slack](/slack), provide feedback, report bugs, or request features via [Feature board](https://product.lamatic.ai/).
-
-Learn more about ways to get in touch on our [Support](https://support.lamatic.ai) page.
+    style={{ margin: 0, borderRadius: "6px", backgroundColor: "transparent" }}
+  />
+</div>

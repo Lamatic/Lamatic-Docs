@@ -20,8 +20,22 @@ The Log Dashboard provides a centralized view of workflow executions, showing de
   | 204 | Successful execution of retried request. |
   | 208 | Node has skipped its execution when retried the request. Applicable for retries triggered from a failed node.|
   | 303 | Fallback Model is used. |
+  | 400 | Bad Request. Malformed request payload or invalid input. |
+  | 401 | Unauthorized. Invalid or missing API key. |
+  | 403 | Forbidden. Valid credentials, insufficient permissions. |
+  | 404 | Not Found. Flow, node, or resource doesn't exist. |
+  | 422 | Unprocessable Entity. Input didn't match expected schema/validation. |
+  | 429 | Too Many Requests. Rate limit exceeded. |
   | 500 | Flow Error - Signifies that an error occurred during the request processing, requiring further investigation. |
   | 509 | Failed execution of retried request. |
+
+  **Upstream/Provider Errors** — errors from the LLM provider, not your flow:
+
+  | Status Code | Description |
+  |-------------|--------------------------------------------------------------------------------------------------------------|
+  | 502 | Bad Gateway. The model provider (OpenAI, Anthropic, etc.) itself errored. |
+  | 503 | Service Unavailable. Provider overloaded/down, no fallback model available. |
+  | 504 | Gateway Timeout. Model provider took too long to respond. |
 
 - **Flow**: Unique FlowID associated with the request, enabling you to trace the entire lifecycle of a specific operation through your system..
 - **Trigger Node**: The source of the trigger (e.g., API Request, Slack, Google Drive).

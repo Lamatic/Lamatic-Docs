@@ -1,0 +1,152 @@
+---
+title: Limits & Quotas
+description: Practical limits for building and running workflows on Lamatic. Use this when designing flows, sizing jobs, or explaining plan differences.
+---
+
+import { Callout } from 'nextra/components'
+
+# Limits & Quotas
+
+Practical limits for building and running workflows on Lamatic. Use this when designing flows, sizing jobs, or explaining plan differences.
+
+<Callout type="info">
+  **Enforced** means a hard limit. Exceeding it fails or is blocked in Studio.
+
+  **Recommended** means it isn't always blocked, but ignoring it makes runs more likely to time out, run out of memory, or fail under load.
+</Callout>
+
+---
+
+## How long a flow can run
+
+| Mode | Limit | Notes |
+|------|-------|-------|
+| **Sync** (waits for a response) | ~2 minutes on Pro, ~5 minutes on Enterprise | Best for APIs and widgets that return a result immediately. Keep the flow small. |
+| **Async** | Up to ~20 minutes on the standard path | Trigger response type must be set to **async**. Returns a request ID right away, and the flow continues in the background. |
+| **Container mode** (opt-in, for memory-heavy flows) | Up to 1 hour | For flows that need more memory. Turn it on at the project or flow level when standard runs are running out of memory. |
+
+**Recommended flow size**
+
+| Mode | Guidance |
+|------|----------|
+| Sync | ~20 nodes max |
+| Async | ~50 nodes max |
+
+Larger flows are harder to debug and more likely to hit time or memory limits. Split big workflows into smaller flows and call them with a **Flow** node.
+
+---
+
+## Memory
+
+| Runtime | Limit |
+|---------|-------|
+| Standard execution | 128 MB |
+| Container mode (opt-in) | 6 GB |
+
+If a flow consistently fails with memory errors, enable **container mode** for that project or flow, reduce batch concurrency, or shrink payloads.
+
+---
+
+## Loops, batches, and agents
+
+| Limit | Value | Type |
+|-------|-------|------|
+| Nodes inside a loop, batch, or agent body | 20 | Enforced for Starter and Pro. Unlimited on Enterprise. |
+| Nodes inside a batch body | 5 or fewer recommended | More nodes per iteration raise memory use. Prefer a sub-flow for larger logic. |
+| Batch concurrency (parallel items) | 1 to 50, default 10 | Configurable on the Batch node. |
+| Nested Batch nodes | Not allowed | Enforced. |
+| Batch iterations (Starter / free) | 100 max | Enforced. |
+
+If you need more than 20 nodes inside a loop or batch, put the extra logic in a separate flow and call it with a **Flow** node.
+
+---
+
+## Code node
+
+| Limit | Value |
+|-------|-------|
+| Processing time | ~2 minutes on Pro, ~5 minutes on Enterprise |
+| Code size | 10,000 characters max |
+| Restricted APIs | Node process APIs such as `require`, `eval`, and `child_process` are blocked |
+
+---
+
+## Jobs (data syncs)
+
+Jobs are scheduled syncs from sources such as databases, sheets, and storage.
+
+| Limit | Pro / Starter | Enterprise |
+|-------|----------------|------------|
+| Active jobs | 10 or fewer recommended | Higher, contact Lamatic |
+| Sync capacity | Shared infrastructure (~2 GB) | Dedicated infrastructure with higher capacity |
+
+Need more jobs or larger syncs? Use **Enterprise**.
+
+**Default job processing settings** (Settings → Jobs)
+
+| Setting | Default |
+|---------|---------|
+| Batch size | 5 |
+| Max concurrency | 5 |
+| Max retries | 3 |
+
+---
+
+## Plan limits
+
+### Starter
+
+| Resource | Limit |
+|----------|-------|
+| Flows per project | 5 |
+| Starter projects per organization | 1 active |
+| Workflow executions | 3,000 per 30 days, 100 per day |
+| Vector records / writes | 1,000 each |
+| Reports & charts history | 7 days |
+| Team members | 3 (unless the org has a Pro project or is Enterprise) |
+| AI Assistant | Not available |
+
+### Pro / Trial
+
+| Resource | Limit |
+|----------|-------|
+| Workflow executions | 100,000 |
+| Vector records / writes | 10,000 each |
+| Reports & charts history | 30 days |
+| Sync flow duration | ~2 minutes of processing time per run |
+| AI Assistant | Available |
+
+### Enterprise
+
+| Resource | Limit |
+|----------|-------|
+| Workflow executions | Unlimited |
+| Vector / request caps | Unlimited |
+| Sync flow duration | ~5 minutes of processing time per run |
+| Nodes inside loops / batches | Unlimited |
+| Jobs / sync capacity | Dedicated, higher capacity |
+| Reports & charts history | Up to 90 days |
+
+---
+
+## Other limits
+
+| Limit | Value |
+|-------|-------|
+| Nested Flow calls (flow calling flow) | 100 levels max |
+| Large async payloads | Inputs above ~125 KB are stored automatically and still work |
+| Flow retries (configurable) | Max retries 5 or fewer, retry delay 30 seconds or less |
+
+---
+
+## Quick tips
+
+1. Keep 5 or fewer nodes inside a Batch. Use a sub-flow for more.
+2. Keep sync flows to about 20 nodes, or switch the trigger to async.
+3. Keep Code node work under the plan's processing time budget (~2 minutes on Pro).
+4. Keep active jobs to about 10 or fewer on Pro. Use Enterprise for more.
+5. For memory-heavy flows, enable container mode or reduce batch concurrency and payload size.
+
+---
+
+Hitting a `429` or a failed run? See the [Error Reference](/docs/error-reference) page for what each status code means and how to fix it.

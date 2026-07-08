@@ -175,6 +175,14 @@ export default {
     title: "Glossary",
     type: "doc",
   },
+  limits: {
+    title: "Limits & Quotas",
+    type: "doc",
+  },
+  "error-reference": {
+    title: "Error Codes",
+    type: "doc",
+  },
   "nodes-ref": {
     "title": "All Nodes (A-Z)",
     "href": "/docs/nodes",

@@ -4,6 +4,7 @@ description: Query Lamatic.ai documentation instantly using AI, powered by RAG a
 ---
 
 import { Callout, Cards, Card } from 'nextra/components'
+import { Button } from '@/components/ui/button'
 
 # Lamatic Docs MCP
 
@@ -13,8 +14,7 @@ import { Callout, Cards, Card } from 'nextra/components'
 
 ## What is the Docs MCP?
 
-The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation.
-
+The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation, and to the Lamatic AgentKit repository of kits, bundles, and templates.
 
 It is powered by a RAG pipeline built entirely on Lamatic:
 - **Firecrawl** scrapes the docs
@@ -28,7 +28,26 @@ It is powered by a RAG pipeline built entirely on Lamatic:
 
 ---
 
-## Connect
+## Install
+
+Pick your client and you're connected in a few seconds.
+
+<div className="flex flex-wrap gap-3 my-4">
+  <Button variant="outline" size="sm" asChild>
+    <a href="https://cursor.com/en/install-mcp?name=lamatic-docs&config=eyJ1cmwiOiJodHRwczovL2RvY21jcC5sYW1hdGljLmFpL2FwaS9tY3AifQ%3D%3D" target="_blank" rel="noreferrer">Add to Cursor</a>
+  </Button>
+  <Button variant="outline" size="sm" asChild>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic-docs%22%2C%22url%22%3A%22https%3A%2F%2Fdocmcp.lamatic.ai%2Fapi%2Fmcp%22%7D">Add to VS Code</a>
+  </Button>
+</div>
+
+### Claude Code
+
+```bash
+claude mcp add --transport http lamatic-docs https://docmcp.lamatic.ai/api/mcp
+```
+
+### Claude Desktop, Windsurf, Cline, and other clients
 
 Add this to your MCP client config:
 
@@ -42,27 +61,14 @@ Add this to your MCP client config:
 }
 ```
 
-### Claude Desktop
+For Claude Desktop specifically, the config file lives at:
 
 **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`  
 **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
-```json
-{
-  "mcpServers": {
-    "lamatic-docs": {
-      "url": "https://docmcp.lamatic.ai/api/mcp"
-    }
-  }
-}
-```
+Restart the client after saving. You should see a 🔌 tools icon in the chat input.
 
-Restart Claude Desktop after saving. You should see a 🔌 tools icon in the chat input.
-
-### Cursor / Windsurf / Cline
-
-Add the same config to your MCP settings. Most clients support the `url` field directly for HTTP-based MCP servers.
-
+---
 
 ## Available Tools
 
@@ -86,6 +92,22 @@ Ask any question about Lamatic.ai documentation. Uses RAG to search across all i
   }
 }
 ```
+
+### AgentKit tools
+
+These call the [Lamatic AgentKit](https://github.com/Lamatic/AgentKit) repository directly through the GitHub API, so answers reflect whatever is on the repo right now rather than the indexed vector store. No authentication is required for any of these.
+
+| Tool | What it does |
+|------|---------------|
+| `kit_list` | Lists every kit, bundle, and template available in AgentKit |
+| `kit_get` | Returns the full details for one kit: its `lamatic.config.ts`, README, and list of flows |
+| `kit_search` | Searches kits by type (kit, bundle, or template) and/or a free-text keyword |
+| `kit_get_flow` | Returns the raw `.ts` source for a specific flow inside a kit |
+| `kit_check_pr_status` | Checks the structural and Studio runtime validation status of an open AgentKit pull request |
+
+<Callout type="warning">
+  A few more tools exist for people actively contributing kits — `kit_validate_structure`, `kit_auth_login`, and `kit_revalidate_pr`. These either touch your local filesystem or post GitHub comments, so they only run when you're running the server locally over stdio, never on the public hosted endpoint.
+</Callout>
 
 ---
 
@@ -118,7 +140,9 @@ The entire pipeline is built on Lamatic:
 | Client | Supported |
 |--------|-----------|
 | Claude Desktop | ✅ |
+| Claude Code | ✅ |
 | Cursor | ✅ |
+| VS Code (Copilot) | ✅ |
 | Windsurf | ✅ |
 | Cline | ✅ |
 | Any HTTP MCP client | ✅ |
@@ -131,11 +155,9 @@ The MCP is open source. You can view, fork, and contribute on GitHub:
 
 [github.com/Lamatic/Lamatic-MCP-Docs](https://github.com/Lamatic/Lamatic-MCP-Docs)
 
-{/*
 <Callout type="tip">
-  Want to build your own Docs MCP for your company? See the [Docs MCP setup guide](/docs/mcp-tools/docs-mcp). Fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
+  Want to build your own Docs MCP for your company? See the [Build Your Own Docs MCP guide](/guides/tutorials/build-your-own-docs-mcp). Fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
 </Callout>
-*/}
 
 ---
 

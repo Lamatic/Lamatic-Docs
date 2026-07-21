@@ -269,7 +269,6 @@ export default {
   legal: {
     title: "Legal",
     type: "doc",
-    display: "hidden",
   },
   "config-schema": {
     title: "Config Schema",

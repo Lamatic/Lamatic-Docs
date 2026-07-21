@@ -3,9 +3,13 @@ title: GraphQL API
 description: Deployment using GraphQL
 ---
 
-import { Tabs } from "nextra/components";
+import { Tabs, Callout } from "nextra/components";
 
 # Executing Flows with GraphQL API
+
+<Callout type="info">
+  New to the API? The [Integration Guide](/docs/sdk/integration-guide) walks through your first call step by step. Come back here for the full GraphQL reference, async flows, and response shapes.
+</Callout>
 
 ## What is GraphQL?
 
@@ -40,7 +44,7 @@ Authorization: Bearer your_api_key
 
 By including the API key in the `Authorization` header, our platform can verify your identity and grant you access to trigger the desired flow.
 
-> Click Here to know how to get your own [API Key](/docs/studio/Project/Settings/keys)
+> Click Here to know how to get your own [API Key](/docs/studio/studio-keys)
 
 ### Triggering Flows with GraphQL
 
@@ -205,10 +209,13 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
       variables = {}
 
+      # Export your Lamatic API key as an environment variable
+      lamatic_api_key = os.getenv('LAMATIC_API_KEY')
+
       headers = {
         "Authorization": f"Bearer {lamatic_api_key}",
         "Content-Type": "application/json",
-        "x-project-id": "YOUR_PROJECT_ENDPOINT"
+        "x-project-id": "YOUR_PROJECT_ID"
       }
 
       data = {"query": gqlQuery, "variables": variables}

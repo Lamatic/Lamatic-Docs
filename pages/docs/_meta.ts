@@ -236,26 +236,6 @@ export default {
     type: "doc",
     display: "hidden",
   },
-  "privacy-policy": {
-    title: "Privacy Policy",
-    type: "doc",
-    display: "hidden",
-  },
-  "cookie-policy": {
-    title: "Cookie Policy",
-    type: "doc",
-    display: "hidden",
-  },
-  "data-deletion-policy": {
-    title: "Data Deletion Policy",
-    type: "doc",
-    display: "hidden",
-  },
-  "terms-of-service": {
-    title: "Terms of Service",
-    type: "doc",
-    display: "hidden",
-  },
   hacktoberfest: {
     title: "Hacktoberfest",
     type: "doc",

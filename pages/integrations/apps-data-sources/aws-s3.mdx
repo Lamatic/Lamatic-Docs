@@ -1,6 +1,6 @@
 ---
 title: AWS S3
-description: The AWS S3 node in Lamatic automates fetching and synchronizing files from Amazon S3 buckets. It supports various file types, including text files, PDFs, Word Documents, and others stored in the bucket. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+description: The AWS S3 node connects Lamatic to Amazon S3. Use it as a Trigger to sync files from a bucket for RAG, or as an Action to upload, fetch, list, move, copy, delete, and manage files and folders directly from a flow.
 icon: /images/icons/apps/s3.png
 legacyNodeSlugs: ["s3-node"]
 ---
@@ -12,10 +12,13 @@ import { IntegrationOverviw } from "@/components/IntegrationOverviw"
 
 ## Overview
 
-The AWS S3 node in Lamatic automates fetching and synchronizing files from Amazon S3 buckets. It supports various file types, including text files, PDFs, Word Documents, and others stored in the bucket. This node enables regular file synchronization to support vectorization and indexing for Retrieval-Augmented Generation (RAG) flows.
+The AWS S3 node connects Lamatic to Amazon S3, and works in two modes:
+
+- **Trigger mode**: automatically detects file additions and modifications in a bucket and syncs them into a flow, most commonly for vectorization and indexing in Retrieval-Augmented Generation (RAG) flows. This is the original behavior of the node and is unchanged.
+- **Action mode**: lets a flow directly upload, fetch, list, move, copy, or delete files, read file metadata, and create or delete folders, on demand, as one step in a larger flow.
 
 <Callout type="warning" >
-To use the AWS S3 node, you need to create a separate flow to Implement RAG. You can integrate it into this distinct flow.
+To use the AWS S3 node in Trigger mode for RAG, you need to create a separate flow to implement RAG. You can integrate it into this distinct flow.
 </Callout>
 
 <video controls loop width="100%" autoplay muted controlslist="nodownload" className="mt-4">
@@ -34,6 +37,9 @@ To use the AWS S3 node, you need to create a separate flow to Implement RAG. You
 - **Selective Filtering**: Use glob patterns to filter specific file types and paths for targeted file processing.
 - **Multiple Sync Modes**: Supports both incremental (new/updated files only) and full-refresh (all files) synchronization modes.
 - **Scalable Processing**: Scales efficiently with growing data volumes and large S3 buckets.
+- **File Actions**: Upload, fetch, list, move, copy, delete, and read metadata for individual files on demand from within a flow.
+- **Folder Management**: Create folders and delete folders (including everything inside them) directly from a flow.
+- **Configurable Signed URLs**: Choose how long returned file URLs stay valid, from 15 minutes up to 7 days.
 
 ### ✅ Benefits
 
@@ -180,13 +186,15 @@ Use the following format to set up your credentials:
 
 ### Step 3: Set Up Lamatic Flow
 
-1. Add the S3 node to your flow.
-2. Provide necessary credentials and bucket details.
-3. Configure sync settings, schedule, and file filters.
+1. Add the S3 node to your flow, either as a **Trigger** (for scheduled RAG sync) or as an **Action** (for on-demand file operations).
+2. Provide the credentials and bucket details.
+3. For a Trigger, configure sync settings, schedule, and file filters. For an Action, pick the operation you want from the **Action** dropdown and fill in its fields.
 
 ---
 
-## Configuration Reference
+## Trigger Configuration Reference
+
+This applies when the S3 node is used as a **Trigger** for scheduled RAG sync. See [Action Reference](#action-reference) below for the on-demand file operations.
 
     | **Field**                    |**Description**                                                                                                                                          | **Options/Examples**                                    | **Requirement/Default**               |
     |------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------|
@@ -277,9 +285,7 @@ Use the following format to set up your credentials:
 
 ---
 
-## Output
-
-### Batch Trigger Output
+## Trigger Output
 
 | **Field**          | **Type** | **Additional Info**                                                                                |
 | ------------------ | -------- | -------------------------------------------------------------------------------------------------- |
@@ -297,7 +303,215 @@ Use the following format to set up your credentials:
 }
 ```
 
+---
+
+## Action Reference
+
+When used as an **Action**, the S3 node runs one of ten operations, picked from the **Action** dropdown. Each operation only shows the fields it needs.
+
+<Callout type="info">
+Most actions accept a **Signed URL Expiry** field (`900` = 15 minutes, `3600` = 1 hour, default, `21600` = 6 hours, `86400` = 24 hours, `604800` = 7 days, the maximum a signed S3 URL can allow). It controls how long the `url` returned in the action's output stays valid.
+</Callout>
+
+### Get File
+
+Returns a signed URL for a single file, without downloading its contents into the flow.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **File Path** | Exact path to the file in the bucket, e.g. `reports/quarterly-report.pdf` | Yes |
+| **Signed URL Expiry** | How long the returned URL stays valid | No, default 1 hour |
+
+```json
+{
+  "key": "reports/quarterly-report.pdf",
+  "bucket": "my-bucket",
+  "url": "https://my-bucket.s3.us-east-1.amazonaws.com/reports/quarterly-report.pdf?..."
+}
+```
+
+### List Files in Folder
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **Folder Path** | Path to the folder, e.g. `invoices/2024/`. Leave empty for the bucket root. | No |
+| **File Pattern** | Glob pattern to filter results, e.g. `*.pdf`. Leave empty to list everything. | No |
+| **Max Results** | Number of files to return, from 1 to 1000 | No, default 100 |
+| **Signed URL Expiry** | How long each file's returned URL stays valid | No, default 1 hour |
+
+Folder placeholder objects (see **Keep Empty Folder** below) are automatically excluded from results.
+
+```json
+{
+  "bucket": "my-bucket",
+  "folder": "invoices/2024/",
+  "files": [
+    { "key": "invoices/2024/jan.pdf", "size": 10432, "lastModified": "2025-01-04T10:00:00.000Z", "url": "https://..." }
+  ],
+  "count": 1
+}
+```
+
+### Upload File
+
+Creates a new file from text content typed or mapped directly into the node.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **File Path** | Destination path, e.g. `notes/summary`. The correct extension is appended automatically if you leave it off. | Yes |
+| **File Type** | `Text (.txt)`, `Markdown (.md)`, `JSON (.json)`, `CSV (.csv)`, or `HTML (.html)`. Sets both the file extension and the S3 content type. | Yes, default Text |
+| **Content** | The file contents to upload | Yes |
+| **Signed URL Expiry** | How long the returned URL stays valid | No, default 1 hour |
+
+<Callout type="info">
+If **File Type** is `JSON`, the content must be valid JSON, either a JSON string or an object mapped from a previous node. Invalid JSON is rejected before anything is uploaded.
+</Callout>
+
+```json
+{
+  "bucket": "my-bucket",
+  "key": "notes/summary.md",
+  "fileType": "markdown",
+  "etag": "d41d8cd98f00b204e9800998ecf8427e",
+  "size": 128,
+  "contentType": "text/markdown; charset=utf-8",
+  "url": "https://..."
+}
+```
+
+### Upload File from URL
+
+Downloads a file from a URL and stores it in the bucket as-is, keeping the source's original content type.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **File Path** | Destination path in the bucket | Yes |
+| **File URL** | URL to fetch, e.g. `{{triggerNode.output.document_url}}` | Yes |
+| **Signed URL Expiry** | How long the returned URL stays valid | No, default 1 hour |
+
+<Callout type="warning">
+Since the URL is flow-controlled, it's treated as untrusted input: only `http`/`https` are allowed, private and internal addresses (localhost, `10.x`, `172.16-31.x`, `192.168.x`, link-local, and their IPv6 equivalents) are blocked, and up to 3 redirect hops are followed, each re-checked against the same rules before being fetched. Downloads are capped at 100 MB and time out after 120 seconds.
+</Callout>
+
+```json
+{
+  "bucket": "my-bucket",
+  "key": "imports/photo.jpg",
+  "etag": "d41d8cd98f00b204e9800998ecf8427e",
+  "size": 204800,
+  "contentType": "image/jpeg",
+  "url": "https://..."
+}
+```
+
+### Move File / Copy File
+
+Moving is a copy followed by deleting the source. Both actions share the same fields.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **File Path** | Source file path | Yes |
+| **Destination Path** | New path for the file, e.g. `archive/2024/report.pdf` | Yes |
+| **Destination Bucket** | Bucket to move/copy into. Leave empty to stay in the same bucket. | No |
+| **Keep Empty Folder** | If this move empties the source folder, write a placeholder so the folder stays visible (Move File only) | No, default true |
+| **Signed URL Expiry** | How long the returned URL stays valid | No, default 1 hour |
+
+The node checks the source file exists (and the destination bucket, if different) before copying, so a missing source or bucket returns a clear error instead of a generic failure. Moving/copying a file onto itself (same bucket, same path) is rejected up front.
+
+```json
+{
+  "sourceBucket": "my-bucket",
+  "sourceKey": "reports/draft.pdf",
+  "bucket": "my-bucket",
+  "key": "archive/2024/draft.pdf",
+  "url": "https://...",
+  "moved": true
+}
+```
+
+### Delete File
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **File Path** | Path of the file to delete | Yes |
+| **Keep Empty Folder** | If deleting this file empties its folder, write a placeholder so the folder stays visible | No, default true |
+
+S3 normally reports success even when you delete a key that never existed. This action checks first, so `existed` and `deleted` tell you whether there was actually a file there.
+
+```json
+{
+  "bucket": "my-bucket",
+  "key": "reports/draft.pdf",
+  "existed": true,
+  "deleted": true
+}
+```
+
+### Get File Metadata
+
+Reads a file's size, content type, and custom metadata without downloading it.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **File Path** | Path of the file | Yes |
+| **Signed URL Expiry** | How long the returned URL stays valid | No, default 1 hour |
+
+```json
+{
+  "bucket": "my-bucket",
+  "key": "reports/draft.pdf",
+  "exists": true,
+  "size": 10432,
+  "contentType": "application/pdf",
+  "lastModified": "2025-01-04T10:00:00.000Z",
+  "etag": "d41d8cd98f00b204e9800998ecf8427e",
+  "metadata": {},
+  "url": "https://..."
+}
+```
+
+If the file doesn't exist, the action still succeeds and returns `{ "exists": false }` rather than erroring.
+
+### Create Folder
+
+S3 has no real folders, this writes a zero-byte marker object with a trailing slash, the same convention the AWS console uses.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **Folder Path** | Path of the folder to create, e.g. `invoices/2025/` | Yes |
+
+```json
+{
+  "bucket": "my-bucket",
+  "folder": "invoices/2025/",
+  "created": true
+}
+```
+
+### Delete Folder
+
+Deletes every file under the given path.
+
+| **Field** | **Description** | **Required** |
+|---|---|---|
+| **Folder Path** | Path of the folder to delete, e.g. `invoices/2023/`. Deletes everything under this path. | Yes |
+
+<Callout type="warning">
+Each run deletes at most 10,000 objects. If the folder held more, `truncated` comes back `true` and you'll need to run the action again to finish clearing it. The action refuses to run on an empty path or `/`, so it can't be used to wipe an entire bucket by accident.
+</Callout>
+
+```json
+{
+  "bucket": "my-bucket",
+  "folder": "invoices/2023/",
+  "deletedCount": 842,
+  "truncated": false
+}
+```
+
 ## Low-Code Example
+
+### Trigger mode
 
 ```yaml
 triggerNode:
@@ -316,6 +530,24 @@ values:
   cronExpression: 0 0 00 1/1 * ? * UTC
 ```
 
+### Action mode
+
+```yaml
+- nodeId: s3Node_512
+  nodeType: s3Node
+  nodeName: S3
+  values:
+    credentials: "AWS"
+    bucket: "TEST"
+    action: S3_UPLOAD_FILE
+    filePath: "notes/{{triggerNode_1.output.title}}"
+    fileType: markdown
+    content: "{{triggerNode_1.output.body}}"
+    urlExpiry: "3600"
+  needs:
+    - triggerNode_1
+```
+
 ## Troubleshooting
 
 ### Common Issues
@@ -329,6 +561,13 @@ values:
 | **Permission Denied**      | Ensure IAM policy includes required S3 permissions.  |
 | **Network Connectivity** | Check network access and firewall settings.            |
 | **Large File Issues**     | Verify file size limits and parsing strategy.         |
+| **"File URL points to a private or internal address"** | Upload File from URL blocks localhost and private network ranges as a security measure. Point it at a publicly reachable URL instead. |
+| **"File is too large to upload from URL"** | Upload File from URL caps downloads at 100 MB. Split the file or upload it directly with Upload File instead. |
+| **"Source file not found"** on Move/Copy | Check the **File Path** is the exact source key. If a previous Move already ran, the file is already at its destination. |
+| **"Source and destination point to the same file"** | You set **Destination Path** (and bucket, if different) to the exact same location as **File Path**. Pick a different destination. |
+| **"Too many redirects while downloading the file"** | Upload File from URL follows at most 3 redirect hops. Use a direct URL instead of one behind a long redirect chain. |
+| **"Content is not valid JSON"** on Upload File | Ensure **Content** is a valid JSON string (or a mapped object) when **File Type** is set to JSON. |
+| **`truncated: true`** on Delete Folder | The folder had more than 10,000 objects. Run Delete Folder again to continue clearing it. |
 
 ### Debugging
 

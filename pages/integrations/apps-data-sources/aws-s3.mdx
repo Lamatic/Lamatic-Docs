@@ -40,6 +40,7 @@ To use the AWS S3 node in Trigger mode for RAG, you need to create a separate fl
 - **File Actions**: Upload, fetch, list, move, copy, delete, and read metadata for individual files on demand from within a flow.
 - **Folder Management**: Create folders and delete folders (including everything inside them) directly from a flow.
 - **Configurable Signed URLs**: Choose how long returned file URLs stay valid, from 15 minutes up to 7 days.
+- **S3-Compatible Providers**: Works with any S3-compatible storage, not just AWS, including Supabase Storage, MinIO, and Cloudflare R2, by setting a custom endpoint.
 
 ### ✅ Benefits
 
@@ -73,6 +74,10 @@ If the connection fails, review [IP Allowlisting](/docs/ips) and allow the requi
     - Navigate to the [IAM console](https://console.aws.amazon.com/iam/home#home).
     - Create a new policy with required S3 permissions.
     - Use the provided JSON policy template.
+
+      <Callout type="warning">
+      The read-only policy below is enough for **Trigger mode**. If you're using the node in **Action mode**, see [Action mode permissions](#action-mode-permissions) further down, Upload, Copy, and Create Folder need `s3:PutObject`, and Delete File, Delete Folder, and Move need `s3:DeleteObject` too.
+      </Callout>
 
       ```json
           {
@@ -161,6 +166,33 @@ If the connection fails, review [IP Allowlisting](/docs/ips) and allow the requi
         Note: You need to make sure that you are giving `ListAllMyBuckets` permission with resource as `*` else you will not be able to see the available buckets in the node config.
       </Callout>
 
+      #### Action mode permissions
+
+      If you're using the S3 node in **Action mode**, extend the policy with write and delete permissions. Upload File, Upload File from URL, Copy File, and Create Folder need `s3:PutObject`. Delete File, Delete Folder, and Move File (which deletes the source after copying) need `s3:DeleteObject`.
+
+      ```json
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Action": [
+                      "s3:GetObject",
+                      "s3:PutObject",
+                      "s3:DeleteObject",
+                      "s3:ListBucket",
+                      "s3:ListAllMyBuckets"
+                  ],
+                  "Resource": "*"
+              }
+          ]
+      }
+      ```
+
+      <Callout type="info">
+      Moving or copying a file to a different bucket (via **Destination Bucket**) needs `s3:PutObject` on that destination bucket too, not just the source bucket. If you're scoping permissions to specific buckets, include both in the policy's `Resource` list.
+      </Callout>
+
 2.  **Configure IAM User**:
 
     - Create or select an IAM user.
@@ -183,6 +215,12 @@ Use the following format to set up your credentials:
 | **Credential Name**   | Name to identify this set of credentials            | `my-s3-creds`               |
 | **AWS Access Key**    | AWS access key ID for authentication                | `AKIAIOSFODNN7EXAMPLE`      |
 | **AWS Secret Key**    | AWS secret access key for authentication            | `wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY` |
+| **AWS Region**        | Required. The bucket's AWS region, used to sign every request. | `us-east-1`                 |
+| **Endpoint**          | Optional. Set this to use an S3-compatible provider instead of AWS, e.g. Supabase Storage, MinIO, or Cloudflare R2. Leave empty for AWS. | `https://your-project.supabase.co/storage/v1/s3` |
+
+<Callout type="info">
+The S3 node isn't limited to AWS. Any S3-compatible storage provider (Supabase Storage, MinIO, Cloudflare R2, DigitalOcean Spaces, and others) works by setting the **Endpoint** field.
+</Callout>
 
 ### Step 3: Set Up Lamatic Flow
 
@@ -291,7 +329,7 @@ This applies when the S3 node is used as a **Trigger** for scheduled RAG sync. S
 | ------------------ | -------- | -------------------------------------------------------------------------------------------------- |
 | **`document_key`** | `String` | Document key (filename).                                                                           |
 | **`content`**      | `String` | Extracted text content from the file.                                                             |
-| **`document_url`** | `String` | S3 URL of the processed file. Use `document_url` to extract data if your file contains unstructured data. |
+| **`document_url`** | `String` | Signed HTTPS URL for the processed file, valid for 5 hours. Use `document_url` to extract data if your file contains unstructured data. |
 
 ### Example Output
 
@@ -299,7 +337,7 @@ This applies when the S3 node is used as a **Trigger** for scheduled RAG sync. S
 {
   "document_key": "example.pdf",
   "content": "Extracted text content from the S3 file",
-  "document_url": "s3://bucket-name/example.pdf"
+  "document_url": "https://bucket-name.s3.us-east-1.amazonaws.com/example.pdf?X-Amz-Expires=18000&..."
 }
 ```
 
@@ -413,7 +451,7 @@ Moving is a copy followed by deleting the source. Both actions share the same fi
 | **File Path** | Source file path | Yes |
 | **Destination Path** | New path for the file, e.g. `archive/2024/report.pdf` | Yes |
 | **Destination Bucket** | Bucket to move/copy into. Leave empty to stay in the same bucket. | No |
-| **Keep Empty Folder** | If this move empties the source folder, write a placeholder so the folder stays visible (Move File only) | No, default true |
+| **Keep Empty Folder** | If this move empties the source folder, write a hidden `.emptyFolderPlaceholder` file so the folder stays visible (Move File only) | No, default true |
 | **Signed URL Expiry** | How long the returned URL stays valid | No, default 1 hour |
 
 The node checks the source file exists (and the destination bucket, if different) before copying, so a missing source or bucket returns a clear error instead of a generic failure. Moving/copying a file onto itself (same bucket, same path) is rejected up front.
@@ -434,9 +472,13 @@ The node checks the source file exists (and the destination bucket, if different
 | **Field** | **Description** | **Required** |
 |---|---|---|
 | **File Path** | Path of the file to delete | Yes |
-| **Keep Empty Folder** | If deleting this file empties its folder, write a placeholder so the folder stays visible | No, default true |
+| **Keep Empty Folder** | If deleting this file empties its folder, write a hidden `.emptyFolderPlaceholder` file so the folder stays visible | No, default true |
 
 S3 normally reports success even when you delete a key that never existed. This action checks first, so `existed` and `deleted` tell you whether there was actually a file there.
+
+<Callout type="info">
+`.emptyFolderPlaceholder` is a zero-byte file, the same convention Supabase Storage uses to keep an otherwise-empty folder visible. It's excluded from **List Files** results and hidden in Supabase's own dashboard, but it will show up as a real object if you browse the bucket directly in the AWS console.
+</Callout>
 
 ```json
 {

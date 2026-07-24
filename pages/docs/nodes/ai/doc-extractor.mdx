@@ -1,6 +1,6 @@
 ---
-title: Doc Extractor Node
-description: The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text.
+title: Doc Extractor Node (Deprecated)
+description: Deprecated. The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text. Use Agentic Doc Extraction for new flows.
 type: AI
 order: 7
 ---
@@ -8,7 +8,11 @@ order: 7
 import { NodeOverview } from "@/components/NodeOverview";
 import { NodeTypeInfo } from "@/components/NodeTypeInfo";
 
-# Doc Extractor Node
+# Doc Extractor Node (Deprecated)
+
+<Callout type="warning">
+**This node is deprecated.** You can no longer add a *new* Doc Extractor node from the palette. Existing flows keep running unchanged, nothing breaks. For new extraction work, use **[Agentic Doc Extraction](/docs/nodes/ai/agentic-doc-extraction)**, which supports the same job plus native structured extraction, stored images with bounding boxes, and a per-run isolated container. See [Migrating from Doc Extractor](/docs/nodes/ai/agentic-doc-extraction#migrating-from-doc-extractor) if you want to move an existing flow.
+</Callout>
 
 <NodeOverview slug="doc-extractor" type="ai" />
 

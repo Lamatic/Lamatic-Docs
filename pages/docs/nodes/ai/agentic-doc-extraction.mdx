@@ -1,0 +1,454 @@
+---
+title: Agentic Doc Extraction
+description: Run OCR on a PDF or image and get clean Markdown, structured JSON, and extracted images, with bounding boxes, per-image annotations, and durable storage URLs, from one flow step, powered by a per-run isolated container.
+type: AI
+order: 7
+---
+
+import { NodeOverview } from "@/components/NodeOverview";
+import { NodeTypeInfo } from "@/components/NodeTypeInfo";
+
+# Agentic Doc Extraction (Beta)
+
+<NodeOverview slug="agentic-doc-extraction" type="ai" />
+
+## Overview
+
+The **Agentic Doc Extraction** node turns a document into structured, machine-readable output in a single flow step. Point it at a document URL, pick what you want back, and it runs OCR through a **per-run isolated container** and returns any combination of:
+
+- **Clean Markdown** of every page, per page, or joined into one document.
+- **Structured JSON** shaped to a schema you define, native document annotation, no separate parsing step.
+- **Every image** in the document, stored for you and returned with its bounding box, an optional per-image annotation, a ready-to-use link, and a permanent storage key.
+
+The key idea: extraction quality lives in your **Output Schema field descriptions**, not in a prompt. You describe what each field means and the OCR model reads the document for it. Each run spins up its own fresh container, so extractions are isolated from one another and scale independently.
+
+<NodeTypeInfo
+  batchTrigger={false}
+  eventTrigger={false}
+  action={true}
+  description="This node is an Action node that runs OCR on a document and returns Markdown, structured JSON, and stored images from a per-run isolated container."
+/>
+
+<Callout type="info">
+This node accepts both **PDFs and images** (JPEG, PNG, WebP) by URL. It replaces the deprecated [Doc Extractor node](/docs/nodes/ai/doc-extractor), with native structured extraction, image storage, and bounding-box annotations built in. See [Migrating from Doc Extractor](#migrating-from-doc-extractor) below if you're moving existing flows.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Markdown extraction**: clean, page-aware Markdown, returned per page or joined into a single document.
+2. **Structured JSON extraction**: define an **Output Schema** and the model returns a JSON object matching it, driven entirely by your per-field descriptions.
+3. **Image extraction + storage**: every image is stored in Lamatic-managed storage and returned with both a **presigned URL** (ready to use immediately) and a **durable storage key** (for retrieving the asset later).
+4. **Bounding boxes & per-image annotations**: each image comes back with its coordinates, and an optional **BBox Annotations** schema attaches a structured reading of each figure/chart.
+5. **Advanced OCR pipeline controls**: table format, page headers/footers, low-level layout blocks, per-word or per-page confidence scores, and image count/size limits, each individually toggleable.
+6. **Multiple providers**: Mistral (public API) and **Azure AI Foundry** (private endpoint), selected by the credential you lock in. Self-hosted Mistral endpoints are supported too.
+7. **Multi-config models**: attach more than one model configuration to the node.
+8. **Cost & usage telemetry**: every run returns a `_meta` block with pages processed, token/page usage, and a two-tier cost (plain vs. annotated).
+9. **Loop & batch aware**: inside a For Loop or Batch, each iteration writes its images under its own storage prefix, so runs never overwrite each other.
+10. **Per-run isolated execution**: one fresh container per run keeps extractions isolated and lets them scale independently.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **One step, three outputs**: Markdown, structured JSON, and stored images from a single node, instead of chaining OCR + parsing + upload.
+2. **Schema-first accuracy**: extraction rules live in the schema's field descriptions, so results are consistent and easy to tune without prompt engineering.
+3. **Durable, shareable assets**: extracted images persist beyond the run, addressable by a stable key and a signed URL.
+4. **RAG-ready**: clean Markdown and structured fields drop straight into vectorization and indexing flows.
+5. **Provider-flexible**: start on Mistral's public API and move to a private Azure AI Foundry endpoint without changing the flow.
+
+</details>
+
+## What Can I Build?
+
+1. Invoice and receipt data extraction pipelines with structured JSON output.
+2. Contract or report ingestion pipelines that need clean Markdown for search and summarization.
+3. Form-processing pipelines with schema-driven field extraction from scanned or digital forms.
+4. RAG ingestion pipelines that need both text and stored figures with durable references.
+
+---
+
+## How It Works
+
+1. You provide a **document URL** and select an **OCR provider + model**.
+2. The node hands the job to a **per-run container**, which downloads the document, splits every page, and OCRs the pages in parallel.
+3. When images are enabled, the container stores each extracted image in Lamatic-managed storage and returns a signed URL plus a durable key.
+4. The node assembles the response, `extractedText`, `structuredData`, `images`, `_meta`, and returns it to your flow.
+
+The endpoint is decided entirely by the **credential** you lock in: a Mistral key uses the public API; an Azure AI Foundry credential uses its private endpoint.
+
+---
+
+## Prerequisites
+
+Before adding the node, make sure you have:
+
+- An **OCR provider credential**: a Mistral API key, or an Azure AI Foundry credential (endpoint + key).
+- A **document reachable by URL**: either a direct URL or a value mapped from an upstream node.
+
+<Callout type="warning">
+The document host (and any custom OCR endpoint) must be reachable and allowlisted by the doc-extractor service. If a document fails to download, confirm the URL is public and, for private setups, that its host is on the service allowlist.
+</Callout>
+
+---
+
+## Setup
+
+### Step 1: Configure OCR Credentials
+
+Create a credential for your provider. The credential determines which endpoint the node calls.
+
+**Mistral (public API)**
+
+| **Key Name** | **Description** | **Example Value** |
+|---|---|---|
+| **Credential Name** | Name to identify this credential | `mistral-ocr` |
+| **API Key** | Your Mistral API key | `••••••••••••` |
+
+**Azure AI Foundry (private endpoint)**
+
+| **Key Name** | **Description** | **Example Value** |
+|---|---|---|
+| **Credential Name** | Name to identify this credential | `foundry-ocr` |
+| **Endpoint URL** | Your Azure AI Foundry OCR endpoint | `https://<resource>.services.ai.azure.com/...` |
+| **API Key** | Endpoint key | `••••••••••••` |
+
+<Callout type="info">
+Any `url` set in the model params is ignored, the endpoint comes only from the locked-in credential. This keeps the call target trusted and predictable.
+</Callout>
+
+### Step 2: Add the Node to Your Flow
+
+1. Add the **Agentic Doc Extraction** node.
+2. Set the **Document URL** (direct or mapped, e.g. `{{triggerNode_1.output.document_url}}`).
+3. Pick an **OCR Model** and its credential.
+4. Choose an **Output Format**, Markdown or JSON, and toggle **Include Images** / **Join Pages** to taste.
+5. (Optional) For JSON, define an **Output Schema**; for images, add a **BBox Annotations** schema; open **Advanced Settings** for pipeline knobs.
+
+---
+
+## Configuration Reference
+
+### Settings
+
+| **Field** | **Description** | **Options / Examples** | **Requirement / Default** |
+|---|---|---|---|
+| **Document URL** | URL of the document (PDF or image). Direct URL or a variable from an upstream node. | `https://.../report.pdf`, `{{triggerNode_1.output.document_url}}` | **Mandatory** |
+| **OCR Model** | OCR provider + model. The credential decides the endpoint (Mistral public API vs. Azure AI Foundry private endpoint). | `mistral / mistral-ocr-latest` | **Mandatory** |
+| **Output Format** | Format of the extraction. **JSON** unlocks the Output Schema for native structured extraction. | `Markdown`, `JSON` | Default: `Markdown` |
+| **Join Pages** | Concatenates page Markdown into one entry. `extractedText` is **always** an array either way (see [Output](#output)). | On / Off | Default: `On` |
+| **Include Images** | Store document images and return them with coordinates, a signed URL, a durable key, and (optionally) an annotation. Off = plain OCR, nothing stored. | On / Off | Default: `On` |
+| **Advanced Settings** | Reveal the advanced Mistral pipeline options. When off, none of them are shown *or* sent. | On / Off | Default: `Off` |
+| **Prompt (Optional)** | Extra guidance for structured extraction. Sent **only** when non-empty **and** a JSON Output Schema is set. | System prompt text | Default: empty |
+
+<Callout type="info">
+Put your extraction rules and edge cases in the **schema field descriptions**, not the prompt. The prompt is optional and is ignored unless you're in JSON mode with a schema.
+</Callout>
+
+### Outputs Pane: Schemas
+
+These two schemas appear under the **Outputs** pane and are each gated on a setting:
+
+| **Schema** | **Shown when** | **What it does** |
+|---|---|---|
+| **Output Schema (JSON Schema)** | **Output Format = JSON** | Defines the JSON object to extract. Per-property `description` text tells the model what each field means. Switching back to Markdown clears it. |
+| **BBox Annotations (JSON Schema)** | **Include Images = On** | Per-image annotation schema. Each extracted image is annotated with this structure and the result appears as `image_annotation` on the image. Turning Include Images off clears it. |
+
+<Callout type="info">
+Both schemas require an **annotation-capable OCR model** (`mistral-ocr-2505` or newer). On older models the annotation fields are simply not produced.
+</Callout>
+
+### Advanced Configs
+
+Revealed by **Advanced Settings**. Every knob is optional, anything left off is never sent, and the provider default applies.
+
+| **Field** | **Description** | **Options** | **Default** |
+|---|---|---|---|
+| **Table Format** | `Off` keeps tables **inline** in the page Markdown. `Markdown`/`HTML` return tables as a separate `tables` field. | `Off`, `Markdown`, `HTML` | `Off` |
+| **Extract Header** | Include page headers in the output. | On / Off | `Off` |
+| **Extract Footer** | Include page footers in the output. | On / Off | `Off` |
+| **Include Layout Blocks** | Return low-level layout blocks per page (adds a `blocks` field). | On / Off | `Off` |
+| **Confidence Scores** | Attach OCR confidence at the chosen granularity. | `Off`, `Word`, `Page` | `Off` |
+| **Image Limit** | Max images to extract per page. `0` = no limit. | Integer ≥ 0 | `0` |
+| **Image Minimum Size (px)** | Skip images smaller than this. `0` = no minimum. | Integer ≥ 0 | `0` |
+
+<Callout type="warning">
+**Table Format** requires OCR `2512` or newer; older models ignore it and tables stay inline. Only the advanced outputs you turn **on** ride into `extractedText`, anything left off is excluded even if the model returns it by default.
+</Callout>
+
+---
+
+## Output
+
+The node returns four outputs. `extractedText`, `structuredData`, and `images` are **always arrays**; `_meta` is an object.
+
+| **Field** | **Type** | **Additional Info** |
+|---|---|---|
+| **`extractedText`** | `Array` | **Join Pages On**: one merged entry `[{ markdown, ...enabled advanced outputs }]` (no `pageNumber`). **Off**: one entry per page `[{ pageNumber, markdown, ...enabled advanced outputs }]`. |
+| **`structuredData`** | `Array` | One `{ pageNumber, annotation }` per page. Populated only when **Output Format = JSON**. |
+| **`images`** | `Array` | One entry per stored image: `{ pageNumber, id, key, url, top_left_x, top_left_y, bottom_right_x, bottom_right_y, image_annotation? }`. `url` is a presigned link (expires, up to 7 days); `key` is the durable storage key; `image_annotation` is present only when a BBox schema was set. |
+| **`_meta`** | `Object` | Usage & cost telemetry, pages processed, model, and a two-tier cost (annotated rate replaces the plain rate when any annotation schema is in play). |
+
+### Example Output (Markdown mode, images on)
+
+```json
+{
+  "extractedText": [
+    { "pageNumber": 1, "markdown": "# Quarterly Report\n\nRevenue grew 12%..." },
+    { "pageNumber": 2, "markdown": "## Regional Breakdown\n\n![figure](https://...)" }
+  ],
+  "structuredData": [],
+  "images": [
+    {
+      "pageNumber": 2,
+      "id": "img-0",
+      "key": "proj_abc/flow_123/req_789/agenticDocExtractionNode_1/2/000-img-0.png",
+      "url": "https://...storage.../000-img-0.png?X-Amz-Expires=3600&...",
+      "top_left_x": 72,
+      "top_left_y": 140,
+      "bottom_right_x": 520,
+      "bottom_right_y": 460,
+      "image_annotation": { "chartType": "bar", "title": "Revenue by region" }
+    }
+  ],
+  "_meta": {
+    "model_name": "mistral-ocr-latest",
+    "pages_processed": 2,
+    "total_cost": 0.002
+  }
+}
+```
+
+### Example Output (JSON mode)
+
+```json
+{
+  "extractedText": [{ "pageNumber": 1, "markdown": "..." }],
+  "structuredData": [
+    {
+      "pageNumber": 1,
+      "annotation": {
+        "invoiceNumber": "INV-2025-0042",
+        "total": 1284.50,
+        "dueDate": "2025-02-01"
+      }
+    }
+  ],
+  "images": [],
+  "_meta": { "model_name": "mistral-ocr-latest", "pages_processed": 1 }
+}
+```
+
+---
+
+## Low-Code Example
+
+### Markdown extraction
+
+```yaml
+- nodeId: agenticDocExtractionNode_1
+  nodeType: agenticDocExtractionNode
+  nodeName: Agentic Doc Extraction
+  values:
+    documentUrl: "{{triggerNode_1.output.document_url}}"
+    outputFormat: markdown
+    joinPages: false
+    includeImages: true
+    ocrModelName:
+      - configName: configA
+        type: ocr/document
+        provider_name: mistral
+        model_name: mistral-ocr-latest
+        credential_name: mistral-ocr
+  needs:
+    - triggerNode_1
+```
+
+### Structured JSON extraction
+
+```yaml
+- nodeId: agenticDocExtractionNode_2
+  nodeType: agenticDocExtractionNode
+  nodeName: Agentic Doc Extraction
+  values:
+    documentUrl: "{{triggerNode_1.output.document_url}}"
+    outputFormat: json
+    includeImages: false
+    schema: |
+      {
+        "type": "object",
+        "properties": {
+          "invoiceNumber": { "type": "string", "description": "The invoice number, usually top-right" },
+          "total":         { "type": "number", "description": "Grand total including tax" },
+          "dueDate":       { "type": "string", "description": "Payment due date in YYYY-MM-DD" }
+        }
+      }
+    ocrModelName:
+      - configName: configA
+        type: ocr/document
+        provider_name: mistral
+        model_name: mistral-ocr-latest
+        credential_name: mistral-ocr
+  needs:
+    - triggerNode_1
+```
+
+---
+
+## Providers & Models
+
+| **Provider** | **Endpoint** | **Notes** |
+|---|---|---|
+| **Mistral** | Public Mistral API | Default. Use `mistral-ocr-latest` (or a pinned version). |
+| **Azure AI Foundry** | Your private Foundry endpoint | Endpoint comes from the credential. |
+
+**Model capability notes**
+
+- **Structured extraction & image annotations** (Output Schema, BBox Annotations) require `mistral-ocr-2505` or newer.
+- **Table Format** requires `mistral-ocr-2512` or newer.
+- Older OCR models still do Markdown extraction and image storage, they just skip the newer annotation/table features.
+
+---
+
+## Limits & Security
+
+- **Document size**: up to ~1,200 pages and ~100 MB per document (service defaults).
+- **Supported inputs**: PDF and image files (JPEG, PNG, WebP) by URL.
+- **SSRF protection**: document and OCR hosts are validated; private/internal addresses (localhost, `10.x`, `172.16-31.x`, `192.168.x`, link-local, and IPv6 equivalents) are blocked, and redirects are re-checked at every hop.
+- **Encrypted or non-PDF files** are rejected with a clear error rather than a partial result.
+- **Image storage**: signed URLs are capped at 7 days; the durable `key` never expires and can be re-signed later.
+
+<Callout type="warning">
+Signed image URLs **expire** (up to 7 days). For long-lived access, store the returned `key` and re-generate a URL when you need one, rather than persisting the signed URL.
+</Callout>
+
+---
+
+## Troubleshooting
+
+| **Problem** | **Solution** |
+|---|---|
+| **Empty output / node returns `{}`** | The node isn't available on the pod running the test (or the container host isn't deployed for that environment). Confirm the node is deployed and try again. |
+| **"Document URL is required"** | No `documentUrl` was provided or resolved. Check the field and any upstream mapping. |
+| **"Unsupported OCR provider"** | The selected provider isn't `mistral` or `azure-ai-foundry`. Re-pick the model/credential. |
+| **Document fails to download / "host not allowed"** | The document host isn't reachable or allowlisted. Use a public URL, or add the host to the service allowlist. |
+| **`storage_not_configured` (500)** | Include Images is on but the service has no storage configured. Turn Include Images off, or configure storage on the doc-extractor service. |
+| **HTTP 400 from the OCR provider in Markdown mode** | A prompt was set without a JSON Output Schema. Prompts are only valid alongside a schema, switch to JSON + schema, or clear the prompt. |
+| **No structured fields returned** | Output Format isn't JSON, no Output Schema is set, or the model predates `mistral-ocr-2505`. Set JSON + schema and use a 2505+ model. |
+| **No image annotations** | No BBox Annotations schema, Include Images is off, or the model predates `mistral-ocr-2505`. |
+| **Tables missing from a separate field** | Table Format is `Off` (tables stay inline) or the model predates `mistral-ocr-2512`. |
+| **Encrypted / not-a-PDF error** | The file is password-protected or isn't a real PDF/image. Provide an unencrypted, supported file. |
+| **`too_large`** | The document exceeds the page/byte limit. Split it or reduce its size. |
+
+---
+
+## Example Use Cases
+
+### Document Intelligence
+
+- **Invoices & receipts**: extract totals, line items, and dates as structured JSON.
+- **Contracts & reports**: clean Markdown for search, summarization, and review.
+- **Forms**: schema-driven field extraction from scanned or digital forms.
+- **Figures & charts**: pull images with bounding boxes and per-figure annotations.
+
+### RAG Applications
+
+- **Ingestion**: turn PDFs and scans into clean Markdown for vectorization and indexing.
+- **Multimodal retrieval**: index both text and stored figures with durable references.
+- **Question answering**: build assistants that answer over document content and structured fields.
+
+---
+
+## Migrating from Doc Extractor
+
+The **[Doc Extractor](/docs/nodes/ai/doc-extractor) node is deprecated** in favor of Agentic Doc Extraction, the same OCR/document-extraction job, rebuilt with native structured extraction, image storage with bounding boxes, and a per-run isolated container.
+
+<Callout type="warning">
+**Doc Extractor is deprecated.** You can no longer add a *new* Doc Extractor node from the palette. Your **existing flows keep running unchanged**, nothing breaks. New extraction work should use **Agentic Doc Extraction**.
+</Callout>
+
+### Why migrate
+
+Agentic Doc Extraction is a superset of Doc Extractor for the providers it supports, and adds:
+
+- **Image storage**: images come back as durable storage keys + signed URLs (not inline base64), and their URLs are rewritten into the Markdown.
+- **Per-image bounding-box annotations**: an optional schema reads each figure/chart.
+- **A structured `images` output** and richer `_meta` cost telemetry.
+- **Advanced pipeline controls**: headers/footers, layout blocks, confidence scores, image count/size limits.
+- **Isolated, scalable execution**: one fresh container per run.
+
+### Before you start: three breaking changes
+
+<Callout type="error">
+Read these before re-pointing production flows:
+
+1. **Gemini is not supported.** Doc Extractor accepted Mistral, Azure AI Foundry, **and Gemini**. Agentic Doc Extraction supports **Mistral and Azure AI Foundry only**. Gemini flows must switch provider.
+2. **`extractedText` is now an array, not a string.** Any downstream reference that treated it as text must be updated (see [Output mapping](#output-mapping)).
+3. **`structuredData` is now an array, not an object.** Same, update downstream references.
+</Callout>
+
+### Field mapping
+
+| Doc Extractor (old) | Agentic Doc Extraction (new) | Notes |
+|---|---|---|
+| **OCR Model** (`ocrModelName`) | **OCR Model** (`ocrModelName`) | Same field. **Providers changed:** Gemini removed; Mistral + Azure AI Foundry only. |
+| **Output Format**: `Markdown` / `Plain Text` / `JSON` | **Output Format**: `Markdown` / `JSON` | **`Plain Text` removed.** Use Markdown. |
+| **Output Schema** (`schema`) | **Output Schema** (`schema`) | Unchanged, still gated on `Output Format = JSON`. |
+| **Document URL** (`documentUrl`) | **Document URL** (`documentUrl`) | Unchanged. |
+| **Join Pages** (`joinPages`) | **Join Pages** (`joinPages`) | Same toggle, but the **output shape differs**, `extractedText` is always an array now. |
+| **Custom Extraction Prompt** (`customPrompt`, Gemini-only) | **Prompt (Optional)** (`prompts`) | Now a single system prompt, sent **only** alongside a JSON Output Schema. The Gemini-specific prompt override is gone. |
+| **Include Annotations** (`mistralIncludeAnnotations`) | **Include Images** (`includeImages`) | Behavior changed, images are **stored** and returned as `url` + durable `key` + bbox (+ optional annotation), instead of inline base64. |
+| **Table Format** (`mistralTableFormat`, default `Markdown`) | **Table Format** (`tableFormat`, default `Off`, under **Advanced Settings**) | **Default changed to `Off`** (tables stay inline). Now lives under the Advanced Settings toggle. |
+| — | **BBox Annotations** (`bboxSchema`) | **New**, per-image annotation schema (shown when Include Images is on). |
+| — | **Advanced Settings** + Extract Header / Extract Footer / Include Layout Blocks / Confidence Scores / Image Limit / Image Minimum Size | **New**, advanced Mistral pipeline knobs. |
+
+### Output mapping
+
+| Doc Extractor (old) | Agentic Doc Extraction (new) | Change |
+|---|---|---|
+| **`extractedText`**: `String` | **`extractedText`**: `Array` | **Breaking.** Join Pages On: `[{ markdown, ... }]`; Off: `[{ pageNumber, markdown, ... }]`. |
+| **`structuredData`**: `Object` | **`structuredData`**: `Array` | **Breaking.** Now one `{ pageNumber, annotation }` per page. |
+| — | **`images`**: `Array` | **New.** One entry per stored image with `url`, durable `key`, bbox coordinates, and optional `image_annotation`. |
+| **`_meta`**: `Object` | **`_meta`**: `Object` | Unchanged in spirit (usage + cost telemetry). |
+
+#### Updating downstream references
+
+| If you had... | Change it to... |
+|---|---|
+| `{{docExtractor.output.extractedText}}` (as text) | `{{node.output.extractedText[0].markdown}}` (Join Pages **on**), or iterate the array (Join Pages **off**) |
+| `{{docExtractor.output.structuredData.someField}}` | `{{node.output.structuredData[0].annotation.someField}}` |
+| Inline base64 images from **Include Annotations** | `{{node.output.images[0].url}}` (signed link) or `.key` (durable storage key) |
+
+### Migration steps
+
+1. **Add an Agentic Doc Extraction node** next to (or in place of) the old one. Doc Extractor can't be re-added, so build the new step fresh.
+2. **Re-select the provider + model.** Pick a Mistral or Azure AI Foundry credential. **Gemini users:** move to a supported provider.
+3. **Map the basics**: `Document URL`, `Output Format` (Markdown or JSON), `Output Schema` (if JSON), `Join Pages`.
+4. **If you used Include Annotations**, turn on **Include Images**, and (optionally) add a **BBox Annotations** schema. Update anything downstream to read from the new `images` output.
+5. **Update downstream references** for the new array shapes of `extractedText` and `structuredData` (see the table above).
+6. **Test the node**, then re-point the rest of the flow and remove the old step.
+
+### Migration FAQ
+
+**Will my existing Doc Extractor flows break?**
+No. Deployed flows keep executing exactly as before, only the ability to add *new* Doc Extractor nodes is removed.
+
+**Can I still use Gemini for OCR?**
+Not in Agentic Doc Extraction. Use Mistral or Azure AI Foundry. If you specifically need Gemini, keep the existing Doc Extractor flow until you can switch providers.
+
+**Where did the inline base64 images go?**
+Images are now stored in Lamatic-managed storage and returned as a signed `url` plus a durable `key`, which is more efficient and keeps large payloads out of the flow. Store the `key` for long-lived access, signed URLs expire (up to 7 days).
+
+**Do I have to switch to JSON output?**
+No. Markdown is still the default and works the same way (just returned as an array now). JSON is only needed when you want native structured extraction via an Output Schema.
+
+---
+
+## Additional Resources
+
+- [Mistral OCR Documentation](https://docs.mistral.ai/)
+- [Azure AI Foundry Documentation](https://learn.microsoft.com/azure/ai-foundry/)
+- [JSON Schema Reference](https://json-schema.org/)

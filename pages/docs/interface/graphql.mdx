@@ -166,6 +166,58 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
 #### Async Response Type
 
+For long-running flows, set the trigger's response type to **async**. Instead of waiting for the flow to finish, the API returns immediately with a `requestId` and a status of `in-progress`, while the flow keeps running in the background. You check back later for the result.
+
+**The request lifecycle**
+
+```
+Trigger flow (async)
+      ↓
+Immediate response: { requestId, status: "in-progress" }
+      ↓
+Flow keeps running in the background
+      ↓
+Poll checkStatus(requestId) periodically
+      ↓
+Terminal status: "success" | "error" | "failed"
+```
+
+<Callout type="warning">
+There is currently **no way to register a webhook or callback URL** that Lamatic calls automatically when an async flow finishes. Polling `checkStatus` is the only way to retrieve the result. If you want your own server notified instead of polling, see [Pushing results to your own server](#pushing-results-to-your-own-server-instead-of-polling) below.
+</Callout>
+
+<Callout type="info">
+If you're using the [JavaScript/TypeScript SDK](/docs/sdk), its `checkStatus(requestId, pollInterval, pollTimeout)` method handles this polling loop for you, defaulting to a 15 second interval and a 15 minute timeout. See [Checking Request Status](/docs/sdk#checking-request-status).
+</Callout>
+
+<Callout type="warning">
+If you're polling manually instead of using the SDK, keep requests to **no more than one every 3 seconds per IP**, polling faster risks Cloudflare rate-limiting or blocking your IP. Also bound your polling loop to the flow's maximum run time (~20 minutes on the standard async path, up to 1 hour with container mode, see [Limits & Quotas](/docs/limits)), a request won't still be `in-progress` past that.
+</Callout>
+
+### Pushing results to your own server instead of polling
+
+<Callout type="warning">
+**This is a suggested pattern, not an official Lamatic feature.** It hasn't been verified by the Lamatic team as the recommended approach, it's a reasonable use of the existing [API Node](/docs/nodes/data/api-node), which is documented and does make outbound HTTP calls, but nobody has confirmed this specific setup end-to-end. Test it yourself before relying on it in production.
+</Callout>
+
+Since there's no built-in callback, you can build the equivalent yourself: add an **API Node** as the last step of your async flow, and have it `POST` the result to your own server. From your server's point of view, this behaves like a webhook, your endpoint receives the result the moment the flow finishes, instead of you polling for it.
+
+1. **Add an API Node** to your flow, after the node that produces your final result (e.g. after your LLM or response-shaping node), instead of ending on a plain Response node.
+2. **Set Method to `POST`.**
+3. **Set Endpoint URL** to the endpoint on your own server that should receive the result.
+4. **Set Body** to map in whatever you want your server to receive, typically the request ID and the result from the upstream node, for example:
+   ```json
+   {
+     "requestId": "{{triggerNode_1.output.requestId}}",
+     "result": "{{LLMNode_1.output.generatedResponse}}"
+   }
+   ```
+5. **(Recommended) Set Number of Retries and Delay between retry** so a transient failure to reach your server doesn't silently drop the result. See the [API Node reference](/docs/nodes/data/api-node) for the full field list.
+
+Your server now receives a POST request with the flow's result as soon as it's ready, no polling loop required on your end.
+
+Here's an example GraphQL query to check the status of an async request:
+
 <Tabs items={['Node', 'Python', 'cURL']}>
   <Tabs.Tab>
     ```js
@@ -391,7 +443,6 @@ If the request is successful, the response will follow this structure:
 ##### In-Progress Status
 If the request is still being processed, the response will be:
 
-
 ```json
   {
     "data": {
@@ -401,5 +452,21 @@ If the request is still being processed, the response will be:
     }
   }
 ```
+
+##### Failed / Error Status
+If the flow itself failed, or the request could not be processed, `status` comes back as `failed` or `error` instead of `success`:
+
+```json
+  {
+    "data": {
+          "checkStatus": {
+              "status": "failed",
+              "message": "A description of what went wrong"
+          }
+    }
+  }
+```
+
+These are the only three terminal states, `success`, `failed`, and `error`, polling should stop as soon as you see any one of them.
 
 In this example, the `ExecuteWorkflow` query is used to initiate a workflow execution. You'll need to provide the `workflowId` of the desired workflow and any required `payload`(Input Data) as part of the query variables.

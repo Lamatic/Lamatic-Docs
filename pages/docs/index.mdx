@@ -15,6 +15,7 @@ import {
   Plug,
   TerminalSquare,
   Network,
+  ArrowRight,
 } from "lucide-react";
 
 export const JsIcon = () => (
@@ -28,9 +29,36 @@ export const PythonIcon = () => (
     <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13v5.34l-.05.64-.13.54-.21.46-.26.38-.3.32-.33.24-.35.2-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.36-.1.35-.07.32-.04.28-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.04-.05-1.23.06-1.23.16-1.04.24-.86.32-.71.36-.57.4-.45.42-.33.42-.24.4-.16.36-.09.32-.05.24-.02.16-.01h8.22v-.82H7.46V2.43l.02-.36.05-.34.11-.31.17-.29.25-.25.31-.24.38-.2.44-.17.51-.15.58-.13.64-.09.71-.07.77-.04.84-.01 1.27.04 1.07.14zM8.95 4.07l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08-.33.23zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.1-.32.05-.24.01-.16.01h-.13L15.46 18l-.69.06-.59.14-.5.21-.41.28-.33.32-.27.35-.2.36-.15.36-.1.35-.07.32-.04.28-.02.21V21.65H7.18v-.04l-.02-.13.01-.13v-3.59l.05-.64.13-.55.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.07.26-.04.21-.02H17.23l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" />
   </svg>
 );
+
+export const ReactIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#61DAFB">
+    <circle cx="12" cy="12" r="2.2" />
+    <g fill="none" stroke="#61DAFB" strokeWidth="1.3">
+      <ellipse cx="12" cy="12" rx="10" ry="4.2" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(60 12 12)" />
+      <ellipse cx="12" cy="12" rx="10" ry="4.2" transform="rotate(120 12 12)" />
+    </g>
+  </svg>
+);
+
+export const NextIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="12" fill="black" className="dark:fill-white" />
+    <text x="12" y="16.5" textAnchor="middle" fontSize="12" fontWeight="700" fontFamily="sans-serif" fill="white" className="dark:fill-black">N</text>
+  </svg>
+);
+
+export const GoIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="12" fill="#00ADD8" />
+    <text x="12" y="16" textAnchor="middle" fontSize="9" fontWeight="700" fontFamily="sans-serif" fill="white">Go</text>
+  </svg>
+);
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { FAQAccordion } from "@/components/FAQAccordion";
 import flowsImage from "./img/home/flows.png";
 import nodesImage from "./img/home/node.png";
 import agentsImage from "./img/home/agents.png";
@@ -56,32 +84,32 @@ Build, deploy, and monitor production AI applications. Lamatic gives cross-funct
 
 ## Start here
 
-<Cards num={3}>
-  <Cards.Card
-    icon={<Rocket />}
-    title="Quickstart"
-    href="/docs/get-started"
-    arrow
-  >
-    {""}
-  </Cards.Card>
-  <Cards.Card
-    icon={<LayoutTemplate />}
-    title="Templates"
-    href="/templates"
-    arrow
-  >
-    {""}
-  </Cards.Card>
-  <Cards.Card
-    icon={<Map />}
-    title="Architecture"
-    href="/docs/architecture"
-    arrow
-  >
-    {""}
-  </Cards.Card>
-</Cards>
+<div className="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+  <Link href="/docs/get-started" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <Rocket className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Quickstart</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">Go from zero to a deployed Flow in about 5 minutes.</p>
+  </Link>
+  <Link href="/templates" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <LayoutTemplate className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Templates</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">Start from a working Flow instead of a blank canvas.</p>
+  </Link>
+  <Link href="/docs/architecture" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <Map className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Architecture</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">How Flows, Nodes, and the edge runtime fit together.</p>
+  </Link>
+</div>
 
 ## Learn the concepts
 
@@ -169,52 +197,79 @@ Build, deploy, and monitor production AI applications. Lamatic gives cross-funct
 
 Ship to production, schedule recurring runs, and watch everything in real time.
 
-<Cards num={3}>
-  <Cards.Card
-    icon={<CloudUpload />}
-    title="Deployments"
-    href="/docs/deployments"
-    arrow
-  >
-    {""}
-  </Cards.Card>
-  <Cards.Card
-    icon={<CalendarClock />}
-    title="Jobs & Scheduling"
-    href="/docs/jobs"
-    arrow
-  >
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<Activity />} title="Logs" href="/docs/logs" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<BarChart3 />} title="Reports" href="/docs/reports" arrow>
-    {""}
-  </Cards.Card>
-</Cards>
+<div className="not-prose grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
+  <Link href="/docs/deployments" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <CloudUpload className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Deployments</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">Ship a Flow to Lamatic's global edge network.</p>
+  </Link>
+  <Link href="/docs/jobs" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <CalendarClock className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Jobs & Scheduling</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">Run recurring syncs and scheduled Flow executions.</p>
+  </Link>
+  <Link href="/docs/logs" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <Activity className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Logs</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">Trace every request, node by node, in real time.</p>
+  </Link>
+  <Link href="/docs/reports" className="group flex flex-col gap-2 rounded-xl border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 p-5 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all">
+    <div className="flex items-center justify-between">
+      <BarChart3 className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+      <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-500 transition-colors" />
+    </div>
+    <h3 className="text-base font-semibold text-gray-900 dark:text-white mt-1">Reports</h3>
+    <p className="text-sm text-gray-600 dark:text-neutral-400">Track usage, cost, and feedback across your Flows.</p>
+  </Link>
+</div>
 
 ## Connect with code
 
 Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
 
-<Cards num={3}>
-  <Cards.Card icon={<JsIcon />} title="JavaScript" href="/docs/sdk" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<PythonIcon />} title="Python" href="/docs/sdk/integration-guide" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<ApiIcon />} title="API" href="/docs/api-integration" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<TerminalSquare />} title="CLI" href="/docs/cli" arrow>
-    {""}
-  </Cards.Card>
-  <Cards.Card icon={<McpIcon />} title="MCP" href="/docs/mcp" arrow>
-    {""}
-  </Cards.Card>
-</Cards>
+<div className="not-prose grid grid-cols-2 sm:grid-cols-4 gap-3 my-6">
+  <Link href="/docs/sdk" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <JsIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">JavaScript</span>
+  </Link>
+  <Link href="/docs/sdk/react" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <ReactIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">React</span>
+  </Link>
+  <Link href="/docs/sdk/next" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <NextIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">Next.js</span>
+  </Link>
+  <Link href="/docs/sdk/python" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <PythonIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">Python</span>
+  </Link>
+  <Link href="/docs/sdk/go" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <GoIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">Go</span>
+  </Link>
+  <Link href="/docs/api-integration" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <ApiIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">GraphQL API</span>
+  </Link>
+  <Link href="/docs/cli" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <TerminalSquare className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">CLI</span>
+  </Link>
+  <Link href="/docs/mcp" className="group flex items-center gap-2.5 rounded-lg border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 px-4 py-3 hover:border-red-300 dark:hover:border-red-700 hover:shadow-sm transition-all">
+    <McpIcon />
+    <span className="text-sm font-medium text-gray-900 dark:text-white">MCP</span>
+  </Link>
+</div>
 
 ## See it in action
 
@@ -228,6 +283,31 @@ Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
   allowFullScreen
   style={{ borderRadius: "8px", border: "1px solid rgb(229 231 235 / 0.4)" }}
 ></iframe>
+
+## Frequently asked questions
+
+<FAQAccordion items={[
+  {
+    question: "What is Lamatic?",
+    answer: "Lamatic is a managed platform that abstracts GenAI infrastructure so you can build and run Flows, agents, RAG, and multi-step AI, without building the plumbing yourself. It gives you a no-code/low-code Flow builder, managed VectorDB and model connectors, a GraphQL API, and edge deployment in one place. See Why Lamatic for more."
+  },
+  {
+    question: "What's the difference between a Flow and an Agent?",
+    answer: "A Flow is a sequence of connected Nodes that process and transform data, the core building block in Lamatic. An Agent is a specialized AI entity built from Nodes that executes a specific task, such as orchestrating other agents or generating text, and can run standalone or as part of a larger Flow."
+  },
+  {
+    question: "Which LLM providers does Lamatic support?",
+    answer: "Lamatic connects to any major LLM provider, including OpenAI, Anthropic, Bedrock, and Gemini, and more, so you can switch providers without rebuilding your Flow."
+  },
+  {
+    question: "Can I self-host or run Lamatic on-premise?",
+    answer: "Lamatic runs on managed edge infrastructure by default (built on Cloudflare). If your organization needs an on-premise or custom network deployment, that's available for Enterprise, reach out to hello@lamatic.ai to discuss your requirements."
+  },
+  {
+    question: "What plans are available?",
+    answer: "Lamatic offers Starter, Pro, and Enterprise plans with different limits on workflow executions, vector storage, and team size. See Limits & Quotas for the exact numbers per plan, or visit lamatic.ai for current pricing."
+  },
+]} />
 
 ## Stay updated
 

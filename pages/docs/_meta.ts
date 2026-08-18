@@ -277,9 +277,8 @@ export default {
     display: "hidden",
   },
   security: {
-    title: "Security",
+    title: "Security & Compliance",
     type: "doc",
-    display: "hidden",
   },
   slack: {
     title: "Slack",

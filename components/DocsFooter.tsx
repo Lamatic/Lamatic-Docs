@@ -8,6 +8,7 @@ const legalLinks = [
 ];
 
 const companyLinks = [
+  { label: "Changelog", href: "https://product.lamatic.ai/changelog" },
   { label: "Community and Support", href: "/docs/slack" },
   { label: "Partners", href: "/company/partners" },
   { label: "Brandkit", href: "/company/brandkit" },

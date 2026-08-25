@@ -226,16 +226,6 @@ export default {
   //   type: "page",
   //   display: "hidden",
   // },
-  "vulnerability-disclosure": {
-    title: "Vulnerability Disclosure",
-    type: "doc",
-    display: "hidden",
-  },
-  "report-issue": {
-    title: "Confidential Reporting",
-    type: "doc",
-    display: "hidden",
-  },
   "privacy-policy": {
     title: "Privacy Policy",
     type: "doc",

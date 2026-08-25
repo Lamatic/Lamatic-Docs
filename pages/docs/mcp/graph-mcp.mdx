@@ -4,6 +4,7 @@ description: Execute your deployed Lamatic flows via AI agents using natural lan
 ---
 
 import { Callout, Tabs } from 'nextra/components'
+import { Button } from '@/components/ui/button'
 
 # Graph MCP (Beta)
 
@@ -16,6 +17,23 @@ import { Callout, Tabs } from 'nextra/components'
 **Lamatic Graph MCP** is an [Model Context Protocol](https://modelcontextprotocol.io) server that turns your deployed Lamatic flows into AI-callable tools. Connect Claude, GitHub Copilot, or Cursor, and your flows become tools your AI can call directly using natural language.
 
 ---
+
+## Install
+
+Pick your client and you're connected in a few seconds.
+
+<div className="flex flex-wrap gap-3 my-4">
+  <Button variant="outline" size="sm" asChild>
+    <a href="https://cursor.com/en/install-mcp?name=lamatic-graph&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBsYW1hdGljL2dyYXBoLW1jcCJdfQ%3D%3D" target="_blank" rel="noreferrer">Add to Cursor</a>
+  </Button>
+  <Button variant="outline" size="sm" asChild>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic-graph%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40lamatic%2Fgraph-mcp%22%5D%7D">Add to VS Code</a>
+  </Button>
+</div>
+
+<Callout type="warning">
+  After connecting, ask your AI assistant to run `graph_auth_login` with your org API key, project API key, and org ID. Nothing else works until you authenticate.
+</Callout>
 
 ## Installation
 
@@ -146,4 +164,5 @@ refresh my flows
 
 - [GitHub repository](https://github.com/Lamatic/GraphMCP-Lamatic)
 - [npm package](https://www.npmjs.com/package/@lamatic/graph-mcp)
+- [Docs MCP](/docs/mcp/docs-mcp): Query Lamatic.ai documentation via AI
 - [Dev MCP](/docs/dev-mcp): Manage Lamatic projects via AI

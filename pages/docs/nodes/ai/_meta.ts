@@ -26,5 +26,9 @@ export default {
   "mcp-node": {
     "title": "MCP Node",
     "type": "doc"
+  },
+  "agentic-doc-extraction": {
+    "title": "Agentic Doc Extraction",
+    "type": "doc"
   }
 }

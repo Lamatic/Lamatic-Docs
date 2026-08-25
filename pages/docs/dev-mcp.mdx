@@ -4,6 +4,7 @@ description: Manage your Lamatic projects, flows, credentials, and more via AI a
 ---
 
 import { Callout } from 'nextra/components'
+import { Button } from '@/components/ui/button'
 
 # Dev MCP
 
@@ -16,6 +17,23 @@ import { Callout } from 'nextra/components'
 **Lamatic Dev MCP** is an [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI agents like Claude, GitHub Copilot, and Cursor full control over your Lamatic organization. Create projects, manage flows, handle credentials, deployments, integrations, and more.
 
 ---
+
+## Install
+
+Pick your client and you're connected in a few seconds.
+
+<div className="flex flex-wrap gap-3 my-4">
+  <Button variant="outline" size="sm" asChild>
+    <a href="https://cursor.com/en/install-mcp?name=lamatic-dev&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBsYW1hdGljL2Rldi1tY3AiXX0%3D" target="_blank" rel="noreferrer">Add to Cursor</a>
+  </Button>
+  <Button variant="outline" size="sm" asChild>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic-dev%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40lamatic%2Fdev-mcp%22%5D%7D">Add to VS Code</a>
+  </Button>
+</div>
+
+<Callout type="warning">
+  After connecting, ask your AI assistant to run `dev_auth_login` with your API key and org ID. Nothing else works until you authenticate.
+</Callout>
 
 ## Installation
 
@@ -184,4 +202,5 @@ deploy project fcd1aa1d-...
 
 - [GitHub repository](https://github.com/Lamatic/Dev-MCP-Lamatic)
 - [npm package](https://www.npmjs.com/package/@lamatic/dev-mcp)
+- [Docs MCP](/docs/mcp/docs-mcp): Query Lamatic.ai documentation via AI
 - [Graph MCP](/docs/mcp/graph-mcp): Execute Lamatic flows via AI

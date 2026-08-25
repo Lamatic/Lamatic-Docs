@@ -39,7 +39,18 @@ Follow these steps to configure a webhook in Lamatic:
    Copy the generated webhook endpoint and select "Fetch" to activate it.
 
 4. **Test the Webhook**  
-   Send a sample payload or event to the endpoint to verify functionality.
+   Send a sample payload or event to the endpoint to verify functionality. A webhook accepts any JSON body, whatever you send becomes the trigger node's output, available to downstream nodes as `{{triggerNode_1.output.<field>}}`.
+
+   ```bash
+   curl -X POST "<YOUR_WEBHOOK_ENDPOINT>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "topic": "hello world",
+       "source": "my-app"
+     }'
+   ```
+
+   With the payload above, `{{triggerNode_1.output.topic}}` resolves to `"hello world"` anywhere later in the flow.
 
 5. **Build Your Flow Logic**  
    Once the test payload is received, continue developing your flow logic based on your automation needs.

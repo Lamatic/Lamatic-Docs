@@ -29,10 +29,9 @@ This integration connects to your Slack workspace to automate communication and 
 ### ✅ Key Functionalities
 
 - **Command Triggers**: Responds to specific Slack commands (e.g., `/ask`, `/help`, `/search`)
-- **Message Actions**: Sends messages to Slack channels, threads, and direct messages
+- **Message Actions**: Sends messages to Slack channels
 - **RAG Integration**: Supports question-answering using Retrieval-Augmented Generation for intelligent responses
 - **Real-time Communication**: Enables instant AI-powered responses in Slack for immediate user interaction
-- **Thread Support**: Handles threaded conversations and replies for organized communication
 - **Channel Management**: Supports multiple channel types and targeting for flexible message distribution
 
 ### ✅ Benefits
@@ -59,6 +58,9 @@ This integration connects to your Slack workspace to automate communication and 
 
 ❌ Send message in a thread
 
+<Callout type="info">
+**Threads are not supported yet.** The Slack integration can only post messages to a channel. It cannot reply in a thread, and it cannot be triggered by a reply to a thread the bot created. Thread support is planned for a future release.
+</Callout>
 
 ## Prerequisites
 
@@ -120,7 +122,6 @@ Use the following format to set up your credentials:
 | **Action**                       | Slack action to execute                                                                                      | ✅           | -           | `postMessage`                                   |
 | **Channel**                      | Target Slack channel                                                                                         | ✅           | -           | `#general`                                      |
 | **Text**                         | Message content to send                                                                                      | ✅           | -           | `Hello from Lamatic!`                           |
-| **Thread**                       | Thread timestamp for threaded replies                                                                        | ❌           | -           | `1234567890.123456`                             |
 
 
 

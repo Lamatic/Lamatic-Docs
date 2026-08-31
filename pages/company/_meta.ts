@@ -19,14 +19,6 @@ export default {
     "title": "Hacktoberfest",
     "type": "doc"
   },
-  "report-issue": {
-    "title": "Confidential Reporting",
-    "type": "doc"
-  },
-  "vulnerability-disclosure": {
-    "title": "Vulnerability Disclosure",
-    "type": "doc"
-  },
   "*": {
     "type": "page",
     "theme": {

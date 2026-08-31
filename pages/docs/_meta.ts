@@ -183,6 +183,10 @@ export default {
     title: "Glossary",
     type: "doc",
   },
+  "glob-patterns": {
+    title: "Glob Patterns",
+    type: "doc",
+  },
   limits: {
     title: "Limits & Quotas",
     type: "doc",

@@ -702,7 +702,7 @@ const rewrites = [
   ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
   //["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
   ["/content/:path*", "https://blog.lamatic.ai/content/:path*"],
-  ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
+  // ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
   ["/sitemap-doc.xml", "/public/sitemap.xml"],
   ["/sitemap-0.xml", "/public/sitemap-0.xml"],
   ["/sitemap.xml", "/public/website-sitemap.xml"],

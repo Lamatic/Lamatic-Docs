@@ -160,10 +160,11 @@ globs: "**/*.docx", "**/*.xlsx"
 
 # Files in specific folders
 globs: "HR/**/*", "Legal/**/*"
-
-# Exclude draft folders
-globs: "**/*", "!**/draft/**"
 ```
+
+<Callout type="warning">
+`!pattern` (as in `.gitignore`) is not exclusion syntax here, it's matched literally. To exclude something, use `!(pattern)` instead, e.g. `!(*.pdf)` matches everything except PDFs. See [Glob Patterns](/docs/glob-patterns#excluding-files) for the full syntax reference.
+</Callout>
 
 #### Search Scope Options
 - **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to
@@ -243,7 +244,7 @@ parsing_strategy: "fast"
 credentials: "Microsoft 365"
 drive_name: "OneDrive"
 folder_path: "./Documents"
-globs: "**/*.pdf", "**/*.docx", "!**/draft/**"
+globs: "**/*.pdf", "**/*.docx"
 sync_mode: "incremental"
 sync_schedule: "0 2 * * *"  # Daily at 2 AM
 search_scope: "ALL"

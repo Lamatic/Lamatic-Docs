@@ -9,6 +9,12 @@ A glob is a small pattern language for matching file paths, `**/*.pdf` matches e
 
 This page is the single reference for that syntax so you don't have to guess or search elsewhere.
 
+<Callout type="warning">
+These integrations are built on Airbyte's file-based source connectors, which use Python's `wcmatch.glob`. A pattern that starts with `!` (e.g. `!**/draft/**`) is **not** exclusion syntax here, it's matched literally and won't match anything. This is a common source of confusion since `!prefix` negation works in other glob dialects (`.gitignore`, VS Code, shells).
+
+To exclude something, use `!(...)` instead, wrapping the thing you want to exclude in parentheses. See [Excluding files](#excluding-files) below.
+</Callout>
+
 ## Where globs are used in Lamatic
 
 | Integration | Config field |
@@ -26,10 +32,10 @@ The field is optional on all four. If you leave it empty, the default is `**`, e
 | --- | --- |
 | `*` | Matches any characters within a single path segment (does not cross a `/`). |
 | `**` | Matches any characters, including across folder boundaries. Used to mean "any depth" or, on its own, "everything." |
-| `!` | Prefix on a pattern to exclude matches instead of including them. |
 | `\|` | Separates alternatives within a single pattern (`a\|b` matches `a` or `b`). |
+| `!(pattern)` | Matches anything that does **not** match `pattern`. See [Excluding files](#excluding-files). |
 
-You can supply a single pattern as a string, or a list of patterns. A file matches if it satisfies any pattern in the list, patterns are additive, and an excluding (`!`) pattern removes matches from what the other patterns already included.
+You can supply a single pattern as a string, or a list of patterns. A file matches if it satisfies any pattern in the list, patterns are additive by default, use `!(...)` (below) when you need to subtract instead.
 
 ## Common patterns
 
@@ -44,18 +50,40 @@ You can supply a single pattern as a string, or a list of patterns. A file match
 | `**/prefix*.csv` | `.csv` files whose name starts with `prefix`. |
 | `**/file.*\|**/file` | Any file named `file`, with or without an extension. |
 
-### Multiple patterns and exclusions
+### Multiple patterns
 
 ```yaml
 # Everything under two specific folders
 globs:
   - "HR/**/*"
   - "Legal/**/*"
+```
 
-# Everything except a draft folder
+### Excluding files
+
+Plain `!prefix` negation (as in `.gitignore`) does not work. To exclude something, wrap it in `!(...)`:
+
+```yaml
+# Everything except PDFs
 globs:
-  - "**/*"
-  - "!**/draft/**"
+  - "!(*.pdf)"
+
+# Everything under a folder, except its draft subfolder
+globs:
+  - "**/!(draft)/**"
+```
+
+<Callout type="info">
+`!(pattern)` matches anything that pattern does *not* match, it's a "not this" group, not a line-prefix modifier. `!**/draft/**` is not exclusion syntax and is matched as a literal string; `!(draft)` is.
+</Callout>
+
+If `!(...)` doesn't cover your case, the reliable fallback is to list what you *do* want instead of trying to subtract what you don't:
+
+```yaml
+globs:
+  - "HR/**/*"
+  - "Legal/**/*"
+  - "Finance/**/*"
 ```
 
 ### Scoping to supported file types
@@ -76,3 +104,4 @@ globs:
 - Start narrow. Test a glob against a small folder before pointing it at your whole drive, an overly broad `**` on a large source can mean a very large first sync.
 - Extension filters (`**/*.pdf`) are the most common and least error-prone pattern. Folder-scoped patterns (`HR/**/*`) are useful when only part of a source is relevant.
 - If files aren't syncing that you expect to, check the glob first, it's the most common cause, ahead of credentials or permissions issues.
+- If you need something not covered here, [Airbyte's S3 connector docs](https://docs.airbyte.com/integrations/sources/s3) document the same `wcmatch.glob`-based syntax these integrations run on.

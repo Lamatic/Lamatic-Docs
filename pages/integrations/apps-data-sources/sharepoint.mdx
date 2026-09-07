@@ -164,7 +164,7 @@ globs: "HR/**/*", "Legal/**/*"
 ```
 
 <Callout type="warning">
-`!pattern` (as in `.gitignore`) is not exclusion syntax here, it's matched literally. To exclude something, use `!(pattern)` instead, e.g. `!(*.pdf)` matches everything except PDFs. See [Glob Patterns](/docs/glob-patterns#excluding-files) for the full syntax reference.
+There is no exclusion syntax. A pattern starting with `!` (as in `.gitignore`) is matched literally and won't exclude anything. To leave a folder or file type out, list what you want instead of trying to subtract it. See [Glob Patterns](/docs/glob-patterns#including-only-what-you-want) for the full syntax reference.
 </Callout>
 
 #### Search Scope Options

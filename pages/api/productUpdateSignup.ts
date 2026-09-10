@@ -1,35 +1,39 @@
-import { NextResponse, NextRequest } from "next/server";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
+// Reads the raw body ourselves so this behaves like the previous edge
+// handler's `req.json()`, independent of the request's Content-Type.
 export const config = {
-  runtime: "edge",
+  api: {
+    bodyParser: false,
+  },
 };
 
 const emailSchema = z.string().email();
 
-export default async function handler(req: NextRequest) {
+async function readJsonBody(req: NextApiRequest) {
+  const chunks: Uint8Array[] = [];
+  for await (const chunk of req) {
+    chunks.push(chunk);
+  }
+  const raw = Buffer.concat(chunks).toString("utf-8");
+  return raw ? JSON.parse(raw) : {};
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   if (req.method !== "POST") {
-    return NextResponse.json(
-      {},
-      {
-        status: 400,
-        statusText: "Bad Request",
-      }
-    );
+    return res.status(400).json({});
   }
 
-  const body = await req.json();
+  const body = await readJsonBody(req);
   const { email, source } = body;
 
   // Validate email using zod
   if (!emailSchema.safeParse(email).success) {
-    return NextResponse.json(
-      { error: "Invalid email address" },
-      {
-        status: 400,
-        statusText: "Bad Request",
-      }
-    );
+    return res.status(400).json({ error: "Invalid email address" });
   }
 
   try {
@@ -59,26 +63,14 @@ export default async function handler(req: NextRequest) {
       slackResponse.status === 200 &&
       (loopsResponse.status === 200 || loopsResponse.status === 409)
     ) {
-      return NextResponse.json({ status: "OK" });
+      return res.status(200).json({ status: "OK" });
     } else {
       console.error("Slack", JSON.stringify(slackResponse));
       console.error("Loops", JSON.stringify(loopsResponse));
-      return NextResponse.json(
-        {},
-        {
-          status: 500,
-          statusText: "Internal Server Error",
-        }
-      );
+      return res.status(500).json({});
     }
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      {},
-      {
-        status: 500,
-        statusText: error.message ?? "Internal Server Error",
-      }
-    );
+    return res.status(500).json({});
   }
 }

@@ -1,43 +1,47 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { ImageResponse } from "@vercel/og";
-import { NextRequest } from "next/server";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
-export const config = {
-  runtime: "edge",
-};
-
-export default async function handler(request: NextRequest) {
-  const imageData = (await fetch(
-    new URL("../../public/public/icon256.png", import.meta.url)
-  ).then((res) => res.arrayBuffer())) as string;
-  const fontGeistMono = await fetch(
-    new URL("../../lib/fonts/GeistMono-Medium.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
-  const fontGeistSans = await fetch(
-    new URL("../../lib/fonts/Geist-Regular.ttf", import.meta.url)
-  ).then((res) => res.arrayBuffer());
-
-  const { searchParams } = new URL(request.url);
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const imageDataBuffer = await readFile(
+    path.join(process.cwd(), "public/public/icon256.png")
+  );
+  const imageData = imageDataBuffer.buffer.slice(
+    imageDataBuffer.byteOffset,
+    imageDataBuffer.byteOffset + imageDataBuffer.byteLength
+  ) as string;
+  const fontGeistMono = await readFile(
+    path.join(process.cwd(), "lib/fonts/GeistMono-Medium.ttf")
+  );
+  const fontGeistSans = await readFile(
+    path.join(process.cwd(), "lib/fonts/Geist-Regular.ttf")
+  );
 
   // ?title=<title>
-  const rawTitle = searchParams.has("title")
-    ? searchParams.get("title")
-    : undefined;
+  const rawTitleParam = req.query.title;
+  const rawTitle = Array.isArray(rawTitleParam)
+    ? rawTitleParam[0]
+    : rawTitleParam;
   const title = rawTitle ?? "Lamatic.ai";
 
-  const rawDescription = searchParams.has("description")
-    ? searchParams.get("description")
-    : undefined;
+  const rawDescriptionParam = req.query.description;
+  const rawDescription = Array.isArray(rawDescriptionParam)
+    ? rawDescriptionParam[0]
+    : rawDescriptionParam;
   const description = rawDescription
     ? rawDescription.length > 155
       ? rawDescription.slice(0, 155) + "..."
       : rawDescription
     : undefined;
 
-  const section = searchParams.has("section")
-    ? searchParams.get("section")
-    : undefined;
+  const sectionParam = req.query.section;
+  const section = Array.isArray(sectionParam) ? sectionParam[0] : sectionParam;
 
-  return new ImageResponse(
+  const imageResponse = new ImageResponse(
     (
       <div
         style={{
@@ -134,4 +138,11 @@ export default async function handler(request: NextRequest) {
       ],
     }
   );
+
+  res.status(imageResponse.status);
+  imageResponse.headers.forEach((value, key) => {
+    res.setHeader(key, value);
+  });
+  const buffer = Buffer.from(await imageResponse.arrayBuffer());
+  res.send(buffer);
 }

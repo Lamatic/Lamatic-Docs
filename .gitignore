@@ -26,3 +26,6 @@ litellm_config.yaml
 poetry.lock
 .venv
 bun.lockb
+
+# Cloudflare Workers build output
+.open-next

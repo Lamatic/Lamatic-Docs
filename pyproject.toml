@@ -2,7 +2,7 @@
 name = "cookbook"
 version = "0.1.0"
 description = ""
-authors = [""]
+authors = ["Lamatic <hello@lamatic.ai>"]
 license = "MIT"
 readme = "README.md"
 

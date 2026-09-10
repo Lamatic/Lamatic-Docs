@@ -161,10 +161,11 @@ globs: "**/*.docx", "**/*.xlsx"
 
 # Files in specific folders
 globs: "HR/**/*", "Legal/**/*"
-
-# Exclude draft folders
-globs: "**/*", "!**/draft/**"
 ```
+
+<Callout type="warning">
+There is no exclusion syntax. A pattern starting with `!` (as in `.gitignore`) is matched literally and won't exclude anything. To leave a folder or file type out, list what you want instead of trying to subtract it. See [Glob Patterns](/docs/glob-patterns#including-only-what-you-want) for the full syntax reference.
+</Callout>
 
 #### Search Scope Options
 - **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to
@@ -298,7 +299,7 @@ parsing_strategy: "fast"
 # Advanced setup with scheduling and filtering
 site_url: "https://company.sharepoint.com/sites/knowledge"
 folder_path: "./TeamDocs"
-globs: "**/*.pdf", "**/*.docx", "!**/draft/**"
+globs: "**/*.pdf", "**/*.docx"
 sync_mode: "incremental"
 sync_schedule: "0 2 * * *"  # Daily at 2 AM
 search_scope: "ALL"

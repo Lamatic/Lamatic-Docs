@@ -175,8 +175,10 @@ const nonPermanentRedirects = [
   ["/docs/brandkit", "/company/brandkit"],
   ["/docs/career", "/company/career"],
   ["/docs/hacktoberfest", "/company/hacktoberfest"],
-  ["/docs/report-issue", "/company/report-issue"],
-  ["/docs/vulnerability-disclosure", "/company/vulnerability-disclosure"],
+  ["/docs/report-issue", "/docs/security/anonymous-reporting"],
+  ["/docs/vulnerability-disclosure", "/docs/security/vulnerability-disclosure"],
+  ["/company/report-issue", "/docs/security/anonymous-reporting"],
+  ["/company/vulnerability-disclosure", "/docs/security/vulnerability-disclosure"],
   ["/company", "https://lamatic.ai"],
   ["/support", "/docs/slack"],
   [
@@ -547,7 +549,7 @@ const permanentRedirects = [
 ["/docs/workflows/nodes/Logic/condition","/docs/nodes/logic/condition-node"],
 // ["/docs/Models","/docs/models"],
 ["/templates/agentkits/embed/agent-kit-sheets","/agentkits"],
-["/docs/bug-bounty-program","/company/vulnerability-disclosure"],
+["/docs/bug-bounty-program","/docs/security/vulnerability-disclosure"],
 ["/docs/tests/flow-tests","/docs/tests/flow-testing"],
 ["/incident/541415","/incident"],
 ["/docs/integrations/apps","/integrations/apps-data-sources"],
@@ -708,15 +710,29 @@ const rewrites = [
   ["/blog/:path*", "https://blog.lamatic.ai/:path*"],
   //["/public/:path*", "https://blog.lamatic.ai/public/:path*"],
   ["/content/:path*", "https://blog.lamatic.ai/content/:path*"],
-  ["/assets/:path*", "https://blog.lamatic.ai/assets/:path*"],
+  ["/assets/:path*", "https://landing.lamatic.ai/assets/:path*"],
   ["/sitemap-doc.xml", "/public/sitemap.xml"],
   ["/sitemap-0.xml", "/public/sitemap-0.xml"],
   ["/sitemap.xml", "/public/website-sitemap.xml"],
   ["/.well-known", "/public/.well-known"],
   ["/robots.txt", "/public/robots.txt"],
-    [
-      "/:path((?!docs|blog|guides|integrations|agentkits|templates|company|_next|public|assets|images|api|robots.txt|sitemap-0.xml|llms.txt|llms-full.txt|skill.md|\\.well-known|ambassadors|launch-week).*)",
-      "https://get.lamatic.ai/:path*",
-    ],
+  // The catch-all proxy to landing.lamatic.ai (everything not matched by
+  // the rules above or by a real page) lives in middleware.ts, not here.
+  // It used to be a single next.config.mjs rewrite with a negative-lookahead
+  // source regex, but that source shape forces a single (non-array) named
+  // capture, which Cloudflare's OpenNext build resolves correctly for
+  // matching — it just can't carry that capture into a destination
+  // template afterward: @opennextjs/cloudflare recompiles the destination
+  // with path-to-regexp's own compile(), independently of the source regex,
+  // and a plain named param there is always validated against the default
+  // single-segment character class (no slashes, non-empty) regardless of
+  // what the source allowed. That crashed the homepage ("path" capturing
+  // "") and any multi-segment path ("path" containing "/"); only
+  // single-segment paths happened to satisfy both shapes. Next.js's own
+  // rewrite resolution (Vercel) doesn't hit this, since it isn't a second,
+  // independent recompilation of the destination — but nothing expressible
+  // in this rewrite-table's source/destination syntax avoids it once
+  // @opennextjs/cloudflare is in the picture. Middleware sidesteps the
+  // whole compile step by constructing the destination URL directly.
 ];
 export default withBundleAnalyzer(nextraConfig);

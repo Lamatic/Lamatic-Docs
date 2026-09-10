@@ -29,3 +29,6 @@ bun.lockb
 
 # Cloudflare Workers build output
 .open-next
+
+# Wrangler local dev state
+.wrangler

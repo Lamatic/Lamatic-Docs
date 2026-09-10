@@ -8,7 +8,7 @@
     "build": "npx next build",
     "postbuild": "next-sitemap && node scripts/generate-llms-txt.js && echo 'Removing .next/cache to resolve Nextra caching bug' && rm -rf .next/cache",
     "start": "npx next start -p 3333",
-    "build:cf": "opennextjs-cloudflare build",
+    "build:cf": "opennextjs-cloudflare build && node scripts/cf-assetsignore.js",
     "preview:cf": "opennextjs-cloudflare preview",
     "deploy:cf": "opennextjs-cloudflare deploy",
     "analyze": "cross-env ANALYZE=true npx next build"
@@ -30,7 +30,6 @@
     "@supabase/supabase-js": "^2.43.1",
     "@tanstack/react-table": "^8.16.0",
     "@theguild/remark-mermaid": "^0.0.6",
-    "@vercel/og": "^0.6.2",
     "@vidstack/react": "^0.6.15",
     "ai": "^3.1.12",
     "autoprefixer": "^10.4.19",
@@ -61,6 +60,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.33.5",
+    "styled-jsx": "5.1.6",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
@@ -90,6 +90,9 @@
   "pnpm": {
     "overrides": {
       "next-mdx-remote": ">=6.0.0"
+    },
+    "patchedDependencies": {
+      "react-dom@18.3.1": "patches/react-dom@18.3.1.patch"
     }
   }
 }

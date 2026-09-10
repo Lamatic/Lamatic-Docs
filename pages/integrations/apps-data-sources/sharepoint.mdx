@@ -126,6 +126,8 @@ To avoid sync issues, ensure your **glob patterns** are configured to include on
     - "**/*.md"
 ```
 
+See [Glob Patterns](/docs/glob-patterns) for the full syntax reference.
+
 ### Sync Configuration Options
 
 #### Sync Modes
@@ -161,10 +163,11 @@ globs: "**/*.docx", "**/*.xlsx"
 
 # Files in specific folders
 globs: "HR/**/*", "Legal/**/*"
-
-# Exclude draft folders
-globs: "**/*", "!**/draft/**"
 ```
+
+<Callout type="warning">
+There is no exclusion syntax. A pattern starting with `!` (as in `.gitignore`) is matched literally and won't exclude anything. To leave a folder or file type out, list what you want instead of trying to subtract it. See [Glob Patterns](/docs/glob-patterns) for the full syntax reference.
+</Callout>
 
 #### Search Scope Options
 - **`ACCESSIBLE_DRIVES`**: Only files in drives you have direct access to

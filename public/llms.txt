@@ -7,10 +7,8 @@
 ## Getting Started
 
 - [Agents](https://lamatic.ai/docs/agents.md): Agents in Lamatic.ai Studio
-- [Alerts](https://lamatic.ai/docs/alerts.md): Get notified the moment a deployed flow fails — by email and in-app — with a direct link to the failing log.
 - [Architecture](https://lamatic.ai/docs/architecture.md): How does Lamatic work?
 - [Lamatic CLI (Beta)](https://lamatic.ai/docs/cli.md): The official Lamatic CLI for managing projects, flows, deployments, contexts, models, and integrations from the terminal.
-- [Containers (Beta)](https://lamatic.ai/docs/containers.md): Run your flows on a dedicated container runtime rather than the standard serverless edge — built for long-running workflows and sandboxed code execution.
 - [Context](https://lamatic.ai/docs/context.md): Context in Lamatic Studio
 - [Contributing](https://lamatic.ai/docs/contributing.md): Contributing to Lamatic.ai Documentation
 - [Edge Deployment](https://lamatic.ai/docs/deployments.md): Edge Deployment in Lamatic.ai
@@ -20,23 +18,19 @@
 - [Flow Integration](https://lamatic.ai/docs/flow-integration.md): Integrate a developed flow into your application — Connect to your project, API, Vibe Code Prompt, and app frameworks.
 - [Flows](https://lamatic.ai/docs/flows.md): Flow builder in Lamatic.ai Studio
 - [Quickstart Guide](https://lamatic.ai/docs/get-started.md): Quickly get your first project off the ground with Lamatic.
-- [Glob Patterns](https://lamatic.ai/docs/glob-patterns.md): Reference for the glob pattern syntax used to filter files in Lamatic's file-sync integrations (Google Drive, OneDrive, SharePoint, AWS S3).
 - [Glossary](https://lamatic.ai/docs/glossary.md): Common terms and concepts in Lamatic.ai explained in simple language
 - [IDE](https://lamatic.ai/docs/ide.md): IDE Inside lamatic.ai studio
-- [Lamatic Docs](https://lamatic.ai/docs.md): Build, deploy, and monitor AI applications and agents on Lamatic.ai.
+- [Overview](https://lamatic.ai/docs.md): Lamatic is a collaborative GenOps platform. It helps cross-functional product teams build and deploy GenAI faster and better.
 - [Interfaces](https://lamatic.ai/docs/interface.md): Connect to Lamatic platform using Interfaces
 - [IP Allowlisting](https://lamatic.ai/docs/ips.md): IP addresses and network guidance to allowlist Lamatic in customer firewalls for databases, apps, webhooks, API calls, and external systems.
 - [Jobs](https://lamatic.ai/docs/jobs.md): Lamatic Studio
-- [Limits & Quotas](https://lamatic.ai/docs/limits.md): Practical limits for building and running workflows on Lamatic. Use this when designing flows, sizing jobs, or explaining plan differences.
 - [Logs](https://lamatic.ai/docs/logs.md): Logs in Lamatic.ai
 - [Models](https://lamatic.ai/docs/models.md): Models in Lamatic Studio
 - [Nodes](https://lamatic.ai/docs/nodes.md): Nodes are the fundamental building blocks of a flow in Lamatic. Each node serves a specific purpose, acting as a self-contained unit that processes input and produces output.
-- [Confidential Reporting](https://lamatic.ai/docs/report-issue.md): Submit a confidential whistleblower report securely through our reporting form.
 - [Reports](https://lamatic.ai/docs/reports.md): Reporting in Lamatic Studio
 - [Templates](https://lamatic.ai/docs/templates.md): Templates in Lamatic.ai Studio
 - [Version Control](https://lamatic.ai/docs/version-control.md): Manage, preview, and duplicate previous versions of your flow in Lamatic AI.
 - [Vibe Build Overview](https://lamatic.ai/docs/vibe-build.md): Use the Vibe Build home to launch agents, pick templates, and connect data sources in Lamatic AI.
-- [Vulnerability Disclosure](https://lamatic.ai/docs/vulnerability-disclosure.md): At Lamatic, we believe in collaborating with the global security researcher community to enhance the security of our products.
 
 ## Concepts
 
@@ -66,9 +60,8 @@
 
 ## Nodes
 
-- [Agentic Doc Extraction](https://lamatic.ai/docs/nodes/ai/agentic-doc-extraction.md): Run OCR on a PDF or image and get clean Markdown, structured JSON, and extracted images, with bounding boxes, per-image annotations, and durable storage URLs, from one flow step, powered by a per-run isolated container.
 - [Classifier Node](https://lamatic.ai/docs/nodes/ai/classifier-node.md): The Classifier Node allows users to categorize and classify data based on predefined criteria or machine learning models.
-- [Doc Extractor Node (Deprecated)](https://lamatic.ai/docs/nodes/ai/doc-extractor.md): Deprecated. The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text. Use Agentic Doc Extraction for new flows.
+- [Doc Extractor Node](https://lamatic.ai/docs/nodes/ai/doc-extractor.md): The Doc Extractor node uses an LLM to extract structured information from document URLs and return results in markdown, JSON, or plain text.
 - [Generate Image Node](https://lamatic.ai/docs/nodes/ai/generate-image-node.md): The Generate Image Node allows users to create images using AI models based on text prompts and configuration parameters.
 - [Generate JSON Node](https://lamatic.ai/docs/nodes/ai/generate-json-node.md): The Generate JSON Node allows users to generate structured JSON data using AI models with predefined schemas.
 - [Generate Text Node](https://lamatic.ai/docs/nodes/ai/generate-text-node.md): The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs.
@@ -78,7 +71,6 @@
 - [Supervisor Node](https://lamatic.ai/docs/nodes/ai/supervisor-node.md): The Supervisor Node monitors and manages the execution of other nodes in a workflow, providing oversight and control capabilities.
 - [API Node](https://lamatic.ai/docs/nodes/data/api-node.md): The Lamatic.ai API Node empowers users to external REST APIs seamlessly into their flow.
 - [Chunking Node](https://lamatic.ai/docs/nodes/data/chunking-node.md): The Chunking Node breaks down large text documents into smaller, manageable chunks for processing by AI models.
-- [Document Handling Node](https://lamatic.ai/docs/nodes/data/document-handling-node.md): The Document Handling node merges, splits, and edits pages, bookmarks, and metadata in PDFs, in one node.
 - [Extract from File Node](https://lamatic.ai/docs/nodes/data/extract-from-file-node.md): The Extract from File Node extracts and processes data from various file formats including PDFs, Word documents, and text files.
 - [Hybrid Search Node](https://lamatic.ai/docs/nodes/data/hybrid-search-node.md): The Hybrid Search Node combines multiple search strategies to provide comprehensive and accurate search results from vector databases.
 - [Keyword Search Node](https://lamatic.ai/docs/nodes/data/keyword-search-node.md): The Keyword Search Node performs text-based searches using specific keywords and phrases to find relevant content.
@@ -173,16 +165,5 @@
 - [SDK & Integration Guide](https://lamatic.ai/docs/sdk.md): A powerful tool in Lamatic for modern AI systems that enables seamless interaction with external functions and APIs in a structured manner.
 - [Integration Guide](https://lamatic.ai/docs/sdk/integration-guide.md): A comprehensive guide for integrating Lamatic.ai into your application using GraphQL API endpoints.
 - [Next.js](https://lamatic.ai/docs/sdk/next.md): Integrate the Lamatic SDK with Next.js applications to execute flows.
-- [Python](https://lamatic.ai/docs/sdk/python.md): Integrate the Lamatic SDK with Python applications to execute flows, synchronously or asynchronously.
 - [React SDK](https://lamatic.ai/docs/sdk/react.md): Integrate the Lamatic SDK with React applications to execute flows.
-
-## Security
-
-- [Anonymous Reporting](https://lamatic.ai/docs/security/anonymous-reporting.md): Submit a confidential whistleblower report securely through our reporting form.
-- [Security Architecture](https://lamatic.ai/docs/security/architecture.md): How Lamatic builds agentic infrastructure that is secure from agents and secure for agents, across the development lifecycle, data layer, and runtime.
-- [Security & Compliance](https://lamatic.ai/docs/security.md): How Lamatic secures customer data and infrastructure, covering architecture, tenant isolation, SLAs, programs, and partners.
-- [Security Programs](https://lamatic.ai/docs/security/programs.md): How Lamatic combines training, incident response exercises, device management, and human review to run security continuously.
-- [Security Service-Level Objectives](https://lamatic.ai/docs/security/sla.md): Severity-based response and remediation targets for security issues reported to Lamatic.
-- [Tenant Security & Isolation](https://lamatic.ai/docs/security/tenant-isolation.md): How Lamatic enforces tenant boundaries across runtime, data, access, and operations for enterprise deployments.
-- [Vulnerability Disclosure Program](https://lamatic.ai/docs/security/vulnerability-disclosure.md): At Lamatic, we believe in collaborating with the global security researcher community to enhance the security of our products.
 

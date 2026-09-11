@@ -94,6 +94,101 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/
           - **Startup Mindset**: Comfortable thriving in a fast-paced, dynamic startup environment with a bias for action.
         </AccordionContent>
       </AccordionItem>
+      <AccordionItem value="founding-qa-engineer">
+        <AccordionTrigger className="career-accordion-trigger">Founding QA Engineer (Lead)</AccordionTrigger>
+        <AccordionContent>
+          **Company Overview:**
+
+          Lamatic.ai is an end-to-end agentic AI development and deployment platform. Teams use our low-code visual builder, GraphQL API, and managed edge infrastructure to ship production AI agents in days instead of quarters. Our customers run real workloads on us - which means reliability is the product. We build on Next.js, Supabase, GraphQL, Cloudflare Workers, GCP, and Vercel, and we care about speed, precision, and reliability the way an F1 team cares about a pit stop.
+
+          **Job Description:**
+
+          We're hiring a Founding QA Engineer (Lead) to own quality end to end at Lamatic. This is a build-the-function role, not a maintain-the-suite role. You will define what "ready to ship" means here, wire that definition into CI/CD, and grow it into a continuous quality system that covers deterministic software and non-deterministic AI behavior alike.
+
+          Testing an agent platform is a different sport than testing a CRUD app. The same input can produce different output. Failures show up as a wrong tool call three steps deep in a trace, a silent quality regression after a model version bump, or a workflow that works perfectly at 10 requests and falls apart at 10,000. You will build the systems that catch all of it before customers do.
+
+          You will be our first dedicated quality hire and the person engineering, product, and Applied AI look to on release confidence.
+
+          **Responsibilities:**
+
+          *1. CI/CD Quality Gates*
+
+          - Design and own the quality gates that every PR and release passes through - unit, integration, contract, E2E, and eval gates - with clear pass/fail criteria and fast feedback.
+          - Analyze incoming features and changes for risk before they merge: what surface does this touch, what can break, what needs new coverage.
+          - Build the triage loop that turns a failing gate into a filed, reproducible, prioritized issue with a clear owner.
+          - Keep pipelines fast and trustworthy. A flaky suite that everyone overrides is worse than no suite, so flake detection, quarantine, and cleanup are part of the job.
+          - Gate agent and prompt changes on eval results the same way we gate code on tests - regression suites over golden datasets, with scored thresholds for accuracy, tool-call correctness, latency, and cost.
+
+          *2. Continuous QA Across the Full Product Lifecycle*
+
+          - Shift left: join design and spec reviews, write acceptance criteria and test plans while features are still being shaped.
+          - Shift right: run synthetic monitoring and production canaries against live environments so we find issues from the customer's seat first.
+          - Build the feedback loop from production signals - traces, logs, observability data, support tickets - back into the regression suite, so every escaped bug becomes a permanent test.
+          - Own release readiness reviews, regression cycles, and post-release verification.
+          - Define and track the quality metrics we run the company on: escape rate, coverage on critical paths, MTTD, MTTR, flake rate, eval pass rate over time.
+          - Run structured exploratory sessions on new capabilities where scripted tests can't reach yet.
+
+          *3. End-to-End UI Testing (Automated + Manual)*
+
+          - Build and own our automated E2E suite with Playwright (or your tool of choice, argued well) across the visual flow builder, dashboards, and deployment surfaces.
+          - Cover the hard parts of a visual builder: drag-and-drop, canvas state, multi-step workflow construction, real-time updates, and long-running async runs.
+          - Add visual regression and accessibility checks to the pipeline.
+          - Run cross-browser, responsive, and performance validation on core journeys.
+          - Pair automation with deliberate manual and exploratory testing on new features, onboarding, and high-value customer paths - automation catches regressions, humans catch the things nobody thought to assert.
+
+          *4. Rigorous API and Backend Testing*
+
+          - Own deep test coverage of our GraphQL API and internal services: schema and contract testing, query depth and complexity limits, pagination, error handling, and backward compatibility across versions.
+          - Test authentication, authorization, multi-tenancy isolation, and rate limiting hard. On a B2B platform, tenant boundary bugs are the ones that matter most.
+          - Build load, stress, soak, and spike testing into the release process, with clear performance baselines and SLOs for edge and serverless paths.
+          - Validate data integrity across Supabase, read replicas, vector stores, and integration connectors - including failure modes: timeouts, retries, partial failures, third-party outages, and webhook delivery.
+          - Fuzz and negative-path testing on public endpoints and SDKs.
+
+          *5. AI-Specific Quality (What Makes This Role Different)*
+
+          - Build the evaluation harness for agent behavior: golden datasets, LLM-as-judge scoring where appropriate, deterministic assertions where possible, and human review where it's needed.
+          - Test across model providers and versions, and catch quality drift when an upstream model changes underneath us.
+          - Validate RAG pipelines end to end: retrieval relevance, grounding, citation accuracy, and chunking behavior.
+          - Test guardrails, prompt injection resistance, PII handling, and safe failure behavior.
+          - Track quality alongside latency and token cost, because on this platform they trade off against each other constantly.
+
+          *6. Founding-Team Ownership*
+
+          - Define the QA strategy, tooling stack, and standards for the company, then document them so they outlive you.
+          - Embed quality practices in the engineering team rather than becoming a bottleneck - your leverage is in what others can now ship safely.
+          - Grow the function: hire and mentor QA engineers as we scale.
+
+          **Requirements:**
+
+          - 3+ years in QA, SDET, or quality engineering at a SaaS or AI product company, ideally at seed-to-Series-B scale where you set up testing from scratch rather than inherited a suite.
+          - Strong programming ability in TypeScript/JavaScript or Python. You write real code, not just test scripts.
+          - Deep hands-on experience with modern E2E frameworks (Playwright, Cypress) and API testing tooling, plus CI/CD pipeline ownership (GitHub Actions or equivalent).
+          - Solid GraphQL and REST testing experience, including contract and schema-level testing.
+          - Performance and load testing experience (k6, Artillery, JMeter, or similar) with the judgment to set meaningful baselines.
+          - Working familiarity with LLM and agent systems, and a clear point of view on how to test non-deterministic software. Direct experience with eval frameworks (Promptfoo, DeepEval, Langfuse, Braintrust, or similar) is a strong advantage.
+          - Comfort with cloud and serverless environments - Vercel, Cloudflare Workers, GCP, Supabase, Docker.
+          - Observability fluency: you use traces and logs as primary testing instruments, not just debugging aids.
+          - Exceptional analytical instincts. You find the edge case others walk past, and you can explain the risk in terms a founder can act on.
+          - Excellent written communication. Your bug reports, test plans, and quality reports should be a pleasure to read.
+          - Genuine enthusiasm for AI systems and for being the person who makes them trustworthy.
+
+          **Bonus:**
+
+          - Experience testing low-code, visual builder, or workflow automation products.
+          - Security testing background (OWASP Top 10, API security).
+          - Contributions to open-source testing or eval tooling.
+          - Experience shipping alongside a small engineering team where you owned quality without a QA org behind you.
+
+          **Benefits:**
+
+          - Founding ownership of quality at a fast-growing agentic AI platform, with meaningful equity.
+          - Full autonomy over strategy, tooling, and process - you build this function the way you believe it should be built.
+          - Direct collaboration with the founders and a short path from idea to shipped.
+          - Deep exposure to frontier AI infrastructure, agent evaluation, and edge deployment.
+          - Competitive salary, comprehensive benefits, and remote-friendly flexibility.
+          - A high-trust, high-velocity team that treats quality as a competitive advantage rather than a checkpoint.
+        </AccordionContent>
+      </AccordionItem>
     </Accordion>
   </Tabs.Tab>
 </Tabs>

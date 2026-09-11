@@ -93,7 +93,7 @@ By leveraging these agent types effectively, you can build powerful AI-driven ap
 
 # Alerts
 
-Source: https://lamatic.ai/docs/alerts
+Source: https://lamatic.ai/docs/alerts.md
 
 # Error Alerts & Notifications
 
@@ -109,6 +109,10 @@ Error alerts notify you as soon as a flow in a deployed project hits an error. I
 - **In-app alerts**: same error details, surfaced in the notification bell and stacked as they come in.
 - **Near real-time delivery**: alerts trigger per error within a 5-minute window.
 
+![Email alert preview](./img/alerts/notification%20mail.png)
+
+![In-app notification bell](./img/alerts/notification%20button.png)
+
 ## Managing your notifications
 
 ### Profile-level preferences
@@ -121,11 +125,10 @@ Each project has its own **Notifications** page under **Settings**. From here yo
 
 - Turn email and in-app alerts on or off for the whole project.
 - Control which team members receive alerts, per recipient and per channel.
-- Set a delivery **schedule** for each notification preference.
 
-### Notification schedule
+### Notification schedule (from the notification icon)
 
-Each notification preference can have its own schedule, controlling when external-channel notifications (like email) are delivered.
+Open the **notification bell** in the navbar to set a delivery schedule for each notification preference. The schedule controls when external-channel notifications (like email) are delivered.
 
 - Toggle specific days on or off, and set an allowed time range (**From** / **To**) for each day.
 - Outside the scheduled window, external-channel notifications pause.
@@ -174,7 +177,6 @@ These following steps highlight the typical execution of steps involved in build
     The green shaded area is where the private  information of organisation is stored and processed. Lamatic can be customized
     to host this data on premise or on a private cloud. This ensures that the data is not shared with any third party and is
     completely secure.
-
 
 ## Layers
 ![Architecture diagram](./concepts/img/arch-diagram.jpg)
@@ -229,8 +231,6 @@ This holds all the code logic that enables the reliable execution of our GraphQL
 - **A/B Module** - Perform optimization across Agents, Rules, and Models.
 - **Model Relay** - Managed connections across multiple models.
 
-
-
 ### Model Integration
 
 Integration with third-party models and APIs.
@@ -279,6 +279,8 @@ lamatic auth login \
   --org-id <YOUR_ORG_ID> \
   --user-id <YOUR_USER_ID>
 ```
+
+Your organization ID and API key come from **Studio → Settings → API Keys**, same as [API Keys](/docs/api-integration/api-key). Your user ID is your Lamatic account identifier, visible in your organization's members list in Studio.
 
 | Command | Description |
 |---|---|
@@ -458,6 +460,78 @@ lamatic project get --project-id <PROJECT_ID>
 
 ---
 
+# Containers (Beta)
+
+Source: https://lamatic.ai/docs/containers.md
+
+# Containers (Beta)
+
+Run your flows on a dedicated container runtime rather than the standard serverless edge, which is built for long-running workflows and sandboxed code execution.
+
+## What it is
+
+Containers provide an alternative execution environment for Lamatic flows. Instead of running on the standard serverless edge, a container-enabled flow runs inside an isolated, dedicated runtime with its own compute and memory.
+
+This is useful for flows that need more room to run than the default edge environment allows.
+
+## What it does
+
+- **Longer execution windows**: container-backed flows can run well beyond typical edge execution limits, making them a fit for long-running or multi-step workflows.
+- **Sandboxed code execution**: Code nodes run in an isolated container environment, separate from the rest of your project.
+- **Same flow engine**: container execution uses the same underlying workflow engine as the standard runtime, so your flow logic doesn't change. Only where it runs does.
+
+## Containers vs Edge
+
+|                    | Serverless Edge (default)               | Containers (beta)                                      |
+| ------------------ | --------------------------------------- | ------------------------------------------------------ |
+| **Execution time** | Short, optimised for latency            | Long, suited to multi-step or batch workloads          |
+| **Best for**       | Quick API calls and real-time responses | Document processing, multi-agent chains, heavy compute |
+| **Availability**   | All projects, default-on                | Closed beta, opt-in per project and per flow           |
+
+## When to use Containers
+
+Reach for container execution when your flow runs into the limits of the standard serverless edge. Typical cases:
+
+- **Document-processing pipelines** that scrape, chunk, and embed hundreds of pages in a single run.
+- **Multi-agent workflows** that chain ten or more LLM calls before returning a result.
+- **Heavy Code-node workloads**: image processing, large-file transforms, custom ML inference, anything CPU- or memory-intensive.
+- **Long-running ingestion jobs** that periodically sync a data source (CRM, file storage, database).
+- **Polling or wait-based logic**: `setTimeout`, retry loops, or queue-draining patterns that would otherwise blow past edge timeouts.
+
+If your flow comfortably finishes in a few seconds on edge, you don't need Containers. Stay on the default runtime.
+
+## How it works
+
+Container execution is opt-in at both the project and flow level. A flow only runs in a container when both:
+
+1. The project has container execution enabled.
+2. The individual flow has container execution enabled.
+
+Flows that don't opt in continue to run on the standard serverless edge as usual, so enabling containers for a project doesn't change the behavior of existing flows.
+
+## Current status
+
+Containers is currently in **closed beta**. It's not yet available as a self-serve toggle in Studio.
+
+## Request beta access
+
+If you'd like to try container execution for your project, request access using the form below.
+
+<div className="my-6">
+  <Button asChild size="lg" variant="cta">
+    <Link
+      href="https://lamatic.fillout.com/beta-access?feature_tag=containers"
+      target="_blank"
+      rel="noopener"
+    >
+      Request beta access
+    </Link>
+  </Button>
+</div>
+
+
+---
+
 # Context
 
 Source: https://lamatic.ai/docs/context.md
@@ -502,8 +576,6 @@ Context refers to additional information provided to a Large Language Model duri
 ### Direct Prompt Inclusion
 The simplest method involves incorporating relevant information directly into the prompt. However, this approach has limitations due to LLMs' context limits.
 
-
-
 ### Retrieval using Vector Databases
 Vector databases are a powerful solution for context-related challenges in AI. They store and retrieve information based on semantic meaning, allowing for more nuanced and relevant context retrieval.
 
@@ -514,13 +586,10 @@ Vectors in this context are mathematical representations of words, phrases, or e
 
 > **Quick Fact**: Vectors enable semantic searches, making them highly effective for contextual queries.
 
-
 #### When to Use Vector Databases
 Vector databases are particularly useful when dealing with large amounts of unstructured data, such as documents, articles, or product descriptions. They excel in scenarios where semantic similarity is more important than exact keyword matching, making them ideal for providing relevant context to LLMs.
 
 > **Best Practice**: Use vector databases for unstructured data retrieval when accuracy based on meaning is essential.
-
-
 
 #### Lamatic's Built-in Vector Database Powered by Weaviate
 Lamatic integrates **Weaviate**, a powerful vector database, to provide efficient and accurate context retrieval. This integration allows users to leverage the benefits of vector-based search and retrieval without the need for complex setup or management.
@@ -536,7 +605,6 @@ Memory systems offer another approach to providing context, particularly useful 
 Memories are particularly valuable in scenarios requiring long-term context retention, such as ongoing customer support interactions, personalized tutoring, or any application where user preferences and history play a crucial role in generating appropriate responses.
 
 > **Pro Tip**: Use memories for long-term user preferences and ongoing conversations.
-
 
 #### Lamatic's Built-in Memories Powered by mem0
 Lamatic incorporates **mem0**, a cutting-edge memory system, to enhance its context-awareness capabilities. This feature allows the platform to remember and utilize important information across multiple interactions, leading to more personalized and contextually relevant outputs.
@@ -756,7 +824,6 @@ Edge deployment is an innovative approach to running applications and services t
 ![Edge Locations](https://miro.medium.com/v2/resize:fit:1400/0*ppjQ6XBDcjcI7w2o.png)
 
 > **Built on Cloudflare**: Our cutting-edge infrastructure leverages Enterprise-grade Cloudflare Workers for optimal performance and reliability. For organizations requiring on-premise solutions or custom network deployments tailored to specific needs, we invite you to reach out to our dedicated team at [hello@lamatic.ai](mailto:hello@lamatic.ai). We're here to provide personalized solutions that align with your unique requirements.
-
 
 ---
 
@@ -1480,8 +1547,6 @@ The **Share Flow** feature in Lamatic.ai allows users to collaborate, distribute
 
 This feature enhances workflow management, enabling better collaboration and efficiency in building AI-powered solutions.
 
-
-
 ## Best Practices
 
 - **Clear Goal:** Design each flow with a specific objective.
@@ -1674,6 +1739,98 @@ See [API & SDK](/docs/sdk) and [GraphQL](/docs/interface/graphql) for full examp
 
 ---
 
+# Glob Patterns
+
+Source: https://lamatic.ai/docs/glob-patterns.md
+
+# Glob Patterns
+
+A glob is a small pattern language for matching file paths, `**/*.pdf` matches every PDF anywhere in a folder tree, for example. Several of Lamatic's file-sync integrations use globs to control which files get pulled in and indexed, instead of syncing everything.
+
+This page is the single reference for that syntax so you don't have to guess or search elsewhere.
+
+<Callout type="warning">
+These integrations are built on Airbyte's file-based source connectors, which use Python's `wcmatch.glob`. **There is no working exclusion syntax.** A pattern that starts with `!` (e.g. `!**/draft/**`) is matched literally and won't match anything, this is a common mistake since `!prefix` negation works in other glob dialects (`.gitignore`, VS Code, shells), but not here. Use a positive pattern instead, see [Including only what you want](#including-only-what-you-want) below.
+</Callout>
+
+## Where globs are used in Lamatic
+
+| Integration | Config field |
+| --- | --- |
+| [Google Drive](/integrations/apps-data-sources/google-drive#action-node-configuration) | Globs (Path Patterns) |
+| [AWS S3](/integrations/apps-data-sources/aws-s3#globs-path-patterns) | Globs (Path Patterns) |
+| [OneDrive](/integrations/apps-data-sources/onedrive#supported-file-types) | Globs (Path Patterns) |
+| [SharePoint](/integrations/apps-data-sources/sharepoint#file-filtering-patterns) | Globs (Path Patterns) |
+
+The field is optional on all four. If you leave it empty, the default is `**`, every file.
+
+## Syntax
+
+| Pattern | Meaning |
+| --- | --- |
+| `*` | Matches any characters within a single path segment (does not cross a `/`). |
+| `**` | Matches any characters, including across folder boundaries. Used to mean "any depth" or, on its own, "everything." |
+| `\|` | Separates alternatives within a single pattern (`a\|b` matches `a` or `b`). |
+
+You can supply a single pattern as a string, or a list of patterns. A file matches if it satisfies any pattern in the list. Patterns are purely additive, there is no way to exclude or subtract.
+
+## Common patterns
+
+| Pattern | Matches |
+| --- | --- |
+| `**` | Every file, at any depth. |
+| `**/*.pdf` | Every `.pdf` file, at any depth. |
+| `myFolder/**/*.csv` | Every `.csv` file anywhere under `myFolder`. |
+| `*/**` | Everything at least one folder deep (excludes files in the root). |
+| `*/*/*/**` | Everything at least three folders deep. |
+| `x/*/y/*` | Files directly inside `x/<any single folder>/y/`. |
+| `**/prefix*.csv` | `.csv` files whose name starts with `prefix`. |
+| `**/file.*\|**/file` | Any file named `file`, with or without an extension. |
+
+### Multiple patterns
+
+```yaml
+# Everything under two specific folders
+globs:
+  - "HR/**/*"
+  - "Legal/**/*"
+```
+
+### Including only what you want
+
+There is no exclusion syntax that reliably works end to end (through Studio testing and into a deployed sync). If you want everything except a subfolder or file type, don't try to subtract it, list what you *do* want instead:
+
+```yaml
+# Instead of trying to exclude "draft", include the folders you actually want
+globs:
+  - "HR/**/*"
+  - "Legal/**/*"
+  - "Finance/**/*"
+```
+
+### Scoping to supported file types
+
+Each file-sync integration only parses a specific set of extensions (`.pdf`, `.txt`, `.docx`, `.pptx`, `.md` as of this writing, check the integration's own page for the current list). Scoping your glob to those extensions avoids sync errors from unsupported files:
+
+```yaml
+globs:
+  - "**/*.pdf"
+  - "**/*.txt"
+  - "**/*.docx"
+  - "**/*.pptx"
+  - "**/*.md"
+```
+
+## Tips
+
+- Start narrow. Test a glob against a small folder before pointing it at your whole drive, an overly broad `**` on a large source can mean a very large first sync.
+- Extension filters (`**/*.pdf`) are the most common and least error-prone pattern. Folder-scoped patterns (`HR/**/*`) are useful when only part of a source is relevant.
+- If files aren't syncing that you expect to, check the glob first, it's the most common cause, ahead of credentials or permissions issues.
+- If you need something not covered here, [Airbyte's S3 connector docs](https://docs.airbyte.com/integrations/sources/s3) document the same `wcmatch.glob`-based syntax these integrations run on.
+
+
+---
+
 # Glossary
 
 Source: https://lamatic.ai/docs/glossary.md
@@ -1839,7 +1996,6 @@ Lamatic offers three specialized IDEs to cater to different aspects of flow deve
 2. Code IDE
 3. GraphQL IDE
 
-
 ## Current Capabilities
 
 | **Capability** | **Prompt IDE** | **Code IDE** | **GraphQL IDE** |
@@ -1853,85 +2009,227 @@ Lamatic offers three specialized IDEs to cater to different aspects of flow deve
 
 ---
 
-# Overview
+# Lamatic Docs
 
 Source: https://lamatic.ai/docs.md
 
-# Overview
+export const JsIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#F7DF1E">
+    <path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.756-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z" />
+  </svg>
+);
 
-> Lamatic is a collaborative Agentic AI Development Platform that helps cross-functional teams collaboratively develop, monitor, and optimize their GenAI applications.
+export const PythonIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="#3776AB">
+    <path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13v5.34l-.05.64-.13.54-.21.46-.26.38-.3.32-.33.24-.35.2-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.36-.1.35-.07.32-.04.28-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.04-.05-1.23.06-1.23.16-1.04.24-.86.32-.71.36-.57.4-.45.42-.33.42-.24.4-.16.36-.09.32-.05.24-.02.16-.01h8.22v-.82H7.46V2.43l.02-.36.05-.34.11-.31.17-.29.25-.25.31-.24.38-.2.44-.17.51-.15.58-.13.64-.09.71-.07.77-.04.84-.01 1.27.04 1.07.14zM8.95 4.07l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08-.33.23zm13.09 3.95l.28.06.32.12.35.18.36.27.36.35.35.47.32.59.28.73.21.88.14 1.04.05 1.23-.06 1.23-.16 1.04-.24.86-.32.71-.36.57-.4.45-.42.33-.42.24-.4.16-.36.1-.32.05-.24.01-.16.01h-.13L15.46 18l-.69.06-.59.14-.5.21-.41.28-.33.32-.27.35-.2.36-.15.36-.1.35-.07.32-.04.28-.02.21V21.65H7.18v-.04l-.02-.13.01-.13v-3.59l.05-.64.13-.55.21-.46.26-.38.3-.32.33-.24.35-.2.35-.14.33-.1.3-.07.26-.04.21-.02H17.23l.69-.05.59-.14.5-.21.41-.28.33-.32.27-.35.2-.36.15-.36.1-.35.07-.32.04-.28.02-.21V6.07h2.09l.14.01zm-6.47 14.25l-.23.33-.08.41.08.41.23.33.33.23.41.08.41-.08.33-.23.23-.33.08-.41-.08-.41-.23-.33-.33-.23-.41-.08-.41.08z" />
+  </svg>
+);
 
+export const ApiIcon = () => (
+  <Image src={graphqlImage} alt="" width={24} height={24} className="object-contain" />
+);
+
+export const McpIcon = () => (
+  <Image src={mcpIconImage} alt="" width={24} height={24} className="object-contain" />
+);
+
+# Lamatic.ai Docs
+
+Build, deploy, and monitor production AI applications. Lamatic gives cross-functional teams a single platform to design **Flows**, run **Agents**, and ship them to the edge.
 
 ---
 
-<iframe width="100%" height="500px" src="https://player.vimeo.com/video/1068719282?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" title="Lamatic Genesis Release - 1.0.0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-
-## Core Platform Features
-
-### Build
-Tools to help you build AI applications and iterate faster.
-
-- [Flows](/docs/flows) — Build agents, processes, and automations with custom Flows using no-code and low-code interfaces.
-- [Nodes](/docs/nodes) — Core components and functions for building Flows.
-- [IDE](/docs/ide) — Integrated Development Environment for coding and debugging prompts, JS and API requests.
-- [Agents](/docs/agents) — Create and configure AI agents for your applications.
-- [Models](/docs/models) — Find and connect with the best model for your use case.
-- [Data](/docs/context) — Add custom context to your Flows and agents using VectorDB and memories.
-- [Interface](/docs/interface) — Embed AI components like search and chat in your application with a few lines of code.
-- [MCP/Tools](/docs/mcp-tools) — Core components and functions for agent creation.
-- [Tests](/docs/tests) — Tools to test and debug your Flow and application in development and before deployments.
-- [Version Control](/docs/version-control) — Manage versions and collaborate on your Flows.
-- [Templates](/docs/templates) — Get started quickly with pre-built templates.
-
-### Deploy
-Deploy and manage your AI applications.
-
-- [Deployments](/docs/deployments) — Deploy and manage your agents and Flows on the edge.
-- [Jobs](/docs/jobs) — Monitor and configure scheduled processes.
-
-### Optimize
-Monitor, analyze and optimize your AI applications.
-
-- [Logs](/docs/logs) — See real-time request logs and traces.
-- [Reports](/docs/reports) — Analyze your projects with intuitive charts and queries.
-- [API & SDK](/docs/sdk) — Integrate and interact with your Flows programmatically.
-
-
-## Get Started
+## Start here
 
 <Cards num={3}>
-    <Card href="/docs/get-started" title="Quickstart" image arrow>
-        {/*![Quickstart icon (rocket)]()*/}
-    </Card>
-    <Card href="/docs/api-integration" title="API Overview" image arrow>
-        {/*![API]()*/}
-    </Card>
-    <Card href="/docs/templates" title="Templates" image arrow>
-        {/*![Quickstart icon (rocket)]()*/}
-    </Card>
+  <Cards.Card
+    icon={<Rocket />}
+    title="Quickstart"
+    href="/docs/get-started"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<LayoutTemplate />}
+    title="Templates"
+    href="/templates"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<Map />}
+    title="Architecture"
+    href="/docs/architecture"
+    arrow
+  >
+    {""}
+  </Cards.Card>
 </Cards>
 
+## Learn the concepts
 
-## Updates
+<div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-5 my-6">
+  <Link
+    href="/docs/flows"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={flowsImage} alt="Flow editor" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Flows</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Build agents, processes, and automations with no-code and low-code interfaces.</div>
+    </div>
+  </Link>
 
-Lamatic evolves quickly, check out the [changelog](/changelog) for the latest updates.
+  <Link
+    href="/docs/nodes"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={nodesImage} alt="Node configuration" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Nodes</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">The building blocks of every flow: AI generation, data lookup, branching, integrations.</div>
+    </div>
+  </Link>
 
-Subscribe to the **mailing list** to get notified about new major features:
+  <Link
+    href="/docs/agents"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={agentsImage} alt="Agents" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Agents</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Specialised AI nodes that reason, route, and orchestrate multi-step work.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/models"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={modelsImage} alt="Models" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Models</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Connect any LLM provider: OpenAI, Anthropic, Bedrock, Gemini, and more.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/context"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={contextImage} alt="Data and context" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Data & Context</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">Vector and memory stores attached to your project for RAG and stateful agents.</div>
+    </div>
+  </Link>
+
+  <Link
+    href="/docs/studio"
+    className="group block rounded-xl border border-gray-200 dark:border-neutral-800 overflow-hidden bg-white dark:bg-neutral-900 hover:border-red-300 dark:hover:border-red-700 hover:shadow-md transition-all"
+  >
+    <div className="aspect-[16/9] w-full overflow-hidden bg-gray-50 dark:bg-neutral-950">
+      <Image src={studioImage} alt="Studio" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+    </div>
+    <div className="p-5">
+      <h3 className="text-base font-semibold text-gray-900 dark:text-white">Studio</h3>
+      <div className="mt-1 text-sm text-gray-600 dark:text-neutral-400">The collaborative editor where teams design, test, and deploy flows.</div>
+    </div>
+  </Link>
+</div>
+
+## Deploy and monitor
+
+Ship to production, schedule recurring runs, and watch everything in real time.
+
+<Cards num={3}>
+  <Cards.Card
+    icon={<CloudUpload />}
+    title="Deployments"
+    href="/docs/deployments"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card
+    icon={<CalendarClock />}
+    title="Jobs & Scheduling"
+    href="/docs/jobs"
+    arrow
+  >
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<Activity />} title="Logs" href="/docs/logs" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<BarChart3 />} title="Reports" href="/docs/reports" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
+
+## Connect with code
+
+Drive Lamatic from anywhere: your app, your terminal, or an AI assistant.
+
+<Cards num={3}>
+  <Cards.Card icon={<JsIcon />} title="JavaScript" href="/docs/sdk" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<PythonIcon />} title="Python" href="/docs/sdk/python" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<ApiIcon />} title="API" href="/docs/api-integration" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<TerminalSquare />} title="CLI" href="/docs/cli" arrow>
+    {""}
+  </Cards.Card>
+  <Cards.Card icon={<McpIcon />} title="MCP" href="/docs/mcp" arrow>
+    {""}
+  </Cards.Card>
+</Cards>
+
+## See it in action
 
 <iframe
-    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa"
+  width="100%"
+  height="450px"
+  src="https://player.vimeo.com/video/1068719282?badge=0&autopause=0&player_id=0&app_id=58479"
+  title="Lamatic Genesis Release - 1.0.0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  referrerPolicy="strict-origin-when-cross-origin"
+  allowFullScreen
+  style={{ borderRadius: "8px", border: "1px solid rgb(229 231 235 / 0.4)" }}
+></iframe>
+
+## Stay updated
+
+Lamatic ships fast. The [changelog](/changelog) lists every release. Join our [Slack](/slack) for product chat, file requests on the [feature board](https://product.lamatic.ai/), or report bugs via [GitHub issues](https://github.com/Lamatic/docs/issues).
+
+<div className="mt-4 max-w-md">
+  <div className="text-sm text-gray-600 dark:text-gray-400 mb-2">Get major-feature announcements in your inbox:</div>
+  <iframe
+    src="https://embeds.beehiiv.com/08c99e2f-17cc-4e8a-a982-203a69f674fa?slim=true"
     data-test-id="beehiiv-embed"
     width="100%"
-    height="320"
+    height="52"
+    frameBorder="0"
     scrolling="no"
-    style={{ borderRadius: '4px', border: '2px solid #e5e7eb', margin: '0', backgroundColor: 'transparent' }}>
-</iframe>
-
-## Get in Touch
-
-Join our [Slack](/slack), provide feedback, report bugs, or request features via [Feature board](https://product.lamatic.ai/).
-
-Learn more about ways to get in touch on our [Support](https://support.lamatic.ai) page.
+    style={{ margin: 0, borderRadius: "6px", backgroundColor: "transparent" }}
+  />
+</div>
 
 
 ---
@@ -1944,8 +2242,6 @@ Source: https://lamatic.ai/docs/interface.md
 After your project is deployed and your flows are passing tests, these interfaces are the ways you plug Lamatic into real products and channels.
 
 Interfaces provide various options to seamlessly integrate and embed AI features into your application. These interfaces offer flexibility and power, allowing you to harness the full potential of AI within your project. Once your project is deployed, you can easily access the automatically generated setup documentation. This documentation is conveniently located within the flow or at the top bar of your project, ensuring you have all the necessary information at your fingertips.
-
-
 
 ## Methods
 ### GraphQL API
@@ -2174,6 +2470,159 @@ To address records in failed requests, you should adjust the Sync Mode to **Full
 
 ---
 
+# Limits & Quotas
+
+Source: https://lamatic.ai/docs/limits.md
+
+# Limits & Quotas
+
+Practical limits for building and running workflows on Lamatic. Use this when designing flows, sizing jobs, or explaining plan differences.
+
+<Callout type="info">
+  **Enforced** means a hard limit. Exceeding it fails or is blocked in Studio.
+
+  **Recommended** means it isn't always blocked, but ignoring it makes runs more likely to time out, run out of memory, or fail under load.
+</Callout>
+
+---
+
+## How long a flow can run
+
+| Mode | Limit | Notes |
+|------|-------|-------|
+| **Sync** (waits for a response) | ~2 minutes on Pro, ~5 minutes on Enterprise | Best for APIs and widgets that return a result immediately. Keep the flow small. |
+| **Async** | Up to ~20 minutes on the standard path | Trigger response type must be set to **async**. Returns a request ID right away, and the flow continues in the background. |
+| **Container mode** (opt-in, for memory-heavy flows) | Up to 1 hour | For flows that need more memory. Turn it on at the project or flow level when standard runs are running out of memory. |
+
+**Recommended flow size**
+
+| Mode | Guidance |
+|------|----------|
+| Sync | ~20 nodes max |
+| Async | ~50 nodes max |
+
+Larger flows are harder to debug and more likely to hit time or memory limits. Split big workflows into smaller flows and call them with a **Flow** node.
+
+---
+
+## Memory
+
+| Runtime | Limit |
+|---------|-------|
+| Standard execution | 128 MB |
+| Container mode (opt-in) | 6 GB |
+
+If a flow consistently fails with memory errors, enable **container mode** for that project or flow, reduce batch concurrency, or shrink payloads.
+
+---
+
+## Loops, batches, and agents
+
+| Limit | Value | Type |
+|-------|-------|------|
+| Nodes inside a loop, batch, or agent body | 20 | Enforced for Starter and Pro. Unlimited on Enterprise. |
+| Nodes inside a batch body | 5 or fewer recommended | More nodes per iteration raise memory use. Prefer a sub-flow for larger logic. |
+| Batch concurrency (parallel items) | 1 to 50, default 10 | Configurable on the Batch node. |
+| Nested Batch nodes | Not allowed | Enforced. |
+| Batch iterations (Starter / free) | 100 max | Enforced. |
+
+If you need more than 20 nodes inside a loop or batch, put the extra logic in a separate flow and call it with a **Flow** node.
+
+---
+
+## Code node
+
+| Limit | Value |
+|-------|-------|
+| Processing time | ~2 minutes on Pro, ~5 minutes on Enterprise |
+| Code size | 10,000 characters max |
+| Restricted APIs | Node process APIs such as `require`, `eval`, and `child_process` are blocked |
+
+---
+
+## Jobs (data syncs)
+
+Jobs are scheduled syncs from sources such as databases, sheets, and storage.
+
+| Limit | Pro / Starter | Enterprise |
+|-------|----------------|------------|
+| Active jobs | 10 or fewer recommended | Higher, contact Lamatic |
+| Sync capacity | Shared infrastructure (~2 GB) | Dedicated infrastructure with higher capacity |
+
+Need more jobs or larger syncs? Use **Enterprise**.
+
+**Default job processing settings** (Settings → Jobs)
+
+| Setting | Default |
+|---------|---------|
+| Batch size | 5 |
+| Max concurrency | 5 |
+| Max retries | 3 |
+
+---
+
+## Plan limits
+
+### Starter
+
+| Resource | Limit |
+|----------|-------|
+| Flows per project | 5 |
+| Starter projects per organization | 1 active |
+| Workflow executions | 3,000 per 30 days, 100 per day |
+| Vector records / writes | 1,000 each |
+| Reports & charts history | 7 days |
+| Team members | 3 (unless the org has a Pro project or is Enterprise) |
+| AI Assistant | Not available |
+
+### Pro / Trial
+
+| Resource | Limit |
+|----------|-------|
+| Workflow executions | 100,000 |
+| Vector records / writes | 10,000 each |
+| Reports & charts history | 30 days |
+| Sync flow duration | ~2 minutes of processing time per run |
+| AI Assistant | Available |
+
+### Enterprise
+
+| Resource | Limit |
+|----------|-------|
+| Workflow executions | Unlimited |
+| Vector / request caps | Unlimited |
+| Sync flow duration | ~5 minutes of processing time per run |
+| Nodes inside loops / batches | Unlimited |
+| Jobs / sync capacity | Dedicated, higher capacity |
+| Reports & charts history | Up to 90 days |
+
+---
+
+## Other limits
+
+| Limit | Value |
+|-------|-------|
+| Nested Flow calls (flow calling flow) | 100 levels max |
+| Large async payloads | Inputs above ~125 KB are stored automatically and still work |
+| Flow retries (configurable) | Max retries 5 or fewer, retry delay 30 seconds or less |
+
+---
+
+## Quick tips
+
+1. Keep 5 or fewer nodes inside a Batch. Use a sub-flow for more.
+2. Keep sync flows to about 20 nodes, or switch the trigger to async.
+3. Keep Code node work under the plan's processing time budget (~2 minutes on Pro).
+4. Keep active jobs to about 10 or fewer on Pro. Use Enterprise for more.
+5. For memory-heavy flows, enable container mode or reduce batch concurrency and payload size.
+
+---
+
+Hitting a `429` or a failed run? See the [Error Reference](/docs/error-reference) page for what each status code means and how to fix it.
+
+
+---
+
 # Logs
 
 Source: https://lamatic.ai/docs/logs.md
@@ -2195,8 +2644,22 @@ The Log Dashboard provides a centralized view of workflow executions, showing de
   | 204 | Successful execution of retried request. |
   | 208 | Node has skipped its execution when retried the request. Applicable for retries triggered from a failed node.|
   | 303 | Fallback Model is used. |
+  | 400 | Bad Request. Malformed request payload or invalid input. |
+  | 401 | Unauthorized. Invalid or missing API key. |
+  | 403 | Forbidden. Valid credentials, insufficient permissions. |
+  | 404 | Not Found. Flow, node, or resource doesn't exist. |
+  | 422 | Unprocessable Entity. Input didn't match expected schema/validation. |
+  | 429 | Too Many Requests. Rate limit exceeded. |
   | 500 | Flow Error - Signifies that an error occurred during the request processing, requiring further investigation. |
   | 509 | Failed execution of retried request. |
+
+  **Upstream/Provider Errors** — errors from the LLM provider, not your flow:
+
+  | Status Code | Description |
+  |-------------|--------------------------------------------------------------------------------------------------------------|
+  | 502 | Bad Gateway. The model provider (OpenAI, Anthropic, etc.) itself errored. |
+  | 503 | Service Unavailable. Provider overloaded/down, no fallback model available. |
+  | 504 | Gateway Timeout. Model provider took too long to respond. |
 
 - **Flow**: Unique FlowID associated with the request, enabling you to trace the entire lifecycle of a specific operation through your system..
 - **Trigger Node**: The source of the trigger (e.g., API Request, Slack, Google Drive).
@@ -2421,6 +2884,69 @@ Not sure what to pick? Start from your trigger and ask: “what’s the next ste
 
 ---
 
+# Confidential Reporting
+
+Source: https://lamatic.ai/docs/report-issue.md
+
+# Confidential Whistleblower Reporting
+
+Speak up safely and securely about potential violations or concerns
+
+<br />
+
+This Whistleblower Form is intended to encourage and enable employees and others to communicate potential legal and ethical concerns to appropriate leadership and oversight teams to allow Vanta to address and correct inappropriate conduct and actions. It is the responsibility of all board members, officers, employees, and contractors to report concerns about violations of code of ethics or suspected violations of law or regulations that govern Vanta’s operations.
+
+<br />
+All information gathered will remain anonymous and only provided to appropriate teams
+to facilitate escalation and remediation. It is prohibited by Vanta for anyone to
+retaliate against any individual who in good faith reports an ethics violation or
+a suspected violation of law, such as a complaint of discrimination, suspected fraud,
+or potential violation of any regulation related to Vanta's operations. Any employee
+who retaliates against an individual who has reported a violation in good faith is
+subject to disciplinary measures, up to and including termination of employment.
+Reports of violations or suspected violations will be kept confidential to the extent
+possible, consistent with the need to conduct an adequate investigation.{" "}
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "start",
+    marginTop: "10px",
+    marginBottom: "10px",
+  }}
+>
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSd2vn_dOgPUZvjjFnYBq8xZUknkHtYtY4J73YRuRgQ5IA-fdg/viewform"
+    target="_blank"
+  >
+    <button
+      style={{
+        padding: "10px 20px",
+        backgroundColor: "red",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <span style={{ color: "white" }}>Report Now</span>
+    </button>
+  </a>
+</div>
+
+## What Happens Next?
+
+1. Your report is securely transmitted to our compliance team.
+1. A preliminary review will be conducted.
+1. If additional information is needed, it will be requested through this system.
+1. Appropriate action will be taken based on the investigation findings.
+
+
+---
+
 # Reports
 
 Source: https://lamatic.ai/docs/reports.md
@@ -2497,11 +3023,9 @@ Source: https://lamatic.ai/docs/templates.md
 
 ![img_13.png](./img/template.png)
 
-
 Templates in Lamatic provide a streamlined way to create flows using pre-configured node sets, reducing the need for manual setup. This guide covers key processes for using templates effectively.
 
 ## Creating a New Flow from a Template
-
 
 To create a flow using a template in Lamatic Studio:
 
@@ -2511,7 +3035,6 @@ To create a flow using a template in Lamatic Studio:
 - Complete all required fields within the template.
 - Test the flow thoroughly to ensure it works as expected.
 - Once verified, deploy your flow.
-
 
 ## Sharing Templates
 
@@ -2666,6 +3189,125 @@ After selecting a template or shortcut, Lamatic opens the Flow Editor preloaded 
 1. Test the agent in the inline console before hitting **Deploy**.
 
 Once deployed, the green `Project Deployed` badge in the header confirms the latest version is live. You can redeploy as you iterate—the Vibe Build entry point is always a click away for starting additional agents.
+
+
+---
+
+# Vulnerability Disclosure
+
+Source: https://lamatic.ai/docs/vulnerability-disclosure.md
+
+# Vulnerability Disclosure Program
+
+At Lamatic, we believe in collaborating with the global security researcher community to enhance the security of our products. By welcoming researchers to identify vulnerabilities in our systems, we aim to make our products more secure while fostering a cooperative security ecosystem. To this end, we reward researchers for their valuable contributions.
+
+## Scope of the Program
+
+### In Scope
+The following areas and vulnerabilities are included in the Vulnerability Disclosure Program:
+
+1. **Products**
+   - [Lamatic.ai Studio](https://studio.lamatic.ai/) — only the web application hosted at **studio.lamatic.ai** is in scope.
+
+2. **Vulnerability Categories**
+   - Cross-Site Scripting (XSS)
+   - SQL Injection
+   - Authentication flaws
+   - Data leakage
+   - Privilege escalation
+
+### Out of Scope
+The following are **not covered** by the program:
+
+1. Any asset or subdomain other than **studio.lamatic.ai**
+2. Social engineering attacks (e.g., phishing)
+3. Physical security vulnerabilities
+4. Denial of Service (DoS) or Distributed Denial of Service (DDoS) attacks
+5. Brute-force attacks against authentication or rate-limited endpoints
+6. Use of non-application attack vectors such as machine takeover, cookie takeover, local privilege escalation, or network sniffing
+7. Findings based on use of intrusive tools such as **Burp Suite**, **Wireshark**, or similar packet interception/analyzer tools
+8. Third-party integrations, dependencies, or services not owned or controlled by Lamatic
+
+## Submission Guidelines
+
+Security researchers are required to provide detailed information about identified vulnerabilities. Submissions should include:
+
+1. A clear description of the vulnerability  
+2. Step-by-step instructions to reproduce the issue  
+3. An impact analysis outlining the potential risk  
+4. Supporting evidence such as screenshots, videos, or scripts  
+5. Recommendations for remediation  
+
+### Submission
+
+<iframe className="airtable-embed" src="https://hackerone.com/cda3ef79-05ba-4d48-9138-5da543d24bde/embedded_submissions/new?locale=en" title="Submit Vulnerability Report" width="100%" height="1000"></iframe>
+
+## Response Times
+
+We strive to provide timely responses to all submissions:
+
+1. Initial response: **24 hours**  
+2. Severity assessment: **20 business days**  
+3. Status updates: **Every 30 business days**  
+4. Payment processing: **Within 60 days of validation**  
+
+## Review Process
+
+| **Step**                           | **Description**                                                                                                                                                                                                                          |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Acknowledgment**              | Confirm receipt of the report within **24–48 hours**. Assign a unique **Reference ID** to track the submission.                                                                                                                         |
+| **2. Initial Assessment**          | - Validate the authenticity of the issue. <br/> - Perform a **Duplicate Check** to ensure the bug hasn’t been previously reported. <br/> - Note that **multiple reports within the same exploit chain are considered one vulnerability**. <br/> - Share an NDA if necessary. |
+| **3. Severity Analysis**           | Assess the severity using a standard rating system such as **CVSS**: <br/> - **Critical**: Immediate, widespread impact (e.g., RCE, data breaches). <br/> - **High**: Significant functionality or security risks. <br/> - **Medium**: Moderate impact. <br/> - **Low**: Minor risks. |
+| **4. Assignment & Prioritization** | Assign the validated issue to the appropriate team and prioritize based on severity.                                                                                                               |
+| **5. Development & Fixing**        | Address the issue based on priority and ensure timely resolution.                                                                                                                                  |
+| **6. Researcher Verification**     | Notify the researcher upon resolving the issue. Provide testing environments or evidence (e.g., logs, screenshots) for verification.                                                                 |
+| **7. Reward & Closure**            | Issue the reward based on the severity, impact, and uniqueness of the vulnerability.                                                                                                               |
+| **8. Post-Resolution Analysis**    | Conduct a root cause analysis to identify gaps in code review, testing, or system architecture.                                                                                                     |
+
+## Rules of Engagement
+
+To ensure ethical conduct, researchers are required to adhere to the following guidelines:
+
+| **Do’s**                                      | **Don’ts**                                                                                           |
+|----------------------------------------------|------------------------------------------------------------------------------------------------------|
+| Test **only** within the defined scope (**studio.lamatic.ai**). | Do not test on any other Lamatic domains or services.                                                |
+| Avoid impacting production systems.          | Do not use automated tools (e.g., Burp Suite, Wireshark) or network-level scanners.                   |
+| Report vulnerabilities immediately.          | Do not exploit vulnerabilities beyond proof-of-concept or attempt denial of service.                 |
+| Operate responsibly and respect user privacy. | Do not attempt brute-force, credential stuffing, or machine-level exploitation.                      |
+| Submit logically distinct vulnerabilities as separate reports. | Do not submit **multiple reports from the same exploit chain**, as these will be **grouped as one vulnerability**. |
+
+## Legal Protections
+
+### Safe Harbor Clause
+
+Lamatic provides safe harbor for researchers acting in good faith, ensuring protection from legal consequences as long as they:
+
+1. Operate within the defined scope and guidelines  
+2. Avoid compromising user data  
+3. Do not disrupt services  
+4. Responsibly report vulnerabilities through the program  
+
+## Disclosure Restrictions
+
+By submitting a vulnerability report, you agree to abide by Lamatic’s [Terms & Conditions](https://lamatic.ai/docs/legal/terms-of-service) and the conditions outlined in this program.
+
+- All submitted reports are **confidential** and must **not** be shared publicly — including on social media, blogs, forums, or other channels — regardless of their resolution status.  
+- Even if a vulnerability report is marked as **invalid**, it is **strictly prohibited** to disclose any details of the finding without explicit written consent from Lamatic.  
+- Breaching these terms may disqualify you from receiving a reward and could result in legal action under applicable laws.  
+
+## Rewards
+
+| **Severity Level** | **Example Vulnerabilities**                       | **Reward Range**  |
+| ------------------ | ------------------------------------------------- | ----------------- |
+| Critical           | Remote code execution, data breaches              | $300–$500         |
+| High               | Privilege escalation, bypassing authentication    | $100–$300         |
+| Medium             | Sensitive data exposure, API misuse               | $50–$100          |
+| Low                | Minor misconfigurations, non-sensitive info leaks | Goodies and swag  |
+
+<br/>
+**Note:** Rewards are determined based on the severity, reproducibility, and uniqueness of the submission.  
+<br/>
+Thank you for contributing to the security of Lamatic's products!
 
 
 ---
@@ -3459,7 +4101,6 @@ curl -X POST "$PROJECT_URL" \
   </Tabs.Tab>
 </Tabs>
 
-
 ### Understanding the Response
 
 The response structure can be configured in the **Schema** of the GraphQL Response node in your workflow. The response will follow this structure:
@@ -3710,7 +4351,6 @@ As of now, the following developer integrations are available for your Studio pr
 1. **[Langfuse (Beta)](/docs/reports/langfuse-integration)**: Advanced LLM observability and analytics to track, debug, and improve GenAI performance.
 2. **GitHub**: Connect a repository to commit workflow updates for seamless version control and team collaboration.
 
-
 > **Developer Note**: These integrations can help you keep your GenAI project optimized and data-driven.
 
 ---
@@ -3957,7 +4597,6 @@ Consider organizing tags into categories:
 - **Review regularly**: Periodically review and clean up unused or redundant tags.
 - **Limit tag count**: Avoid over-tagging flows; 2-5 relevant tags per flow is usually sufficient.
 - **Document conventions**: Share your tagging conventions with your team to ensure consistency.
-
 
 > **Quick Start**: Start tagging your flows today! Even a simple tagging system with 3-5 common tags can significantly improve your workflow management and accessibility.
 
@@ -4303,7 +4942,6 @@ Source: https://lamatic.ai/docs/flows/flow-config.md
 
 # Flow Config (YAML Format)
 
-
 ![img_6.png](./img/flow-config.png)
 
 At Lamatic.ai, we’ve enhanced our Flow Configuration to use YAML syntax, enabling a clear and organized way to define GenAI flow. This new structure supports both Low Code and No Code flexibility, allowing users to design and implement flows that meet specific needs efficiently. The YAML configuration is composed of `triggerNode`, `nodes`, and `responseNode`, each playing a distinct role in the workflow setup.
@@ -4624,7 +5262,6 @@ Source: https://lamatic.ai/docs/flows/sticky-notes.md
    - Use different colors to classify notes (e.g., **yellow for reminders, blue for important updates**).
    - Keep track of changes or comments without needing external documentation.
 
-
 Sticky Notes add a **new layer of flexibility** to Lamatic flow, making it easier than ever to manage and organize complex automation flows.
 
 
@@ -4732,21 +5369,462 @@ output = {
 
 ---
 
+# Agentic Doc Extraction
+
+Source: https://lamatic.ai/docs/nodes/ai/agentic-doc-extraction.md
+
+# Agentic Doc Extraction (Beta)
+
+## Overview
+
+The **Agentic Doc Extraction** node turns a document into structured, machine-readable output in a single flow step. Point it at a document URL, pick what you want back, and it runs OCR through a **per-run isolated container** and returns any combination of:
+
+- **Clean Markdown** of every page, per page, or joined into one document.
+- **Structured JSON** shaped to a schema you define, native document annotation, no separate parsing step.
+- **Every image** in the document, stored for you and returned with its bounding box, an optional per-image annotation, a ready-to-use link, and a permanent storage key.
+
+The key idea: extraction quality lives in your **Output Schema field descriptions**, not in a prompt. You describe what each field means and the OCR model reads the document for it. Each run spins up its own fresh container, so extractions are isolated from one another and scale independently.
+
+![Agentic Doc Extraction node](../img/agentic-doc-extraction/agentic-doc-extraction.png)
+
+<Callout type="info">
+This node accepts both **PDFs and images** (JPEG, PNG, WebP) by URL. It replaces the deprecated [Doc Extractor node](/docs/nodes/ai/doc-extractor), with native structured extraction, image storage, and bounding-box annotations built in. See [Migrating from Doc Extractor](#migrating-from-doc-extractor) below if you're moving existing flows.
+</Callout>
+
+## Features
+
+<details>
+  <summary>**Key Functionalities**</summary>
+
+1. **Markdown extraction**: clean, page-aware Markdown, returned per page or joined into a single document.
+2. **Structured JSON extraction**: define an **Output Schema** and the model returns a JSON object matching it, driven entirely by your per-field descriptions.
+3. **Image extraction + storage**: every image is stored in Lamatic-managed storage and returned with both a **presigned URL** (ready to use immediately) and a **durable storage key** (for retrieving the asset later).
+4. **Bounding boxes & per-image annotations**: each image comes back with its coordinates, and an optional **BBox Annotations** schema attaches a structured reading of each figure/chart.
+5. **Advanced OCR pipeline controls**: table format, page headers/footers, low-level layout blocks, per-word or per-page confidence scores, and image count/size limits, each individually toggleable.
+6. **Multiple providers**: Mistral (public API) and **Azure AI Foundry** (private endpoint), selected by the credential you lock in. Self-hosted Mistral endpoints are supported too.
+7. **Multi-config models**: attach more than one model configuration to the node.
+8. **Cost & usage telemetry**: every run returns a `_meta` block with pages processed, token/page usage, and a two-tier cost (plain vs. annotated).
+9. **Loop & batch aware**: inside a For Loop or Batch, each iteration writes its images under its own storage prefix, so runs never overwrite each other.
+10. **Per-run isolated execution**: one fresh container per run keeps extractions isolated and lets them scale independently.
+
+</details>
+
+<details>
+  <summary>**Benefits**</summary>
+
+1. **One step, three outputs**: Markdown, structured JSON, and stored images from a single node, instead of chaining OCR + parsing + upload.
+2. **Schema-first accuracy**: extraction rules live in the schema's field descriptions, so results are consistent and easy to tune without prompt engineering.
+3. **Durable, shareable assets**: extracted images persist beyond the run, addressable by a stable key and a signed URL.
+4. **RAG-ready**: clean Markdown and structured fields drop straight into vectorization and indexing flows.
+5. **Provider-flexible**: start on Mistral's public API and move to a private Azure AI Foundry endpoint without changing the flow.
+
+</details>
+
+## What Can I Build?
+
+1. Invoice and receipt data extraction pipelines with structured JSON output.
+2. Contract or report ingestion pipelines that need clean Markdown for search and summarization.
+3. Form-processing pipelines with schema-driven field extraction from scanned or digital forms.
+4. RAG ingestion pipelines that need both text and stored figures with durable references.
+
+---
+
+## How It Works
+
+1. You provide a **document URL** and select an **OCR provider + model**.
+2. The node hands the job to a **per-run container**, which downloads the document, splits every page, and OCRs the pages in parallel.
+3. When images are enabled, the container stores each extracted image in Lamatic-managed storage and returns a signed URL plus a durable key.
+4. The node assembles the response, `extractedText`, `structuredData`, `images`, `_meta`, and returns it to your flow.
+
+The endpoint is decided entirely by the **credential** you lock in: a Mistral key uses the public API; an Azure AI Foundry credential uses its private endpoint.
+
+---
+
+## Prerequisites
+
+Before adding the node, make sure you have:
+
+- An **OCR provider credential**: a Mistral API key, or an Azure AI Foundry credential (endpoint + key).
+- A **document reachable by URL**: either a direct URL or a value mapped from an upstream node.
+
+<Callout type="warning">
+The document host (and any custom OCR endpoint) must be reachable and allowlisted by the doc-extractor service. If a document fails to download, confirm the URL is public and, for private setups, that its host is on the service allowlist.
+</Callout>
+
+---
+
+## Setup
+
+### Step 1: Configure OCR Credentials
+
+Create a credential for your provider. The credential determines which endpoint the node calls.
+
+**Mistral (public API)**
+
+| **Key Name** | **Description** | **Example Value** |
+|---|---|---|
+| **Credential Name** | Name to identify this credential | `mistral-ocr` |
+| **API Key** | Your Mistral API key | `••••••••••••` |
+
+**Azure AI Foundry (private endpoint)**
+
+| **Key Name** | **Description** | **Example Value** |
+|---|---|---|
+| **Credential Name** | Name to identify this credential | `foundry-ocr` |
+| **Endpoint URL** | Your Azure AI Foundry OCR endpoint | `https://<resource>.services.ai.azure.com/...` |
+| **API Key** | Endpoint key | `••••••••••••` |
+
+<Callout type="info">
+Any `url` set in the model params is ignored, the endpoint comes only from the locked-in credential. This keeps the call target trusted and predictable.
+</Callout>
+
+### Step 2: Add the Node to Your Flow
+
+1. Add the **Agentic Doc Extraction** node.
+2. Set the **Document URL** (direct or mapped, e.g. `{{triggerNode_1.output.document_url}}`).
+3. Pick an **OCR Model** and its credential.
+4. Choose an **Output Format**, Markdown or JSON, and toggle **Include Images** / **Join Pages** to taste.
+5. (Optional) For JSON, define an **Output Schema**; for images, add a **BBox Annotations** schema; open **Advanced Settings** for pipeline knobs.
+
+---
+
+## Configuration Reference
+
+### Settings
+
+| **Field** | **Description** | **Options / Examples** | **Requirement / Default** |
+|---|---|---|---|
+| **Document URL** | URL of the document (PDF or image). Direct URL or a variable from an upstream node. | `https://.../report.pdf`, `{{triggerNode_1.output.document_url}}` | **Mandatory** |
+| **OCR Model** | OCR provider + model. The credential decides the endpoint (Mistral public API vs. Azure AI Foundry private endpoint). | `mistral / mistral-ocr-latest` | **Mandatory** |
+| **Output Format** | Format of the extraction. **JSON** unlocks the Output Schema for native structured extraction. | `Markdown`, `JSON` | Default: `Markdown` |
+| **Join Pages** | Concatenates page Markdown into one entry. `extractedText` is **always** an array either way (see [Output](#output)). | On / Off | Default: `On` |
+| **Include Images** | Store document images and return them with coordinates, a signed URL, a durable key, and (optionally) an annotation. Off = plain OCR, nothing stored. | On / Off | Default: `On` |
+| **Advanced Settings** | Reveal the advanced Mistral pipeline options. When off, none of them are shown *or* sent. | On / Off | Default: `Off` |
+| **Prompt (Optional)** | Extra guidance for structured extraction. Sent **only** when non-empty **and** a JSON Output Schema is set. | System prompt text | Default: empty |
+
+<Callout type="info">
+Put your extraction rules and edge cases in the **schema field descriptions**, not the prompt. The prompt is optional and is ignored unless you're in JSON mode with a schema.
+</Callout>
+
+### Outputs Pane: Schemas
+
+These two schemas appear under the **Outputs** pane and are each gated on a setting:
+
+| **Schema** | **Shown when** | **What it does** |
+|---|---|---|
+| **Output Schema (JSON Schema)** | **Output Format = JSON** | Defines the JSON object to extract. Per-property `description` text tells the model what each field means. Switching back to Markdown clears it. |
+| **BBox Annotations (JSON Schema)** | **Include Images = On** | Per-image annotation schema. Each extracted image is annotated with this structure and the result appears as `image_annotation` on the image. Turning Include Images off clears it. |
+
+<Callout type="info">
+Both schemas require an **annotation-capable OCR model** (`mistral-ocr-2505` or newer). On older models the annotation fields are simply not produced.
+</Callout>
+
+### Advanced Configs
+
+Revealed by **Advanced Settings**. Every knob is optional, anything left off is never sent, and the provider default applies.
+
+| **Field** | **Description** | **Options** | **Default** |
+|---|---|---|---|
+| **Table Format** | `Off` keeps tables **inline** in the page Markdown. `Markdown`/`HTML` return tables as a separate `tables` field. | `Off`, `Markdown`, `HTML` | `Off` |
+| **Extract Header** | Include page headers in the output. | On / Off | `Off` |
+| **Extract Footer** | Include page footers in the output. | On / Off | `Off` |
+| **Include Layout Blocks** | Return low-level layout blocks per page (adds a `blocks` field). | On / Off | `Off` |
+| **Confidence Scores** | Attach OCR confidence at the chosen granularity. | `Off`, `Word`, `Page` | `Off` |
+| **Image Limit** | Max images to extract per page. `0` = no limit. | Integer ≥ 0 | `0` |
+| **Image Minimum Size (px)** | Skip images smaller than this. `0` = no minimum. | Integer ≥ 0 | `0` |
+
+<Callout type="warning">
+**Table Format** requires OCR `2512` or newer; older models ignore it and tables stay inline. Only the advanced outputs you turn **on** ride into `extractedText`, anything left off is excluded even if the model returns it by default.
+</Callout>
+
+---
+
+## Output
+
+The node returns four outputs. `extractedText`, `structuredData`, and `images` are **always arrays**; `_meta` is an object.
+
+| **Field** | **Type** | **Additional Info** |
+|---|---|---|
+| **`extractedText`** | `Array` | **Join Pages On**: one merged entry `[{ markdown, ...enabled advanced outputs }]` (no `pageNumber`). **Off**: one entry per page `[{ pageNumber, markdown, ...enabled advanced outputs }]`. |
+| **`structuredData`** | `Array` | One `{ pageNumber, annotation }` per page. Populated only when **Output Format = JSON**. |
+| **`images`** | `Array` | One entry per stored image: `{ pageNumber, id, key, url, top_left_x, top_left_y, bottom_right_x, bottom_right_y, image_annotation? }`. `url` is a presigned link (expires, up to 7 days); `key` is the durable storage key; `image_annotation` is present only when a BBox schema was set. |
+| **`_meta`** | `Object` | Usage & cost telemetry, pages processed, model, and a two-tier cost (annotated rate replaces the plain rate when any annotation schema is in play). |
+
+### Example Output (Markdown mode, images on)
+
+```json
+{
+  "extractedText": [
+    { "pageNumber": 1, "markdown": "# Quarterly Report\n\nRevenue grew 12%..." },
+    { "pageNumber": 2, "markdown": "## Regional Breakdown\n\n![figure](https://...)" }
+  ],
+  "structuredData": [],
+  "images": [
+    {
+      "pageNumber": 2,
+      "id": "img-0",
+      "key": "proj_abc/flow_123/req_789/agenticDocExtractionNode_1/2/000-img-0.png",
+      "url": "https://...storage.../000-img-0.png?X-Amz-Expires=3600&...",
+      "top_left_x": 72,
+      "top_left_y": 140,
+      "bottom_right_x": 520,
+      "bottom_right_y": 460,
+      "image_annotation": { "chartType": "bar", "title": "Revenue by region" }
+    }
+  ],
+  "_meta": {
+    "model_name": "mistral-ocr-latest",
+    "pages_processed": 2,
+    "total_cost": 0.002
+  }
+}
+```
+
+### Example Output (JSON mode)
+
+```json
+{
+  "extractedText": [{ "pageNumber": 1, "markdown": "..." }],
+  "structuredData": [
+    {
+      "pageNumber": 1,
+      "annotation": {
+        "invoiceNumber": "INV-2025-0042",
+        "total": 1284.50,
+        "dueDate": "2025-02-01"
+      }
+    }
+  ],
+  "images": [],
+  "_meta": { "model_name": "mistral-ocr-latest", "pages_processed": 1 }
+}
+```
+
+---
+
+## Low-Code Example
+
+### Markdown extraction
+
+```yaml
+- nodeId: agenticDocExtractionNode_1
+  nodeType: agenticDocExtractionNode
+  nodeName: Agentic Doc Extraction
+  values:
+    documentUrl: "{{triggerNode_1.output.document_url}}"
+    outputFormat: markdown
+    joinPages: false
+    includeImages: true
+    ocrModelName:
+      - configName: configA
+        type: ocr/document
+        provider_name: mistral
+        model_name: mistral-ocr-latest
+        credential_name: mistral-ocr
+  needs:
+    - triggerNode_1
+```
+
+### Structured JSON extraction
+
+```yaml
+- nodeId: agenticDocExtractionNode_2
+  nodeType: agenticDocExtractionNode
+  nodeName: Agentic Doc Extraction
+  values:
+    documentUrl: "{{triggerNode_1.output.document_url}}"
+    outputFormat: json
+    includeImages: false
+    schema: |
+      {
+        "type": "object",
+        "properties": {
+          "invoiceNumber": { "type": "string", "description": "The invoice number, usually top-right" },
+          "total":         { "type": "number", "description": "Grand total including tax" },
+          "dueDate":       { "type": "string", "description": "Payment due date in YYYY-MM-DD" }
+        }
+      }
+    ocrModelName:
+      - configName: configA
+        type: ocr/document
+        provider_name: mistral
+        model_name: mistral-ocr-latest
+        credential_name: mistral-ocr
+  needs:
+    - triggerNode_1
+```
+
+---
+
+## Providers & Models
+
+| **Provider** | **Endpoint** | **Notes** |
+|---|---|---|
+| **Mistral** | Public Mistral API | Default. Use `mistral-ocr-latest` (or a pinned version). |
+| **Azure AI Foundry** | Your private Foundry endpoint | Endpoint comes from the credential. |
+
+**Model capability notes**
+
+- **Structured extraction & image annotations** (Output Schema, BBox Annotations) require `mistral-ocr-2505` or newer.
+- **Table Format** requires `mistral-ocr-2512` or newer.
+- Older OCR models still do Markdown extraction and image storage, they just skip the newer annotation/table features.
+
+---
+
+## Limits & Security
+
+- **Document size**: up to ~1,200 pages and ~100 MB per document (service defaults).
+- **Supported inputs**: PDF and image files (JPEG, PNG, WebP) by URL.
+- **SSRF protection**: document and OCR hosts are validated; private/internal addresses (localhost, `10.x`, `172.16-31.x`, `192.168.x`, link-local, and IPv6 equivalents) are blocked, and redirects are re-checked at every hop.
+- **Encrypted or non-PDF files** are rejected with a clear error rather than a partial result.
+- **Image storage**: signed URLs are capped at 7 days; the durable `key` never expires and can be re-signed later.
+
+<Callout type="warning">
+Signed image URLs **expire** (up to 7 days). For long-lived access, store the returned `key` and re-generate a URL when you need one, rather than persisting the signed URL.
+</Callout>
+
+---
+
+## Troubleshooting
+
+| **Problem** | **Solution** |
+|---|---|
+| **Empty output / node returns `{}`** | The node isn't available on the pod running the test (or the container host isn't deployed for that environment). Confirm the node is deployed and try again. |
+| **"Document URL is required"** | No `documentUrl` was provided or resolved. Check the field and any upstream mapping. |
+| **"Unsupported OCR provider"** | The selected provider isn't `mistral` or `azure-ai-foundry`. Re-pick the model/credential. |
+| **Document fails to download / "host not allowed"** | The document host isn't reachable or allowlisted. Use a public URL, or add the host to the service allowlist. |
+| **`storage_not_configured` (500)** | Include Images is on but the service has no storage configured. Turn Include Images off, or configure storage on the doc-extractor service. |
+| **HTTP 400 from the OCR provider in Markdown mode** | A prompt was set without a JSON Output Schema. Prompts are only valid alongside a schema, switch to JSON + schema, or clear the prompt. |
+| **No structured fields returned** | Output Format isn't JSON, no Output Schema is set, or the model predates `mistral-ocr-2505`. Set JSON + schema and use a 2505+ model. |
+| **No image annotations** | No BBox Annotations schema, Include Images is off, or the model predates `mistral-ocr-2505`. |
+| **Tables missing from a separate field** | Table Format is `Off` (tables stay inline) or the model predates `mistral-ocr-2512`. |
+| **Encrypted / not-a-PDF error** | The file is password-protected or isn't a real PDF/image. Provide an unencrypted, supported file. |
+| **`too_large`** | The document exceeds the page/byte limit. Split it or reduce its size. |
+
+---
+
+## Example Use Cases
+
+### Document Intelligence
+
+- **Invoices & receipts**: extract totals, line items, and dates as structured JSON.
+- **Contracts & reports**: clean Markdown for search, summarization, and review.
+- **Forms**: schema-driven field extraction from scanned or digital forms.
+- **Figures & charts**: pull images with bounding boxes and per-figure annotations.
+
+### RAG Applications
+
+- **Ingestion**: turn PDFs and scans into clean Markdown for vectorization and indexing.
+- **Multimodal retrieval**: index both text and stored figures with durable references.
+- **Question answering**: build assistants that answer over document content and structured fields.
+
+---
+
+## Migrating from Doc Extractor
+
+The **[Doc Extractor](/docs/nodes/ai/doc-extractor) node is deprecated** in favor of Agentic Doc Extraction, the same OCR/document-extraction job, rebuilt with native structured extraction, image storage with bounding boxes, and a per-run isolated container.
+
+<Callout type="warning">
+**Doc Extractor is deprecated.** You can no longer add a *new* Doc Extractor node from the palette. Your **existing flows keep running unchanged**, nothing breaks. New extraction work should use **Agentic Doc Extraction**.
+</Callout>
+
+### Why migrate
+
+Agentic Doc Extraction is a superset of Doc Extractor for the providers it supports, and adds:
+
+- **Image storage**: images come back as durable storage keys + signed URLs (not inline base64), and their URLs are rewritten into the Markdown.
+- **Per-image bounding-box annotations**: an optional schema reads each figure/chart.
+- **A structured `images` output** and richer `_meta` cost telemetry.
+- **Advanced pipeline controls**: headers/footers, layout blocks, confidence scores, image count/size limits.
+- **Isolated, scalable execution**: one fresh container per run.
+
+### Before you start: three breaking changes
+
+<Callout type="error">
+Read these before re-pointing production flows:
+
+1. **Gemini is not supported.** Doc Extractor accepted Mistral, Azure AI Foundry, **and Gemini**. Agentic Doc Extraction supports **Mistral and Azure AI Foundry only**. Gemini flows must switch provider.
+2. **`extractedText` is now an array, not a string.** Any downstream reference that treated it as text must be updated (see [Output mapping](#output-mapping)).
+3. **`structuredData` is now an array, not an object.** Same, update downstream references.
+</Callout>
+
+### Field mapping
+
+| Doc Extractor (old) | Agentic Doc Extraction (new) | Notes |
+|---|---|---|
+| **OCR Model** (`ocrModelName`) | **OCR Model** (`ocrModelName`) | Same field. **Providers changed:** Gemini removed; Mistral + Azure AI Foundry only. |
+| **Output Format**: `Markdown` / `Plain Text` / `JSON` | **Output Format**: `Markdown` / `JSON` | **`Plain Text` removed.** Use Markdown. |
+| **Output Schema** (`schema`) | **Output Schema** (`schema`) | Unchanged, still gated on `Output Format = JSON`. |
+| **Document URL** (`documentUrl`) | **Document URL** (`documentUrl`) | Unchanged. |
+| **Join Pages** (`joinPages`) | **Join Pages** (`joinPages`) | Same toggle, but the **output shape differs**, `extractedText` is always an array now. |
+| **Custom Extraction Prompt** (`customPrompt`, Gemini-only) | **Prompt (Optional)** (`prompts`) | Now a single system prompt, sent **only** alongside a JSON Output Schema. The Gemini-specific prompt override is gone. |
+| **Include Annotations** (`mistralIncludeAnnotations`) | **Include Images** (`includeImages`) | Behavior changed, images are **stored** and returned as `url` + durable `key` + bbox (+ optional annotation), instead of inline base64. |
+| **Table Format** (`mistralTableFormat`, default `Markdown`) | **Table Format** (`tableFormat`, default `Off`, under **Advanced Settings**) | **Default changed to `Off`** (tables stay inline). Now lives under the Advanced Settings toggle. |
+| — | **BBox Annotations** (`bboxSchema`) | **New**, per-image annotation schema (shown when Include Images is on). |
+| — | **Advanced Settings** + Extract Header / Extract Footer / Include Layout Blocks / Confidence Scores / Image Limit / Image Minimum Size | **New**, advanced Mistral pipeline knobs. |
+
+### Output mapping
+
+| Doc Extractor (old) | Agentic Doc Extraction (new) | Change |
+|---|---|---|
+| **`extractedText`**: `String` | **`extractedText`**: `Array` | **Breaking.** Join Pages On: `[{ markdown, ... }]`; Off: `[{ pageNumber, markdown, ... }]`. |
+| **`structuredData`**: `Object` | **`structuredData`**: `Array` | **Breaking.** Now one `{ pageNumber, annotation }` per page. |
+| — | **`images`**: `Array` | **New.** One entry per stored image with `url`, durable `key`, bbox coordinates, and optional `image_annotation`. |
+| **`_meta`**: `Object` | **`_meta`**: `Object` | Unchanged in spirit (usage + cost telemetry). |
+
+#### Updating downstream references
+
+| If you had... | Change it to... |
+|---|---|
+| `{{docExtractor.output.extractedText}}` (as text) | `{{node.output.extractedText[0].markdown}}` (Join Pages **on**), or iterate the array (Join Pages **off**) |
+| `{{docExtractor.output.structuredData.someField}}` | `{{node.output.structuredData[0].annotation.someField}}` |
+| Inline base64 images from **Include Annotations** | `{{node.output.images[0].url}}` (signed link) or `.key` (durable storage key) |
+
+### Migration steps
+
+1. **Add an Agentic Doc Extraction node** next to (or in place of) the old one. Doc Extractor can't be re-added, so build the new step fresh.
+2. **Re-select the provider + model.** Pick a Mistral or Azure AI Foundry credential. **Gemini users:** move to a supported provider.
+3. **Map the basics**: `Document URL`, `Output Format` (Markdown or JSON), `Output Schema` (if JSON), `Join Pages`.
+4. **If you used Include Annotations**, turn on **Include Images**, and (optionally) add a **BBox Annotations** schema. Update anything downstream to read from the new `images` output.
+5. **Update downstream references** for the new array shapes of `extractedText` and `structuredData` (see the table above).
+6. **Test the node**, then re-point the rest of the flow and remove the old step.
+
+### Migration FAQ
+
+**Will my existing Doc Extractor flows break?**
+No. Deployed flows keep executing exactly as before, only the ability to add *new* Doc Extractor nodes is removed.
+
+**Can I still use Gemini for OCR?**
+Not in Agentic Doc Extraction. Use Mistral or Azure AI Foundry. If you specifically need Gemini, keep the existing Doc Extractor flow until you can switch providers.
+
+**Where did the inline base64 images go?**
+Images are now stored in Lamatic-managed storage and returned as a signed `url` plus a durable `key`, which is more efficient and keeps large payloads out of the flow. Store the `key` for long-lived access, signed URLs expire (up to 7 days).
+
+**Do I have to switch to JSON output?**
+No. Markdown is still the default and works the same way (just returned as an array now). JSON is only needed when you want native structured extraction via an Output Schema.
+
+---
+
+## Additional Resources
+
+- [Mistral OCR Documentation](https://docs.mistral.ai/)
+- [Azure AI Foundry Documentation](https://learn.microsoft.com/azure/ai-foundry/)
+- [JSON Schema Reference](https://json-schema.org/)
+
+
+---
+
 # Classifier Node
 
 Source: https://lamatic.ai/docs/nodes/ai/classifier-node.md
 
 # Classifier Node
 
-
-
 ## Overview
 
 The Classifier Node is a powerful AI component that enables users to automatically categorize and classify data based on predefined criteria or machine learning models. This node is essential for applications requiring intelligent data sorting, sentiment analysis, content moderation, and automated decision-making processes.
 
 ![classifier.png](../img/classifier/classifier.png)
-
-
 
 ## Features
 
@@ -4771,7 +5849,7 @@ The Classifier Node is a powerful AI component that enables users to automatical
   advanced AI models for context-aware classification.
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Automate customer support by categorizing and routing user queries to the correct department.
 
@@ -4934,19 +6012,19 @@ nodes:
 
 ---
 
-# Doc Extractor Node
+# Doc Extractor Node (Deprecated)
 
 Source: https://lamatic.ai/docs/nodes/ai/doc-extractor.md
 
-# Doc Extractor Node
+# Doc Extractor Node (Deprecated)
 
-
+<Callout type="warning">
+**This node is deprecated.** You can no longer add a *new* Doc Extractor node from the palette. Existing flows keep running unchanged, nothing breaks. For new extraction work, use **[Agentic Doc Extraction](/docs/nodes/ai/agentic-doc-extraction)**, which supports the same job plus native structured extraction, stored images with bounding boxes, and a per-run isolated container. See [Migrating from Doc Extractor](/docs/nodes/ai/agentic-doc-extraction#migrating-from-doc-extractor) if you want to move an existing flow.
+</Callout>
 
 ## Overview
 
 The Doc Extractor node extracts content from a document URL (PDF or image), sends it to a selected LLM, and applies prompt-based instructions during extraction. You can control both the extraction behavior and the final response shape so downstream nodes receive output in the format you need.
-
-
 
 ## Features
 
@@ -4971,7 +6049,7 @@ The Doc Extractor node extracts content from a document URL (PDF or image), send
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Invoice and receipt data extraction pipelines
 2. Resume and profile parsing automations
@@ -5125,15 +6203,11 @@ Source: https://lamatic.ai/docs/nodes/ai/generate-image-node.md
 
 # Generate Image Node
 
-
-
 ## Overview
 
 The Generate Image Node is a powerful AI component that creates images from text descriptions using advanced image generation models. This node enables users to generate custom visuals for various applications including content creation, design prototyping, and creative workflows.
 
 ![image-gen.png](../img/imggen/imggen.webp)
-
-
 
 ## Features
 
@@ -5152,7 +6226,7 @@ The Generate Image Node is a powerful AI component that creates images from text
 1. **User-Centric Design**: Provides intuitive interfaces for prompt customization and system prompt definition, making it accessible to both beginners and advanced users.
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Automated generation of visual content for marketing campaigns.
 1. Integration of custom image generation into e-commerce platforms for product visualization.
@@ -5249,15 +6323,11 @@ Source: https://lamatic.ai/docs/nodes/ai/generate-json-node.md
 
 # Generate JSON Node
 
-
-
 ## Overview
 
 The Generate JSON Node is a specialized AI component that generates structured JSON data based on user input and predefined schemas. This node is particularly useful for applications requiring consistent data structures, API integrations, and automated data formatting.
 
 ![json-gen.png](../img/json/json.webp)
-
-
 
 ## Features
 
@@ -5287,7 +6357,7 @@ The Generate JSON Node is a specialized AI component that generates structured J
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Create AI-driven applications that require structured data output from natural language inputs.
 1. Develop automated systems for generating specific data formats for use in analytics and reporting.
@@ -5454,15 +6524,11 @@ Source: https://lamatic.ai/docs/nodes/ai/generate-text-node.md
 
 # Generate Text Node
 
-
-
 ## Overview
 
 The Generate Text node allows users to programmatically generate text outputs by submitting prompts to selected LLMs. These text outputs can be further processed within each flow. This node is particularly useful for applications requiring dynamic text creation, such as chatbots, content creation, and automated report generation.
 
 ![text-gen.png](../img/text-gen/text-llm.webp)
-
-
 
 ## Features
 
@@ -5489,7 +6555,7 @@ The Generate Text node allows users to programmatically generate text outputs by
 8. **Scalability**: Facilitates the creation of reusable prompt templates for diverse flow, ensuring consistency across projects.
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Automated content creation flow for blogs and social media posts.
 1. Intelligent chatbots capable of generating dynamic and personalized responses.
@@ -5655,16 +6721,11 @@ Source: https://lamatic.ai/docs/nodes/ai/mcp-node.md
 
 # MCP Node
 
-
-
 ## Overview
 
 The MCP Node enables seamless integration with external data sources, APIs, and tools through the Model Context Protocol (MCP). This node allows AI models to securely access external resources, retrieve real-time data, and execute specific functions in a structured manner. It's particularly useful for applications requiring dynamic data access, real-time information retrieval, and integration with third-party services.
 
-
 ![image-gen.png](../img/mcp/mcp.png)
-
-
 
 ## Features
 
@@ -5697,7 +6758,7 @@ The MCP Node enables seamless integration with external data sources, APIs, and 
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. **Weather Information Systems** - Retrieve real-time weather data for specific locations
 2. **Financial Data Applications** - Access stock prices, currency conversion rates, and market data
@@ -5895,7 +6956,6 @@ nodes:
 
 - The response generated by the MCP node, which includes the result of the MCP function execution processed through the AI model.
 
-
 ## Troubleshooting
 
 ### Common Issues
@@ -5923,15 +6983,11 @@ Source: https://lamatic.ai/docs/nodes/ai/multimodal-node.md
 
 # Multimodal Node
 
-
-
 ## Overview
 
 The Multimodal Node is an advanced AI component that can process and analyze multiple types of data including text, images, and audio using various AI models. This node enables complex multimodal workflows where different types of input data need to be processed together.
 
 ![Multimodal.png](../img/multimodal/multimodal.webp)
-
-
 
 ## Features
 
@@ -5960,7 +7016,7 @@ The Multimodal Node is an advanced AI component that can process and analyze mul
   of modern LLMs to deliver accurate and contextually rich outputs.
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Develop applications that seamlessly integrate text and image data processing for tasks like image captioning.
 1. Create tools for automatic generation of descriptive content for visual data, enhancing accessibility.
@@ -6138,13 +7194,9 @@ Source: https://lamatic.ai/docs/nodes/ai/rag-node.md
 
 # RAG Node
 
-
-
 ## Overview
 
 The RAG (Retrieval-Augmented Generation) Node is a sophisticated AI component that combines information retrieval with text generation. It first retrieves relevant information from a knowledge base or vector database, then uses that context to generate more accurate and informed responses.
-
-
 
 The RAG Node generates more relevant responses from a Language Learning Model (LLM) by using Retrieval Augmented Generation (RAG). This approach incorporates additional context retrieved from a vector database to improve the accuracy and relevance of the generated text.
 
@@ -6177,7 +7229,7 @@ The node allows users to configure parameters such as the embedding model, gener
   4. **User-Friendly Design**: Simplifies workflow creation and configuration through an intuitive interface.
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Develop AI-driven chatbots that provide context-aware responses using RAG for improved user interactions.
 1. Create automated customer support systems that deliver precise answers based on user queries and contextual data retrieval.
@@ -6403,15 +7455,11 @@ Source: https://lamatic.ai/docs/nodes/ai/supervisor-node.md
 
 # Supervisor Node
 
-
-
 ## Overview
 
 The **Supervisor Node** is an advanced AI component that provides oversight and management capabilities for workflow execution. It can monitor the performance of other nodes, make decisions about workflow routing, and ensure quality control throughout the process.
 
 ![Supervisor Node](../img/supervisor/supervisor-node.webp)
-
-
 
 ## Features
 
@@ -6432,7 +7480,6 @@ The **Supervisor Node** is an advanced AI component that provides oversight and 
   4. **User-Centric Design**: Provides a visual representation of multi-agent execution paths.
 
 </details>
-
 
 ## What Can I Build?
 
@@ -6598,14 +7645,10 @@ Source: https://lamatic.ai/docs/nodes/data/api-node.md
 
 # API Node
 
-
-
 ## Overview
 
 The Lamatic.ai API Node enables users to integrate external REST APIs effortlessly into their flow.
 ![api.png](../img/api/api-node.webp)
-
-
 
 ## Features
 
@@ -6639,7 +7682,7 @@ The Lamatic.ai API Node enables users to integrate external REST APIs effortless
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Automated Data Processing Flow:** Handle large datasets within the Lamatic platform effortlessly by automating repetitive tasks and calculations.
 1. **Custom Notification Systems:** Send alerts based on specific criteria or data changes, ensuring timely communication.
@@ -6730,14 +7773,11 @@ Source: https://lamatic.ai/docs/nodes/data/chunking-node.md
 
 # Chunking Node
 
-
 ## Overview
 
 The Chunking Node is a data processing component that breaks down large text documents into smaller, manageable chunks. This is essential for processing large documents with AI models that have token limits, enabling efficient text analysis and processing.
 
 ![chunking.png](../img/chunk/chunk.webp)
-
-
 
 ## Features
 
@@ -6771,7 +7811,7 @@ The Chunking Node is a data processing component that breaks down large text doc
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. Develop a system for efficient text vectorization and semantic retrieval.
 1. Create flow that handle large datasets by breaking them into manageable chunks.
@@ -6829,6 +7869,201 @@ nodes:
 - A nested object providing additional details about the chunk's origin or properties.
 
 ### `loc`
+- Location information within `metadata`, indicating where in the source text the chunk starts and ends (e.g. line numbers).
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                        | **Solution**                                                                                          |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **No chunks returned**              | Ensure **Text to chunk** resolves to a non-empty string; check the upstream node's output.              |
+| **Chunks cut off mid-sentence**     | Switch to `Recursive Character Text Splitter`, which respects paragraph and sentence boundaries better than `Character Text Splitter`. |
+| **Overlap larger than chunk size**  | Keep **Overlapping Characters** smaller than **Number of Characters**, otherwise chunking may behave unpredictably. |
+| **Separators not taking effect**    | Double-check the **List of separators** field matches the actual line breaks or delimiters in your source text. |
+
+### Debugging
+
+1. Check Lamatic Flow logs for the node's input and output to confirm the text reaching the node.
+2. Inspect the `chunks` output array to verify chunk count and size match your configuration.
+
+
+---
+
+# Document Handling Node
+
+Source: https://lamatic.ai/docs/nodes/data/document-handling-node.md
+
+# Document Handling Node
+
+## Overview
+
+Working with PDFs in a flow used to mean piecing together multiple nodes just to merge a couple of files or pull out a few pages. The Document Handling node does it in one step: pick what you want done, point it at your documents, and get a ready-to-use file back.
+
+It covers 14 operations across five types: Merge, Split, Pages, Bookmarks, and Metadata. You pick a **Type** first, then the specific **Operation** for that type, so you only ever see the fields relevant to what you're doing instead of one long list of every option at once.
+
+![Document Handling node in a flow](../img/doc-handling/document-handling-demo.gif)
+
+## Features
+
+<details>
+  <summary>Key Functionalities</summary>
+
+1. **Merge**: Combine multiple PDFs into one, with optional per-document page ranges and bookmark preservation.
+2. **Split**: Break a PDF apart every N pages, at specific page numbers, or into one file per page.
+3. **Pages**: Extract, delete, insert blank pages, insert pages from another document, or reorder/duplicate pages.
+4. **Bookmarks**: List, set, or remove a PDF's bookmarks.
+5. **Metadata**: Get or set document metadata, title, author, subject, creator, and keywords.
+
+</details>
+
+<details>
+  <summary>Benefits</summary>
+
+1. **One Node, Not a Chain**: Handle common PDF editing tasks without wiring together multiple nodes.
+2. **Only Relevant Fields**: The two-step Type → Operation picker keeps the panel focused on what you're actually configuring.
+3. **Safe by Default**: Each run executes in its own isolated container, and documents flow in and out as URLs rather than inline data.
+4. **Predictable I/O**: Every operation that produces a file returns the same shape, a presigned URL plus a durable storage key, so downstream nodes always know what to expect.
+
+</details>
+
+## What Can You Build?
+
+- Merge a cover page, generated report, and appendix into a single client-facing PDF.
+- Split a large scanned document into per-page or per-chapter files for downstream processing.
+- Strip a fixed cover page or insert a signed addendum into an existing contract.
+- Read or stamp document metadata (title, author, keywords) as part of a publishing pipeline.
+- Preserve or rebuild a PDF's bookmark outline when reassembling documents.
+
+---
+
+## How It Works
+
+Drop the node into a flow, provide your document URL(s), and run it. Each run spins up in its own isolated container.
+
+- **Inputs are URLs only.** Base64 input is rejected with a message pointing you at a URL instead, this keeps whole PDF files out of your workflow state and run logs.
+- **Outputs that produce a file** return a presigned URL and a durable storage key, ready to pass to the next step or store for later.
+- **List Bookmarks and Get Metadata** return their data directly instead of a file.
+
+<Callout type="warning">
+**Two things worth knowing before you rely on this node:**
+
+Password-protected PDFs are rejected. The node can't process an encrypted file it can't open. **Get Metadata** is the one exception, it can still inspect an encrypted document without the password.
+
+Some operations (**Extract**, **Insert**, and ranged **Merge**) can drop annotations, outlines, or form fields from the source PDF. This is a limitation of the underlying processing, not a bug, the node UI calls it out directly so it isn't a surprise.
+</Callout>
+
+## Setup
+
+### 1. Merge
+
+Combines multiple PDFs into a single document.
+
+#### Configuration Reference
+
+| Parameter | Description | Required | Example |
+| --- | --- | --- | --- |
+| Documents | The PDF files to merge, in order. Accepts URLs. | Yes | `["{{node1.output.url}}", "{{node2.output.url}}"]` |
+| Page Ranges | Optional per-document page ranges. Leave empty to include a document in full. | No | `1-3` |
+| Preserve Bookmarks | If enabled, carries each source document's bookmarks into the merged output. | No | true |
+
+#### Output
+
+- `files`: an array with one entry: `{ url, key, pageCount }` for the merged document.
+
+### 2. Split
+
+Breaks a single PDF into multiple files.
+
+#### Configuration Reference
+
+| Parameter | Applies to | Description | Required | Example |
+| --- | --- | --- | --- | --- |
+| Document | All | The PDF to split. Accepts a URL. | Yes | `{{node1.output.url}}` |
+| Operation | All | Which split mode to use. | Yes | `At Specific Page Numbers` |
+| Pages per File | Every N Pages | Number of pages per output file. | Yes, for this operation | `5` |
+| Pages | At Specific Page Numbers | Page numbers to split at. | Yes, for this operation | `3, 7, 12` |
+
+Every Page needs no additional field, each page becomes its own file.
+
+#### Output
+
+- `files`: an array with one entry per resulting file: `{ url, key, pageCount }`.
+
+### 3. Pages
+
+Adds, removes, or reorders pages within a document.
+
+#### Configuration Reference
+
+| Parameter | Applies to | Description | Required | Example |
+| --- | --- | --- | --- | --- |
+| Document | All | The PDF to modify. Accepts a URL. | Yes | `{{node1.output.url}}` |
+| Operation | All | Extract, Delete, Insert Blank Pages, Insert From Document, or Reorder/Duplicate. | Yes | `Extract` |
+| Pages | Extract, Delete | Page numbers or ranges to extract or delete. | Yes, for these operations | `1-2, 5` |
+| Position | Insert Blank Pages, Insert From Document | Where to insert the new pages. | Yes, for these operations | `after page 3` |
+| Count | Insert Blank Pages | Number of blank pages to insert. | Yes, for this operation | `1` |
+| Source Document | Insert From Document | URL of the PDF to pull pages from. | Yes, for this operation | `{{node1.output.url}}` |
+| Source Pages | Insert From Document | Page numbers or ranges to pull from the source document. | Yes, for this operation | `1-2` |
+| Page Order | Reorder/Duplicate | The new page order. Repeat a page number to duplicate it. | Yes, for this operation | `1, 1, 2, 4, 3` |
+
+<Callout type="warning">
+Extract and Insert can drop annotations, outlines, and form fields from the affected pages.
+</Callout>
+
+#### Output
+
+- `files`: an array with one entry: `{ url, key, pageCount }` for the resulting document.
+
+### 4. Bookmarks
+
+Reads or modifies a PDF's bookmark outline.
+
+#### Configuration Reference
+
+| Parameter | Applies to | Description | Required | Example |
+| --- | --- | --- | --- | --- |
+| Document | All | The PDF to read or modify. Accepts a URL. | Yes | `{{node1.output.url}}` |
+| Operation | All | List, Set, or Remove. | Yes | `Set` |
+| Bookmarks (JSON) | Set | The bookmark outline to write, as JSON. | Yes, for this operation | `[{"title": "Chapter 1", "page": 1}]` |
+| Replace Existing Bookmarks | Set | If enabled, replaces the document's entire bookmark outline. If disabled, adds to the existing outline. | No | true |
+
+#### Output
+
+- **List**: `bookmarks`, the document's current bookmark outline.
+- **Set / Remove**: `files`, an array with one entry: `{ url, key, pageCount }` for the updated document.
+
+### 5. Metadata
+
+Reads or writes a PDF's document metadata.
+
+#### Configuration Reference
+
+| Parameter | Applies to | Description | Required | Example |
+| --- | --- | --- | --- | --- |
+| Document | All | The PDF to read or modify. Accepts a URL. | Yes | `{{node1.output.url}}` |
+| Operation | All | Get or Set. | Yes | `Set` |
+| Title | Set | Document title. | No | `Q3 Board Report` |
+| Author | Set | Document author. | No | `Finance Team` |
+| Subject | Set | Document subject. | No | `Quarterly Results` |
+| Creator | Set | Creating application or person. | No | `Lamatic` |
+| Keywords | Set | Search keywords for the document. | No | `finance, quarterly, board` |
+
+#### Output
+
+- **Get**: `metadata`, an object with the document's current title, author, subject, creator, and keywords. Works even on password-protected PDFs, since reading metadata doesn't require decrypting content.
+- **Set**: `files`, an array with one entry: `{ url, key, pageCount }` for the updated document.
+
+## Troubleshooting
+
+### Common Issues
+
+| Problem | Solution |
+| --- | --- |
+| Request rejected with a password/encryption error | The source PDF is password-protected. Remove the password before running the node, or use Get Metadata if you only need to read its metadata. |
+| Base64 input rejected | This node only accepts document URLs. Upload the file first (for example, via a storage node) and pass its URL instead. |
+| Annotations, form fields, or outlines missing after Extract, Insert, or a ranged Merge | Expected for these operations. If you need to preserve them, avoid page-range operations on the affected pages. |
+| Split or Pages operation returns an error about page numbers | Confirm the page numbers or ranges you supplied exist in the source document, out-of-range pages are rejected rather than silently ignored. |
 
 
 ---
@@ -6839,15 +8074,11 @@ Source: https://lamatic.ai/docs/nodes/data/extract-from-file-node.md
 
 # Extract from File Node
 
-
-
 ## Overview
 
 The Extract from File Node is a powerful data extraction component that can process and extract content from various file formats including PDFs, Word documents, text files, and more. This node enables users to convert unstructured file content into structured data for further processing.
 
 ![extract-file.png](../img/file/extract.webp)
-
-
 
 ## Features
 
@@ -6878,7 +8109,7 @@ The Extract from File Node is a powerful data extraction component that can proc
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Data processing pipelines that handle multiple file formats
 2. Automated document parsing systems
@@ -7183,15 +8414,11 @@ Source: https://lamatic.ai/docs/nodes/data/hybrid-search-node.md
 
 # Hybrid Search Node
 
-
 ## Overview
 
 The Hybrid Search Node is an advanced search component that combines multiple search strategies including semantic search, keyword search, and other retrieval methods to provide comprehensive and accurate results from vector databases.
 
-
 ![hybrid-search.png](../img/hybrid/hybrid.webp)
-
-
 
 ## Features
 
@@ -7227,7 +8454,7 @@ The Hybrid Search Node is an advanced search component that combines multiple se
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Create a dynamic search interface within your application to query a vector database.
 1. Develop a personalized recommendation system using text and vector based search results.
@@ -7300,7 +8527,6 @@ nodes:
   - **`data`**: A string containing the content or information retrieved for the search result.
   - **`score`** (duplicate at the top level): Same as the one inside `_additional`.
 
-
 ### Example Output
 
 ```json
@@ -7340,15 +8566,11 @@ Source: https://lamatic.ai/docs/nodes/data/keyword-search-node.md
 
 # Keyword Search Node
 
-
-
 ## Overview
 
 The Keyword Search Node is a search component that performs text-based searches using specific keywords and phrases. This node enables users to find relevant content based on exact keyword matches and text patterns.
 
 ![keyword-search.png](../img/keyword/keyword.webp)
-
-
 
 ## Features
 
@@ -7384,7 +8606,7 @@ The Keyword Search Node is a search component that performs text-based searches 
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Create a dynamic search interface within your application to query a vector database.
 
@@ -7464,15 +8686,11 @@ Source: https://lamatic.ai/docs/nodes/data/memory-add-node.md
 
 # Memory Add Node
 
-
-
 ## Overview
 
 The Memory Add Node is a data storage component that stores and manages information in memory for use across workflow executions. This node enables persistent data storage and retrieval within workflows.
 
 ![memory-add.png](../img/mem-add/mem-add.webp)
-
-
 
 ## Features
 
@@ -7497,7 +8715,7 @@ The Memory Add Node is a data storage component that stores and manages informat
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Chatbots that remember conversation history and user preferences.
 
@@ -7607,15 +8825,11 @@ Source: https://lamatic.ai/docs/nodes/data/memory-retrieve-node.md
 
 # Memory Retrieve Node
 
-
-
 ## Overview
 
 The Memory Retrieve Node is a data retrieval component that fetches stored information from memory for use in current workflow executions. This node enables access to previously stored data and context.
 
 ![memory-retrieve.png](../img/memory-retrieve/mem-ret.webp)
-
-
 
 ## Features
 
@@ -7640,7 +8854,7 @@ The Memory Retrieve Node is a data retrieval component that fetches stored infor
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. AI Nodes that can reference past memories for context-aware responses.
 
@@ -7683,7 +8897,7 @@ To Apply the Filter in Memory Retrieve Node, Click on the Filters
 1. Unique Id
    ![memory-retrieve.png](../img/memory-retrieve/memory-filter-options.png)
 
-## Outputs
+## Output Formats
 
 The node provides two output formats:
 ![memory-retrieve.png](../img/memory-retrieve/access.png)
@@ -7787,8 +9001,6 @@ Source: https://lamatic.ai/docs/nodes/data/tables-node.md
 
 # Tables Node(Beta)
 
-
-
 ## Overview
 
 The Tables Node is a structured data management component that performs various operations on relational data tables, including querying, inserting, updating, and deleting records. This node provides full CRUD control over your Lamatic Data Tables directly within a flow.  
@@ -7796,8 +9008,6 @@ The Tables Node is a structured data management component that performs various 
 The Tables Node uses **SQLite** as its underlying database engine.
 
 ![extract-file.png](../img/file/tables.webp)
-
-
 
 ## Features
 
@@ -7822,7 +9032,7 @@ The Tables Node uses **SQLite** as its underlying database engine.
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 - Store user inputs or API responses into a table from a flow.
 - Query records to personalise AI responses with real data.
@@ -8113,15 +9323,11 @@ Source: https://lamatic.ai/docs/nodes/data/vector-search-node.md
 
 # Keyword Search Node
 
-
-
 ## Overview
 
 The Keyword Search Node is a search component that performs text-based searches using specific keywords and phrases. This node enables users to find relevant content based on exact keyword matches and text patterns.
 
 ![keyword-search.png](../img/keyword/keyword.webp)
-
-
 
 ## Features
 
@@ -8157,7 +9363,7 @@ The Keyword Search Node is a search component that performs text-based searches 
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Create a dynamic search interface within your application to query a vector database.
 
@@ -8237,15 +9443,11 @@ Source: https://lamatic.ai/docs/nodes/data/vectordb-node.md
 
 # VectorDB Node
 
-
-
 ## Overview
 
 The VectorDB Node is a comprehensive vector database management component that performs various operations including insertion, deletion, updating, and management of vector data. This node provides full control over vector database operations.
 
 ![vector-actions.png](../img/vector/vector-actions.webp)
-
-
 
 ## Features
 
@@ -8269,7 +9471,7 @@ The VectorDB Node is a comprehensive vector database management component that p
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 - Automate document indexing pipelines.
 - Build search interfaces with filterable vector data.
@@ -8471,13 +9673,9 @@ Source: https://lamatic.ai/docs/nodes/data/vectorize-node.md
 
 # Vectorize Node
 
-
-
 ## Overview
 
 The Vectorize Node is a data transformation component that converts text data into vector embeddings. These embeddings enable semantic search, similarity comparisons, and other AI-powered applications that require numerical representations of text.
-
-
 
 ## Features
 
@@ -8511,7 +9709,7 @@ The Vectorize Node is a data transformation component that converts text data in
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. Build advanced search engines that can understand and retrieve information based on semantic meaning rather than keywords.
 1. Create recommendation systems that provide more accurate suggestions by understanding the context and meaning of user preferences.
@@ -8549,7 +9747,6 @@ The Vectorize Node is a data transformation component that converts text data in
       model_name: text-embedding-ada-002
       provider_name: openai
 ```
-
 
 ## Output
 
@@ -8595,13 +9792,9 @@ Source: https://lamatic.ai/docs/nodes/logic/batch-node.md
 
 # Batch Node
 
-
-
 ## Overview
 
 The Batch Node is similar to the Loop (for loop) Node: it iterates over a **List** or a **Range**. The key difference is that Batch runs iterations **in parallel**, and you can control throughput using a **Concurrency Limit**.
-
-
 
 <Callout type="info">
 Use Batch when you want faster processing (parallelism). Use Loop when you need strict ordering or sequential dependencies between iterations.
@@ -8625,7 +9818,7 @@ Use Batch when you want faster processing (parallelism). Use Loop when you need 
   3. **Flexible iteration:** Works with both structured lists and numeric ranges.
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Parallel web/page processing:** Run multiple scrapes or fetches concurrently.
 2. **Fan-out API calls:** Enrich many records by calling a third-party API with controlled concurrency.
@@ -8718,14 +9911,11 @@ Source: https://lamatic.ai/docs/nodes/logic/branch-node.md
 
 # Branch Node
 
-
 ## Overview
 
 The Branch Node is a workflow control component that creates multiple execution paths based on conditions or data routing logic. This node enables complex workflow branching and parallel processing of different data streams.
 
 ![branch.png](../img/branch/branch.webp)
-
-
 
 ## Features
 
@@ -8759,12 +9949,12 @@ The Branch Node is a workflow control component that creates multiple execution 
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Multi-step Automation:** Run several tasks in parallel, such as processing data, sending emails, and updating records, all within a single workflow.
 1. **Simultaneous Integrations:** Connect multiple tools or systems at the same time, ensuring efficient data synchronization and faster task execution.
 
-## Configuration
+## Setup
 
 1. **Open the Branch Node Configuration Panel:**:
    - Here you can manage branches.
@@ -8870,16 +10060,11 @@ Source: https://lamatic.ai/docs/nodes/logic/code-node.md
 
 # Code Node 
 
-
-
 ## Overview
 
 The Code Node is a programming component that allows users to execute custom JavaScript code within workflows. This node enables custom data processing, logic implementation, and integration with external systems through code.
 
 ![code.png](../img/code/code.webp)
-
-
-
 
 <Callout type="info">
  We will expand support to include additional programming languages.
@@ -8917,14 +10102,14 @@ The Code Node is a programming component that allows users to execute custom Jav
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Automated Data Processing Flow:** Handle large datasets within the Lamatic platform effortlessly by automating repetitive tasks and calculations.
 1. **Custom Notification Systems:** Send alerts based on specific criteria or data changes, ensuring timely communication.
 1. **Third-Party API Integration:** Extend the functionality of existing Lamatic flows by incorporating external APIs.
 1. **Dynamic Report Generation:** Compile and present data insights automatically for real-time analysis and decision-making.
 
-## Configuration
+## Setup
 
 1. **Open the Code Node Configuration Panel:**:
    - Click on the Code Node in your flow to access its configuration options.
@@ -8987,14 +10172,11 @@ Source: https://lamatic.ai/docs/nodes/logic/condition-node.md
 
 # Condition Node 
 
-
 ## Overview
 
 The Lamatic.ai Condition Node is a versatile component designed to introduce condition logic into your flow. Think of it as the decision-maker for your applications. By evaluating variables and triggers, it determines the next steps in your workflow, enabling a more dynamic and responsive system. Whether you're automating processes, managing data flows, or creating complex logic, this node is the foundation for smarter decision-making.
 
 ![execute.png](../img/condition/condition.webp)
-
-
 
 ## Features
 
@@ -9016,14 +10198,14 @@ The Lamatic.ai Condition Node is a versatile component designed to introduce con
   4. **Improved Scalability:** Build reusable and adaptable flow components for diverse applications.
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Automated Decision-Making Processes:** Create flow that analyze data inputs and execute the appropriate actions automatically.
 1. **Dynamic Flow:** Adjust processes based on real-time inputs, such as user actions or external data feeds.
 1. **Custom Logic Flows:** Enhance your projects by embedding unique business logic directly into your applications.
 1. **Optimized Multi-Step Processes:** Save time and reduce errors by automating repetitive decision-making tasks.
 
-## Configuration
+## Setup
 
 1. **Open the Condition Node Configuration Panel**:
 
@@ -9160,13 +10342,9 @@ Source: https://lamatic.ai/docs/nodes/logic/end-node.md
 
 # End Node
 
-
-
 ## Overview
 
 The End Node is used to **stop the execution of a flow immediately**. When the flow reaches this node, Lamatic **skips any nodes that would execute after it** and routes execution directly to the **Final Trigger Response** node.
-
-
 
 <Callout type="info">
 Place an End Node on any branch where you want to stop early (for example, after a validation failure or a “no-op” condition). Any nodes connected after the End Node won’t run.
@@ -9190,7 +10368,7 @@ Place an End Node on any branch where you want to stop early (for example, after
   3. **Safer automation:** Prevent side effects (writes, sends, deletes) when a condition indicates execution should halt.
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Guard rails / validation gates:** End the flow when required inputs are missing or invalid.
 2. **Early return logic:** Return a response when a cached result exists, without running the rest of the pipeline.
@@ -9254,15 +10432,11 @@ Source: https://lamatic.ai/docs/nodes/logic/execute-flow.md
 
 # Execute Flow Node
 
-
-
 ## Overview
 
 The Execute Flow Node is a workflow orchestration component that allows users to call and execute other workflows from within a current workflow. This node enables modular workflow design and reusability of workflow components.
 
 ![execute-flow.png](../img/execute/execute.webp)
-
-
 
 ## Features
 
@@ -9425,16 +10599,11 @@ Source: https://lamatic.ai/docs/nodes/logic/loop-node.md
 
 # Loop Node
 
-
-
 ## Overview
 
 The Loop Node is a control flow component that enables iterative processing of data by repeating operations on collections or arrays. This node is essential for processing large datasets and implementing repetitive logic in workflows.
 
 ![loop.png](../img/loop-node/loop.webp)
-
-
-
 
 ## Features
 
@@ -9455,7 +10624,7 @@ The Loop Node is a control flow component that enables iterative processing of d
 
 </details>
 
-## What can I build?
+## What Can I Build?
 
 1. Automate repetitive tasks, such as sending emails to multiple recipients.
 
@@ -9578,7 +10747,6 @@ This feature allows for iterating over results dynamically by replacing the inde
 
 {{forLoopEndNode_271.output.loopOutput[0].hybridSearchNode_299.output.searchResults}}
 
-
 for (let i = 0; i < recipeIngredientsFinal.length; i++) {
   recipeIngredientsFinal[i].ingredientId={{forLoopEndNode_271.output.loopOutput[i].hybridSearchNode_299.output.searchResults[0].ingredientId}}
   //Replace index with whatever index you want
@@ -9624,17 +10792,11 @@ Source: https://lamatic.ai/docs/nodes/logic/variable-node.md
 
 # Variable Node
 
-
-
 ## Overview
 
 The Variable Node is a data management component that allows users to define and manage variables for storing and manipulating data within workflows. This node enables dynamic data handling and state management across workflow executions.
 
 ![variable.png](../img/variable/variable.png)
-
-
-
-
 
 You can map variables in the Variable Node using a simple interface. Each variable can be assigned a type (e.g., string, number) and a value, which can be a static value or a reference to another node's output.
 
@@ -9670,7 +10832,7 @@ You can map variables in the Variable Node using a simple interface. Each variab
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Centralized Variable Management:** Store and manage all key values in one place for use across your entire flow.
 2. **Dynamic Data Passing:** Pass outputs from one node as variables to multiple downstream nodes, enabling flexible and dynamic workflows.
@@ -9708,7 +10870,7 @@ The Variable Node in Lamatic lets you define variables and assign them values, w
 }
 ```
 
-## Configuration
+## Setup
 
 1. **Add a Variable Node:** Drag and drop a Variable Node into your flow.
 2. **Define Variables:** For each variable, specify a name, type (e.g., string, number, boolean), and value. The value can be static or reference another node's output (e.g., `{{nodeId.output.field}}`).
@@ -9773,17 +10935,11 @@ Source: https://lamatic.ai/docs/nodes/logic/wait-node.md
 
 # Wait Node
 
-
-
 ## Overview
 
 The Wait Node is a timing control component that introduces delays in workflow execution. This node is useful for rate limiting, scheduling, and ensuring proper timing between workflow steps.
 
 ![wait.png](../img/wait/wait-node.webp)
-
-
-
-
 
 ## Features
 
@@ -9806,7 +10962,7 @@ The Wait Node is a timing control component that introduces delays in workflow e
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. **Throttled API Calls:** Wait between API calls to respect third-party rate limits.
 2. **Retry Gaps:** Wait before retrying failed operations or requests.
@@ -10451,14 +11607,12 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 
 ![Multi Modal Agent](./img/multi-modal-agent.png)
 
-
 ## Why Use the Multi Modal Agent?
 - **AI-Generated Visuals:** Automatically generate images using state-of-the-art models.  
 - **AI Text Generation:** Generate text outputs based on custom prompts.
 - **Customizable Prompts:** Define prompts to create images tailored to specific needs.  
 - **Workflow Integration:** Seamlessly connect content generation to automated processes.  
 - **Flexible Model Selection:** Choose from multiple AI models for diverse visual outputs.  
-
 
 ## Key Features
 <details>
@@ -10481,13 +11635,11 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 
 </details>
 
-
 ## What Can I Build?
 - **Automated Social Media Content Creation** – Generate visuals for social media, marketing, and branding.
 - **Personalized Image Recommendations** – Create custom images based on user preferences.
 - **Dynamic Visual Content Generation** – Produce images for e-commerce, advertising, and design.
 - **Interactive Applications** – Develop tools for image-based user interactions and feedback.
-
 
 ## How to Use the Multi Modal Agent?
 ### Creating an Multi Modal Agent via Flow Editor
@@ -10502,7 +11654,6 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 2. **Choose Multi Modal Agent** – Select from available agent types.  
 3. **Configure Model & Prompts** – Set up AI credentials and parameters.  
 4. **Deploy & Integrate** – Save and start using the agent in your application.  
-
 
 ## Configuration Options
 | **Parameter**             | **Description**                                                                                                | **Example Value** |
@@ -10520,7 +11671,6 @@ It integrates seamlessly into flow and supports generative AI models like OpenAI
 
 You can save the configuration of any agent by clicking on the `Load Save Config` button and selecting `Save as New`. 
 This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
-
 
 ## Low-Code Example
 ```yaml
@@ -10598,7 +11748,6 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 
 </details>
 
-
 ## How to Use the Supervisor Agent?
 ### Creating a Supervisor Agent via Flow Editor
 1. **Add an Agent Node** - Select **Supervisor Agent** from the node list.  
@@ -10613,7 +11762,6 @@ The **Supervisor Agent** is a specialized AI agent in Lamatic.ai designed to man
 2. **Select Supervisor Agent** - Choose it from the available agent types.  
 3. **Configure Agent Settings** - Adjust memory, iteration limits, and agent paths.  
 4. **Deploy the Agent** - Save and activate it in your workflow.  
-
 
 ## Configuration Options
 | **Parameter**        | **Description**                                             | **Example Value** |
@@ -10676,7 +11824,6 @@ By properly configuring your agent paths, you enable the Supervisor Agent to eff
 
 You can save the configuration of any agent by clicking on the `Load Save Config` button and selecting `Save as New`. 
 This will save the configuration of the agent and you can use it later by clicking on the `Load Configuration` button in other agents.
-
 
 ## Low-Code Example
 ```yaml
@@ -10772,13 +11919,11 @@ Source: https://lamatic.ai/docs/agents/text-agent.md
 The **Text Agent** is a generative AI agent that enables users to programmatically create text-based outputs using prompts and selected LLMs. It is ideal for applications requiring dynamic content generation, such as chatbots, content creation, automated reporting, and structured AI responses.
 ![Text Agent](./img/text-agent.png)
 
-
 ## Why Use the Text Agent?
 - **AI-Powered Content Generation:** Automate text creation for various use cases.
 - **Customizable AI Responses:** Define system and user prompts for precise output.
 - **Flexible Model Selection:** Choose from different LLM providers based on your needs.
 - **Seamless Integration:** Connect with flow for automated processing.
-
 
 ## Key Features
 <details>
@@ -10801,13 +11946,11 @@ The **Text Agent** is a generative AI agent that enables users to programmatical
 
 </details>
 
-
 ## What Can I Build?
 - **Automated Content Generation** – AI-powered writing for blogs, social media, and marketing.  
 - **Chatbots & Virtual Assistants** – Dynamic, context-aware conversational agents.  
 - **Automated Reports & Summaries** – AI-driven data analysis and business intelligence reporting.  
 - **Email & Message Drafting** – Smart communication tools for efficiency and personalization.  
-
 
 ## How to Use the Text Agent?
 ### Creating a Text Agent via Flow Editor
@@ -10822,7 +11965,6 @@ The **Text Agent** is a generative AI agent that enables users to programmatical
 2. **Choose Text Agent** – Select from available agent types.  
 3. **Configure Model & Prompts** – Set up LLM credentials and prompt templates.  
 4. **Deploy & Integrate** – Save and start using the agent in your application.  
-
 
 ## Configuration Options
 | **Parameter**             | **Description**                                                                                                | **Example Value** |
@@ -10864,7 +12006,6 @@ This will save the configuration of the agent and you can use it later by clicki
 
 ### `generatedResponse`
 - A string containing the text output generated by the model based on the input prompt.
-
 
 ### Example Output
 
@@ -11242,7 +12383,6 @@ Lamatic's Memory Store is designed to store and manage contextual information ef
 1. Enterprise Knowledge Management: Retain historical context for collaborative applications.
 1. Developer Customization: Enable developers to define custom schemas for specific use cases.
 
-
 ## Implementation 
 1. **Initialize the Memory Store:** Go to Context and select Create New Memory Store.
 1. **Define a Unique Identifier:** Use a User ID, Session ID, or another unique key to link stored information.
@@ -11321,7 +12461,6 @@ To access the Vector Explorer, navigate through the following path: Context > Ve
 One of the key features of the Vector Explorer is its ability to run sample search queries. This functionality allows you to test and refine your search parameters, ensuring that your vector database is performing optimally. As you run these queries, you can examine various similarity scores, which provide valuable insights into how closely different vector objects relate to each other.
 
 The similarity scores are particularly useful for understanding the semantic relationships between your vector objects. By analyzing these scores, you can fine-tune your vector representations, improve your search algorithms, and ultimately enhance the overall performance of your AI applications that rely on this vector data.score.
-
 
 ### Delete record
 You can also remove the records by clicking the delete button.
@@ -11531,7 +12670,6 @@ The Prompt Assistant makes prompt engineering more accessible, helping both begi
 To make your prompts more dynamic and context-aware, you can **insert variables** directly into your prompts. Variables allow you to personalize responses or integrate real-time data into the prompt text.
 ![img_1.png](./img/prompt-var2.png)
 
-
 1. Click **Insert Variable** to add dynamic placeholders.
 2. Choose the data source:
    - **Project**: Use data specific to your project context.
@@ -11696,7 +12834,6 @@ To integrate tools into your flow, follow these steps:
 2. Choose either **Generate Text Node** or **Multimodal Node**, then navigate to node config.  
 3. Select the desired tools. You can add multiple tools as needed.  
 
-
 ## Troubleshooting
 
 ### Common Issues
@@ -11824,7 +12961,6 @@ Lamatic.ai allows you to validate your entire flow from start to finish before d
 Each test run executes the full flow using your provided input, showing node-by-node progress and output.
 </Callout>
 
-
 ## Trigger-Specific Testing Approaches
 
 Different triggers require unique testing methods:
@@ -11922,6 +13058,10 @@ Source: https://lamatic.ai/docs/interface/graphql.md
 
 # Executing Flows with GraphQL API
 
+<Callout type="info">
+  New to the API? The [Integration Guide](/docs/sdk/integration-guide) walks through your first call step by step. Come back here for the full GraphQL reference, async flows, and response shapes.
+</Callout>
+
 ## What is GraphQL?
 
 GraphQL is an open-source data query and manipulation language developed by Facebook. It provides a more efficient, powerful, and flexible alternative to traditional REST APIs. GraphQL allows clients to define the structure of the data they need, enabling them to retrieve precisely the information they require with a single request.
@@ -11955,7 +13095,7 @@ Authorization: Bearer your_api_key
 
 By including the API key in the `Authorization` header, our platform can verify your identity and grant you access to trigger the desired flow.
 
-> Click Here to know how to get your own [API Key](/docs/studio/Project/Settings/keys)
+> Click Here to know how to get your own [API Key](/docs/studio/studio-keys)
 
 ### Triggering Flows with GraphQL
 
@@ -11996,7 +13136,6 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
         "workflowId": "YOUR_WORKFLOW_ID",
         "topic": "topic"
       };
-
 
       const options = {
         method: 'POST',
@@ -12077,6 +13216,58 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
 #### Async Response Type
 
+For long-running flows, set the trigger's response type to **async**. Instead of waiting for the flow to finish, the API returns immediately with a `requestId` and a status of `in-progress`, while the flow keeps running in the background. You check back later for the result.
+
+**The request lifecycle**
+
+```
+Trigger flow (async)
+      ↓
+Immediate response: { requestId, status: "in-progress" }
+      ↓
+Flow keeps running in the background
+      ↓
+Poll checkStatus(requestId) periodically
+      ↓
+Terminal status: "success" | "error" | "failed"
+```
+
+<Callout type="warning">
+There is currently **no way to register a webhook or callback URL** that Lamatic calls automatically when an async flow finishes. Polling `checkStatus` is the only way to retrieve the result. If you want your own server notified instead of polling, see [Pushing results to your own server](#pushing-results-to-your-own-server-instead-of-polling) below.
+</Callout>
+
+<Callout type="info">
+If you're using the [JavaScript/TypeScript SDK](/docs/sdk), its `checkStatus(requestId, pollInterval, pollTimeout)` method handles this polling loop for you, defaulting to a 15 second interval and a 15 minute timeout. See [Checking Request Status](/docs/sdk#checking-request-status).
+</Callout>
+
+<Callout type="warning">
+If you're polling manually instead of using the SDK, keep requests to **no more than one every 3 seconds per IP**, polling faster risks Cloudflare rate-limiting or blocking your IP. Also bound your polling loop to the flow's maximum run time (~20 minutes on the standard async path, up to 1 hour with container mode, see [Limits & Quotas](/docs/limits)), a request won't still be `in-progress` past that.
+</Callout>
+
+### Pushing results to your own server instead of polling
+
+<Callout type="warning">
+**This is a suggested pattern, not an official Lamatic feature.** It hasn't been verified by the Lamatic team as the recommended approach, it's a reasonable use of the existing [API Node](/docs/nodes/data/api-node), which is documented and does make outbound HTTP calls, but nobody has confirmed this specific setup end-to-end. Test it yourself before relying on it in production.
+</Callout>
+
+Since there's no built-in callback, you can build the equivalent yourself: add an **API Node** as the last step of your async flow, and have it `POST` the result to your own server. From your server's point of view, this behaves like a webhook, your endpoint receives the result the moment the flow finishes, instead of you polling for it.
+
+1. **Add an API Node** to your flow, after the node that produces your final result (e.g. after your LLM or response-shaping node), instead of ending on a plain Response node.
+2. **Set Method to `POST`.**
+3. **Set Endpoint URL** to the endpoint on your own server that should receive the result.
+4. **Set Body** to map in whatever you want your server to receive, typically the request ID and the result from the upstream node, for example:
+   ```json
+   {
+     "requestId": "{{triggerNode_1.output.requestId}}",
+     "result": "{{LLMNode_1.output.generatedResponse}}"
+   }
+   ```
+5. **(Recommended) Set Number of Retries and Delay between retry** so a transient failure to reach your server doesn't silently drop the result. See the [API Node reference](/docs/nodes/data/api-node) for the full field list.
+
+Your server now receives a POST request with the flow's result as soon as it's ready, no polling loop required on your end.
+
+Here's an example GraphQL query to check the status of an async request:
+
 <Tabs items={['Node', 'Python', 'cURL']}>
   <Tabs.Tab>
     ```js
@@ -12120,10 +13311,13 @@ Here's an example GraphQL query that demonstrates how you can trigger a flow:
 
       variables = {}
 
+      # Export your Lamatic API key as an environment variable
+      lamatic_api_key = os.getenv('LAMATIC_API_KEY')
+
       headers = {
         "Authorization": f"Bearer {lamatic_api_key}",
         "Content-Type": "application/json",
-        "x-project-id": "YOUR_PROJECT_ENDPOINT"
+        "x-project-id": "YOUR_PROJECT_ID"
       }
 
       data = {"query": gqlQuery, "variables": variables}
@@ -12299,7 +13493,6 @@ If the request is successful, the response will follow this structure:
 ##### In-Progress Status
 If the request is still being processed, the response will be:
 
-
 ```json
   {
     "data": {
@@ -12309,6 +13502,22 @@ If the request is still being processed, the response will be:
     }
   }
 ```
+
+##### Failed / Error Status
+If the flow itself failed, or the request could not be processed, `status` comes back as `failed` or `error` instead of `success`:
+
+```json
+  {
+    "data": {
+          "checkStatus": {
+              "status": "failed",
+              "message": "A description of what went wrong"
+          }
+    }
+  }
+```
+
+These are the only three terminal states, `success`, `failed`, and `error`, polling should stop as soon as you see any one of them.
 
 In this example, the `ExecuteWorkflow` query is used to initiate a workflow execution. You'll need to provide the `workflowId` of the desired workflow and any required `payload`(Input Data) as part of the query variables.
 
@@ -12393,7 +13602,6 @@ Source: https://lamatic.ai/docs/interface/webhooks.md
 
 # Webhook Integration Guide
 
-
 Webhooks are user-defined HTTP callbacks that trigger events in external systems. They allow you to automate flow by sending real-time notifications when specific events occur.
 
 ![img_5.png](./img_5.png)
@@ -12427,7 +13635,18 @@ Follow these steps to configure a webhook in Lamatic:
    Copy the generated webhook endpoint and select "Fetch" to activate it.
 
 4. **Test the Webhook**  
-   Send a sample payload or event to the endpoint to verify functionality.
+   Send a sample payload or event to the endpoint to verify functionality. A webhook accepts any JSON body, whatever you send becomes the trigger node's output, available to downstream nodes as `{{triggerNode_1.output.<field>}}`.
+
+   ```bash
+   curl -X POST "<YOUR_WEBHOOK_ENDPOINT>" \
+     -H "Content-Type: application/json" \
+     -d '{
+       "topic": "hello world",
+       "source": "my-app"
+     }'
+   ```
+
+   With the payload above, `{{triggerNode_1.output.topic}}` resolves to `"hello world"` anywhere later in the flow.
 
 5. **Build Your Flow Logic**  
    Once the test payload is received, continue developing your flow logic based on your automation needs.
@@ -12633,7 +13852,6 @@ To use the Chat Widget, you need to whitelist the domains where you will deploy 
 
 ### 2. Configure the Chat Widget
 
-
 Click the Configure button in the chat widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
 
 #### 1. General Settings
@@ -12689,7 +13907,6 @@ A live preview panel is available on the right side to visualize real-time chang
 #### Final Step
 
 After customizing, don't forget to click **Save** to apply your changes.
-
 
 ### 3. Include the CDN Script and Configure the Widget
 
@@ -12923,8 +14140,6 @@ To use the Search Widget, you need to whitelist the domains where you will deplo
 ![chatwidget.webp](./img/search-config.png)
 Click the Configure button in the search widget to customize settings such as the bot name, position, image, policy URL, appearance, and messages.
 
-
-
 ## General Configuration
 
 ### 1. Search Placeholder
@@ -12948,7 +14163,6 @@ Click the Configure button in the search widget to customize settings such as th
 - `Show Navigation Helper Text` — Enables arrow key navigation tips.
 - `Show Escape Helper Text` — Displays `esc to close` text.
 - `Show Lamatic Banner` — Shows the "Powered by Lamatic.ai" badge.
-
 
 ---
 
@@ -12975,10 +14189,8 @@ Click the Configure button in the search widget to customize settings such as th
 - **Description:** Select an Ask flow to run alongside the search widget. When configured, the Ask widget is available from the search widget’s dropdown menu, so users can use both search and Ask in the same interface.
 - **Effect:** Enables the Ask widget to run alongside the search widget from the search widget node config dropdown.
 
-
 ### Saving Your Settings
 - After configuring your widget, click **Save** (top-right) to apply changes.
-
 
 ### 2. Include the CDN Script and Configure the Widget
 
@@ -13058,16 +14270,13 @@ The output schema of the search widget would be as below:
 
 Source: https://lamatic.ai/docs/reports/langfuse-integration.md
 
-# [Langfuse](https://langfuse.com/) Integration
+# Langfuse Integration
 
-At Lamatic.ai, we understand the critical role that Large Language Models (LLMs) play in powering our cutting-edge GenAI applications. To ensure optimal performance, transparency, and cost-effectiveness, we've integrated Langfuse, a powerful tracing and optimization tool specifically designed for LLM interactions.
-
+At Lamatic.ai, we understand the critical role that Large Language Models (LLMs) play in powering our cutting-edge GenAI applications. To ensure optimal performance, transparency, and cost-effectiveness, we've integrated [Langfuse](https://langfuse.com/), a powerful tracing and optimization tool specifically designed for LLM interactions.
 
 ![Langfuse](/assets/langfuse.png)
 
 ## What is Langfuse?
-
-
 
 Langfuse is a state-of-the-art solution that provides deep insights into your LLM interactions, enabling you to monitor, analyze, and optimize the performance and cost of your GenAI applications. With Langfuse, you can unlock a new level of visibility and control over your LLM usage, empowering you to make informed decisions and continuously improve your flows.
 
@@ -13239,8 +14448,7 @@ Source: https://lamatic.ai/docs/mcp/docs-mcp.md
 
 ## What is the Docs MCP?
 
-The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation.
-
+The **Lamatic Docs MCP** is a [Model Context Protocol](https://modelcontextprotocol.io) server that gives AI assistants like Claude, Cursor, and Windsurf direct access to Lamatic.ai documentation, and to the Lamatic AgentKit repository of kits, bundles, and templates.
 
 It is powered by a RAG pipeline built entirely on Lamatic:
 - **Firecrawl** scrapes the docs
@@ -13254,7 +14462,26 @@ It is powered by a RAG pipeline built entirely on Lamatic:
 
 ---
 
-## Connect
+## Install
+
+Pick your client and you're connected in a few seconds.
+
+<div className="flex flex-wrap gap-3 my-4">
+  <Button variant="outline" size="sm" asChild>
+    <a href="https://cursor.com/en/install-mcp?name=lamatic-docs&config=eyJ1cmwiOiJodHRwczovL2RvY21jcC5sYW1hdGljLmFpL2FwaS9tY3AifQ%3D%3D" target="_blank" rel="noreferrer">Add to Cursor</a>
+  </Button>
+  <Button variant="outline" size="sm" asChild>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic-docs%22%2C%22url%22%3A%22https%3A%2F%2Fdocmcp.lamatic.ai%2Fapi%2Fmcp%22%7D">Add to VS Code</a>
+  </Button>
+</div>
+
+### Claude Code
+
+```bash
+claude mcp add --transport http lamatic-docs https://docmcp.lamatic.ai/api/mcp
+```
+
+### Claude Desktop, Windsurf, Cline, and other clients
 
 Add this to your MCP client config:
 
@@ -13268,27 +14495,14 @@ Add this to your MCP client config:
 }
 ```
 
-### Claude Desktop
+For Claude Desktop specifically, the config file lives at:
 
 **macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`  
 **Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
-```json
-{
-  "mcpServers": {
-    "lamatic-docs": {
-      "url": "https://docmcp.lamatic.ai/api/mcp"
-    }
-  }
-}
-```
+Restart the client after saving. You should see a 🔌 tools icon in the chat input.
 
-Restart Claude Desktop after saving. You should see a 🔌 tools icon in the chat input.
-
-### Cursor / Windsurf / Cline
-
-Add the same config to your MCP settings. Most clients support the `url` field directly for HTTP-based MCP servers.
-
+---
 
 ## Available Tools
 
@@ -13312,6 +14526,22 @@ Ask any question about Lamatic.ai documentation. Uses RAG to search across all i
   }
 }
 ```
+
+### AgentKit tools
+
+These call the [Lamatic AgentKit](https://github.com/Lamatic/AgentKit) repository directly through the GitHub API, so answers reflect whatever is on the repo right now rather than the indexed vector store. No authentication is required for any of these.
+
+| Tool | What it does |
+|------|---------------|
+| `kit_list` | Lists every kit, bundle, and template available in AgentKit |
+| `kit_get` | Returns the full details for one kit: its `lamatic.config.ts`, README, and list of flows |
+| `kit_search` | Searches kits by type (kit, bundle, or template) and/or a free-text keyword |
+| `kit_get_flow` | Returns the raw `.ts` source for a specific flow inside a kit |
+| `kit_check_pr_status` | Checks the structural and Studio runtime validation status of an open AgentKit pull request |
+
+<Callout type="warning">
+  A few more tools exist for people actively contributing kits — `kit_validate_structure`, `kit_auth_login`, and `kit_revalidate_pr`. These either touch your local filesystem or post GitHub comments, so they only run when you're running the server locally over stdio, never on the public hosted endpoint.
+</Callout>
 
 ---
 
@@ -13344,7 +14574,9 @@ The entire pipeline is built on Lamatic:
 | Client | Supported |
 |--------|-----------|
 | Claude Desktop | ✅ |
+| Claude Code | ✅ |
 | Cursor | ✅ |
+| VS Code (Copilot) | ✅ |
 | Windsurf | ✅ |
 | Cline | ✅ |
 | Any HTTP MCP client | ✅ |
@@ -13357,11 +14589,15 @@ The MCP is open source. You can view, fork, and contribute on GitHub:
 
 [github.com/Lamatic/Lamatic-MCP-Docs](https://github.com/Lamatic/Lamatic-MCP-Docs)
 
-{/*
 <Callout type="tip">
-  Want to build your own Docs MCP for your company? See the [Docs MCP setup guide](/docs/mcp-tools/docs-mcp). Fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
+  Want to build your own Docs MCP for your company? See the [Build Your Own Docs MCP guide](/guides/tutorials/build-your-own-docs-mcp). Fork the repo, connect your own Lamatic flow, and deploy to Vercel in minutes.
 </Callout>
-*/}
+
+---
+
+## Other Lamatic MCP Servers
+
+- [Graph MCP](/docs/mcp/graph-mcp): Execute your deployed Lamatic flows via AI agents
 
 ---
 
@@ -13391,6 +14627,23 @@ Source: https://lamatic.ai/docs/mcp/graph-mcp.md
 **Lamatic Graph MCP** is an [Model Context Protocol](https://modelcontextprotocol.io) server that turns your deployed Lamatic flows into AI-callable tools. Connect Claude, GitHub Copilot, or Cursor, and your flows become tools your AI can call directly using natural language.
 
 ---
+
+## Install
+
+Pick your client and you're connected in a few seconds.
+
+<div className="flex flex-wrap gap-3 my-4">
+  <Button variant="outline" size="sm" asChild>
+    <a href="https://cursor.com/en/install-mcp?name=lamatic-graph&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBsYW1hdGljL2dyYXBoLW1jcCJdfQ%3D%3D" target="_blank" rel="noreferrer">Add to Cursor</a>
+  </Button>
+  <Button variant="outline" size="sm" asChild>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic-graph%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40lamatic%2Fgraph-mcp%22%5D%7D">Add to VS Code</a>
+  </Button>
+</div>
+
+<Callout type="warning">
+  After connecting, ask your AI assistant to run `graph_auth_login` with your org API key, project API key, and org ID. Nothing else works until you authenticate.
+</Callout>
 
 ## Installation
 
@@ -13521,6 +14774,7 @@ refresh my flows
 
 - [GitHub repository](https://github.com/Lamatic/GraphMCP-Lamatic)
 - [npm package](https://www.npmjs.com/package/@lamatic/graph-mcp)
+- [Docs MCP](/docs/mcp/docs-mcp): Query Lamatic.ai documentation via AI
 - [Dev MCP](/docs/dev-mcp): Manage Lamatic projects via AI
 
 
@@ -13532,15 +14786,13 @@ Source: https://lamatic.ai/docs/mcp.md
 
 # MCP in Lamatic
 
-[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI assistants to external systems — data sources, APIs, tools, and services — through one uniform interface.
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI assistants to external systems, data sources, APIs, tools, and services through one uniform interface.
 
 Lamatic ships three MCP products, each covering a different direction of the protocol:
 
 - **[MCP Node](/docs/mcp/mcp-node)** lets your flow consume tools from any external MCP server.
 - **[Graph MCP](/docs/mcp/graph-mcp)** exposes your deployed flows as MCP tools that external AI assistants can call.
 - **[Docs MCP](/docs/mcp/docs-mcp)** is a hosted MCP server that answers questions about Lamatic itself.
-
-{/* TODO: replace with mcp/img/mcp-overview.png — see Image Needs section in the conversation that produced this file */}
 
 ---
 
@@ -13562,7 +14814,7 @@ The [MCP Node](/docs/mcp/mcp-node) connects your Lamatic flow to an existing MCP
 
 [Docs MCP](/docs/mcp/docs-mcp) is a hosted MCP server that Lamatic maintains. It indexes [lamatic.ai/docs](https://lamatic.ai/docs) into a RAG pipeline and exposes a `query_docs` tool. Any MCP client can ask natural-language questions about Lamatic and get answers with references. No setup, no API key.
 
-**Use it when** you want your AI assistant to answer questions about Lamatic itself — its nodes, agents, integrations, error messages — instead of you searching the docs manually.
+**Use it when** you want your AI assistant to answer questions about Lamatic itself its nodes, agents, integrations and error messages, instead of you searching the docs manually.
 
 ---
 
@@ -13586,12 +14838,6 @@ The [MCP Node](/docs/mcp/mcp-node) connects your Lamatic flow to an existing MCP
 - "I want Claude or Cursor to call my Lamatic flow." → [Graph MCP](/docs/mcp/graph-mcp)
 - "I want my AI assistant to answer questions about Lamatic itself." → [Docs MCP](/docs/mcp/docs-mcp)
 - All of the above. → A flow that consumes external MCP tools (MCP Node) can itself be exposed via Graph MCP, while you use Docs MCP to ask your assistant about Lamatic as you build.
-
----
-
-## Related
-
-- [Generate Text Node](/docs/nodes/ai/generate-text-node) — integrates MCP tools loaded by the MCP Node.
 
 
 ---
@@ -13893,7 +15139,6 @@ func main() {
 }
 ```
 
-
 ## Checking Request Status
 
 For long-running workflows or agents, you can check the status using `CheckStatus`:
@@ -14185,7 +15430,6 @@ const lamatic = new Lamatic({
 
 The SDK supports two authentication methods:
 
-
 <Tabs items={['API Key', 'Access Token']}>
   <Tabs.Tab>
 ```typescript
@@ -14278,7 +15522,6 @@ main();
 </Tabs>
 
 ### Handling Expired Access Tokens
-
 
 <Callout type="info">
   This example shows how to handle an expired access token by fetching a new one
@@ -14822,6 +16065,12 @@ const lamatic = new Lamatic({
 });
 ```
 
+## Python SDK
+
+Lamatic also provides a Python SDK (`pip install lamatic`) for executing flows from Python applications, with both sync and async methods and status checking with polling.
+
+For detailed information, installation instructions, and code examples, see the [Python SDK documentation](/docs/sdk/python).
+
 ## Go SDK
 
 Lamatic also provides a Go SDK for integrating with Go applications. The Go SDK offers the same core functionality as the JavaScript/TypeScript SDK, with a Go-native API design that includes support for executing workflows and agents, status checking with polling, and both API key and access token authentication.
@@ -15176,7 +16425,8 @@ Create a utility file to initialize the Lamatic client:
 
 export const lamaticClient = new Lamatic({
     projectId: process.env.LAMATIC_PROJECT_ID,
-    apiKey: process.env.LAMATIC_API_KEY,
+    apiKey: process.env.LAMATIC_PROJECT_API_KEY,
+    endpoint: process.env.LAMATIC_PROJECT_ENDPOINT,
   })
 ```
 
@@ -15207,6 +16457,231 @@ export default async function Page() {
 </Tabs>
 
 When the button is clicked, the component will execute the flow and log the response to the console.
+
+
+---
+
+# Python
+
+Source: https://lamatic.ai/docs/sdk/python.md
+
+# Using Lamatic SDK with Python
+
+This guide demonstrates how to integrate the Lamatic Python SDK into your Python applications to execute flows.
+
+<Callout type="info">
+  This SDK is in **early/alpha release** (v0.1.0). It currently supports executing **flows** only, agent execution (`executeAgent`) isn't available in the Python SDK yet, use the [JavaScript SDK](/docs/sdk) or [Go SDK](/docs/sdk/go) if you need that today.
+</Callout>
+
+## Installation
+
+Requires **Python 3.10+**. Install with pip:
+
+```bash
+pip install lamatic
+```
+
+## Getting Started
+
+To use the Lamatic Python SDK, you'll need:
+
+- An API key or access token
+- Your project ID
+- The Lamatic API endpoint
+
+## Basic Setup
+
+```python
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    api_key="your-api-key",
+)
+```
+
+## Authentication
+
+The SDK supports two authentication methods:
+
+<Tabs items={['API Key', 'Access Token']}>
+  <Tabs.Tab>
+```python
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    api_key="your-api-key",
+)
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    access_token="your-access-token",
+)
+```
+  </Tabs.Tab>
+</Tabs>
+
+You must provide either `api_key` or `access_token`, but not both, the constructor raises `ValueError` if neither is set.
+
+## Executing Flows
+
+Execute a workflow synchronously with `execute_flow`:
+
+```python
+response = lamatic.execute_flow(
+    flow_id="your-flow-id",
+    payload={"prompt": "Hello, Lamatic!"},
+)
+
+print(response.status)   # "success"
+print(response.result)
+print(response.message)
+```
+
+## Async Usage
+
+For async applications, use `async_execute_flow` instead:
+
+```python
+import asyncio
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    api_key="your-api-key",
+)
+
+async def main():
+    response = await lamatic.async_execute_flow(
+        flow_id="your-flow-id",
+        payload={"prompt": "Hello from async!"},
+    )
+    print(response.status)
+    print(response.result)
+
+asyncio.run(main())
+```
+
+## Checking Request Status
+
+For long-running flows, poll for the result with `check_status` (sync) or `async_check_status` (async). Both accept a polling interval and a timeout, in seconds, and return as soon as the request reaches a terminal state (`success`, `error`, or `failed`):
+
+<Tabs items={['Sync', 'Async']}>
+  <Tabs.Tab>
+```python
+response = lamatic.check_status(
+    request_id="your-request-id",
+    poll_interval=5,    # seconds between polls, default 15
+    poll_timeout=120,   # max wait time in seconds, default 900
+)
+
+print(response.status)
+print(response.result)
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+async def poll():
+    response = await lamatic.async_check_status(
+        request_id="your-request-id",
+        poll_interval=5,
+        poll_timeout=120,
+    )
+    print(response.status)
+    print(response.result)
+```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="info">
+  If `poll_timeout` is reached before the flow finishes, `check_status` returns `status="error"`, `status_code=408`, and a message noting the request may still be executing in the background. The flow itself isn't cancelled, only the polling loop gives up.
+</Callout>
+
+## Updating Access Token
+
+If you're using access token authentication, update it at runtime with `update_access_token`:
+
+```python
+lamatic.update_access_token("new-access-token")
+```
+
+## Response Structure
+
+`execute_flow`, `async_execute_flow`, `check_status`, and `async_check_status` all return a `LamaticResponse`:
+
+```python
+@dataclass
+class LamaticResponse:
+    status: str                        # "success" | "error" | "failed" | in-progress while running
+    result: dict | None
+    message: str | None = None
+    status_code: int | None = None
+```
+
+### Example
+
+```python
+response = lamatic.execute_flow("your-flow-id", {"prompt": "hey, how are you?"})
+
+if response.status == "success":
+    print("Result:", response.result)
+else:
+    print("Failed:", response.message)
+```
+
+## Error Handling
+
+`execute_flow` and `async_execute_flow` raise an exception on network failures (they don't catch and swallow errors), so wrap calls in a `try`/`except` block:
+
+```python
+try:
+    response = lamatic.execute_flow(flow_id, payload)
+    if response.status == "success":
+        print("Success:", response.result)
+    else:
+        print("Execution failed:", response.message)
+except Exception as e:
+    print("SDK error:", e)
+```
+
+`check_status` and `async_check_status` behave differently: they catch errors internally and return a `LamaticResponse` with `status="error"` instead of raising, so you can check `response.status` without a `try`/`except`.
+
+## Environment Variables
+
+For better security, keep credentials out of source code:
+
+```python
+import os
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint=os.environ["LAMATIC_PROJECT_ENDPOINT"],
+    project_id=os.environ["LAMATIC_PROJECT_ID"],
+    api_key=os.environ["LAMATIC_PROJECT_API_KEY"],
+)
+```
+
+## Resources
+
+- **PyPI package**: [pypi.org/project/lamatic](https://pypi.org/project/lamatic/)
+- **GitHub repository**: [github.com/Lamatic/Lamatic-Python-SDK](https://github.com/Lamatic/Lamatic-Python-SDK)
+- **Examples**: see `examples/basic_usage.py` in the repository
+
+## Support
+
+For help and support with the Python SDK:
+- Open an issue on [GitHub](https://github.com/Lamatic/Lamatic-Python-SDK/issues)
+- Contact [support@lamatic.ai](mailto:support@lamatic.ai)
 
 
 ---
@@ -15249,7 +16724,8 @@ Create a utility file to initialize the Lamatic client:
 
 export const lamaticClient = new Lamatic({
     projectId: process.env.LAMATIC_PROJECT_ID,
-    apiKey: process.env.LAMATIC_API_KEY,
+    apiKey: process.env.LAMATIC_PROJECT_API_KEY,
+    endpoint: process.env.LAMATIC_PROJECT_ENDPOINT,
   })
 ```
 
@@ -15281,3 +16757,786 @@ export default Page
 </Tabs>
 
 When the button is clicked, the component will execute the flow and log the response to the console.
+
+
+---
+
+# Anonymous Reporting
+
+Source: https://lamatic.ai/docs/security/anonymous-reporting.md
+
+# Anonymous Reporting
+
+Speak up safely and securely about potential violations or concerns
+
+<br />
+
+This Whistleblower Form is intended to encourage and enable employees and others to communicate potential legal and ethical concerns to appropriate leadership and oversight teams to allow Lamatic to address and correct inappropriate conduct and actions. It is the responsibility of all board members, officers, employees, and contractors to report concerns about violations of code of ethics or suspected violations of law or regulations that govern Lamatic's operations.
+
+<br />
+All information gathered will remain anonymous and only provided to appropriate teams
+to facilitate escalation and remediation. It is prohibited by Lamatic for anyone to
+retaliate against any individual who in good faith reports an ethics violation or
+a suspected violation of law, such as a complaint of discrimination, suspected fraud,
+or potential violation of any regulation related to Lamatic's operations. Any employee
+who retaliates against an individual who has reported a violation in good faith is
+subject to disciplinary measures, up to and including termination of employment.
+Reports of violations or suspected violations will be kept confidential to the extent
+possible, consistent with the need to conduct an adequate investigation.{" "}
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "start",
+    marginTop: "10px",
+    marginBottom: "10px",
+  }}
+>
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSd2vn_dOgPUZvjjFnYBq8xZUknkHtYtY4J73YRuRgQ5IA-fdg/viewform"
+    target="_blank"
+  >
+    <button
+      style={{
+        padding: "10px 20px",
+        backgroundColor: "red",
+        color: "white",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <span style={{ color: "white" }}>Report Now</span>
+    </button>
+  </a>
+</div>
+
+## What Happens Next?
+
+1. Your report is securely transmitted to our compliance team.
+1. A preliminary review will be conducted.
+1. If additional information is needed, it will be requested through this system.
+1. Appropriate action will be taken based on the investigation findings.
+
+
+---
+
+# Security Architecture
+
+Source: https://lamatic.ai/docs/security/architecture.md
+
+# Security Architecture
+
+## Why traditional security falls short
+
+For decades, most security programs have followed the same rhythm: conduct an annual penetration test, run periodic audits, patch vulnerabilities after they are reported, and add controls around a network perimeter.
+
+That approach is no longer enough for modern AI infrastructure. Applications change daily. Dependencies change constantly. APIs, models, tools, and agent workflows introduce new paths through which data can be accessed or actions can be performed.
+
+At the same time, attackers can use AI agents to scan systems faster, automate reconnaissance, test many attack paths at once, and adapt their techniques as environments change. A security program that only evaluates risk periodically cannot keep pace with an attack surface that evolves continuously.
+
+The future of security is not simply more automation. It is agentic: continuous, contextual, adaptive, and built into every layer of the platform.
+
+<Callout>
+At Lamatic.ai, we build agentic infrastructure that is secure in two directions:
+
+**Secure from agents**: our platform is designed to resist malicious autonomous behavior, unauthorized tool use, data exposure, prompt injection, and automated exploitation.
+
+**Secure for agents**: legitimate agents operate with clear identity, narrowly scoped access, isolated execution environments, observable actions, and enforceable policy boundaries.
+</Callout>
+
+![Layered agentic security architecture protecting AI agents, customer data, APIs, and cloud infrastructure](./img/security-hero.png)
+
+---
+
+## Secure development lifecycle
+
+Security should not be something added before release. It needs to be part of how software is planned, written, reviewed, tested, deployed, and monitored.
+
+### Agent-assisted code review
+
+Every code change can introduce security consequences. A new endpoint may expose information, an authorization check may be missed, a dependency may introduce a known vulnerability, or a small configuration change may accidentally broaden access.
+
+Lamatic uses automated and agent-assisted review to examine code changes continuously. These agents look beyond simple keyword matching: they evaluate patterns, data flows, permissions, and the security implications of a change in context.
+
+AI review does not replace engineering judgment. Instead, it acts as an always-on additional reviewer that can flag risky patterns early, before code reaches production. Engineers remain accountable for reviewing findings, validating their relevance, and making the final design decisions.
+
+Agent-assisted review focuses on:
+
+- Authentication and authorization changes
+- Input validation and unsafe data handling
+- Secret exposure and insecure configuration
+- Dependency changes and known vulnerabilities
+- Data-flow paths that could expose customer information
+- Business-logic gaps that conventional scanners may miss
+
+![Agent-assisted code review flagging security findings](./img/agent-code-review.png)
+
+### Security gates in CI/CD
+
+A secure development process needs enforceable checkpoints. Security gates prevent code from being promoted when it fails critical security requirements.
+
+At Lamatic, automated checks run throughout the CI/CD pipeline. A developer receives feedback while the change is still small and easy to fix, rather than discovering a problem after it has been deployed to production.
+
+Our security gates include:
+
+- **Static application security testing (SAST)**: reviews source code for common insecure patterns such as injection risks, unsafe deserialization, weak cryptography, and missing validation
+- **Software composition analysis (SCA)**: checks open-source dependencies for known vulnerabilities, license issues, and outdated packages
+- **Secrets detection**: blocks commits that include credentials, private keys, tokens, or connection strings
+- **Infrastructure-as-code scanning**: reviews Terraform, Kubernetes manifests, Dockerfiles, and cloud configuration for insecure defaults or over-permissive access
+- **Container image scanning**: identifies vulnerable libraries, operating-system packages, and misconfigurations before an image is deployed
+- **Dynamic and API security testing**: tests running staging environments for weaknesses that only appear when services interact
+- **Release-risk review**: applies deeper analysis and agentic pentesting to material changes or major releases
+
+<Callout>
+Production is not the first place where security checks happen. It is the last place a validated change is allowed to go.
+</Callout>
+
+![CI/CD pipeline with security gates from commit to production](./img/cicd-security-gates.png)
+
+### Continuous agentic pentesting
+
+A traditional penetration test is a snapshot. It is valuable, but it cannot represent the security state of a fast-moving platform for an entire year or quarter.
+
+Agentic pentesting makes offensive testing continuous. Autonomous agents can map authorized attack surfaces, replay relevant tests after a deployment, look for new exposure caused by configuration changes, and test newly disclosed vulnerabilities against the current environment.
+
+Every automated finding still needs prioritization. We combine continuous machine-scale testing with human validation to ensure security teams focus on vulnerabilities that are practical, impactful, and relevant to customers.
+
+| Area | Traditional pentest | Continuous agentic pentesting |
+| --- | --- | --- |
+| Timing | Scheduled periodically | Runs continuously and after meaningful changes |
+| Scope | Defined before the engagement | Evolves with the approved attack surface |
+| Detection speed | Often weeks after a release | Can identify issues shortly after change |
+| Validation | Primarily manual | Autonomous testing plus human validation |
+| Retesting | Usually a separate engagement | Automated after remediation or deployment |
+
+Continuous testing helps us:
+
+- Detect exposures introduced by new releases or configuration changes
+- Validate whether newly published vulnerabilities affect our environment
+- Test APIs, web applications, cloud services, and integration boundaries together
+- Verify fixes by retesting the original attack path
+- Give engineering teams actionable evidence instead of abstract alerts
+
+![Continuous agentic pentesting dashboard with findings and severity trends](./img/security-ops-dashboard.png)
+
+### Static analysis plus agentic reasoning
+
+Static analysis is fast and reliable for detecting known insecure patterns. It is an essential part of secure software delivery, but it does not always understand why a feature exists or whether a sequence of valid actions creates a business-logic vulnerability.
+
+Agentic analysis adds contextual reasoning. It can evaluate how data moves through an application, how identity and permission checks are used across services, and whether a user could perform an action that their role should not permit.
+
+| Security layer | What it does best |
+| --- | --- |
+| Static analysis | Finds known patterns such as injection, weak cryptography, exposed secrets, and unsafe functions |
+| Dependency analysis | Finds vulnerable or outdated third-party packages |
+| Agentic reasoning | Investigates data flow, authorization paths, business logic, and multi-step attack scenarios |
+| Human review | Validates product intent, threat model assumptions, and risk trade-offs |
+
+{/* image: static analysis, agentic reasoning, and human review compared */}
+
+---
+
+## Data security and zero trust
+
+Customer data is the most sensitive part of an AI infrastructure platform. Our approach assumes that no request, service, identity, or environment should receive more access than it needs.
+
+This is the foundation of zero trust: verify explicitly, use least privilege, and limit the duration and scope of access.
+
+### Separate environments
+
+We separate development, staging, and production environments so that experimentation and testing do not expose production systems or customer data.
+
+- **Development**: used for engineering work with isolated services and non-production data
+- **Staging**: mirrors production architecture as closely as possible while using synthetic, masked, or otherwise non-sensitive data
+- **Production**: hosts customer workloads and is isolated from lower environments through separate identities, resources, networks, and access controls
+
+Environment separation limits blast radius. A mistake in development should not provide a path to production data or infrastructure.
+
+![Isolated development, staging, and production environments](./img/environment-separation.png)
+
+### Authentication and access control
+
+Identity is the starting point for security. Before a person, service, or agent can access a resource, Lamatic verifies who or what is making the request and whether that identity has a legitimate reason to perform the action.
+
+Our access-control model includes:
+
+- **2FA/MFA**: multi-factor authentication is required for user and administrative access, reducing the risk that a stolen password alone can compromise an account
+- **OAuth 2.0 and OIDC**: federated identity standards enable scoped, revocable, and short-lived authorization rather than persistent shared credentials
+- **RBAC (Role-Based Access Control)**: permissions are granted according to defined roles, so users and services receive only the capabilities required for their responsibilities
+- **RLS (Row-Level Security)**: database policies restrict which records a requester can access, creating another enforcement layer even if application logic fails
+- **Service identities**: services and agents use distinct identities with narrowly scoped permissions rather than sharing broad administrator credentials
+
+### Encryption in depth
+
+Encryption protects data while it is moving, while it is stored, and while it is accessed. We use multiple layers because no single control should be responsible for protecting sensitive information.
+
+| Layer | How it protects data |
+| --- | --- |
+| Encryption in transit | TLS protects data moving between users, services, APIs, and infrastructure endpoints from interception or tampering |
+| Encryption at rest | AES-256 protects stored databases, backups, files, and persistent infrastructure resources |
+| Per-project keys | Each project or tenant receives unique encryption key material, limiting the impact of any individual key exposure |
+| Key separation | Encryption keys and salts are stored separately from the encrypted data they protect |
+| Just-in-time decryption | Data is decrypted only for the authorized operation, for the minimum necessary time, and then re-encrypted |
+| Key rotation | Key material is rotated according to policy and operational requirements to reduce long-term exposure |
+
+<Callout>
+Just-in-time decryption is especially important for agentic systems. An agent should not receive a permanent decrypted dataset simply because it has a valid task. It should receive only the data and access required for the specific approved action.
+</Callout>
+
+![Zero-trust encryption flow with per-project key vault and just-in-time decryption](./img/encryption-flow.png)
+
+### Data lifecycle management
+
+Security includes what happens to data after it has been created. We define how information is stored, retained, recovered, accessed, and deleted.
+
+- **Point-in-Time Recovery (PITR)**: continuous backup capabilities allow data to be restored to a precise moment, reducing the impact of accidental deletion, corruption, or operational failure
+- **Data retention policies**: data is retained only for an approved business, legal, operational, or customer-defined purpose; when the retention period ends, deletion is automated and documented
+- **Immutable audit logs**: security-relevant actions are recorded in tamper-evident storage, supporting investigations, compliance evidence, and accountability
+- **Controlled backups**: backups are encrypted, access-controlled, and subject to retention and deletion requirements
+
+### Tenant and resource isolation
+
+Multi-tenant platforms must be designed so that one customer cannot access, affect, or infer information about another customer. Lamatic applies isolation at multiple layers, including database policies, storage boundaries, compute resources, network segmentation, identity controls, and encryption keys. Where a workload requires stronger separation, dedicated tenant infrastructure can provide an additional boundary.
+
+See [Tenant Security & Isolation](/docs/security/tenant-isolation) for the full architecture, network diagram, and subprocessor inventory.
+
+{/* image: multi-tenant isolation diagram with separate databases, storage, compute, keys, and network boundaries */}
+
+---
+
+## Infrastructure and runtime security
+
+Secure AI infrastructure requires more than secure code. The platform must also protect the way services run, communicate, store data, and respond to malicious traffic.
+
+### Serverless microservices architecture
+
+Lamatic uses serverless microservices, including Cloudflare Workers and Digital Ocean Cloud Functions, to separate responsibilities into smaller services with explicit interfaces and limited permissions.
+
+This architecture can reduce operational risk when implemented carefully. Services can scale automatically, execution is often short-lived, and each component can be assigned a dedicated identity with only the permissions it needs. A compromise in one service should not automatically become unrestricted access across the environment.
+
+Core principles:
+
+- Least-privilege IAM for every workload
+- Separate service identities rather than shared credentials
+- Explicit APIs and network paths between services
+- Short-lived, ephemeral execution where appropriate
+- Controlled deployment through validated CI/CD pipelines
+
+![Serverless microservices diagram with APIs, IAM roles, and private networking](./img/serverless-microservices.png)
+
+### Dedicated tenant-isolated infrastructure
+
+For sensitive workloads, infrastructure isolation may need to go beyond logical access controls. Dedicated tenant-isolated infrastructure can provide separate compute, storage, network, database, and encryption boundaries for a customer or workload. This option helps reduce shared-resource exposure, simplify customer security reviews, and support strict data-separation requirements, particularly for organizations operating in regulated environments or handling highly sensitive data.
+
+### Full OpenTelemetry tracing
+
+Security cannot be effective if critical actions are invisible. Lamatic instruments services with OpenTelemetry (OTEL) to provide end-to-end traces across distributed systems.
+
+Observability helps us understand how a request moved through services, where an authorization decision occurred, which tool an agent invoked, and what data-access operation was attempted. These signals support reliability engineering, security monitoring, incident response, and auditability.
+
+Security-relevant telemetry includes:
+
+- Authentication events and failed login attempts
+- Authorization decisions, including denied requests
+- Privileged administrative actions
+- Agent tool calls and runtime behavior
+- Data-access events and sensitive configuration changes
+- API errors, abuse patterns, and anomalous traffic
+
+![OpenTelemetry distributed trace and flame graph](./img/otel-trace.png)
+
+### Edge protection: WAF, rate limiting, bots, and DDoS
+
+Public-facing applications need protection at the edge, before malicious traffic reaches internal services. We use layered controls because attacks range from simple credential-stuffing attempts to sophisticated application-layer DDoS campaigns.
+
+- **Web Application Firewall (WAF)**: filters common malicious request patterns, enforces custom rules, and helps protect against common web vulnerabilities
+- **Rate limiting**: limits how frequently a client can call a sensitive endpoint, reducing brute force, scraping, abuse, and resource exhaustion
+- **Bot detection and mitigation**: identifies suspicious automated traffic while minimizing impact on legitimate users and integrations
+- **DDoS mitigation**: absorbs or blocks volumetric and application-layer attacks so legitimate customers can continue to use the platform
+
+![Edge defense layers: WAF, rate limiting, bot scoring, DDoS mitigation, API gateway, and services](./img/edge-protection.png)
+
+### Audit logs and intrusion detection
+
+Audit logs establish accountability. They record who performed an action, what action occurred, where it originated, and when it happened. These records support investigations, customer assurance, and detection of unusual patterns.
+
+Intrusion detection adds another layer by analyzing network, host, application, and identity signals for behavior that may indicate compromise. Alerts are routed through defined severity and escalation paths so the right people can investigate quickly.
+
+### Zero Data Retention options
+
+Some customers need stronger control over how long data remains available. For eligible workloads, Lamatic can provide Zero Data Retention (ZDR) options that minimize or eliminate persistence beyond the active session or approved processing window. Depending on the configuration, ZDR can include ephemeral processing, reduced logging, no storage of prompts or outputs, and destruction of session-specific encryption material after use. Exact behavior is defined by the product configuration and customer agreement.
+
+### Agent container sandboxing
+
+AI agents can take actions, use tools, process inputs, and interact with external systems. That makes the agent runtime a critical security boundary.
+
+Lamatic runs agents in isolated container sandboxes with explicit constraints. A sandbox limits what an agent can access and what it can do even if its instructions, tool inputs, or dependencies behave unexpectedly.
+
+Sandbox controls include:
+
+- CPU, memory, execution-time, and process limits
+- Read-only or ephemeral filesystems where possible
+- Restricted system calls through security profiles
+- Explicit ingress and egress network policies
+- Scoped secrets and short-lived credentials
+- Per-agent identity and logging of tool actions
+- Isolation between customer workloads and agent sessions
+
+<Callout>
+The goal is to ensure that an agent can perform its intended task without receiving unrestricted access to the host, network, data plane, or other tenants.
+</Callout>
+
+{/* image: agent sandbox diagram with resource limits, read-only filesystem, restricted egress, scoped tools, and audit logging */}
+
+---
+
+## What makes security agentic
+
+Traditional security is often reactive and periodic. Agentic security is designed for a world where software, infrastructure, agents, and threats all change continuously.
+
+| Characteristic | Traditional security | Agentic security at Lamatic |
+| --- | --- | --- |
+| Monitoring | Periodic reviews and alerting | Continuous signals across code, identity, runtime, and infrastructure |
+| Testing | Scheduled scans and annual assessments | Continuous validation triggered by changes and emerging threats |
+| Analysis | Rules and manual investigation | Rules, AI-assisted context analysis, and human judgment |
+| Response | Often ticket-driven and delayed | Prioritized workflows, rapid triage, and repeatable remediation |
+| Agent controls | Generic application permissions | Scoped identity, sandboxing, policy enforcement, and observable tool use |
+| Data protection | Broad encryption and access policies | Per-tenant isolation, key separation, just-in-time decryption, and least privilege |
+
+Agentic security does not mean handing security decisions entirely to AI. It means using agents responsibly to make security continuous, scalable, and context-aware, while keeping humans accountable for high-impact decisions.
+
+<Callout type="info">
+**Secure from agents. Secure for agents. Built for what comes next.**
+</Callout>
+
+## Related
+
+<Cards>
+  <Cards.Card title="Tenant Security & Isolation" href="/docs/security/tenant-isolation" arrow />
+  <Cards.Card title="Security Service-Level Objectives" href="/docs/security/sla" arrow />
+  <Cards.Card title="Security Programs" href="/docs/security/programs" arrow />
+  <Cards.Card title="Security Partners" href="/docs/security/partners" arrow />
+</Cards>
+
+
+---
+
+# Security & Compliance
+
+Source: https://lamatic.ai/docs/security.md
+
+# Security & Compliance
+
+<Callout type="info">
+This section is written for security reviewers, IT/procurement teams, and enterprise buyers evaluating Lamatic.
+</Callout>
+
+Lamatic builds agentic infrastructure that is secure in two directions: **secure from agents**, resistant to malicious autonomous behavior, unauthorized tool use, and automated exploitation, and **secure for agents**, where legitimate agents run with clear identity, scoped access, isolated execution, and enforceable policy boundaries.
+
+<Cards>
+  <Cards.Card title="Security Architecture" href="/docs/security/architecture" arrow />
+  <Cards.Card title="Tenant Security & Isolation" href="/docs/security/tenant-isolation" arrow />
+  <Cards.Card title="Security SLA" href="/docs/security/sla" arrow />
+  <Cards.Card title="Security Programs" href="/docs/security/programs" arrow />
+  <Cards.Card title="Security Partners" href="/docs/security/partners" arrow />
+  <Cards.Card title="Vulnerability Disclosure Program" href="/docs/security/vulnerability-disclosure" arrow />
+  <Cards.Card title="Anonymous Reporting" href="/docs/security/anonymous-reporting" arrow />
+</Cards>
+
+---
+
+## Get in touch
+
+- Explore our [Trust Center](https://trust.lamatic.ai) for security and compliance information
+- Read the [Security Architecture](/docs/security/architecture) docs for implementation details
+- [Get a demo](/request-demo) or reach out on [Slack](/docs/slack) for security questionnaires and customer reviews
+
+## Related
+
+<Cards>
+  <Cards.Card title="Platform Architecture" href="/docs/architecture" arrow />
+  <Cards.Card title="Privacy Policy" href="/docs/legal/privacy-policy" arrow />
+  <Cards.Card title="Terms of Service" href="/docs/legal/terms-of-service" arrow />
+</Cards>
+
+
+---
+
+# Security Programs
+
+Source: https://lamatic.ai/docs/security/programs.md
+
+# Security Programs
+
+Technology alone does not create a secure organization. Security also depends on how people make decisions, how quickly teams respond, and whether responsibilities are clear.
+
+## Annual security training
+
+Every employee completes annual security awareness training. The goal is practical behavior, not checkbox compliance.
+
+Training covers phishing and social engineering, secure handling of customer information, password and device hygiene, incident reporting, secure development expectations, and privacy obligations. We reinforce that security concerns should be reported early, even when the impact is uncertain.
+
+## Quarterly disaster recovery and incident response exercises
+
+A plan that has never been tested is only a document. Lamatic runs quarterly disaster recovery and incident response exercises to validate people, tooling, escalation paths, communications, and recovery procedures.
+
+Exercises may simulate data-exfiltration attempts, ransomware, a cloud-provider outage, compromised credentials, DDoS events, or service failures. Each exercise produces lessons, follow-up actions, and owners so that our response capabilities improve over time.
+
+![Incident response exercise timeline from detection to lessons learned](./img/incident-response-timeline.png)
+
+## Vulnerability Disclosure Program
+
+Security researchers play an important role in improving the security of the broader ecosystem. Our Vulnerability Disclosure Program provides a responsible path for researchers to report potential issues. We aim to acknowledge reports quickly, triage them transparently, and provide clear remediation expectations based on severity.
+
+<Cards>
+  <Cards.Card title="Vulnerability Disclosure Program" href="/docs/security/vulnerability-disclosure" arrow />
+</Cards>
+
+## Managed device security
+
+Corporate devices are part of the security perimeter. A compromised laptop can bypass otherwise strong cloud controls through stolen sessions, source code access, or credential theft.
+
+All corporate endpoints are enrolled in Mobile Device Management (MDM). This supports consistent requirements for full-disk encryption, supported operating-system versions, screen-lock policies, remote wipe, approved software, and jailbreak or root detection.
+
+## Automated and human review
+
+Automation gives us speed and consistency. Human review adds context, accountability, and judgment.
+
+Automated controls continuously monitor identity, code, dependencies, infrastructure, runtime signals, and compliance posture. Human reviews assess architecture, high-severity findings, exceptions, vendor risk, incident learnings, and changes with meaningful business impact.
+
+<Callout>
+The combination is intentional: agents detect and analyze at machine speed, while people decide, prioritize, and remain accountable for outcomes.
+</Callout>
+
+{/* image: security operations dashboard with automated alerts, investigation queue, and human review workflow */}
+
+## Compliance programs
+
+- SOC 2 Type II
+- ISO 27001
+- GDPR
+
+## Related
+
+<Cards>
+  <Cards.Card title="Security Partners" href="/docs/security/partners" arrow />
+  <Cards.Card title="Security Service-Level Objectives" href="/docs/security/sla" arrow />
+  <Cards.Card title="Anonymous Reporting" href="/docs/security/anonymous-reporting" arrow />
+</Cards>
+
+
+---
+
+# Security Service-Level Objectives
+
+Source: https://lamatic.ai/docs/security/sla.md
+
+# Security Service-Level Objectives
+
+Not every vulnerability carries the same risk. We use severity-based service-level objectives to ensure the highest-risk issues receive the fastest attention.
+
+| Severity | Initial response target | Remediation target | Typical examples |
+| --- | --- | --- | --- |
+| Critical | Within 24 hours | Within 5 business days | Confirmed data exposure, remote code execution, authentication bypass |
+| High | Within 72 hours | Within 10 business days | Significant privilege escalation or exploitable service weakness |
+| Medium | Within 1 week | Within 30 business days | Limited-impact configuration or application weakness |
+| Low | Within 2 weeks | Within 60 business days | Hardening opportunities with low exploitability or impact |
+
+<Callout>
+These targets guide prioritization, but active exploitation, customer impact, and business context can always accelerate response.
+</Callout>
+
+## Related
+
+<Cards>
+  <Cards.Card title="Vulnerability Disclosure Program" href="/docs/security/vulnerability-disclosure" arrow />
+  <Cards.Card title="Security Architecture" href="/docs/security/architecture" arrow />
+  <Cards.Card title="Security Programs" href="/docs/security/programs" arrow />
+</Cards>
+
+
+---
+
+# Tenant Security & Isolation
+
+Source: https://lamatic.ai/docs/security/tenant-isolation.md
+
+# Tenant Security & Isolation
+
+<Callout type="info">
+This page is written for security reviewers, IT/procurement teams, and enterprise buyers evaluating Lamatic for multi-tenant or regulated deployments.
+</Callout>
+
+Lamatic enforces tenant boundaries across runtime, data, access, and operations. Every request and background job carries an explicit tenant context, and every service enforces it before reading or writing data, or performing administrative operations.
+
+### What this enables
+
+- Strong separation between tenants
+- Tenant-scoped authentication context and authorization
+- Tenant-scoped logs and administrative actions
+
+### How it works, in brief
+
+- Tenant-aware routing for requests and jobs
+- Enforced tenant context at every service boundary
+- Layered isolation across access, application, data, operations, and observability
+
+---
+
+## Architecture overview
+
+![Lamatic architecture overview](./img/architecture-overview.png)
+
+At a high level, the platform is split into three planes:
+
+- **Runtime plane**: tenant-facing application traffic, authentication, storage access, worker execution, and artifacts (stateless)
+- **Control plane**: shared control services, provisioning workflows, secrets management, ingestion, and supporting infrastructure
+- **Data plane**: tenant data storage with logical separation from other customer data
+
+<Callout>
+**Key principle: explicit tenant context everywhere.** Every request and background job carries an explicit tenant context, and every service enforces it before reading/writing data or performing administrative operations.
+</Callout>
+
+### Tenant provisioning & lifecycle
+
+Each tenant is onboarded through an automated provisioning flow that configures tenant resources and service integrations. This includes isolated tenant setup for Supabase and Studio, along with tenant-scoped configuration for ClickHouse, the secret store, vector database infrastructure, and Airbyte.
+
+### Tenant-aware execution
+
+Runtime requests are resolved with tenant-aware routing so application requests, worker jobs, storage operations, and artifacts stay within the tenant boundary. Platform services enforce tenant context throughout execution to prevent cross-tenant reads, writes, and operational access.
+
+---
+
+## Network layers & isolation controls
+
+<div className="flex justify-center my-6">
+  <Image
+    src={tenantNetworkDiagram}
+    alt="Tenant private network diagram"
+    style={{ width: "100%", maxWidth: 420, height: "auto" }}
+  />
+</div>
+
+The architecture uses layered isolation to reduce the risk of customer data exposure:
+
+- **Access layer isolation**: tenant-scoped identities, authentication, and authorization
+- **Application layer isolation**: tenant-aware runtime requests and worker execution paths
+- **Data layer isolation**: tenant separation across relational storage, analytics systems, vector infrastructure, secrets, and synchronization services
+- **Operational layer isolation**: controlled internal interfaces for administrative access, provisioning actions, and support workflows
+- **Logging & observability isolation**: tenant-safe monitoring, audit trails, redaction controls, and optional restrictions such as disabling request body logging
+
+<Callout type="warning">
+**Regulated environments.** Where required, the architecture can support stricter deployment and network boundary controls to reduce or prevent customer PII from leaving approved environments (e.g., bank-network or regulator-driven requirements).
+</Callout>
+
+---
+
+## Security guarantees
+
+### Guaranteed by design
+
+- Tenant-scoped access: tenant-aware authN/authZ tied to tenant-scoped identities and roles
+- Tenant-safe data access: reads/writes constrained to tenant-specific namespaces and partitions
+- Tenant-safe operations: provisioning and admin actions gated via controlled internal interfaces with tenant context
+- No training on customer data: controls prevent customer data from being used for model training, fine-tuning, or cross-customer prompt sharing
+
+### Configurable per customer
+
+- Log retention and "no request-body logging" modes
+- Data retention and deletion policies (where applicable)
+- Optional opt-outs for certain shared systems (where supported)
+
+We continuously extend audit, redaction, and dedicated-deployment capabilities for regulated customers. [Reach out](/docs/slack) to discuss your specific compliance requirements.
+
+---
+
+## Customer controls & admin operations
+
+External stakeholders often ask how isolation interacts with day-to-day operations:
+
+- **Tenant onboarding**: automated provisioning creates tenant-scoped configuration and service boundaries
+- **Access management**: role-based access control for tenant and operator actions
+- **Support & break-glass**: tightly controlled internal access paths; access is tenant-scoped and auditable
+- **Offboarding**: tenant lifecycle processes support retention controls, deletion requests, and data export as required by contract
+
+---
+
+## Data systems (subprocessor inventory)
+
+| System | Vendor | Use | Configuration | Compliance |
+| --- | --- | --- | --- | --- |
+| Studio | Vercel | Control plane | No retention | [Trust Centre](https://security.vercel.com) · [SOC 2](https://vercel.com/kb/guide/is-vercel-soc-2-compliant) · [ISO 27001](https://vercel.com/kb/guide/is-vercel-iso-27001-certified) |
+| Studio DB | Supabase | Project configuration, flows & prompts, admin & user accounts | Shared, encrypted sensitive information | [Trust Centre](https://trust.supabase.io) · [SOC 2](https://supabase.com/security) · [ISO 27001](https://supabase.com/blog/supabase-is-now-iso-27001-certified) |
+| Runtime worker, proxy | Cloudflare Worker + Containers | Agent execution runtime | Stateless | [Trust Centre](https://www.cloudflare.com/trust-hub/) · [SOC 2](https://www.cloudflare.com/trust-hub/compliance-resources/soc-2/) · [ISO 27001](https://www.cloudflare.com/trust-hub/compliance-resources/iso-certifications/) |
+| Secrets | Cloudflare KV | Secrets, webhooks | Isolated, kill switch | [Trust Centre](https://www.cloudflare.com/trust-hub/) · [SOC 2](https://www.cloudflare.com/trust-hub/compliance-resources/soc-2/) · [ISO 27001](https://www.cloudflare.com/trust-hub/compliance-resources/iso-certifications/) |
+| Tables | Cloudflare D1 | Durable data storage | Isolated, kill switch | [Trust Centre](https://www.cloudflare.com/trust-hub/) · [SOC 2](https://www.cloudflare.com/trust-hub/compliance-resources/soc-2/) · [ISO 27001](https://www.cloudflare.com/trust-hub/compliance-resources/iso-certifications/) |
+| Files | Cloudflare Storage | Durable file storage | Isolated, kill switch | [Trust Centre](https://www.cloudflare.com/trust-hub/) · [SOC 2](https://www.cloudflare.com/trust-hub/compliance-resources/soc-2/) · [ISO 27001](https://www.cloudflare.com/trust-hub/compliance-resources/iso-certifications/) |
+| VectorDB | Qdrant | Vectors, memories | Isolated, kill switch | [Trust Centre](https://qdrant.tech/documentation/cloud-security/) · [SOC 2 Type II](https://qdrant.tech/blog/qdrant-soc2-type2-audit/) · ISO 27001 in progress |
+| ETL | Digital Ocean Postgres | Data ETL | Isolated, kill switch | [Trust Centre](https://www.digitalocean.com/trust) · [SOC 2 & ISO 27001 reports](https://www.digitalocean.com/trust/certification-reports) |
+| ETL | Digital Ocean Droplet | Data ETL | Isolated | [Trust Centre](https://www.digitalocean.com/trust) · [SOC 2 & ISO 27001 reports](https://www.digitalocean.com/trust/certification-reports) |
+| ETL, webhooks | Digital Ocean Kafka | Data ETL, webhooks | Shared, stateless | [Trust Centre](https://www.digitalocean.com/trust) · [SOC 2 & ISO 27001 reports](https://www.digitalocean.com/trust/certification-reports) |
+| Integrations | Composio | Integrations, MCP | Shared, opt-out | [Trust Centre](https://trust.composio.dev) · [SOC 2 & ISO 27001](https://composio.dev/enterprise) |
+| Logs, reports | ClickHouse | Logs | Isolated, opt-out (global or per flow), clear-all | [Trust Centre](https://trust.clickhouse.com) · [SOC 2 & ISO 27001](https://clickhouse.com/docs/cloud/security/compliance-overview) |
+| Internal | Grafana | System observability | Shared, opt-out | [Trust Centre](https://trust.grafana.com) · [SOC 2 & ISO 27001](https://grafana.com/legal/security-compliance/) |
+
+---
+
+## Compliance & assurance
+
+The architecture is designed to support compliance and security requirements commonly requested by enterprise and regulated customers:
+
+- TLS 1.2 minimum, with a preference for TLS 1.3, for data in transit
+- Encryption at rest for systems storing tenant or customer data
+- Role-based access control for tenant and operator actions
+- Isolation controls preventing customer-level analytics exposure or filterable bank-level visibility
+- Zero data retention controls where required
+- Controls preventing customer data from being used for model training, fine-tuning, or cross-customer prompt sharing
+
+<Callout>
+**Common evidence requests.** SOC 2 Type 2, recent penetration testing, vulnerability management documentation, information security policies, business continuity / disaster recovery plans, incident response plans, cyber insurance evidence, third-party risk management documentation, and data retention policies.
+</Callout>
+
+---
+
+## Additional topics
+
+### Threat model (high level)
+
+- Prevent cross-tenant data access (primary objective)
+- Reduce blast radius of credential compromise via tenant-scoped permissions
+- Limit sensitive data exposure through logging controls and redaction, where applicable
+
+### Data residency & customer requirements
+
+Requirements can vary by customer and regulator. For deployments with strict residency needs, controls may include environment restrictions, region constraints, and customer-specific retention/logging policies.
+
+### Incident response & customer communications
+
+Enterprise readiness includes incident response procedures, defined escalation paths, and customer notification commitments aligned to contractual obligations.
+
+### Third-party risk & subprocessors
+
+See the [data systems inventory](#data-systems-subprocessor-inventory) above for vendor and subprocessor review and security questionnaires.
+
+---
+
+## Related
+
+<Cards>
+  <Cards.Card title="Security Architecture" href="/docs/security/architecture" arrow />
+  <Cards.Card title="Vulnerability Disclosure Program" href="/docs/security/vulnerability-disclosure" arrow />
+  <Cards.Card title="Anonymous Reporting" href="/docs/security/anonymous-reporting" arrow />
+</Cards>
+
+
+---
+
+# Vulnerability Disclosure Program
+
+Source: https://lamatic.ai/docs/security/vulnerability-disclosure.md
+
+# Vulnerability Disclosure Program
+
+At Lamatic, we believe in collaborating with the global security researcher community to enhance the security of our products. By welcoming researchers to identify vulnerabilities in our systems, we aim to make our products more secure while fostering a cooperative security ecosystem. To this end, we reward researchers for their valuable contributions.
+
+## Scope of the Program
+
+### In Scope
+The following areas and vulnerabilities are included in the Vulnerability Disclosure Program:
+
+1. **Products**
+   - [Lamatic.ai Studio](https://studio.lamatic.ai/): only the web application hosted at **studio.lamatic.ai** is in scope.
+
+2. **Vulnerability Categories**
+   - Cross-Site Scripting (XSS)
+   - SQL Injection
+   - Authentication flaws
+   - Data leakage
+   - Privilege escalation
+
+### Out of Scope
+The following are **not covered** by the program:
+
+1. Any asset or subdomain other than **studio.lamatic.ai**
+2. Social engineering attacks (e.g., phishing)
+3. Physical security vulnerabilities
+4. Denial of Service (DoS) or Distributed Denial of Service (DDoS) attacks
+5. Brute-force attacks against authentication or rate-limited endpoints
+6. Use of non-application attack vectors such as machine takeover, cookie takeover, local privilege escalation, or network sniffing
+7. Findings based on use of intrusive tools such as **Burp Suite**, **Wireshark**, or similar packet interception/analyzer tools
+8. Third-party integrations, dependencies, or services not owned or controlled by Lamatic
+
+## Submission Guidelines
+
+Security researchers are required to provide detailed information about identified vulnerabilities. Submissions should include:
+
+1. A clear description of the vulnerability  
+2. Step-by-step instructions to reproduce the issue  
+3. An impact analysis outlining the potential risk  
+4. Supporting evidence such as screenshots, videos, or scripts  
+5. Recommendations for remediation  
+
+## Response Times
+
+We strive to provide timely responses to all submissions:
+
+1. Initial response: **24 hours**  
+2. Severity assessment: **20 business days**  
+3. Status updates: **Every 30 business days**  
+4. Payment processing: **Within 60 days of validation**  
+
+## Review Process
+
+| **Step**                           | **Description**                                                                                                                                                                                                                          |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Acknowledgment**              | Confirm receipt of the report within **24–48 hours**. Assign a unique **Reference ID** to track the submission.                                                                                                                         |
+| **2. Initial Assessment**          | - Validate the authenticity of the issue. <br/> - Perform a **Duplicate Check** to ensure the bug hasn’t been previously reported. <br/> - Note that **multiple reports within the same exploit chain are considered one vulnerability**. <br/> - Share an NDA if necessary. |
+| **3. Severity Analysis**           | Assess the severity using a standard rating system such as **CVSS**: <br/> - **Critical**: Immediate, widespread impact (e.g., RCE, data breaches). <br/> - **High**: Significant functionality or security risks. <br/> - **Medium**: Moderate impact. <br/> - **Low**: Minor risks. |
+| **4. Assignment & Prioritization** | Assign the validated issue to the appropriate team and prioritize based on severity.                                                                                                               |
+| **5. Development & Fixing**        | Address the issue based on priority and ensure timely resolution.                                                                                                                                  |
+| **6. Researcher Verification**     | Notify the researcher upon resolving the issue. Provide testing environments or evidence (e.g., logs, screenshots) for verification.                                                                 |
+| **7. Reward & Closure**            | Issue the reward based on the severity, impact, and uniqueness of the vulnerability.                                                                                                               |
+| **8. Post-Resolution Analysis**    | Conduct a root cause analysis to identify gaps in code review, testing, or system architecture.                                                                                                     |
+
+## Rules of Engagement
+
+To ensure ethical conduct, researchers are required to adhere to the following guidelines:
+
+| **Do’s**                                      | **Don’ts**                                                                                           |
+|----------------------------------------------|------------------------------------------------------------------------------------------------------|
+| Test **only** within the defined scope (**studio.lamatic.ai**). | Do not test on any other Lamatic domains or services.                                                |
+| Avoid impacting production systems.          | Do not use automated tools (e.g., Burp Suite, Wireshark) or network-level scanners.                   |
+| Report vulnerabilities immediately.          | Do not exploit vulnerabilities beyond proof-of-concept or attempt denial of service.                 |
+| Operate responsibly and respect user privacy. | Do not attempt brute-force, credential stuffing, or machine-level exploitation.                      |
+| Submit logically distinct vulnerabilities as separate reports. | Do not submit **multiple reports from the same exploit chain**, as these will be **grouped as one vulnerability**. |
+
+## Legal Protections
+
+### Safe Harbor Clause
+
+Lamatic provides safe harbor for researchers acting in good faith, ensuring protection from legal consequences as long as they:
+
+1. Operate within the defined scope and guidelines  
+2. Avoid compromising user data  
+3. Do not disrupt services  
+4. Responsibly report vulnerabilities through the program  
+
+## Disclosure Restrictions
+
+By submitting a vulnerability report, you agree to abide by Lamatic’s [Terms & Conditions](https://lamatic.ai/docs/legal/terms-of-service) and the conditions outlined in this program.
+
+- All submitted reports are **confidential** and must **not** be shared publicly, including on social media, blogs, forums, or other channels, regardless of their resolution status.  
+- Even if a vulnerability report is marked as **invalid**, it is **strictly prohibited** to disclose any details of the finding without explicit written consent from Lamatic.  
+- Breaching these terms may disqualify you from receiving a reward and could result in legal action under applicable laws.  
+
+## Rewards
+We greatly appreciate responsible disclosures and will reward eligible contributors with exclusive goodies and swag as a token of thanks.
+
+**Note:** Our Vulnerability Disclosure Program (VDP) does not include any form of monetary compensation. 
+<br/>
+
+Thank you for contributing to the security of Lamatic's products!

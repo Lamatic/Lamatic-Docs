@@ -8,6 +8,9 @@
     "build": "npx next build",
     "postbuild": "next-sitemap && node scripts/generate-llms-txt.js && echo 'Removing .next/cache to resolve Nextra caching bug' && rm -rf .next/cache",
     "start": "npx next start -p 3333",
+    "build:cf": "opennextjs-cloudflare build && node scripts/cf-assetsignore.js",
+    "preview:cf": "opennextjs-cloudflare preview",
+    "deploy:cf": "opennextjs-cloudflare deploy",
     "analyze": "cross-env ANALYZE=true npx next build"
   },
   "homepage": "https://lamatic.ai/docs",
@@ -27,7 +30,6 @@
     "@supabase/supabase-js": "^2.43.1",
     "@tanstack/react-table": "^8.16.0",
     "@theguild/remark-mermaid": "^0.0.6",
-    "@vercel/og": "^0.6.2",
     "@vidstack/react": "^0.6.15",
     "ai": "^3.1.12",
     "autoprefixer": "^10.4.19",
@@ -39,7 +41,7 @@
     "gpt3-tokenizer": "^1.1.5",
     "jsdom": "^24.1.0",
     "lucide-react": "^0.376.0",
-    "next": "15.2.8",
+    "next": "15.2.9",
     "next-mdx-remote": "^6.0.0",
     "next-sitemap": "^4.2.3",
     "nextra": "3.0.15",
@@ -58,6 +60,7 @@
     "remark-gfm": "^4.0.0",
     "remark-math": "^6.0.0",
     "sharp": "^0.33.5",
+    "styled-jsx": "5.1.6",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.3",
     "tailwindcss-animate": "^1.0.7",
@@ -65,9 +68,11 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^15.1.4",
+    "@opennextjs/cloudflare": "~1.18.1",
     "@types/node": "18.16.0",
     "cross-env": "^7.0.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "wrangler": "^4.130.0"
   },
   "optionalDependencies": {
     "crisp-sdk-web": "^1.0.21"
@@ -80,11 +85,14 @@
   },
   "packageManager": "pnpm@9.1.2+sha512.127dc83b9ea10c32be65d22a8efb4a65fb952e8fefbdfded39bdc3c97efc32d31b48b00420df2c1187ace28c921c902f0cb5a134a4d032b8b5295cbfa2c681e2",
   "overrides": {
-    "next-mdx-remote": ">=6.0.0"
+    "next-mdx-remote": "^6.0.0"
   },
   "pnpm": {
     "overrides": {
       "next-mdx-remote": ">=6.0.0"
+    },
+    "patchedDependencies": {
+      "react-dom@18.3.1": "patches/react-dom@18.3.1.patch"
     }
   }
 }

@@ -183,6 +183,10 @@ export default {
     title: "Glossary",
     type: "doc",
   },
+  "glob-patterns": {
+    title: "Glob Patterns",
+    type: "doc",
+  },
   limits: {
     title: "Limits & Quotas",
     type: "doc",
@@ -226,16 +230,6 @@ export default {
   //   type: "page",
   //   display: "hidden",
   // },
-  "vulnerability-disclosure": {
-    title: "Vulnerability Disclosure",
-    type: "doc",
-    display: "hidden",
-  },
-  "report-issue": {
-    title: "Confidential Reporting",
-    type: "doc",
-    display: "hidden",
-  },
   "privacy-policy": {
     title: "Privacy Policy",
     type: "doc",
@@ -277,9 +271,8 @@ export default {
     display: "hidden",
   },
   security: {
-    title: "Security",
+    title: "Security & Compliance",
     type: "doc",
-    display: "hidden",
   },
   slack: {
     title: "Slack",
@@ -289,7 +282,6 @@ export default {
   legal: {
     title: "Legal",
     type: "doc",
-    display: "hidden",
   },
   "config-schema": {
     title: "Config Schema",

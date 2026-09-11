@@ -15,6 +15,10 @@ export default {
     title: "Next.js",
     type: "doc",
   },
+  python: {
+    title: "Python",
+    type: "doc",
+  },
   go: {
     title: "Go",
     type: "doc",

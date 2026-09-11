@@ -38,10 +38,40 @@ The Twilio integration provides Action capabilities for sending messages and mak
 
 Before setting up the Twilio integration, ensure you have the following:
 
-- **Twilio Account**: A valid Twilio account with active phone numbers and proper authentication setup.
+**Always required:**
+
+- **Twilio Account**: A valid Twilio account with proper authentication setup.
 - **Twilio Credentials**: Account SID and Auth Token from your Twilio console.
-- **Phone Numbers**: Purchased phone numbers for SMS and voice calls (if needed).
-- **WhatsApp Business API**: Set up WhatsApp Business API for WhatsApp messaging (if needed).
+
+**Required for the actions you plan to use:**
+
+- **SMS**: A purchased Twilio phone number with SMS capability enabled.
+- **Voice Calls**: A purchased Twilio phone number with voice capability enabled.
+- **WhatsApp Messages**: Either the **Twilio WhatsApp Sandbox** (development and testing) or a **registered WhatsApp sender** (production). See below.
+
+### WhatsApp: Sandbox vs. Production
+
+WhatsApp messages cannot be sent from a standard Twilio phone number. You have two options:
+
+#### Twilio WhatsApp Sandbox (development and testing)
+
+The Sandbox lets you send and receive WhatsApp messages immediately. No WhatsApp Business Account and no Meta approval are required, which makes it the fastest way to test a flow.
+
+1. Find your sandbox number and unique join code in the Twilio Console under **Messaging → Try it out → Send a WhatsApp message**.
+2. Each recipient must opt in by sending `join <your-join-code>` to the sandbox number, or by scanning the QR code shown in the Console.
+3. Use the sandbox number as your **From (WhatsApp)** value in the node.
+
+Sandbox limitations:
+
+- You can only message users who have joined your sandbox.
+- Sessions expire three days after joining. Recipients must rejoin after that.
+- Rate limited to one message every three seconds.
+- Business-initiated messages can only use Twilio's pre-approved templates (Appointment Reminders, Order Notifications, Verification Codes).
+- The sandbox number is shared across Twilio accounts and cannot be customized.
+
+#### Registered WhatsApp sender (production)
+
+For production traffic, custom message templates, or your own branded number, register a WhatsApp sender through Twilio's **WhatsApp Self Sign-up** (direct customers) or the **WhatsApp Tech Provider Program** (ISVs). This is the path that involves WhatsApp Business Account setup and approval.
 
 ## Setup
 
@@ -56,9 +86,9 @@ Before setting up the Twilio integration, ensure you have the following:
    - Copy your Account SID and Auth Token
    - Store these credentials securely for use in Lamatic
 
-3. **Purchase Phone Numbers** (if needed):
-   - Buy phone numbers for SMS and voice calls
-   - Set up WhatsApp Business API (for WhatsApp messaging)
+3. **Set Up Your Sending Channels**:
+   - **For SMS or voice calls**: Purchase a Twilio phone number with the capability you need (SMS, voice, or both).
+   - **For WhatsApp**: Use the WhatsApp Sandbox to get started without approval, or register a WhatsApp sender for production. A regular phone number will not work for WhatsApp. See [WhatsApp: Sandbox vs. Production](#whatsapp-sandbox-vs-production).
 
 ### Step 2: Set Up Lamatic Flow
 
@@ -101,6 +131,7 @@ For testing, you need to manually provide phone numbers and message content as d
 | **Body**             | SMS message content                                  | ✅           | `Hello, this is an automated SMS message.`        |
 | **To**               | Recipient phone number (E.164 format)                | ✅           | `+1234567890`                                     |
 | **From**             | Sender phone number (your Twilio number)             | ✅           | `+1987654321`                                     |
+| **Timeout**          | Timeout in seconds. Defaults to `60`.                | ❌           | `60`                                              |
 
 #### Send Voice Call Action
 
@@ -112,9 +143,13 @@ For testing, you need to manually provide phone numbers and message content as d
 | **Voice Message**    | Text to be converted to speech for the call          | ✅           | `Hello, this is an automated voice call.`         |
 | **Call To**          | Recipient phone number (E.164 format)                | ✅           | `+1234567890`                                     |
 | **Call From**        | Sender phone number (your Twilio number)             | ✅           | `+1987654321`                                     |
-| **Call Timeout**     | Maximum call duration in seconds                     | ❌           | `30`                                              |
+| **Timeout**          | Timeout in seconds. Defaults to `60`.                | ❌           | `60`                                              |
 
 #### Send WhatsApp Message Action
+
+<Callout type="warning">
+Requires either the Twilio WhatsApp Sandbox (development) or a registered WhatsApp sender (production). A standard Twilio phone number will not work. See [WhatsApp: Sandbox vs. Production](#whatsapp-sandbox-vs-production).
+</Callout>
 
 | **Parameter**        | **Description**                                      | **Required** | **Example**                                       |
 | -------------------- | ---------------------------------------------------- | ------------ | ------------------------------------------------- |
@@ -123,8 +158,9 @@ For testing, you need to manually provide phone numbers and message content as d
 | **Action**           | Type of Twilio action to perform                     | ✅           | `Send WhatsApp Message`                           |
 | **WhatsApp Message** | WhatsApp message content                             | ✅           | `Hello, this is an automated WhatsApp message.`   |
 | **To (WhatsApp)**    | Recipient WhatsApp number (E.164 format)             | ✅           | `+1234567890`                                     |
-| **From (WhatsApp)**  | Sender WhatsApp number (your Twilio WhatsApp number) | ✅           | `+1987654321`                                     |
+| **From (WhatsApp)**  | Sender WhatsApp number. Your Sandbox number or registered WhatsApp sender. | ✅           | `+14155238886`                   |
 | **Media URL**        | URL of media file to send (image, document, etc.)    | ❌           | `https://example.com/image.jpg`                   |
+| **Timeout**          | Timeout in seconds. Defaults to `60`.                | ❌           | `60`                                              |
 
 ### Low-Code Example
 
@@ -177,45 +213,36 @@ nodes:
       credentials: my-twilio-credentials
       action: whatsapp
       timeout: 60
-      to: '{{triggerNode_1.output.sampleInput}}'
-      from: '{{triggerNode_1.output.sampleInput}}'
-      body: Test WhatsApp Message
+      whatsappTo: '+911234567890'
+      whatsappFrom: '+14155238886'
+      whatsappMessage: Test WhatsApp Message
     modes: {}
     needs:
       - triggerNode_1
 ```
 
+<Callout type="info">
+`whatsappFrom` in this example is Twilio's shared Sandbox number. For production, use your registered WhatsApp sender number instead.
+</Callout>
+
 ## Output
 
-### Send SMS Output
+The Twilio node returns the same output shape for all three actions:
 
-- `messageId`: String identifier for the sent SMS message
-- `status`: String indicating the delivery status
-- `to`: String containing the recipient phone number
-- `from`: String containing the sender phone number
-- `body`: String containing the message content
-- `price`: String containing the cost of the message
-- `timestamp`: String containing the send timestamp
+- `sid`: String identifier assigned by Twilio for the message or call (Twilio's SID).
+- `status`: String indicating the delivery or call status.
+- `message`: String containing a status or error message.
+- `output`: Object containing the response payload from Twilio.
 
-### Send Voice Call Output
+### Example Output Reference
 
-- `callId`: String identifier for the voice call
-- `status`: String indicating the call status
-- `to`: String containing the recipient phone number
-- `from`: String containing the sender phone number
-- `duration`: String containing the call duration
-- `price`: String containing the cost of the call
-- `timestamp`: String containing the call timestamp
-
-### Send WhatsApp Message Output
-
-- `messageId`: String identifier for the WhatsApp message
-- `status`: String indicating the delivery status
-- `to`: String containing the recipient WhatsApp number
-- `from`: String containing the sender WhatsApp number
-- `body`: String containing the message content
-- `mediaUrl`: String containing the media URL (if sent)
-- `timestamp`: String containing the send timestamp
+```yaml
+schema:
+  output: object
+  sid: string
+  message: string
+  status: string
+```
 
 ## Troubleshooting
 
@@ -227,7 +254,8 @@ nodes:
 | **Invalid Phone Numbers**  | Ensure phone numbers are in E.164 format (e.g., +1234567890)                   |
 | **SMS Delivery Fails**     | Check if the recipient number is valid and can receive SMS                      |
 | **Voice Call Issues**      | Verify the sender number has voice calling capabilities enabled                 |
-| **WhatsApp API Errors**    | Ensure WhatsApp Business API is properly configured and approved                |
+| **WhatsApp API Errors**    | If using the Sandbox, confirm the recipient has joined it and the session hasn't expired. If using a registered sender, ensure it is properly configured and approved |
+| **WhatsApp message not delivered (Sandbox)** | The recipient must send `join <your-join-code>` to the sandbox number first. Sandbox sessions also expire after three days, requiring the recipient to rejoin |
 | **Rate Limiting**          | Implement appropriate delays between API calls to avoid hitting rate limits     |
 | **Insufficient Credits**   | Check your Twilio account balance and add funds if necessary                    |
 

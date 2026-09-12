@@ -123,6 +123,8 @@ globs:
   - "**/*.md"
 ```
 
+See [Glob Patterns](/docs/glob-patterns) for the full syntax reference.
+
 ### Action Node Configuration
 
 Configure the Google Drive node as an action by selecting the desired action and providing the required parameters.
@@ -232,30 +234,32 @@ triggerNode:
 
 ## Testing
 
-For testing purposes, you need to manually provide `content` and `document_key` as dummy data. Once deployed, these values will be automatically fetched from your configured Google Drive folder.
+For testing purposes, you need to manually provide `document_key`, `document_id`, `content`, and `document_url` as dummy data. Once deployed, these values will be automatically fetched from your configured Google Drive folder.
 
 ### Test Configuration
 
 ```json
 {
     "document_key": "test_document.pdf",
-    "content": "This is test content that will be processed for RAG flows"
+    "document_id": "1a2b3c4d5e6f7g8h9i0j",
+    "content": "This is test content that will be processed for RAG flows",
+    "document_url": "https://storage.googleapis.com/example-bucket/test_document.pdf?signature=..."
 }
 ```
 
-- **document_key**: Serves as the unique identifier for the document, used to locate or update the specific file or filename.
-- **content**: Represents the data or text that will be stored in the document.
+- **document_key**: The document's filename, used to locate or reference the specific file.
+- **document_id**: The Google Drive file ID. Use this as the unique identifier for the document.
+- **content**: The document's content or text data.
+- **document_url**: A temporary, downloadable URL for the file's content.
 
 ## Output
 
 ### Batch Trigger Output
 
-- **document_key**: String identifier for the document (filename or unique key)
-- **content**: String containing the document content or text data
-- **metadata**: Additional file information (if available)
-  - `file_type`: Type of the processed file
-  - `last_modified`: Timestamp of last modification
-  - `file_size`: Size of the file in bytes
+- **document_key**: The document's filename, used to locate or reference the specific file.
+- **document_id**: The Google Drive file ID. Use this as a unique identifier for the document, for deduplication, lookups, or referencing the file elsewhere in your flow.
+- **content**: The document's content or text data.
+- **document_url**: A temporary, downloadable URL for the file's content. Since it's short-lived, use it within the same flow run rather than storing it for later, pass it directly to a downstream node such as [Doc Extractor](/docs/nodes/ai/doc-extractor) or [Document Handling](/docs/nodes/data/document-handling-node).
 
 ### Action Node Output
 

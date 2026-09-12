@@ -32,7 +32,8 @@ export default {
   },
   Changelog: {
     title: "Changelog",
-    type: "page",
+    href: "https://product.lamatic.ai/changelog",
+    newWindow: true,
   },
   blog: {
     title: "Blog",

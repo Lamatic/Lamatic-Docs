@@ -1,0 +1,89 @@
+---
+title: Glob Patterns
+description: Reference for the glob pattern syntax used to filter files in Lamatic's file-sync integrations (Google Drive, OneDrive, SharePoint, AWS S3).
+---
+
+# Glob Patterns
+
+A glob is a small pattern language for matching file paths, `**/*.pdf` matches every PDF anywhere in a folder tree, for example. Several of Lamatic's file-sync integrations use globs to control which files get pulled in and indexed, instead of syncing everything.
+
+This page is the single reference for that syntax so you don't have to guess or search elsewhere.
+
+<Callout type="warning">
+These integrations are built on Airbyte's file-based source connectors, which use Python's `wcmatch.glob`. **There is no working exclusion syntax.** A pattern that starts with `!` (e.g. `!**/draft/**`) is matched literally and won't match anything, this is a common mistake since `!prefix` negation works in other glob dialects (`.gitignore`, VS Code, shells), but not here. Use a positive pattern instead, see [Including only what you want](#including-only-what-you-want) below.
+</Callout>
+
+## Where globs are used in Lamatic
+
+| Integration | Config field |
+| --- | --- |
+| [Google Drive](/integrations/apps-data-sources/google-drive#action-node-configuration) | Globs (Path Patterns) |
+| [AWS S3](/integrations/apps-data-sources/aws-s3#globs-path-patterns) | Globs (Path Patterns) |
+| [OneDrive](/integrations/apps-data-sources/onedrive#supported-file-types) | Globs (Path Patterns) |
+| [SharePoint](/integrations/apps-data-sources/sharepoint#file-filtering-patterns) | Globs (Path Patterns) |
+
+The field is optional on all four. If you leave it empty, the default is `**`, every file.
+
+## Syntax
+
+| Pattern | Meaning |
+| --- | --- |
+| `*` | Matches any characters within a single path segment (does not cross a `/`). |
+| `**` | Matches any characters, including across folder boundaries. Used to mean "any depth" or, on its own, "everything." |
+| `\|` | Separates alternatives within a single pattern (`a\|b` matches `a` or `b`). |
+
+You can supply a single pattern as a string, or a list of patterns. A file matches if it satisfies any pattern in the list. Patterns are purely additive, there is no way to exclude or subtract.
+
+## Common patterns
+
+| Pattern | Matches |
+| --- | --- |
+| `**` | Every file, at any depth. |
+| `**/*.pdf` | Every `.pdf` file, at any depth. |
+| `myFolder/**/*.csv` | Every `.csv` file anywhere under `myFolder`. |
+| `*/**` | Everything at least one folder deep (excludes files in the root). |
+| `*/*/*/**` | Everything at least three folders deep. |
+| `x/*/y/*` | Files directly inside `x/<any single folder>/y/`. |
+| `**/prefix*.csv` | `.csv` files whose name starts with `prefix`. |
+| `**/file.*\|**/file` | Any file named `file`, with or without an extension. |
+
+### Multiple patterns
+
+```yaml
+# Everything under two specific folders
+globs:
+  - "HR/**/*"
+  - "Legal/**/*"
+```
+
+### Including only what you want
+
+There is no exclusion syntax that reliably works end to end (through Studio testing and into a deployed sync). If you want everything except a subfolder or file type, don't try to subtract it, list what you *do* want instead:
+
+```yaml
+# Instead of trying to exclude "draft", include the folders you actually want
+globs:
+  - "HR/**/*"
+  - "Legal/**/*"
+  - "Finance/**/*"
+```
+
+### Scoping to supported file types
+
+Each file-sync integration only parses a specific set of extensions (`.pdf`, `.txt`, `.docx`, `.pptx`, `.md` as of this writing, check the integration's own page for the current list). Scoping your glob to those extensions avoids sync errors from unsupported files:
+
+```yaml
+globs:
+  - "**/*.pdf"
+  - "**/*.txt"
+  - "**/*.docx"
+  - "**/*.pptx"
+  - "**/*.md"
+```
+
+## Tips
+
+- Start narrow. Test a glob against a small folder before pointing it at your whole drive, an overly broad `**` on a large source can mean a very large first sync.
+- Extension filters (`**/*.pdf`) are the most common and least error-prone pattern. Folder-scoped patterns (`HR/**/*`) are useful when only part of a source is relevant.
+- If files aren't syncing that you expect to, check the glob first, it's the most common cause, ahead of credentials or permissions issues.
+- If you need something not covered here, [Airbyte's S3 connector docs](https://docs.airbyte.com/integrations/sources/s3) document the same `wcmatch.glob`-based syntax these integrations run on.

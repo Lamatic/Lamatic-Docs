@@ -55,7 +55,7 @@ The Chunking Node is a data processing component that breaks down large text doc
 
 </details>
 
-## What Can You Build?
+## What Can I Build?
 
 1. Develop a system for efficient text vectorization and semantic retrieval.
 1. Create flow that handle large datasets by breaking them into manageable chunks.
@@ -113,3 +113,20 @@ nodes:
 - A nested object providing additional details about the chunk's origin or properties.
 
 ### `loc`
+- Location information within `metadata`, indicating where in the source text the chunk starts and ends (e.g. line numbers).
+
+## Troubleshooting
+
+### Common Issues
+
+| **Problem**                        | **Solution**                                                                                          |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| **No chunks returned**              | Ensure **Text to chunk** resolves to a non-empty string; check the upstream node's output.              |
+| **Chunks cut off mid-sentence**     | Switch to `Recursive Character Text Splitter`, which respects paragraph and sentence boundaries better than `Character Text Splitter`. |
+| **Overlap larger than chunk size**  | Keep **Overlapping Characters** smaller than **Number of Characters**, otherwise chunking may behave unpredictably. |
+| **Separators not taking effect**    | Double-check the **List of separators** field matches the actual line breaks or delimiters in your source text. |
+
+### Debugging
+
+1. Check Lamatic Flow logs for the node's input and output to confirm the text reaching the node.
+2. Inspect the `chunks` output array to verify chunk count and size match your configuration.

@@ -1,0 +1,12 @@
+diff --git a/package.json b/package.json
+index 1287fb4e402bea27a3957433c5078bcf3aa11d87..8191efb33b5e92ef285431205364bba99a9a9c2d 100644
+--- a/package.json
++++ b/package.json
+@@ -47,6 +47,7 @@
+     },
+     "./server.browser": "./server.browser.js",
+     "./server.node": "./server.node.js",
++    "./server.edge": "./server.browser.js",
+     "./profiling": "./profiling.js",
+     "./test-utils": "./test-utils.js",
+     "./package.json": "./package.json"

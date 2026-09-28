@@ -1,0 +1,224 @@
+---
+title: Python
+description: Integrate the Lamatic SDK with Python applications to execute flows, synchronously or asynchronously.
+---
+
+import { Tabs } from 'nextra/components'
+
+# Using Lamatic SDK with Python
+
+This guide demonstrates how to integrate the Lamatic Python SDK into your Python applications to execute flows.
+
+<Callout type="info">
+  This SDK is in **early/alpha release** (v0.1.0). It currently supports executing **flows** only, agent execution (`executeAgent`) isn't available in the Python SDK yet, use the [JavaScript SDK](/docs/sdk) or [Go SDK](/docs/sdk/go) if you need that today.
+</Callout>
+
+## Installation
+
+Requires **Python 3.10+**. Install with pip:
+
+```bash
+pip install lamatic
+```
+
+## Getting Started
+
+To use the Lamatic Python SDK, you'll need:
+
+- An API key or access token
+- Your project ID
+- The Lamatic API endpoint
+
+## Basic Setup
+
+```python
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    api_key="your-api-key",
+)
+```
+
+## Authentication
+
+The SDK supports two authentication methods:
+
+<Tabs items={['API Key', 'Access Token']}>
+  <Tabs.Tab>
+```python
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    api_key="your-api-key",
+)
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    access_token="your-access-token",
+)
+```
+  </Tabs.Tab>
+</Tabs>
+
+You must provide either `api_key` or `access_token`, but not both, the constructor raises `ValueError` if neither is set.
+
+## Executing Flows
+
+Execute a workflow synchronously with `execute_flow`:
+
+```python
+response = lamatic.execute_flow(
+    flow_id="your-flow-id",
+    payload={"prompt": "Hello, Lamatic!"},
+)
+
+print(response.status)   # "success"
+print(response.result)
+print(response.message)
+```
+
+## Async Usage
+
+For async applications, use `async_execute_flow` instead:
+
+```python
+import asyncio
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint="https://yourproject.lamatic.dev/graphql",
+    project_id="your-project-id",
+    api_key="your-api-key",
+)
+
+async def main():
+    response = await lamatic.async_execute_flow(
+        flow_id="your-flow-id",
+        payload={"prompt": "Hello from async!"},
+    )
+    print(response.status)
+    print(response.result)
+
+asyncio.run(main())
+```
+
+## Checking Request Status
+
+For long-running flows, poll for the result with `check_status` (sync) or `async_check_status` (async). Both accept a polling interval and a timeout, in seconds, and return as soon as the request reaches a terminal state (`success`, `error`, or `failed`):
+
+<Tabs items={['Sync', 'Async']}>
+  <Tabs.Tab>
+```python
+response = lamatic.check_status(
+    request_id="your-request-id",
+    poll_interval=5,    # seconds between polls, default 15
+    poll_timeout=120,   # max wait time in seconds, default 900
+)
+
+print(response.status)
+print(response.result)
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+async def poll():
+    response = await lamatic.async_check_status(
+        request_id="your-request-id",
+        poll_interval=5,
+        poll_timeout=120,
+    )
+    print(response.status)
+    print(response.result)
+```
+  </Tabs.Tab>
+</Tabs>
+
+<Callout type="info">
+  If `poll_timeout` is reached before the flow finishes, `check_status` returns `status="error"`, `status_code=408`, and a message noting the request may still be executing in the background. The flow itself isn't cancelled, only the polling loop gives up.
+</Callout>
+
+## Updating Access Token
+
+If you're using access token authentication, update it at runtime with `update_access_token`:
+
+```python
+lamatic.update_access_token("new-access-token")
+```
+
+## Response Structure
+
+`execute_flow`, `async_execute_flow`, `check_status`, and `async_check_status` all return a `LamaticResponse`:
+
+```python
+@dataclass
+class LamaticResponse:
+    status: str                        # "success" | "error" | "failed" | in-progress while running
+    result: dict | None
+    message: str | None = None
+    status_code: int | None = None
+```
+
+### Example
+
+```python
+response = lamatic.execute_flow("your-flow-id", {"prompt": "hey, how are you?"})
+
+if response.status == "success":
+    print("Result:", response.result)
+else:
+    print("Failed:", response.message)
+```
+
+## Error Handling
+
+`execute_flow` and `async_execute_flow` raise an exception on network failures (they don't catch and swallow errors), so wrap calls in a `try`/`except` block:
+
+```python
+try:
+    response = lamatic.execute_flow(flow_id, payload)
+    if response.status == "success":
+        print("Success:", response.result)
+    else:
+        print("Execution failed:", response.message)
+except Exception as e:
+    print("SDK error:", e)
+```
+
+`check_status` and `async_check_status` behave differently: they catch errors internally and return a `LamaticResponse` with `status="error"` instead of raising, so you can check `response.status` without a `try`/`except`.
+
+## Environment Variables
+
+For better security, keep credentials out of source code:
+
+```python
+import os
+from lamatic import Lamatic
+
+lamatic = Lamatic(
+    endpoint=os.environ["LAMATIC_PROJECT_ENDPOINT"],
+    project_id=os.environ["LAMATIC_PROJECT_ID"],
+    api_key=os.environ["LAMATIC_PROJECT_API_KEY"],
+)
+```
+
+## Resources
+
+- **PyPI package**: [pypi.org/project/lamatic](https://pypi.org/project/lamatic/)
+- **GitHub repository**: [github.com/Lamatic/Lamatic-Python-SDK](https://github.com/Lamatic/Lamatic-Python-SDK)
+- **Examples**: see `examples/basic_usage.py` in the repository
+
+## Support
+
+For help and support with the Python SDK:
+- Open an issue on [GitHub](https://github.com/Lamatic/Lamatic-Python-SDK/issues)
+- Contact [support@lamatic.ai](mailto:support@lamatic.ai)

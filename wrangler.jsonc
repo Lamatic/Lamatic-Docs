@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lamatic-docs",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-09-01",
+  // nodejs_compat: the Next.js server needs Node built-ins.
+  // global_fetch_strictly_public: the catch-all rewrites in next.config.mjs
+  // proxy to landing.lamatic.ai / blog.lamatic.ai, which must resolve over
+  // the public internet rather than looping back into this Worker.
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

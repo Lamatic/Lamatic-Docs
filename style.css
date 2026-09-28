@@ -118,6 +118,24 @@
     margin: 1.5em 0;
   }
 
+  /* Sidebar: Studio, Concepts, Security & Compliance, and Legal are real
+     linked pages (not separators), but should visually match the bold
+     section-header style of BUILD/DEPLOY/INTEGRATE/MONITOR/MORE so they
+     don't look like minor links. */
+  .nextra-sidebar-container button[data-href="/docs/studio"],
+  .nextra-sidebar-container button[data-href="/docs/concepts"],
+  .nextra-sidebar-container button[data-href="/docs/security"],
+  .nextra-sidebar-container button[data-href="/docs/legal"] {
+    font-weight: 600 !important;
+    color: rgb(17 24 39) !important; /* text-gray-900, matches separator light mode */
+  }
+  .dark .nextra-sidebar-container button[data-href="/docs/studio"],
+  .dark .nextra-sidebar-container button[data-href="/docs/concepts"],
+  .dark .nextra-sidebar-container button[data-href="/docs/security"],
+  .dark .nextra-sidebar-container button[data-href="/docs/legal"] {
+    color: rgb(243 244 246) !important; /* text-gray-100, matches separator dark mode */
+  }
+
   h2 {
     /* @apply tracking-tight leading-none; */
     font-size: 1.8em !important;

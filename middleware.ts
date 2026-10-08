@@ -20,7 +20,6 @@ const EXCLUDED_FIRST_SEGMENTS = new Set([
   "company",
   "ambassadors",
   "blog", // -> blog.lamatic.ai, via next.config.mjs rewrites
-  "compare", // -> blog.lamatic.ai, via next.config.mjs rewrites
   "content", // -> blog.lamatic.ai, via next.config.mjs rewrites
   "_next",
   "public",

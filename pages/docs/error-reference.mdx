@@ -1,66 +1,146 @@
 ---
 title: Error Codes
-description: Reference for error codes, HTTP status codes, and how to fix common API and Flow failures.
+description: Reference for API error responses, Studio log status codes, Flow execution errors, and credential errors, with the cause and fix for each.
 ---
 
 # Error Reference
 
-Use this page to diagnose failed requests and Flow runs. When the API or a Flow returns an error, check the HTTP status code and the error body for the code and message below.
+Use this page to diagnose failed requests and Flow runs. When the API or a Flow returns an error, check the HTTP status code and the error message in the response body or in [Logs](/docs/logs), then find the matching entry below.
 
 ## HTTP status codes
 
 | Code | Meaning | What to do |
 |------|--------|------------|
-| **200** | Success (check `data` / `errors` in body) | GraphQL can return 200 with partial errors; inspect `response.data` and `response.errors`. |
-| **400** | Bad Request — invalid query, variables, or payload | Ensure the query is valid GraphQL and variables match the schema. Check payload shape against your Flow's input schema. |
-| **401** | Unauthorized — missing or invalid API key | Verify `Authorization: Bearer <YOUR_API_KEY>` and that the key is active in Studio → Settings → API Keys. Redeploy after creating a new key if required. |
-| **403** | Forbidden — no permission for this project or Flow | Confirm `x-project-id` matches the project that owns the Flow and that your key has access. |
-| **404** | Not found — project, Flow, or endpoint missing | Confirm the project URL (endpoint), project ID, and workflow/Flow ID. Ensure the Flow is deployed. |
-| **429** | Too many requests — rate limit exceeded | See [Limits & Quotas](/docs/limits). Implement backoff and respect limits. |
+| **200** | Success (check `data` / `errors` in body) | GraphQL can return 200 with errors in the body, such as `Workflow not found!`. Inspect `response.data` and `response.errors`. |
+| **400** | Bad Request — invalid JSON, invalid GraphQL query, or a payload that doesn't match the trigger schema | See [GraphQL request errors](#graphql-request-errors) and check your payload against the Flow's trigger input schema. |
+| **403** | Access Denied — missing or invalid API key | The API never returns 401. A missing or invalid key returns `{"errors":[{"message":"Access Denied"}]}`. Verify `Authorization: Bearer <YOUR_API_KEY>` and that the key is active in Studio → Settings → API Keys. |
+| **404** | Not found — returned for credential errors | A missing Flow doesn't return 404. See [Flow not found](#flow-not-found) and [Credential errors](#credential-errors). |
+| **429** | Plan quota exceeded for the last 24 hours or 30 days | Upgrade your plan or wait for the window to reset. See [Limits & Quotas](/docs/limits). |
 | **500** | Server error | Retry; if it persists, check [Platform Status](https://status.lamatic.ai) and contact support. |
 
 ## Common errors and fixes
 
-### Authentication (401)
+### Authentication (403)
 
-- **Cause:** Wrong or missing API key, or key not yet active.
-- **Fix:** Use the exact key from Studio → Settings → API Keys. Format: `Authorization: Bearer <YOUR_API_KEY>`. After creating a new key, redeploy the project if your docs require it.
+- **Cause:** Missing or invalid API key. The API returns 403 with `{"errors":[{"message":"Access Denied"}]}`, not 401.
+- **Fix:** Use the exact key from Studio → Settings → API Keys. Format: `Authorization: Bearer <YOUR_API_KEY>`. Confirm `x-project-id` matches the project that owns the Flow.
 
-### Project / Flow not found (404)
+### Flow not found
 
-- **Cause:** Wrong endpoint, project ID, or workflow/Flow ID; or Flow not deployed.
-- **Fix:** Get the project URL and project ID from project settings. Get the workflow/Flow ID from the Flow's Connect or API panel. Deploy the Flow and use the ID of the deployed Flow.
+A missing or invalid Flow doesn't produce an HTTP 404. The error comes back in the response body as one of:
 
-### Payload / variable mismatch (400 or GraphQL errors)
+- `Workflow not found!`
+- `Invalid workflow id - <id>`
 
-- **Cause:** The `payload` or variables don't match the Flow's input schema (field names or types).
-- **Fix:** Open the Flow in the Editor and check the trigger/input node schema. Align your request payload with that schema.
+**Cause:** Wrong endpoint, project ID, or workflow/Flow ID; or the Flow isn't deployed.
 
-### Rate limit exceeded (429)
+**Fix:** Get the project URL and project ID from project settings. Get the workflow/Flow ID from the Flow's Connect or API panel. Deploy the Flow and use the ID of the deployed Flow.
 
-- **Cause:** Too many requests in a short period.
-- **Fix:** See [Limits & Quotas](/docs/limits). Add retries with exponential backoff and respect the documented limits.
+### Payload / variable mismatch (400)
 
-## GraphQL errors in the response body
+- **Cause:** The `payload` doesn't match the input schema on the GraphQL trigger (field names or types). The message starts with `Invalid trigger payload:`.
+- **Fix:** Open the Flow in the Editor and check the trigger node's input schema. Align your request payload with that schema.
 
-When the HTTP status is 200 but the response contains an `errors` array, the error shape is typically:
+### Plan quota exceeded (429)
+
+This is a plan quota, not short-term rate limiting. The message is one of:
+
+- `Project exceeded max requests for last 30 days, max requests: X, current requests: Y. Please upgrade your plan or contact support.`
+- `Project exceeded max requests for last 24 hours, max requests: X, current requests: Y. Please upgrade your plan or contact support.`
+
+**Fix:** Upgrade your plan, or wait for the 24-hour or 30-day window to reset. Retrying with backoff won't help while the quota is exhausted. See [Limits & Quotas](/docs/limits) for plan limits.
+
+## GraphQL request errors
+
+Request-level errors come back in the `errors` array of the response body:
 
 ```json
 {
   "errors": [
     {
-      "message": "Human-readable message",
-      "extensions": { "code": "ERROR_CODE" }
+      "message": "Access Denied"
     }
   ]
 }
 ```
 
-Document specific `ERROR_CODE` values here as you define them in your API. For now, use the `message` and the HTTP status code table above to narrow down the cause.
+| Message | Status | Cause and fix |
+|---------|--------|---------------|
+| `Invalid JSON in request body` | 400 | The request body isn't valid JSON. Check quoting and escaping in your client. |
+| `Invalid GraphQL query` | — | The query can't be parsed or validated. Check the syntax against the [GraphQL reference](/docs/interface/graphql). |
+| `Query exceeds maximum allowed aliases (N)` | — | The query uses more aliases than allowed. Reduce the aliases to N or fewer. |
+| `Query exceeds maximum allowed depth (N)` | — | The query nests deeper than allowed. Flatten the query to N levels or fewer. |
+| `GraphQL introspection is disabled` | — | Introspection queries aren't accepted. Use the documented schema instead. |
+| `Access Denied` | 403 | Missing or invalid API key. See [Authentication (403)](#authentication-403). |
+| `Internal server error` | 500 | Retry. If it persists, check [Platform Status](https://status.lamatic.ai) and contact support. |
 
-## Flow execution failures
+## Flow execution and log status codes
 
-If the request succeeds but the Flow run fails (e.g. a node errors):
+The status codes you see in Studio [Logs](/docs/logs) show what happened to a node or a Flow run. Some codes don't have their standard HTTP meaning.
+
+| Code | Meaning in logs |
+|------|-----------------|
+| **200** | Node or Flow succeeded. |
+| **500** | Node or Flow failed (default error code). |
+| **400** | Trigger payload didn't match the GraphQL trigger's input schema. The message starts with `Invalid trigger payload: ...`. |
+| **408** | Primary config timed out and the fallback config ran (fallback logic step with a timeout). |
+| **509** | Node attempt failed and will be retried (Flow-level retries enabled). Also the error code for runs started via "retry flow". |
+| **204** | Success on a retry attempt or a retried run. |
+| **304** | Node skipped (branch not taken). |
+| **208** | Node skipped during a retried run. |
+
+<Callout type="info">
+  Flow-level retries go up to 5, with a delay of up to 30 seconds between attempts. Each failed attempt is logged separately.
+</Callout>
+
+## Flow execution errors
+
+| Message | Cause and fix |
+|---------|---------------|
+| `No trigger node found!` | The Flow has no trigger node. Add one and redeploy. |
+| `Workflow not found!` / `Invalid workflow id - <id>` | Wrong Flow ID, or the Flow isn't deployed. See [Flow not found](#flow-not-found). |
+| `Invalid trigger payload: <details>` | The request payload doesn't match the advanced schema on the GraphQL trigger. Status 400. |
+| `Max retries reached for node <nodeId>` | The node failed every Flow-level retry. Check that node's own error in the logs. |
+| `Timeout after <n>ms` | The primary config exceeded the fallback timeout, so the fallback config ran. |
+| `All parallel requests failed` | Every config in a parallel logic step failed. |
+| `All logic steps failed` | Every configured logic step (retry, fallback, parallel, A/B) failed for the node. |
+| `Unsupported step type: <type>` / `Invalid step` | A logic step is misconfigured on the node. Review the node's [logic configuration](/docs/nodes/node-logic). |
+| `Previous request id is required` | You used "retry from failed node" without the original request ID. Provide the request ID of the failed run. |
+| `Cache not found, please reach out to lamatic support` | Platform-side error. Contact support. |
+
+## Credential errors
+
+| Message | Status | Cause and fix |
+|---------|--------|---------------|
+| `credentialId is required` / `Invalid credentialId` | 400 | The request is missing a credential ID, or the ID is malformed. Provide a valid `credentialId`. |
+| `Credential not found or not accessible` | 404 | The credential doesn't exist or belongs to another project. These two cases are deliberately indistinguishable. Confirm the ID and that the credential is in the same project as the Flow. |
+| `Credential resolution is not available for this project, please contact support` | 500 | Platform-side. Contact support. |
+
+## Reading an error in the logs
+
+When a Flow run fails, open the run in [Logs](/docs/logs) and check these fields:
+
+- **`errorMsg`**: The error message.
+- **`failedNode`**: The node that failed. It includes `nodeId`, `nodeName`, `nodeSlug`, and `loopBatchId` if the node ran inside a loop or batch.
+- **`logicStep`** (on node logs): Which logic step produced the failure. For example:
+  - `retry (attempt 2/3 with Config B)`
+  - `parallel (Config A)`
+  - `abTest (selected Config B)`
+  - `fallback (Config A timed out)`
+
+## Node-specific errors
+
+Most errors in logs come from individual nodes, such as integration, LLM, code, and API nodes. They're shown verbatim in `errorMsg` together with `failedNode`. Common categories are:
+
+- Integration authentication or credential failures
+- Upstream HTTP errors, shown as `HTTP <status>: <body>`
+- [Code node](/docs/nodes/logic/code-node) runtime errors
+
+For node configuration and requirements, see the per-node docs, such as the [API node](/docs/nodes/data/api-node), [Generate Text node](/docs/nodes/ai/generate-text-node), and the full [Nodes](/docs/nodes) list.
+
+## Flow failures: next steps
+
+If the request succeeds but the Flow run fails:
 
 - Check **Logs** in Studio for the run's trace and the failing node.
 - Use the **Feedback API** or **Reports** if you're capturing run outcomes.
@@ -68,4 +148,4 @@ If the request succeeds but the Flow run fails (e.g. a node errors):
 
 ---
 
-*This reference will be expanded as we add stable error codes. If you hit an error not listed here, check [Limits & Quotas](/docs/limits) and [Support](https://support.lamatic.ai) or community Slack.*
+*If you hit an error not listed here, check [Limits & Quotas](/docs/limits) and [Support](https://support.lamatic.ai) or community Slack.*

@@ -44,8 +44,8 @@ Thank you for your interest in improving Lamatic Docs! Follow the steps below to
 ## 4) Preview/test locally (optional but recommended)
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open the printed localhost URL to verify your changes look correct. Stop the dev server when done.

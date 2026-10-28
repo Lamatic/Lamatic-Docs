@@ -10,7 +10,7 @@ import { Tabs } from 'nextra/components'
 This guide demonstrates how to integrate the Lamatic Python SDK into your Python applications to execute flows.
 
 <Callout type="info">
-  This SDK is in **early/alpha release** (v0.1.0). It currently supports executing **flows** only, agent execution (`executeAgent`) isn't available in the Python SDK yet, use the [JavaScript SDK](/docs/sdk) or [Go SDK](/docs/sdk/go) if you need that today.
+  This SDK is in **early/alpha release** (v0.2.0). It currently supports executing **flows** only, agent execution (`executeAgent`) isn't available in the Python SDK yet, use the [JavaScript SDK](/docs/sdk) or [Go SDK](/docs/sdk/go) if you need that today.
 </Callout>
 
 ## Installation
@@ -111,6 +111,53 @@ async def main():
 
 asyncio.run(main())
 ```
+
+## Streaming Responses
+
+Use `execute_flow_token_stream` to show LLM output as it is generated, instead of waiting for the whole flow to finish. It runs the flow and yields one event at a time. Streaming requires `lamatic` **v0.2.0** or later.
+
+```python
+for event in lamatic.execute_flow_token_stream("your-flow-id", {"prompt": "Write a short story"}):
+    if event.type == "token":
+        print(event.token, end="", flush=True)  # one piece of text
+    elif event.type == "final":
+        print("\nFull text:", event.text)
+    elif event.type == "error":
+        print("\nStream failed:", event.message)
+```
+
+In async code, use `async_execute_flow_token_stream` with `async for`:
+
+```python
+async for event in lamatic.async_execute_flow_token_stream("your-flow-id", {"prompt": "Write a short story"}):
+    if event.type == "token":
+        print(event.token, end="", flush=True)
+```
+
+### Events
+
+| Event | Fields | When |
+| --- | --- | --- |
+| `token` | `token`, `node_id`, `raw` | An LLM or RAG node produced the next piece of text |
+| `node` | `node_id`, `output`, `raw` | A node finished; `output` is its full output |
+| `final` | `result`, `text`, `text_by_node`, `raw` | The flow finished. This is always the last event of a successful stream |
+| `error` | `message`, `node_id`, `raw` | Something failed. The stream ends if the failure was fatal |
+
+- `final.text` is every token joined together. Use it instead of reading `generatedResponse` from a node's output, because the flow's `result` only holds what its response node returns.
+- `final.text_by_node` splits the text by node, for flows with more than one LLM or RAG node.
+- `raw` is the original server frame. On the `node` event of an LLM node, `raw["data"]["_meta"]` holds token counts and cost.
+
+<Callout type="info">
+  Only **LLM** and **RAG** nodes stream token by token. Every other node reports once, as a single `node` event when it finishes.
+</Callout>
+
+### Stopping a stream
+
+Break out of the loop to stop generation; the connection is closed for you. In async code, cancelling the task that consumes the stream does the same.
+
+### Handling stream errors
+
+Failures arrive as an `error` event, not as a raised exception. That covers invalid credentials, network errors and a connection that drops before the flow finishes.
 
 ## Checking Request Status
 

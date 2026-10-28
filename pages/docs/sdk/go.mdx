@@ -16,14 +16,12 @@ This guide demonstrates how to integrate the Lamatic Go SDK with your Go applica
 Install the Lamatic Go SDK using Go modules:
 
 ```bash
-go get github.com/Lamatic/lamatic-sdk-go
+go get github.com/Lamatic/lamatic-sdk-go@latest
 ```
 
-Or if you're using the community version:
-
-```bash
-go get github.com/AasheeshLikePanner/lamatic-sdk-go
-```
+<Callout type="info">
+  If your code imports `github.com/AasheeshLikePanner/lamatic-sdk-go`, change the import to `github.com/Lamatic/lamatic-sdk-go`. The module was renamed in v0.1.0.
+</Callout>
 
 ## Getting Started
 
@@ -144,6 +142,76 @@ func main() {
 }
 ```
 
+
+## Streaming Responses
+
+Use `ExecuteFlowTokenStream` to show LLM output as it is generated, instead of waiting for the whole flow to finish. It returns a channel that delivers one event at a time. Streaming requires **v0.1.0** or later.
+
+```go
+ctx := context.Background()
+
+events, err := client.ExecuteFlowTokenStream(ctx, "your-flow-id", map[string]interface{}{
+    "prompt": "Write a short story",
+}, nil)
+if err != nil {
+    log.Fatalf("Could not start the stream: %v", err) // the request could not be sent
+}
+
+for event := range events {
+    switch event.Type {
+    case lamatic.EventToken:
+        fmt.Print(event.Token) // one piece of text
+    case lamatic.EventFinal:
+        fmt.Println("\nFull text:", event.Text)
+    case lamatic.EventError:
+        fmt.Println("\nStream failed:", event.Message)
+    }
+}
+```
+
+### Events
+
+| `Type` | Fields | When |
+| --- | --- | --- |
+| `EventToken` | `Token`, `NodeID`, `Raw` | An LLM or RAG node produced the next piece of text |
+| `EventNode` | `NodeID`, `Output`, `Raw` | A node finished; `Output` is its full output |
+| `EventFinal` | `Result`, `Text`, `TextByNode`, `Raw` | The flow finished. This is always the last event of a successful stream |
+| `EventError` | `Message`, `NodeID`, `Raw` | Something failed. The stream ends if the failure was fatal |
+
+- `Text` on the final event is every token joined together. Use it instead of reading `generatedResponse` from a node's output, because the flow's `Result` only holds what its response node returns.
+- `TextByNode` splits the text by node, for flows with more than one LLM or RAG node.
+- `Raw` is the original server frame. On the `EventNode` of an LLM node, `Raw.Data["_meta"]` holds token counts and cost.
+
+<Callout type="info">
+  Only **LLM** and **RAG** nodes stream token by token. Every other node reports once, as a single `EventNode` when it finishes.
+</Callout>
+
+### Stopping a stream
+
+Cancel the `context` to stop generation, for example from a "Stop" button. Keep reading the channel: it closes on its own once the stream has stopped, without an `EventError` or `EventFinal`.
+
+```go
+ctx, cancel := context.WithCancel(context.Background())
+defer cancel()
+
+events, _ := client.ExecuteFlowTokenStream(ctx, "your-flow-id", payload, nil)
+for event := range events {
+    if event.Type == lamatic.EventToken {
+        fmt.Print(event.Token)
+    }
+    if userPressedStop() {
+        cancel()
+    }
+}
+```
+
+<Callout type="warning">
+  Always either read the channel until it closes or cancel the context. Abandoning the channel otherwise keeps the connection open.
+</Callout>
+
+### Handling stream errors
+
+`ExecuteFlowTokenStream` only returns an error if the request could not be sent. Everything after that, such as invalid credentials, a failing node or a dropped connection, arrives as an `EventError` on the channel.
 
 ## Checking Request Status
 
@@ -366,6 +434,7 @@ The Go SDK provides the following features:
 - ✅ Execute Workflows (Flows)
 - ✅ Execute Agents
 - ✅ Job Polling with `CheckStatus`
+- ✅ Token streaming with `ExecuteFlowTokenStream`
 - ✅ Support for API Key and Access Token (JWT) authentication
 - ✅ Proper internal/pkg separation for Go best practices
 - ✅ Context support for cancellation and timeouts

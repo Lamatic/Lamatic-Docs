@@ -20,7 +20,7 @@ go get github.com/Lamatic/lamatic-sdk-go@latest
 ```
 
 <Callout type="info">
-  If your code imports `github.com/AasheeshLikePanner/lamatic-sdk-go`, change the import to `github.com/Lamatic/lamatic-sdk-go`. The module was renamed in v0.1.0.
+  If your code imports `github.com/AasheeshLikePanner/lamatic-sdk-go`, change the import to `github.com/Lamatic/lamatic-sdk-go`. The module was renamed in v0.1.1.
 </Callout>
 
 ## Getting Started
@@ -145,7 +145,7 @@ func main() {
 
 ## Streaming Responses
 
-Use `ExecuteFlowTokenStream` to show LLM output as it is generated, instead of waiting for the whole flow to finish. It returns a channel that delivers one event at a time. Streaming requires **v0.1.0** or later.
+Use `ExecuteFlowTokenStream` to show LLM output as it is generated, instead of waiting for the whole flow to finish. It returns a channel that delivers one event at a time. Streaming requires **v0.1.1** or later.
 
 ```go
 ctx := context.Background()

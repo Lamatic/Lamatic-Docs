@@ -153,7 +153,22 @@ async for event in lamatic.async_execute_flow_token_stream("your-flow-id", {"pro
 
 ### Stopping a stream
 
-Break out of the loop to stop generation; the connection is closed for you. In async code, cancelling the task that consumes the stream does the same.
+In sync code, break out of the loop to stop generation; the connection is closed for you.
+
+In async code, wrap the stream in `contextlib.aclosing`. Python does not close an async generator straight away when you `break` out of an `async for` loop, so without it the connection can stay open until the generator is garbage-collected:
+
+```python
+from contextlib import aclosing
+
+async with aclosing(lamatic.async_execute_flow_token_stream("your-flow-id", {"prompt": "Write a long story"})) as stream:
+    async for event in stream:
+        if event.type == "token":
+            print(event.token, end="", flush=True)
+        if user_pressed_stop():
+            break  # aclosing closes the stream and its connection here
+```
+
+Cancelling the task that consumes the stream also stops it.
 
 ### Handling stream errors
 

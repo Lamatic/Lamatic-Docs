@@ -196,6 +196,12 @@ To show LLM output while it is being generated, run the flow with the `executeWo
         body: JSON.stringify({ query, variables }),
       });
 
+      // Errors such as an invalid API key come back as plain JSON, not as a stream.
+      if (!response.headers.get("content-type")?.includes("text/event-stream")) {
+        console.error("Request failed:", await response.text());
+        return;
+      }
+
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
       let buffer = "";
@@ -261,6 +267,13 @@ To show LLM output while it is being generated, run the flow with the `executeWo
         headers=headers,
         stream=True,
     ) as response:
+        # Errors such as an invalid API key come back as plain JSON, not as a stream.
+        if "text/event-stream" not in response.headers.get("content-type", ""):
+            raise SystemExit(f"Request failed: {response.text}")
+
+        # The stream is UTF-8, but requests assumes ISO-8859-1 when no charset is sent.
+        response.encoding = "utf-8"
+
         for line in response.iter_lines(decode_unicode=True):
             if not line or not line.startswith("data: "):
                 continue

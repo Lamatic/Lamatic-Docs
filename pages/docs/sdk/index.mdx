@@ -85,6 +85,7 @@ You must provide either an API key or an access token, but not both.
 The Lamatic SDK provides the following methods:
 
 - `executeFlow(flowId: string, payload: Object): Promise<LamaticResponse>` - Execute a workflow
+- `executeFlowTokenStream(flowId: string, payload: Object, options?: LamaticStreamOptions): AsyncGenerator<LamaticTokenEvent>` - Execute a workflow and stream its LLM/RAG output token by token
 - `executeAgent(agentId: string, payload: Object): Promise<LamaticResponse>` - Execute an agent
 - `checkStatus(requestId: string, pollInterval?: number, pollTimeout?: number): Promise<LamaticResponse>` - Check the status of a request with polling
 - `updateAccessToken(accessToken: string): void` - Update the access token for the SDK instance
@@ -222,6 +223,64 @@ const accessTokenWithExpiry = jwt.sign({ project_id: 'PROJECT_ID' }, secretKey, 
 
 console.log('Access Token (with expiry):', accessTokenWithExpiry);
 ```
+
+## Streaming Responses
+
+Use `executeFlowTokenStream` to show LLM output as it is generated, instead of waiting for the whole flow to finish. It runs the flow and yields one event at a time. Streaming requires `lamatic` **v0.4.0** or later.
+
+```typescript
+import { Lamatic } from "lamatic";
+
+const lamatic = new Lamatic({
+  apiKey: "your-api-key",
+  projectId: "your-project-id",
+  endpoint: "your-endpoint",
+});
+
+for await (const event of lamatic.executeFlowTokenStream("your-flow-id", { prompt: "Write a short story" })) {
+  if (event.type === "token") process.stdout.write(event.token); // one piece of text
+  if (event.type === "final") console.log("\nFull text:", event.text);
+  if (event.type === "error") console.error("Stream failed:", event.message);
+}
+```
+
+### Events
+
+| Event | Fields | When |
+| --- | --- | --- |
+| `token` | `token`, `nodeId`, `raw` | An LLM or RAG node produced the next piece of text |
+| `node` | `nodeId`, `output`, `raw` | A node finished; `output` is its full output |
+| `final` | `result`, `text`, `textByNode`, `raw` | The flow finished. This is always the last event of a successful stream |
+| `error` | `message`, `nodeId`, `raw` | Something failed. The stream ends if the failure was fatal |
+
+- `final.text` is every token joined together. Use it instead of reading `generatedResponse` from a node's output, because the flow's `result` only holds what its response node returns.
+- `final.textByNode` splits the text by node, for flows with more than one LLM or RAG node.
+- `raw` is the original server frame. On the `node` event of an LLM node, `raw.data._meta` holds token counts and cost.
+
+<Callout type="info">
+  Only **LLM** and **RAG** nodes stream token by token. Every other node reports once, as a single `node` event when it finishes.
+</Callout>
+
+### Stopping a stream
+
+Pass an `AbortSignal` to stop generation, for example from a "Stop" button. The loop then ends quietly without an `error` or `final` event. Breaking out of the `for await` loop also stops the stream and closes the connection.
+
+```typescript
+const controller = new AbortController();
+stopButton.onclick = () => controller.abort();
+
+for await (const event of lamatic.executeFlowTokenStream(flowId, payload, { signal: controller.signal })) {
+  if (event.type === "token") output.textContent += event.token;
+}
+```
+
+### Handling stream errors
+
+Failures arrive as an `error` event, not as a thrown exception. That covers invalid credentials, network errors and a connection that drops before the flow finishes. Check for `event.type === "error"` in your loop.
+
+<Callout type="warning">
+  Keep your API key on the server. In a browser app, stream from your own backend route and forward the tokens to the page, rather than calling Lamatic directly from the browser.
+</Callout>
 
 ## Response Structure
 

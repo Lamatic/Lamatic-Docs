@@ -1,11 +1,11 @@
 ---
 title: Go
-description: Integrate the Lamatic SDK with Go applications to execute flows and agents.
+description: Integrate the Lamatic SDK with Go applications to execute flows, stream their output and wait for async results.
 ---
 
 # Using Lamatic SDK with Go
 
-This guide demonstrates how to integrate the Lamatic Go SDK with your Go applications to execute flows and agents.
+This guide demonstrates how to integrate the Lamatic Go SDK with your Go applications to execute flows.
 
 <Callout type="info">
   This is a **community-built** Go SDK for the Lamatic AI platform. The SDK is maintained under the [Lamatic organization](https://github.com/Lamatic/lamatic-sdk-go) on GitHub.
@@ -213,49 +213,55 @@ for event := range events {
 
 `ExecuteFlowTokenStream` only returns an error if the request could not be sent. Everything after that, such as invalid credentials, a failing node or a dropped connection, arrives as an `EventError` on the channel.
 
-## Checking Request Status
+## Async Flows
 
-For long-running workflows or agents, you can check the status using `CheckStatus`:
+A flow whose API trigger is set to run asynchronously answers at once with only a request ID (`Result` is `{"requestId": ...}`) and keeps running in the background. The SDK can wait for the result for you.
+
+<Callout type="info">
+  This section needs **v0.2.0** or later. In earlier versions `CheckStatus` returned an empty `Result`, and it took its interval and timeout as bare ints.
+</Callout>
+
+### Run a flow and wait for the result
+
+`ExecuteFlowPoll` runs a flow and, if it was queued, polls until it finishes. A realtime flow's response comes back unchanged, so it is safe to use for any flow. `ExecuteFlowPollAsync` reports the result on a channel instead.
 
 ```go
-package main
+resp, err := client.ExecuteFlowPoll(ctx, "your-flow-id", payload, &lamatic.PollOptions{
+    Interval: 5 * time.Second, // default 15s
+    Timeout:  5 * time.Minute, // default 15m
+})
+if err != nil {
+    log.Fatalf("Error executing flow: %v", err)
+}
 
-import (
-    "context"
-    "fmt"
-    "log"
-    "time"
-    lamatic "github.com/Lamatic/lamatic-sdk-go/pkg/lamatic"
-)
-
-func main() {
-    ctx := context.Background()
-    apiKey := "your-api-key"
-    
-    client, err := lamatic.NewClient(lamatic.Config{
-        Endpoint:  "your-endpoint",
-        ProjectID: "your-project-id",
-        APIKey:    &apiKey,
-    })
-    if err != nil {
-        log.Fatalf("Failed to create client: %v", err)
-    }
-
-    requestId := "your-request-id"
-    
-    // Check status with polling interval of 2 seconds and timeout of 30 seconds
-    status, err := client.CheckStatus(ctx, requestId, 2*time.Second, 30*time.Second)
-    if err != nil {
-        log.Fatalf("Error checking status: %v", err)
-    }
-
-    if status.Status == lamatic.StatusSuccess {
-        fmt.Printf("Request completed: %+v\n", status.Result)
-    } else {
-        fmt.Printf("Request failed: %s\n", status.Message)
-    }
+if resp.Status == lamatic.StatusSuccess {
+    fmt.Printf("Result: %+v\n", resp.Result)
+} else {
+    fmt.Printf("%s: %s\n", resp.Status, resp.Message)
 }
 ```
+
+### Poll a request ID you already have
+
+```go
+// nil options use the defaults: check every 15 seconds, give up after 15 minutes.
+resp, err := client.CheckStatus(ctx, requestId, nil)
+```
+
+`CheckStatusAsync` reports the result on a channel instead.
+
+### What polling returns
+
+| `Status` | `StatusCode` | Meaning |
+|---|---|---|
+| `StatusSuccess` | 200 | The flow finished. `Result` is its output, the same shape a realtime run returns. |
+| `StatusFailed` | 200 | A node failed. `Message` is the error, and `Result["failedNode"]` names the node. |
+| `StatusError` | 404 | The request ID was still unknown after 60 seconds of polling. |
+| `StatusError` | 408 | The run had not finished when `Timeout` ran out. |
+
+<Callout type="info">
+  A 408 means only that polling gave up: the run may still finish in the background. Call `CheckStatus` again later with the same request ID.
+</Callout>
 
 ## Updating Access Token
 
@@ -263,24 +269,23 @@ If you're using access token authentication and need to update the token:
 
 ```go
 // Update the access token
-newToken := "new-access-token"
-err := client.UpdateAccessToken(newToken)
-if err != nil {
-    log.Fatalf("Failed to update access token: %v", err)
-}
+client.UpdateAccessToken("new-access-token")
 ```
 
 ## Response Structure
 
-The `ExecuteFlow` and `ExecuteAgent` methods return a response with the following structure:
+`ExecuteFlow`, `ExecuteFlowPoll` and `CheckStatus` return a response with the following structure:
 
 ```go
 type Response struct {
-    Status  string      // "success", "error", or "failed"
-    Result  interface{} // The result data from the workflow/agent (if successful)
-    Message string      // Error message (if status is "error" or "failed")
+    Status     Status                 // StatusSuccess, StatusError or StatusFailed
+    Result     map[string]interface{} // The result data from the workflow (if successful)
+    Message    string                 // Error message (if the status is not StatusSuccess)
+    StatusCode int                    // HTTP status code
 }
 ```
+
+`StatusFailed` means the flow ran and a node failed. `StatusError` means the request itself failed. Use `resp.Decode(&yourStruct)` to unmarshal `Result` into your own type.
 
 ## Error Handling
 
@@ -432,7 +437,7 @@ lamatic-sdk-go/
 The Go SDK provides the following features:
 
 - ✅ Execute Workflows (Flows)
-- ✅ Execute Agents
+- ✅ Run a flow and wait for an async result with `ExecuteFlowPoll`
 - ✅ Job Polling with `CheckStatus`
 - ✅ Token streaming with `ExecuteFlowTokenStream`
 - ✅ Support for API Key and Access Token (JWT) authentication

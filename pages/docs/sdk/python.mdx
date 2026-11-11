@@ -10,7 +10,7 @@ import { Tabs } from 'nextra/components'
 This guide demonstrates how to integrate the Lamatic Python SDK into your Python applications to execute flows.
 
 <Callout type="info">
-  This SDK is in **early/alpha release** (v0.2.0). It currently supports executing **flows** only, agent execution (`executeAgent`) isn't available in the Python SDK yet, use the [JavaScript SDK](/docs/sdk) or [Go SDK](/docs/sdk/go) if you need that today.
+  This SDK is in **early release** (v0.3.0). It has the same features as the [JavaScript SDK](/docs/sdk) and [Go SDK](/docs/sdk/go): running flows, streaming, and waiting for async results. None of the SDKs run agents: the platform's agent API is deprecated, so use flows instead.
 </Callout>
 
 ## Installation
@@ -174,9 +174,49 @@ Cancelling the task that consumes the stream also stops it.
 
 Failures arrive as an `error` event, not as a raised exception. That covers invalid credentials, network errors and a connection that drops before the flow finishes.
 
-## Checking Request Status
+## Async Flows
 
-For long-running flows, poll for the result with `check_status` (sync) or `async_check_status` (async). Both accept a polling interval and a timeout, in seconds, and return as soon as the request reaches a terminal state (`success`, `error`, or `failed`):
+A flow whose API trigger is set to run asynchronously answers at once with only a request ID (`result == {"requestId": ...}`) and keeps running in the background. The SDK can wait for the result for you.
+
+<Callout type="info">
+  The methods in this section need `lamatic` **v0.3.0** or later. In earlier versions `check_status` failed on every call with a GraphQL error.
+</Callout>
+
+### Run a flow and wait for the result
+
+`execute_flow_poll` (sync) and `async_execute_flow_poll` (async) run a flow and, if it was queued, poll until it finishes. A realtime flow's response comes back unchanged, so they are safe to use for any flow:
+
+<Tabs items={['Sync', 'Async']}>
+  <Tabs.Tab>
+```python
+response = lamatic.execute_flow_poll(
+    "your-flow-id",
+    {"prompt": "Write a long report"},
+    poll_interval=5,    # seconds between polls, default 15
+    poll_timeout=300,   # max wait time in seconds, default 900
+)
+
+if response.status == "success":
+    print(response.result)
+else:
+    print(response.status, response.message)
+```
+  </Tabs.Tab>
+  <Tabs.Tab>
+```python
+async def run():
+    response = await lamatic.async_execute_flow_poll(
+        "your-flow-id",
+        {"prompt": "Write a long report"},
+        poll_interval=5,
+        poll_timeout=300,
+    )
+    print(response.status, response.result)
+```
+  </Tabs.Tab>
+</Tabs>
+
+### Poll a request ID you already have
 
 <Tabs items={['Sync', 'Async']}>
   <Tabs.Tab>
@@ -205,8 +245,17 @@ async def poll():
   </Tabs.Tab>
 </Tabs>
 
+### What polling returns
+
+| `status` | `status_code` | Meaning |
+|---|---|---|
+| `success` | 200 | The flow finished. `result` is its output, the same shape a realtime run returns. |
+| `failed` | 200 | A node failed. `message` is the error, and `result["failedNode"]` names the node. |
+| `error` | 404 | The request ID was still unknown after 60 seconds of polling. |
+| `error` | 408 | The run had not finished when `poll_timeout` ran out. |
+
 <Callout type="info">
-  If `poll_timeout` is reached before the flow finishes, `check_status` returns `status="error"`, `status_code=408`, and a message noting the request may still be executing in the background. The flow itself isn't cancelled, only the polling loop gives up.
+  A 408 means only that polling gave up: the flow isn't cancelled and may still finish in the background. Call `check_status` again later with the same request ID.
 </Callout>
 
 ## Updating Access Token
@@ -219,12 +268,12 @@ lamatic.update_access_token("new-access-token")
 
 ## Response Structure
 
-`execute_flow`, `async_execute_flow`, `check_status`, and `async_check_status` all return a `LamaticResponse`:
+`execute_flow`, `execute_flow_poll`, `check_status` and their async variants all return a `LamaticResponse`:
 
 ```python
 @dataclass
 class LamaticResponse:
-    status: str                        # "success" | "error" | "failed" | in-progress while running
+    status: str                        # "success" | "error" | "failed"
     result: dict | None
     message: str | None = None
     status_code: int | None = None
@@ -256,7 +305,7 @@ except Exception as e:
     print("SDK error:", e)
 ```
 
-`check_status` and `async_check_status` behave differently: they catch errors internally and return a `LamaticResponse` with `status="error"` instead of raising, so you can check `response.status` without a `try`/`except`.
+`check_status`, `execute_flow_poll` and their async variants behave differently once polling starts: they catch errors internally and return a `LamaticResponse` with `status="error"` instead of raising, so you can check `response.status` without a `try`/`except`.
 
 ## Environment Variables
 

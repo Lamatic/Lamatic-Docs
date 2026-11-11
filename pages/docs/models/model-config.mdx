@@ -47,4 +47,21 @@ Model Config play a crucial role in fine-tuning the behavior of Large Language M
 
 ## Additional Parameters
 - Custom key-value pairs can be added for model-specific tuning.
+- `prompt_caching` = `false` turns off prompt caching for Claude models. See [Prompt Caching (Claude)](#prompt-caching-claude).
+
+## Prompt Caching (Claude)
+
+Lamatic caches the system prompt of Claude models automatically, so repeated calls cost less and respond faster. This applies to Claude called through Anthropic, and to Claude 3.7 Sonnet and Claude 4 or newer on AWS Bedrock.
+
+- **First call:** the system prompt is written to the cache. That part of the input costs about 25% more than normal.
+- **Later calls within about 5 minutes:** if the system prompt is exactly the same, it is read back from the cache at about 10% of the normal input price.
+- **Short system prompts:** the minimum applies to the cached part (the system prompt), not to the whole request. A system prompt below the model's minimum, which ranges from about 500 to 4,000 tokens depending on the model, isn't cached and costs the same as before, even if the user message is long.
+
+The cache covers the system prompt at the start of the request, including any variables it contains. The user message and chat history are not cached.
+
+You can see cache usage in a node's `_meta` output: `cache_creation_input_tokens` is the cache write, and `cache_read_input_tokens` is the cache read.
+
+<Callout type="info">
+To turn caching off for a model, add `prompt_caching` with the value `false` under **Additional Parameters**. Consider this when your system prompt changes on every call (for example, when it includes per-request variables), or when calls are more than 5 minutes apart. In those cases every call pays for a cache write that is never reused.
+</Callout>
 

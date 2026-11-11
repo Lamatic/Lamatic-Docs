@@ -1,0 +1,15 @@
+diff --git a/dist/server/og/cache-image-response.js b/dist/server/og/cache-image-response.js
+index 992b40184ed300c414b7a22543d3faac56ef055b..e60ef7bf9df9a58617d526ffb080fd5cd978618b 100644
+--- a/dist/server/og/cache-image-response.js
++++ b/dist/server/og/cache-image-response.js
+@@ -16,8 +16,8 @@ const _workunitasyncstorageexternal = require("../app-render/work-unit-async-sto
+ const _dynamicrendering = require("../app-render/dynamic-rendering");
+ const _dynamicrenderingutils = require("../dynamic-rendering-utils");
+ const _manifestssingleton = require("../app-render/manifests-singleton");
+-const _static = require("react-server-dom-webpack/static");
+-const _client = require("react-server-dom-webpack/client");
++const _static = require("next/dist/compiled/react-server-dom-webpack/static");
++const _client = require("next/dist/compiled/react-server-dom-webpack/client");
+ function importOgModule() {
+     // Cache Components is Node-only (rejected for the edge runtime at compile
+     // time), so we always load the Node build. Loading it dynamically keeps the

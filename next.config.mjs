@@ -52,10 +52,6 @@ const nextraConfig = withNextra({
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    // ESLint behaves weirdly in this monorepo.
-    ignoreDuringBuilds: true,
-  },
   transpilePackages: ["react-tweet", "react-syntax-highlighter", "geist"],
   images: {
     remotePatterns: [

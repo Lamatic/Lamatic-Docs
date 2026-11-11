@@ -54,10 +54,10 @@ Model Config play a crucial role in fine-tuning the behavior of Large Language M
 Lamatic caches the system prompt of Claude models automatically, so repeated calls cost less and respond faster. This applies to Claude called through Anthropic, and to Claude 3.7 Sonnet and Claude 4 or newer on AWS Bedrock.
 
 - **First call:** the system prompt is written to the cache. That part of the input costs about 25% more than normal.
-- **Later calls within about 5 minutes:** the cached system prompt is read back at about 10% of the normal input price.
-- **Short prompts:** prompts below the model's minimum (about 1,000–4,000 tokens, depending on the model) aren't cached and cost the same as before.
+- **Later calls within about 5 minutes:** if the system prompt is exactly the same, it is read back from the cache at about 10% of the normal input price.
+- **Short system prompts:** the minimum applies to the cached part (the system prompt), not to the whole request. A system prompt below the model's minimum, which ranges from about 500 to 4,000 tokens depending on the model, isn't cached and costs the same as before, even if the user message is long.
 
-Only the fixed instructions at the start of the prompt are cached. The user message and chat history are not.
+The cache covers the system prompt at the start of the request, including any variables it contains. The user message and chat history are not cached.
 
 You can see cache usage in a node's `_meta` output: `cache_creation_input_tokens` is the cache write, and `cache_read_input_tokens` is the cache read.
 

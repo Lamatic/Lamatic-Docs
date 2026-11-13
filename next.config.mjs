@@ -54,6 +54,10 @@ const nextraConfig = withNextra({
   },
   transpilePackages: ["react-tweet", "react-syntax-highlighter", "geist"],
   images: {
+    // Serve images directly instead of through /_next/image. Cloudflare on
+    // lamatic.ai puts a managed challenge on /_next/image, which <img> tags
+    // can't pass, so every optimized image (logos, cards) returned 403.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

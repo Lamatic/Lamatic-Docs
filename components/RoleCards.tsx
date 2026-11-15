@@ -48,11 +48,14 @@ type RoleCardProps = {
 export function RoleCard({ id, title, summary, tags = [], children }: RoleCardProps) {
   const hash = `role-${id}`;
   const [open, setOpen] = React.useState(false);
+  // Set by the Apply button so closing scrolls to the form instead of
+  // returning focus to the card.
+  const skipCloseFocus = React.useRef(false);
 
   // Open automatically when the URL points at #role-<id>.
   React.useEffect(() => {
     const sync = () => {
-      if (window.location.hash === `#${hash}`) setOpen(true);
+      setOpen(window.location.hash === `#${hash}`);
     };
     sync();
     window.addEventListener("hashchange", sync);
@@ -103,7 +106,12 @@ export function RoleCard({ id, title, summary, tags = [], children }: RoleCardPr
       </DialogTrigger>
       <DialogContent
         className="flex max-h-[90vh] max-w-3xl flex-col gap-0 overflow-hidden p-0 sm:rounded-lg"
-        onCloseAutoFocus={(e) => e.preventDefault()}
+        onCloseAutoFocus={(e) => {
+          if (skipCloseFocus.current) {
+            skipCloseFocus.current = false;
+            e.preventDefault();
+          }
+        }}
       >
         <DialogHeader className="border-b p-6 pr-12 text-left">
           <DialogTitle className="text-2xl">{title}</DialogTitle>
@@ -126,6 +134,7 @@ export function RoleCard({ id, title, summary, tags = [], children }: RoleCardPr
           <button
             type="button"
             onClick={() => {
+              skipCloseFocus.current = true;
               onOpenChange(false);
               // Wait for the dialog to release its scroll lock before scrolling.
               window.setTimeout(() => {

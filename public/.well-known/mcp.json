@@ -12,12 +12,12 @@
       "authentication": "none",
       "docs": "https://lamatic.ai/docs/mcp/docs-mcp"
     },
-    "lamatic-graph": {
-      "package": "@lamatic/graph-mcp",
-      "name": "Lamatic Graph MCP",
-      "description": "Execute deployed Lamatic flows as MCP tools from any client. Requires Lamatic org and project API keys.",
-      "transport": "stdio",
-      "authentication": "api-key",
+    "lamatic": {
+      "url": "https://mcp.lamatic.ai/mcp",
+      "name": "Lamatic MCP",
+      "description": "Build, deploy, run and debug Lamatic flows from any MCP client. Hosted; sign in with your Lamatic account (OAuth 2.1).",
+      "transport": "http",
+      "authentication": "oauth2",
       "docs": "https://lamatic.ai/docs/mcp/graph-mcp"
     }
   }

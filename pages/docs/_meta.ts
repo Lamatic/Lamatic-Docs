@@ -202,7 +202,7 @@ export default {
     "newWindow": false
   },
   "dev-mcp": {
-    title: "Dev MCP",
+    title: "Dev MCP (deprecated)",
     type: "doc",
     display: "hidden",
   },

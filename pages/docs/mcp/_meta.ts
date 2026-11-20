@@ -3,12 +3,12 @@ export default {
     title: "Overview",
     type: "doc",
   },
-  "mcp-node": {
-    title: "MCP Node",
+  "graph-mcp": {
+    title: "Lamatic MCP",
     type: "doc",
   },
-  "graph-mcp": {
-    title: "Graph MCP",
+  "mcp-node": {
+    title: "MCP Node",
     type: "doc",
   },
   "docs-mcp": {

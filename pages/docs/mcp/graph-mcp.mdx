@@ -1,126 +1,196 @@
 ---
-title: Graph MCP
-description: Execute your deployed Lamatic flows via AI agents using natural language.
+title: Lamatic MCP
+description: Connect Claude, Cursor, VS Code or any MCP client to Lamatic at https://mcp.lamatic.ai/mcp. Sign in with OAuth, then build, deploy, run and debug your flows in natural language.
 ---
 
-import { Callout, Tabs } from 'nextra/components'
+import { Callout } from 'nextra/components'
 import { Button } from '@/components/ui/button'
 
-# Graph MCP (Beta)
+# Lamatic MCP
 
-> Execute your deployed Lamatic flows via AI agents using natural language.
+> Build, deploy, run and debug your Lamatic flows from any AI assistant.
+
+**Lamatic MCP** (formerly Graph MCP) is a hosted [Model Context Protocol](https://modelcontextprotocol.io) server at **`https://mcp.lamatic.ai/mcp`**. Connect Claude, Cursor, VS Code or any other MCP client and your assistant can list your projects, create and edit flows, deploy them, run them, read logs, and work with your D1 database and VectorDB collections.
+
+There is nothing to install and no API key to copy. You sign in with your Lamatic account in the browser (OAuth 2.1 with PKCE), and the client keeps its own short-lived tokens that refresh automatically.
+
+<Callout type="warning">
+  **Using `@lamatic/graph-mcp` or `@lamatic/dev-mcp` from npm?** Those packages, and the `graph_auth_login` / `dev_auth_login` tools that took an org API key (`lt-org-…`) and project API key (`lt-mmup-…`), are deprecated. Remove them from your MCP config and connect to `https://mcp.lamatic.ai/mcp` instead.
+</Callout>
 
 ---
 
-## What is it?
-
-**Lamatic Graph MCP** is an [Model Context Protocol](https://modelcontextprotocol.io) server that turns your deployed Lamatic flows into AI-callable tools. Connect Claude, GitHub Copilot, or Cursor, and your flows become tools your AI can call directly using natural language.
-
----
-
-## Install
-
-Pick your client and you're connected in a few seconds.
+## Connect
 
 <div className="flex flex-wrap gap-3 my-4">
   <Button variant="outline" size="sm" asChild>
-    <a href="https://cursor.com/en/install-mcp?name=lamatic-graph&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBsYW1hdGljL2dyYXBoLW1jcCJdfQ%3D%3D" target="_blank" rel="noreferrer">Add to Cursor</a>
+    <a href="https://cursor.com/en/install-mcp?name=lamatic&config=eyJ1cmwiOiJodHRwczovL21jcC5sYW1hdGljLmFpL21jcCJ9" target="_blank" rel="noreferrer">Add to Cursor</a>
   </Button>
   <Button variant="outline" size="sm" asChild>
-    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic-graph%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40lamatic%2Fgraph-mcp%22%5D%7D">Add to VS Code</a>
+    <a href="vscode:mcp/install?%7B%22name%22%3A%22lamatic%22%2C%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A//mcp.lamatic.ai/mcp%22%7D">Add to VS Code</a>
   </Button>
 </div>
-
-<Callout type="warning">
-  After connecting, ask your AI assistant to run `graph_auth_login` with your org API key, project API key, and org ID. Nothing else works until you authenticate.
-</Callout>
-
-## Installation
-
-```bash
-# Run directly via npx (recommended)
-npx @lamatic/graph-mcp
-
-# Or install globally
-npm install -g @lamatic/graph-mcp
-
-# Or install as a dependency
-npm install @lamatic/graph-mcp
-```
-
----
-
-## Setup
 
 ### Claude Code
 
 ```bash
-claude mcp add lamatic-graph -- npx -y @lamatic/graph-mcp
+claude mcp add --transport http lamatic https://mcp.lamatic.ai/mcp
 ```
 
-### VS Code
+Then run `/mcp`, pick **lamatic**, and choose **Authenticate**.
 
-Add to `.vscode/mcp.json`:
+### Claude (claude.ai and Claude Desktop)
 
-```json
-{
-  "servers": {
-    "lamatic-graph": {
-      "command": "npx",
-      "args": ["-y", "@lamatic/graph-mcp"],
-      "type": "stdio"
-    }
-  }
-}
-```
+Go to **Settings → Connectors → Add custom connector** and enter `https://mcp.lamatic.ai/mcp`. Claude asks you to sign in the first time you use it.
 
-### Claude Desktop / Cursor
+### Cursor
 
-Add to your MCP config file:
+Use the **Add to Cursor** button above, or add this to your MCP config file:
 
 ```json
 {
   "mcpServers": {
-    "lamatic-graph": {
-      "command": "npx",
-      "args": ["-y", "@lamatic/graph-mcp"]
+    "lamatic": {
+      "url": "https://mcp.lamatic.ai/mcp"
     }
   }
 }
 ```
 
+### VS Code
+
+Use the **Add to VS Code** button above, or add this to `.vscode/mcp.json`:
+
+```json
+{
+  "servers": {
+    "lamatic": {
+      "type": "http",
+      "url": "https://mcp.lamatic.ai/mcp"
+    }
+  }
+}
+```
+
+### Other clients
+
+Any client that supports remote (Streamable HTTP) MCP servers with OAuth works. Add `https://mcp.lamatic.ai/mcp` as the server URL.
+
 ---
 
-## Authentication
+## Signing in and permissions
 
-Graph MCP requires two API keys: an **org-level key** and a **project-level key**.
+The first time your client connects, it opens a Lamatic sign-in page in your browser. There you choose:
 
-Run the `graph_auth_login` tool:
+- **The organization** this connection works in. One connection reaches one organization.
+- **Which projects**: all projects in that organization, or only the ones you pick.
+- **What it may do**: a preset (full access, builder, or read-only) or individual permissions. You can never grant more than your own role in that organization allows.
+- **An optional expiry** for the connection.
 
-```
-authenticate with orgApiKey lt-org-xxx, projectApiKey lt-mmup-xxx and orgId your-org-id
-```
+No token passes through the chat, and nothing is stored on the MCP server between requests. If your role in the organization is reduced, the connection loses those permissions right away.
 
-<Callout type="info">
-  Your credentials are stored locally at `~/.lamatic/config.json`.
-</Callout>
+To see, change or disconnect your connected assistants, open **[Connected apps](https://studio.lamatic.ai/pat)** in Lamatic Studio. Disconnecting takes effect within about 5 minutes for an assistant that is in the middle of a session.
+
+To work in a different organization, ask your assistant to run `graph_switch_organization` (or connect again), and pick the other organization on the sign-in page.
+
+Ask your assistant to run `graph_auth_status` at any time to see which organization, role and permissions the connection has, and which tools it can use.
 
 ---
 
 ## Tools
 
+Every project tool takes a `projectId`. Your assistant gets it from `graph_list_projects`, so you can refer to projects by name.
+
+### Account and projects
+
 | Tool | Description |
 |------|-------------|
-| `graph_auth_login` | Authenticate with Lamatic |
-| `graph_load_project_flows` | Load all active flows with input schemas |
-| `graph_execute_flow` | Execute a deployed flow with a payload |
-| `graph_refresh_flows` | Refresh the list of active flows |
+| `graph_auth_status` | Show the organization, role and permissions of this connection, and which tools it can use |
+| `graph_list_projects` | List the projects this connection can work in |
+| `graph_get_project` | Read one project's name, organization and settings |
+| `graph_switch_organization` | Reconnect to a different organization (signs in again) |
+| `graph_get_guide` | Read a built-in guide: `capabilities`, `conventions`, `troubleshooting`, `flow-template-chat` |
+
+### Flows
+
+| Tool | Description |
+|------|-------------|
+| `graph_list_flows` | List active flows with their input schemas |
+| `graph_load_flow_details` | Load one flow's details and input schema |
+| `graph_create_flow` | Create a flow from a node and edge graph |
+| `graph_update_flow` | Replace a flow's nodes and edges and/or its status (a full replace, not a merge) |
+| `graph_execute_flow` | Run a deployed flow with a payload |
+| `graph_generate_flow_skills` | Generate one Claude Skill per flow (what it does, when to use it, how to call it) |
+
+### Nodes and models
+
+| Tool | Description |
+|------|-------------|
+| `graph_list_nodes` | List the node types available for building flows |
+| `graph_get_node` | Get one node type's full configuration schema |
+| `graph_list_models` | List the model credentials configured in a project |
+| `graph_list_model_providers` | List supported model providers and the fields each one needs |
+| `graph_get_model_status` | Check whether a model is currently available |
+| `graph_create_model_credential` | Add a model provider credential. You enter the key on a Lamatic page, never in the chat |
+
+### Deployments
+
+Flow changes are not live until you deploy.
+
+| Tool | Description |
+|------|-------------|
+| `graph_trigger_deployment` | Deploy the project's current flows (runs in the background) |
+| `graph_get_deployment` | Get one deployment's status, what changed and how long it took |
+| `graph_list_deployments` | List the project's deployments |
+
+### Logs
+
+| Tool | Description |
+|------|-------------|
+| `graph_get_logs` | Fetch execution logs for a project |
+| `graph_enable_logs` | Turn execution logging on (takes effect after the next deployment) |
+| `graph_disable_logs` | Turn execution logging off (takes effect after the next deployment) |
+
+### D1 database
+
+| Tool | Description |
+|------|-------------|
+| `graph_d1_list_tables` | List the tables in the project's D1 database |
+| `graph_d1_get_table_columns` | Get a table's columns |
+| `graph_d1_create_table` | Create a table |
+| `graph_d1_drop_table` | Delete a table |
+| `graph_d1_execute_query` | Run a SQL query |
+
+### VectorDB
+
+| Tool | Description |
+|------|-------------|
+| `graph_vectordb_list_collections` | List collections |
+| `graph_vectordb_get_collection` | Get a collection's properties and record count |
+| `graph_vectordb_create_collection` | Create a collection |
+| `graph_vectordb_delete_collection` | Delete a collection |
+| `graph_vectordb_list_records` | List records in a collection |
+| `graph_vectordb_get_record` | Get one record by ID |
+| `graph_vectordb_search` | Search a collection, ranked by relevance |
+| `graph_vectordb_update_record` | Update a record's fields |
+
+The tools you see depend on the permissions you approved. A read-only connection, for example, does not get the tools that change anything.
 
 ---
 
-## Supported Flow Triggers
+## Prompts
 
-Graph MCP can execute flows with the following trigger types:
+Clients that support MCP prompts show these as slash commands:
+
+- `/build_flow`: build a new flow step by step
+- `/debug_flow`: find out why a flow fails
+- `/deploy_and_verify`: deploy and confirm the change is live
+
+---
+
+## Supported flow triggers
+
+`graph_execute_flow` can run flows with these triggers:
 
 | Trigger | Supported |
 |---------|-----------|
@@ -128,22 +198,21 @@ Graph MCP can execute flows with the following trigger types:
 | Chat Widget | ✅ |
 | Search Widget | ✅ |
 | Webhook | ✅ |
+| Cron | ⚠️ Needs trigger data in the payload |
+| Google Sheets | ⚠️ Needs trigger data in the payload |
+
+Running a flow needs an active project API key in Studio. Lamatic uses it on the server for you, so it never reaches your assistant.
 
 ---
 
-## How It Works
-
-1. Connect your MCP client with **org API key + project API key + org ID**
-2. Run `graph_load_project_flows` to see all active flows and their input fields
-3. Run `graph_execute_flow` with the flow ID and matching payload
-4. The AI maps your natural language to the right flow and payload automatically
-
----
-
-## Example Usage
+## Example prompts
 
 ```
-show me all flows for project fcd1aa1d-...
+list my Lamatic projects
+```
+
+```
+show me the flows in the Support project
 ```
 
 ```
@@ -151,18 +220,18 @@ run the Changelog flow with sampleInput "hello world"
 ```
 
 ```
-execute the RAG flow and ask it "what is Lamatic?"
+add a step to the RAG flow that summarizes the answer, then deploy it
 ```
 
 ```
-refresh my flows
+why did the last run of the Onboarding flow fail?
 ```
 
 ---
 
 ## Links
 
+- [Connected apps](https://studio.lamatic.ai/pat) in Lamatic Studio
 - [GitHub repository](https://github.com/Lamatic/GraphMCP-Lamatic)
-- [npm package](https://www.npmjs.com/package/@lamatic/graph-mcp)
-- [Docs MCP](/docs/mcp/docs-mcp): Query Lamatic.ai documentation via AI
-- [Dev MCP](/docs/dev-mcp): Manage Lamatic projects via AI
+- [Docs MCP](/docs/mcp/docs-mcp): ask questions about Lamatic from your AI assistant
+- [MCP Node](/docs/mcp/mcp-node): call external MCP servers from inside a flow

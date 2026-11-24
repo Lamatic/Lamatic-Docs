@@ -279,4 +279,17 @@ const theme = createTheme({
 
 This allows the chat widget input to properly receive focus even when the Drawer is open, without affecting the overall functionality of your drawer.
 
+### Chat Fails From the Second Message With a Gemini Model
+
+If your Flow answers the first message and then fails with `Requests ending with a model turn are not supported`, the chat history sent to Gemini likely ends with a bot reply. The widget then shows only the generic message from **Error Message** in the Messages settings.
+
+**Solution:**
+
+1. Open the Generate Text Node in your Flow.
+2. Clear the **Messages (History)** field.
+3. Keep only the `chatMessage` variable in the **User** message.
+4. Click **Save**, reset the chat session, and test again.
+
+The Node then answers each message on its own and no longer sees earlier turns.
+
 This documentation provides a comprehensive guide to integrating the chat widget, including all necessary configurations and troubleshooting tips.
